@@ -40,7 +40,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/language/{id}', 'LanguageController@edit') -> name('languageEdit');
 	Route :: post('/language/{id}', 'LanguageController@update') -> name('languageUpdate');
 	Route :: get('/language/{id}/delete', 'LanguageController@delete') -> name('languageDelete');
-
+ 
 
 	Route :: get('/{moduleAlias}', 'AdminController@getModulePage') -> name('moduleGetData');
 	Route :: get('/{moduleAlias}/add', 'AdminController@addModulePage') -> name('moduleDataAdd');
