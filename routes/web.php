@@ -48,7 +48,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: post('/{moduleAlias}/{id}', 'AdminController@updateModulePage') -> name('moduleDataUpdate');
 	Route :: get('/{moduleAlias}/{id}/delete', 'AdminController@deleteModulePage') -> name('moduleDataDelete');
 });
-
+ 
  
 // Route :: get('/{any}', function($any) {
 	// return 'hi';
