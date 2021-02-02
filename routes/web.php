@@ -49,7 +49,6 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/{moduleAlias}/{id}/delete', 'AdminController@deleteModulePage') -> name('moduleDataDelete');
 });
 
-
 // Route :: get('/{any}', function($any) {
 	// return 'hi';
 
