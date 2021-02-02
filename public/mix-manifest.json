@@ -1,0 +1,17 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/_atom.css": "/css/_atom.css",
+    "/css/html_tags.css": "/css/html_tags.css",
+    "/css/app.css": "/css/app.css",
+    "/css/admin/_atom.css": "/css/admin/_atom.css",
+    "/css/admin/bar.css": "/css/admin/bar.css",
+    "/css/admin/for_editors.css": "/css/admin/for_editors.css",
+    "/css/admin/html_tags.css": "/css/admin/html_tags.css",
+    "/css/admin/identifiers.css": "/css/admin/identifiers.css",
+    "/css/admin/left_part.css": "/css/admin/left_part.css",
+    "/css/admin/pages.css": "/css/admin/pages.css",
+    "/css/admin/rangs.css": "/css/admin/rangs.css",
+    "/css/admin/status_line.css": "/css/admin/status_line.css",
+    "/css/admin/tags.css": "/css/admin/tags.css",
+    "/css/admin/classes.css": "/css/admin/classes.css"
+}

@@ -1,0 +1,228 @@
+#saved {
+	border-top: 5px solid #059e54;
+	position: fixed;
+	width: 0;
+	left: 0;
+	top: 0;
+	z-index: 10;
+	opacity: 1;
+}
+
+#transparent_bg_div {
+	background-color: rgba(255, 255, 255, 0.75);
+	display: none;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 7;
+}
+
+#content {
+	padding: 10px;
+}
+
+#content_div {
+	padding: 10px;
+	position: relative;
+	z-index: 5;
+}
+
+#content_div h3 {
+	padding-bottom: 20px;
+}
+
+#content_bottom_div {
+	padding: 20px;
+}
+
+#content_bottom_div h3 {
+	margin: 0 0 20px 28px;
+}
+
+#apply_input {
+	background-color: #72e13c;
+	cursor: pointer;
+	margin: 0 0 0 10px;
+	padding: 10px;
+}
+
+#apply_input:hover {
+	background-color: #4bbf12;
+	color: #fff;
+}
+
+#delete_input {
+	background-color: #ff3939;
+	cursor: pointer;
+	/*margin-bottom: 15px;*/
+	padding: 10px;
+}
+
+#delete_input:hover {
+	background-color: #dc0404;
+	color: #fff;
+}
+
+#empty_content_h3 {
+	margin-top: 10px;
+	padding: 100px 0;
+}
+
+#exit_table {
+	margin-left: 0px;
+	width: 110px;
+}
+
+#header_div {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+}
+
+#hide_modules_arrow_div {
+	background-position: -470px 0;
+	height: 13px;
+	margin: 3px 6px 4px;
+	width: 23px;
+}
+
+#hide_modules_button_div {
+	border-bottom: 1px solid #ccc;
+	padding: 5px;
+}
+
+#hide_seo_data_button_span {
+	color: #888;
+}
+
+#home_icon_span {
+	color: #61b230;
+	font-size: 25px;
+	margin-left: 6px;
+	vertical-align: middle;
+}
+
+#log_out_icon_span {
+	color: #c72929;
+	font-size: 19px;
+	margin-left: 9px;
+	margin-right: 1px;
+	vertical-align: middle;
+}
+
+#log_in_div {
+	background-color: #fff;
+	border: 1px solid #ccc;
+	margin: 50px auto 0;
+	width: 330px;
+}
+
+#logo_div {
+	background-position: 0 -97px;
+	height: 84px;
+	width: 75px;
+}
+
+#menu_div {
+	border-bottom: 1px solid #ccc;
+	font-size: 15px;
+	padding: 0px;
+	position: relative;
+	z-index: 5;
+}
+
+#menu_basic_table_logo_table td {
+	border: none;
+	padding: 0;
+}
+
+#module_big_icon_div {
+	height: 200px;
+	right: 20px;
+	position: absolute;
+	bottom: 65px;
+	width: 200px;
+	z-index: 5;
+}
+
+#modules_menu_show_hide_buttons_div {
+	cursor: pointer;
+}
+
+#right_td {
+	width: 950px;
+}
+
+#seo_data_button_div {
+	background-color: #CDF1B4;
+	border: 1px solid #ccc;
+	margin-bottom: 15px;
+	padding: 8px;
+}
+
+#seo_data_div {
+	margin-bottom: 15px;
+}
+
+#seo_data_inside_div {
+	display: none;
+}
+
+#seo_data_table {
+	background-color: #eaeaea;
+	margin-top: 5px;
+}
+
+#seo_data_table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+#show_modules_arrow_div {
+	background-position: -440px 0;
+	height: 13px;
+	margin: 5px 6px 2px;
+	width: 23px;
+}
+
+#show_modules_button_div {
+	padding: 5px;
+}
+
+#show_seo_data_button_span {
+	color: #004b91;
+	cursor: pointer;
+}
+
+#submit_input,
+#submit_button {
+	background-color: #A2D5FB;
+	cursor: pointer;
+	padding: 10px;
+}
+
+#submit_input:hover,
+#submit_input:hover {
+	background-color: #2092F4;
+	color: #fff;
+}
+
+#text_messages_div {
+	color: #fff;
+	font-size: 18px;
+	height: 100%;
+	left: 0;
+	padding-top: 57px;
+	position: absolute;
+	text-align: center;
+	top: 0;
+	width: 100%;
+	z-index: 10;
+}
+
+#warning_content_h3 {
+	color: #f00;
+	text-align: center;
+	padding: 130px 40px;
+}
