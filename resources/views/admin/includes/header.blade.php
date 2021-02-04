@@ -1,7 +1,7 @@
 <header>
 	<div class="row">
-		<div class="col-1">
-			Logo
+		<div class="col-2">
+			<img src="{{ asset('storage/hobbystudio_logo.svg') }}" alt="HobbyStudio">
 		</div>
 
 		<div class="col-3">
@@ -10,7 +10,7 @@
 			Created by HobbyStudio
 		</div>
 
-		<div class="col-8
+		<div class="col-7
 					text-right">
 			მოგესალმებით სუპერ ადმინისტრატორი
 			<br>
