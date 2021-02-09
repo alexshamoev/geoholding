@@ -18,36 +18,15 @@
 	])
 
 
-	<div class="col-2">
-		<a href="{{ route('moduleBlockAdd', array($module -> id, $moduleStep -> id)) }}">
-			Add Step
-		</a>
-	</div>
-
-    <div class="col-2">
-		<a href="{{ route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $moduleBlock -> id)) }}">
-			Delete
-		</a>
-	</div>
-
-
-	<div class="p-2">
-		@if($prev)
-			<a href="{{ route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $prev -> id)) }}">
-				Prev
-			</a>
-		@else
-			Prev
-		@endif
-
-		@if($next)
-			<a href="{{ route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $next -> id)) }}">
-				Next
-			</a>
-		@else
-			Next
-		@endif
-	</div>
+	@include('admin.includes.bar', [
+		'addUrl' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id)),
+		'deleteUrl' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $moduleBlock -> id)),
+		'nextId' => 5,
+		'prevId' => 5,
+		'nextRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, 6)),
+		'prevRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, 6)),
+		'backRoute' => route('moduleStepEdit', array($module -> id, $moduleStep -> id))
+	])
 
 
 	{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $module -> id, $moduleStep -> id, $moduleBlock -> id))) }}

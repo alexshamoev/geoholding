@@ -7,10 +7,16 @@
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => $module -> alias, 'tag0Url' => route('moduleGetData', $module -> alias)])
+	@include('admin.includes.tags', [
+		'tag0Text' => $module -> alias,
+		'tag0Url' => route('moduleGetData', $module -> alias)
+	])
 
 
-	@include('admin.includes.addButton', ['text' => $moduleStep -> title, 'url' => route('moduleDataAdd', $module -> alias)])
+	@include('admin.includes.addButton', [
+		'text' => $moduleStep -> title,
+		'url' => route('moduleDataAdd', $module -> alias)
+	])
 
 
 	@foreach($moduleStepData as $data)

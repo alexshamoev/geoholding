@@ -20,7 +20,8 @@
 		'nextId' => $nextBswId,
 		'prevId' => $prevBswId,
 		'nextRoute' => route('bswEdit', $nextBswId),
-		'prevRoute' => route('bswEdit', $prevBswId)
+		'prevRoute' => route('bswEdit', $prevBswId),
+		'backRoute' => route('bswStartPoint')
 	])
 
 

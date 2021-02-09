@@ -7,7 +7,22 @@
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => $module -> alias, 'tag0Url' => route('moduleGetData', $module -> alias), 'tag1Text' => $data -> id])
+	@include('admin.includes.tags', [
+		'tag0Text' => $module -> alias,
+		'tag0Url' => route('moduleGetData', $module -> alias),
+		'tag1Text' => $data -> id
+	])
+
+
+	@include('admin.includes.bar', [
+		'addUrl' => route('moduleDataAdd', $module -> alias),
+		'deleteUrl' => route('moduleDataDelete', array($module -> alias, $data -> id)),
+		'nextId' => 3,
+		'prevId' => 3,
+		'nextRoute' => route('moduleEdit', 3),
+		'prevRoute' => route('moduleEdit', 3),
+		'backRoute' => route('moduleGetData', $module -> alias)
+	])
 
 
 	<!-- <a href="{{ route('moduleDataAdd', $module -> alias) }}">

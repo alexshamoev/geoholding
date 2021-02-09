@@ -7,40 +7,24 @@
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => 'Modules', 'tag0Url' => route('moduleStartPoint'), 'tag1Text' => $module -> alias, 'tag1Url' => route('moduleEdit', $module -> id), 'tag2Text' => $moduleStep -> title])
-	
+	@include('admin.includes.tags', [
+		'tag0Text' => 'Modules',
+		'tag0Url' => route('moduleStartPoint'),
+		'tag1Text' => $module -> alias,
+		'tag1Url' => route('moduleEdit', $module -> id),
+		'tag2Text' => $moduleStep -> title
+	])
 
 
-	<div class="col-2">
-		<a href="{{ route('moduleStepAdd', $module -> id) }}">
-			Add Step
-		</a>
-	</div>
-
-    <div class="col-2">
-		<a href="{{ route('moduleStepDelete', array($module -> id, $moduleStep -> id)) }}">
-			Delete
-		</a>
-	</div>
-
-
-	<div class="p-2">
-		@if($prev)
-			<a href="{{ route('moduleStepEdit', array($module -> id, $prev -> id)) }}">
-				Prev
-			</a>
-		@else
-			Prev
-		@endif
-
-		@if($next)
-			<a href="{{ route('moduleStepEdit', array($module -> id, $next -> id)) }}">
-				Next
-			</a>
-		@else
-			Next
-		@endif
-	</div>
+	@include('admin.includes.bar', [
+		'addUrl' => route('moduleStepAdd', $module -> id),
+		'deleteUrl' => route('moduleStepDelete', array($module -> id, $moduleStep -> id)),
+		'nextId' => 5,
+		'prevId' => 5,
+		'nextRoute' => route('moduleStepEdit', array($module -> id, 4)),
+		'prevRoute' => route('moduleStepEdit', array($module -> id, 4)),
+		'backRoute' => route('moduleEdit', $module -> id)
+	])
 
 
 	{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $module -> id, $moduleStep -> id))) }}

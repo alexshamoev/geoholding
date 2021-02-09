@@ -20,7 +20,8 @@
 		'nextId' => $nextLanguageId,
 		'prevId' => $prevLanguageId,
 		'nextRoute' => route('languageEdit', $nextLanguageId),
-		'prevRoute' => route('languageEdit', $prevLanguageId)
+		'prevRoute' => route('languageEdit', $prevLanguageId),
+		'backRoute' => route('languageStartPoint')
 	])
 
 

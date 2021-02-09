@@ -1,5 +1,18 @@
 <div class="row">
-	<div class="col-8"></div>
+	@if(isset($backRoute))
+		<div class="col-1">
+			<a href="{{ $backRoute }}">
+				გასვლა
+			</a>
+		</div>
+	@else
+		<div class="col-1">
+			გასვლა
+		</div>
+	@endif
+
+
+	<div class="col-7"></div>
 
 
 	@if($prevId)
@@ -28,7 +41,7 @@
 	@endif
 
 
-	@if($addUrl)
+	@if(isset($addUrl))
 		<div class="col-1">
 			<a href="{{ $addUrl }}">
 				Add
@@ -37,7 +50,7 @@
 	@endif
 
 
-	@if($deleteUrl)
+	@if(isset($deleteUrl))
 		<div class="col-1">
 			<a href="{{ $deleteUrl }}">
 				Delete

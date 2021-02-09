@@ -20,7 +20,8 @@
 		'nextId' => $nextModuleId,
 		'prevId' => $prevModuleId,
 		'nextRoute' => route('moduleEdit', $nextModuleId),
-		'prevRoute' => route('moduleEdit', $prevModuleId)
+		'prevRoute' => route('moduleEdit', $prevModuleId),
+		'backRoute' => route('moduleStartPoint')
 	])
 
 
