@@ -6,6 +6,10 @@
 @endsection
 
 
+@section('sidebar')
+	Sidebar from news
+@endsection
+
 @section('content')
     <h1 class="p-2">
         NEWS page - 

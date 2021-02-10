@@ -8,14 +8,47 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/html_tags.css') }}">
     </head>
     <body>
+		<header class="p-2 row">
+			<div class="col-2 p-2">
+				Logo
+			</div>
+
+			<div class="col-8 p-2">
+				@include('modules.menu_buttons.basic')
+			</div>
+
+			<div class="col-2 p-2">
+				@include('modules.languages.basic')
+			</div>
+		</header>
+
+
         @section('sidebar')
             This is the master sidebar.
         @show
 
-        <div class="container">
-			@include('includes.menu')
 
+        <div class="container">
             @yield('content')
         </div>
+
+
+		<footer class="p-2 row">
+			<div class="col-2 p-2">
+				Copyright
+			</div>
+
+			<div class="col-8 p-2">
+				Footer Menu
+			</div>
+
+			<div class="col-2 p-2">
+				Created by HobbyStudio
+			</div>
+
+			<a href="/admin" target="_blank">
+				Admin Panel
+			</a>
+		</footer>
     </body>
 </html>
