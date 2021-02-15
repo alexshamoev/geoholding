@@ -1,3 +1,4 @@
+<div class="p-2">
 @if(isset($tag0Text))
 	@if(isset($tag0Url))
 		<a href="{{ $tag0Url }}">
@@ -80,3 +81,5 @@
 	
 	>
 @endif
+
+</div>
