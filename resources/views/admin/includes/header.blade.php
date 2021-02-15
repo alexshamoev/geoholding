@@ -1,21 +1,29 @@
 <header>
-	<div class="row">
-		<div class="col-2">
-			<img src="{{ asset('storage/hobbystudio_logo.svg') }}" alt="HobbyStudio">
+	<div class="row align-items-center">
+		<div class="col-1">
+			<div class="p-2">
+				<img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio">
+			</div>
 		</div>
 
 		<div class="col-3">
-			CMS v2.9.4
-			<br>
-			Created by HobbyStudio
+			<div class="p-2">
+				<span class="header__cms-version">CMS</span>
+				<span class="header__cms-version-numbers">v2.9.4</span>
+			</div>
+			<div class="p-2">
+				<span>Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a></span>
+			</div>
 		</div>
 
-		<div class="col-7
-					text-right">
-			მოგესალმებით სუპერ ადმინისტრატორი
-			<br>
+		<div class="col-8 text-right">
+			<div class="p-2">
+				<span>მოგესალმებით სუპერ ადმინისტრატორი</span>
+			</div>
 			<a href="/" target="_blank">
-				გადასვლა საიტზე
+				<div class="p-2">
+					<span>გადასვლა საიტზე</span>
+				</div>
 			</a>
 		</div>
 	</div>

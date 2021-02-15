@@ -14,9 +14,10 @@
     </h1>
 
     <div class="p-2">
-		{{ $page -> text }}
+		{{ $page -> text }}123
     </div>
 
+{{--
 	<div class="p-2">
 		BSC Sample: {{ $bsc -> a_folders_url }}
 	</div>
@@ -24,6 +25,8 @@
 	<div class="p-2">
 		BSW Sample: {{ $bsw -> a_add_image }}
 	</div>
+--}}
+
 @endsection
 
 

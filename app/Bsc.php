@@ -19,3 +19,5 @@ class Bsc extends Model
 		return $bscs;
 	}
 }
+
+echo '123';

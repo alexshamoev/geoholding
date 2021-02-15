@@ -1,5 +1,19 @@
 {
+    "/js/admin/basic.js": "/js/admin/basic.js",
     "/js/app.js": "/js/app.js",
-    "/css/admin/all-admin-styles.css": "/css/admin/all-admin-styles.css",
-    "/css/all-styles.css": "/css/all-styles.css"
+    "/css/modules/_atom.css": "/css/modules/_atom.css",
+    "/css/modules/html_tags.css": "/css/modules/html_tags.css",
+    "/css/modules/app.css": "/css/modules/app.css",
+    "/css/modules/custom-bootstrap.css": "/css/modules/custom-bootstrap.css",
+    "/css/admin/_atom.css": "/css/admin/_atom.css",
+    "/css/admin/bar.css": "/css/admin/bar.css",
+    "/css/admin/classes.css": "/css/admin/classes.css",
+    "/css/admin/for_editors.css": "/css/admin/for_editors.css",
+    "/css/admin/html_tags.css": "/css/admin/html_tags.css",
+    "/css/admin/identifiers.css": "/css/admin/identifiers.css",
+    "/css/admin/left_part.css": "/css/admin/left_part.css",
+    "/css/admin/pages.css": "/css/admin/pages.css",
+    "/css/admin/status_line.css": "/css/admin/status_line.css",
+    "/css/admin/custom-bootstrap.css": "/css/admin/custom-bootstrap.css",
+    "/css/admin/tags.css": "/css/admin/tags.css"
 }

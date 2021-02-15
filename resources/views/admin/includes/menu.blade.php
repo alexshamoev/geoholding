@@ -1,39 +1,75 @@
-<div class="p-2">
+<div class="menu py-2">
 	@foreach($modules as $data)
-		<div class="p-2">
-			<a href="/admin/{{ $data -> alias }}">
-				{{ $data -> alias }}
-			</a>
+	<a href="/admin/{{ $data -> alias }}">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
+
+			<div class="p-2">
+				<span>{{ $data -> alias }}</span>
+			</div>
 		</div>
+	</a>
 	@endforeach
 
-	<div class="p-2">
-		<a href="/admin/modules">
-			Modules
-		</a>
-	</div>
+	<a href="/admin/modules">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
 
-	<div class="p-2">
-		<a href="/admin/bsw">
-			BSW
-		</a>
-	</div>
+			<div class="p-2">
+				<span>Modules</span>
+			</div>
+		</div>
+	</a>
 
-	<div class="p-2">
-		<a href="/admin/bsc">
-			BSC
-		</a>
-	</div>
+	<a href="/admin/bsw">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
 
-	<div class="p-2">
-		<a href="/admin/languages">
-			Languages
-		</a>
-	</div>
+			<div class="p-2">
+				<span>BSW</span>
+			</div>
+		</div>
+	</a>
 
-	<div class="p-2">
-		<a href="/admin/admins">
-			Admins
-		</a>
-	</div>
+	<a href="/admin/bsc">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
+
+			<div class="p-2">
+				<span>BSC</span>
+			</div>
+		</div>
+	</a>
+
+	<a href="/admin/languages">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
+
+			<div class="p-2">
+				<span>Languages</span>
+			</div>
+		</div>
+	</a>
+
+	<a href="/admin/admins">
+		<div class="d-flex align-items-center px-2">
+			<div class="p-2">
+				icon
+			</div>
+
+			<div class="p-2">
+				<span>Admins</span>
+			</div>
+		</div>
+	</a>
 </div>
