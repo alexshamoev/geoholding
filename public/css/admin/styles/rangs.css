@@ -1,0 +1,48 @@
+.dragstart {
+  opacity: 0.5;
+}
+
+.dragend {
+  opacity: 1;
+}
+
+.dragover div {
+  background-color: #1e8cf3 !important;
+}
+
+.ui-draggable-dragging {
+  opacity: 0.5;
+}
+
+.drag_target_div {
+  float: left;
+  padding: 0 6px 0 7px;
+  position: relative;
+  top: 100px;
+  height: 10px;
+  margin-bottom: 30px;
+}
+
+.drag_target_div div {
+  width: 7px;
+  position: relative;
+  top: -100px;
+  z-index: 5;
+}
+
+.drag_target_horizontal_div {
+  padding: 7px 0;
+  position: relative;
+  width: calc(100% - 20px);
+  margin: auto;
+}
+
+.drag_target_horizontal_div div {
+  height: 5px;
+  position: relative;
+}
+
+.standart_bg_table_outside_div {
+  cursor: move;
+}
+

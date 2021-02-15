@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    BSC
+    Languages
 @endsection
 
 
