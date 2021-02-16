@@ -8,7 +8,7 @@
 
 @section('content')
     <h1 class="p-2">
-        Contact
+        contacts
     </h1>
 
  
