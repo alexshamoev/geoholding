@@ -37,10 +37,58 @@
 
 			<div class="p-2">
 				<label>
-					{{ Form :: checkbox('hide_for_admin', '1') }}
+					{{ Form :: radio('hide_for_admin', '0') }}
 
-					hide_for_admin?
+					show_for_admin
 				</label>
+
+				<label>
+					{{ Form :: radio('hide_for_admin', '1') }}
+
+					hide_for_admin
+				</label>
+			</div>
+
+			<div class="p-2">
+				<div>
+					<label>
+						{{ Form :: radio('include_type', '0') }}
+
+						მივამაგროთ გვერდს
+					</label>
+				</div>
+
+				<div>
+					<label>
+						{{ Form :: radio('include_type', '1') }}
+
+						გამოვაჩინოთ ყველა გვერდზე
+					</label>
+				</div>
+
+				<div>
+					<label>
+						{{ Form :: radio('include_type', '2') }}
+
+						გამოვაჩინოთ გვერდებზე
+					</label>
+				</div>
+
+				<div>
+					<label>
+						{{ Form :: radio('include_type', '3') }}
+
+						გამოვაჩინოთ ყველა გვერდზე, გარდა
+					</label>
+				</div>
+
+				<div>
+					<label>
+						{{ Form :: radio('include_type', '4') }}
+
+						არ მივაბათ მოდული არცერთ გვერდს
+					</label>
+				</div>
 			</div>
 
 			<div class="p-2">
@@ -48,6 +96,14 @@
 				<br>
 				{{ Form :: select('page', $pagesForSelect, $module -> page) }}
 			</div>
+
+
+			<div class="p-2">
+				@foreach($pagesForSelect as $data)
+					{{ $data }}
+				@endforeach
+			</div>
+
 
 			<div class="p-2">
 				ფერი:
