@@ -10,7 +10,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/custom-bootstrap.css') }}">
 		
-		<script src="{{ mix('js/app.js') }}"></script>
+		<script src="{{ mix('js/app.js') }}" defer></script>
 		<script src="{{ asset('js/modules/basic.js') }}"></script>
     </head>
 
@@ -46,7 +46,27 @@
 					<div class="d-flex align-items-center">
 
 						<div class="col-xl-10 col-lg-10 col-12">
-							@include('modules.menu_buttons.basic')
+							<div class="row align-items-center">
+								<div class="col-xl-2 col-lg-2 col-12 p-0 d-flex justify-content-between align-items-center">
+									<div class="p-2">
+										<img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio">
+									</div>
+
+									<div 
+										class="navbar-toggler d-xl-none d-lg-none d-block" 
+										data-toggle="collapse" 
+										data-target="#navbar" 
+										aria-controls="navbar" 
+										aria-expanded="false" 
+										aria-label="Toggle navigation">
+										<div class="navbar__toggler-icon"></div>
+									</div>
+								</div>
+
+								<div class="col-xl-10 col-lg-10 col-12 p-0">
+									@include('modules.menu_buttons.basic')
+								</div>
+							</div>
 						</div>
 
 						<div class="col-2 p-0 d-xl-block d-lg-block d-none">
@@ -60,6 +80,10 @@
 
         <div class="container">
             @yield('content')
+
+			<div id="example">
+				
+			</div>
         </div>
 
 

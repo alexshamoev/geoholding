@@ -1,6 +1,5 @@
 {
     "/js/admin/basic.js": "/js/admin/basic.js",
-    "/js/app.js": "/js/app.js",
     "/css/modules/_atom.css": "/css/modules/_atom.css",
     "/css/modules/html_tags.css": "/css/modules/html_tags.css",
     "/css/modules/icons.css": "/css/modules/icons.css",
@@ -18,5 +17,6 @@
     "/css/admin/status_line.css": "/css/admin/status_line.css",
     "/css/admin/custom-bootstrap.css": "/css/admin/custom-bootstrap.css",
     "/css/admin/tags.css": "/css/admin/tags.css",
+    "/js/app.js": "/js/app.js",
     "/js/modules/basic.js": "/js/modules/basic.js"
 }
