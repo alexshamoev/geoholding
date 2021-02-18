@@ -15,7 +15,7 @@ class Bsw extends Model
 
 			$bsws -> $varSystemWord = $data -> $varWord;
 		}
-
+		
 		return $bsws;
 	}
 }
