@@ -1,26 +1,58 @@
 <html>
+
     <head>
         <title>App Name - @yield('pageMetaTitle')</title>
 
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/app.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/html_tags.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/icons.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/custom-bootstrap.css') }}">
+		
+		<script src="{{ mix('js/app.js') }}"></script>
+		<script src="{{ asset('js/modules/basic.js') }}"></script>
     </head>
+
     <body>
-		<header class="p-2 row">
+		<header>
 			<div class="container">
-				<div class="col-2 p-2">
-					<img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio">
-				</div>
+				<div class="header p-2">
+					<div class="d-flex align-items-center justify-content-between">
+						<div class="p-2">
+							<span>ტელეფონის ნომერი: +995 000 00 00 00; +995 000 00 00 00</span>
+						</div>
 
-				<div class="col-8 p-2">
-					@include('modules.menu_buttons.basic')
-				</div>
+						<div class="d-flex align-items-center justify-content-end">
+							<div class="header__search-input js_search">
+								<div class="p-2">
+									<input type="text" placeholder="ძიება">
+								</div>
+							</div>
 
-				<div class="col-2 p-2">
-					@include('modules.languages.basic')
+							<div>
+								<div class="p-2 js_open_search header__open-search">
+									<span class="ba_search"></span>
+								</div>
+
+								<div class="p-2 js_close_search header__close-search">
+									<span class="ba_close"></span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="d-flex align-items-center">
+
+						<div class="col-xl-10 col-lg-10 col-12">
+							@include('modules.menu_buttons.basic')
+						</div>
+
+						<div class="col-2 p-0 d-xl-block d-lg-block d-none">
+							@include('modules.languages.basic')
+						</div>
+					</div>
 				</div>
 			</div>
 		</header>
@@ -32,21 +64,30 @@
 
 
 		<footer class="p-2 row">
-			<div class="col-2 p-2">
-				Copyright
+			<div class="container">
+				<div class="p-2">
+					Footer Menu
+				</div>
 			</div>
 
-			<div class="col-8 p-2">
-				Footer Menu
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-6 col-lg-6 col-md-6 col-12 text-xl-left text-lg-left text-md-left text-center">
+						Copyright
+					</div>
+
+					<div class="col-xl-6 col-lg-6 col-md-6 col-12 text-xl-right text-lg-right text-md-right text-center">
+						Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a>
+					</div>
+				</div>
 			</div>
 
-			<div class="col-2 p-2">
-				Created by HobbyStudio
+			<div id="admin-panel-link">
+				<a href="/admin" target="_blank">
+					Admin Panel
+				</a>
 			</div>
-
-			<a href="/admin" target="_blank">
-				Admin Panel
-			</a>
 		</footer>
     </body>
+
 </html>

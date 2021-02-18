@@ -12,10 +12,13 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .js('resources/js/basic.js', 'public/js/admin')
-	.sass('resources/sass/modules/_atom.scss', 'public/css/modules')
+    .js('resources/js/admin/basic.js', 'public/js/admin')
+    .js('resources/js/modules/basic.js', 'public/js/modules')
+    .sass('resources/sass/modules/_atom.scss', 'public/css/modules')
     .sass('resources/sass/modules/html_tags.scss', 'public/css/modules')
+    .sass('resources/sass/modules/icons.scss', 'public/css/modules')
     .sass('resources/sass/modules/app.scss', 'public/css/modules')
+    .sass('resources/sass/modules/main.scss', 'public/css/modules')
     .sass('resources/sass/modules/custom-bootstrap.scss', 'public/css/modules')
     .sass('resources/sass/admin/_atom.scss', 'public/css/admin')
     .sass('resources/sass/admin/bar.scss', 'public/css/admin')
@@ -26,7 +29,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/admin/left_part.scss', 'public/css/admin')
     .sass('resources/sass/admin/pages.scss', 'public/css/admin')
     .sass('resources/sass/admin/status_line.scss', 'public/css/admin')
-    .sass( 'resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
+    .sass('resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
     .sass('resources/sass/admin/tags.scss', 'public/css/admin');
 
 // mix.styles([

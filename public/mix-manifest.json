@@ -3,7 +3,9 @@
     "/js/app.js": "/js/app.js",
     "/css/modules/_atom.css": "/css/modules/_atom.css",
     "/css/modules/html_tags.css": "/css/modules/html_tags.css",
+    "/css/modules/icons.css": "/css/modules/icons.css",
     "/css/modules/app.css": "/css/modules/app.css",
+    "/css/modules/main.css": "/css/modules/main.css",
     "/css/modules/custom-bootstrap.css": "/css/modules/custom-bootstrap.css",
     "/css/admin/_atom.css": "/css/admin/_atom.css",
     "/css/admin/bar.css": "/css/admin/bar.css",
@@ -15,5 +17,6 @@
     "/css/admin/pages.css": "/css/admin/pages.css",
     "/css/admin/status_line.css": "/css/admin/status_line.css",
     "/css/admin/custom-bootstrap.css": "/css/admin/custom-bootstrap.css",
-    "/css/admin/tags.css": "/css/admin/tags.css"
+    "/css/admin/tags.css": "/css/admin/tags.css",
+    "/js/modules/basic.js": "/js/modules/basic.js"
 }
