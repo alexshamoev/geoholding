@@ -82,6 +82,7 @@ class ModuleController extends Controller {
 		$module -> page = $request -> input('page');
 		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
 		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);
+		$module -> include_type = (!is_null($request -> input('include_type')) ? $request -> input('include_type') : 0);
 		
 		foreach(Language :: where('published', 1) -> get() as $data) {
 			$var_title = 'title_'.$data -> title;
