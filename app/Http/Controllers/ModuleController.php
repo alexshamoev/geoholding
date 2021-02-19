@@ -35,11 +35,17 @@ class ModuleController extends Controller {
 
 		$varWord = 'word_'.$activeLang -> title;
 
+
 		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+		$pagesForIncludeInPages = array();
 
 		foreach(Page :: where('published', 1) -> get() as $data) {
 			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
+			$pagesForIncludeInPages[$data['id']] = $data['alias_'.$activeLang -> title];
 		}
+
+
 
 
 		$prevId = 0;
@@ -66,6 +72,7 @@ class ModuleController extends Controller {
 
 		return view('modules.modules.admin_panel.edit_step_0', ['modules' => Module :: all(),
 																'pagesForSelect' => $pagesForSelect,
+																'pagesForIncludeInPages' => $pagesForIncludeInPages,
 																'pages' => Page :: where('published', 1) -> get(),
 																'languages' => Language :: where('published', 1) -> get(),
 																'module' => $module,
