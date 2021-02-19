@@ -66041,6 +66041,21 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
 
 
 
@@ -66049,29 +66064,35 @@ var Example = /*#__PURE__*/function (_Component) {
 
   var _super = _createSuper(Example);
 
-  function Example(props) {
+  function Example() {
     var _this;
 
     _classCallCheck(this, Example);
 
-    _this = _super.call(this, props);
-    _this.state = {
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _super.call.apply(_super, [this].concat(args));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
       changed: false
-    };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "handleClick", function () {
+      _this.setState({
+        changed: !_this.state.changed
+      });
+    });
+
     return _this;
   }
 
   _createClass(Example, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return _this2.setState({
-            changed: !_this2.state.changed
-          });
-        }
+        onClick: this.handleClick
       }, "change text"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "hello ", this.state.changed ? ' world' : ' alex'));
     }
   }]);
