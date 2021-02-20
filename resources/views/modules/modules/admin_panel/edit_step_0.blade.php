@@ -106,7 +106,7 @@
 									value="{{ $key }}"
 									name="page_include_{{ $key }}">
 							
-							{{ $data }} 
+							{{ $data['alias'] }} 
 						</label>
 					</div>
 				@endforeach
