@@ -1,6 +1,8 @@
 <?php
 Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AdminController@getDefaultPage');
+	Route :: get('/login') -> name('login');
+
 
 	Route :: get('/modules', 'ModuleController@getStartPoint') -> name('moduleStartPoint');
 	Route :: get('/modules/add', 'ModuleController@add') -> name('moduleAdd');
@@ -66,3 +68,6 @@ Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' =
 // Route::get('/page/create-empty', 'PageController@createEmpty');
 
 Route::post('/contact/submit', 'ContactController@submit') -> name('contact-form');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
