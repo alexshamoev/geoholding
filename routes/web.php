@@ -60,14 +60,17 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 // }) -> where('any', '.*');
 
 
-Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage');
+Auth :: routes();
+
+// Route :: get('/home', 'HomeController@index') -> name('home');
+
+
+Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
 
 
 // Route::get('/page/create-empty', 'PageController@createEmpty');
 
-Route::post('/contact/submit', 'ContactController@submit') -> name('contact-form');
-Auth::routes();
+Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
 
-Route::get('/home', 'HomeController@index')->name('home');
