@@ -17,7 +17,9 @@
 		</div>
 
 
-		{{ Auth :: user() -> name }}
+		{{--
+			{{ Auth :: user() -> name }}
+		--}}
 
 
 		<div class="p-2">
