@@ -8,6 +8,7 @@ use App\ModuleBlock;
 use App\Page;
 use App\Language;
 use App\Bsw;
+use App\ModulesIncludesValue;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller {
@@ -35,10 +36,16 @@ class ModuleController extends Controller {
 
 		$varWord = 'word_'.$activeLang -> title;
 
+
 		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+		$pagesForIncludeInPages = array();
 
 		foreach(Page :: where('published', 1) -> get() as $data) {
 			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
+			
+			$pagesForIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
+			// $pagesForIncludeInPages[$data['id']]['checked'] = ModulesIncludesValue :: where('module', $module -> id) -> delete();;
 		}
 
 
@@ -66,6 +73,7 @@ class ModuleController extends Controller {
 
 		return view('modules.modules.admin_panel.edit_step_0', ['modules' => Module :: all(),
 																'pagesForSelect' => $pagesForSelect,
+																'pagesForIncludeInPages' => $pagesForIncludeInPages,
 																'pages' => Page :: where('published', 1) -> get(),
 																'languages' => Language :: where('published', 1) -> get(),
 																'module' => $module,
@@ -77,7 +85,6 @@ class ModuleController extends Controller {
 
 	public function update(Request $request, $id) {
 		$module = Module :: find($id);
-
 		$module -> alias = (!is_null($request -> input('alias')) ? $request -> input('alias') : '');
 		$module -> page = $request -> input('page');
 		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
@@ -94,8 +101,21 @@ class ModuleController extends Controller {
 			}
 		}
 
-
 		$module -> save();
+
+
+		ModulesIncludesValue :: where('module', $module -> id) -> delete();
+
+
+		foreach(Page :: where('published', 1) -> get() as $data) {
+			if(!is_null($request -> input('page_include_'.$data -> id))) {
+				$modulesIncludesValue = new ModulesIncludesValue;
+				$modulesIncludesValue -> module = $module -> id;
+				$modulesIncludesValue -> include_in = $data -> id;
+				$modulesIncludesValue -> save();
+			}
+		}
+
 
 		return redirect() -> route('moduleEdit', $module -> id);
 	}

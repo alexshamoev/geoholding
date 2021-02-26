@@ -99,8 +99,16 @@
 
 
 			<div class="p-2">
-				@foreach($pagesForSelect as $data)
-					{{ $data }}
+				@foreach($pagesForIncludeInPages as $key => $data)
+					<div>
+						<label>
+							<input type="checkbox"
+									value="{{ $key }}"
+									name="page_include_{{ $key }}">
+							
+							{{ $data['alias'] }} 
+						</label>
+					</div>
 				@endforeach
 			</div>
 

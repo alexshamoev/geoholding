@@ -30,7 +30,7 @@ class PageController extends Controller {
 											'bsc' => Bsc :: getFullData(),
 											'bsw' => Bsw :: getFullData($language -> title)]);
 		} else {
-			abort(404);
+			// abort(404);
 		}
 	}
 
@@ -56,10 +56,10 @@ class PageController extends Controller {
 											 'bsc' => Bsc :: getFullData(),
 											 'bsw' => Bsw :: getFullData($language -> title)]);
 			} else {
-				abort(404);
+				// abort(404);
 			}
 		} else {
-			abort(404);
+			// abort(404);
 		}
 	}
 
@@ -85,10 +85,10 @@ class PageController extends Controller {
 											 'bsc' => Bsc :: getFullData(),
 											 'bsw' => Bsw :: getFullData($language -> title)]);
 			} else {
-				abort(404);
+				// abort(404);
 			}
 		} else {
-			abort(404);
+			// abort(404);
 		}
 	}
 }
