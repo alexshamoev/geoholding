@@ -38,6 +38,22 @@
 	}
 }
 
+.top-border {
+	border-top: 1px solid #ccc;
+}
+
+.bottom-border {
+	border-bottom: 1px solid #ccc;
+}
+
+.left-border {
+	border-left: 1px solid #ccc;
+}
+
+.right-border {
+	border-right: 1px solid #ccc;
+}
+
 .checkbox-block {
 	border-left: 1px solid #ccc;
 }
@@ -88,6 +104,33 @@
 	&__edit-delete-block {
 		border-left: 1px solid #ccc;
 	}
+
+	&__block_inside_preview {
+	}
+}
+
+.line_max_1 {
+	display: block;
+	display: -webkit-box;
+	position: relative;
+	line-height: 140%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	padding: 0 !important;
+	-webkit-line-clamp: 1;
+	max-height: calc(1em * 1.4 * 1);
+	height: auto;
+}
+.line_max_1:after {
+	content: "";
+	text-align: right;
+	bottom: 0;
+	right: 0;
+	width: 25%;
+	display: block;
+	position: absolute;
+	max-height: calc(1em * 1.4);
+	height: auto;
 }
 
 // Horizontal edit delete block

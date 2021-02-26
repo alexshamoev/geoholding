@@ -30,8 +30,8 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>სისტემური სიტყვა: *</span>
-						<span>(მაგალითად: images_folder)</span>
+						<span>System word: *</span>
+						<span>(e.g: images_folder)</span>
 					</div>
 					
 					<div class="p-2">
@@ -43,8 +43,8 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>კონფიგურაცია: *</span>
-						<span>(მაგალითად: modules/gallery/uploads/)</span>
+						<span>Configuration: *</span>
+						<span>(e.g: modules/gallery/uploads/)</span>
 					</div>
 
 					<div class="p-2">
