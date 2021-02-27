@@ -1,8 +1,4 @@
 <?php
-use App\Page;
-use App\Http\Controllers\PageController;
-
-
 Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AdminController@getDefaultPage');
 	Route :: get('/login') -> name('login');
