@@ -28,9 +28,11 @@ class PageController extends Controller {
 											'menuButtons' => MenuButton :: getFullData($language -> title),
 											'languages' => Language :: getFullData($language -> title, $page),
 											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData($language -> title)]);
+											'bsw' => Bsw :: getFullData($language -> title),
+											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
+											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias]);
 		} else {
-			// abort(404);
+			abort(404);
 		}
 	}
 
@@ -54,12 +56,14 @@ class PageController extends Controller {
 											 'menuButtons' => MenuButton :: getFullData($lang),
 											 'languages' => Language :: getFullData($lang, $page),
 											 'bsc' => Bsc :: getFullData(),
-											 'bsw' => Bsw :: getFullData($language -> title)]);
+											 'bsw' => Bsw :: getFullData($language -> title),
+											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
 			} else {
-				// abort(404);
+				abort(404);
 			}
 		} else {
-			// abort(404);
+			abort(404);
 		}
 	}
 
@@ -83,12 +87,14 @@ class PageController extends Controller {
 											 'menuButtons' => MenuButton :: getFullData($lang),
 											 'languages' => Language :: getFullData($lang, $page),
 											 'bsc' => Bsc :: getFullData(),
-											 'bsw' => Bsw :: getFullData($language -> title)]);
+											 'bsw' => Bsw :: getFullData($language -> title),
+											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
 			} else {
-				// abort(404);
+				abort(404);
 			}
 		} else {
-			// abort(404);
+			abort(404);
 		}
 	}
 }

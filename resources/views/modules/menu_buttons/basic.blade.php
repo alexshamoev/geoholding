@@ -11,21 +11,31 @@
 				</div>
 			@endforeach
 
-			<div class="nav-item">
-				<a href="/register">
-					<div class="p-2">
-						Registration
-					</div>
-				</a>
-			</div>
+			@if(Auth :: check())
+				<div class="nav-item">
+					<a href="{{ route('logout') }}">
+						<div class="p-2">
+							Logout
+						</div>
+					</a>
+				</div>
+			@else
+				<div class="nav-item">
+					<a href="{{ $registrationUrl }}">
+						<div class="p-2">
+							Registration
+						</div>
+					</a>
+				</div>
 
-			<div class="nav-item">
-				<a href="/login">
-					<div class="p-2">
-						Login
-					</div>
-				</a>
-			</div>
+				<div class="nav-item">
+					<a href="{{ $authorizationUrl }}">
+						<div class="p-2">
+							Authorization
+						</div>
+					</a>
+				</div>
+			@endif
 		</div>
 
 		<div class="d-xl-none d-lg-none d-block">

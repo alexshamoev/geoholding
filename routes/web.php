@@ -1,4 +1,8 @@
 <?php
+use App\Page;
+use App\Http\Controllers\PageController;
+
+
 Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AdminController@getDefaultPage');
 	Route :: get('/login') -> name('login');
@@ -66,6 +70,14 @@ Auth :: routes();
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
+
+Route :: get('/logout', function() {
+	Auth :: logout();
+
+	return redirect() -> route('main');
+}) -> name('logout');
+
+
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
 

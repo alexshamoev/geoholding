@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddPublishedToPagesTable extends Migration
+class PagesAddSlugColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddPublishedToPagesTable extends Migration
     public function up()
     {
         Schema::table('pages', function (Blueprint $table) {
-			if(!Schema::hasColumn('pages', 'published')) {
-				$table -> integer('published') -> default(0);
+			if(!Schema::hasColumn('pages', 'slug')) {
+				$table -> string('slug') -> default('');
 			}
         });
     }
@@ -27,8 +27,8 @@ class AddPublishedToPagesTable extends Migration
      */
     public function down()
     {
-        Schema :: table('pages', function (Blueprint $table) {
-            $table -> dropColumn('published');
-        });
+        Schema :: table('pages', function($table) {
+			$table -> dropColumn('slug');
+		 });
     }
 }
