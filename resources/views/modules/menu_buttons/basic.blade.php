@@ -13,6 +13,12 @@
 
 			@if(Auth :: check())
 				<div class="nav-item">
+					<div class="p-2">
+						{{ Auth :: user() -> name }}
+					</div>
+				</div>
+		
+				<div class="nav-item">
 					<a href="{{ route('logout') }}">
 						<div class="p-2">
 							Logout

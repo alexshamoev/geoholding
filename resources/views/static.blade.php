@@ -16,10 +16,6 @@
 			</h1>
 		</div>
 
-		@if(Auth :: check())
-			{{ Auth :: user() -> name }}
-		@endif
-
 		<div class="p-2">
 			{{ $page -> text }}
 		</div>
