@@ -13,8 +13,8 @@ class PagesAddSlugColumn extends Migration
      */
     public function up()
     {
-        Schema::table('pages', function (Blueprint $table) {
-			if(!Schema::hasColumn('pages', 'slug')) {
+        Schema :: table('pages', function (Blueprint $table) {
+			if(!Schema :: hasColumn('pages', 'slug')) {
 				$table -> string('slug') -> default('');
 			}
         });

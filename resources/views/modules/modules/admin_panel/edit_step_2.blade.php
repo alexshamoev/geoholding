@@ -36,6 +36,30 @@
 			{{ Form :: text('db_column') }}
 		</div>
 
+
+		<div class="p-2">
+			label
+			<br>
+			{{ Form :: text('label') }}
+		</div>
+
+
+		<div class="p-2">
+			example
+			<br>
+			{{ Form :: text('example') }}
+		</div>
+		
+		
+		<div class="p-2">
+			<label>
+				{{ Form :: checkbox('check_in_delete_empty', '1') }}
+
+				check_in_delete_empty?
+			</label>
+		</div>
+
+
 		{{ Form :: submit('Submit') }}
 	{{ Form :: close() }}
 @endsection

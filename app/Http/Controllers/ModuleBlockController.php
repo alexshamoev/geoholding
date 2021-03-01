@@ -72,6 +72,9 @@ class ModuleBlockController extends Controller {
 		$moduleBlock = ModuleBlock :: find($id);
 
 		$moduleBlock -> db_column = (!is_null($request -> input('db_column')) ? $request -> input('db_column') : '');
+		$moduleBlock -> label = (!is_null($request -> input('label')) ? $request -> input('label') : '');
+		$moduleBlock -> example = (!is_null($request -> input('example')) ? $request -> input('example') : '');
+		$moduleBlock -> check_in_delete_empty = (!is_null($request -> input('check_in_delete_empty')) ? $request -> input('check_in_delete_empty') : 0);
 
 		$moduleBlock -> save();
 
