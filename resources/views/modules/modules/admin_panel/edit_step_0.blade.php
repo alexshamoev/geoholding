@@ -39,13 +39,13 @@
 				<label>
 					{{ Form :: radio('hide_for_admin', '0') }}
 
-					show_for_admin
+					Show for admin?
 				</label>
 
 				<label>
 					{{ Form :: radio('hide_for_admin', '1') }}
 
-					hide_for_admin
+					Hide for admin?
 				</label>
 			</div>
 

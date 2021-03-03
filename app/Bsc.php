@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bsc extends Model
 {
     public static function getFullData() {
-		// $bscs = new stdClass();
 		$bscs = (object)[];
 
 		foreach(Bsc :: all() as $data) {

@@ -74,8 +74,16 @@ Route :: get('/logout', function() {
 }) -> name('logout');
 
 
+
+
+
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
+Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
+
+// Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
+
+// }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
 
 
 // Route::get('/page/create-empty', 'PageController@createEmpty');
