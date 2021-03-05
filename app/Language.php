@@ -9,7 +9,7 @@ class Language extends Model {
 		$languages = self :: where('published', 1) -> get();
 
 		$languagesUpdatedData = $languages;
-
+ 
 
 		$i = 0;
 
