@@ -74,12 +74,13 @@ Route :: get('/logout', function() {
 }) -> name('logout');
 
 
-
+ 
 
 
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
-Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
+Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+', 'step0Alias' => '[a-zა-ჰа-я-]+']);
+// Route :: get('/{lang}/{pageAlias}/{step0Alias}/{step1Alias}', 'PageController@getStep1') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+', 'step0Alias' => '[a-zა-ჰа-я-]+', 'step1Alias' => '[a-zა-ჰа-я-]+']);
 
 // Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 
@@ -88,5 +89,5 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> w
 
 // Route::get('/page/create-empty', 'PageController@createEmpty');
 
-Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
+// Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
 
