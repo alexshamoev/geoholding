@@ -31,6 +31,13 @@
 
 	{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $module -> id, $moduleStep -> id, $moduleBlock -> id))) }}
 		<div class="p-2">
+			type
+			<br>
+			{{ Form :: select('type', $blockTypes) }}
+		</div>
+
+		
+		<div class="p-2">
 			db_column
 			<br>
 			{{ Form :: text('db_column') }}

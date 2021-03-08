@@ -53,6 +53,24 @@ class ModuleBlockController extends Controller {
 		}
 
 
+		$blockTypes = array('input' => 'input',
+							'editor' => 'editor',
+							'file' => 'file',
+							'image' => 'image',
+							'select' => 'select',
+							'alias' => 'alias',
+							'calendar' => 'calendar',
+							'color_picker' => 'color_picker',
+							'rang' => 'rang',
+							'published' => 'published',
+							'select_with_optgroup' => 'select_with_optgroup',
+							'select_with_ajax' => 'select_with_ajax',
+							'checkbox' => 'checkbox',
+							'multiply_checkboxes' => 'multiply_checkboxes',
+							'multiply_checkboxes_with_category' => 'multiply_checkboxes_with_category',
+							'multiply_input_params' => 'multiply_input_params');
+		
+
 		return view('modules.modules.admin_panel.edit_step_2', ['modules' => Module :: all(),
 																'pages' => Page :: where('published', 1) -> get(),
 																'languages' => Language :: where('published', 1) -> get(),
@@ -61,6 +79,7 @@ class ModuleBlockController extends Controller {
 																'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
 																'moduleStep' => $moduleStep,
 																'moduleBlock' => $moduleBlock,
+																'blockTypes' => $blockTypes,
 																'prev' => ModuleBlock :: find($prevId),
 																'next' => ModuleBlock :: find($nextId)]);
 	}
@@ -71,6 +90,7 @@ class ModuleBlockController extends Controller {
 		$moduleStep = ModuleStep :: find($stepId);
 		$moduleBlock = ModuleBlock :: find($id);
 
+		$moduleBlock -> type = (!is_null($request -> input('type')) ? $request -> input('type') : '');
 		$moduleBlock -> db_column = (!is_null($request -> input('db_column')) ? $request -> input('db_column') : '');
 		$moduleBlock -> label = (!is_null($request -> input('label')) ? $request -> input('label') : '');
 		$moduleBlock -> example = (!is_null($request -> input('example')) ? $request -> input('example') : '');

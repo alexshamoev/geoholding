@@ -25,22 +25,62 @@
 	])
 
 
-	<!-- <a href="{{ route('moduleDataAdd', $module -> alias) }}">
-		Add {{ $moduleStep -> title }}
-	</a> -->
-
-
 	{{ Form :: open(array('route' => array('moduleDataUpdate', $module -> alias, $data -> id))) }}
 		@foreach($moduleBlocks as $moduleBlock)
-			@php
-				$tempVar = $moduleBlock -> db_column;
-			@endphp
+			@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
+				@php
+					$tempVar = $moduleBlock -> db_column;
+				@endphp
 
-			<div class="p-2">
-				{{ $moduleBlock -> label }}
-				<br>
-				{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
-			</div>
+				@switch($moduleBlock -> type)
+					@case('input')
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								{{ $moduleBlock -> label }}
+							</div>
+
+							<div class="p-2">
+								{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+							</div>
+						</div>
+
+						@break
+					@case('editor')
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								{{ $moduleBlock -> label }}
+							</div>
+
+							<div class="p-2">
+								{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+							</div>
+						</div>
+
+						@break
+					@case('alias')
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								{{ $moduleBlock -> label }}
+							</div>
+
+							<div class="p-2">
+								{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+							</div>
+						</div>
+
+						@break
+					@default
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								{{ $moduleBlock -> label }}
+							</div>
+
+							<div class="p-2">
+								{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+							</div>
+						</div>
+				@endswitch
+			@endif
 		@endforeach
 
 		{{ Form :: submit('Submit') }}

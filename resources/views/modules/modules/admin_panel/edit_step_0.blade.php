@@ -90,6 +90,7 @@
 					</label>
 				</div>
 			</div>
+			
 
 			<div class="p-2">
 				გვერდი
