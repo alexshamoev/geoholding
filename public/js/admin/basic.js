@@ -10978,7 +10978,9 @@ return jQuery;
 /***/ (function(module, exports, __webpack_require__) {
 
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-$(document).ready(function () {// jQuery('.svg_img').each(function () {
+console.log(123);
+$(document).ready(function () {
+  // jQuery('.svg_img').each(function () {
   //     var $img = jQuery(this);
   //     var imgID = $img.attr('id');
   //     var imgClass = $img.attr('class');
@@ -11004,6 +11006,13 @@ $(document).ready(function () {// jQuery('.svg_img').each(function () {
   //         $img.replaceWith($svg);
   //     }, 'xml');
   // });
+  $('.edit-block__edit-delete-block').on('click', function () {
+    var conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
+
+    if (conf) {
+      window.location.href = $(this).data('delete-link');
+    }
+  });
 });
 
 /***/ }),
