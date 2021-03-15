@@ -1,17 +1,23 @@
 <div class="menu py-2">
 	@foreach($modules as $data)
-	<a href="/admin/{{ $data -> alias }}">
-		<div class="d-flex align-items-center px-2">
-			<div class="p-2">
-				icon
-			</div>
+		<a href="/admin/{{ $data -> alias }}">
+			<div class="d-flex align-items-center px-2">
+				<div class="p-2">
+					icon
+				</div>
 
-			<div class="p-2">
-				<span>{{ $data -> alias }}</span>
+				{{ $data -> icon_bg_color }}
+
+				<div class="p-2">
+					<span>{{ $data -> alias }}</span>
+				</div>
 			</div>
-		</div>
-	</a>
+		</a>
 	@endforeach
+
+	<div>
+		-----------------
+	</div>
 
 	<a href="/admin/modules">
 		<div class="d-flex align-items-center px-2">

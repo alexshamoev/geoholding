@@ -101,6 +101,27 @@ class ModuleController extends Controller {
 			}
 		}
 
+
+		// $request -> validate([
+		// 	'file' => 'required|mimes:svg|max:200048'
+		// ]);
+
+		// $fileModel = new File;
+
+		if($request -> file()) {
+			// $fileName = time().'_'.$request -> file -> getClientOriginalName();
+			// $filePath = $request -> file('svg_icon') -> storeAs('images', $fileName, 'public');
+
+			// $fileModel->name = time().'_'.$req->file->getClientOriginalName();
+			// $fileModel->file_path = '/storage/' . $filePath;
+			// $fileModel->save();
+
+			// return back()
+			// ->with('success','File has been uploaded.')
+			// ->with('file', $fileName);
+		}
+
+
 		$module -> save();
 
 
@@ -116,6 +137,16 @@ class ModuleController extends Controller {
 			}
 		}
 
+		if($request -> file('svg_icon')) {
+			$filePath = $request -> file('svg_icon') -> storeAs('images', $module -> id.'_icon.svg', 'public');
+
+			// return 'File Name: '.$request -> file('svg_icon') -> getClientOriginalName();
+		}
+
+   
+		//Display File Name
+		// echo '<br>';
+		// return $request -> file('svg_icon') -> getClientOriginalName();
 
 		return redirect() -> route('moduleEdit', $module -> id);
 	}
