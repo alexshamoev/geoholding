@@ -56,7 +56,7 @@
 
 			<div class="px-2 pt-2 d-flex">
 				<label>
-					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2">
+					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2 h-100">
 						<div class="p-1">
 							{{ Form :: radio('include_type', '0') }}
 						</div>
@@ -69,7 +69,7 @@
 
 				
 				<label>
-					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2">
+					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2 h-100">
 						<div class="p-1">
 							{{ Form :: radio('include_type', '1') }}
 						</div>
@@ -82,7 +82,7 @@
 
 				
 				<label>
-					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2">
+					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2 h-100">
 						<div class="p-1">
 							{{ Form :: radio('include_type', '2') }}
 						</div>
@@ -95,7 +95,7 @@
 
 				
 				<label>
-					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2">
+					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2 h-100">
 						<div class="p-1">
 							{{ Form :: radio('include_type', '3') }}
 						</div>
@@ -108,7 +108,7 @@
 
 				
 				<label>
-					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2">
+					<div class="d-flex flex-column align-items-center text-center standard-block standard-block--no-right-border standard-block--no-bottom-border p-2 h-100">
 						<div class="p-1">
 							{{ Form :: radio('include_type', '4') }}
 						</div>

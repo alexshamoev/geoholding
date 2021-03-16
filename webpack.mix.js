@@ -34,4 +34,5 @@ const mix = require('laravel-mix');
     .sass('resources/sass/admin/pages.scss', 'public/css/admin')
     .sass('resources/sass/admin/status_line.scss', 'public/css/admin')
     .sass('resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
-    .sass('resources/sass/admin/tags.scss', 'public/css/admin');
+    .sass('resources/sass/admin/tags.scss', 'public/css/admin')
+    .copy('storage/app/public/images/*.svg', 'public/images/admin');
