@@ -1,17 +1,33 @@
-<div class="menu py-2">
+<div class="menu">
 	@foreach($modules as $data)
-	<a href="/admin/{{ $data -> alias }}">
-		<div class="d-flex align-items-center px-2">
-			<div class="p-2">
-				icon
-			</div>
+		<style>
+			.menu__link {
+				transition: .2s all ease-in-out;
+				background-color: transparent;
+			}
 
-			<div class="p-2">
-				<span>{{ $data -> alias }}</span>
+			.menu__link--{{$data -> alias}}:hover {
+				background-color: {{ $data -> icon_bg_color }};
+				color: #fff;
+			}
+		</style>
+
+		<a href="/admin/{{ $data -> alias }}">
+			<div class="d-flex align-items-center px-2 menu__link menu__link--{{$data -> alias}}">
+				<div class="p-2">
+					<img src="{{ asset('/images/admin/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+				</div>
+
+				<div class="p-2">
+					<span>{{ $data -> alias }}</span>
+				</div>
 			</div>
-		</div>
-	</a>
+		</a>
 	@endforeach
+
+	<div>
+		<hr>
+	</div>
 
 	<a href="/admin/modules">
 		<div class="d-flex align-items-center px-2">

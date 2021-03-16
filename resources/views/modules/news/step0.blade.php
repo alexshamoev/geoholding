@@ -6,10 +6,6 @@
 @endsection
 
 
-@section('sidebar')
-	Sidebar from news
-@endsection
-
 @section('content')
     <h1 class="p-2">
         NEWS page - 
@@ -28,14 +24,19 @@
 	<div class="p-2">
 		BSW Sample: {{ $bsw -> a_add_module_parameter_warning }}
 	</div>
-@endsection
 
 
-@section('menu')
-    <div class="p-2">
-        Menu on Home
-    </div>
+	@foreach($newsStep0 as $data)
+		<a href="{{ $data -> fullUrl }}">
+			<div class="p-2">
+				<div class="p-2">
+					{{ $data -> title }}
+				</div>
 
-
-    @parent
+				<div class="p-2">
+					{{ $data -> text }}
+				</div>
+			</div>
+		</a>
+	@endforeach
 @endsection

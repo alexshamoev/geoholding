@@ -1,5 +1,7 @@
 window.$ = window.jQuery = require('jquery');
 
+console.log(123);
+
 $(document).ready(function () {
     // jQuery('.svg_img').each(function () {
     //     var $img = jQuery(this);
@@ -33,5 +35,15 @@ $(document).ready(function () {
 
     //     }, 'xml');
     // });
+
+   
+
+    $('.edit-block__edit-delete-block').on('click', function() {
+        let conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
+
+        if(conf) {
+            window.location.href = $(this).data('delete-link');
+        }
+    });
 
 });
