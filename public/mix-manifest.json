@@ -18,7 +18,5 @@
     "/css/admin/custom-bootstrap.css": "/css/admin/custom-bootstrap.css",
     "/css/admin/tags.css": "/css/admin/tags.css",
     "/js/app.js": "/js/app.js",
-    "/js/modules/basic.js": "/js/modules/basic.js",
-    "/images/admin/1_icon.svg": "/images/admin/1_icon.svg",
-    "/images/admin/7_icon.svg": "/images/admin/7_icon.svg"
+    "/js/modules/basic.js": "/js/modules/basic.js"
 }

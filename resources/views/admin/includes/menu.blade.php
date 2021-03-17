@@ -15,7 +15,7 @@
 		<a href="/admin/{{ $data -> alias }}">
 			<div class="d-flex align-items-center px-2 menu__link menu__link--{{$data -> alias}}">
 				<div class="p-2">
-					<img src="{{ asset('/images/admin/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+					<img src="{{ asset('/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
 				</div>
 
 				<div class="p-2">

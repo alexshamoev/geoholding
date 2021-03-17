@@ -35,4 +35,4 @@ const mix = require('laravel-mix');
     .sass('resources/sass/admin/status_line.scss', 'public/css/admin')
     .sass('resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
     .sass('resources/sass/admin/tags.scss', 'public/css/admin')
-    .copy('storage/app/public/images/*', 'public/images/');
+    .copy('storage/app/public/', 'public/', false);
