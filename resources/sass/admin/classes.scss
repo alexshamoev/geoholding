@@ -103,6 +103,10 @@
 	cursor: move;
 	&__edit-delete-block {
 		border-left: 1px solid #ccc;
+		cursor: pointer;
+		&--move {
+			cursor: move;
+		}
 	}
 
 	&__block_inside_preview {

@@ -10980,33 +10980,41 @@ return jQuery;
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 console.log(123);
 $(document).ready(function () {
-  // jQuery('.svg_img').each(function () {
-  //     var $img = jQuery(this);
-  //     var imgID = $img.attr('id');
-  //     var imgClass = $img.attr('class');
-  //     var imgURL = $img.attr('src');
-  //     jQuery.get(imgURL, function (data) {
-  //         /* Get the SVG tag, ignore the rest*/
-  //         var $svg = jQuery(data).find('svg');
-  //         /* Add replaced image's ID to the new SVG */
-  //         if (typeof imgID !== 'undefined') {
-  //             $svg = $svg.attr('id', imgID);
-  //         }
-  //         /* Add replaced image's classes to the new SVG */
-  //         if (typeof imgClass !== 'undefined') {
-  //             $svg = $svg.attr('class', imgClass + ' replaced-svg');
-  //         }
-  //         /* Remove any invalid XML tags as per http://validator.w3.org */
-  //         $svg = $svg.removeAttr('xmlns:a');
-  //         /* Check if the viewport is set, else we gonna set it if we can. */
-  //         if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
-  //             $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'));
-  //         }
-  //         /* Replace image with new SVG */
-  //         $img.replaceWith($svg);
-  //     }, 'xml');
-  // });
-  $('.edit-block__edit-delete-block').on('click', function () {
+  jQuery('.svg_img').each(function () {
+    var $img = jQuery(this);
+    var imgID = $img.attr('id');
+    var imgClass = $img.attr('class');
+    var imgURL = $img.attr('src');
+    jQuery.get(imgURL, function (data) {
+      /* Get the SVG tag, ignore the rest*/
+      var $svg = jQuery(data).find('svg');
+      /* Add replaced image's ID to the new SVG */
+
+      if (typeof imgID !== 'undefined') {
+        $svg = $svg.attr('id', imgID);
+      }
+      /* Add replaced image's classes to the new SVG */
+
+
+      if (typeof imgClass !== 'undefined') {
+        $svg = $svg.attr('class', imgClass + ' replaced-svg');
+      }
+      /* Remove any invalid XML tags as per http://validator.w3.org */
+
+
+      $svg = $svg.removeAttr('xmlns:a');
+      /* Check if the viewport is set, else we gonna set it if we can. */
+
+      if (!$svg.attr('viewBox') && $svg.attr('height') && $svg.attr('width')) {
+        $svg.attr('viewBox', '0 0 ' + $svg.attr('height') + ' ' + $svg.attr('width'));
+      }
+      /* Replace image with new SVG */
+
+
+      $img.replaceWith($svg);
+    }, 'xml');
+  });
+  $('.delete-block').on('click', function () {
     var conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
 
     if (conf) {
@@ -11211,24 +11219,24 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/bar.scss */"./resources/sass/admin/bar.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/left_part.scss */"./resources/sass/admin/left_part.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/pages.scss */"./resources/sass/admin/pages.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/status_line.scss */"./resources/sass/admin/status_line.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/tags.scss */"./resources/sass/admin/tags.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\basic.js */"./resources/js/admin/basic.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\_atom.scss */"./resources/sass/modules/_atom.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\html_tags.scss */"./resources/sass/modules/html_tags.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\icons.scss */"./resources/sass/modules/icons.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\app.scss */"./resources/sass/modules/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\main.scss */"./resources/sass/modules/main.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\_atom.scss */"./resources/sass/admin/_atom.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\bar.scss */"./resources/sass/admin/bar.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\classes.scss */"./resources/sass/admin/classes.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\for_editors.scss */"./resources/sass/admin/for_editors.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\html_tags.scss */"./resources/sass/admin/html_tags.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\identifiers.scss */"./resources/sass/admin/identifiers.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\left_part.scss */"./resources/sass/admin/left_part.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\pages.scss */"./resources/sass/admin/pages.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\status_line.scss */"./resources/sass/admin/status_line.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\tags.scss */"./resources/sass/admin/tags.scss");
 
 
 /***/ })

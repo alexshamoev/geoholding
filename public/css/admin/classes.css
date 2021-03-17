@@ -99,6 +99,11 @@
 
 .edit-block__edit-delete-block {
   border-left: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.edit-block__edit-delete-block--move {
+  cursor: move;
 }
 
 .line_max_1 {
