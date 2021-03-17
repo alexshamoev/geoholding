@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    BSW Edit
 @endsection
 
 
