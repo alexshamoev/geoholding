@@ -17,6 +17,8 @@
     "/css/admin/status_line.css": "/css/admin/status_line.css",
     "/css/admin/custom-bootstrap.css": "/css/admin/custom-bootstrap.css",
     "/css/admin/tags.css": "/css/admin/tags.css",
+    "/css/admin/jquery_ui.css": "/css/admin/jquery_ui.css",
+    "/js/admin/rangs.js": "/js/admin/rangs.js",
     "/js/app.js": "/js/app.js",
     "/js/modules/basic.js": "/js/modules/basic.js"
 }
