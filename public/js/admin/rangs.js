@@ -190,7 +190,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\rangs.js */"./resources/js/admin/rangs.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/rangs.js */"./resources/js/admin/rangs.js");
 
 
 /***/ })
