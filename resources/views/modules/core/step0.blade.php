@@ -1,6 +1,7 @@
 @extends('admin.layouts.master')
 
 
+
 @section('pageMetaTitle')
     Modules
 @endsection
@@ -21,7 +22,7 @@
 
 	@foreach($moduleStepData as $data)
 		@include('admin.includes.horizontalEditDeleteBlock', [
-			'title' => $data -> alias_ge,
+			'title' => $data -> $use_for_tags,
 			'editLink' => route('moduleDataEdit', array($module -> alias, $data -> id)),
 			'deleteLink' => route('moduleDataDelete', array($module -> alias, $data -> id))
 		])

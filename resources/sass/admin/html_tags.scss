@@ -1,3 +1,5 @@
+@import './atom';
+
 * {
 	box-sizing: border-box;
 }
@@ -5,7 +7,7 @@
 a:link,
 a:active,
 a:visited {
-	color: #004b91;
+	color: $link_color;
 	text-decoration: none;
 }
 
@@ -31,10 +33,10 @@ footer {
 	border: 1px solid #ccc;
 	color: #777;
 	font: 12px Arial, Helvetica, sans-serif;
-	padding: 15px 20px;
+	/*padding: 15px 20px;*/
 	margin: auto;
 	position: relative;
-	width: 1250px;
+	/*width: 1250px;*/
 	z-index: 5;
 }
 
@@ -59,9 +61,7 @@ header {
 	background-color: #fff;
 	border: 1px solid #ccc;
 	margin: auto;
-	padding: 10px;
 	position: relative;
-	width: 1250px;
 	z-index: 5;
 }
 
@@ -114,9 +114,8 @@ section {
 	background-color: #fff;
 	border-left: 1px solid #ccc;
 	border-right: 1px solid #ccc;
-	margin: auto;
 	position: relative;
-	width: 1250px;
+	/*width: 1250px;*/
 	z-index: 5;
 }
 

@@ -18,6 +18,12 @@ $grid-breakpoints: (
 // @import 'bootstrap-scss/bootstrap';
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
+.container,
+.row > * {
+	padding: 0;
+}
+
+
 [class^="col-"],
 [class*=" col-"],
 [class^="container-"],
@@ -32,14 +38,11 @@ $grid-breakpoints: (
     padding: 8px;
 }
 
-.container {
-	padding: 0;
-}
-
 ol,
 ul, 
 dl,
-p {
+p,
+label {
 	margin: 0;
 	padding: 0;
 	list-style: none;

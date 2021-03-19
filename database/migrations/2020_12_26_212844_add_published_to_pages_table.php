@@ -27,8 +27,8 @@ class AddPublishedToPagesTable extends Migration
      */
     public function down()
     {
-        Schema::table('pages', function (Blueprint $table) {
-            //
+        Schema :: table('pages', function (Blueprint $table) {
+            $table -> dropColumn('published');
         });
     }
 }

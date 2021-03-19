@@ -15,10 +15,15 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-		// if(\Auth :: check() && \Auth :: user() -> isAdmin() == true) {
-    		return $next($request);
-		// }
+		if(\Auth :: check() && \Auth :: user() -> isAdmin() == true) {
+			echo 'Admin Auth Middleware';
 
+		} else {
+			echo 'Unauthorization';
+		}
+
+		return $next($request);
+		
 		// return redirect('/');
     }
 }

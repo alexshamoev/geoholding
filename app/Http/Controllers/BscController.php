@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 
 class BscController extends Controller {
+	public function __construct() {
+		$this -> middleware('auth');
+	}
+
+
 	public function getStartPoint() {
 		return view('modules.bsc.admin_panel.start_point', ['modules' => Module :: all(),
 															'bscs' => Bsc :: all() -> sortBy('system_word')]);

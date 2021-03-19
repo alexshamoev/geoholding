@@ -8,7 +8,9 @@ use App\Language;
 use App\Module;
 use App\Bsc;
 use App\Bsw;
+use App\News;
 use Illuminate\Http\Request;
+
 
 class PageController extends Controller {
 	public function getDefaultPageWithDefaultLanguage() {
@@ -28,7 +30,9 @@ class PageController extends Controller {
 											'menuButtons' => MenuButton :: getFullData($language -> title),
 											'languages' => Language :: getFullData($language -> title, $page),
 											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData($language -> title)]);
+											'bsw' => Bsw :: getFullData($language -> title),
+											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
+											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias]);
 		} else {
 			abort(404);
 		}
@@ -54,7 +58,9 @@ class PageController extends Controller {
 											 'menuButtons' => MenuButton :: getFullData($lang),
 											 'languages' => Language :: getFullData($lang, $page),
 											 'bsc' => Bsc :: getFullData(),
-											 'bsw' => Bsw :: getFullData($language -> title)]);
+											 'bsw' => Bsw :: getFullData($language -> title),
+											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
 			} else {
 				abort(404);
 			}
@@ -71,19 +77,31 @@ class PageController extends Controller {
 			$page = Page :: where('alias_'.$lang, $alias) -> first();
 
 			if($page) {
-				$page_template = 'static';
-			
 				$active_module = Module :: where('page', $page -> id) -> first();
 			
 				if($active_module) {
-					$page_template = $active_module -> alias;
+					switch($active_module -> alias) {
+						case 'news':
+							return view('modules.news.step0', ['page' => $page -> getFullData($lang),
+										'menuButtons' => MenuButton :: getFullData($lang),
+										'languages' => Language :: getFullData($lang, $page),
+										'bsc' => Bsc :: getFullData(),
+										'bsw' => Bsw :: getFullData($language -> title),
+										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+										'newsStep0' => News :: getFullData($lang)]);
+							
+							break;
+					}
 				}
 
-				return view($page_template, ['page' => $page -> getFullData($lang),
-											 'menuButtons' => MenuButton :: getFullData($lang),
-											 'languages' => Language :: getFullData($lang, $page),
-											 'bsc' => Bsc :: getFullData(),
-											 'bsw' => Bsw :: getFullData($language -> title)]);
+				return view('static', ['page' => $page -> getFullData($lang),
+										'menuButtons' => MenuButton :: getFullData($lang),
+										'languages' => Language :: getFullData($lang, $page),
+										'bsc' => Bsc :: getFullData(),
+										'bsw' => Bsw :: getFullData($language -> title),
+										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
 			} else {
 				abort(404);
 			}
@@ -91,4 +109,92 @@ class PageController extends Controller {
 			abort(404);
 		}
 	}
+
+
+	public function getStep0($lang, $pageAlias, $stepAlias) {
+		$language = Language :: where('title', $lang) -> first();
+
+		if($language) {
+			$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+
+			if($page) {
+				$active_module = Module :: where('page', $page -> id) -> first();
+			
+				if($active_module) {
+					switch($active_module -> alias) {
+						case 'news':
+							$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
+
+							return view('modules.news.step1', ['page' => $page -> getFullData($lang),
+										'menuButtons' => MenuButton :: getFullData($lang),
+										'languages' => Language :: getFullData($lang, $page),
+										'bsc' => Bsc :: getFullData(),
+										'bsw' => Bsw :: getFullData($language -> title),
+										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+										'newsStep0' => News :: getFullData($lang),
+										'activeNews' => $activeNews -> getData($lang)]);
+							
+							break;
+					}
+				}
+
+				return view('static', ['page' => $page -> getFullData($lang),
+										'menuButtons' => MenuButton :: getFullData($lang),
+										'languages' => Language :: getFullData($lang, $page),
+										'bsc' => Bsc :: getFullData(),
+										'bsw' => Bsw :: getFullData($language -> title),
+										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
+			} else {
+				abort(404);
+			}
+		} else {
+			abort(404);
+		}
+	}
+
+
+	// public function getStep1($lang, $pageAlias, $step0Alias, $step1Alias) {
+	// 	$language = Language :: where('title', $lang) -> first();
+
+	// 	if($language) {
+	// 		$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+
+	// 		if($page) {
+	// 			$active_module = Module :: where('page', $page -> id) -> first();
+			
+	// 			if($active_module) {
+	// 				switch($active_module -> alias) {
+	// 					case 'news':
+	// 						$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
+
+	// 						return view('modules.news.step1', ['page' => $page -> getFullData($lang),
+	// 									'menuButtons' => MenuButton :: getFullData($lang),
+	// 									'languages' => Language :: getFullData($lang, $page),
+	// 									'bsc' => Bsc :: getFullData(),
+	// 									'bsw' => Bsw :: getFullData($language -> title),
+	// 									'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+	// 									'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+	// 									'newsStep0' => News :: getFullData($lang),
+	// 									'activeNews' => $activeNews -> getData($lang)]);
+							
+	// 						break;
+	// 				}
+	// 			}
+
+	// 			return view('static', ['page' => $page -> getFullData($lang),
+	// 									'menuButtons' => MenuButton :: getFullData($lang),
+	// 									'languages' => Language :: getFullData($lang, $page),
+	// 									'bsc' => Bsc :: getFullData(),
+	// 									'bsw' => Bsw :: getFullData($language -> title),
+	// 									'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+	// 									'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
+	// 		} else {
+	// 			abort(404);
+	// 		}
+	// 	} else {
+	// 		abort(404);
+	// 	}
+	// }
 }

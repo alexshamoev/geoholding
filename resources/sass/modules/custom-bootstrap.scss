@@ -1,0 +1,49 @@
+$container-max-widths: (
+	sm: 540px,
+	md: 990px,
+	lg: 1230px,
+	xl: 1370px
+);
+
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 1024px,
+	lg: 1250px,
+	xl: 1400px
+);
+
+//Variables should always be placed before bootstrap import
+
+
+@import '~bootstrap/scss/bootstrap';
+
+.container,
+.row > * {
+	padding: 0;
+}
+
+
+[class^="col-"],
+[class*=" col-"],
+[class^="container-"],
+[class*=" container-"],
+.row {
+	margin: 0;
+	flex: unset;
+}
+
+[class^="col-"],
+[class*=" col-"] {
+    padding: 8px;
+}
+
+ol,
+ul, 
+dl,
+p,
+label {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}

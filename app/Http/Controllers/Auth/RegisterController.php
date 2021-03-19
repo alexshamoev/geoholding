@@ -3,6 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Page;
+use App\MenuButton;
+use App\Language;
+use App\Module;
+use App\Bsc;
+use App\Bsw;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +34,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -69,4 +75,31 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+
+
+	public function showRegistrationForm() {
+		return view('auth.m-register');
+
+
+		$page = Page :: where('id', 5) -> first();
+		$language = Language :: where('like_default', 1) -> first();
+
+		if($language && $page) {
+			$page_template = 'static';
+			
+			$active_module = Module :: where('page', $page -> id) -> first();
+			
+			if($active_module) {
+				$page_template = $active_module -> alias;
+			}
+
+			return view($page_template, ['page' => $page -> getFullData($language -> title),
+											'menuButtons' => MenuButton :: getFullData($language -> title),
+											'languages' => Language :: getFullData($language -> title, $page),
+											'bsc' => Bsc :: getFullData(),
+											'bsw' => Bsw :: getFullData($language -> title)]);
+		} else {
+			abort(404);
+		}
+	}
 }

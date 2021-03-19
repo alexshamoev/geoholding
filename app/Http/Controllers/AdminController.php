@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Module;
 use App\ModuleStep;
 use App\ModuleBlock;
+use App\Language;
 use Illuminate\Http\Request;
 use DB;
 
@@ -19,14 +20,16 @@ class AdminController extends Controller {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleSteps = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get();
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
 
-		$moduleStepData = DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get();
+		$moduleStepData = DB :: table($moduleStep -> db_table) -> orderBy('id') -> get();
 
 		return view('modules.core.step0', ['modules' => Module :: all(),
 											'module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => $moduleSteps,
-											'moduleStepData' => $moduleStepData]);
+											'moduleStepData' => $moduleStepData,
+											'use_for_tags' => $moduleBlock -> db_column]);
 	}
 
 
@@ -34,11 +37,9 @@ class AdminController extends Controller {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 
-		DB :: table($moduleStep -> db_table) -> insert([
-			'alias_ge' => 'temp'
-		]);
+		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
 
-		return redirect() -> route('moduleDataEdit', array($module -> alias, DB :: table($moduleStep -> db_table) -> max('id')));
+		return redirect() -> route('moduleDataEdit', array($module -> alias, $newRowId));
 	}
 
 
@@ -70,11 +71,12 @@ class AdminController extends Controller {
 		// 	}
 		// }
 
-
+		
 		return view('modules.core.step1', ['modules' => Module :: all(),
 											'module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
+											'languages' => Language :: where('published', 1) -> get(),
 											'data' => $pageData]);
 	}
 
@@ -87,7 +89,9 @@ class AdminController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			if($data -> type !== 'published' && $data -> type !== 'rang') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			}
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
