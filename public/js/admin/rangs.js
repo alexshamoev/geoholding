@@ -81,79 +81,116 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/modules/basic.js":
-/*!***************************************!*\
-  !*** ./resources/js/modules/basic.js ***!
-  \***************************************/
+/***/ "./resources/js/admin/rangs.js":
+/*!*************************************!*\
+  !*** ./resources/js/admin/rangs.js ***!
+  \*************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-var r_menu_buttons_show_hide_frame_speed = 40;
-var r_menu_buttons_show_hide_frames_number = 16;
-var r_menu_buttons_show_hide_frame_width = 34;
+"use strict";
 
-function r_menu_buttons_show() {
-  var i = 0;
-  var interval = setInterval(function () {
-    $('.navbar__toggler-icon').css('background-position', '-' + i * r_menu_buttons_show_hide_frame_width + 'px 0px');
-    i++;
 
-    if (i === r_menu_buttons_show_hide_frames_number) {
-      clearInterval(interval);
-    }
-  }, r_menu_buttons_show_hide_frame_speed);
+function horizontal_handleDropEvent(event, ui) {
+  var draggable = ui.draggable;
+  ui.draggable.draggable('option', 'revert', false);
+  setTimeout(function () {
+    ui.draggable.draggable('option', 'revert', true);
+  }, 100);
+  $(ui.draggable).css('left', '0');
+  $(ui.draggable).css('top', '0');
+  $(ui.draggable).insertBefore(this);
+
+  for (var i = 0; i < $('.js-sortable-item').length; i++) {// $('.js-sortable-item').eq(i).before($('#drag_target_' + i + '_div'));
+  } // Change later (put in for loop with real data)
+
+
+  $('.js-sortable-item').before($('#drag_target_0_div')); // Change later (put in for loop with real data)
+  // update_rangs();
 }
 
-function r_menu_buttons_hide() {
-  var i = r_menu_buttons_show_hide_frames_number;
-  var interval = setInterval(function () {
-    i--;
-    $('.navbar__toggler-icon').css('background-position', '-' + i * r_menu_buttons_show_hide_frame_width + 'px 0px');
+function handleDropEvent(event, ui) {
+  var draggable = ui.draggable;
+  ui.draggable.draggable('option', 'revert', false);
+  setTimeout(function () {
+    ui.draggable.draggable('option', 'revert', true);
+  }, 100);
+  $(ui.draggable).css('left', '0');
+  $(ui.draggable).css('top', '0');
+  $(ui.draggable).insertBefore(this);
+  var k = 0;
+  var f = 0;
 
-    if (i === 0) {
-      clearInterval(interval);
-    }
-  }, r_menu_buttons_show_hide_frame_speed);
-}
+  for (var i = 0; i < $('.standart_blocks_div').length; i++) {
+    $('.standart_blocks_div').eq(i).before($('#drag_target_' + k + '_div'));
+    k++;
 
-function search_expansion() {
-  $('.js_open_search').on('click', function () {
-    $(this).hide();
-    $('.js_close_search').show();
-    $('.js_search').addClass('expanded');
-  });
-  $('.js_close_search').on('click', function () {
-    $(this).hide();
-    $('.js_open_search').show();
-    $('.js_search').removeClass('expanded');
-  });
-}
+    if (k > 0 && k % 5 === 0) {
+      var o = k - 1;
+      $('#drag_target_' + o + '_div').after($('.drag_target_clear_div').eq(f));
+      $('.drag_target_clear_div').eq(f).after($('#drag_target_' + k + '_div'));
+      k++;
+      f++;
+    } else {}
+  }
 
+  $('#drag_target_0_div').after($('.drag_target_clear_div'));
+  $('.drag_target_clear_div').after($('#drag_target_0_div')); // update_rangs();
+} // function update_rangs() {
+// 	var rang = $('.rang_input').length * 5;
+// 	var sql_table = $('#js_sql_table').val();
+// 	//alert(sql_table);
+// 	for(var i = 0; i < $('.rang_input').length; i++) {
+// 		var id = $('.rang_input').eq(i).parent().find('.block_id').val();
+// 		//console.log(id + ' | ' + rang);
+// 		mysql_update(sql_table, "rang = '" + rang + "'", "id = '" + id + "'");
+// 		rang -= 5;
+// 	}
+// 	//console.log('update_rangs');
+// }
+
+
+$(window).on('load', function () {
+  $('.drag_target_div').find('div').height($('.standart_blocks_div').height() + 32);
+});
 $(document).ready(function () {
-  search_expansion();
-  $('nav').on('hide.bs.collapse', function () {
-    r_menu_buttons_hide();
+  $('.standart_blocks_div').draggable({
+    stack: '.standart_blocks_div',
+    containment: 'section',
+    revert: true
   });
-  $('nav').on('show.bs.collapse', function () {
-    r_menu_buttons_show();
+  $('.drag_target_div').droppable({
+    hoverClass: 'dragover',
+    drop: handleDropEvent,
+    tolerance: 'touch'
   });
+  $('.js-sortable-item').draggable({
+    stack: '.js-sortable-item',
+    containment: 'section',
+    revert: true
+  });
+  $('.drag_target_horizontal_div').droppable({
+    hoverClass: 'dragover',
+    drop: horizontal_handleDropEvent,
+    tolerance: 'touch'
+  }); //console.log('drag_and_drop');
 });
 
 /***/ }),
 
-/***/ 2:
-/*!*********************************************!*\
-  !*** multi ./resources/js/modules/basic.js ***!
-  \*********************************************/
+/***/ 1:
+/*!*******************************************!*\
+  !*** multi ./resources/js/admin/rangs.js ***!
+  \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/js/modules/basic.js */"./resources/js/modules/basic.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\rangs.js */"./resources/js/admin/rangs.js");
 
 
 /***/ })

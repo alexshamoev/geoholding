@@ -17,6 +17,7 @@ const mix = require('laravel-mix');
 
    mix.react('resources/js/app.js', 'public/js')
     .js('resources/js/admin/basic.js', 'public/js/admin')
+    .js('resources/js/admin/rangs.js', 'public/js/admin')
     .js('resources/js/modules/basic.js', 'public/js/modules')
     .sass('resources/sass/modules/_atom.scss', 'public/css/modules')
     .sass('resources/sass/modules/html_tags.scss', 'public/css/modules')
@@ -35,4 +36,5 @@ const mix = require('laravel-mix');
     .sass('resources/sass/admin/status_line.scss', 'public/css/admin')
     .sass('resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
     .sass('resources/sass/admin/tags.scss', 'public/css/admin')
+    .sass('resources/sass/admin/jquery_ui.scss', 'public/css/admin')
     .copy('storage/app/public/', 'public/', false);

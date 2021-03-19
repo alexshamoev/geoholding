@@ -17,10 +17,15 @@
 	<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/bar.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/classes.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/html_tags.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/jquery_ui.css') }}">
 	<!-- <link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/all-admin-styles.css') }}"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/all-styles.css') }}"> -->
 
+	{{--
+		// basic.js must be firsc because it loads jquery
+	--}}
 	<script src="{{URL :: asset('js/admin/basic.js')}}"></script>
+	<script src="{{URL :: asset('js/admin/rangs.js')}}"></script>
 </head>
 
 <body>

@@ -1,4 +1,4 @@
-<div class="p-2">
+<div class="p-2 ui-state-default js-sortable-item">
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-10 p-0">
 			<div class="row">

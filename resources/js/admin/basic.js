@@ -1,6 +1,7 @@
 window.$ = window.jQuery = require('jquery');
-
-console.log(123);
+import  'jquery-ui/ui/widgets/sortable';
+import  'jquery-ui/ui/widgets/draggable';
+import  'jquery-ui/ui/widgets/droppable';
 
 $(document).ready(function () {
     jQuery('.svg_img').each(function () {
