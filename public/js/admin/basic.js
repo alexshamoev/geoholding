@@ -15580,12 +15580,18 @@ return jQuery;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+<<<<<<< HEAD
 /* harmony import */ var jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery-ui/ui/widgets/sortable */ "./node_modules/jquery-ui/ui/widgets/sortable.js");
 /* harmony import */ var jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery_ui_ui_widgets_draggable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui/ui/widgets/draggable */ "./node_modules/jquery-ui/ui/widgets/draggable.js");
 /* harmony import */ var jquery_ui_ui_widgets_draggable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_draggable__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery_ui_ui_widgets_droppable__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery-ui/ui/widgets/droppable */ "./node_modules/jquery-ui/ui/widgets/droppable.js");
 /* harmony import */ var jquery_ui_ui_widgets_droppable__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_droppable__WEBPACK_IMPORTED_MODULE_2__);
+=======
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'jquery-ui/ui/widgets/sortable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'jquery-ui/ui/widgets/draggable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module 'jquery-ui/ui/widgets/droppable'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 
@@ -15720,7 +15726,11 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+<<<<<<< HEAD
 // removed by extract-text-webpack-plugin
+=======
+throw new Error("Module build failed (from ./node_modules/css-loader/index.js):\nModuleNotFoundError: Module not found: Error: Can't resolve 'jquery-ui/themes/base/all.css' in '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin'\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/webpack/lib/Compilation.js:925:10\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/webpack/lib/NormalModuleFactory.js:401:22\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/webpack/lib/NormalModuleFactory.js:130:21\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/webpack/lib/NormalModuleFactory.js:224:22\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/neo-async/async.js:2830:7\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/neo-async/async.js:6877:13\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/webpack/lib/NormalModuleFactory.js:214:25\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:213:14\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:44:7\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:67:43\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:26:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/ModuleKindPlugin.js:30:40\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/forEachBail.js:30:14\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:44:7\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:13:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/DescriptionFilePlugin.js:67:43\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:14:1)\n    at /Applications/MAMP/htdocs/laravel-template/node_modules/enhanced-resolve/lib/Resolver.js:285:5\n    at eval (eval at create (/Applications/MAMP/htdocs/laravel-template/node_modules/tapable/lib/HookCodeFactory.js:33:10), <anonymous>:25:1)");
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 
 /***/ }),
 
@@ -15842,6 +15852,7 @@ $(document).ready(function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
 __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
 __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
@@ -15881,6 +15892,27 @@ __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\cus
 __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\tags.scss */"./resources/sass/admin/tags.scss");
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
 >>>>>>> 30c4ddf283607ff225514374fa6caa35fc9f5faf
+=======
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/bar.scss */"./resources/sass/admin/bar.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/left_part.scss */"./resources/sass/admin/left_part.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/pages.scss */"./resources/sass/admin/pages.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/status_line.scss */"./resources/sass/admin/status_line.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/tags.scss */"./resources/sass/admin/tags.scss");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 
 
 /***/ })

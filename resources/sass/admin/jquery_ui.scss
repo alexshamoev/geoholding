@@ -1,1 +1,5 @@
-@import '~jquery-ui/themes/base/all.css';
+// @import '~jquery-ui/themes/base/all.css';
+
+.sortable-item {
+   user-select: none;
+}

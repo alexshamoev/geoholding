@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*!
  * jQuery UI CSS Framework 1.12.1
  * http://jqueryui.com
@@ -1518,4 +1519,12 @@ a.ui-button:active,
  * http://api.jqueryui.com/category/theming/
  */
 
+=======
+.sortable-item {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 

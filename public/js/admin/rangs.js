@@ -91,6 +91,7 @@
   !*** ./resources/js/admin/rangs.js ***!
   \*************************************/
 /*! no static exports found */
+<<<<<<< HEAD
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -179,6 +180,35 @@ $(document).ready(function () {
     drop: horizontal_handleDropEvent,
     tolerance: 'touch'
   }); //console.log('drag_and_drop');
+=======
+/***/ (function(module, exports) {
+
+/*
+
+	available events: 
+
+		"handle" - click down
+		"start" - start of dragging - you can add a class here
+		"activate"
+		"sort" - change of the item position
+		"change" – change of the items order
+		"beforeStop" - release of a mouse button
+		"deactivate"
+		"out"
+
+*/
+$(document).ready(function () {
+  $('.sortable-item').parent().addClass('sortable');
+  $('.sortable').sortable({
+    axis: 'y',
+    opacity: .6,
+    revert: 200,
+    containment: 'section',
+    stop: function stop() {
+      console.log('sort stopped');
+    }
+  });
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 });
 
 /***/ }),
@@ -190,7 +220,11 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\rangs.js */"./resources/js/admin/rangs.js");
+=======
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/rangs.js */"./resources/js/admin/rangs.js");
+>>>>>>> af8c83e516c422a7a751405ed13ddb2025402500
 
 
 /***/ })
