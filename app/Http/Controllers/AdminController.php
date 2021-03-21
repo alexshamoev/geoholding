@@ -50,26 +50,26 @@ class AdminController extends Controller {
 		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
 
 
-		// $prevId = 0;
-		// $nextId = 0;
+		$prevId = 0;
+		$nextId = 0;
 
-		// $prevIdIsSaved = false;
-		// $nextIdIsSaved = false;
+		$prevIdIsSaved = false;
+		$nextIdIsSaved = false;
 
-		// foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') as $data) {
-		// 	if($nextIdIsSaved && !$nextId) {
-		// 		$nextId = $data -> id;
-		// 	}
+		foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') -> get() as $data) {
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
 			
-		// 	if($pageData -> id === $data -> id) {
-		// 		$prevIdIsSaved = true;
-		// 		$nextIdIsSaved = true;
-		// 	}
+			if($pageData -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
 			
-		// 	if(!$prevIdIsSaved) {
-		// 		$prevId = $data -> id;
-		// 	}
-		// }
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
+		}
 
 		
 		return view('modules.core.step1', ['modules' => Module :: all(),
@@ -77,7 +77,9 @@ class AdminController extends Controller {
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
 											'languages' => Language :: where('published', 1) -> get(),
-											'data' => $pageData]);
+											'data' => $pageData,
+											'prevId' => $prevId,
+											'nextId' => $nextId]);
 	}
 
 

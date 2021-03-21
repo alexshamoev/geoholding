@@ -1,7 +1,6 @@
 @extends('admin.layouts.master')
 
 
-
 @section('pageMetaTitle')
     Modules
 @endsection

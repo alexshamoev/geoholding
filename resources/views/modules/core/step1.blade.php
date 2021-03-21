@@ -17,10 +17,10 @@
 	@include('admin.includes.bar', [
 		'addUrl' => route('moduleDataAdd', $module -> alias),
 		'deleteUrl' => route('moduleDataDelete', array($module -> alias, $data -> id)),
-		'nextId' => 3,
-		'prevId' => 3,
-		'nextRoute' => route('moduleEdit', 3),
-		'prevRoute' => route('moduleEdit', 3),
+		'nextId' => $nextId,
+		'prevId' => $prevId,
+		'nextRoute' => route('moduleDataEdit', [$module -> alias, $nextId]),
+		'prevRoute' => route('moduleDataEdit', [$module -> alias, $prevId]),
 		'backRoute' => route('moduleGetData', $module -> alias)
 	])
 
