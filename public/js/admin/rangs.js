@@ -113,7 +113,8 @@ $(document).ready(function () {
     axis: 'y',
     opacity: .6,
     revert: 200,
-    containment: 'section',
+    containment: 'parent',
+    tolerance: 'pointer',
     stop: function stop() {
       console.log('sort stopped');
     }
@@ -129,7 +130,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/rangs.js */"./resources/js/admin/rangs.js");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\rangs.js */"./resources/js/admin/rangs.js");
 
 
 /***/ })

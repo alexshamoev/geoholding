@@ -13,12 +13,14 @@
 	<div class="p-2 module-entry-main">
 		@include('admin.includes.addButton', ['text' => 'Module', 'url' => route('moduleAdd')])
 
-		@foreach($modules as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> alias,
-				'editLink' => route('moduleEdit', $data -> id),
-				'deleteLink' => route('moduleDelete', $data -> id)
-			])
-		@endforeach
+		<div>
+			@foreach($modules as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'title' => $data -> alias,
+					'editLink' => route('moduleEdit', $data -> id),
+					'deleteLink' => route('moduleDelete', $data -> id)
+				])
+			@endforeach
+		</div>
 	</div>
 @endsection

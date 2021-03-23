@@ -3,6 +3,29 @@ import  'jquery-ui/ui/widgets/sortable';
 import  'jquery-ui/ui/widgets/draggable';
 import  'jquery-ui/ui/widgets/droppable';
 
+var animation_speed = 50;
+
+function init_type_select() {
+	show_type_blocks($('#type_select').val(), 0);
+	
+	$('#type_select').on('change', function() {
+		show_type_blocks($(this).val(), 250);
+		console.log($(this).val());
+	});
+}
+
+function hide_type_blocks(speed_delay) {
+	$('.type_div').fadeOut(speed_delay);
+}
+
+function show_type_blocks(id, speed_delay) {
+	let block_id = $('#block_id_input').val();
+	
+	hide_type_blocks(speed_delay);
+	
+	$('.type_' + id).fadeIn(animation_speed);
+}
+
 $(document).ready(function () {
     jQuery('.svg_img').each(function () {
         var $img = jQuery(this);
@@ -46,5 +69,7 @@ $(document).ready(function () {
             window.location.href = $(this).data('delete-link');
         }
     });
+
+    init_type_select();
 
 });

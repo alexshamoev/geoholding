@@ -22,7 +22,8 @@ $(document).ready(function () {
 		axis: 'y',
 		opacity: .6,
 		revert: 200,
-		containment: 'section',
+		containment: 'parent',
+		tolerance: 'pointer',
 
 		stop: function () {
 			console.log('sort stopped');

@@ -38,7 +38,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: select('type', $blockTypes) }}
+						{{ Form :: select('type', $blockTypes, null, ['id' => 'type_select']) }}
 					</div>
 				</div>
 			</div>

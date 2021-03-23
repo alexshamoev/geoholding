@@ -15590,6 +15590,26 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 
 
 
+var animation_speed = 50;
+
+function init_type_select() {
+  show_type_blocks($('#type_select').val(), 0);
+  $('#type_select').on('change', function () {
+    show_type_blocks($(this).val(), 250);
+    console.log($(this).val());
+  });
+}
+
+function hide_type_blocks(speed_delay) {
+  $('.type_div').fadeOut(speed_delay);
+}
+
+function show_type_blocks(id, speed_delay) {
+  var block_id = $('#block_id_input').val();
+  hide_type_blocks(speed_delay);
+  $('.type_' + id).fadeIn(animation_speed);
+}
+
 $(document).ready(function () {
   jQuery('.svg_img').each(function () {
     var $img = jQuery(this);
@@ -15632,6 +15652,7 @@ $(document).ready(function () {
       window.location.href = $(this).data('delete-link');
     }
   });
+  init_type_select();
 });
 
 /***/ }),
@@ -15841,25 +15862,25 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/bar.scss */"./resources/sass/admin/bar.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/left_part.scss */"./resources/sass/admin/left_part.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/pages.scss */"./resources/sass/admin/pages.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/status_line.scss */"./resources/sass/admin/status_line.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/tags.scss */"./resources/sass/admin/tags.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\js\admin\basic.js */"./resources/js/admin/basic.js");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\_atom.scss */"./resources/sass/modules/_atom.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\html_tags.scss */"./resources/sass/modules/html_tags.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\icons.scss */"./resources/sass/modules/icons.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\app.scss */"./resources/sass/modules/app.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\main.scss */"./resources/sass/modules/main.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\modules\custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\_atom.scss */"./resources/sass/admin/_atom.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\bar.scss */"./resources/sass/admin/bar.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\classes.scss */"./resources/sass/admin/classes.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\for_editors.scss */"./resources/sass/admin/for_editors.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\html_tags.scss */"./resources/sass/admin/html_tags.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\identifiers.scss */"./resources/sass/admin/identifiers.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\left_part.scss */"./resources/sass/admin/left_part.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\pages.scss */"./resources/sass/admin/pages.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\status_line.scss */"./resources/sass/admin/status_line.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
+__webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\tags.scss */"./resources/sass/admin/tags.scss");
+module.exports = __webpack_require__(/*! C:\MAMP\htdocs\laravel-template\resources\sass\admin\jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
 
 
 /***/ })

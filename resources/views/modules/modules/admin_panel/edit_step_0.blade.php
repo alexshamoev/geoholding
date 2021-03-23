@@ -213,17 +213,19 @@
 		</div>
 	{{ Form :: close() }}
 
-	<div class="p-2">
+	<div class="px-2">
 		@include('admin.includes.addButton', ['text' => 'Step', 'url' => route('moduleStepAdd', $module -> id)])
 	</div>
 
-    <div class="p-2">
-		@foreach($moduleSteps as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> title,
-				'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-				'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-			])
-		@endforeach
+    <div class="px-2">
+		<div>
+			@foreach($moduleSteps as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'title' => $data -> title,
+					'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
+					'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
+				])
+			@endforeach
+		</div>
     </div>
 @endsection

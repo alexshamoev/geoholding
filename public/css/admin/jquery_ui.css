@@ -1,3 +1,8 @@
+.sortable {
+  position: relative;
+  overflow-y: hidden;
+}
+
 .sortable-item {
   -webkit-user-select: none;
      -moz-user-select: none;

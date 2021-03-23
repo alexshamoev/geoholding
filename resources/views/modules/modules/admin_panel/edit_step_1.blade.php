@@ -146,7 +146,7 @@
 	</div>
 
 
-	<div class="px-2">
+	<div class="px-2 pb-2">
 		@foreach($moduleBlocks as $data)
 			@include('admin.includes.horizontalEditDeleteBlock', [
 				'title' => $data -> db_column,
