@@ -21,10 +21,10 @@
 	@include('admin.includes.bar', [
 		'addUrl' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id)),
 		'deleteUrl' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $moduleBlock -> id)),
-		'nextId' => 5,
-		'prevId' => 5,
-		'nextRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, 6)),
-		'prevRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, 6)),
+		'nextId' => $next,
+		'prevId' => $prev,
+		'nextRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $next)),
+		'prevRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $prev)),
 		'backRoute' => route('moduleStepEdit', array($module -> id, $moduleStep -> id))
 	])
 
@@ -46,11 +46,11 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>db_column</span>
+						<span>label</span>
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('db_column') }}
+						{{ Form :: text('label') }}
 					</div>
 				</div>
 			</div>
@@ -62,7 +62,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('label') }}
+						{{ Form :: text('db_column') }}
 					</div>
 				</div>
 			</div>

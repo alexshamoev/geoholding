@@ -80,8 +80,8 @@ class ModuleBlockController extends Controller {
 																'moduleStep' => $moduleStep,
 																'moduleBlock' => $moduleBlock,
 																'blockTypes' => $blockTypes,
-																'prev' => ModuleBlock :: find($prevId),
-																'next' => ModuleBlock :: find($nextId)]);
+																'prev' => $prevId,
+																'next' => $nextId]);
 	}
 
 

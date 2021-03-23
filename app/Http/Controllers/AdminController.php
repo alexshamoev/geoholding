@@ -20,6 +20,7 @@ class AdminController extends Controller {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleSteps = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get();
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
 
 		$moduleStepData = DB :: table($moduleStep -> db_table) -> orderBy('id') -> get();
 
@@ -27,7 +28,8 @@ class AdminController extends Controller {
 											'module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => $moduleSteps,
-											'moduleStepData' => $moduleStepData]);
+											'moduleStepData' => $moduleStepData,
+											'use_for_tags' => $moduleBlock -> db_column]);
 	}
 
 
@@ -35,11 +37,9 @@ class AdminController extends Controller {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 
-		DB :: table($moduleStep -> db_table) -> insert([
-			'alias_ge' => 'temp'
-		]);
+		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
 
-		return redirect() -> route('moduleDataEdit', array($module -> alias, DB :: table($moduleStep -> db_table) -> max('id')));
+		return redirect() -> route('moduleDataEdit', array($module -> alias, $newRowId));
 	}
 
 
@@ -50,26 +50,26 @@ class AdminController extends Controller {
 		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
 
 
-		// $prevId = 0;
-		// $nextId = 0;
+		$prevId = 0;
+		$nextId = 0;
 
-		// $prevIdIsSaved = false;
-		// $nextIdIsSaved = false;
+		$prevIdIsSaved = false;
+		$nextIdIsSaved = false;
 
-		// foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') as $data) {
-		// 	if($nextIdIsSaved && !$nextId) {
-		// 		$nextId = $data -> id;
-		// 	}
+		foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') -> get() as $data) {
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
 			
-		// 	if($pageData -> id === $data -> id) {
-		// 		$prevIdIsSaved = true;
-		// 		$nextIdIsSaved = true;
-		// 	}
+			if($pageData -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
 			
-		// 	if(!$prevIdIsSaved) {
-		// 		$prevId = $data -> id;
-		// 	}
-		// }
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
+		}
 
 		
 		return view('modules.core.step1', ['modules' => Module :: all(),
@@ -77,7 +77,9 @@ class AdminController extends Controller {
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
 											'languages' => Language :: where('published', 1) -> get(),
-											'data' => $pageData]);
+											'data' => $pageData,
+											'prevId' => $prevId,
+											'nextId' => $nextId]);
 	}
 
 
