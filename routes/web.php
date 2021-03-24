@@ -38,6 +38,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	
  
 	Route :: get('/languages', 'LanguageController@getStartPoint') -> name('languageStartPoint');
+	Route :: post('/languages', 'LanguageController@updateStartPoint') -> name('languageStartPointPost');
 	Route :: get('/language/add', 'LanguageController@add') -> name('languageAdd');
 	Route :: get('/language/{id}', 'LanguageController@edit') -> name('languageEdit');
 	Route :: post('/language/{id}', 'LanguageController@update') -> name('languageUpdate');

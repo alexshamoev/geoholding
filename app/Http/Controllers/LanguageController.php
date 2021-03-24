@@ -74,4 +74,18 @@ class LanguageController extends Controller
 
 		return redirect() -> route('languageStartPoint');
 	}
+
+
+	public function updateStartPoint(Request $request) {
+
+		
+
+		$language = Language :: find($request -> input('like_default'));
+
+		$language -> like_default = 1;
+
+		$language -> save();
+
+		return redirect() -> route('languageStartPoint');
+	}
 }
