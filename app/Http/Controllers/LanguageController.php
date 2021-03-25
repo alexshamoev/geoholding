@@ -65,6 +65,12 @@ class LanguageController extends Controller
 
 		$language -> save();
 
+		if($request -> file('svg_icon_languages')) {
+			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/language',
+																			$language -> id.'_icon.svg',
+																			'public');
+		}
+
 		return redirect() -> route('languageEdit', $language -> id);
 	}
 
@@ -77,15 +83,23 @@ class LanguageController extends Controller
 
 
 	public function updateStartPoint(Request $request) {
-
-		
+		Language :: where('published',1) -> update([
+													'like_default' => 0,
+													'like_default_for_admin' => 0
+												]);
 
 		$language = Language :: find($request -> input('like_default'));
-
+		
 		$language -> like_default = 1;
 
 		$language -> save();
 
+		$language = Language :: find($request -> input('like_default_for_admin'));
+		
+		$language -> like_default_for_admin = 1;
+
+		$language -> save();
+		
 		return redirect() -> route('languageStartPoint');
 	}
 }
