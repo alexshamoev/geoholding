@@ -19,17 +19,35 @@ class AdminController extends Controller {
     public function getModulePage($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
-		$moduleSteps = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get();
 		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
 
-		$moduleStepData = DB :: table($moduleStep -> db_table) -> orderBy('id') -> get();
+		$use_for_tags = 'id';
+
+		if($moduleBlock) {
+			$use_for_tags = $moduleBlock -> db_column;
+		}
+
+
+		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
+
+		$use_for_sort = 'id';
+		$sort_by = 'DESC';
+
+		if($moduleBlockForSort) {
+			$use_for_sort = $moduleBlockForSort -> db_column;
+
+			if(!$moduleBlockForSort -> sort_by_desc) {
+				$sort_by = 'ASC';
+			}
+		}
+
 
 		return view('modules.core.step0', ['modules' => Module :: all(),
 											'module' => $module,
 											'moduleStep' => $moduleStep,
-											'moduleSteps' => $moduleSteps,
-											'moduleStepData' => $moduleStepData,
-											'use_for_tags' => $moduleBlock -> db_column]);
+											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
+											'use_for_tags' => $use_for_tags]);
 	}
 
 
@@ -48,6 +66,14 @@ class AdminController extends Controller {
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
 		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
+
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
+
+		$use_for_tags = 'id';
+
+		if($moduleBlock) {
+			$use_for_tags = $moduleBlock -> db_column;
+		}
 
 
 		$prevId = 0;
@@ -79,7 +105,8 @@ class AdminController extends Controller {
 											'languages' => Language :: where('published', 1) -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,
-											'nextId' => $nextId]);
+											'nextId' => $nextId,
+											'use_for_tags' => $use_for_tags]);
 	}
 
 
