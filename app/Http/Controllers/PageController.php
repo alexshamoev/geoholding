@@ -9,6 +9,7 @@ use App\Module;
 use App\Bsc;
 use App\Bsw;
 use App\News;
+use App\Partner;
 use Illuminate\Http\Request;
 
 
@@ -90,6 +91,17 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'newsStep0' => News :: getFullData($lang)]);
+							
+							break;
+						case 'partners':
+							return view('modules.partners.step0', ['page' => $page -> getFullData($lang),
+										'menuButtons' => MenuButton :: getFullData($lang),
+										'languages' => Language :: getFullData($lang, $page),
+										'bsc' => Bsc :: getFullData(),
+										'bsw' => Bsw :: getFullData($language -> title),
+										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+										'partners' => Partner :: getFullData($lang)]);
 							
 							break;
 					}
