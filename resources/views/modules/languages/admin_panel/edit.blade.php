@@ -53,7 +53,7 @@
 				</div>
 			</div>
 
-			<div class="p-2 w-100">
+			<!-- <div class="p-2 w-100">
 				<div class="standard-block standard-block--no-left-border row">
 					<div class="col-3 p-3 checkbox-block">
 						<label>
@@ -69,6 +69,18 @@
 
 							Default for admin?
 						</label>
+					</div>
+				</div>
+			</div> -->
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-1">
+						<span>დროშის ფოტო:</span>
+					</div>
+
+					<div class="p-1">
+						{{ Form :: file('svg_icon_languages') }}
 					</div>
 				</div>
 			</div>
