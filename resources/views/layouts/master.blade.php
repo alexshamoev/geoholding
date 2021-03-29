@@ -86,6 +86,9 @@
 			</div>
         </div>
 
+	
+		@include('modules.partners.step0')
+
 
 		<footer class="p-2 row">
 			<div class="container">

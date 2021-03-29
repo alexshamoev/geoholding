@@ -8,7 +8,7 @@
 
 @section('content')
 	@include('admin.includes.tags', [
-		'tag0Text' => $module -> alias,
+		'tag0Text' => $module -> title,
 		'tag0Url' => route('moduleGetData', $module -> alias)
 	])
 

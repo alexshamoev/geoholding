@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PagesAddSlugColumn extends Migration
+class ModulesAddTitleColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class PagesAddSlugColumn extends Migration
      */
     public function up()
     {
-        Schema :: table('pages', function (Blueprint $table) {
-			if(!Schema :: hasColumn('pages', 'slug')) {
-				$table -> string('slug') -> default('');
+		Schema :: table('modules', function (Blueprint $table) {
+			if(!Schema :: hasColumn('modules', 'title')) {
+				$table -> string('title') -> default('');
 			}
         });
     }
@@ -27,8 +27,8 @@ class PagesAddSlugColumn extends Migration
      */
     public function down()
     {
-        Schema :: table('pages', function($table) {
-			$table -> dropColumn('slug');
+        Schema :: table('modules', function($table) {
+			$table -> dropColumn('title');
 		});
     }
 }

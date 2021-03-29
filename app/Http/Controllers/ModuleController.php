@@ -86,21 +86,11 @@ class ModuleController extends Controller {
 	public function update(Request $request, $id) {
 		$module = Module :: find($id);
 		$module -> alias = (!is_null($request -> input('alias')) ? $request -> input('alias') : '');
+		$module -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
 		$module -> page = $request -> input('page');
 		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
 		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);
 		$module -> include_type = (!is_null($request -> input('include_type')) ? $request -> input('include_type') : 0);
-		
-		foreach(Language :: where('published', 1) -> get() as $data) {
-			$var_title = 'title_'.$data -> title;
-
-			$module -> $var_title = '';
-
-			if($request -> input('title_'.$data -> title)) {
-				$module -> $var_title = (!is_null($request -> input('title_'.$data -> title)) ? $request -> input('title_'.$data -> title) : '');
-			}
-		}
-
 
 		$module -> save();
 

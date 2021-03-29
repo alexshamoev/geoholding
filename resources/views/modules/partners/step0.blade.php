@@ -1,14 +1,6 @@
-@extends('layouts.master')
 
-
-@section('pageMetaTitle')
-    Partners
-@endsection
-
-
-@section('content')
     <h1 class="p-2">
-	Partners page - 
+		Partners page - 
 
 		{{ $page -> title }}
     </h1>
@@ -27,4 +19,3 @@
 			</div>
 		</a>
 	@endforeach
-@endsection

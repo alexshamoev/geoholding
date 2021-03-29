@@ -90,7 +90,8 @@ class PageController extends Controller {
 										'bsw' => Bsw :: getFullData($language -> title),
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'newsStep0' => News :: getFullData($lang)]);
+										'newsStep0' => News :: getFullData($lang),
+										'partners' => Partner :: getFullData($lang)]);
 							
 							break;
 						case 'partners':
