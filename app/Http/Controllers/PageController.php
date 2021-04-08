@@ -114,7 +114,8 @@ class PageController extends Controller {
 										'bsc' => Bsc :: getFullData(),
 										'bsw' => Bsw :: getFullData($language -> title),
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+										'partners' => Partner :: getFullData($lang)]);
 			} else {
 				abort(404);
 			}
