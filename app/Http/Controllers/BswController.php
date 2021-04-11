@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Bsc;
 use App\Bsw;
 use App\Module;
 use App\Language;
@@ -11,7 +12,9 @@ class BswController extends Controller {
 	public function getStartPoint() {
 		return view('modules.bsw.admin_panel.start_point', ['modules' => Module :: all(),
 															'languages' => Language :: where('published', 1) -> get(),
-															'bsws' => Bsw :: all() -> sortBy('system_word')]);
+															'bsws' => Bsw :: all() -> sortBy('system_word'),
+															'bsc' => Bsc :: getFullData(),
+															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 	
@@ -52,9 +55,11 @@ class BswController extends Controller {
 		return view('modules.bsw.admin_panel.edit', ['modules' => Module :: all(),
 													 'languages' => Language :: where('published', 1) -> get(),
 													 'bsws' => Bsw :: all() -> sortBy('system_word'),
-													 'bsw' => Bsw :: find($id),
+													 'activeBsw' => Bsw :: find($id),
 													 'prevBswId' => $prevId,
-													 'nextBswId' => $nextId]);
+													 'nextBswId' => $nextId,
+													 'bsc' => Bsc :: getFullData(),
+													 'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

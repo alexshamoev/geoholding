@@ -212,7 +212,7 @@
 	{{ Form :: close() }}
 
 	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Step', 'url' => route('moduleStepAdd', $module -> id)])
+		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
 	</div>
 
     <div class="px-2">

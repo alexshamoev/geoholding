@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use App\Language;
+use App\Bsc;
+use App\Bsw;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
 	public function getStartPoint() {
 		return view('modules.languages.admin_panel.start_point', ['modules' => Module :: all(),
-																  'languages' => Language :: all() -> sortBy('title')]);
+																  'languages' => Language :: all() -> sortBy('title'),
+																  'bsc' => Bsc :: getFullData(),
+																  'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 	
 	
@@ -51,7 +55,9 @@ class LanguageController extends Controller
 															'languages' => Language :: all() -> sortBy('title'),
 															'language' => Language :: find($id),
 															'prevLanguageId' => $prevId,
-															'nextLanguageId' => $nextId]);
+															'nextLanguageId' => $nextId,
+															'bsc' => Bsc :: getFullData(),
+															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

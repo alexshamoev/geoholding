@@ -6,6 +6,8 @@ use App\Module;
 use App\ModuleStep;
 use App\ModuleBlock;
 use App\Language;
+use App\Bsc;
+use App\Bsw;
 use Illuminate\Http\Request;
 use DB;
 
@@ -47,7 +49,9 @@ class AdminController extends Controller {
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
-											'use_for_tags' => $use_for_tags]);
+											'use_for_tags' => $use_for_tags,
+											'bsc' => Bsc :: getFullData(),
+											'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 
@@ -106,7 +110,9 @@ class AdminController extends Controller {
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,
-											'use_for_tags' => $use_for_tags]);
+											'use_for_tags' => $use_for_tags,
+											'bsc' => Bsc :: getFullData(),
+											'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

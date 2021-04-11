@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app() -> getLocale()) }}">
     <head>
         <title>App Name - @yield('pageMetaTitle')</title>
 
@@ -86,7 +86,6 @@
         </div>
 
 	
-		@include('modules.partners.step0')
 
 
 		<footer class="p-2 row">
@@ -115,5 +114,4 @@
 			</div>
 		</footer>
     </body>
-
 </html>

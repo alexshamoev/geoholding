@@ -10,13 +10,13 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSC',
 		'tag0Url' => route('bscStartPoint'),
-		'tag1Text' => $bsc -> system_word
+		'tag1Text' => $activeBsc -> system_word
 	])
 
 
 	@include('admin.includes.bar', [
 		'addUrl' => route('bscAdd'),
-		'deleteUrl' => route('bscDelete', $bsc -> id),
+		'deleteUrl' => route('bscDelete', $activeBsc -> id),
 		'nextId' => $nextBscId,
 		'prevId' => $prevBscId,
 		'nextRoute' => route('bscEdit', $nextBscId),
@@ -25,7 +25,7 @@
 	])
 
 
-	{{ Form :: model($bsc, array('route' => array('bscUpdate', $bsc -> id))) }}
+	{{ Form :: model($activeBsc, array('route' => array('bscUpdate', $activeBsc -> id))) }}
 	<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">

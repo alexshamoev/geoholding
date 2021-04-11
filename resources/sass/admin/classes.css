@@ -78,10 +78,6 @@
   color: #fff;
 }
 
-.module-entry-main {
-  border-top: 1px solid #ccc;
-}
-
 .header__cms-version {
   font-size: 30px;
 }
@@ -101,6 +97,11 @@
 
 .edit-block__edit-delete-block {
   border-left: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.edit-block__edit-delete-block--move {
+  cursor: move;
 }
 
 .line_max_1 {
@@ -133,11 +134,17 @@
 }
 
 .bar {
-  border: 1px solid #ccc;
-  border-left: none;
-  border-right: none;
+  border-bottom: 1px solid #ccc;
 }
 
 .bar__button {
   border-left: 1px solid #ccc;
+}
+
+.tags {
+  border-bottom: 1px solid #ccc;
+}
+
+.addButton {
+  border: 1px solid #ccc;
 }

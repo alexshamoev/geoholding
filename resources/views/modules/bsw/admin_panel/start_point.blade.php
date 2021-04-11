@@ -9,8 +9,8 @@
 @section('content')
 	@include('admin.includes.tags', ['tag0Text' => 'BSW', 'tag0Url' => route('bswStartPoint')])
 
-	<div class="p-2 module-entry-main">
-		@include('admin.includes.addButton', ['text' => 'BSW', 'url' => route('bswAdd')])
+	<div class="p-2">
+		@include('admin.includes.addButton', ['text' => 'Add BSW', 'url' => route('bswAdd')])
 
 
 		@foreach($bsws as $data)

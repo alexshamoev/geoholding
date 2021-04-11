@@ -6,6 +6,8 @@ use App\Module;
 use App\ModuleStep;
 use App\ModuleBlock;
 use App\Page;
+use App\Bsc;
+use App\Bsw;
 use App\Language;
 use Illuminate\Http\Request;
 
@@ -59,7 +61,9 @@ class ModuleStepController extends Controller {
 																'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
 																'moduleStep' => $moduleStep,
 																'prev' => ModuleStep :: find($prevId),
-																'next' => ModuleStep :: find($nextId)]);
+																'next' => ModuleStep :: find($nextId),
+																'bsc' => Bsc :: getFullData(),
+																'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

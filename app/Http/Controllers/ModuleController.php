@@ -7,13 +7,16 @@ use App\ModuleStep;
 use App\ModuleBlock;
 use App\Page;
 use App\Language;
+use App\Bsc;
 use App\Bsw;
 use App\ModulesIncludesValue;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller {
     public function getStartPoint() {
-		return view('modules.modules.admin_panel.start_point', ['modules' => Module :: all()]);
+		return view('modules.modules.admin_panel.start_point', ['modules' => Module :: all(),
+					'bsc' => Bsc :: getFullData(),
+					'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 
@@ -79,7 +82,9 @@ class ModuleController extends Controller {
 																'module' => $module,
 																'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
 																'prevModuleId' => $prevId,
-																'nextModuleId' => $nextId]);
+																'nextModuleId' => $nextId,
+																'bsc' => Bsc :: getFullData(),
+																'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

@@ -10,8 +10,8 @@
 	@include('admin.includes.tags', ['tag0Text' => 'Modules', 'tag0Url' => route('moduleStartPoint')])
 
 
-	<div class="p-2 module-entry-main">
-		@include('admin.includes.addButton', ['text' => 'Module', 'url' => route('moduleAdd')])
+	<div class="p-2">
+		@include('admin.includes.addButton', ['text' => 'Add Module', 'url' => route('moduleAdd')])
 
 		<div>
 			@foreach($modules as $data)

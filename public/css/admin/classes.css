@@ -76,10 +76,6 @@
   color: #fff;
 }
 
-.module-entry-main {
-  border-top: 1px solid #ccc;
-}
-
 .header__cms-version {
   font-size: 30px;
 }
@@ -136,12 +132,18 @@
 }
 
 .bar {
-  border: 1px solid #ccc;
-  border-left: none;
-  border-right: none;
+  border-bottom: 1px solid #ccc;
 }
 
 .bar__button {
   border-left: 1px solid #ccc;
+}
+
+.tags {
+  border-bottom: 1px solid #ccc;
+}
+
+.addButton {
+  border: 1px solid #ccc;
 }
 

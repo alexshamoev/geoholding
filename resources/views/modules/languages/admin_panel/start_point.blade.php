@@ -10,8 +10,8 @@
 	@include('admin.includes.tags', ['tag0Text' => 'Language', 'tag0Url' => route('languageStartPoint')])
 
 	{{ Form :: open(array('url' => route('languageStartPoint'))) }}
-		<div class="p-2 module-entry-main">
-			@include('admin.includes.addButton', ['text' => 'Language', 'url' => route('languageAdd')])
+		<div class="p-2">
+			@include('admin.includes.addButton', ['text' => 'Add Language', 'url' => route('languageAdd')])
 			
 			<div>
 				@foreach($languages as $data)

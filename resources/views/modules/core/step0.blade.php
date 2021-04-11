@@ -15,7 +15,7 @@
 
 	<div class="p-2">
 		@include('admin.includes.addButton', [
-			'text' => $moduleStep -> title,
+			'text' => $bsw -> a_add.' '.$moduleStep -> title,
 			'url' => route('moduleDataAdd', $module -> alias)
 		])
 
