@@ -3,7 +3,6 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AdminController@getDefaultPage');
 	Route :: get('/login') -> name('login');
 
-
 	Route :: get('/modules', 'ModuleController@getStartPoint') -> name('moduleStartPoint');
 	Route :: get('/modules/add', 'ModuleController@add') -> name('moduleAdd');
 	Route :: get('/modules/{id}', 'ModuleController@edit') -> name('moduleEdit');

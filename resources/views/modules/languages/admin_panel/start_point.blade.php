@@ -15,7 +15,7 @@
 			
 			<div>
 				@foreach($languages as $data)
-					@include('modules.languages..admin_panel.includes.horizontalEditDeleteBlock', [
+					@include('modules.languages.admin_panel.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,
 						'title' => $data -> title,
 						'editLink' => route('languageEdit', $data -> id),

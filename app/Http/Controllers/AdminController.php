@@ -14,7 +14,10 @@ use DB;
 
 class AdminController extends Controller {
 	public function getDefaultPage() {
-		return view('admin.pages');
+		$firstModul = Module :: orderBy('rang','desc') -> first();
+		$firstModulTitle = $firstModul -> alias;
+		return redirect("/admin/$firstModulTitle");
+		// return $firstModul -> alias;
 	}
 
 
