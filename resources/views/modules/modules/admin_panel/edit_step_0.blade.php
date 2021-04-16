@@ -144,8 +144,9 @@
 								<label>
 									<input type="checkbox"
 											value="{{ $key }}"
-											name="page_include_{{ $key }}">
-									
+											name="page_include_{{ $key }}"
+											{{$data['checked']}}>
+											
 									{{ $data['alias'] }} 
 								</label>
 							</div>

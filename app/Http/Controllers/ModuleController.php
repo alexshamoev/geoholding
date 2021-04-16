@@ -48,7 +48,15 @@ class ModuleController extends Controller {
 			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
 			
 			$pagesForIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
-			// $pagesForIncludeInPages[$data['id']]['checked'] = ModulesIncludesValue :: where('module', $module -> id) -> delete();;
+
+			$checkedOption = ModulesIncludesValue :: where([['module', $id], ['include_in', $data['id']]]) -> first();
+
+			if($checkedOption) {
+				$pagesForIncludeInPages[$data['id']]['checked'] = 'checked';
+				// $pagesForIncludeInPages[$data['id']]['checked'] = ModulesIncludesValue :: where('module', $module -> id) -> delete();;
+			} else {
+				$pagesForIncludeInPages[$data['id']]['checked'] = '';
+			}	
 		}
 
 
