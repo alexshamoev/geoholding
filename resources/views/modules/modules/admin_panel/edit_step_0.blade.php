@@ -131,10 +131,6 @@
 			<div class="px-2">
 				<div class="d-flex flex-column standard-block p-2">
 					<div class="p-1">
-						<span>გვერდი</span>
-					</div>
-					
-					<div class="p-1">
 						{{ Form :: select('page', $pagesForSelect, $module -> page) }}
 					</div>
 
@@ -145,7 +141,23 @@
 									<input type="checkbox"
 											value="{{ $key }}"
 											name="page_include_{{ $key }}"
-											{{$data['checked']}}>
+											{{ $data['checked'] }}>
+											
+									{{ $data['alias'] }} 
+								</label>
+							</div>
+						@endforeach
+					</div>
+
+
+					<div class="p-2">
+						@foreach($pagesNotIncludeInPages as $key => $data)
+							<div>
+								<label>
+									<input type="checkbox"
+											value="{{ $key }}"
+											name="page_not_include_{{ $key }}"
+											{{ $data['checked'] }}>
 											
 									{{ $data['alias'] }} 
 								</label>

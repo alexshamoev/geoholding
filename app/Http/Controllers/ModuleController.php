@@ -10,6 +10,7 @@ use App\Language;
 use App\Bsc;
 use App\Bsw;
 use App\ModulesIncludesValue;
+use App\ModulesNotIncludesValue;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller {
@@ -43,20 +44,28 @@ class ModuleController extends Controller {
 		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
 
 		$pagesForIncludeInPages = array();
+		$pagesNotIncludeInPages = array();
 
 		foreach(Page :: where('published', 1) -> get() as $data) {
 			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
 			
 			$pagesForIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
+			$pagesNotIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
 
-			$checkedOption = ModulesIncludesValue :: where([['module', $id], ['include_in', $data['id']]]) -> first();
+			$checkedForIncludeOption = ModulesIncludesValue :: where([['module', $id], ['include_in', $data['id']]]) -> first();
+			$checkedNotIncludesOption = ModulesNotIncludesValue :: where([['module', $id], ['include_in', $data['id']]]) -> first();
 
-			if($checkedOption) {
+			if($checkedForIncludeOption) {
 				$pagesForIncludeInPages[$data['id']]['checked'] = 'checked';
-				// $pagesForIncludeInPages[$data['id']]['checked'] = ModulesIncludesValue :: where('module', $module -> id) -> delete();;
 			} else {
 				$pagesForIncludeInPages[$data['id']]['checked'] = '';
-			}	
+			}
+			
+			if($checkedNotIncludesOption) {
+				$pagesNotIncludeInPages[$data['id']]['checked'] = 'checked';
+			} else {
+				$pagesNotIncludeInPages[$data['id']]['checked'] = '';
+			}
 		}
 
 
@@ -85,6 +94,7 @@ class ModuleController extends Controller {
 		return view('modules.modules.admin_panel.edit_step_0', ['modules' => Module :: all(),
 																'pagesForSelect' => $pagesForSelect,
 																'pagesForIncludeInPages' => $pagesForIncludeInPages,
+																'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
 																'pages' => Page :: where('published', 1) -> get(),
 																'languages' => Language :: where('published', 1) -> get(),
 																'module' => $module,
@@ -109,6 +119,7 @@ class ModuleController extends Controller {
 
 
 		ModulesIncludesValue :: where('module', $module -> id) -> delete();
+		ModulesNotIncludesValue :: where('module', $module -> id) -> delete();
 
 
 		foreach(Page :: where('published', 1) -> get() as $data) {
@@ -117,6 +128,13 @@ class ModuleController extends Controller {
 				$modulesIncludesValue -> module = $module -> id;
 				$modulesIncludesValue -> include_in = $data -> id;
 				$modulesIncludesValue -> save();
+			}
+
+			if(!is_null($request -> input('page_not_include_'.$data -> id))) {
+				$modulesNotIncludesValue = new ModulesNotIncludesValue;
+				$modulesNotIncludesValue -> module = $module -> id;
+				$modulesNotIncludesValue -> include_in = $data -> id;
+				$modulesNotIncludesValue -> save();
 			}
 		}
 
