@@ -13,7 +13,7 @@
 						<div class="standard-block standard-block--no-left-border row">
 							<!-- <div class="col-3 p-3 checkbox-block"> -->
 								<label>
-									{{ Form :: radio('like_default', $id, true) }}
+									{{ Form :: radio('like_default', $id, $like_default) }}
 									
 									Default for front?
 								</label>
@@ -23,7 +23,7 @@
 						<div class="standard-block standard-block--no-left-border row">
 							<!-- <div class="col-3 p-3 checkbox-block"> -->
 								<label>
-									{{ Form :: radio('like_default_for_admin', $id, true) }}
+									{{ Form :: radio('like_default_for_admin', $id, $like_default_for_admin) }}
 									
 									Default for admin?
 								</label>

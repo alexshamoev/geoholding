@@ -19,7 +19,9 @@
 						'id' => $data -> id,
 						'title' => $data -> title,
 						'editLink' => route('languageEdit', $data -> id),
-						'deleteLink' => route('languageDelete', $data -> id)
+						'deleteLink' => route('languageDelete', $data -> id),
+						'like_default_for_admin' => $data -> like_default_for_admin,
+						'like_default' => $data -> like_default
 					])
 				@endforeach
 			</div>
