@@ -142,7 +142,7 @@
 
 
 	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Block', 'url' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id))])
+		@include('admin.includes.addButton', ['text' => 'Add Block', 'url' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id))])
 	</div>
 
 

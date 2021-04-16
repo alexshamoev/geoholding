@@ -6,6 +6,8 @@ use App\Module;
 use App\ModuleStep;
 use App\ModuleBlock;
 use App\Page;
+use App\Bsc;
+use App\Bsw;
 use App\Language;
 use Illuminate\Http\Request;
 
@@ -81,7 +83,9 @@ class ModuleBlockController extends Controller {
 																'moduleBlock' => $moduleBlock,
 																'blockTypes' => $blockTypes,
 																'prev' => $prevId,
-																'next' => $nextId]);
+																'next' => $nextId,
+																'bsc' => Bsc :: getFullData(),
+																'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

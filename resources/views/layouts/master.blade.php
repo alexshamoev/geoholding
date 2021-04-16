@@ -1,5 +1,5 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app() -> getLocale()) }}">
     <head>
         <title>App Name - @yield('pageMetaTitle')</title>
 
@@ -52,8 +52,7 @@
 										<img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio">
 									</div>
 
-									<div 
-										class="navbar-toggler d-xl-none d-lg-none d-block" 
+									<div class="navbar-toggler d-lg-none d-block" 
 										data-toggle="collapse" 
 										data-target="#navbar" 
 										aria-controls="navbar" 
@@ -86,6 +85,8 @@
 			</div>
         </div>
 
+	
+
 
 		<footer class="p-2 row">
 			<div class="container">
@@ -96,11 +97,11 @@
 
 			<div class="container">
 				<div class="row">
-					<div class="col-xl-6 col-lg-6 col-md-6 col-12 text-xl-left text-lg-left text-md-left text-center">
+					<div class="col-md-6 col-12 text-md-left text-center">
 						Copyright
 					</div>
 
-					<div class="col-xl-6 col-lg-6 col-md-6 col-12 text-xl-right text-lg-right text-md-right text-center">
+					<div class="col-md-6 col-12 text-md-right text-center">
 						Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a>
 					</div>
 				</div>
@@ -113,5 +114,4 @@
 			</div>
 		</footer>
     </body>
-
 </html>

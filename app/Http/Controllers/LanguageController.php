@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use App\Language;
+use App\Bsc;
+use App\Bsw;
 use Illuminate\Http\Request;
 
 class LanguageController extends Controller
 {
 	public function getStartPoint() {
 		return view('modules.languages.admin_panel.start_point', ['modules' => Module :: all(),
-																  'languages' => Language :: all() -> sortBy('title')]);
+																  'languages' => Language :: all() -> sortBy('title'),
+																  'bsc' => Bsc :: getFullData(),
+																  'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 	
 	
@@ -51,7 +55,9 @@ class LanguageController extends Controller
 															'languages' => Language :: all() -> sortBy('title'),
 															'language' => Language :: find($id),
 															'prevLanguageId' => $prevId,
-															'nextLanguageId' => $nextId]);
+															'nextLanguageId' => $nextId,
+															'bsc' => Bsc :: getFullData(),
+															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 
@@ -65,6 +71,12 @@ class LanguageController extends Controller
 
 		$language -> save();
 
+		if($request -> file('svg_icon_languages')) {
+			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/language',
+																			$language -> id.'_icon.svg',
+																			'public');
+		}
+
 		return redirect() -> route('languageEdit', $language -> id);
 	}
 
@@ -72,6 +84,28 @@ class LanguageController extends Controller
 	public function delete($id) {
 		Language :: destroy($id);
 
+		return redirect() -> route('languageStartPoint');
+	}
+
+
+	public function updateStartPoint(Request $request) {
+		Language :: where('published',1) -> update([
+													'like_default' => 0,
+													'like_default_for_admin' => 0
+												]);
+
+		$language = Language :: find($request -> input('like_default'));
+		
+		$language -> like_default = 1;
+
+		$language -> save();
+
+		$language = Language :: find($request -> input('like_default_for_admin'));
+		
+		$language -> like_default_for_admin = 1;
+
+		$language -> save();
+		
 		return redirect() -> route('languageStartPoint');
 	}
 }

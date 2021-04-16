@@ -44,7 +44,7 @@
 				</div>
 
 				<div class="col-9">
-					<span>{{ $data -> alias }}</span>
+					<span>{{ $data -> title }}</span>
 				</div>
 			</div>
 		</a>

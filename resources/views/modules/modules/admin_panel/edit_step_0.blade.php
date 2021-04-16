@@ -40,19 +40,17 @@
 				</div>
 			</div>
 
-			@foreach($languages as $data)
-				<div class="p-2">
-					<div class="standard-block p-2">
-						<div class="p-2">
-							<span>Full title: * {{ $data -> title }}</span>
-						</div>
-						
-						<div class="p-2">
-							{{ Form :: text('title_'.$data -> title) }}
-						</div>
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2">
+						<span>Title: * </span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('title') }}
 					</div>
 				</div>
-			@endforeach
+			</div>
 
 			<div class="px-2 pt-2 row w-100">
 				<div class="col p-0 standard-block standard-block--no-right-border standard-block--no-bottom-border d-flex align-items-center">
@@ -214,7 +212,7 @@
 	{{ Form :: close() }}
 
 	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Step', 'url' => route('moduleStepAdd', $module -> id)])
+		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
 	</div>
 
     <div class="px-2">

@@ -2,7 +2,9 @@
 namespace App\Http\Controllers;
 
 use App\Bsc;
+use App\Bsw;
 use App\Module;
+use App\Language;
 use Illuminate\Http\Request;
 
 
@@ -14,7 +16,9 @@ class BscController extends Controller {
 
 	public function getStartPoint() {
 		return view('modules.bsc.admin_panel.start_point', ['modules' => Module :: all(),
-															'bscs' => Bsc :: all() -> sortBy('system_word')]);
+															'bscs' => Bsc :: all() -> sortBy('system_word'),
+															'bsc' => Bsc :: getFullData(),
+															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 	
@@ -55,13 +59,13 @@ class BscController extends Controller {
 		}
 
 		
-		return view('modules.bsc.admin_panel.edit', [
-			'modules' => Module :: all(),
-			'bscs' => Bsc :: all() -> sortBy('system_word'),
-			'bsc' => Bsc :: find($id),
-			'prevBscId' => $prevId,
-			'nextBscId' => $nextId
-		]);
+		return view('modules.bsc.admin_panel.edit', ['modules' => Module :: all(),
+													'bscs' => Bsc :: all() -> sortBy('system_word'),
+													'activeBsc' => Bsc :: find($id),
+													'prevBscId' => $prevId,
+													'nextBscId' => $nextId,
+													'bsc' => Bsc :: getFullData(),
+													'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
 	}
 
 

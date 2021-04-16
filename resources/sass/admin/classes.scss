@@ -1,6 +1,5 @@
 @import "./atom";
 
-// Common styles
 .bar-tag-small-img {
 	width: 16px;
 	transition: 0.125s all ease-in-out;
@@ -72,14 +71,6 @@
 	}
 }
 
-.module-entry-main {
-	border-top: 1px solid #ccc;
-}
-
-// Common styles
-
-// Header
-
 .header {
 	&__cms-version {
 		font-size: 30px;
@@ -89,10 +80,6 @@
 		color: $link_color;
 	}
 }
-
-// Header
-
-// Horizontal edit delete block
 
 .edit-block {
 	border: 1px solid #ccc;
@@ -125,6 +112,7 @@
 	max-height: calc(1em * 1.4 * 1);
 	height: auto;
 }
+
 .line_max_1:after {
 	content: "";
 	text-align: right;
@@ -148,22 +136,22 @@
 
 // Sidebar menu
 
-// Content
 .content {
 	border-left: 1px solid #ccc;
 }
-// Content
 
-// Bar
 .bar {
-	border: 1px solid #ccc;
-	border-left: none;
-	border-right: none;
+	border-bottom: 1px solid #ccc;
+
 	&__button {
 		border-left: 1px solid #ccc;
 	}
 }
-// Bar
 
-// BSC
-// BSC
+.tags {
+	border-bottom: 1px solid #ccc;
+}
+
+.addButton {
+	border: 1px solid #ccc;
+}
