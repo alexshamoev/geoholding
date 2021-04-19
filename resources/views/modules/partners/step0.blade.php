@@ -1,4 +1,4 @@
-@extends('layouts.master')
+{{--@extends('layouts.master')
 
 
 @section('pageMetaTitle')
@@ -6,7 +6,7 @@
 @endsection
 
 
-@section('content')
+@section('content') --}}
 	<h1 class="p-2">
 		Partners page - 
 
@@ -28,4 +28,4 @@
 			</div>
 		</a>
 	@endforeach
-@endsection
+{{--@endsection--}}
