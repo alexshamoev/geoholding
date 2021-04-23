@@ -7,25 +7,27 @@
 
 
 @section('content') --}}
-	<h1 class="p-2">
-		Partners page - 
+	@if($showPartners)
+		<h1 class="p-2">
+			Partners page - 
 
-		{{ $page -> title }}
-	</h1>
+			{{ $page -> title }}
+		</h1>
 
-	<div class="p-2">
-		{{ $page -> text }}
-	</div>
+		<div class="p-2">
+			{{ $page -> text }}
+		</div>
 
-	{{ $page -> slug }}
+		{{ $page -> slug }}
 
-	@foreach($partners as $data)
-		<a href="#">
-			<div class="p-2">
+		@foreach($partners as $data)
+			<a href="#">
 				<div class="p-2">
-					{{ $data -> title }}
+					<div class="p-2">
+						{{ $data -> title }}
+					</div>
 				</div>
-			</div>
-		</a>
-	@endforeach
+			</a>
+		@endforeach
+	@endif
 {{--@endsection--}}

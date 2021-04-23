@@ -10,6 +10,7 @@ use App\Bsc;
 use App\Bsw;
 use App\News;
 use App\Partner;
+use App\Widget;
 use Illuminate\Http\Request;
 
 
@@ -27,13 +28,21 @@ class PageController extends Controller {
 				$page_template = $active_module -> alias;
 			}
 
+
+			$showPartners = true;
+
+
+
 			return view($page_template, ['page' => $page -> getFullData($language -> title),
 											'menuButtons' => MenuButton :: getFullData($language -> title),
 											'languages' => Language :: getFullData($language -> title, $page),
 											'bsc' => Bsc :: getFullData(),
 											'bsw' => Bsw :: getFullData($language -> title),
 											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
-											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias]);
+											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias,
+											'partners' => Partner :: getFullData($language -> title),
+											'showPartners' => $showPartners,
+											'showWidget' => Widget :: getTemp($page, $active_module)]);
 		} else {
 			abort(404);
 		}
@@ -54,6 +63,10 @@ class PageController extends Controller {
 				if($active_module) {
 					$page_template = $active_module -> alias;
 				}
+
+				
+				$showPartners = true;
+
 				
 				return view($page_template, ['page' => $page -> getFullData($lang),
 											 'menuButtons' => MenuButton :: getFullData($lang),
@@ -61,7 +74,10 @@ class PageController extends Controller {
 											 'bsc' => Bsc :: getFullData(),
 											 'bsw' => Bsw :: getFullData($language -> title),
 											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
+											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+											 'partners' => Partner :: getFullData($lang),
+											 'showPartners' => $showPartners,
+											 'showWidget' => Widget :: getTemp($page, $active_module)]);
 			} else {
 				abort(404);
 			}
@@ -79,6 +95,11 @@ class PageController extends Controller {
 
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
+
+
+				$showPartners = true;
+				
+
 			
 				if($active_module) {
 					switch($active_module -> alias) {
@@ -91,7 +112,9 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'newsStep0' => News :: getFullData($lang),
-										'partners' => Partner :: getFullData($lang)]);
+										'partners' => Partner :: getFullData($lang),
+										'showPartners' => $showPartners,
+										'showWidget' => Widget :: getTemp($page, $active_module)]);
 							
 							break;
 						case 'partners':
@@ -102,7 +125,9 @@ class PageController extends Controller {
 										'bsw' => Bsw :: getFullData($language -> title),
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'partners' => Partner :: getFullData($lang)]);
+										'partners' => Partner :: getFullData($lang),
+										'showPartners' => $showPartners,
+										'showWidget' => Widget :: getTemp($page, $active_module)]);
 							
 							break;
 					}
@@ -115,7 +140,9 @@ class PageController extends Controller {
 										'bsw' => Bsw :: getFullData($language -> title),
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'partners' => Partner :: getFullData($lang)]);
+										'partners' => Partner :: getFullData($lang),
+										'showPartners' => $showPartners,
+										'showWidget' => Widget :: getTemp($page, $active_module)]);
 			} else {
 				abort(404);
 			}
@@ -133,6 +160,10 @@ class PageController extends Controller {
 
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
+
+
+				$showPartners = true;
+				
 			
 				if($active_module) {
 					switch($active_module -> alias) {
@@ -147,7 +178,10 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'newsStep0' => News :: getFullData($lang),
-										'activeNews' => $activeNews -> getData($lang)]);
+										'activeNews' => $activeNews -> getData($lang),
+										'partners' => Partner :: getFullData($lang),
+										'showPartners' => $showPartners,
+										'showWidget' => Widget :: getTemp($page, $active_module)]);
 							
 							break;
 					}
@@ -159,7 +193,10 @@ class PageController extends Controller {
 										'bsc' => Bsc :: getFullData(),
 										'bsw' => Bsw :: getFullData($language -> title),
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
+										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+										'partners' => Partner :: getFullData($lang),
+										'showPartners' => $showPartners,
+										'showWidget' => Widget :: getTemp($page, $active_module)]);
 			} else {
 				abort(404);
 			}

@@ -20,8 +20,10 @@
 				<div class="header p-2">
 					<div class="d-flex align-items-center justify-content-between">
 						<div class="p-2">
-							<span>ტელეფონის ნომერი: +995 000 00 00 00; +995 000 00 00 00</span>
+							<span>{{ $bsw -> phone_number }}: {{ $bsc -> phone_number }}</span>
 						</div>
+
+						showWidget: {{ $showWidget }}
 
 						<div class="d-flex align-items-center justify-content-end">
 							<div class="header__search-input js_search">

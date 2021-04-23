@@ -17,14 +17,6 @@
 		{{ $page -> text }}
     </div>
 
-	<div class="p-2">
-		BSC Sample: {{ $bsc -> a_folders_url }}
-	</div>
-
-	<div class="p-2">
-		BSW Sample: {{ $bsw -> a_add_module_parameter_warning }}
-	</div>
-
 
 	@foreach($newsStep0 as $data)
 		<a href="{{ $data -> fullUrl }}">

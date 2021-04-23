@@ -61,7 +61,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>Attach page</span>
+								<span>Attach page (0)</span>
 							</div>
 						</div>
 					</label>
@@ -76,7 +76,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე</span>
+								<span>გამოვაჩინოთ ყველა გვერდზე (1)</span>
 							</div>
 						</div>
 					</label>
@@ -91,7 +91,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ გვერდებზე</span>
+								<span>გამოვაჩინოთ გვერდებზე (2)</span>
 							</div>
 						</div>
 					</label>
@@ -106,7 +106,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა</span>
+								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა (3)</span>
 							</div>
 						</div>
 					</label>
@@ -120,7 +120,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>არ მივაბათ მოდული არცერთ გვერდს</span>
+								<span>არ მივაბათ მოდული არცერთ გვერდს (4)</span>
 							</div>
 						</div>
 					</label>
