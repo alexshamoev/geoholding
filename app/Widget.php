@@ -8,31 +8,38 @@ use App\ModulesNotIncludesValue;
 
 
 class Widget {
-    public static function getTemp($page, $module) {
-        // $module = Module :: where('include_type', 'photo_gallery') -> first();
+	public static function getVisibility($page) {
+		$widgetsVisibility = [];
 
-        // foreach(Module :: all() as $data) {
-            $result = 'no';
+        foreach(Module :: all() as $data) {
+			$widgetsVisibility[$data['alias']] = self :: checkForVisibility($page, $data);
+		}
 
-            switch($module -> include_type) {
-                case 1:
-                    $result = 'yes';
+		return $widgetsVisibility;
+	}
 
-                    break;
-                case 2:
-                    if(ModulesIncludesValue :: where(['module', $module -> id], ['page', $page -> id]) -> first()) {
-                        $result = 'yes';
-                    }
 
-                    break;
-                case 3:
-                    if(!ModulesNotIncludesValue :: where(['module', $module -> id], ['page', $page -> id]) -> first()) {
-                        $result = 'yes';
-                    }
-                    
-                    break;
-            }
-        // }
+    private static function checkForVisibility($page, $module) {
+		$result = false;
+
+		switch($module -> include_type) {
+			case 1:
+				$result = true;
+
+				break;
+			case 2:
+				if(ModulesIncludesValue :: where([['module', $module -> id], ['include_in', $page -> id]]) -> first()) {
+					$result = true;
+				}
+
+				break;
+			case 3:
+				if(!ModulesNotIncludesValue :: where([['module', $module -> id], ['include_in', $page -> id]]) -> first()) {
+					$result = true;
+				}
+				
+				break;
+		}
 
 		return $result;
 	}

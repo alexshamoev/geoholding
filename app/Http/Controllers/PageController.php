@@ -29,7 +29,7 @@ class PageController extends Controller {
 			}
 
 
-			$showPartners = true;
+			$widgetGetVisibility = Widget :: getVisibility($page);
 
 
 
@@ -41,8 +41,7 @@ class PageController extends Controller {
 											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
 											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias,
 											'partners' => Partner :: getFullData($language -> title),
-											'showPartners' => $showPartners,
-											'showWidget' => Widget :: getTemp($page, $active_module)]);
+											'widgetGetVisibility' => $widgetGetVisibility]);
 		} else {
 			abort(404);
 		}
@@ -65,7 +64,7 @@ class PageController extends Controller {
 				}
 
 				
-				$showPartners = true;
+				$widgetGetVisibility = Widget :: getVisibility($page);
 
 				
 				return view($page_template, ['page' => $page -> getFullData($lang),
@@ -76,8 +75,7 @@ class PageController extends Controller {
 											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 											 'partners' => Partner :: getFullData($lang),
-											 'showPartners' => $showPartners,
-											 'showWidget' => Widget :: getTemp($page, $active_module)]);
+											 'widgetGetVisibility' => $widgetGetVisibility]);
 			} else {
 				abort(404);
 			}
@@ -97,7 +95,7 @@ class PageController extends Controller {
 				$active_module = Module :: where('page', $page -> id) -> first();
 
 
-				$showPartners = true;
+				$widgetGetVisibility = Widget :: getVisibility($page);
 				
 
 			
@@ -113,8 +111,7 @@ class PageController extends Controller {
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'newsStep0' => News :: getFullData($lang),
 										'partners' => Partner :: getFullData($lang),
-										'showPartners' => $showPartners,
-										'showWidget' => Widget :: getTemp($page, $active_module)]);
+										'widgetGetVisibility' => $widgetGetVisibility]);
 							
 							break;
 						case 'partners':
@@ -126,8 +123,7 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'showPartners' => $showPartners,
-										'showWidget' => Widget :: getTemp($page, $active_module)]);
+										'widgetGetVisibility' => $widgetGetVisibility]);
 							
 							break;
 					}
@@ -141,8 +137,7 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'showPartners' => $showPartners,
-										'showWidget' => Widget :: getTemp($page, $active_module)]);
+										'widgetGetVisibility' => $widgetGetVisibility]);
 			} else {
 				abort(404);
 			}
@@ -162,7 +157,7 @@ class PageController extends Controller {
 				$active_module = Module :: where('page', $page -> id) -> first();
 
 
-				$showPartners = true;
+				$widgetGetVisibility = Widget :: getVisibility($page);
 				
 			
 				if($active_module) {
@@ -180,8 +175,7 @@ class PageController extends Controller {
 										'newsStep0' => News :: getFullData($lang),
 										'activeNews' => $activeNews -> getData($lang),
 										'partners' => Partner :: getFullData($lang),
-										'showPartners' => $showPartners,
-										'showWidget' => Widget :: getTemp($page, $active_module)]);
+										'widgetGetVisibility' => $widgetGetVisibility]);
 							
 							break;
 					}
@@ -195,8 +189,7 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'showPartners' => $showPartners,
-										'showWidget' => Widget :: getTemp($page, $active_module)]);
+										'widgetGetVisibility' => $widgetGetVisibility]);
 			} else {
 				abort(404);
 			}

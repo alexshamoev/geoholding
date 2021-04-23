@@ -23,8 +23,6 @@
 							<span>{{ $bsw -> phone_number }}: {{ $bsc -> phone_number }}</span>
 						</div>
 
-						showWidget: {{ $showWidget }}
-
 						<div class="d-flex align-items-center justify-content-end">
 							<div class="header__search-input js_search">
 								<div class="p-2">
@@ -41,12 +39,10 @@
 									<span class="ba_close"></span>
 								</div>
 							</div>
-
 						</div>
 					</div>
 
 					<div class="d-flex align-items-center">
-
 						<div class="col-xl-10 col-lg-10 col-12">
 							<div class="row align-items-center">
 								<div class="col-xl-2 col-lg-2 col-12 p-0 d-flex justify-content-between align-items-center">
