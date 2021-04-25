@@ -30,4 +30,6 @@ $(document).ready(function () {
 		}
 	});
 
+	
+	console.log('modules 111');
 });

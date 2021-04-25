@@ -1,9 +1,11 @@
-window.$ = window.jQuery = require('jquery');
-import  'jquery-ui/ui/widgets/sortable';
-import  'jquery-ui/ui/widgets/draggable';
-import  'jquery-ui/ui/widgets/droppable';
+// window.$ = window.jQuery = require('jquery');
+// import  'jquery-ui/ui/widgets/sortable';
+// import  'jquery-ui/ui/widgets/draggable';
+// import  'jquery-ui/ui/widgets/droppable';
+
 
 var animation_speed = 50;
+
 
 function init_type_select() {
 	show_type_blocks($('#type_select').val(), 0);
@@ -14,9 +16,11 @@ function init_type_select() {
 	});
 }
 
+
 function hide_type_blocks(speed_delay) {
 	$('.type_div').fadeOut(speed_delay);
 }
+
 
 function show_type_blocks(id, speed_delay) {
 	let block_id = $('#block_id_input').val();
@@ -25,6 +29,7 @@ function show_type_blocks(id, speed_delay) {
 	
 	$('.type_' + id).fadeIn(animation_speed);
 }
+
 
 $(document).ready(function () {
     jQuery('.svg_img').each(function () {
@@ -61,7 +66,6 @@ $(document).ready(function () {
     });
 
    
-
     $('.delete-block').on('click', function() {
         let conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
 
@@ -72,4 +76,19 @@ $(document).ready(function () {
 
     init_type_select();
 
+
+	// Modules.
+		$('.modulesStep0__typeBox').fadeOut(0);
+
+		
+
+		let active_include_type = $('.modulesStep0 input[name="include_type"]:checked').val()
+		$('.modulesStep0__type' + active_include_type + 'Box').fadeIn(0);
+		
+		$('.modulesStep0 input[name="include_type"]').on('change', function() {
+			$('.modulesStep0__typeBox').fadeOut(0);
+
+			$('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0);
+		});
+	//
 });

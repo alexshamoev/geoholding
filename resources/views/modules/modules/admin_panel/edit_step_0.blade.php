@@ -26,7 +26,7 @@
 
 
 	{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
-		<div class="p-2">
+		<div class="p-2 modulesStep0">
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -129,12 +129,12 @@
 			
 
 			<div class="px-2">
-				<div class="d-flex flex-column standard-block p-2">
-					<div class="p-1">
+				<div class="d-flex flex-column standard-block">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
 						{{ Form :: select('page', $pagesForSelect, $module -> page) }}
 					</div>
 
-					<div class="p-2">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
 						@foreach($pagesForIncludeInPages as $key => $data)
 							<div>
 								<label>
@@ -150,7 +150,7 @@
 					</div>
 
 
-					<div class="p-2">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type3Box">
 						@foreach($pagesNotIncludeInPages as $key => $data)
 							<div>
 								<label>
