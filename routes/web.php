@@ -8,6 +8,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/modules/{id}', 'ModuleController@edit') -> name('moduleEdit');
 	Route :: post('/modules/{id}', 'ModuleController@update') -> name('moduleUpdate');
 	Route :: get('/modules/{id}/delete', 'ModuleController@delete') -> name('moduleDelete');
+	
 
 
 	Route :: get('/modules/{moduleId}/add', 'ModuleStepController@add') -> name('moduleStepAdd');
