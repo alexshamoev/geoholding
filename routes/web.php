@@ -10,7 +10,6 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/modules/{id}/delete', 'ModuleController@delete') -> name('moduleDelete');
 	
 
-
 	Route :: get('/modules/{moduleId}/add', 'ModuleStepController@add') -> name('moduleStepAdd');
 	Route :: get('/modules/{moduleId}/{id}', 'ModuleStepController@edit') -> name('moduleStepEdit');
 	Route :: post('/modules/{moduleId}/{id}', 'ModuleStepController@update') -> name('moduleStepUpdate');
