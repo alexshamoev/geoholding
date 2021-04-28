@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class BscController extends Controller {
 	public function __construct() {
-		// $this -> middleware('auth');
+		$this -> middleware('auth');
 	}
 
 
