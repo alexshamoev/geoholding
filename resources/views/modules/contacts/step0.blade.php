@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('master')
 
 
 @section('pageMetaTitle')
@@ -8,7 +8,7 @@
 
 @section('content')
     <h1 class="p-2">
-        Contact
+        Contactddd
     </h1>
 
  

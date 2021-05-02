@@ -141,8 +141,7 @@ $(document).ready(function () {
   });
   $('nav').on('show.bs.collapse', function () {
     r_menu_buttons_show();
-  });
-  alert('jquery load');
+  }); // alert('jquery load');
 });
 
 /***/ }),

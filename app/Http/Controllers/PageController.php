@@ -25,7 +25,7 @@ class PageController extends Controller {
 			$active_module = Module :: where('page', $page -> id) -> first();
 			
 			if($active_module) {
-				$page_template = $active_module -> alias;
+				$page_template = 'modules.'.$active_module -> alias.'.step0';
 			}
 
 
@@ -60,7 +60,7 @@ class PageController extends Controller {
 				$active_module = Module :: where('page', $page -> id) -> first();
 			
 				if($active_module) {
-					$page_template = $active_module -> alias;
+					$page_template = 'modules.'.$active_module -> alias.'.step0';
 				}
 
 				
