@@ -31,6 +31,12 @@ class PageController extends Controller {
 
 			$widgetGetVisibility = Widget :: getVisibility($page);
 
+			$bsc = Bsc :: getFullData();
+			$copyrightDate = $bsc -> year_of_site_creation;
+
+			if($bsc -> year_of_site_creation < date('Y')) {
+				$copyrightDate .= ' - '.date('Y');
+			}
 
 
 			return view($page_template, ['page' => $page -> getFullData($language -> title),
@@ -41,7 +47,8 @@ class PageController extends Controller {
 											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
 											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias,
 											'partners' => Partner :: getFullData($language -> title),
-											'widgetGetVisibility' => $widgetGetVisibility]);
+											'widgetGetVisibility' => $widgetGetVisibility,
+											'copyrightDate' => $copyrightDate]);
 		} else {
 			abort(404);
 		}
@@ -66,6 +73,13 @@ class PageController extends Controller {
 				
 				$widgetGetVisibility = Widget :: getVisibility($page);
 
+				$bsc = Bsc :: getFullData();
+				$copyrightDate = $bsc -> year_of_site_creation;
+
+				if($bsc -> year_of_site_creation < date('Y')) {
+					$copyrightDate .= ' - '.date('Y');
+				}
+
 				
 				return view($page_template, ['page' => $page -> getFullData($lang),
 											 'menuButtons' => MenuButton :: getFullData($lang),
@@ -75,7 +89,8 @@ class PageController extends Controller {
 											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 											 'partners' => Partner :: getFullData($lang),
-											 'widgetGetVisibility' => $widgetGetVisibility]);
+											 'widgetGetVisibility' => $widgetGetVisibility,
+											 'copyrightDate' => $copyrightDate]);
 			} else {
 				abort(404);
 			}
@@ -96,7 +111,13 @@ class PageController extends Controller {
 
 
 				$widgetGetVisibility = Widget :: getVisibility($page);
-				
+
+				$bsc = Bsc :: getFullData();
+				$copyrightDate = $bsc -> year_of_site_creation;
+
+				if($bsc -> year_of_site_creation < date('Y')) {
+					$copyrightDate .= ' - '.date('Y');
+				}
 
 			
 				if($active_module) {
@@ -111,7 +132,8 @@ class PageController extends Controller {
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'newsStep0' => News :: getFullData($lang),
 										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility]);
+										'widgetGetVisibility' => $widgetGetVisibility,
+										'copyrightDate' => $copyrightDate]);
 							
 							break;
 						case 'partners':
@@ -123,7 +145,8 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility]);
+										'widgetGetVisibility' => $widgetGetVisibility,
+										'copyrightDate' => $copyrightDate]);
 							
 							break;
 					}
@@ -137,7 +160,8 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility]);
+										'widgetGetVisibility' => $widgetGetVisibility,
+										'copyrightDate' => $copyrightDate]);
 			} else {
 				abort(404);
 			}
@@ -158,6 +182,13 @@ class PageController extends Controller {
 
 
 				$widgetGetVisibility = Widget :: getVisibility($page);
+
+				$bsc = Bsc :: getFullData();
+				$copyrightDate = $bsc -> year_of_site_creation;
+
+				if($bsc -> year_of_site_creation < date('Y')) {
+					$copyrightDate .= ' - '.date('Y');
+				}
 				
 			
 				if($active_module) {
@@ -175,7 +206,8 @@ class PageController extends Controller {
 										'newsStep0' => News :: getFullData($lang),
 										'activeNews' => $activeNews -> getData($lang),
 										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility]);
+										'widgetGetVisibility' => $widgetGetVisibility,
+										'copyrightDate' => $copyrightDate]);
 							
 							break;
 					}
@@ -189,7 +221,8 @@ class PageController extends Controller {
 										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
 										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
 										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility]);
+										'widgetGetVisibility' => $widgetGetVisibility,
+										'copyrightDate' => $copyrightDate]);
 			} else {
 				abort(404);
 			}

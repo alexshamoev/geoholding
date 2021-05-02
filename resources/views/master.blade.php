@@ -118,7 +118,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 col-12 text-md-left text-center">
-						Copyright
+						{{ $copyrightDate }} {{ $bsw -> copyright }} 
 					</div>
 
 					<div class="col-md-6 col-12 text-md-right text-center">
