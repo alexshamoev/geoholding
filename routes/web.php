@@ -91,4 +91,4 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> w
 // Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
 // Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route :: get('/home', 'HomeController@index') -> name('home');
