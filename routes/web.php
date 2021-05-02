@@ -8,7 +8,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/modules/{id}', 'ModuleController@edit') -> name('moduleEdit');
 	Route :: post('/modules/{id}', 'ModuleController@update') -> name('moduleUpdate');
 	Route :: get('/modules/{id}/delete', 'ModuleController@delete') -> name('moduleDelete');
-
+	
 
 	Route :: get('/modules/{moduleId}/add', 'ModuleStepController@add') -> name('moduleStepAdd');
 	Route :: get('/modules/{moduleId}/{id}', 'ModuleStepController@edit') -> name('moduleStepEdit');
@@ -89,3 +89,6 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> w
 // Route::get('/page/create-empty', 'PageController@createEmpty');
 
 // Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
