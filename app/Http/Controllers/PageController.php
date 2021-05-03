@@ -15,6 +15,31 @@ use Illuminate\Http\Request;
 
 
 class PageController extends Controller {
+	private static function getDefaultData($lang, $page) {
+		$widgetGetVisibility = Widget :: getVisibility($page);
+
+		$bsc = Bsc :: getFullData();
+		$copyrightDate = $bsc -> year_of_site_creation;
+
+		if($bsc -> year_of_site_creation < date('Y')) {
+			$copyrightDate .= ' - '.date('Y');
+		}
+
+		$data = ['page' => $page -> getFullData($lang -> title),
+				'menuButtons' => MenuButton :: getFullData($lang -> title),
+				'languages' => Language :: getFullData($lang -> title, $page),
+				'bsc' => Bsc :: getFullData(),
+				'bsw' => Bsw :: getFullData($lang -> title),
+				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang -> title) -> alias,
+				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang -> title) -> alias,
+				'partners' => Partner :: getFullData($lang -> title),
+				'widgetGetVisibility' => $widgetGetVisibility,
+				'copyrightDate' => $copyrightDate];
+
+		return $data;
+	}
+
+	
 	public function getDefaultPageWithDefaultLanguage() {
 		$page = Page :: where('like_default', 1) -> first();
 		$language = Language :: where('like_default', 1) -> first();
@@ -28,27 +53,7 @@ class PageController extends Controller {
 				$page_template = 'modules.'.$active_module -> alias.'.step0';
 			}
 
-
-			$widgetGetVisibility = Widget :: getVisibility($page);
-
-			$bsc = Bsc :: getFullData();
-			$copyrightDate = $bsc -> year_of_site_creation;
-
-			if($bsc -> year_of_site_creation < date('Y')) {
-				$copyrightDate .= ' - '.date('Y');
-			}
-
-
-			return view($page_template, ['page' => $page -> getFullData($language -> title),
-											'menuButtons' => MenuButton :: getFullData($language -> title),
-											'languages' => Language :: getFullData($language -> title, $page),
-											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData($language -> title),
-											'registrationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($language -> title) -> alias,
-											'authorizationUrl' => '/'.$language -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($language -> title) -> alias,
-											'partners' => Partner :: getFullData($language -> title),
-											'widgetGetVisibility' => $widgetGetVisibility,
-											'copyrightDate' => $copyrightDate]);
+			return view($page_template, self :: getDefaultData($language, $page));
 		} else {
 			abort(404);
 		}
@@ -69,28 +74,8 @@ class PageController extends Controller {
 				if($active_module) {
 					$page_template = 'modules.'.$active_module -> alias.'.step0';
 				}
-
 				
-				$widgetGetVisibility = Widget :: getVisibility($page);
-
-				$bsc = Bsc :: getFullData();
-				$copyrightDate = $bsc -> year_of_site_creation;
-
-				if($bsc -> year_of_site_creation < date('Y')) {
-					$copyrightDate .= ' - '.date('Y');
-				}
-
-				
-				return view($page_template, ['page' => $page -> getFullData($lang),
-											 'menuButtons' => MenuButton :: getFullData($lang),
-											 'languages' => Language :: getFullData($lang, $page),
-											 'bsc' => Bsc :: getFullData(),
-											 'bsw' => Bsw :: getFullData($language -> title),
-											 'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-											 'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-											 'partners' => Partner :: getFullData($lang),
-											 'widgetGetVisibility' => $widgetGetVisibility,
-											 'copyrightDate' => $copyrightDate]);
+				return view($page_template, self :: getDefaultData($language, $page));
 			} else {
 				abort(404);
 			}
@@ -124,44 +109,22 @@ class PageController extends Controller {
 					switch($active_module -> alias) {
 						case 'news':
 							return view('modules.news.step0', ['page' => $page -> getFullData($lang),
-										'menuButtons' => MenuButton :: getFullData($lang),
-										'languages' => Language :: getFullData($lang, $page),
-										'bsc' => Bsc :: getFullData(),
-										'bsw' => Bsw :: getFullData($language -> title),
-										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'newsStep0' => News :: getFullData($lang),
-										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility,
-										'copyrightDate' => $copyrightDate]);
-							
-							break;
-						case 'partners':
-							return view('modules.partners.step0', ['page' => $page -> getFullData($lang),
-										'menuButtons' => MenuButton :: getFullData($lang),
-										'languages' => Language :: getFullData($lang, $page),
-										'bsc' => Bsc :: getFullData(),
-										'bsw' => Bsw :: getFullData($language -> title),
-										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility,
-										'copyrightDate' => $copyrightDate]);
+																'menuButtons' => MenuButton :: getFullData($lang),
+																'languages' => Language :: getFullData($lang, $page),
+																'bsc' => Bsc :: getFullData(),
+																'bsw' => Bsw :: getFullData($language -> title),
+																'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+																'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+																'newsStep0' => News :: getFullData($lang),
+																'partners' => Partner :: getFullData($lang),
+																'widgetGetVisibility' => $widgetGetVisibility,
+																'copyrightDate' => $copyrightDate]);
 							
 							break;
 					}
 				}
 
-				return view('static', ['page' => $page -> getFullData($lang),
-										'menuButtons' => MenuButton :: getFullData($lang),
-										'languages' => Language :: getFullData($lang, $page),
-										'bsc' => Bsc :: getFullData(),
-										'bsw' => Bsw :: getFullData($language -> title),
-										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility,
-										'copyrightDate' => $copyrightDate]);
+				return view('static', self :: getDefaultData($language, $page));
 			} else {
 				abort(404);
 			}
@@ -197,32 +160,23 @@ class PageController extends Controller {
 							$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
 
 							return view('modules.news.step1', ['page' => $page -> getFullData($lang),
-										'menuButtons' => MenuButton :: getFullData($lang),
-										'languages' => Language :: getFullData($lang, $page),
-										'bsc' => Bsc :: getFullData(),
-										'bsw' => Bsw :: getFullData($language -> title),
-										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'newsStep0' => News :: getFullData($lang),
-										'activeNews' => $activeNews -> getData($lang),
-										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility,
-										'copyrightDate' => $copyrightDate]);
+																'menuButtons' => MenuButton :: getFullData($lang),
+																'languages' => Language :: getFullData($lang, $page),
+																'bsc' => Bsc :: getFullData(),
+																'bsw' => Bsw :: getFullData($language -> title),
+																'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
+																'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
+																'newsStep0' => News :: getFullData($lang),
+																'activeNews' => $activeNews -> getData($lang),
+																'partners' => Partner :: getFullData($lang),
+																'widgetGetVisibility' => $widgetGetVisibility,
+																'copyrightDate' => $copyrightDate]);
 							
 							break;
 					}
 				}
 
-				return view('static', ['page' => $page -> getFullData($lang),
-										'menuButtons' => MenuButton :: getFullData($lang),
-										'languages' => Language :: getFullData($lang, $page),
-										'bsc' => Bsc :: getFullData(),
-										'bsw' => Bsw :: getFullData($language -> title),
-										'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-										'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-										'partners' => Partner :: getFullData($lang),
-										'widgetGetVisibility' => $widgetGetVisibility,
-										'copyrightDate' => $copyrightDate]);
+				return view('static', self :: getDefaultData($language, $page));
 			} else {
 				abort(404);
 			}
