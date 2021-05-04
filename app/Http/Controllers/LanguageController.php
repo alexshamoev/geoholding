@@ -6,15 +6,23 @@ use App\Module;
 use App\Language;
 use App\Bsc;
 use App\Bsw;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 
-class LanguageController extends Controller
-{
+class LanguageController extends Controller {
 	public function getStartPoint() {
-		return view('modules.languages.admin_panel.start_point', ['modules' => Module :: all(),
-																  'languages' => Language :: all() -> sortBy('title'),
-																  'bsc' => Bsc :: getFullData(),
-																  'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$bsc = Bsc :: getFullData();
+		$copyrightDate = $bsc -> year_of_site_creation;
+
+		if($bsc -> year_of_site_creation < date('Y')) {
+			$copyrightDate .= ' - '.date('Y');
+		}
+
+		$data = ADefaultData :: get();
+
+		$data = array_merge($data, ['languages' => Language :: all() -> sortBy('title')]);
+
+		return view('modules.languages.admin_panel.start_point', $data);
 	}
 	
 	
@@ -51,13 +59,14 @@ class LanguageController extends Controller
 			}
 		}
 
-		return view('modules.languages.admin_panel.edit', ['modules' => Module :: all(),
-															'languages' => Language :: all() -> sortBy('title'),
-															'language' => Language :: find($id),
-															'prevLanguageId' => $prevId,
-															'nextLanguageId' => $nextId,
-															'bsc' => Bsc :: getFullData(),
-															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$data = ADefaultData :: get();
+
+		$data = array_merge($data, ['languages' => Language :: all() -> sortBy('title'),
+									'language' => Language :: find($id),
+									'prevLanguageId' => $prevId,
+									'nextLanguageId' => $nextId]);
+
+		return view('modules.languages.admin_panel.edit', $data);
 	}
 
 
@@ -89,10 +98,8 @@ class LanguageController extends Controller
 
 
 	public function updateStartPoint(Request $request) {
-		Language :: where('published',1) -> update([
-													'like_default' => 0,
-													'like_default_for_admin' => 0
-												]);
+		Language :: where('published', 1) -> update(['like_default' => 0,
+													'like_default_for_admin' => 0]);
 
 		$language = Language :: find($request -> input('like_default'));
 		

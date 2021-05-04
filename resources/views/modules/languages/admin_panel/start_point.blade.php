@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')

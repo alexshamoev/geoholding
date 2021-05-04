@@ -94,31 +94,15 @@ class PageController extends Controller {
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
 
-
-				$widgetGetVisibility = Widget :: getVisibility($page);
-
-				$bsc = Bsc :: getFullData();
-				$copyrightDate = $bsc -> year_of_site_creation;
-
-				if($bsc -> year_of_site_creation < date('Y')) {
-					$copyrightDate .= ' - '.date('Y');
-				}
-
 			
 				if($active_module) {
 					switch($active_module -> alias) {
 						case 'news':
-							return view('modules.news.step0', ['page' => $page -> getFullData($lang),
-																'menuButtons' => MenuButton :: getFullData($lang),
-																'languages' => Language :: getFullData($lang, $page),
-																'bsc' => Bsc :: getFullData(),
-																'bsw' => Bsw :: getFullData($language -> title),
-																'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-																'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-																'newsStep0' => News :: getFullData($lang),
-																'partners' => Partner :: getFullData($lang),
-																'widgetGetVisibility' => $widgetGetVisibility,
-																'copyrightDate' => $copyrightDate]);
+							$data = self :: getDefaultData($language, $page);
+
+							$data = array_merge($data, ['newsStep0' => News :: getFullData($lang)]);
+
+							return view('modules.news.step0', $data);
 							
 							break;
 					}
@@ -142,35 +126,18 @@ class PageController extends Controller {
 
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
-
-
-				$widgetGetVisibility = Widget :: getVisibility($page);
-
-				$bsc = Bsc :: getFullData();
-				$copyrightDate = $bsc -> year_of_site_creation;
-
-				if($bsc -> year_of_site_creation < date('Y')) {
-					$copyrightDate .= ' - '.date('Y');
-				}
-				
 			
 				if($active_module) {
 					switch($active_module -> alias) {
 						case 'news':
 							$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
 
-							return view('modules.news.step1', ['page' => $page -> getFullData($lang),
-																'menuButtons' => MenuButton :: getFullData($lang),
-																'languages' => Language :: getFullData($lang, $page),
-																'bsc' => Bsc :: getFullData(),
-																'bsw' => Bsw :: getFullData($language -> title),
-																'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-																'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-																'newsStep0' => News :: getFullData($lang),
-																'activeNews' => $activeNews -> getData($lang),
-																'partners' => Partner :: getFullData($lang),
-																'widgetGetVisibility' => $widgetGetVisibility,
-																'copyrightDate' => $copyrightDate]);
+							$data = self :: getDefaultData($language, $page);
+
+							$data = array_merge($data, ['newsStep0' => News :: getFullData($lang),
+														'activeNews' => $activeNews -> getData($lang)]);
+
+							return view('modules.news.step1', $data);
 							
 							break;
 					}
