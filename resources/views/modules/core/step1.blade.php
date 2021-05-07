@@ -47,6 +47,18 @@
 								</div>
 
 								@break
+							@case('select')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectData, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
 							@case('editor')
 								<div class="p-2 standard-block">
 									<div class="p-2">

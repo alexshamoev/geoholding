@@ -107,11 +107,30 @@ class AdminController extends Controller {
 			}
 		}
 
+		
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
+
+		$varWord = 'word_'.$activeLang -> title;
+
+		$selectData[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
+			if($data -> type === 'select') {
+				$tempVar = $data -> select_sort_by;
+
+				foreach(DB :: table($data -> select_table) -> get() as $dataInside) {
+					$selectData[$dataInside -> id] = $dataInside -> $tempVar;
+				}
+			}
+		}
+
+
 		$defaultData = ADefaultData :: get();
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
+											'selectData' => $selectData,
 											'languages' => Language :: where('published', 1) -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,

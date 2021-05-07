@@ -41,7 +41,6 @@ class ModuleController extends Controller {
 
 		$varWord = 'word_'.$activeLang -> title;
 
-
 		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
 
 		$pagesForIncludeInPages = array();
