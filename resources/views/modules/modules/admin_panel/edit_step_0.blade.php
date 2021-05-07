@@ -24,9 +24,8 @@
 		'backRoute' => route('moduleStartPoint')
 	])
 
-
-	{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
-		<div class="p-2 modulesStep0">
+	<div class="p-2 modulesStep0">
+		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -220,15 +219,12 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
+		{{ Form :: close() }}
 
-		</div>
-	{{ Form :: close() }}
-
-	<div class="px-2">
+		
 		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
-	</div>
 
-    <div class="px-2">
+
 		<div>
 			@foreach($moduleSteps as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
@@ -238,5 +234,5 @@
 				])
 			@endforeach
 		</div>
-    </div>
+	</div>
 @endsection

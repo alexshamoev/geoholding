@@ -5,16 +5,18 @@ use App\Bsc;
 use App\Bsw;
 use App\Module;
 use App\Language;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 
 
 class BswController extends Controller {
 	public function getStartPoint() {
-		return view('modules.bsw.admin_panel.start_point', ['modules' => Module :: all(),
-															'languages' => Language :: where('published', 1) -> get(),
-															'bsws' => Bsw :: all() -> sortBy('system_word'),
-															'bsc' => Bsc :: getFullData(),
-															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['languages' => Language :: where('published', 1) -> get(),
+											'bsws' => Bsw :: all() -> sortBy('system_word')]);
+		
+		return view('modules.bsw.admin_panel.start_point', $data);
 	}
 
 	
@@ -51,15 +53,16 @@ class BswController extends Controller {
 			}
 		}
 
+
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['languages' => Language :: where('published', 1) -> get(),
+											'bsws' => Bsw :: all() -> sortBy('system_word'),
+											'activeBsw' => Bsw :: find($id),
+											'prevBswId' => $prevId,
+											'nextBswId' => $nextId]);
 		
-		return view('modules.bsw.admin_panel.edit', ['modules' => Module :: all(),
-													 'languages' => Language :: where('published', 1) -> get(),
-													 'bsws' => Bsw :: all() -> sortBy('system_word'),
-													 'activeBsw' => Bsw :: find($id),
-													 'prevBswId' => $prevId,
-													 'nextBswId' => $nextId,
-													 'bsc' => Bsc :: getFullData(),
-													 'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		return view('modules.bsw.admin_panel.edit', $data);
 	}
 
 

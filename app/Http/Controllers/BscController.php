@@ -5,20 +5,22 @@ use App\Bsc;
 use App\Bsw;
 use App\Module;
 use App\Language;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 
 
 class BscController extends Controller {
-	public function __construct() {
-		$this -> middleware('auth');
-	}
+	// public function __construct() {
+	// 	$this -> middleware('auth');
+	// }
 
 
 	public function getStartPoint() {
-		return view('modules.bsc.admin_panel.start_point', ['modules' => Module :: all(),
-															'bscs' => Bsc :: all() -> sortBy('system_word'),
-															'bsc' => Bsc :: getFullData(),
-															'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['bscs' => Bsc :: all() -> sortBy('system_word')]);
+
+		return view('modules.bsc.admin_panel.start_point', $data);
 	}
 
 	
@@ -58,14 +60,14 @@ class BscController extends Controller {
 			}
 		}
 
-		
-		return view('modules.bsc.admin_panel.edit', ['modules' => Module :: all(),
-													'bscs' => Bsc :: all() -> sortBy('system_word'),
-													'activeBsc' => Bsc :: find($id),
-													'prevBscId' => $prevId,
-													'nextBscId' => $nextId,
-													'bsc' => Bsc :: getFullData(),
-													'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['bscs' => Bsc :: all() -> sortBy('system_word'),
+											'activeBsc' => Bsc :: find($id),
+											'prevBscId' => $prevId,
+											'nextBscId' => $nextId]);
+
+		return view('modules.bsc.admin_panel.edit', $data);
 	}
 
 

@@ -8,6 +8,7 @@ use App\ModuleBlock;
 use App\Language;
 use App\Bsc;
 use App\Bsw;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 use DB;
 
@@ -16,7 +17,9 @@ class AdminController extends Controller {
 	public function getDefaultPage() {
 		$firstModul = Module :: orderBy('rang', 'desc') -> first();
 		$firstModulTitle = $firstModul -> alias;
+
 		return redirect("/admin/$firstModulTitle");
+		
 		// return $firstModul -> alias;
 	}
 
@@ -46,15 +49,15 @@ class AdminController extends Controller {
 			}
 		}
 
+		$defaultData = ADefaultData :: get();
 
-		return view('modules.core.step0', ['modules' => Module :: all(),
-											'module' => $module,
+		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
-											'use_for_tags' => $use_for_tags,
-											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+											'use_for_tags' => $use_for_tags]);
+
+		return view('modules.core.step0', $data);
 	}
 
 
@@ -104,18 +107,18 @@ class AdminController extends Controller {
 			}
 		}
 
-		
-		return view('modules.core.step1', ['modules' => Module :: all(),
-											'module' => $module,
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
 											'languages' => Language :: where('published', 1) -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,
-											'use_for_tags' => $use_for_tags,
-											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+											'use_for_tags' => $use_for_tags]);
+
+		return view('modules.core.step1', $data);
 	}
 
 

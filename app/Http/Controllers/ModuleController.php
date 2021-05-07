@@ -11,13 +11,14 @@ use App\Bsc;
 use App\Bsw;
 use App\ModulesIncludesValue;
 use App\ModulesNotIncludesValue;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 
 class ModuleController extends Controller {
     public function getStartPoint() {
-		return view('modules.modules.admin_panel.start_point', ['modules' => Module :: all(),
-					'bsc' => Bsc :: getFullData(),
-					'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$defaultData = ADefaultData :: get();
+
+		return view('modules.modules.admin_panel.start_point', $defaultData);
 	}
 
 
@@ -90,19 +91,19 @@ class ModuleController extends Controller {
 			}
 		}
 
+		$defaultData = ADefaultData :: get();
 
-		return view('modules.modules.admin_panel.edit_step_0', ['modules' => Module :: all(),
-																'pagesForSelect' => $pagesForSelect,
-																'pagesForIncludeInPages' => $pagesForIncludeInPages,
-																'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
-																'pages' => Page :: where('published', 1) -> get(),
-																'languages' => Language :: where('published', 1) -> get(),
-																'module' => $module,
-																'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-																'prevModuleId' => $prevId,
-																'nextModuleId' => $nextId,
-																'bsc' => Bsc :: getFullData(),
-																'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$data = array_merge($defaultData, ['pagesForSelect' => $pagesForSelect,
+											'pagesForIncludeInPages' => $pagesForIncludeInPages,
+											'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
+											'pages' => Page :: where('published', 1) -> get(),
+											'languages' => Language :: where('published', 1) -> get(),
+											'module' => $module,
+											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
+											'prevModuleId' => $prevId,
+											'nextModuleId' => $nextId]);
+
+		return view('modules.modules.admin_panel.edit_step_0', $data);
 	}
 
 

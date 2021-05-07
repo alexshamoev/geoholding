@@ -18,9 +18,9 @@ class LanguageController extends Controller {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
-		$data = ADefaultData :: get();
+		$defaultData = ADefaultData :: get();
 
-		$data = array_merge($data, ['languages' => Language :: all() -> sortBy('title')]);
+		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortBy('title')]);
 
 		return view('modules.languages.admin_panel.start_point', $data);
 	}
@@ -59,12 +59,12 @@ class LanguageController extends Controller {
 			}
 		}
 
-		$data = ADefaultData :: get();
+		$defaultData = ADefaultData :: get();
 
-		$data = array_merge($data, ['languages' => Language :: all() -> sortBy('title'),
-									'language' => Language :: find($id),
-									'prevLanguageId' => $prevId,
-									'nextLanguageId' => $nextId]);
+		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortBy('title'),
+											'language' => Language :: find($id),
+											'prevLanguageId' => $prevId,
+											'nextLanguageId' => $nextId]);
 
 		return view('modules.languages.admin_panel.edit', $data);
 	}

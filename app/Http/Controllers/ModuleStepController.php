@@ -9,6 +9,7 @@ use App\Page;
 use App\Bsc;
 use App\Bsw;
 use App\Language;
+use App\ADefaultData;
 use Illuminate\Http\Request;
 
 class ModuleStepController extends Controller {
@@ -53,17 +54,19 @@ class ModuleStepController extends Controller {
 		}
 
 
-		return view('modules.modules.admin_panel.edit_step_1', ['modules' => Module :: all(),
-																'pages' => Page :: where('published', 1) -> get(),
-																'languages' => Language :: where('published', 1) -> get(),
-																'module' => $module,
-																'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-																'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
-																'moduleStep' => $moduleStep,
-																'prev' => ModuleStep :: find($prevId),
-																'next' => ModuleStep :: find($nextId),
-																'bsc' => Bsc :: getFullData(),
-																'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title)]);
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['pages' => Page :: where('published', 1) -> get(),
+											'languages' => Language :: where('published', 1) -> get(),
+											'module' => $module,
+											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
+											'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
+											'moduleStep' => $moduleStep,
+											'prev' => ModuleStep :: find($prevId),
+											'next' => ModuleStep :: find($nextId)]);
+
+
+		return view('modules.modules.admin_panel.edit_step_1', $data);
 	}
 
 
