@@ -44,11 +44,11 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/language/{id}/delete', 'LanguageController@delete') -> name('languageDelete');
  
 
-	Route :: get('/{moduleAlias}', 'AdminController@getModulePage') -> name('moduleGetData');
-	Route :: get('/{moduleAlias}/add', 'AdminController@addModulePage') -> name('moduleDataAdd');
-	Route :: get('/{moduleAlias}/{id}', 'AdminController@editModulePage') -> name('moduleDataEdit');
-	Route :: post('/{moduleAlias}/{id}', 'AdminController@updateModulePage') -> name('moduleDataUpdate');
-	Route :: get('/{moduleAlias}/{id}/delete', 'AdminController@deleteModulePage') -> name('moduleDataDelete');
+	Route :: get('/{moduleAlias}', 'CoreController@getStep0') -> name('coreGetStep0');
+	Route :: get('/{moduleAlias}/add', 'CoreController@addStep0') -> name('coreAddStep0');
+	Route :: get('/{moduleAlias}/{id}', 'CoreController@editStep0') -> name('coreEditStep0');
+	Route :: post('/{moduleAlias}/{id}', 'CoreController@updateStep0') -> name('coreUpdateStep0');
+	Route :: get('/{moduleAlias}/{id}/delete', 'CoreController@deleteStep0') -> name('coreDeleteStep0');
 });
  
  

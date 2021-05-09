@@ -9,24 +9,24 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => $module -> title,
-		'tag0Url' => route('moduleGetData', $module -> alias),
+		'tag0Url' => route('coreGetStep0', $module -> alias),
 		'tag1Text' => $data -> $use_for_tags
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleDataAdd', $module -> alias),
-		'deleteUrl' => route('moduleDataDelete', array($module -> alias, $data -> id)),
+		'addUrl' => route('coreAddStep0', $module -> alias),
+		'deleteUrl' => route('coreDeleteStep0', array($module -> alias, $data -> id)),
 		'nextId' => $nextId,
 		'prevId' => $prevId,
-		'nextRoute' => route('moduleDataEdit', [$module -> alias, $nextId]),
-		'prevRoute' => route('moduleDataEdit', [$module -> alias, $prevId]),
-		'backRoute' => route('moduleGetData', $module -> alias)
+		'nextRoute' => route('coreEditStep0', [$module -> alias, $nextId]),
+		'prevRoute' => route('coreEditStep0', [$module -> alias, $prevId]),
+		'backRoute' => route('coreGetStep0', $module -> alias)
 	])
 
 
 	<div class="p-2">
-		{{ Form :: open(array('route' => array('moduleDataUpdate', $module -> alias, $data -> id))) }}
+		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					@php
@@ -54,7 +54,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData, $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
 									</div>
 								</div>
 

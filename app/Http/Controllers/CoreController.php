@@ -1,0 +1,161 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Module;
+use App\ModuleStep;
+use App\ModuleBlock;
+use App\Language;
+use App\Bsc;
+use App\Bsw;
+use App\ADefaultData;
+use Illuminate\Http\Request;
+use DB;
+
+class CoreController extends Controller {
+    public function getStep0($moduleAlias) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
+
+		$use_for_tags = 'id';
+
+		if($moduleBlock) {
+			$use_for_tags = $moduleBlock -> db_column;
+		}
+
+
+		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
+
+		$use_for_sort = 'id';
+		$sort_by = 'DESC';
+
+		if($moduleBlockForSort) {
+			$use_for_sort = $moduleBlockForSort -> db_column;
+
+			if(!$moduleBlockForSort -> sort_by_desc) {
+				$sort_by = 'ASC';
+			}
+		}
+
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['module' => $module,
+											'moduleStep' => $moduleStep,
+											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
+											'use_for_tags' => $use_for_tags]);
+
+		return view('modules.core.step0', $data);
+	}
+
+
+	public function addStep0($moduleAlias) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+
+		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
+
+		return redirect() -> route('coreEditStep0', array($module -> alias, $newRowId));
+	}
+
+
+	public function editStep0($moduleAlias, $id) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
+		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
+
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
+
+		$use_for_tags = 'id';
+
+		if($moduleBlock) {
+			$use_for_tags = $moduleBlock -> db_column;
+		}
+
+
+		$prevId = 0;
+		$nextId = 0;
+
+		$prevIdIsSaved = false;
+		$nextIdIsSaved = false;
+
+		foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') -> get() as $data) {
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
+			
+			if($pageData -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
+			
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
+		}
+
+		
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
+
+		$varWord = 'word_'.$activeLang -> title;
+
+		
+		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
+			if($data -> type === 'select') {
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+				$tempVar = $data -> select_sort_by;
+
+				foreach(DB :: table($data -> select_table) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				}
+			}
+		}
+
+
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['module' => $module,
+											'moduleStep' => $moduleStep,
+											'moduleBlocks' => $moduleBlocks,
+											'selectData' => $selectData,
+											'languages' => Language :: where('published', 1) -> get(),
+											'data' => $pageData,
+											'prevId' => $prevId,
+											'nextId' => $nextId,
+											'use_for_tags' => $use_for_tags]);
+
+		return view('modules.core.step1', $data);
+	}
+
+
+	public function updateStep0(Request $request, $moduleAlias, $id) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
+
+		$updateQuery = [];
+
+		foreach($moduleBlocks as $data) {
+			if($data -> type !== 'published' && $data -> type !== 'rang') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			}
+		}
+
+		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
+
+		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
+	}
+
+
+	public function deleteStep0($moduleAlias, $id) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+
+		DB :: table($moduleStep -> db_table) -> delete($id);
+
+		return redirect() -> route('coreGetStep0', $module -> alias);
+	}
+}
