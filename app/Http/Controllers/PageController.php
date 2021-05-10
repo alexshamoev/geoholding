@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
-use App\MenuButton;
-use App\Language;
-use App\Module;
-use App\Bsc;
-use App\Bsw;
-use App\News;
-use App\Partner;
+use App\Models\Page;
+use App\Models\MenuButton;
+use App\Models\Language;
+use App\Models\Module;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\News;
+use App\Models\Partner;
 use App\Widget;
 use Illuminate\Http\Request;
 

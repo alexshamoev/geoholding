@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
-use App\ModuleStep;
-use App\ModuleBlock;
-use App\Page;
-use App\Bsc;
-use App\Bsw;
-use App\Language;
+use App\Models\Module;
+use App\Models\ModuleStep;
+use App\Models\ModuleBlock;
+use App\Models\Page;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 
-class ModuleStepController extends Controller {
+class AModuleStepController extends Controller {
 	public function add($moduleId) {
 		$module = Module :: find($moduleId);
 

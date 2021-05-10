@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
-use App\ModuleStep;
-use App\ModuleBlock;
-use App\Language;
-use App\Bsc;
-use App\Bsw;
+use App\Models\Module;
+use App\Models\ModuleStep;
+use App\Models\ModuleBlock;
+use App\Models\Language;
+use App\Models\Bsc;
+use App\Models\Bsw;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 use DB;
 
-class CoreController extends Controller {
+class ACoreController extends Controller {
     public function getStep0($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
@@ -102,6 +102,8 @@ class CoreController extends Controller {
 		$varWord = 'word_'.$activeLang -> title;
 
 		
+		$selectData = [];
+
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';

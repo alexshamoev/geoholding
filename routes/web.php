@@ -1,54 +1,54 @@
 <?php
 Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
-	Route :: get('/', 'AdminController@getDefaultPage');
+	Route :: get('/', 'AController@getDefaultPage');
 	Route :: get('/login') -> name('login');
 
-	Route :: get('/modules', 'ModuleController@getStartPoint') -> name('moduleStartPoint');
-	Route :: get('/modules/add', 'ModuleController@add') -> name('moduleAdd');
-	Route :: get('/modules/{id}', 'ModuleController@edit') -> name('moduleEdit');
-	Route :: post('/modules/{id}', 'ModuleController@update') -> name('moduleUpdate');
-	Route :: get('/modules/{id}/delete', 'ModuleController@delete') -> name('moduleDelete');
+	Route :: get('/modules', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
+	Route :: get('/modules/add', 'AModuleController@add') -> name('moduleAdd');
+	Route :: get('/modules/{id}', 'AModuleController@edit') -> name('moduleEdit');
+	Route :: post('/modules/{id}', 'AModuleController@update') -> name('moduleUpdate');
+	Route :: get('/modules/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
 	
 
-	Route :: get('/modules/{moduleId}/add', 'ModuleStepController@add') -> name('moduleStepAdd');
-	Route :: get('/modules/{moduleId}/{id}', 'ModuleStepController@edit') -> name('moduleStepEdit');
-	Route :: post('/modules/{moduleId}/{id}', 'ModuleStepController@update') -> name('moduleStepUpdate');
-	Route :: get('/modules/{moduleId}/{id}/delete', 'ModuleStepController@delete') -> name('moduleStepDelete');
+	Route :: get('/modules/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
+	Route :: get('/modules/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
+	Route :: post('/modules/{moduleId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
+	Route :: get('/modules/{moduleId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
 
 
-	Route :: get('/modules/{moduleId}/{stepId}/add', 'ModuleBlockController@add') -> name('moduleBlockAdd');
-	Route :: get('/modules/{moduleId}/{stepId}/{id}', 'ModuleBlockController@edit') -> name('moduleBlockEdit');
-	Route :: post('/modules/{moduleId}/{stepId}/{id}', 'ModuleBlockController@update') -> name('moduleBlockUpdate');
-	Route :: get('/modules/{moduleId}/{stepId}/{id}/delete', 'ModuleBlockController@delete') -> name('moduleBlockDelete');
+	Route :: get('/modules/{moduleId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
+	Route :: get('/modules/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
+	Route :: post('/modules/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
+	Route :: get('/modules/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
 
 
-	Route :: get('/bsc', 'BscController@getStartPoint') -> name('bscStartPoint');
-	Route :: get('/bsc/add', 'BscController@add') -> name('bscAdd');
-	Route :: get('/bsc/{id}', 'BscController@edit') -> name('bscEdit');
-	Route :: post('/bsc/{id}', 'BscController@update') -> name('bscUpdate');
-	Route :: get('/bsc/{id}/delete', 'BscController@delete') -> name('bscDelete');
+	Route :: get('/bsc', 'ABscController@getStartPoint') -> name('bscStartPoint');
+	Route :: get('/bsc/add', 'ABscController@add') -> name('bscAdd');
+	Route :: get('/bsc/{id}', 'ABscController@edit') -> name('bscEdit');
+	Route :: post('/bsc/{id}', 'ABscController@update') -> name('bscUpdate');
+	Route :: get('/bsc/{id}/delete', 'ABscController@delete') -> name('bscDelete');
 
 
-	Route :: get('/bsw', 'BswController@getStartPoint') -> name('bswStartPoint');
-	Route :: get('/bsw/add', 'BswController@add') -> name('bswAdd');
-	Route :: get('/bsw/{id}', 'BswController@edit') -> name('bswEdit');
-	Route :: post('/bsw/{id}', 'BswController@update') -> name('bswUpdate');
-	Route :: get('/bsw/{id}/delete', 'BswController@delete') -> name('bswDelete');
+	Route :: get('/bsw', 'ABswController@getStartPoint') -> name('bswStartPoint');
+	Route :: get('/bsw/add', 'ABswController@add') -> name('bswAdd');
+	Route :: get('/bsw/{id}', 'ABswController@edit') -> name('bswEdit');
+	Route :: post('/bsw/{id}', 'ABswController@update') -> name('bswUpdate');
+	Route :: get('/bsw/{id}/delete', 'ABswController@delete') -> name('bswDelete');
 	
  
-	Route :: get('/languages', 'LanguageController@getStartPoint') -> name('languageStartPoint');
-	Route :: post('/languages', 'LanguageController@updateStartPoint') -> name('languageStartPointPost');
-	Route :: get('/language/add', 'LanguageController@add') -> name('languageAdd');
-	Route :: get('/language/{id}', 'LanguageController@edit') -> name('languageEdit');
-	Route :: post('/language/{id}', 'LanguageController@update') -> name('languageUpdate');
-	Route :: get('/language/{id}/delete', 'LanguageController@delete') -> name('languageDelete');
+	Route :: get('/languages', 'ALanguageController@getStartPoint') -> name('languageStartPoint');
+	Route :: post('/languages', 'ALanguageController@updateStartPoint') -> name('languageStartPointPost');
+	Route :: get('/language/add', 'ALanguageController@add') -> name('languageAdd');
+	Route :: get('/language/{id}', 'ALanguageController@edit') -> name('languageEdit');
+	Route :: post('/language/{id}', 'ALanguageController@update') -> name('languageUpdate');
+	Route :: get('/language/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
  
 
-	Route :: get('/{moduleAlias}', 'CoreController@getStep0') -> name('coreGetStep0');
-	Route :: get('/{moduleAlias}/add', 'CoreController@addStep0') -> name('coreAddStep0');
-	Route :: get('/{moduleAlias}/{id}', 'CoreController@editStep0') -> name('coreEditStep0');
-	Route :: post('/{moduleAlias}/{id}', 'CoreController@updateStep0') -> name('coreUpdateStep0');
-	Route :: get('/{moduleAlias}/{id}/delete', 'CoreController@deleteStep0') -> name('coreDeleteStep0');
+	Route :: get('/{moduleAlias}', 'ACoreController@getStep0') -> name('coreGetStep0');
+	Route :: get('/{moduleAlias}/add', 'ACoreController@addStep0') -> name('coreAddStep0');
+	Route :: get('/{moduleAlias}/{id}', 'ACoreController@editStep0') -> name('coreEditStep0');
+	Route :: post('/{moduleAlias}/{id}', 'ACoreController@updateStep0') -> name('coreUpdateStep0');
+	Route :: get('/{moduleAlias}/{id}/delete', 'ACoreController@deleteStep0') -> name('coreDeleteStep0');
 });
  
  

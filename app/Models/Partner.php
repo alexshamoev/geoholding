@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Page;
+use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
 class Partner extends Model

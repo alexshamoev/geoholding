@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
-use App\ModuleStep;
-use App\ModuleBlock;
-use App\Page;
-use App\Language;
-use App\Bsc;
-use App\Bsw;
-use App\ModulesIncludesValue;
-use App\ModulesNotIncludesValue;
+use App\Models\Module;
+use App\Models\ModuleStep;
+use App\Models\ModuleBlock;
+use App\Models\Page;
+use App\Models\Language;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\ModulesIncludesValue;
+use App\Models\ModulesNotIncludesValue;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 
-class ModuleController extends Controller {
+class AModuleController extends Controller {
     public function getStartPoint() {
 		$defaultData = ADefaultData :: get();
 

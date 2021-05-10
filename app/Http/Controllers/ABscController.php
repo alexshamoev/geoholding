@@ -1,15 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Bsc;
-use App\Bsw;
-use App\Module;
-use App\Language;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\Module;
+use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 
 
-class BscController extends Controller {
+class ABscController extends Controller {
 	// public function __construct() {
 	// 	$this -> middleware('auth');
 	// }

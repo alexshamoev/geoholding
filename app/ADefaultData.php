@@ -2,9 +2,12 @@
 namespace App;
 
 
-use App\Module;
-use App\ModulesIncludesValue;
-use App\ModulesNotIncludesValue;
+use App\Models\Module;
+use App\Models\ModulesIncludesValue;
+use App\Models\ModulesNotIncludesValue;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\Language;
 
 
 class ADefaultData {

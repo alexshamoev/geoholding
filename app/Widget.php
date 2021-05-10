@@ -2,9 +2,9 @@
 namespace App;
 
 
-use App\Module;
-use App\ModulesIncludesValue;
-use App\ModulesNotIncludesValue;
+use App\Models\Module;
+use App\Models\ModulesIncludesValue;
+use App\Models\ModulesNotIncludesValue;
 
 
 class Widget {

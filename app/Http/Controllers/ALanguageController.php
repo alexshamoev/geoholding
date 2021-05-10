@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Module;
-use App\Language;
-use App\Bsc;
-use App\Bsw;
+use App\Models\Module;
+use App\Models\Language;
+use App\Models\Bsc;
+use App\Models\Bsw;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 
-class LanguageController extends Controller {
+class ALanguageController extends Controller {
 	public function getStartPoint() {
 		$bsc = Bsc :: getFullData();
 		$copyrightDate = $bsc -> year_of_site_creation;
