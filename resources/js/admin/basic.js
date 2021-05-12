@@ -12,7 +12,15 @@ function init_type_select() {
 	
 	$('#type_select').on('change', function() {
 		show_type_blocks($(this).val(), 250);
+
 		console.log($(this).val());
+
+		$('.step2 .notForInput').fadeIn(0);
+
+
+		if($(this).val() === 'input') {
+			$('.step2 .notForInput').fadeOut(0);
+		}
 	});
 }
 
@@ -74,15 +82,16 @@ $(document).ready(function () {
         }
     });
 
+
     init_type_select();
 
 
 	// Modules.
 		$('.modulesStep0__typeBox').fadeOut(0);
-
 		
 
-		let active_include_type = $('.modulesStep0 input[name="include_type"]:checked').val()
+		let active_include_type = $('.modulesStep0 input[name="include_type"]:checked').val();
+
 		$('.modulesStep0__type' + active_include_type + 'Box').fadeIn(0);
 		
 		$('.modulesStep0 input[name="include_type"]').on('change', function() {

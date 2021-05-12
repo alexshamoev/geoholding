@@ -153,7 +153,7 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/modules/basic.js */"./resources/js/modules/basic.js");
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/js/modules/basic.js */"./resources/js/modules/basic.js");
 
 
 /***/ })
