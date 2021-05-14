@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="p-2">
+				<div class="p-2 dataBlock forInput forAlias forEditor forFile forImage">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label</span>
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2">
+				<div class="p-2 dataBlock forInput forAlias forEditor">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column</span>
@@ -68,7 +68,7 @@
 					</div>
 				</div>
 
-				<div class="p-2">
+				<div class="p-2 dataBlock forInput forEditor">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>example</span>
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="p-2">
+				<div class="p-2 dataBlock forInput forAlias forEditor">
 					<div class="standard-block p-2">
 						<div class="p-2">
 							<label>
@@ -116,19 +116,10 @@
 								a_use_for_tags?
 							</label>
 						</div>
-
-										
-						<div class="p-2">
-							<label>
-								{{ Form :: checkbox('file_possibility_to_delete', '1') }}
-
-								file_possibility_to_delete?
-							</label>
-						</div>
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
 						<div class="col-4 p-2">
 							image_width {{ Form :: number('image_width') }}
@@ -149,7 +140,7 @@
 				</div>
 
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
 						<div class="col-4 p-2">
 							image_width_1 {{ Form :: number('image_width_1') }}
@@ -170,7 +161,7 @@
 				</div>
 
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
 						<div class="col-4 p-2">
 							image_width_2 {{ Form :: number('image_width_2') }}
@@ -191,7 +182,7 @@
 				</div>
 
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
 						<div class="col-4 p-2">
 							image_width_3 {{ Form :: number('image_width_3') }}
@@ -211,12 +202,19 @@
 					</div>
 				</div>
 
+							
+				<div class="p-2 dataBlock forFile forImage">
+					<div class="standard-block p-2">
+						<label>
+							{{ Form :: checkbox('file_possibility_to_delete', '1') }}
+
+							file_possibility_to_delete?
+						</label>
+					</div>
+				</div>
 				
 
-
-				
-
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">						
 						<div class="p-2">
 							<label>
@@ -228,7 +226,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>min_range</span>
@@ -240,7 +238,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>max_range</span>
@@ -252,7 +250,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>range_step</span>
@@ -264,7 +262,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>range_value</span>
@@ -277,7 +275,7 @@
 				</div>
 
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2 row">
 						<div class="p-2 col-4">
 							select_table {{ Form :: text('select_table', null, ['class' => 'w-50']) }}
@@ -310,7 +308,7 @@
 				</div>
 
 				
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_text</span>
@@ -322,7 +320,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_option_2_text</span>
@@ -334,7 +332,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_table</span>
@@ -346,7 +344,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_sort_by</span>
@@ -358,7 +356,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_text</span>
@@ -370,7 +368,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_active_option</span>
@@ -382,7 +380,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_first_option_value</span>
@@ -394,7 +392,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_first_option_text</span>
@@ -406,7 +404,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label_for_ajax_select</span>
@@ -418,7 +416,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_folder</span>
@@ -430,7 +428,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_title</span>
@@ -442,7 +440,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_format</span>
@@ -454,7 +452,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_1</span>
@@ -466,7 +464,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_2</span>
@@ -478,7 +476,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_3</span>
@@ -490,7 +488,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>radio_value</span>
@@ -502,7 +500,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>radio_class</span>
@@ -514,7 +512,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_table</span>
@@ -526,7 +524,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_sort_by</span>
@@ -538,7 +536,7 @@
 					</div>
 				</div>
 				
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_option_text</span>
@@ -550,7 +548,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_table_inside</span>
@@ -562,7 +560,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_sort_by_inside</span>
@@ -574,7 +572,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_option_text_inside</span>
@@ -586,7 +584,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 notForInput">
+				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>params_values_table</span>
@@ -598,7 +596,7 @@
 					</div>
 				</div>
 
-				<div class="p-2">
+				<div class="p-2 dataBlock forFile forImage">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>div_id</span>

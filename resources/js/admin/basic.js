@@ -13,14 +13,50 @@ function init_type_select() {
 	$('#type_select').on('change', function() {
 		show_type_blocks($(this).val(), 250);
 
-		console.log($(this).val());
+		// console.log('fff: ' + $(this).val());
 
-		$('.step2 .notForInput').fadeIn(0);
+		$('.step2 .dataBlock').fadeOut(0);
 
 
 		if($(this).val() === 'input') {
-			$('.step2 .notForInput').fadeOut(0);
+			$('.step2 .forInput').fadeIn(0);
 		}
+
+		if($(this).val() === 'alias') {
+			$('.step2 .forAlias').fadeIn(0);
+		}
+
+		if($(this).val() === 'editor') {
+			$('.step2 .forEditor').fadeIn(0);
+		}
+
+		if($(this).val() === 'image') {
+			$('.step2 .forImage').fadeIn(0);
+		}
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
+
+		// if($(this).val() === 'file') {
+		// 	$('.step2 .forFile').fadeIn(0);
+		// }
 	});
 }
 
