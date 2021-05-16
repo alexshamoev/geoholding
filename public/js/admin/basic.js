@@ -100,43 +100,79 @@
 var animation_speed = 50;
 
 function init_type_select() {
-  show_type_blocks($('#type_select').val(), 0);
+  // show_type_blocks($('#type_select').val(), 0);
   $('#type_select').on('change', function () {
-    show_type_blocks($(this).val(), 250); // console.log('fff: ' + $(this).val());
-
+    // show_type_blocks($(this).val(), 250);
+    // console.log('fff: ' + $(this).val());
     $('.step2 .dataBlock').fadeOut(0);
 
     if ($(this).val() === 'input') {
       $('.step2 .forInput').fadeIn(0);
     }
 
-    if ($(this).val() === 'alias') {
-      $('.step2 .forAlias').fadeIn(0);
-    }
-
     if ($(this).val() === 'editor') {
       $('.step2 .forEditor').fadeIn(0);
     }
 
+    if ($(this).val() === 'file') {
+      $('.step2 .forFile').fadeIn(0);
+    }
+
     if ($(this).val() === 'image') {
       $('.step2 .forImage').fadeIn(0);
-    } // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
+    }
+
+    if ($(this).val() === 'alias') {
+      $('.step2 .forAlias').fadeIn(0);
+    }
+
+    if ($(this).val() === 'select') {
+      $('.step2 .forSelect').fadeIn(0);
+    }
+
+    if ($(this).val() === 'calendar') {
+      $('.step2 .forCalendar').fadeIn(0);
+    }
+
+    if ($(this).val() === 'color_picker') {
+      $('.step2 .forColorPicker').fadeIn(0);
+    }
+
+    if ($(this).val() === 'rang') {
+      $('.step2 .forRang').fadeIn(0);
+    }
+
+    if ($(this).val() === 'published') {
+      $('.step2 .forPublished').fadeIn(0);
+    }
+
+    if ($(this).val() === 'select_with_optgroup') {
+      $('.step2 .forSelectWithOptgroup').fadeIn(0);
+    }
+
+    if ($(this).val() === 'select_with_ajax') {
+      $('.step2 .forSelectWithAjax').fadeIn(0);
+    }
+
+    if ($(this).val() === 'checkbox') {
+      $('.step2 .forCheckbox').fadeIn(0);
+    }
+
+    if ($(this).val() === 'multiply_checkboxes') {
+      $('.step2 .forMultiplyCheckboxes').fadeIn(0);
+    }
+
+    if ($(this).val() === 'multiply_checkboxes_with_category') {
+      $('.step2 .forMultiplyCheckboxesWithCategory').fadeIn(0);
+    }
+
+    if ($(this).val() === 'multiply_input_params') {
+      $('.step2 .forMultiplyInputParams').fadeIn(0);
+    } // if($(this).val() === 'published') {
+    // 	$('.step2 .forPublished').fadeIn(0);
     // }
-    // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
-    // }
-    // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
-    // }
-    // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
-    // }
-    // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
-    // }
-    // if($(this).val() === 'file') {
-    // 	$('.step2 .forFile').fadeIn(0);
+    // if($(this).val() === 'published') {
+    // 	$('.step2 .forPublished').fadeIn(0);
     // }
 
   });
@@ -144,13 +180,12 @@ function init_type_select() {
 
 function hide_type_blocks(speed_delay) {
   $('.type_div').fadeOut(speed_delay);
-}
+} // function show_type_blocks(id, speed_delay) {
+// 	let block_id = $('#block_id_input').val();
+// 	hide_type_blocks(speed_delay);
+// 	$('.type_' + id).fadeIn(animation_speed);
+// }
 
-function show_type_blocks(id, speed_delay) {
-  var block_id = $('#block_id_input').val();
-  hide_type_blocks(speed_delay);
-  $('.type_' + id).fadeIn(animation_speed);
-}
 
 $(document).ready(function () {
   jQuery('.svg_img').each(function () {
@@ -357,25 +392,25 @@ $(document).ready(function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin/bar.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin/left_part.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin/pages.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin/status_line.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
-!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/laravel-template/resources/sass/admin/tags.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/blog/resources/sass/admin/bar.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/blog/resources/sass/admin/left_part.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/blog/resources/sass/admin/pages.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/blog/resources/sass/admin/status_line.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+__webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
+!(function webpackMissingModule() { var e = new Error("Cannot find module '/Applications/MAMP/htdocs/blog/resources/sass/admin/tags.scss'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
+module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/blog/resources/sass/admin/jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
 
 
 /***/ })

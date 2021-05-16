@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor forFile forImage">
+				<div class="p-2 dataBlock forInput forAlias forEditor forFile forImage forSelect">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label</span>
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor">
+				<div class="p-2 dataBlock forInput forAlias forEditor forSelect">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column</span>
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor">
+				<div class="p-2 dataBlock forInput forAlias forEditor forRang">
 					<div class="standard-block p-2">
 						<div class="p-2">
 							<label>
@@ -275,7 +275,7 @@
 				</div>
 
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelect">
 					<div class="standard-block p-2 row">
 						<div class="p-2 col-4">
 							select_table {{ Form :: text('select_table', null, ['class' => 'w-50']) }}
@@ -296,7 +296,12 @@
 						<div class="p-2 col-4">
 							select_option_text {{ Form :: text('select_option_text', null, ['class' => 'w-50']) }}
 						</div>
+					</div>
+				</div>
 
+				
+				<div class="p-2 dataBlock forSelectWithOptgroup">
+					<div class="standard-block p-2">
 						<div class="p-2 col-4">
 							select_optgroup_table {{ Form :: text('select_optgroup_table', null, ['class' => 'w-50']) }}
 						</div>
@@ -305,10 +310,8 @@
 							select_optgroup_sort_by {{ Form :: text('select_optgroup_sort_by', null, ['class' => 'w-50']) }}
 						</div>
 					</div>
-				</div>
 
-				
-				<div class="p-2 dataBlock">
+
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_text</span>
@@ -320,7 +323,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithOptgroup">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_option_2_text</span>
@@ -332,7 +335,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithOptgroup">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_table</span>
@@ -344,7 +347,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithOptgroup">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_sort_by</span>
@@ -356,7 +359,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithOptgroup">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_optgroup_2_text</span>
@@ -380,7 +383,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithOptgroup">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>select_first_option_value</span>
@@ -404,7 +407,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forSelectWithAjax">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label_for_ajax_select</span>
@@ -512,7 +515,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_table</span>
@@ -524,7 +527,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_sort_by</span>
@@ -536,7 +539,7 @@
 					</div>
 				</div>
 				
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_option_text</span>
@@ -548,7 +551,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_table_inside</span>
@@ -560,7 +563,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_sort_by_inside</span>
@@ -572,7 +575,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forCheckbox forMultiplyCheckboxes">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_option_text_inside</span>
@@ -584,7 +587,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock">
+				<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory forMultiplyInputParams">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>params_values_table</span>
@@ -596,7 +599,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forFile forImage">
+				<div class="p-2 dataBlock forInput forFile forImage forEditor forSelect">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>div_id</span>
@@ -610,15 +613,15 @@
 
 
 						
-				<!-- <div class="p-2">
-					<label>
-						{{--
-							{{ Form :: checkbox('require', '1') }}
-						--}}
+				<div class="p-2 dataBlock forInput forFile forImage forEditor forSelect">
+					<div class="standard-block p-2">
+						<label>
+							{{ Form :: checkbox('required', '1') }}
 
-						require?
-					</label>
-				</div> -->
+							required
+						</label>
+					</div>
+				</div>
 
 
 				
