@@ -90,7 +90,6 @@
   font-size: 18px;
   position: relative;
   z-index: 0;
-  cursor: move;
 }
 
 .edit-block__edit-delete-block {

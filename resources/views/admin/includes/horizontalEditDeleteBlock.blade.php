@@ -1,4 +1,6 @@
-<div class="p-2 ui-state-default sortable-item">
+<!-- <div> -->
+<div class="p-2 panel1 panel-info1">
+<!-- <div class="p-2 ui-state-default sortable-item"> -->
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-10 p-0">
 			<div class="row">
@@ -38,8 +40,7 @@
 					</div>
 				</div>
 
-				
-				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move">
+				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move panel-heading">
 					<div class="p-3">
 						<img src="{{ asset('/images/admin/bars.svg') }}" alt="bars" class="bar-tag-bigger-img">
 					</div>
@@ -49,3 +50,4 @@
 		</div>
 	</div>
 </div>
+<!-- </div> -->

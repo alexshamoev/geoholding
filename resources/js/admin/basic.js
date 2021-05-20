@@ -1,5 +1,5 @@
-// window.$ = window.jQuery = require('jquery');
-// import  'jquery-ui/ui/widgets/sortable';
+window.$ = window.jQuery = require('jquery');
+import  'jquery-ui/ui/widgets/sortable';
 // import  'jquery-ui/ui/widgets/draggable';
 // import  'jquery-ui/ui/widgets/droppable';
 
@@ -108,6 +108,27 @@ function hide_type_blocks(speed_delay) {
 
 
 $(document).ready(function () {
+	// Dragable blocks.
+		let panelList = $('#draggablePanelList');
+
+		panelList.sortable({
+			// Only make the .panel-heading child elements support dragging.
+			// Omit this to make then entire <li>...</li> draggable.
+			handle: '.panel-heading', 
+			update: function() {
+				$('.panel', panelList).each(function(index, elem) {
+					let $listItem = $(elem),
+						newIndex = $listItem.index();
+
+					// Persist the new indices.
+				});
+
+				// alert(555);
+			}
+		});
+	//
+
+
     jQuery('.svg_img').each(function () {
         var $img = jQuery(this);
         var imgID = $img.attr('id');

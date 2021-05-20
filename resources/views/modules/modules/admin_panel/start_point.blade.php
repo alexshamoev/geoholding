@@ -9,11 +9,10 @@
 @section('content')
 	@include('admin.includes.tags', ['tag0Text' => 'Modules', 'tag0Url' => route('moduleStartPoint')])
 
-
 	<div class="p-2">
 		@include('admin.includes.addButton', ['text' => 'Add Module', 'url' => route('moduleAdd')])
 
-		<div>
+		<div id="draggablePanelList">
 			@foreach($modules as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
 					'title' => $data -> alias,
