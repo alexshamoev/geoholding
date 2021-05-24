@@ -13774,17 +13774,40 @@ function hide_type_blocks(speed_delay) {
 // }
 
 
-$(document).ready(function () {
+jQuery(function () {
   // Dragable blocks.
-  var panelList = $('#draggablePanelList');
-  panelList.sortable({
-    // Only make the .panel-heading child elements support dragging.
+  $('#rangBlocks').sortable({
+    // Only make the .rangButton child elements support dragging.
     // Omit this to make then entire <li>...</li> draggable.
-    handle: '.panel-heading',
+    handle: '.rangButton',
     update: function update() {
-      $('.panel', panelList).each(function (index, elem) {
-        var $listItem = $(elem),
-            newIndex = $listItem.index(); // Persist the new indices.
+      var idsArray = [];
+      $('.blockWithRang', $('#rangBlocks')).each(function (index, elem) {
+        console.log($(elem).data('id'));
+        idsArray[index] = $(elem).data('id'); // Persist the new indices.
+      }); // alert(1);
+      // event.preventDefault();
+      // let name = $("input[name=name]").val();
+      // let email = $("input[name=email]").val();
+      // let mobile_number = $("input[name=mobile_number]").val();
+      // let message = $("input[name=message]").val();
+      // let _token   = $('meta[name="csrf-token"]').attr('content');
+
+      var _token = $('meta[name="csrf-token"]').attr('content');
+
+      $.ajax({
+        url: "/admin/set-rangs",
+        type: "POST",
+        data: {
+          db_table: $('#rangBlocks').data('db_table'),
+          idsArray: idsArray,
+          _token: _token
+        },
+        success: function success(response) {
+          console.log(response);
+
+          if (response) {}
+        }
       }); // alert(555);
     }
   }); //

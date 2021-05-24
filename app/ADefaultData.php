@@ -19,7 +19,7 @@ class ADefaultData {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
-		$data = ['modules' => Module :: all(),
+		$data = ['modules' => Module :: all() -> sortByDesc('rang'),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
 				'copyrightDate' => $copyrightDate];
