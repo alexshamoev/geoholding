@@ -22,7 +22,7 @@ class CreateModulesTable extends Migration
 			$table -> string('title_ru') -> default('');
 			$table -> integer('page') -> default(0);
 			$table -> integer('hide_for_admin') -> default(0);
-			$table -> integer('icon_bg_color') -> default(0);
+			$table -> string('icon_bg_color') -> default('');
 			$table -> integer('rang') -> default(0);
             $table->timestamps();
         });
