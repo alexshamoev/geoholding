@@ -149,8 +149,13 @@ class ACoreController extends Controller {
 
 		$defaultData = ADefaultData :: get();
 
+		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
+
 		$data = array_merge($defaultData, ['module' => $module,
-											'moduleStep' => $moduleStep,
+											'moduleStep' => $moduleStepStep1,
+											'moduleStepData' => DB :: table($moduleStepStep1 -> db_table) -> orderBy('rang', 'desc') -> get(),
 											'moduleBlocks' => $moduleBlocks,
 											'selectData' => $selectData,
 											'selectOptgroudData' => $selectOptgroudData,

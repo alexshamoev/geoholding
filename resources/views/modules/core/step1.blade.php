@@ -115,5 +115,7 @@
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
+
+		{{ $moduleStepStep1 -> db_table }}
 	</div>
 @endsection

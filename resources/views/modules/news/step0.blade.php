@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    News
+    News123
 @endsection
 
 
