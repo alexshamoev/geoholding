@@ -104,6 +104,7 @@ class ACoreController extends Controller {
 
 		
 		$selectData = [];
+		$selectOptgroudData = [];
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
@@ -116,8 +117,35 @@ class ACoreController extends Controller {
 					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
 				}
 			}
+			
+			if($data -> type === 'select_with_optgroup') {
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+				$tempVar = $data -> select_optgroup_text;
+				
+				// $sort_by_this = $data -> select_sort_by_text;
+
+				// $selectOptgroudData[$data -> db_column] = array('Cats' => array('45' => 'Leopard','124' => 'Lion'),
+				// 												'tiger' => array('12' => 'Grizzle'),
+				// 													'Dogs' => array('54' => 'Spaniel'),
+				// 																);
+
+				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
+					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+					$tempVarSecond = $data -> select_optgroup_2_text;
+
+					// $banks = Bank::pluck('name', 'id'); 
+
+					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
+						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
+																		'tiger' => array('12' => 'Grizzle'),
+																		'Dogs' => array('54' => 'Spaniel'));
+					}
+				}
+			}
 		}
 
+		// <!-- Form:: -->
 
 		$defaultData = ADefaultData :: get();
 
@@ -125,6 +153,7 @@ class ACoreController extends Controller {
 											'moduleStep' => $moduleStep,
 											'moduleBlocks' => $moduleBlocks,
 											'selectData' => $selectData,
+											'selectOptgroudData' => $selectOptgroudData,
 											'languages' => Language :: where('published', 1) -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,

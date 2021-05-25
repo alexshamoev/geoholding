@@ -59,6 +59,19 @@
 								</div>
 
 								@break
+							@case('select_with_optgroup')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column]) }}
+									</div>
+								</div>
+								
+								@break
+
 							@case('editor')
 								<div class="p-2 standard-block">
 									<div class="p-2">
