@@ -296,6 +296,10 @@
 						<div class="p-2 col-4">
 							select_option_text {{ Form :: text('select_option_text', null, ['class' => 'w-50']) }}
 						</div>
+
+						<div class="p-2 col-4">
+							select_sort_by_text {{ Form :: text('select_sort_by_text', null, ['class' => 'w-50']) }}
+						</div>
 					</div>
 				</div>
 

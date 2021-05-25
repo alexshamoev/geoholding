@@ -109,9 +109,10 @@ class ACoreController extends Controller {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
 
-				$tempVar = $data -> select_sort_by;
+				$tempVar = $data -> select_option_text;
+				$sort_by_this = $data -> select_sort_by_text;
 
-				foreach(DB :: table($data -> select_table) -> get() as $dataInside) {
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
 					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
 				}
 			}
