@@ -44,6 +44,7 @@ class ACoreController extends Controller {
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
+											'sortBy' => $use_for_sort,
 											'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step0', $data);
@@ -141,8 +142,28 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			if($data -> type !== 'published' && $data -> type !== 'rang') {
+			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			}
+
+			if($data -> type === 'alias') {
+				$value = $request -> input($data -> db_column);
+				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+										'',
+										$value);
+
+				$value = strtolower(trim($value));
+				$value = mb_strtolower($value);
+
+				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+
+				$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+
+				$value = str_replace($symbols,
+										$replace_symbols,
+										$value);
+										
+				$updateQuery[$data -> db_column] = $value;
 			}
 		}
 

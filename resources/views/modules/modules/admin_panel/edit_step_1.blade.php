@@ -147,12 +147,15 @@
 
 
 	<div class="px-2 pb-2">
-		@foreach($moduleBlocks as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> db_column,
-				'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
-				'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
-			])
-		@endforeach
+		<div id="rangBlocks" data-db_table="module_blocks">
+			@foreach($moduleBlocks as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'id' => $data -> id,
+					'title' => $data -> db_column,
+					'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
+					'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
+				])
+			@endforeach
+		</div>
     </div>
 @endsection

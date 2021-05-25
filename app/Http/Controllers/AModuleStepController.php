@@ -60,7 +60,7 @@ class AModuleStepController extends Controller {
 											'languages' => Language :: where('published', 1) -> get(),
 											'module' => $module,
 											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-											'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
+											'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get(),
 											'moduleStep' => $moduleStep,
 											'prev' => ModuleStep :: find($prevId),
 											'next' => ModuleStep :: find($nextId)]);
