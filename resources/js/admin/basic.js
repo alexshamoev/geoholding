@@ -220,5 +220,10 @@ jQuery(function () {
 
 			$('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0);
 		});
+
+
+		$('.modulesStep0__typeBox').fadeOut(0);
+
+		$('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0);
 	//
 });
