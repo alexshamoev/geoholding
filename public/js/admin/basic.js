@@ -13686,83 +13686,72 @@ window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jqu
 
 var animation_speed = 50;
 
-function init_type_select() {
-  // show_type_blocks($('#type_select').val(), 0);
-  $('#type_select').on('change', function () {
-    // show_type_blocks($(this).val(), 250);
-    // console.log('fff: ' + $(this).val());
-    $('.step2 .dataBlock').fadeOut(0);
+function checkBlockType(blockType) {
+  $('.step2 .dataBlock').fadeOut(0);
 
-    if ($(this).val() === 'input') {
-      $('.step2 .forInput').fadeIn(0);
-    }
+  if (blockType === 'input') {
+    $('.step2 .forInput').fadeIn(0);
+  }
 
-    if ($(this).val() === 'editor') {
-      $('.step2 .forEditor').fadeIn(0);
-    }
+  if (blockType === 'editor') {
+    $('.step2 .forEditor').fadeIn(0);
+  }
 
-    if ($(this).val() === 'file') {
-      $('.step2 .forFile').fadeIn(0);
-    }
+  if (blockType === 'file') {
+    $('.step2 .forFile').fadeIn(0);
+  }
 
-    if ($(this).val() === 'image') {
-      $('.step2 .forImage').fadeIn(0);
-    }
+  if (blockType === 'image') {
+    $('.step2 .forImage').fadeIn(0);
+  }
 
-    if ($(this).val() === 'alias') {
-      $('.step2 .forAlias').fadeIn(0);
-    }
+  if (blockType === 'alias') {
+    $('.step2 .forAlias').fadeIn(0);
+  }
 
-    if ($(this).val() === 'select') {
-      $('.step2 .forSelect').fadeIn(0);
-    }
+  if (blockType === 'select') {
+    $('.step2 .forSelect').fadeIn(0);
+  }
 
-    if ($(this).val() === 'calendar') {
-      $('.step2 .forCalendar').fadeIn(0);
-    }
+  if (blockType === 'calendar') {
+    $('.step2 .forCalendar').fadeIn(0);
+  }
 
-    if ($(this).val() === 'color_picker') {
-      $('.step2 .forColorPicker').fadeIn(0);
-    }
+  if (blockType === 'color_picker') {
+    $('.step2 .forColorPicker').fadeIn(0);
+  }
 
-    if ($(this).val() === 'rang') {
-      $('.step2 .forRang').fadeIn(0);
-    }
+  if (blockType === 'rang') {
+    $('.step2 .forRang').fadeIn(0);
+  }
 
-    if ($(this).val() === 'published') {
-      $('.step2 .forPublished').fadeIn(0);
-    }
+  if (blockType === 'published') {
+    $('.step2 .forPublished').fadeIn(0);
+  }
 
-    if ($(this).val() === 'select_with_optgroup') {
-      $('.step2 .forSelectWithOptgroup').fadeIn(0);
-    }
+  if (blockType === 'select_with_optgroup') {
+    $('.step2 .forSelectWithOptgroup').fadeIn(0);
+  }
 
-    if ($(this).val() === 'select_with_ajax') {
-      $('.step2 .forSelectWithAjax').fadeIn(0);
-    }
+  if (blockType === 'select_with_ajax') {
+    $('.step2 .forSelectWithAjax').fadeIn(0);
+  }
 
-    if ($(this).val() === 'checkbox') {
-      $('.step2 .forCheckbox').fadeIn(0);
-    }
+  if (blockType === 'checkbox') {
+    $('.step2 .forCheckbox').fadeIn(0);
+  }
 
-    if ($(this).val() === 'multiply_checkboxes') {
-      $('.step2 .forMultiplyCheckboxes').fadeIn(0);
-    }
+  if (blockType === 'multiply_checkboxes') {
+    $('.step2 .forMultiplyCheckboxes').fadeIn(0);
+  }
 
-    if ($(this).val() === 'multiply_checkboxes_with_category') {
-      $('.step2 .forMultiplyCheckboxesWithCategory').fadeIn(0);
-    }
+  if (blockType === 'multiply_checkboxes_with_category') {
+    $('.step2 .forMultiplyCheckboxesWithCategory').fadeIn(0);
+  }
 
-    if ($(this).val() === 'multiply_input_params') {
-      $('.step2 .forMultiplyInputParams').fadeIn(0);
-    } // if($(this).val() === 'published') {
-    // 	$('.step2 .forPublished').fadeIn(0);
-    // }
-    // if($(this).val() === 'published') {
-    // 	$('.step2 .forPublished').fadeIn(0);
-    // }
-
-  });
+  if (blockType === 'multiply_input_params') {
+    $('.step2 .forMultiplyInputParams').fadeIn(0);
+  }
 }
 
 function hide_type_blocks(speed_delay) {
@@ -13852,8 +13841,13 @@ jQuery(function () {
     if (conf) {
       window.location.href = $(this).data('delete-link');
     }
-  });
-  init_type_select(); // Modules.
+  }); // Block types.
+
+  checkBlockType($('#type_select').val());
+  $('#type_select').on('change', function () {
+    checkBlockType($(this).val());
+  }); //
+  // Modules.
 
   $('.modulesStep0__typeBox').fadeOut(0);
   var active_include_type = $('.modulesStep0 input[name="include_type"]:checked').val();
@@ -13861,7 +13855,9 @@ jQuery(function () {
   $('.modulesStep0 input[name="include_type"]').on('change', function () {
     $('.modulesStep0__typeBox').fadeOut(0);
     $('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0);
-  }); //
+  });
+  $('.modulesStep0__typeBox').fadeOut(0);
+  $('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0); //
 });
 
 /***/ }),
