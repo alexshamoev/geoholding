@@ -146,20 +146,24 @@ class ACoreController extends Controller {
 		}
 
 		// <!-- Form:: -->
-
+		$use_for_sort = 'rang';
 		$defaultData = ADefaultData :: get();
 
 		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
-		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1)->take(1)->first();
 		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStepStep1,
-											'moduleStepData' => DB :: table($moduleStepStep1 -> db_table) -> orderBy('rang', 'desc') -> get(),
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
 											'moduleBlocks' => $moduleBlocks,
 											'selectData' => $selectData,
 											'selectOptgroudData' => $selectOptgroudData,
 											'languages' => Language :: where('published', 1) -> get(),
+											'sortBy' => $use_for_sort,
+											'id' => $id,
+											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) -> orderBy($use_for_sort, 'desc') -> get(),
+											'moduleStep1Data' => $moduleStepStep1,
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,
