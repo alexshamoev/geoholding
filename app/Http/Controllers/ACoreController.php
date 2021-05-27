@@ -150,7 +150,7 @@ class ACoreController extends Controller {
 		$defaultData = ADefaultData :: get();
 
 		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
-		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1)->take(1)->first();
+		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
 
 		$data = array_merge($defaultData, ['module' => $module,
@@ -162,7 +162,7 @@ class ACoreController extends Controller {
 											'languages' => Language :: where('published', 1) -> get(),
 											'sortBy' => $use_for_sort,
 											'id' => $id,
-											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) -> orderBy($use_for_sort, 'desc') -> get(),
+											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
 											'moduleStep1Data' => $moduleStepStep1,
 											'data' => $pageData,
 											'prevId' => $prevId,
@@ -219,5 +219,21 @@ class ACoreController extends Controller {
 		DB :: table($moduleStep -> db_table) -> delete($id);
 
 		return redirect() -> route('coreGetStep0', $module -> alias);
+	}
+
+	public function addStep1($moduleAlias, $parent) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		$parent = 7;
+
+		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
+
+		// return redirect() -> route('coreEditStep1', array($module -> alias, $newRowId));
+		return '123';
+	}
+
+
+	public function editStep1($moduleAlias) {
+		return '123';
 	}
 }

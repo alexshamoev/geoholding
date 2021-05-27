@@ -26,6 +26,7 @@
 
 
 	<div class="p-2">
+
 		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
@@ -115,8 +116,14 @@
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
+		
+		@include('admin.includes.addButton', [
+			'text' => $bsw -> a_add.' '.$moduleStep -> title,
+			'url' => route('coreAddStep1', $module -> alias, array($module -> alias, $moduleStep1Data -> id))
+		])
+		
 
-		<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
+		<!-- <div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
 			@foreach($moduleStepTableData as $data)
 				@if($sortBy === 'rang')
 					@include('admin.includes.horizontalEditDeleteBlock', [
@@ -134,7 +141,7 @@
 					])
 				@endif
 			@endforeach
-		</div>
+		</div> -->
 
 		<!-- {{ $id }} -->
 		<!-- {{ $moduleStep1Data -> db_table }}> -->
