@@ -59,6 +59,10 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: post('/set-rangs', 'ARangController@set');
 });
  
+
+
+
+
  
 // Route :: get('/{any}', function($any) {
 	// return 'hi';
