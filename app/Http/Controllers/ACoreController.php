@@ -224,16 +224,23 @@ class ACoreController extends Controller {
 	public function addStep1($moduleAlias, $parent) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
-		$parent = 7;
+		// $parent = 7;
 
-		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
+		$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array('parent' => $parent));
 
-		// return redirect() -> route('coreEditStep1', array($module -> alias, $newRowId));
-		return '123';
+		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $newRowId));
+		// return $newRowId;
 	}
 
 
-	public function editStep1($moduleAlias) {
-		return '123';
+	public function editStep1($moduleAlias, $parent, $id) {
+		return $moduleAlias.' '.$parent.' '.$id;
+	}
+
+
+	public function deleteStep1($moduleAlias, $parent, $id) {
+		return $moduleAlias.' '.$parent.' '.$id;
+
+		// return '';
 	}
 }

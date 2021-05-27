@@ -117,31 +117,33 @@
 			</div>
 		{{ Form :: close() }}
 		
+		{{ $data -> id }}
+
 		@include('admin.includes.addButton', [
 			'text' => $bsw -> a_add.' '.$moduleStep -> title,
-			'url' => route('coreAddStep1', $module -> alias, array($module -> alias, $moduleStep1Data -> id))
+			'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 		])
 		
 
-		<!-- <div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
-			@foreach($moduleStepTableData as $data)
+		<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
+			@foreach($moduleStepTableData as $dataIn)
 				@if($sortBy === 'rang')
 					@include('admin.includes.horizontalEditDeleteBlock', [
-						'id' => $data -> id,
-						'title' => $data -> $use_for_tags,
-						'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
-						'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))
+						'id' => $dataIn -> id,
+						'title' => $dataIn -> $use_for_tags,
+						'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+						'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
 					])
 				@else 
 					@include('admin.includes.horizontalEditDelete', [
-							'id' => $id,
-							'title' => $data -> $use_for_tags,
-							'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
-							'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))
+							'id' => $dataIn -> id,
+							'title' => $dataIn -> $use_for_tags,
+							'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+							'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
 					])
 				@endif
 			@endforeach
-		</div> -->
+		</div>
 
 		<!-- {{ $id }} -->
 		<!-- {{ $moduleStep1Data -> db_table }}> -->
