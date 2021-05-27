@@ -5,4 +5,124 @@
     Modules
 @endsection
 
-123
+@section('content')
+
+	@include('admin.includes.tags', [
+		'tag0Text' => $module -> title,
+		'tag0Url' => route('coreGetStep0', $module -> alias),
+		'tag1Text' => $parentData -> title_ge,
+		'tag1Url' => route('coreEditStep0', [$module -> alias, $data -> parent]),
+		'tag2Text' => $data -> $use_for_tags
+	])
+
+        
+
+        {{ $parentData -> title_ge }}
+        
+        {{$moduleStep -> db_table}}
+    
+	@include('admin.includes.bar', [
+		'addUrl' => route('coreAddStep1', [$module -> alias, $data -> parent]),
+		'deleteUrl' => route('coreDeleteStep1', array($module -> alias, $data -> parent, $data -> id)),
+		'nextId' => $nextId,
+		'prevId' => $prevId,
+		'nextRoute' => route('coreEditStep1', [$module -> alias, $data -> parent, $nextId]),
+		'prevRoute' => route('coreEditStep1', [$module -> alias, $data -> parent, $prevId]),
+		'backRoute' => route('coreEditStep0', [$module -> alias, $data -> parent])
+	])
+
+    
+	<div class="p-2">
+
+		{{ Form :: open(array('route' => array('coreUpdateStep1', $module -> alias, $data -> parent, $data -> id))) }}
+			@foreach($moduleBlocks as $moduleBlock)
+				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
+					@php
+						$tempVar = $moduleBlock -> db_column;
+					@endphp
+					<div class="p-2">
+						@switch($moduleBlock -> type)
+							@case('input')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+							@case('select')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+							@case('select_with_optgroup')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column]) }}
+									</div>
+								</div>
+								
+								@break
+
+							@case('editor')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+							@case('alias')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+							@default
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+									</div>
+								</div>
+						@endswitch
+					</div>
+				@endif
+			@endforeach
+
+			<div class="p-2">
+				{{ Form :: submit('Submit') }}
+			</div>
+		{{ Form :: close() }}
+
+
+	</div>
+@endsection

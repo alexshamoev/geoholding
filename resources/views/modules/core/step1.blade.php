@@ -116,14 +116,11 @@
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
-		
-		{{ $data -> id }}
 
 		@include('admin.includes.addButton', [
 			'text' => $bsw -> a_add.' '.$moduleStep -> title,
 			'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 		])
-		
 
 		<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
 			@foreach($moduleStepTableData as $dataIn)

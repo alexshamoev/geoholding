@@ -234,8 +234,165 @@ class ACoreController extends Controller {
 
 
 	public function editStep1($moduleAlias, $parent, $id) {
-		return $moduleAlias.' '.$parent.' '.$id;
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleParentStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
+		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
+		$pageParentData = DB :: table($moduleParentStep -> db_table) -> find($parent);
+
+		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
+
+		$use_for_tags = 'id';
+
+		if($moduleBlock) {
+			$use_for_tags = $moduleBlock -> db_column;
+		}
+
+
+		$prevId = 0;
+		$nextId = 0;
+
+		$prevIdIsSaved = false;
+		$nextIdIsSaved = false;
+
+		foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') -> get() as $data) {
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
+			
+			if($pageData -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
+			
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
+		}
+
+		
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
+
+		$varWord = 'word_'.$activeLang -> title;
+
+		
+		$selectData = [];
+		$selectOptgroudData = [];
+
+		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
+			if($data -> type === 'select') {
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+				$tempVar = $data -> select_option_text;
+				$sort_by_this = $data -> select_sort_by_text;
+
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				}
+			}
+			
+			if($data -> type === 'select_with_optgroup') {
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+
+				$tempVar = $data -> select_optgroup_text;
+				
+				// $sort_by_this = $data -> select_sort_by_text;
+
+				// $selectOptgroudData[$data -> db_column] = array('Cats' => array('45' => 'Leopard','124' => 'Lion'),
+				// 												'tiger' => array('12' => 'Grizzle'),
+				// 													'Dogs' => array('54' => 'Spaniel'),
+				// 																);
+
+				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
+					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+					$tempVarSecond = $data -> select_optgroup_2_text;
+
+					// $banks = Bank::pluck('name', 'id'); 
+
+					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
+						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
+																		'tiger' => array('12' => 'Grizzle'),
+																		'Dogs' => array('54' => 'Spaniel'));
+					}
+				}
+			}
+		}
+
+		// <!-- Form:: -->
+		$use_for_sort = 'rang';
+		$defaultData = ADefaultData :: get();
+
+		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
+
+		// $moduleParent = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
+
+		$moduleTitle = 
+
+		$data = array_merge($defaultData, ['module' => $module,
+											'moduleStep' => $moduleStep,
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
+											'moduleBlocks' => $moduleBlocks,
+											'selectData' => $selectData,
+											'selectOptgroudData' => $selectOptgroudData,
+											'languages' => Language :: where('published', 1) -> get(),
+											'sortBy' => $use_for_sort,
+											'id' => $id,
+											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+											'moduleStep1Data' => $moduleStepStep1,
+											'data' => $pageData,
+											'prevId' => $prevId,
+											'nextId' => $nextId,
+											'use_for_tags' => $use_for_tags,
+											'parentData' => $pageParentData]);
+
+		return view('modules.core.step2', $data);
+		// return $moduleAlias.' '.$parent.' '.$id;
 	}
+
+
+	public function updateStep1(Request $request, $moduleAlias, $parent, $id) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
+
+		$updateQuery = [];
+
+		foreach($moduleBlocks as $data) {
+			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			}
+
+			if($data -> type === 'alias') {
+				$value = $request -> input($data -> db_column);
+				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+										'',
+										$value);
+
+				$value = strtolower(trim($value));
+				$value = mb_strtolower($value);
+
+				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+
+				$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+
+				$value = str_replace($symbols,
+										$replace_symbols,
+										$value);
+										
+				$updateQuery[$data -> db_column] = $value;
+			}
+		}
+
+		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
+
+		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
+	}
+
+
+
 
 
 	public function deleteStep1($moduleAlias, $parent, $id) {
