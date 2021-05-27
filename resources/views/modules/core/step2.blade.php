@@ -14,12 +14,6 @@
 		'tag1Url' => route('coreEditStep0', [$module -> alias, $data -> parent]),
 		'tag2Text' => $data -> $use_for_tags
 	])
-
-        
-
-        {{ $parentData -> title_ge }}
-        
-        {{$moduleStep -> db_table}}
     
 	@include('admin.includes.bar', [
 		'addUrl' => route('coreAddStep1', [$module -> alias, $data -> parent]),
