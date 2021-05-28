@@ -117,6 +117,29 @@
 			</div>
 		{{ Form :: close() }}
 
+		@include('admin.includes.addButton', [
+			'text' => $bsw -> a_add.' '.$moduleStep2 -> title,
+			'url' => route('coreAddStep2', array($module -> alias, $data -> parent, $data -> id))
+		])
 
+		<div id="rangBlocks" data-db_table="{{ $moduleStep2 -> db_table }}">
+			@foreach($moduleStepTableData2 as $dataIn)
+				@if($sortBy === 'rang')
+					@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $dataIn -> id,
+						'title' => $dataIn -> $use_for_tags,
+						'editLink' => route('coreEditStep2', array($module -> alias, $data -> parent, $dataIn -> parent, $dataIn -> id)),
+						'deleteLink' => route('coreDeleteStep2', array($module -> alias, $data -> parent, $dataIn -> parent, $dataIn -> id))
+					])
+				@else 
+					@include('admin.includes.horizontalEditDelete', [
+							'id' => $dataIn -> id,
+							'title' => $dataIn -> $use_for_tags,
+							'editLink' => route('coreEditStep2', array($module -> alias, $data -> parent, $dataIn -> parent, $dataIn -> id)),
+							'deleteLink' => route('coreDeleteStep2', array($module -> alias, $data -> parent, $dataIn -> parent, $dataIn -> id))
+					])
+				@endif
+			@endforeach
+		</div>
 	</div>
 @endsection

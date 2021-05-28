@@ -55,6 +55,16 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreController@updateStep1') -> name('coreUpdateStep1');
 	Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreController@deleteStep1') -> name('coreDeleteStep1');
 
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreController@addStep2') -> name('coreAddStep2');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@editStep2') -> name('coreEditStep2');
+	Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@updateStep2') -> name('coreUpdateStep2');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreController@deleteStep2') -> name('coreDeleteStep2');
+
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreController@addStep3') -> name('coreAddStep3');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@editStep3') -> name('coreEditStep3');
+	Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@updateStep3') -> name('coreUpdateStep3');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreController@deleteStep3') -> name('coreDeleteStep3');
+
 
 	Route :: post('/set-rangs', 'ARangController@set');
 });
