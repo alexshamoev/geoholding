@@ -355,7 +355,7 @@ class ACoreController extends Controller {
 
 	public function updateStep1(Request $request, $moduleAlias, $parent, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
-		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
 
 		$updateQuery = [];
@@ -389,6 +389,7 @@ class ACoreController extends Controller {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
+		// return $moduleStep -> db_table;
 	}
 
 
@@ -396,8 +397,12 @@ class ACoreController extends Controller {
 
 
 	public function deleteStep1($moduleAlias, $parent, $id) {
-		return $moduleAlias.' '.$parent.' '.$id;
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 
-		// return '';
+		DB :: table($moduleStep -> db_table) -> delete($id);
+
+		return redirect() -> route('coreEditStep0', array($module -> alias, $parent));
+		
 	}
 }
