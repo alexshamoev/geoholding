@@ -134,8 +134,6 @@ class ACoreController extends Controller {
 					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
 					$tempVarSecond = $data -> select_optgroup_2_text;
 
-					// $banks = Bank::pluck('name', 'id'); 
-
 					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
 						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
 																		'tiger' => array('12' => 'Grizzle'),
@@ -149,20 +147,43 @@ class ACoreController extends Controller {
 		$use_for_sort = 'rang';
 		$defaultData = ADefaultData :: get();
 
+		$moduleStepTableData = false;
+		$object_var = '';
+
 		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
-		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
+		
+		if($moduleStepStep1) {
+			$moduleStepTableData = DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) -> orderBy($use_for_sort, 'desc') -> get();
+		}
+
+		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep1 -> id) -> where('a_use_for_sort', 1) -> first();
+
+		$use_for_sort = 'id';
+		$sort_by = 'DESC';
+
+		if($moduleBlockForSort) {
+			$use_for_sort = $moduleBlockForSort -> db_column;
+
+			if(!$moduleBlockForSort -> sort_by_desc) {
+				$sort_by = 'ASC';
+			}
+		}
+
+
+
+		// $page_test = DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get();
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStepStep1,
-											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
 											'moduleBlocks' => $moduleBlocks,
 											'selectData' => $selectData,
 											'selectOptgroudData' => $selectOptgroudData,
 											'languages' => Language :: where('published', 1) -> get(),
 											'sortBy' => $use_for_sort,
 											'id' => $id,
-											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+											'moduleStepTableData' => $moduleStepTableData,
 											'moduleStep1Data' => $moduleStepStep1,
 											'data' => $pageData,
 											'prevId' => $prevId,
@@ -170,6 +191,7 @@ class ACoreController extends Controller {
 											'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step1', $data);
+		// return $test;
 	}
 
 
