@@ -67,7 +67,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column]) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column], $data -> $tempVar) }}
 									</div>
 								</div>
 								

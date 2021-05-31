@@ -130,16 +130,19 @@ class ACoreController extends Controller {
 				// 													'Dogs' => array('54' => 'Spaniel'),
 				// 																);
 
+				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --');
+
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
-					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
 					$tempVarSecond = $data -> select_optgroup_2_text;
 
-					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
-																		'tiger' => array('12' => 'Grizzle'),
-																		'Dogs' => array('54' => 'Spaniel'));
+					// $alex[$dataInside -> id] = $dataInside -> $tempVar;
+
+					foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
+						$alex[$dataInside -> $tempVar][$dataInsideTwice -> id] = $dataInsideTwice -> $tempVarSecond;
 					}
 				}
+
+				$selectOptgroudData[$data -> db_column] = $alex;
 			}
 		}
 
