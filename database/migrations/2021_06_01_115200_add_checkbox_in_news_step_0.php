@@ -16,7 +16,7 @@ class AddCheckboxInNewsStep0 extends Migration
         Schema::table('news', function (Blueprint $table) {
             if (!Schema::hasColumn('news', 'checkbox')) {
                 $table -> integer('checkbox') -> default(0);
-                $table -> integer('checkbox_test') -> default(0);
+                $table -> string('calendar') -> default('');
             }
         });
     }
@@ -30,7 +30,7 @@ class AddCheckboxInNewsStep0 extends Migration
     {
         Schema::table('news', function (Blueprint $table) {
             $table -> dropColumn('checkbox');
-            $table -> dropColumn('checkbox_test');
+            $table -> string('calendar') -> default('');
         });
     }
 }

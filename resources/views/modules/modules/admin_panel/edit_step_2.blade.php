@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor forFile forImage forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forAlias forEditor forFile forCalendar forImage forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label</span>
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forAlias forCalendar forEditor forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column</span>
@@ -80,7 +80,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor forRang">
+				<div class="p-2 dataBlock forInput forAlias forCalendar forEditor forRang">
 					<div class="standard-block p-2">
 						<div class="p-2">
 							<label>
