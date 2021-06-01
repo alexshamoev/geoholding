@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -24,7 +24,7 @@
 			@endphp
 
 
-			@include('admin.includes.horizontalEditDeleteBlock', [
+			@include('modules.bsw.admin_panel.includes.horizontalEditDeleteBlock', [
 				'title' => $data -> system_word,
 				'text' => $text,
 				'editLink' => route('bswEdit', $data -> id),

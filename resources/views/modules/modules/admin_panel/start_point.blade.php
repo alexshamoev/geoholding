@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -7,15 +7,16 @@
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => 'Modules', 'tag0Url' => route('moduleStartPoint')])
-
+	@include('admin.includes.tags', ['tag0Text' => 'Modules',
+									 'tag0Url' => route('moduleStartPoint')])
 
 	<div class="p-2">
 		@include('admin.includes.addButton', ['text' => 'Add Module', 'url' => route('moduleAdd')])
 
-		<div>
+		<div id="rangBlocks" data-db_table="modules">
 			@foreach($modules as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
+					'id' => $data -> id,
 					'title' => $data -> alias,
 					'editLink' => route('moduleEdit', $data -> id),
 					'deleteLink' => route('moduleDelete', $data -> id)

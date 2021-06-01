@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -24,9 +24,8 @@
 		'backRoute' => route('moduleStartPoint')
 	])
 
-
-	{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
-		<div class="p-2">
+	<div class="p-2 modulesStep0">
+		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -61,7 +60,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>Attach page</span>
+								<span>Attach page (0)</span>
 							</div>
 						</div>
 					</label>
@@ -76,7 +75,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე</span>
+								<span>გამოვაჩინოთ ყველა გვერდზე (1)</span>
 							</div>
 						</div>
 					</label>
@@ -91,7 +90,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ გვერდებზე</span>
+								<span>გამოვაჩინოთ გვერდებზე (2)</span>
 							</div>
 						</div>
 					</label>
@@ -106,7 +105,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა</span>
+								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა (3)</span>
 							</div>
 						</div>
 					</label>
@@ -120,7 +119,7 @@
 							</div>
 
 							<div class="p-1">
-								<span>არ მივაბათ მოდული არცერთ გვერდს</span>
+								<span>არ მივაბათ მოდული არცერთ გვერდს (4)</span>
 							</div>
 						</div>
 					</label>
@@ -129,23 +128,36 @@
 			
 
 			<div class="px-2">
-				<div class="d-flex flex-column standard-block p-2">
-					<div class="p-1">
-						<span>გვერდი</span>
-					</div>
-					
-					<div class="p-1">
+				<div class="d-flex flex-column standard-block">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
 						{{ Form :: select('page', $pagesForSelect, $module -> page) }}
 					</div>
 
-					<div class="p-2">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
 						@foreach($pagesForIncludeInPages as $key => $data)
 							<div>
 								<label>
 									<input type="checkbox"
 											value="{{ $key }}"
-											name="page_include_{{ $key }}">
-									
+											name="page_include_{{ $key }}"
+											{{ $data['checked'] }}>
+											
+									{{ $data['alias'] }} 
+								</label>
+							</div>
+						@endforeach
+					</div>
+
+
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type3Box">
+						@foreach($pagesNotIncludeInPages as $key => $data)
+							<div>
+								<label>
+									<input type="checkbox"
+											value="{{ $key }}"
+											name="page_not_include_{{ $key }}"
+											{{ $data['checked'] }}>
+											
 									{{ $data['alias'] }} 
 								</label>
 							</div>
@@ -207,23 +219,23 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
+		{{ Form :: close() }}
 
-		</div>
-	{{ Form :: close() }}
-
-	<div class="px-2">
+		
 		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
-	</div>
 
-    <div class="px-2">
+
 		<div>
-			@foreach($moduleSteps as $data)
-				@include('admin.includes.horizontalEditDeleteBlock', [
-					'title' => $data -> title,
-					'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-					'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-				])
-			@endforeach
+			<div id="rangBlocks" data-db_table="module_steps">
+				@foreach($moduleSteps as $data)
+					@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $data -> id,
+						'title' => $data -> title,
+						'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
+						'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
+					])
+				@endforeach
+			</div>	
 		</div>
-    </div>
+	</div>
 @endsection

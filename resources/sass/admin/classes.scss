@@ -87,7 +87,7 @@
 	font-size: 18px;
 	position: relative;
 	z-index: 0;
-	cursor: move;
+
 	&__edit-delete-block {
 		border-left: 1px solid #ccc;
 		cursor: pointer;
@@ -97,6 +97,7 @@
 	}
 
 	&__block_inside_preview {
+		
 	}
 }
 
@@ -154,4 +155,9 @@
 
 .addButton {
 	border: 1px solid #ccc;
+}
+
+
+.languages {
+	
 }

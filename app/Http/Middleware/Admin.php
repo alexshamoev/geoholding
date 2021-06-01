@@ -17,6 +17,7 @@ class Admin
     {
 		if(\Auth :: check() && \Auth :: user() -> isAdmin() == true) {
 			echo 'Admin Auth Middleware';
+      echo \Auth :: check();
 
 		} else {
 			echo 'Unauthorization';

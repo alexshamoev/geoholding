@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -17,7 +17,7 @@
 		@include('admin.includes.addButton', ['text' => 'Add Bsc', 'url' => route('bscAdd')])
 
 		@foreach($bscs as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
+			@include('modules.bsc.admin_panel.includes.horizontalEditDeleteBlock', [
 				'title' => $data -> system_word,
 				'text' => $data -> configuration,
 				'editLink' => route('bscEdit', $data -> id),
@@ -25,4 +25,5 @@
 			])
 		@endforeach
 	</div>
+	123
 @endsection
