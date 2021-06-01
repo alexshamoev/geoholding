@@ -206,7 +206,7 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
+			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'checkbox') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
@@ -228,6 +228,10 @@ class ACoreController extends Controller {
 										$value);
 										
 				$updateQuery[$data -> db_column] = $value;
+			}
+
+			if($data -> type === 'checkbox') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 			}
 		}
 

@@ -85,7 +85,7 @@
 								</div>
 
 								@break
-							@case('alias')
+								@case('alias')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
@@ -93,6 +93,18 @@
 
 									<div class="p-2">
 										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+								@case('checkbox')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> $tempVar) }}
 									</div>
 								</div>
 
