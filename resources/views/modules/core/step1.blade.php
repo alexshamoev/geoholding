@@ -116,9 +116,13 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::checkbox($moduleBlock -> db_column, 1, 1) }}
-										{{ print_r($multiplyCheckbox) }}
+									@foreach($multiplyCheckbox[$moduleBlock -> db_column] as $key => $dataInside)
+										{{ Form::checkbox($moduleBlock -> db_column.'[]', $key , $dataInside['active']) }}
+										{{ $dataInside['title'] }}
+									@endforeach
+
 									</div>
+									{{ print_r($multiplyCheckbox[$moduleBlock -> db_column]) }}
 								</div>
 
 								@break

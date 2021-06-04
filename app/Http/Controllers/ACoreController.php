@@ -154,8 +154,6 @@ class ACoreController extends Controller {
 
 							$active = 0;
 							foreach($tempArray as $tempData) {
-								
-
 								if($tempData == $dataInsideTwice -> id) {
 									$active = 1;
 								}
@@ -176,13 +174,23 @@ class ACoreController extends Controller {
 				$checkboxText = $data -> sql_select_with_checkboxes_option_text;														
 
 				$checkboxArray = array();
+				$active = 0;
+
+				
 
 				foreach(DB :: table($data -> sql_select_with_checkboxes_table) -> orderBy($data -> sql_select_with_checkboxes_sort_by, 'desc') -> get() as $dataInside) {
 
-					// $tempDbColumn = $data -> db_column;
-					// $tempArray = explode(',', $pageData -> $tempDbColumn);
+					$tempDbColumn = $data -> db_column;
+					$tempArray = explode(',', $pageData -> $tempDbColumn);
 
-					$checkboxArray = $dataInside -> $checkboxText;
+					foreach($tempArray as $tempData) {
+						if($tempData == $dataInside -> id) {
+							$active = 1;
+						}
+					}
+
+					$checkboxArray[$dataInside -> id] = array('title' => $dataInside -> $checkboxText, 'active' => $active);
+					// $checkboxArray[$dataInside -> id] = $dataInside -> $checkboxText;
 
 				}
 				
@@ -288,12 +296,23 @@ class ACoreController extends Controller {
 				
 				$updateQuery[$data -> db_column] = $checkboxString;
 			}
+			
+			$multiplyCheckboxString = '';
+			if($data -> type === 'multiply_checkboxes') {
+				if($request -> input($data -> db_column)) {
+					for($i = 0; $i < count($request -> input($data -> db_column)); $i++) {
+						$multiplyCheckboxString .= $request -> input($data -> db_column)[$i].',';
+					}
+				}
+				// $test = $request -> input($data -> db_column);
+				$updateQuery[$data -> db_column] = $multiplyCheckboxString;
+			}
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
-		// return $checkboxString;
+		// return $multiplyCheckboxString;
 	}
 
 
