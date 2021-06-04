@@ -109,6 +109,30 @@
 								</div>
 
 								@break
+								@case('multiply_checkboxes_with_category')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ 'test' }}
+									</div>
+
+									<div class="p-2">
+										@foreach($multiplyCheckboxCategory[$moduleBlock -> db_column] as $key => $dataInside)
+											{{ $key }}
+											<br>
+											@foreach($dataInside as $dataInsideTwice)
+												{{ Form :: checkbox($moduleBlock -> db_column.'[]', 1, $dataInside) }}
+												{{ $dataInsideTwice }}
+												<br>
+											@endforeach
+										@endforeach
+										<br><br><br>
+										@php
+											print_r($multiplyCheckboxCategory[$moduleBlock -> db_column]);
+										@endphp
+									</div>
+								</div>
+
+								@break
 							@default
 								<div class="p-2 standard-block">
 									<div class="p-2">

@@ -121,21 +121,12 @@ class ACoreController extends Controller {
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
 
-				$tempVar = $data -> select_optgroup_text;
-				
-				// $sort_by_this = $data -> select_sort_by_text;
-
-				// $selectOptgroudData[$data -> db_column] = array('Cats' => array('45' => 'Leopard','124' => 'Lion'),
-				// 												'tiger' => array('12' => 'Grizzle'),
-				// 													'Dogs' => array('54' => 'Spaniel'),
-				// 																);
+				$tempVar = $data -> select_optgroup_text;														
 
 				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --');
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
 					$tempVarSecond = $data -> select_optgroup_2_text;
-
-					// $alex[$dataInside -> id] = $dataInside -> $tempVar;
 
 					foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
 						$alex[$dataInside -> $tempVar][$dataInsideTwice -> id] = $dataInsideTwice -> $tempVarSecond;
@@ -144,6 +135,24 @@ class ACoreController extends Controller {
 
 				$selectOptgroudData[$data -> db_column] = $alex;
 			}
+
+			// Start Of Multiply Checkbox With Category
+				if($data -> type === 'multiply_checkboxes_with_category') {
+					$checkboxTableText = $data -> sql_select_with_checkboxes_option_text;														
+
+					$checkboxArray = array();
+
+					foreach(DB :: table($data -> sql_select_with_checkboxes_table) -> orderBy($data -> sql_select_with_checkboxes_sort_by, 'desc') -> get() as $dataInside) {
+						$checkboxTableTextInside = $data -> sql_select_with_checkboxes_option_text_inside;
+
+						foreach(DB :: table($data -> sql_select_with_checkboxes_table_inside) -> where('parent', $dataInside -> id) -> orderBy($data -> sql_select_with_checkboxes_sort_by_inside, 'desc') -> get() as $dataInsideTwice) {
+							$checkboxArray[$dataInside -> $checkboxTableText][$dataInsideTwice -> id] = $dataInsideTwice -> $checkboxTableTextInside;
+						}
+					}
+
+					$multiplyCheckboxCategory[$data -> db_column] = $checkboxArray;
+				}
+			// End Of Multiply Checkbox With Category
 		}
 
 		// <!-- Form:: -->
@@ -173,10 +182,6 @@ class ACoreController extends Controller {
 			}
 		}
 
-
-
-		// $page_test = DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get();
-
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStepStep1,
 											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
@@ -191,7 +196,8 @@ class ACoreController extends Controller {
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,
-											'use_for_tags' => $use_for_tags]);
+											'use_for_tags' => $use_for_tags,
+											'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
 
 		return view('modules.core.step1', $data);
 		// return $test;
