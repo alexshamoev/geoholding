@@ -6,6 +6,14 @@ use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
+
+	/**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'news_step_0';
+
 	public function getData($lang) {
 		$updatedData = (object) array();
 		$updatedData -> title = '';
