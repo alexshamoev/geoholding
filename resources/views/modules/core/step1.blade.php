@@ -120,9 +120,7 @@
 										{{ Form::checkbox($moduleBlock -> db_column.'[]', $key , $dataInside['active']) }}
 										{{ $dataInside['title'] }}
 									@endforeach
-
 									</div>
-									{{ print_r($multiplyCheckbox[$moduleBlock -> db_column]) }}
 								</div>
 
 								@break

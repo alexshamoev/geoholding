@@ -102,7 +102,6 @@ class ACoreController extends Controller {
 
 		$varWord = 'word_'.$activeLang -> title;
 
-		
 		$selectData = [];
 		$selectOptgroudData = [];
 		$multCheckboxCatTable = '';
@@ -121,9 +120,7 @@ class ACoreController extends Controller {
 			
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
-
 				$tempVar = $data -> select_optgroup_text;														
-
 				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --');
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
@@ -141,17 +138,14 @@ class ACoreController extends Controller {
 				$multiplyCheckboxCategory = [];
 				if($data -> type === 'multiply_checkboxes_with_category') {
 					$checkboxTableText = $data -> sql_select_with_checkboxes_option_text;														
-
 					$checkboxArray = array();
 
 					foreach(DB :: table($data -> sql_select_with_checkboxes_table) -> orderBy($data -> sql_select_with_checkboxes_sort_by, 'desc') -> get() as $dataInside) {
 						$checkboxTableTextInside = $data -> sql_select_with_checkboxes_option_text_inside;
-
 						$tempDbColumn = $data -> db_column;
 						$tempArray = explode(',', $pageData -> $tempDbColumn);
 
 						foreach(DB :: table($data -> sql_select_with_checkboxes_table_inside) -> where('parent', $dataInside -> id) -> orderBy($data -> sql_select_with_checkboxes_sort_by_inside, 'desc') -> get() as $dataInsideTwice) {
-
 							$active = 0;
 							foreach($tempArray as $tempData) {
 								if($tempData == $dataInsideTwice -> id) {
@@ -169,34 +163,29 @@ class ACoreController extends Controller {
 			// End Of Multiply Checkbox With Category
 
 			// Start Of Multiply Checkbox
-			$multiplyCheckbox = [];
-			if($data -> type === 'multiply_checkboxes') {
-				$checkboxText = $data -> sql_select_with_checkboxes_option_text;														
+				$multiplyCheckbox = [];
+				if($data -> type === 'multiply_checkboxes') {
+					$checkboxText = $data -> sql_select_with_checkboxes_option_text;														
+					$checkboxArray = array();
+					$active = 0;
 
-				$checkboxArray = array();
-				$active = 0;
+					foreach(DB :: table($data -> sql_select_with_checkboxes_table) -> orderBy($data -> sql_select_with_checkboxes_sort_by, 'desc') -> get() as $dataInside) {
+						$tempDbColumn = $data -> db_column;
+						$tempArray = explode(',', $pageData -> $tempDbColumn);
 
-				
-
-				foreach(DB :: table($data -> sql_select_with_checkboxes_table) -> orderBy($data -> sql_select_with_checkboxes_sort_by, 'desc') -> get() as $dataInside) {
-
-					$tempDbColumn = $data -> db_column;
-					$tempArray = explode(',', $pageData -> $tempDbColumn);
-
-					foreach($tempArray as $tempData) {
-						if($tempData == $dataInside -> id) {
-							$active = 1;
+						foreach($tempArray as $tempData) {
+							if($tempData == $dataInside -> id) {
+								$active = 1;
+							}
 						}
+
+						$checkboxArray[$dataInside -> id] = array('title' => $dataInside -> $checkboxText, 'active' => $active);
+						// $checkboxArray[$dataInside -> id] = $dataInside -> $checkboxText;
 					}
-
-					$checkboxArray[$dataInside -> id] = array('title' => $dataInside -> $checkboxText, 'active' => $active);
-					// $checkboxArray[$dataInside -> id] = $dataInside -> $checkboxText;
-
+					
+					$multiplyCheckbox[$data -> db_column] = $checkboxArray;
 				}
-				
-				$multiplyCheckbox[$data -> db_column] = $checkboxArray;
-			}
-		// End Of Multiply Checkbox
+			// End Of Multiply Checkbox
 			
 		}
 
