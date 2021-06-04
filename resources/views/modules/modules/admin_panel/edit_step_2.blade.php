@@ -555,7 +555,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
+				<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_table_inside</span>
@@ -567,7 +567,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
+				<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_sort_by_inside</span>
@@ -579,7 +579,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
+				<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>sql_select_with_checkboxes_option_text_inside</span>
@@ -603,7 +603,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forMultiplyCheckboxes forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>div_id</span>
@@ -617,7 +617,7 @@
 
 
 						
-				<div class="p-2 dataBlock forInput forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forFile forMultiplyCheckboxes forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<label>
 							{{ Form :: checkbox('required', '1') }}
