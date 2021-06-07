@@ -48,6 +48,18 @@
 								</div>
 
 								@break
+							@case('image')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
+								</div>
+
+								@break
 							@case('select')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -85,7 +97,7 @@
 								</div>
 
 								@break
-								@case('alias')
+							@case('alias')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
@@ -97,7 +109,7 @@
 								</div>
 
 								@break
-								@case('checkbox')
+							@case('checkbox')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
@@ -109,7 +121,7 @@
 								</div>
 
 								@break
-								@case('multiply_checkboxes')
+							@case('multiply_checkboxes')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
@@ -124,7 +136,7 @@
 								</div>
 
 								@break
-								@case('multiply_checkboxes_with_category')
+							@case('multiply_checkboxes_with_category')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										@foreach($multiplyCheckboxCategory[$moduleBlock -> db_column] as $key => $dataInside)

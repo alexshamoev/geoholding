@@ -66,9 +66,12 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreController@deleteStep3') -> name('coreDeleteStep3');
 
 
+
 	Route :: post('/set-rangs', 'ARangController@set');
 });
  
+Route::get('/image-upload', 'ImageUploadController@img_upload')->name("img.upload");
+Route::post('/imgstore', 'ImageUploadController@imagestore')->name("img.store");
 
 Auth :: routes();
 
