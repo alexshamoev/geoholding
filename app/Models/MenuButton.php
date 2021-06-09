@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MenuButton extends Model {
     public static function getFullData($lang) {
-		$menuButtons = self :: where('published', 1) -> get();
+		$menuButtons = self :: where('published', 1) -> orderByDesc('rang') -> get();
 
 		$menuButtonsUpdatedData = $menuButtons;
 
