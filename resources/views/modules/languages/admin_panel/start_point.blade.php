@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('დამახსოვრება') }}
+				{{ Form :: submit('Submit') }}
 			</div>
 		</div>
 	{{ Form :: close() }}
