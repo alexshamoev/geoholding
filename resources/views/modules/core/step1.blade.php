@@ -26,6 +26,7 @@
 
 
 	<div class="p-2">
+
 		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
@@ -47,6 +48,18 @@
 								</div>
 
 								@break
+							@case('image')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
+								</div>
+
+								@break
 							@case('select')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -59,6 +72,19 @@
 								</div>
 
 								@break
+							@case('select_with_optgroup')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column], $data -> $tempVar) }}
+									</div>
+								</div>
+								
+								@break
+
 							@case('editor')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -83,6 +109,49 @@
 								</div>
 
 								@break
+							@case('checkbox')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> $tempVar) }}
+									</div>
+								</div>
+
+								@break
+							@case('multiply_checkboxes')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+									@foreach($multiplyCheckbox[$moduleBlock -> db_column] as $key => $dataInside)
+										{{ Form::checkbox($moduleBlock -> db_column.'[]', $key , $dataInside['active']) }}
+										{{ $dataInside['title'] }}
+									@endforeach
+									</div>
+								</div>
+
+								@break
+							@case('multiply_checkboxes_with_category')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										@foreach($multiplyCheckboxCategory[$moduleBlock -> db_column] as $key => $dataInside)
+											{{ $key }}
+											<br>
+											@foreach($dataInside as $secondKey => $dataInsideTwice)
+												{{ Form :: checkbox($moduleBlock -> db_column.'[]', $secondKey, $dataInsideTwice['active']) }}
+												{{ $dataInsideTwice['title'] }}
+												<br>
+											@endforeach
+										@endforeach
+									</div>
+								</div>
+
+								@break
 							@default
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -102,5 +171,32 @@
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
+		
+		@if($moduleStepTableData)
+			@include('admin.includes.addButton', [
+				'text' => $bsw -> a_add.' '.$moduleStep -> title,
+				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
+			])
+
+			<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
+				@foreach($moduleStepTableData as $dataIn)
+					@if($sortBy === 'rang')
+						@include('admin.includes.horizontalEditDeleteBlock', [
+							'id' => $dataIn -> id,
+							'title' => $dataIn -> $use_for_tags,
+							'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+							'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+						])
+					@else 
+						@include('admin.includes.horizontalEditDelete', [
+								'id' => $dataIn -> id,
+								'title' => $dataIn -> $use_for_tags,
+								'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+								'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+						])
+					@endif
+				@endforeach
+			</div>
+		@endif
 	</div>
 @endsection

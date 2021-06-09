@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model {
     public static function getFullData($lang, $page) {
-		$languages = self :: where('published', 1) -> get();
+		$languages = self :: where('published', 1) -> orderByDesc('rang') -> get();
 
 		$languagesUpdatedData = $languages;
  

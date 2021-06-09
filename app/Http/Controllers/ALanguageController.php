@@ -20,7 +20,7 @@ class ALanguageController extends Controller {
 
 		$defaultData = ADefaultData :: get();
 
-		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortBy('title')]);
+		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortByDesc('rang')]);
 
 		return view('modules.languages.admin_panel.start_point', $data);
 	}

@@ -226,13 +226,16 @@
 
 
 		<div>
-			@foreach($moduleSteps as $data)
-				@include('admin.includes.horizontalEditDeleteBlock', [
-					'title' => $data -> title,
-					'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-					'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-				])
-			@endforeach
+			<div id="rangBlocks" data-db_table="module_steps">
+				@foreach($moduleSteps as $data)
+					@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $data -> id,
+						'title' => $data -> title,
+						'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
+						'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
+					])
+				@endforeach
+			</div>	
 		</div>
 	</div>
 @endsection

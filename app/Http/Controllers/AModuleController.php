@@ -98,7 +98,7 @@ class AModuleController extends Controller {
 											'pages' => Page :: where('published', 1) -> get(),
 											'languages' => Language :: where('published', 1) -> get(),
 											'module' => $module,
-											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
+											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 											'prevModuleId' => $prevId,
 											'nextModuleId' => $nextId]);
 

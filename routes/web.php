@@ -49,20 +49,31 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/{moduleAlias}/{id}', 'ACoreController@editStep0') -> name('coreEditStep0');
 	Route :: post('/{moduleAlias}/{id}', 'ACoreController@updateStep0') -> name('coreUpdateStep0');
 	Route :: get('/{moduleAlias}/{id}/delete', 'ACoreController@deleteStep0') -> name('coreDeleteStep0');
+
+	Route :: get('/{moduleAlias}/{parent}/add', 'ACoreController@addStep1') -> name('coreAddStep1');
+	Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreController@editStep1') -> name('coreEditStep1');
+	Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreController@updateStep1') -> name('coreUpdateStep1');
+	Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreController@deleteStep1') -> name('coreDeleteStep1');
+
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreController@addStep2') -> name('coreAddStep2');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@editStep2') -> name('coreEditStep2');
+	Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@updateStep2') -> name('coreUpdateStep2');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreController@deleteStep2') -> name('coreDeleteStep2');
+
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreController@addStep3') -> name('coreAddStep3');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@editStep3') -> name('coreEditStep3');
+	Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@updateStep3') -> name('coreUpdateStep3');
+	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreController@deleteStep3') -> name('coreDeleteStep3');
+
+
+
+	Route :: post('/set-rangs', 'ARangController@set');
 });
  
- 
-// Route :: get('/{any}', function($any) {
-	// return 'hi';
-
-	// any other url, subfolders also
-
-// }) -> where('any', '.*');
-
+Route::get('/image-upload', 'ImageUploadController@img_upload')->name("img.upload");
+Route::post('/imgstore', 'ImageUploadController@imagestore')->name("img.store");
 
 Auth :: routes();
-
-// Route :: get('/home', 'HomeController@index') -> name('home');
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
@@ -74,21 +85,7 @@ Route :: get('/logout', function() {
 }) -> name('logout');
 
 
+
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
 Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
-
-
-// Route :: get('/{lang}/{pageAlias}/{step0Alias}/{step1Alias}', 'PageController@getStep1') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+', 'step0Alias' => '[a-zა-ჰа-я-]+', 'step1Alias' => '[a-zა-ჰа-я-]+']);
-
-// Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
-
-// }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-я-]+']);
-
-
-// Route::get('/page/create-empty', 'PageController@createEmpty');
-
-// Route :: post('/contact/submit', 'ContactController@submit') -> name('contact-form');
-// Auth::routes();
-
-// Route :: get('/home', 'HomeController@index') -> name('home');

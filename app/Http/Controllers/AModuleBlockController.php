@@ -139,6 +139,7 @@ class AModuleBlockController extends Controller {
 		$moduleBlock -> select_sort_by = (!is_null($request -> input('select_sort_by')) ? $request -> input('select_sort_by') : '');
 		$moduleBlock -> select_search_column = (!is_null($request -> input('select_search_column')) ? $request -> input('select_search_column') : '');
 		$moduleBlock -> select_option_text = (!is_null($request -> input('select_option_text')) ? $request -> input('select_option_text') : '');
+		$moduleBlock -> select_sort_by_text = (!is_null($request -> input('select_sort_by_text')) ? $request -> input('select_sort_by_text') : '');
 		$moduleBlock -> select_optgroup_table = (!is_null($request -> input('select_optgroup_table')) ? $request -> input('select_optgroup_table') : '');
 		$moduleBlock -> select_optgroup_sort_by = (!is_null($request -> input('select_optgroup_sort_by')) ? $request -> input('select_optgroup_sort_by') : '');
 		$moduleBlock -> select_optgroup_text = (!is_null($request -> input('select_optgroup_text')) ? $request -> input('select_optgroup_text') : '');

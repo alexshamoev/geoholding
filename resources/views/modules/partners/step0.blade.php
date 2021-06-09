@@ -6,7 +6,7 @@
 
 
 		@foreach($partners as $data)
-			<a href="#">
+			<a href="{{ $data -> link }}" target="_blank">
 				<div class="p-2">
 					<div class="p-2">
 						{{ $data -> title }}

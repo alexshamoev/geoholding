@@ -87,24 +87,24 @@ img {
 }
 
 input {
-  &[type="checkbox"] {
-    margin: 3px;
-  }
+	&[type="checkbox"] {
+		margin: 3px;
+	}
+	
+	&[type="submit"],
+	&[type="button"] {
+		border-radius: 0;
+		-webkit-appearance: none;
+	}
 
-  &[type="submit"],
-  &[type="button"] {
-    border-radius: 0;
-    -webkit-appearance: none;
-  }
-
-  &[type="text"],
-  &[type="file"],
-  &[type="password"],
-  &[type="date"],
-  &[type="tel"],
-  &[type="email"] {
-    margin: 0;
-    outline: none;
+	&[type="text"],
+	&[type="file"],
+	&[type="password"],
+	&[type="date"],
+	&[type="tel"],
+	&[type="email"] {
+		margin: 0;
+		outline: none;
     padding: 5px;
     width: 200px;
     border: 1px solid #000;
