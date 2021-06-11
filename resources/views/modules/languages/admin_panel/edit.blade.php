@@ -53,26 +53,6 @@
 				</div>
 			</div>
 
-			<!-- <div class="p-2 w-100">
-				<div class="standard-block standard-block--no-left-border row">
-					<div class="col-3 p-3 checkbox-block">
-						<label>
-							{{ Form :: checkbox('like_default', '1') }}
-
-							Default for front?
-						</label>
-					</div>
-
-					<div class="col-3 p-3 checkbox-block">
-						<label>
-							{{ Form :: checkbox('like_default_for_admin', '1') }}
-
-							Default for admin?
-						</label>
-					</div>
-				</div>
-			</div> -->
-
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-1">

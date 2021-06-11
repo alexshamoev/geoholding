@@ -13,7 +13,7 @@
 		<div class="p-2 languages">
 			@include('admin.includes.addButton', ['text' => 'Add Language', 'url' => route('languageAdd')])
 			
-			<div>
+			<div id="rangBlocks" data-db_table="languages">
 				@foreach($languages as $data)
 					@include('modules.languages.admin_panel.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,

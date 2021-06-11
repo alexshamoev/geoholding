@@ -3,6 +3,7 @@ namespace App;
 
 
 use App\Models\Module;
+use App\Models\ModuleStep;
 use App\Models\ModulesIncludesValue;
 use App\Models\ModulesNotIncludesValue;
 use App\Models\Bsc;
@@ -19,7 +20,16 @@ class ADefaultData {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
-		$data = ['modules' => Module :: all() -> sortByDesc('rang'),
+		
+		$modules = array();
+
+		foreach(Module :: all() -> sortByDesc('rang') as $data) {
+			if(ModuleStep :: where('top_level', $data['id']) -> first()) {
+				$modules[] = $data;
+			}
+		}
+
+		$data = ['modules' => $modules,
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
 				'copyrightDate' => $copyrightDate];

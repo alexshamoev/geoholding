@@ -257,8 +257,7 @@ class ACoreController extends Controller {
 										'',
 										$value);
 
-				$value = strtolower(trim($value));
-				$value = mb_strtolower($value);
+				$value = mb_strtolower(trim($value));
 
 				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
@@ -314,6 +313,7 @@ class ACoreController extends Controller {
 		return redirect() -> route('coreGetStep0', $module -> alias);
 	}
 
+	
 	public function addStep1($moduleAlias, $parent) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -424,7 +424,7 @@ class ACoreController extends Controller {
 
 		// $moduleParent = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
 
-		$moduleTitle = 
+		// $moduleTitle = 
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
@@ -458,7 +458,9 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
+			if($data -> type !== 'published'
+				&& $data -> type !== 'rang'
+				&& $data -> type !== 'alias') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
@@ -468,8 +470,8 @@ class ACoreController extends Controller {
 										'',
 										$value);
 
-				$value = strtolower(trim($value));
-				$value = mb_strtolower($value);
+				// $value = strtolower(trim($value));
+				$value = mb_strtolower(trim($value));
 
 				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
@@ -486,6 +488,7 @@ class ACoreController extends Controller {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
+
 		// return $moduleStep -> db_table;
 	}
 
@@ -498,6 +501,7 @@ class ACoreController extends Controller {
 		return redirect() -> route('coreEditStep0', array($module -> alias, $parent));
 	}
 
+
 	public function addStep2($moduleAlias, $parentFirst, $parentSecond) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
@@ -507,6 +511,7 @@ class ACoreController extends Controller {
 		return redirect() -> route('coreEditStep2', array($module -> alias, $parentFirst, $parentSecond, $newRowId));
 		// return $moduleStep -> db_table;
 	}
+
 
 	public function editStep2($moduleAlias, $parentFirst, $parentSecond, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
@@ -636,6 +641,7 @@ class ACoreController extends Controller {
 		return view('modules.core.step3', $data);
 	}
 
+
 	public function updateStep2(Request $request, $moduleAlias, $parentFirst, $parentSecond, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
@@ -654,8 +660,8 @@ class ACoreController extends Controller {
 										'',
 										$value);
 
-				$value = strtolower(trim($value));
-				$value = mb_strtolower($value);
+				// $value = strtolower(trim($value));
+				$value = mb_strtolower(trim($value));
 
 				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
@@ -686,6 +692,7 @@ class ACoreController extends Controller {
 		// return $moduleAlias.' '.$parentFirst.' '.$parentSecond.' '.$id;
 	}
 
+
 	public function addStep3($moduleAlias, $parentFirst, $parentSecond, $parentThird) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(3) -> take(1) -> first();
@@ -695,6 +702,7 @@ class ACoreController extends Controller {
 		return redirect() -> route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $parentThird, $newRowId));
 		// return $moduleStep -> db_table;
 	}
+
 
 	public function editStep3($moduleAlias, $parentFirst, $parentSecond, $parentThird, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
@@ -827,6 +835,7 @@ class ACoreController extends Controller {
 		return view('modules.core.step4', $data);
 	}
 
+
 	public function updateStep3(Request $request, $moduleAlias, $parentFirst, $parentSecond, $parentThird, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(3) -> take(1) -> first();
@@ -845,8 +854,7 @@ class ACoreController extends Controller {
 										'',
 										$value);
 
-				$value = strtolower(trim($value));
-				$value = mb_strtolower($value);
+				$value = mb_strtolower(trim($value));
 
 				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
@@ -865,6 +873,7 @@ class ACoreController extends Controller {
 		return redirect() -> route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $parentThird, $id));
 		// return $moduleStep -> db_table;
 	}
+
 
 	public function deleteStep3($moduleAlias, $parentFirst, $parentSecond, $parentThird, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
