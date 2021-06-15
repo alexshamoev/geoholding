@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    BSC > Edit > {{ $activeBsc -> system_word }}
 @endsection
 
 
@@ -26,7 +26,7 @@
 
 
 	{{ Form :: model($activeBsc, array('route' => array('bscUpdate', $activeBsc -> id))) }}
-	<div class="p-2">
+		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

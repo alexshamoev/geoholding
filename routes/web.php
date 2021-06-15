@@ -1,7 +1,16 @@
 <?php
-Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
+Route :: view('/admin/login', 'admin.login') -> name('adminLogin');
+
+
+Route :: get('/admin/admins/add', 'AAdminController@getAdd') -> name('adminsGetAdd');
+Route :: post('/admin/admins/add', 'AAdminController@save') -> name('adminsAdd');
+
+
+Route :: group(['middleware' => 'auth', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage');
-	Route :: get('/login') -> name('login');
+
+	Route :: get('/logout', 'AAdminController@logout') -> name('logout');
+
 
 	Route :: get('/modules', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
 	Route :: get('/modules/add', 'AModuleController@add') -> name('moduleAdd');
@@ -66,23 +75,24 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreController@deleteStep3') -> name('coreDeleteStep3');
 
 
-
-	Route :: post('/set-rangs', 'ARangController@set');
+	// Ajax
+		Route :: post('/set-rangs', 'ARangController@set');
+	// 
 });
  
 Route::get('/image-upload', 'ImageUploadController@img_upload')->name("img.upload");
 Route::post('/imgstore', 'ImageUploadController@imagestore')->name("img.store");
 
-Auth :: routes();
+// Auth :: routes();
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
 
-Route :: get('/logout', function() {
-	Auth :: logout();
+// Route :: get('/logout', function() {
+// 	Auth :: logout();
 
-	return redirect() -> route('main');
-}) -> name('logout');
+// 	return redirect() -> route('main');
+// }) -> name('logout');
 
 
 

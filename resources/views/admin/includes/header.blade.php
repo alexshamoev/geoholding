@@ -17,6 +17,10 @@
 		</div>
 
 		<div class="col-8 text-right">
+			<a href="{{ route('logout') }}">
+				Logout
+			</a>
+
 			<div class="p-2">
 				<span>მოგესალმებით სუპერ ადმინისტრატორი</span>
 			</div>
