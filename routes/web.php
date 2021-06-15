@@ -6,7 +6,7 @@ Route :: get('/admin/admins/add', 'AAdminController@getAdd') -> name('adminsGetA
 Route :: post('/admin/admins/add', 'AAdminController@save') -> name('adminsAdd');
 
 
-Route :: group(['middleware' => 'auth', 'prefix' => '/admin'], function() {
+Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage');
 
 	Route :: get('/logout', 'AAdminController@logout') -> name('logout');
