@@ -13,15 +13,94 @@ use Illuminate\Support\Facades\Auth;
 
 
 class AAdminController extends Controller {
-    public function getAdd() {
-        return view('modules.admins.admin_panel.add', ADefaultData :: get());
+    public function logout() {
+        if(Auth :: check()) {
+            Auth :: logout();
+        }
+
+        return redirect('/admin');
     }
 
 
-    public function save(Request $request) {
-        if(Auth :: check()) {
-            return redirect('/admin');
-        }
+    public function getStartPoint() {
+        $defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['admins' => User :: all() -> sortBy('email')]);
+
+		return view('modules.admins.admin_panel.start_point', $data);
+    }
+
+
+    public function add() {
+        // $bsc = new Bsc();
+
+		// $bsc -> system_word = '';
+		// $bsc -> configuration = '';
+
+		// $bsc -> save();
+
+		// return redirect() -> route('bscEdit', $bsc -> id);
+
+
+        $user = new User();
+
+        $user -> name = '';
+        $user -> password = '';
+        $user -> email = '';
+
+        $user -> save();
+
+
+        // return redirect(route('admin.login')) -> withErrors([
+        //     'formError' => 'მოხდა ავტორიზაციის შეცდომა'
+        // ]);
+
+        return redirect(route('adminEdit', $user -> id));
+
+
+        // return view('modules.admins.admin_panel.add', ADefaultData :: get());
+    }
+
+
+    public function edit($id) {
+		$admin = User :: find($id);
+
+		$prevId = 0;
+		$nextId = 0;
+
+		$prevIdIsSaved = false;
+		$nextIdIsSaved = false;
+
+		foreach(User :: all() -> sortBy('email') as $data) {
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
+			
+			if($admin -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
+			
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
+		}
+
+		$defaultData = ADefaultData :: get();
+
+		$data = array_merge($defaultData, ['admins' => User :: all() -> sortBy('email'),
+											'activeAdmin' => User :: find($id),
+											'prevAdminId' => $prevId,
+											'nextAdminId' => $nextId]);
+
+		return view('modules.admins.admin_panel.edit', $data);
+	}
+
+
+    /*public function update(Request $request, $id) {
+        // if(Auth :: check()) {
+        //     return redirect('/admin');
+        // }
 
         $validateFields = $request -> validate([
             'email' => 'required|email',
@@ -30,23 +109,42 @@ class AAdminController extends Controller {
 
         $user = User :: create($validateFields);
 
-        if($user) {
-            Auth :: login($user);
+        // if($user) {
+        //     Auth :: login($user);
 
-            return redirect('/admin');
-        }
+        //     return redirect(route('adminStartPoint'));
+        // }
 
-        return redirect(route('admin.login')) -> withErrors([
-            'formError' => 'მოხდა ავტორიზაციის შეცდომა'
+        // return redirect(route('admin.login')) -> withErrors([
+        //     'formError' => 'მოხდა ავტორიზაციის შეცდომა'
+        // ]);
+    }*/
+
+
+    public function update(Request $request, $id) {
+        $validateFields = $request -> validate([
+            'name' => 'required',
+            'email' => 'required|email'
         ]);
-    }
 
 
-    public function logout() {
-        if(Auth :: check()) {
-            Auth :: logout();
-        }
+		$admin = User :: find($id);
 
-        return redirect('/admin');
+		$admin -> name = (!is_null($request -> input('name')) ? $request -> input('name') : '');
+		$admin -> email = (!is_null($request -> input('email')) ? $request -> input('email') : '');
+		$admin -> password = (!is_null($request -> input('password')) ? $request -> input('password') : '');
+
+		$admin -> save();
+
+		return redirect(route('adminEdit', $admin -> id));
+
+        return $admin -> password;
+	}
+
+
+    public function delete($id) {
+        User :: destroy($id);
+
+        return redirect() -> route('adminStartPoint');
     }
 }

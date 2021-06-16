@@ -34,7 +34,7 @@ class ABscController extends Controller {
 
 		return redirect() -> route('bscEdit', $bsc -> id);
 	}
-
+	
 	
 	public function edit($id) {
 		$bsc = Bsc :: find($id);

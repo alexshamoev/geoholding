@@ -86,7 +86,7 @@
 			</div>
 		</a>
 
-		<a href="/admin/admins">
+		<a href="{{ route('adminStartPoint') }}">
 			<div class="d-flex align-items-center px-2">
 				<div class="p-2">
 					<span>Admins</span>

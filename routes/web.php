@@ -2,14 +2,17 @@
 Route :: view('/admin/login', 'admin.login') -> name('adminLogin');
 
 
-Route :: get('/admin/admins/add', 'AAdminController@getAdd') -> name('adminsGetAdd');
-Route :: post('/admin/admins/add', 'AAdminController@save') -> name('adminsAdd');
-
-
 Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage');
 
 	Route :: get('/logout', 'AAdminController@logout') -> name('logout');
+
+
+	Route :: get('/admins', 'AAdminController@getStartPoint') -> name('adminStartPoint');
+	Route :: get('/admins/add', 'AAdminController@add') -> name('adminAdd');
+	Route :: get('/admins/{id}', 'AAdminController@edit') -> name('adminEdit');
+	Route :: post('/admins/{id}', 'AAdminController@update') -> name('adminUpdate');
+	Route :: get('/admins/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
 
 
 	Route :: get('/modules', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
@@ -17,7 +20,7 @@ Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
 	Route :: get('/modules/{id}', 'AModuleController@edit') -> name('moduleEdit');
 	Route :: post('/modules/{id}', 'AModuleController@update') -> name('moduleUpdate');
 	Route :: get('/modules/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
-	
+
 
 	Route :: get('/modules/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
 	Route :: get('/modules/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');

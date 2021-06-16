@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Admins > Add User
+    Admins > Edit Admin
 @endsection
 
 
@@ -10,11 +10,79 @@
     @include('admin.includes.tags', [
 		'tag0Text' => 'Admins',
 		'tag0Url' => route('adminStartPoint'),
-		'tag1Text' => '415'
+		'tag1Text' => $activeAdmin -> email
 	])
 
 
-    <div class="row justify-content-center">
+    @include('admin.includes.bar', [
+		'addUrl' => route('adminAdd'),
+		'deleteUrl' => route('adminDelete', $activeAdmin -> id),
+		'nextId' => $nextAdminId,
+		'prevId' => $prevAdminId,
+		'nextRoute' => route('adminEdit', $nextAdminId),
+		'prevRoute' => route('adminEdit', $prevAdminId),
+		'backRoute' => route('adminStartPoint')
+	])
+
+
+    {{ Form :: model($activeAdmin, array('route' => array('adminUpdate', $activeAdmin -> id))) }}
+		<div class="p-2">
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>Name: *</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('name') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>E-mail: *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: text('email') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>Password *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: password('password') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>Confirm Password: *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: password('password_confirmation') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 submit-button">
+				{{ Form :: submit('Submit') }}
+			</div>
+		</div>
+	{{ Form :: close() }}
+
+
+    <!-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
@@ -27,7 +95,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $activeAdmin -> name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -41,7 +109,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $activeAdmin -> email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -84,5 +152,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 @endsection
