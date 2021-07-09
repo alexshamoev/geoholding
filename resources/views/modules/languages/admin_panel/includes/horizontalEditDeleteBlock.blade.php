@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				
-				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move">
+				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
 					<div class="p-3">
 						<img src="{{ asset('/images/admin/bars.svg') }}" alt="bars" class="bar-tag-bigger-img">
 					</div>

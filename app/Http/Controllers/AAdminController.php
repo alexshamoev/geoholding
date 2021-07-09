@@ -18,7 +18,34 @@ class AAdminController extends Controller {
             Auth :: logout();
         }
 
-        return redirect('/admin');
+        return redirect(route('adminLogin'));
+    }
+
+
+    public function getLogin() {
+        if(Auth :: check()) {
+            return redirect() -> intended(route('adminDefaultPage'));
+        }
+        
+        return view('admin.login');
+    }
+
+
+    public function login(Request $request) {
+        if(Auth :: check()) {
+            return redirect() -> intended(route('adminDefaultPage'));
+        }
+
+
+        $formFields = $request -> only(['email', 'password']);
+
+        if(Auth :: attempt($formFields)) {
+            return redirect() -> intended(route('adminDefaultPage'));
+        }
+
+        return redirect(route('adminLogin')) -> withErrors([
+            'email' => 'Bad email!'
+        ]);
     }
 
 

@@ -22,7 +22,11 @@
 			</a>
 
 			<div class="p-2">
-				<span>მოგესალმებით სუპერ ადმინისტრატორი</span>
+				მოგესალმებით
+
+				<a href="{{ route('adminEdit', $activeUser -> id) }}">
+					{{ $activeUser -> name }}
+				</a>
 			</div>
 			<a href="/" target="_blank">
 				<div class="p-2">

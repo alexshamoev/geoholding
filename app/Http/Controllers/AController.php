@@ -15,11 +15,11 @@ use DB;
 
 class AController extends Controller {
 	public function getDefaultPage() {
-		$firstModul = Module :: orderBy('rang', 'desc') -> first();
-		$firstModulTitle = $firstModul -> alias;
+		$firstModule = Module :: orderBy('rang', 'desc') -> first();
+		$firstModuleTitle = $firstModule -> alias;
 
-		return redirect("/admin/$firstModulTitle");
+		return redirect("/admin/$firstModuleTitle");
 		
-		// return $firstModul -> alias;
+		// return $firstModule -> alias;
 	}
 }

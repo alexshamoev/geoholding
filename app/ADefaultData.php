@@ -9,6 +9,8 @@ use App\Models\ModulesNotIncludesValue;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Language;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class ADefaultData {
@@ -32,7 +34,8 @@ class ADefaultData {
 		$data = ['modules' => $modules,
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
-				'copyrightDate' => $copyrightDate];
+				'copyrightDate' => $copyrightDate,
+				'activeUser' => Auth :: user()];
 
 		return $data;
 	}

@@ -1,59 +1,71 @@
 <?php
-Route :: view('/admin/login', 'admin.login') -> name('adminLogin');
+Route :: prefix('admin') -> group(function() {
+	Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
+	Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
+});
 
 
-Route :: group(['middleware' => 'admin', 'prefix' => '/admin'], function() {
-	Route :: get('/', 'AController@getDefaultPage');
+Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
+	Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
 
 	Route :: get('/logout', 'AAdminController@logout') -> name('logout');
 
 
-	Route :: get('/admins', 'AAdminController@getStartPoint') -> name('adminStartPoint');
-	Route :: get('/admins/add', 'AAdminController@add') -> name('adminAdd');
-	Route :: get('/admins/{id}', 'AAdminController@edit') -> name('adminEdit');
-	Route :: post('/admins/{id}', 'AAdminController@update') -> name('adminUpdate');
-	Route :: get('/admins/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
+	Route :: prefix('admins') -> group(function() {
+		Route :: get('', 'AAdminController@getStartPoint') -> name('adminStartPoint');
+		Route :: get('/add', 'AAdminController@add') -> name('adminAdd');
+		Route :: get('/{id}', 'AAdminController@edit') -> name('adminEdit');
+		Route :: post('/{id}', 'AAdminController@update') -> name('adminUpdate');
+		Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
+	});
 
 
-	Route :: get('/modules', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
-	Route :: get('/modules/add', 'AModuleController@add') -> name('moduleAdd');
-	Route :: get('/modules/{id}', 'AModuleController@edit') -> name('moduleEdit');
-	Route :: post('/modules/{id}', 'AModuleController@update') -> name('moduleUpdate');
-	Route :: get('/modules/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
+	Route :: prefix('modules') -> group(function() {
+		Route :: get('', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
+		Route :: get('/add', 'AModuleController@add') -> name('moduleAdd');
+		Route :: get('/{id}', 'AModuleController@edit') -> name('moduleEdit');
+		Route :: post('/{id}', 'AModuleController@update') -> name('moduleUpdate');
+		Route :: get('/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
+		
+		Route :: get('/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
+		Route :: get('/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
+		Route :: post('/{moduleId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
+		Route :: get('/{moduleId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
+		
+		
+		Route :: get('/{moduleId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
+		Route :: get('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
+		Route :: post('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
+		Route :: get('/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
+	});
 
 
-	Route :: get('/modules/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
-	Route :: get('/modules/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
-	Route :: post('/modules/{moduleId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
-	Route :: get('/modules/{moduleId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
+	Route :: prefix('bsc') -> group(function() {
+		Route :: get('', 'ABscController@getStartPoint') -> name('bscStartPoint');
+		Route :: get('/add', 'ABscController@add') -> name('bscAdd');
+		Route :: get('/{id}', 'ABscController@edit') -> name('bscEdit');
+		Route :: post('/{id}', 'ABscController@update') -> name('bscUpdate');
+		Route :: get('/{id}/delete', 'ABscController@delete') -> name('bscDelete');
+	});
 
 
-	Route :: get('/modules/{moduleId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
-	Route :: get('/modules/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
-	Route :: post('/modules/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
-	Route :: get('/modules/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
-
-
-	Route :: get('/bsc', 'ABscController@getStartPoint') -> name('bscStartPoint');
-	Route :: get('/bsc/add', 'ABscController@add') -> name('bscAdd');
-	Route :: get('/bsc/{id}', 'ABscController@edit') -> name('bscEdit');
-	Route :: post('/bsc/{id}', 'ABscController@update') -> name('bscUpdate');
-	Route :: get('/bsc/{id}/delete', 'ABscController@delete') -> name('bscDelete');
-
-
-	Route :: get('/bsw', 'ABswController@getStartPoint') -> name('bswStartPoint');
-	Route :: get('/bsw/add', 'ABswController@add') -> name('bswAdd');
-	Route :: get('/bsw/{id}', 'ABswController@edit') -> name('bswEdit');
-	Route :: post('/bsw/{id}', 'ABswController@update') -> name('bswUpdate');
-	Route :: get('/bsw/{id}/delete', 'ABswController@delete') -> name('bswDelete');
+	Route :: prefix('bsw') -> group(function() {
+		Route :: get('', 'ABswController@getStartPoint') -> name('bswStartPoint');
+		Route :: get('/add', 'ABswController@add') -> name('bswAdd');
+		Route :: get('/{id}', 'ABswController@edit') -> name('bswEdit');
+		Route :: post('/{id}', 'ABswController@update') -> name('bswUpdate');
+		Route :: get('/{id}/delete', 'ABswController@delete') -> name('bswDelete');
+	});
 	
- 
-	Route :: get('/languages', 'ALanguageController@getStartPoint') -> name('languageStartPoint');
-	Route :: post('/languages', 'ALanguageController@updateStartPoint') -> name('languageStartPointPost');
-	Route :: get('/language/add', 'ALanguageController@add') -> name('languageAdd');
-	Route :: get('/language/{id}', 'ALanguageController@edit') -> name('languageEdit');
-	Route :: post('/language/{id}', 'ALanguageController@update') -> name('languageUpdate');
-	Route :: get('/language/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
+	
+	Route :: prefix('languages') -> group(function() {
+		Route :: get('', 'ALanguageController@getStartPoint') -> name('languageStartPoint');
+		Route :: post('', 'ALanguageController@updateStartPoint') -> name('languageStartPointPost');
+		Route :: get('/add', 'ALanguageController@add') -> name('languageAdd');
+		Route :: get('/{id}', 'ALanguageController@edit') -> name('languageEdit');
+		Route :: post('/{id}', 'ALanguageController@update') -> name('languageUpdate');
+		Route :: get('/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
+	});
  
 
 	Route :: get('/{moduleAlias}', 'ACoreController@getStep0') -> name('coreGetStep0');
