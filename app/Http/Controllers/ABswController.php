@@ -7,6 +7,7 @@ use App\Models\Module;
 use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class ABswController extends Controller {
@@ -68,8 +69,19 @@ class ABswController extends Controller {
 
 	public function update(Request $request, $id) {
 		$bsw = Bsw :: find($id);
+		
+		$validator = Validator :: make($request -> all(), [
+			'system_word' => 'required|min:2|max:255'
+		]);
 
-		$bsw -> system_word = (!is_null($request -> input('system_word')) ? $request -> input('system_word') : '');
+		if($validator -> fails()) {
+			return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator);
+		}
+
+
+
+		$bsw -> system_word = $request -> input('system_word');
+		// $bsw -> system_word = (!is_null($request -> input('system_word')) ? $request -> input('system_word') : '');
 
 		foreach(Language :: where('published', 1) -> get() as $data) {
 			$varWord = 'word_'.$data -> title;
