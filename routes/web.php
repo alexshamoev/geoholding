@@ -18,8 +18,8 @@ Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 		Route :: post('/{id}', 'AAdminController@update') -> name('adminUpdate');
 		Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
 	});
-
-
+	
+	
 	Route :: prefix('modules') -> group(function() {
 		Route :: get('', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
 		Route :: get('/add', 'AModuleController@add') -> name('moduleAdd');

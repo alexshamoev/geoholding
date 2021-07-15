@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 
 
 class PageController extends Controller {
-	private static function getDefaultData($lang, $page) {
+	public static function getDefaultData($lang, $page) {
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
 		$bsc = Bsc :: getFullData();
@@ -89,7 +89,7 @@ class PageController extends Controller {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
-			$page = Page :: where('alias_'.$lang, $alias) -> first();
+			$page = Page :: where('alias_'.$language -> title, $alias) -> first();
 
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
@@ -98,11 +98,7 @@ class PageController extends Controller {
 				if($active_module) {
 					switch($active_module -> alias) {
 						case 'news':
-							$data = self :: getDefaultData($language, $page);
-
-							$data = array_merge($data, ['newsStep0' => News :: getFullData($lang)]);
-
-							return view('modules.news.step0', $data);
+							return NewsController :: getStep0($language, $page);
 							
 							break;
 					}
@@ -122,7 +118,7 @@ class PageController extends Controller {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
-			$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+			$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
 
 			if($page) {
 				$active_module = Module :: where('page', $page -> id) -> first();
@@ -130,15 +126,8 @@ class PageController extends Controller {
 				if($active_module) {
 					switch($active_module -> alias) {
 						case 'news':
-							$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
+							return NewsController :: getStep1($language, $pageAlias, $stepAlias, $page);
 
-							$data = self :: getDefaultData($language, $page);
-
-							$data = array_merge($data, ['newsStep0' => News :: getFullData($lang),
-														'activeNews' => $activeNews -> getData($lang)]);
-
-							return view('modules.news.step1', $data);
-							
 							break;
 					}
 				}

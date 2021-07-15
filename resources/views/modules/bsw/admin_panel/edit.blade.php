@@ -26,6 +26,17 @@
 
 
 	{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
+		@if($errors->any())
+			<div class="alert alert-danger">
+				<ul>
+					@foreach($errors->all() as $error)
+						<li>{{ $error }}</li>
+					@endforeach
+				</ul>
+			</div>
+		@endif
+
+
 		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">
@@ -39,32 +50,28 @@
 					</div>
 				</div>
 			</div>
+		</div>		
+
+		<div class="px-3">
+			<div class="top-border">
+				@foreach($languages as $langData)
+					<div class="standard-block standard-block--no-top-border  p-2">
+						<div class="p-2">
+							<span>Description: {{$langData -> title}}</span>
+						</div>			
+
+						<div class="p-2">
+							{{ Form :: text('word_'.$langData -> title) }}
+						</div>
+					</div>		
+				@endforeach
+			</div>
 		</div>
 
-		
-
-	<div class="px-3">
-		<div class="top-border">
-			@foreach($languages as $langData)
-				<div class="standard-block standard-block--no-top-border  p-2">
-					<div class="p-2">
-						<span>Description: {{$langData -> title}}</span>
-					</div>			
-
-					<div class="p-2">
-						{{ Form :: text('word_'.$langData -> title) }}
-					</div>
-				</div>		
-			@endforeach
+		<div class="p-2">
+			<div class="p-2 submit-button">
+				{{ Form :: submit('Submit') }}
+			</div>
 		</div>
-	</div>
-
-	<div class="p-2">
-		<div class="p-2 submit-button">
-			{{ Form :: submit('Submit') }}
-		</div>
-	</div>
-
-		
 	{{ Form :: close() }}
 @endsection
