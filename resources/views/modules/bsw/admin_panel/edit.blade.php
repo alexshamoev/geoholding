@@ -26,15 +26,15 @@
 
 
 	{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
-		@if($errors->any())
+		<!-- @if($errors -> any())
 			<div class="alert alert-danger">
 				<ul>
-					@foreach($errors->all() as $error)
+					@foreach($errors -> all() as $error)
 						<li>{{ $error }}</li>
 					@endforeach
 				</ul>
 			</div>
-		@endif
+		@endif -->
 
 
 		<div class="p-2">
@@ -49,6 +49,12 @@
 						{{ Form :: text('system_word') }}
 					</div>
 				</div>
+
+				@error('system_word')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 		</div>		
 
@@ -63,7 +69,13 @@
 						<div class="p-2">
 							{{ Form :: text('word_'.$langData -> title) }}
 						</div>
-					</div>		
+					</div>
+
+					@error('word_'.$langData -> title)
+						<div class="alert alert-danger">
+							{{ $message }}
+						</div>
+					@enderror
 				@endforeach
 			</div>
 		</div>

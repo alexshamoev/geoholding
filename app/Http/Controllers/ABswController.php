@@ -8,6 +8,7 @@ use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 
 class ABswController extends Controller {
@@ -30,7 +31,7 @@ class ABswController extends Controller {
 	}
 
 	
-	public function edit($id) {
+	public function edit(Request $request, $id) {
 		$bsw = Bsw :: find($id);
 
 		$prevId = 0;
@@ -69,24 +70,31 @@ class ABswController extends Controller {
 
 	public function update(Request $request, $id) {
 		$bsw = Bsw :: find($id);
-		
-		$validator = Validator :: make($request -> all(), [
-			'system_word' => 'required|min:2|max:255'
-		]);
 
-		if($validator -> fails()) {
-			return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator);
-		}
 
+		// Validation
+			$dataForValidation = array(
+				'system_word' => 'required|min:2|max:255'
+			);
+
+			foreach(Language :: where('published', 1) -> get() as $data) {
+				$dataForValidation['word_'.$data -> title] = 'max:255';
+			}
+			
+			$validator = Validator :: make($request -> all(), $dataForValidation);
+
+			if($validator -> fails()) {
+				return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator) -> withInput();
+			}
+		//
 
 
 		$bsw -> system_word = $request -> input('system_word');
-		// $bsw -> system_word = (!is_null($request -> input('system_word')) ? $request -> input('system_word') : '');
 
 		foreach(Language :: where('published', 1) -> get() as $data) {
 			$varWord = 'word_'.$data -> title;
 			
-			$bsw -> $varWord = (!is_null($request -> input('word_'.$data -> title)) ? $request -> input('word_'.$data -> title) : '');
+			$bsw -> $varWord = $request -> input('word_'.$data -> title);
 		}
 
 		$bsw -> save();
