@@ -1,9 +1,18 @@
 <?php
+
+use App\Mail\WelcomeMail;
+
 Route :: prefix('admin') -> group(function() {
 	Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
 	Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
 });
 
+
+// Route :: get('/email', function() {
+// 	Mail :: to('email@email.com') -> send(new WelcomeMail());
+
+// 	return new WelcomeMail();
+// });
 
 Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
