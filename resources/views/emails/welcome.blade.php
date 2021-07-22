@@ -1,8 +1,12 @@
 @component('mail::message')
-# Introduction
+    <a href="{{ route('adminLogin') }}"> საადმინისტრაციო პანელის ბმული </a> <br>
 
-Welcome To Laravel Hobbystudio
+    მომხმარებლის ელ. ფოსტა:
+    {{ $email }}
 
-Thanks,<br>
-{{ config('app.name') }}
+    მომხმარებლის პაროლი:
+    {{ $password }}
+
+    Thanks,<br>
+    {{ config('app.name') }}
 @endcomponent

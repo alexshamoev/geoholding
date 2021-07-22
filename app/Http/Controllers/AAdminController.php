@@ -165,7 +165,7 @@ class AAdminController extends Controller {
 
 		$admin -> save();
 
-        Mail :: to($admin -> email) -> send(new WelcomeMail());
+        Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
 
 		return redirect(route('adminEdit', $admin -> id));
 
