@@ -10,6 +10,7 @@ use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class AAdminController extends Controller {
@@ -59,16 +60,6 @@ class AAdminController extends Controller {
 
 
     public function add() {
-        // $bsc = new Bsc();
-
-		// $bsc -> system_word = '';
-		// $bsc -> configuration = '';
-
-		// $bsc -> save();
-
-		// return redirect() -> route('bscEdit', $bsc -> id);
-
-
         $user = new User();
 
         $user -> name = '';
@@ -77,15 +68,7 @@ class AAdminController extends Controller {
 
         $user -> save();
 
-
-        // return redirect(route('admin.login')) -> withErrors([
-        //     'formError' => 'მოხდა ავტორიზაციის შეცდომა'
-        // ]);
-
         return redirect(route('adminEdit', $user -> id));
-
-
-        // return view('modules.admins.admin_panel.add', ADefaultData :: get());
     }
 
 
@@ -124,42 +107,27 @@ class AAdminController extends Controller {
 	}
 
 
-    /*public function update(Request $request, $id) {
-        // if(Auth :: check()) {
-        //     return redirect('/admin');
-        // }
-
-        $validateFields = $request -> validate([
-            'email' => 'required|email',
-            'password' => 'required'
-        ]);
-
-        $user = User :: create($validateFields);
-
-        // if($user) {
-        //     Auth :: login($user);
-
-        //     return redirect(route('adminStartPoint'));
-        // }
-
-        // return redirect(route('admin.login')) -> withErrors([
-        //     'formError' => 'მოხდა ავტორიზაციის შეცდომა'
-        // ]);
-    }*/
-
-
     public function update(Request $request, $id) {
-        $validateFields = $request -> validate([
-            'name' => 'required',
-            'email' => 'required|email'
-        ]);
+        $admin = User :: find($id);
 
 
-		$admin = User :: find($id);
+        // Validation
+			$validator = Validator :: make($request -> all(), array(
+                'name' => 'required|max:255',
+				'email' => 'required|email|max:255',
+				'password' => 'required|max:255',
+				'password_confirmation' => 'required|max:255'
+            ));
 
-		$admin -> name = (!is_null($request -> input('name')) ? $request -> input('name') : '');
-		$admin -> email = (!is_null($request -> input('email')) ? $request -> input('email') : '');
-		$admin -> password = (!is_null($request -> input('password')) ? $request -> input('password') : '');
+			if($validator -> fails()) {
+				return redirect() -> route('adminEdit', $admin -> id) -> withErrors($validator) -> withInput();
+			}
+		//
+
+
+		$admin -> name = $request -> input('name');
+		$admin -> email = $request -> input('email');
+		$admin -> password = $request -> input('password');
 
 		$admin -> save();
 

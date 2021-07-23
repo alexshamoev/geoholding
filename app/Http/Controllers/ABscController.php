@@ -6,15 +6,11 @@ use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
 use App\ADefaultData;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 
 class ABscController extends Controller {
-	// public function __construct() {
-	// 	$this -> middleware('auth');
-	// }
-
-
 	public function getStartPoint() {
 		$defaultData = ADefaultData :: get();
 
@@ -74,8 +70,21 @@ class ABscController extends Controller {
 	public function update(Request $request, $id) {
 		$bsc = Bsc :: find($id);
 
-		$bsc -> system_word = (!is_null($request -> input('system_word')) ? $request -> input('system_word') : '');
-		$bsc -> configuration = (!is_null($request -> input('configuration')) ? $request -> input('configuration') : '');
+
+		// Validation
+			$validator = Validator :: make($request -> all(), array(
+				'system_word' => 'required|min:2|max:255',
+				'configuration' => 'nullable|max:255'
+			));
+
+			if($validator -> fails()) {
+				return redirect() -> route('bscEdit', $bsc -> id) -> withErrors($validator) -> withInput();
+			}
+		//
+
+
+		$bsc -> system_word = $request -> input('system_word');
+		$bsc -> configuration = $request -> input('configuration');
 
 		$bsc -> save();
 

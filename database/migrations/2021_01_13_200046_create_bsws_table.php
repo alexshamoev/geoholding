@@ -14,7 +14,7 @@ class CreateBswsTable extends Migration
     public function up()
     {
         Schema::create('bsws', function (Blueprint $table) {
-			$table->bigIncrements('id');
+			$table -> bigIncrements('id');
 			$table -> string('system_word') -> nullable();
 			$table -> string('word_ge') -> nullable();
 			$table -> string('word_en') -> nullable();
@@ -28,8 +28,7 @@ class CreateBswsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('bsws');
+    public function down() {
+        Schema :: dropIfExists('bsws');
     }
 }

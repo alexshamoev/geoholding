@@ -37,6 +37,12 @@
 						{{ Form :: text('name') }}
 					</div>
 				</div>
+
+                @error('name')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -49,6 +55,12 @@
 						{{ Form :: text('email') }}
 					</div>
 				</div>
+
+                @error('email')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -61,6 +73,12 @@
 						{{ Form :: password('password') }}
 					</div>
 				</div>
+
+                @error('password')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -73,6 +91,12 @@
 						{{ Form :: password('password_confirmation') }}
 					</div>
 				</div>
+
+                @error('password_confirmation')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2 submit-button">

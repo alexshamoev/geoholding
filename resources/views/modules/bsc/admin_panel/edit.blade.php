@@ -38,6 +38,12 @@
 						{{ Form :: text('system_word') }}
 					</div>
 				</div>
+
+				@error('system_word')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -51,6 +57,12 @@
 						{{ Form :: text('configuration') }}
 					</div>
 				</div>
+
+				@error('configuration')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2 submit-button">
