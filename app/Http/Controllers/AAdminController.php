@@ -8,9 +8,11 @@ use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
 use App\ADefaultData;
+use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 
 class AAdminController extends Controller {
@@ -130,6 +132,8 @@ class AAdminController extends Controller {
 		$admin -> password = $request -> input('password');
 
 		$admin -> save();
+
+        Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
 
 		return redirect(route('adminEdit', $admin -> id));
 
