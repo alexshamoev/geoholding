@@ -11,6 +11,8 @@ use App\Models\Bsw;
 use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class AModuleStepController extends Controller {
 	public function add($moduleId) {
@@ -74,6 +76,19 @@ class AModuleStepController extends Controller {
 		$module = Module :: find($moduleId);
 
 		$moduleStep = ModuleStep :: find($id);
+
+
+		// Validation
+			$validator = Validator :: make($request -> all(), array(
+				'title' => 'required|min:2|max:100',
+				'db_table' => 'required|min:2|max:100'
+			));
+
+			if($validator -> fails()) {
+				return redirect() -> route('moduleStepEdit', array($module -> id, $moduleStep -> id)) -> withErrors($validator) -> withInput();
+			}
+		//
+
 
 		$moduleStep -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
 		$moduleStep -> db_table = (!is_null($request -> input('db_table')) ? $request -> input('db_table') : '');

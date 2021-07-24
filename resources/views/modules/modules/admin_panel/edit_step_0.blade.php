@@ -37,6 +37,12 @@
 						{{ Form :: text('alias') }}
 					</div>
 				</div>
+
+				@error('alias')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -49,6 +55,12 @@
 						{{ Form :: text('title') }}
 					</div>
 				</div>
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="px-2 pt-2 row w-100">
@@ -200,6 +212,12 @@
 						{{ Form :: input('color', 'icon_bg_color') }}
 					</div>
 				</div>
+
+				@error('icon_bg_color')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 

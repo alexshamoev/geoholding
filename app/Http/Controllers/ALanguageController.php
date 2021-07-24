@@ -8,6 +8,8 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class ALanguageController extends Controller {
 	public function getStartPoint() {
@@ -73,10 +75,21 @@ class ALanguageController extends Controller {
 	public function update(Request $request, $id) {
 		$language = Language :: find($id);
 
-		$language -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
-		$language -> full_title = (!is_null($request -> input('full_title')) ? $request -> input('full_title') : '');
-		$language -> like_default = (!is_null($request -> input('like_default')) ? $request -> input('like_default') : 0);
-		$language -> like_default_for_admin = (!is_null($request -> input('like_default_for_admin')) ? $request -> input('like_default_for_admin') : 0);
+		
+		// Validation
+			$validator = Validator :: make($request -> all(), array(
+				'title' => 'required|min:2|max:10',
+				'full_title' => 'required|min:2|max:10'
+			));
+
+			if($validator -> fails()) {
+				return redirect() -> route('languageEdit', $language -> id) -> withErrors($validator) -> withInput();
+			}
+		//
+
+
+		$language -> title = $request -> input('title');
+		$language -> full_title = $request -> input('full_title');
 
 		$language -> save();
 

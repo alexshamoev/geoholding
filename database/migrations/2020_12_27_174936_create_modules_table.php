@@ -13,18 +13,16 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema :: create('modules', function (Blueprint $table) {
+            $table -> bigIncrements('id');
 			$table -> integer('include_type') -> default(0);
-			$table -> string('alias') -> default('');
-			$table -> string('title_ge') -> default('');
-			$table -> string('title_en') -> default('');
-			$table -> string('title_ru') -> default('');
+			$table -> string('alias') -> nullable();
+			$table -> string('title') -> nullable();
 			$table -> integer('page') -> default(0);
 			$table -> integer('hide_for_admin') -> default(0);
 			$table -> string('icon_bg_color') -> default('');
 			$table -> integer('rang') -> default(0);
-            $table->timestamps();
+            $table -> timestamps();
         });
     }
 
@@ -35,6 +33,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema :: dropIfExists('modules');
     }
 }

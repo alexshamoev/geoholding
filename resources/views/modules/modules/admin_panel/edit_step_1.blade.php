@@ -40,6 +40,12 @@
 						{{ Form :: text('title') }}
 					</div>
 				</div>
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -53,6 +59,12 @@
 						{{ Form :: text('db_table') }}
 					</div>
 				</div>
+
+				@error('db_table')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">

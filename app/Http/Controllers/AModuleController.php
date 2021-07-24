@@ -13,6 +13,8 @@ use App\Models\ModulesIncludesValue;
 use App\Models\ModulesNotIncludesValue;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class AModuleController extends Controller {
     public function getStartPoint() {
@@ -108,8 +110,23 @@ class AModuleController extends Controller {
 
 	public function update(Request $request, $id) {
 		$module = Module :: find($id);
-		$module -> alias = (!is_null($request -> input('alias')) ? $request -> input('alias') : '');
-		$module -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
+
+
+		// Validation
+			$validator = Validator :: make($request -> all(), array(
+				'alias' => 'required|min:2|max:100',
+				'title' => 'required|min:2|max:100',
+				'icon_bg_color' => 'required|min:3|max:20'
+			));
+
+			if($validator -> fails()) {
+				return redirect() -> route('moduleEdit', $module -> id) -> withErrors($validator) -> withInput();
+			}
+		//
+
+
+		$module -> alias = $request -> input('alias');
+		$module -> title = $request -> input('title');
 		$module -> page = $request -> input('page');
 		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
 		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);

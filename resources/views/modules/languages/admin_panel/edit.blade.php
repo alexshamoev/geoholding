@@ -38,6 +38,12 @@
 						{{ Form :: text('title') }}
 					</div>
 				</div>
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -51,6 +57,12 @@
 						{{ Form :: text('full_title') }}
 					</div>
 				</div>
+
+				@error('full_title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
