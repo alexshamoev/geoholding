@@ -10,6 +10,7 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use DB;
 
 class ACoreController extends Controller {
@@ -252,6 +253,18 @@ class ACoreController extends Controller {
 			}
 
 			if($data -> type === 'alias') {
+				// Validation
+					$validator = Validator :: make($request -> all(), array(
+						$data -> db_column => $data -> validation
+					));
+
+					if($validator -> fails()) {
+						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+					}
+				//
+
+
+
 				$value = $request -> input($data -> db_column);
 				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
 										'',
@@ -274,7 +287,9 @@ class ACoreController extends Controller {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 			}
 
+
 			$checkboxString = '';
+
 			if($data -> type === 'multiply_checkboxes_with_category') {
 				if($request -> input($data -> db_column)) {
 					for($i = 0; $i < count($request -> input($data -> db_column)); $i++) {
@@ -285,13 +300,16 @@ class ACoreController extends Controller {
 				$updateQuery[$data -> db_column] = $checkboxString;
 			}
 			
+
 			$multiplyCheckboxString = '';
+
 			if($data -> type === 'multiply_checkboxes') {
 				if($request -> input($data -> db_column)) {
 					for($i = 0; $i < count($request -> input($data -> db_column)); $i++) {
 						$multiplyCheckboxString .= $request -> input($data -> db_column)[$i].',';
 					}
 				}
+
 				// $test = $request -> input($data -> db_column);
 				$updateQuery[$data -> db_column] = $multiplyCheckboxString;
 			}
@@ -300,6 +318,7 @@ class ACoreController extends Controller {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
+
 		// return $multiplyCheckboxString;
 	}
 

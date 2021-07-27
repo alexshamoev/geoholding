@@ -621,8 +621,7 @@
 					</div>
 				</div>
 
-
-						
+		
 				<div class="p-2 dataBlock forInput forFile forMultiplyCheckboxes forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<label>
@@ -634,6 +633,17 @@
 				</div>
 
 
+				<div class="p-2 dataBlock forInput forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forSelect forCheckbox">
+					<div class="standard-block p-2">
+						<div class="p-2 d-flex flex-column">
+							validation
+						</div>
+
+						<div class="p-2">
+							{{ Form :: text('validation') }}
+						</div>
+					</div>
+				</div>
 				
 
 				<div class="p-2 submit-button">

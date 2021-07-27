@@ -26,7 +26,6 @@
 
 
 	<div class="p-2">
-
 		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
@@ -163,6 +162,13 @@
 									</div>
 								</div>
 						@endswitch
+
+
+						@error($moduleBlock -> db_column)
+							<div class="alert alert-danger">
+								{{ $message }}
+							</div>
+						@enderror
 					</div>
 				@endif
 			@endforeach
