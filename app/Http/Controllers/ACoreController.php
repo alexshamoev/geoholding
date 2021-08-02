@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
+
 class ACoreController extends Controller {
     public function getStep0($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
@@ -101,7 +102,6 @@ class ACoreController extends Controller {
 		
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$varWord = 'word_'.$activeLang -> title;
 
 		$selectData = [];
 		$selectOptgroudData = [];
@@ -109,7 +109,7 @@ class ACoreController extends Controller {
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_option_text;
 				$sort_by_this = $data -> select_sort_by_text;
@@ -120,9 +120,9 @@ class ACoreController extends Controller {
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 				$tempVar = $data -> select_optgroup_text;														
-				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --');
+				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --');
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
 					$tempVarSecond = $data -> select_optgroup_2_text;
@@ -187,15 +187,13 @@ class ACoreController extends Controller {
 					$multiplyCheckbox[$data -> db_column] = $checkboxArray;
 				}
 			// End Of Multiply Checkbox
-			
 		}
 
-		// <!-- Form:: -->
+		
 		$use_for_sort = 'rang';
 		$defaultData = ADefaultData :: get();
 
 		$moduleStepTableData = false;
-		$object_var = '';
 
 		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -236,7 +234,6 @@ class ACoreController extends Controller {
 											'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
 
 		return view('modules.core.step1', $data);
-		// return $testData;
 	}
 
 
@@ -248,23 +245,23 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
+			// Validation
+				$validator = Validator :: make($request -> all(), array(
+					$data -> db_column => $data -> validation
+				));
+
+				if($validator -> fails()) {
+					return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+				}
+			//
+
+
+
 			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
 			if($data -> type === 'alias') {
-				// Validation
-					$validator = Validator :: make($request -> all(), array(
-						$data -> db_column => $data -> validation
-					));
-
-					if($validator -> fails()) {
-						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
-					}
-				//
-
-
-
 				$value = $request -> input($data -> db_column);
 				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
 										'',
@@ -310,7 +307,6 @@ class ACoreController extends Controller {
 					}
 				}
 
-				// $test = $request -> input($data -> db_column);
 				$updateQuery[$data -> db_column] = $multiplyCheckboxString;
 			}
 		}
@@ -318,8 +314,6 @@ class ACoreController extends Controller {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
-
-		// return $multiplyCheckboxString;
 	}
 
 
@@ -386,15 +380,13 @@ class ACoreController extends Controller {
 		
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$varWord = 'word_'.$activeLang -> title;
-
 		
 		$selectData = [];
 		$selectOptgroudData = [];
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_option_text;
 				$sort_by_this = $data -> select_sort_by_text;
@@ -405,7 +397,7 @@ class ACoreController extends Controller {
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_optgroup_text;
 				
@@ -431,7 +423,7 @@ class ACoreController extends Controller {
 			}
 		}
 
-		// <!-- Form:: -->
+
 		$use_for_sort = 'rang';
 		$defaultData = ADefaultData :: get();
 
@@ -441,9 +433,6 @@ class ACoreController extends Controller {
 
 		$moduleStep2 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
 
-		// $moduleParent = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
-
-		// $moduleTitle = 
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
@@ -465,7 +454,6 @@ class ACoreController extends Controller {
 											'parentData' => $pageParentData]);
 
 		return view('modules.core.step2', $data);
-		// return $moduleAlias.' '.$parent.' '.$id;
 	}
 
 
@@ -576,15 +564,13 @@ class ACoreController extends Controller {
 		
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$varWord = 'word_'.$activeLang -> title;
-
 		
 		$selectData = [];
 		$selectOptgroudData = [];
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_option_text;
 				$sort_by_this = $data -> select_sort_by_text;
@@ -595,7 +581,7 @@ class ACoreController extends Controller {
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_optgroup_text;
 				
@@ -767,15 +753,13 @@ class ACoreController extends Controller {
 		
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$varWord = 'word_'.$activeLang -> title;
-
 		
 		$selectData = [];
 		$selectOptgroudData = [];
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_option_text;
 				$sort_by_this = $data -> select_sort_by_text;
@@ -786,7 +770,7 @@ class ACoreController extends Controller {
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_optgroup_text;
 				

@@ -41,9 +41,7 @@ class AModuleController extends Controller {
 
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$varWord = 'word_'.$activeLang -> title;
-
-		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> $varWord.' --';
+		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 		$pagesForIncludeInPages = array();
 		$pagesNotIncludeInPages = array();

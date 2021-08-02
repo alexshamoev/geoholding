@@ -91,9 +91,7 @@ class ABswController extends Controller {
 		$bsw -> system_word = $request -> input('system_word');
 
 		foreach(Language :: where('published', 1) -> get() as $data) {
-			$varWord = 'word_'.$data -> title;
-			
-			$bsw -> $varWord = $request -> input('word_'.$data -> title);
+			$bsw -> { 'word_'.$data -> title } = $request -> input('word_'.$data -> title);
 		}
 
 		$bsw -> save();

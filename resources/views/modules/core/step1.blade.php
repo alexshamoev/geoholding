@@ -39,6 +39,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -51,6 +57,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -63,6 +75,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -75,6 +93,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -88,6 +112,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -100,6 +130,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
@@ -127,10 +163,11 @@
 									</div>
 
 									<div class="p-2">
-									@foreach($multiplyCheckbox[$moduleBlock -> db_column] as $key => $dataInside)
-										{{ Form::checkbox($moduleBlock -> db_column.'[]', $key , $dataInside['active']) }}
-										{{ $dataInside['title'] }}
-									@endforeach
+										@foreach($multiplyCheckbox[$moduleBlock -> db_column] as $key => $dataInside)
+											{{ Form::checkbox($moduleBlock -> db_column.'[]', $key , $dataInside['active']) }}
+
+											{{ $dataInside['title'] }}
+										@endforeach
 									</div>
 								</div>
 
@@ -143,6 +180,7 @@
 											<br>
 											@foreach($dataInside as $secondKey => $dataInsideTwice)
 												{{ Form :: checkbox($moduleBlock -> db_column.'[]', $secondKey, $dataInsideTwice['active']) }}
+
 												{{ $dataInsideTwice['title'] }}
 												<br>
 											@endforeach
@@ -155,6 +193,12 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
