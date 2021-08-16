@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forEditor forPublished forColorPicker forRang forFile forCalendar forImage forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages forPublished forColorPicker forRang forFile forCalendar forImage forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label</span>
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column: *</span>
@@ -74,7 +74,7 @@
 					@enderror
 				</div>
 
-				<div class="p-2 dataBlock forInput forEditor">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>example</span>
@@ -86,7 +86,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forAlias forRang forPublished forColorPicker forCalendar forEditor forRang">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forRang forPublished forColorPicker forCalendar forEditor forEditorWithLanguages forRang">
 					<div class="standard-block p-2">
 						<div class="p-2">
 							<label>
@@ -609,7 +609,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forMultiplyCheckboxes forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forMultiplyCheckboxes forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>div_id</span>
@@ -621,19 +621,7 @@
 					</div>
 				</div>
 
-		
-				<div class="p-2 dataBlock forInput forFile forMultiplyCheckboxes forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forSelect forCheckbox">
-					<div class="standard-block p-2">
-						<label>
-							{{ Form :: checkbox('required', '1') }}
-
-							required
-						</label>
-					</div>
-				</div>
-
-
-				<div class="p-2 dataBlock forInput forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							validation
@@ -644,7 +632,6 @@
 						</div>
 					</div>
 				</div>
-				
 
 				<div class="p-2 submit-button">
 					{{ Form :: submit('Submit') }}

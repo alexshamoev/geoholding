@@ -20,33 +20,48 @@ class ACoreController extends Controller {
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
 
-		$use_for_tags = 'id';
 
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
+		
+
+		
+		$use_for_tags = 'id';
+		
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
-		}
-
-
-		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
-
-		$use_for_sort = 'id';
-		$sort_by = 'DESC';
-
-		if($moduleBlockForSort) {
-			$use_for_sort = $moduleBlockForSort -> db_column;
-
-			if(!$moduleBlockForSort -> sort_by_desc) {
-				$sort_by = 'ASC';
+			
+			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+				$use_for_tags .= '_'.$activeLang -> title;
 			}
 		}
+		
+		
+		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
+		
+		// return $moduleBlock -> db_column;
+		$orderBy = 'id';
+		$sortBy = 'asc';
+
+		if($moduleBlockForSort) {
+			$orderBy = $moduleBlockForSort -> db_column;
+
+			if($moduleBlockForSort -> type === 'alias' || $moduleBlockForSort -> type === 'input_with_languages' || $moduleBlockForSort -> type === 'editor_with_languages') {
+				$orderBy .= '_'.$activeLang -> title;
+			}
+
+			if($moduleBlockForSort -> sort_by_desc) {
+				$sortBy = 'desc';
+			}
+		}
+
 
 		$defaultData = ADefaultData :: get();
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
 											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
-											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
-											'sortBy' => $use_for_sort,
+											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get(),
+											'sortBy' => $orderBy,
 											'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step0', $data);
@@ -75,7 +90,14 @@ class ACoreController extends Controller {
 
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
+
+			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+				$use_for_tags .= '_ge';
+			}
 		}
+
+
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
 
 		$prevId = 0;
@@ -84,25 +106,43 @@ class ACoreController extends Controller {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(DB :: table($moduleStep -> db_table) -> orderBy('id') -> get() as $data) {
-			if($nextIdIsSaved && !$nextId) {
-				$nextId = $data -> id;
-			}
+
+		// Data for bar arrows.
+			$orderBy = 'id';
+			$sortBy = 'asc';
 			
-			if($pageData -> id === $data -> id) {
-				$prevIdIsSaved = true;
-				$nextIdIsSaved = true;
+			$moduleBlocksForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
+
+			if($moduleBlocksForSort) {
+				$orderBy = $moduleBlocksForSort -> db_column;
+
+				if($moduleBlocksForSort -> type === 'alias' || $moduleBlocksForSort -> type === 'input_with_languages' || $moduleBlocksForSort -> type === 'editor_with_languages') {
+					$orderBy .= '_'.$activeLang -> title;
+				}
+
+				if($moduleBlocksForSort -> sort_by_desc) {
+					$sortBy = 'desc';
+				}
 			}
-			
-			if(!$prevIdIsSaved) {
-				$prevId = $data -> id;
+
+
+			foreach(DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get() as $data) {
+				if($nextIdIsSaved && !$nextId) {
+					$nextId = $data -> id;
+				}
+				
+				if($pageData -> id === $data -> id) {
+					$prevIdIsSaved = true;
+					$nextIdIsSaved = true;
+				}
+				
+				if(!$prevIdIsSaved) {
+					$prevId = $data -> id;
+				}
 			}
-		}
+		//
 
 		
-		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
-
-
 		$selectData = [];
 		$selectOptgroudData = [];
 		$multCheckboxCatTable = '';
@@ -134,9 +174,11 @@ class ACoreController extends Controller {
 
 				$selectOptgroudData[$data -> db_column] = $alex;
 			}
+			
 
-			// Start Of Multiply Checkbox With Category
+			// Multiply Checkbox With Category
 				$multiplyCheckboxCategory = [];
+
 				if($data -> type === 'multiply_checkboxes_with_category') {
 					$checkboxTableText = $data -> sql_select_with_checkboxes_option_text;														
 					$checkboxArray = array();
@@ -155,15 +197,15 @@ class ACoreController extends Controller {
 							}
 
 							$checkboxArray[$dataInside -> $checkboxTableText][$dataInsideTwice -> id] = array('title' => $dataInsideTwice -> $checkboxTableTextInside, 'active' => $active);
-							// $checkboxArray[$dataInside -> $checkboxTableText][$dataInsideTwice -> id] = $dataInsideTwice -> $checkboxTableTextInside;
 						}
 					}
 
 					$multiplyCheckboxCategory[$data -> db_column] = $checkboxArray;
 				}
-			// End Of Multiply Checkbox With Category
+			//
 
-			// Start Of Multiply Checkbox
+
+			// Multiply Checkbox
 				$multiplyCheckbox = [];
 				if($data -> type === 'multiply_checkboxes') {
 					$checkboxText = $data -> sql_select_with_checkboxes_option_text;														
@@ -181,12 +223,11 @@ class ACoreController extends Controller {
 						}
 
 						$checkboxArray[$dataInside -> id] = array('title' => $dataInside -> $checkboxText, 'active' => $active);
-						// $checkboxArray[$dataInside -> id] = $dataInside -> $checkboxText;
 					}
 					
 					$multiplyCheckbox[$data -> db_column] = $checkboxArray;
 				}
-			// End Of Multiply Checkbox
+			//
 		}
 
 		
@@ -221,7 +262,7 @@ class ACoreController extends Controller {
 											'moduleBlocks' => $moduleBlocks,
 											'selectData' => $selectData,
 											'selectOptgroudData' => $selectOptgroudData,
-											'languages' => Language :: where('published', 1) -> get(),
+											'languages' => Language :: where('published', 1) -> orderBy('rang', 'desc') -> get(),
 											'sortBy' => $use_for_sort,
 											'id' => $id,
 											'moduleStepTableData' => $moduleStepTableData,
@@ -246,38 +287,66 @@ class ACoreController extends Controller {
 
 		foreach($moduleBlocks as $data) {
 			// Validation
-				$validator = Validator :: make($request -> all(), array(
-					$data -> db_column => $data -> validation
-				));
+				if($data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages') {
+					$validator = Validator :: make($request -> all(), array(
+						$data -> db_column => $data -> validation
+					));
 
-				if($validator -> fails()) {
-					return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+					if($validator -> fails()) {
+						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+					}
+				} else {
+					$validationData = [];
+
+					foreach(Language :: where('published', 1) -> get() as $langData) {
+						$validationData[$data -> db_column.'_'.$langData -> title] = $data -> validation;
+					}
+					
+					$validator = Validator :: make($request -> all(), $validationData);
+
+					if($validator -> fails()) {
+						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+					}
 				}
 			//
 
 
 
-			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
+			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
 			if($data -> type === 'alias') {
-				$value = $request -> input($data -> db_column);
-				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
-										'',
-										$value);
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$value = $request -> input($data -> db_column.'_'.$langData -> title);
+					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+											'',
+											$value);
 
-				$value = mb_strtolower(trim($value));
+					$value = mb_strtolower(trim($value));
 
-				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+					$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
-				$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+					$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
 
-				$value = str_replace($symbols,
-										$replace_symbols,
-										$value);
-										
-				$updateQuery[$data -> db_column] = $value;
+					$value = str_replace($symbols,
+											$replace_symbols,
+											$value);
+											
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $value;
+				}
+			}
+
+			if($data -> type === 'input_with_languages') {
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
+				}
+			}
+
+			if($data -> type === 'editor_with_languages') {
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
+				}
 			}
 
 			if($data -> type === 'checkbox') {
@@ -312,6 +381,12 @@ class ACoreController extends Controller {
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
+
+
+		// Status for success.
+			$request -> session() -> flash('successStatus', 'Data is Saved!');
+		//
+
 
 		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
 	}
@@ -353,6 +428,10 @@ class ACoreController extends Controller {
 
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
+
+			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+				$use_for_tags .= '_ge';
+			}
 		}
 
 
@@ -400,19 +479,9 @@ class ACoreController extends Controller {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
 				$tempVar = $data -> select_optgroup_text;
-				
-				// $sort_by_this = $data -> select_sort_by_text;
-
-				// $selectOptgroudData[$data -> db_column] = array('Cats' => array('45' => 'Leopard','124' => 'Lion'),
-				// 												'tiger' => array('12' => 'Grizzle'),
-				// 													'Dogs' => array('54' => 'Spaniel'),
-				// 																);
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
-					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
 					$tempVarSecond = $data -> select_optgroup_2_text;
-
-					// $banks = Bank::pluck('name', 'id'); 
 
 					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
 						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
@@ -499,6 +568,7 @@ class ACoreController extends Controller {
 		// return $moduleStep -> db_table;
 	}
 
+	
 	public function deleteStep1($moduleAlias, $parent, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -537,6 +607,10 @@ class ACoreController extends Controller {
 
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
+
+			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+				$use_for_tags .= '_ge';
+			}
 		}
 
 
@@ -726,6 +800,10 @@ class ACoreController extends Controller {
 
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
+
+			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+				$use_for_tags .= '_ge';
+			}
 		}
 
 

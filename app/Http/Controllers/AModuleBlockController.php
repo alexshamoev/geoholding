@@ -42,7 +42,7 @@ class AModuleBlockController extends Controller {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang') -> get() as $data) {
+		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}
@@ -58,12 +58,14 @@ class AModuleBlockController extends Controller {
 		}
 
 
-		$blockTypes = array('input' => 'input',
+		$blockTypes = array('alias' => 'alias',
+							'input' => 'input',
+							'input_with_languages' => 'input_with_languages',
 							'editor' => 'editor',
+							'editor_with_languages' => 'editor_with_languages',
 							'file' => 'file',
 							'image' => 'image',
 							'select' => 'select',
-							'alias' => 'alias',
 							'calendar' => 'calendar',
 							'color_picker' => 'color_picker',
 							'rang' => 'rang',

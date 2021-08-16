@@ -13689,12 +13689,24 @@ var animation_speed = 50;
 function checkBlockType(blockType) {
   $('.step2 .dataBlock').fadeOut(0);
 
+  if (blockType === 'alias') {
+    $('.step2 .forAlias').fadeIn(0);
+  }
+
   if (blockType === 'input') {
     $('.step2 .forInput').fadeIn(0);
   }
 
+  if (blockType === 'input_with_languages') {
+    $('.step2 .forInputWithLanguages').fadeIn(0);
+  }
+
   if (blockType === 'editor') {
     $('.step2 .forEditor').fadeIn(0);
+  }
+
+  if (blockType === 'editor_with_languages') {
+    $('.step2 .forEditorWithLanguages').fadeIn(0);
   }
 
   if (blockType === 'file') {
@@ -13703,10 +13715,6 @@ function checkBlockType(blockType) {
 
   if (blockType === 'image') {
     $('.step2 .forImage').fadeIn(0);
-  }
-
-  if (blockType === 'alias') {
-    $('.step2 .forAlias').fadeIn(0);
   }
 
   if (blockType === 'select') {

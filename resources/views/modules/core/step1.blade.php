@@ -23,16 +23,26 @@
 		'prevRoute' => route('coreEditStep0', [$module -> alias, $prevId]),
 		'backRoute' => route('coreGetStep0', $module -> alias)
 	])
+	
+	
+	@if($errors->any())
+		<div class="alert alert-danger">
+			Some error
+		</div>
+	@endif
+	
+	
+	@if(Session :: has('successStatus'))
+		<div class="alert alert-success" role="alert">
+			{{ Session :: get('successStatus') }}
+		</div>
+	@endif
 
-
+	
 	<div class="p-2">
 		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
-					@php
-						$tempVar = $moduleBlock -> db_column;
-					@endphp
-
 					<div class="p-2">
 						@switch($moduleBlock -> type)
 							@case('input')
@@ -48,7 +58,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -84,7 +94,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -102,12 +112,11 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column], $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 								
 								@break
-
 							@case('editor')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -121,27 +130,101 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
+
+								<script>
+									CKEDITOR.replace('{{ $moduleBlock -> db_column }}');
+								</script>
 
 								@break
 							@case('alias')
-								<div class="p-2 standard-block">
-									<div class="p-2">
-										{{ $moduleBlock -> label }}
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											URL Alias:
 
-										@php
-											if($moduleBlock -> validation) {
-												echo '*';
-											}
-										@endphp
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
 									</div>
 
-									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
+							@case('input_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
 									</div>
-								</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
+							@case('editor_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+
+									<script>
+										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+									</script>
+								@endforeach
 
 								@break
 							@case('checkbox')
@@ -151,7 +234,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> $tempVar) }}
+										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -202,17 +285,19 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 						@endswitch
 
 
-						@error($moduleBlock -> db_column)
-							<div class="alert alert-danger">
-								{{ $message }}
-							</div>
-						@enderror
+						@if($moduleBlock -> type !== 'alias' && $moduleBlock -> type !== 'input_with_languages' && $moduleBlock -> type !== 'editor_with_languages')
+							@error($moduleBlock -> db_column)
+								<div class="alert alert-danger">
+									{{ $message }}
+								</div>
+							@enderror	
+						@endif
 					</div>
 				@endif
 			@endforeach
@@ -221,6 +306,7 @@
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
+		
 		
 		@if($moduleStepTableData)
 			@include('admin.includes.addButton', [

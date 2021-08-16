@@ -26,17 +26,6 @@
 
 
 	{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
-		<!-- @if($errors -> any())
-			<div class="alert alert-danger">
-				<ul>
-					@foreach($errors -> all() as $error)
-						<li>{{ $error }}</li>
-					@endforeach
-				</ul>
-			</div>
-		@endif -->
-
-
 		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">
@@ -61,9 +50,11 @@
 		<div class="px-3">
 			<div class="top-border">
 				@foreach($languages as $langData)
-					<div class="standard-block standard-block--no-top-border  p-2">
+					<div class="standard-block standard-block--no-top-border p-2">
 						<div class="p-2">
-							<span>Description: {{$langData -> title}}</span>
+							Description:
+							
+							<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
 						</div>			
 
 						<div class="p-2">

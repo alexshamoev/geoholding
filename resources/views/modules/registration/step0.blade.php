@@ -19,7 +19,7 @@
 
 
 		<div class="p-2">
-			{{ $page -> text }}123
+			{!! $page -> text !!}
 		</div>
 
 		{{--
