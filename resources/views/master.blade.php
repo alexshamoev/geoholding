@@ -37,7 +37,7 @@
 
     <body>
 		@include('modules.header.basic')
-
+		
 
         <div class="container">
 			@yield('content')

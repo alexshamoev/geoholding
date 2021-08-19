@@ -47,8 +47,10 @@ class AAdminController extends Controller {
         }
 
         return redirect(route('adminLogin')) -> withErrors([
-            'email' => 'Bad email!'
-        ]);
+            'email' => 'Bad data!'
+        ]) -> withInput();
+
+        // return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator) -> withInput();
     }
 
 

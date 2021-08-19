@@ -38,7 +38,6 @@ class ACoreController extends Controller {
 		
 		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_sort', 1) -> first();
 		
-		// return $moduleBlock -> db_column;
 		$orderBy = 'id';
 		$sortBy = 'asc';
 
