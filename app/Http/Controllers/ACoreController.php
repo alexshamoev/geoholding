@@ -10,6 +10,7 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\ADefaultData;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use DB;
 
@@ -311,7 +312,7 @@ class ACoreController extends Controller {
 
 
 
-			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
+			if($data -> type !== 'image' && $data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
@@ -377,6 +378,32 @@ class ACoreController extends Controller {
 
 				$updateQuery[$data -> db_column] = $multiplyCheckboxString;
 			}
+
+
+			// Image
+				if($data -> type === 'image') {
+					if($request -> hasFile('image')) {
+					// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
+
+						// $path = $request -> file('image') -> path();
+						// $extension = $request -> file('image') -> extension();
+
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
+
+						// return $extension;
+
+						
+					}
+
+
+
+					// $updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
+				}
+			// 
+
+
+
+
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);

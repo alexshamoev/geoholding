@@ -40,7 +40,7 @@
 
 	
 	<div class="p-2">
-		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id))) }}
+		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					<div class="p-2">
@@ -76,8 +76,10 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: file($moduleBlock -> db_column) }}
+										{{ Form :: file('image') }}
 									</div>
+
+									<img class="w-25" src="{{ asset('/images/modules/partners/1.jpg') }}" alt="">
 								</div>
 
 								@break

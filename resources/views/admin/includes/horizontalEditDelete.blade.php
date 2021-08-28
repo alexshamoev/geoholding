@@ -1,4 +1,4 @@
-<div class="p-2 blockWithRang" data-id="{{ $id }}">
+<div class="p-2">
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-10 p-0">
 			<div class="row">
@@ -37,13 +37,6 @@
 						<img src="{{ asset('/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
 					</div>
 				</div>
-
-				<!-- <div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
-					<div class="p-3">
-						<img src="{{ asset('/images/admin/bars.svg') }}" alt="bars" class="bar-tag-bigger-img">
-					</div>
-				</div> -->
-
 			</div>
 		</div>
 	</div>

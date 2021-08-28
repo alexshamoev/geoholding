@@ -59,19 +59,13 @@
 				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
-							<span>db_column: *</span>
+							<span>db_column:</span>
 						</div>
 						
 						<div class="p-2">
 							{{ Form :: text('db_column') }}
 						</div>
 					</div>
-
-					@error('db_column')
-						<div class="alert alert-danger">
-							{{ $message }}
-						</div>
-					@enderror
 				</div>
 
 				<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages">

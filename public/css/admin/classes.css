@@ -101,6 +101,13 @@
   cursor: move;
 }
 
+.edit-block__image_div {
+  border: 1px solid #cccccc;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .line_max_1 {
   display: block;
   display: -webkit-box;

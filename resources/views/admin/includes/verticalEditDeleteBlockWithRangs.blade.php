@@ -1,5 +1,34 @@
-<div class="p-2 blockWithRang" data-id="{{ $id }}">
-	<div class="d-flex align-items-center edit-block">
+<div class="p-2 col-3 blockWithRang" data-id="{{ $id }}">
+	<div class="row p-2 edit-block">
+		<div class="col-12">
+			<div style="background-image: url('{{ asset('/images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
+				 class="edit-block__image_div"></div>
+		</div>
+
+		<div class="col-12">
+			<a href="{{ $editLink }}">
+				<span class="line_max_1">
+					{{ $title }}
+				</span>
+			</a>
+		</div>
+
+		<div class="col-4 text-center">
+			<a href="{{ $editLink }}">
+				<img src="{{ asset('/images/admin/edit.svg') }}" alt="Edit" class="bar-tag-bigger-img">
+			</a>
+		</div>
+
+		<div class="col-4 text-center">
+			<img src="{{ asset('/images/admin/close.svg') }}" alt="Delete" class="bar-tag-bigger-img">
+		</div>
+
+		<div class="col-4 text-center edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
+			<img src="{{ asset('/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
+		</div>
+	</div>
+
+	<!-- <div class="d-flex align-items-center edit-block">
 		<div class="col-10 p-0">
 			<div class="row">
 				<div class="col-6">
@@ -40,10 +69,10 @@
 
 				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
 					<div class="p-3">
-						<img src="{{ asset('/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
+						<img src="{{ asset('/images/admin/bars.svg') }}" alt="bars" class="bar-tag-bigger-img">
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	</div> -->
 </div>

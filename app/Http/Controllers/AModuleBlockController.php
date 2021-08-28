@@ -102,13 +102,13 @@ class AModuleBlockController extends Controller {
 
 
 		// Validation
-			$validator = Validator :: make($request -> all(), array(
-				'db_column' => 'required|min:2|max:100'
-			));
+			// $validator = Validator :: make($request -> all(), array(
+			// 	'db_column' => 'required|min:2|max:100'
+			// ));
 
-			if($validator -> fails()) {
-				return redirect() -> route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $moduleBlock -> id)) -> withErrors($validator) -> withInput();
-			}
+			// if($validator -> fails()) {
+			// 	return redirect() -> route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $moduleBlock -> id)) -> withErrors($validator) -> withInput();
+			// }
 		//
 
 

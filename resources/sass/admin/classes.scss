@@ -99,6 +99,13 @@
 	&__block_inside_preview {
 		
 	}
+
+	&__image_div {
+		border: 1px solid rgb(204, 204, 204);
+		height: 200px;
+		background-repeat: no-repeat;
+		background-size: cover;;
+	}
 }
 
 .line_max_1 {
