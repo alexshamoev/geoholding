@@ -10,10 +10,7 @@ class Bsw extends Model
 		$bsws = (object)[];
 
 		foreach(Bsw :: all() as $data) {
-			$varSystemWord = $data -> system_word;
-			$varWord = 'word_'.$lang;
-
-			$bsws -> $varSystemWord = $data -> $varWord;
+			$bsws -> { $data -> system_word } = $data -> { 'word_'.$lang };
 		}
 		
 		return $bsws;

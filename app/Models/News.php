@@ -25,14 +25,9 @@ class News extends Model {
 			
 			foreach(Language :: where('published', 1) -> get() as $data) {
 				if($data -> title === $lang) {
-					$var_title = 'title_'.$lang;
-					$var_alias = 'alias_'.$lang;
-					$var_text = 'text_'.$lang;
-
-
-					$updatedData -> title = $this -> $var_title;
-					$updatedData -> alias = $this -> $var_alias;
-					$updatedData -> text = $this -> $var_text;
+					$updatedData -> alias = $this -> { 'alias_'.$lang };
+					$updatedData -> title = $this -> { 'title_'.$lang };
+					$updatedData -> text = $this -> { 'text_'.$lang };
 				}
 			}
 		}
@@ -50,15 +45,11 @@ class News extends Model {
 		$i = 0;
 
 		foreach($newsUpdatedData as $data) {
-			$varAlias = 'alias_'.$lang;
-			$var_title = 'title_'.$lang;
-			$var_text = 'text_'.$lang;
-
-			$newsUpdatedData[$i] -> alias = $newsUpdatedData[$i] -> $varAlias;
-			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> $var_title;
-			$newsUpdatedData[$i] -> text = $newsUpdatedData[$i] -> $var_text;
+			$newsUpdatedData[$i] -> alias = $newsUpdatedData[$i] -> { 'alias_'.$lang };
+			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> { 'title_'.$lang };
+			$newsUpdatedData[$i] -> text = $newsUpdatedData[$i] -> { 'text_'.$lang };
 			
-			$newsUpdatedData[$i] -> fullUrl = '/'.$lang.'/'.$newsPage -> $varAlias.'/'.$newsUpdatedData[$i] -> alias;
+			$newsUpdatedData[$i] -> fullUrl = '/'.$lang.'/'.$newsPage -> { 'alias_'.$lang }.'/'.$newsUpdatedData[$i] -> alias;
 
 
 			$i++;

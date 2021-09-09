@@ -104,8 +104,8 @@ Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 	// 
 });
  
-Route::get('/image-upload', 'ImageUploadController@img_upload')->name("img.upload");
-Route::post('/imgstore', 'ImageUploadController@imagestore')->name("img.store");
+Route::get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
+Route::post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
 
 // Auth :: routes();
 

@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Page;
+use App\Models\MenuButton;
+use App\Models\Language;
+use App\Models\Module;
+use App\Models\Bsc;
+use App\Models\Bsw;
+use App\Models\PhotoGalleryCategory;
+use App\Widget;
+use Illuminate\Http\Request;
+
+
+class PhotoGalleryController extends Controller {
+    public static function getStep0($language, $page) {
+        $data = PageController :: getDefaultData($language, $page);
+
+		$data = array_merge($data, ['photoGalleryStep0' => PhotoGalleryCategory :: getFullData($language -> title)]);
+
+        return view('modules.photo_gallery.step0', $data);
+    }
+
+
+    public static function getStep1($language, $pageAlias, $stepAlias, $page) {
+        $activePhotoGalleryCategory = PhotoGalleryCategory :: where('alias_'.$language -> title, $stepAlias) -> first();
+
+        $data = PageController :: getDefaultData($language, $page);
+
+        $data = array_merge($data, ['photoGalleryStep0' => PhotoGalleryCategory :: getFullData($language -> title),
+                                    'activePhotoGalleryCategory' => $activePhotoGalleryCategory -> getData($language -> title)]);
+
+        return view('modules.photo_gallery.step1', $data);
+    }
+}

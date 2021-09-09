@@ -9,6 +9,7 @@ use App\Models\Module;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\News;
+use App\Models\PhotoGalleryCategory;
 use App\Models\Partner;
 use App\Widget;
 use Illuminate\Http\Request;
@@ -99,6 +100,10 @@ class PageController extends Controller {
 					switch($active_module -> alias) {
 						case 'news':
 							return NewsController :: getStep0($language, $page);
+							
+							break;
+						case 'photo_gallery':
+							return PhotoGalleryController :: getStep0($language, $page);
 							
 							break;
 					}

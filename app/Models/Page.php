@@ -23,14 +23,9 @@ class Page extends Model {
 			
 			foreach(Language :: where('published', 1) -> get() as $data) {
 				if($data -> title === $lang) {
-					$var_title = 'title_'.$lang;
-					$var_alias = 'alias_'.$lang;
-					$var_text = 'text_'.$lang;
-
-
-					$pageUpdatedData -> title = $this -> $var_title;
-					$pageUpdatedData -> alias = $this -> $var_alias;
-					$pageUpdatedData -> text = $this -> $var_text;
+					$pageUpdatedData -> title = $this -> { 'title_'.$lang };
+					$pageUpdatedData -> alias = $this -> { 'alias_'.$lang };
+					$pageUpdatedData -> text = $this -> { 'text_'.$lang };
 				}
 			}
 		}

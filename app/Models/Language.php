@@ -25,9 +25,7 @@ class Language extends Model {
 					$languagesUpdatedData[$i] -> full_url = '/'.$data -> title;
 				}
 			} else {
-				$var_alias = 'alias_'.$data -> title;
-
-				$languagesUpdatedData[$i] -> full_url = '/'.$data -> title.'/'.$page -> $var_alias;
+				$languagesUpdatedData[$i] -> full_url = '/'.$data -> title.'/'.$page -> { 'alias_'.$data -> title };
 			}
 
 			if($lang === $data -> title) {
