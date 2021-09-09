@@ -380,8 +380,13 @@ class ACoreController extends Controller {
 			}
 
 
+			// dd($request -> all());
+
+
 			// Image
 				if($data -> type === 'image') {
+					// return var_dump($request -> hasFile('image'));
+
 					if($request -> hasFile('image')) {
 					// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 
@@ -392,6 +397,7 @@ class ACoreController extends Controller {
 
 						// return $extension;
 
+						// return 555;
 						
 					}
 
@@ -400,7 +406,6 @@ class ACoreController extends Controller {
 					// $updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 				}
 			// 
-
 
 
 

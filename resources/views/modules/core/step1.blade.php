@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    {{ $module -> title }}
 @endsection
 
 
@@ -79,7 +79,7 @@
 										{{ Form :: file('image') }}
 									</div>
 
-									<img class="w-25" src="{{ asset('/images/modules/partners/1.jpg') }}" alt="">
+									<img class="w-25" src="{{ asset('/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break

@@ -4,15 +4,20 @@
 			Partners widget
 		</h1>
 
-
-		@foreach($partners as $data)
-			<a href="{{ $data -> link }}" target="_blank">
-				<div class="p-2">
-					<div class="p-2">
-						{{ $data -> title }}
-					</div>
+		<div class="row">
+			@foreach($partners as $data)
+				<div class="col-3">
+					<a href="{{ $data -> link }}" target="_blank">
+						<div class="p-2">
+							<img src="{{ asset('/images/modules/partners/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+						</div>
+						
+						<div class="p-2">
+							{{ $data -> title }}
+						</div>
+					</a>
 				</div>
-			</a>
-		@endforeach
+			@endforeach
+		</div>
 	</div>
 @endif
