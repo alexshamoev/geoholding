@@ -104,6 +104,7 @@ Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 		Route :: post('/set-rangs', 'ARangController@set');
 	// 
 });
+
  
 Route::get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
 Route::post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
