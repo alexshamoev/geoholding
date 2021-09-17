@@ -12,7 +12,7 @@ Route :: prefix('admin') -> group(function() {
 // 	Mail :: to('email@email.com') -> send(new WelcomeMail());
 
 // 	return new WelcomeMail();
-// });
+// }); 
 
 Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
