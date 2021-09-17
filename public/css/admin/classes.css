@@ -3,10 +3,6 @@
   transition: 0.125s all ease-in-out;
 }
 
-.bar-tag-small-img--tags__arrow:hover {
-  transform: rotate(90deg);
-}
-
 .bar-tag-big-img {
   width: 22px;
 }
