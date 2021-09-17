@@ -9,6 +9,7 @@ use App\Models\Module;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\News;
+use App\Models\PhotoGalleryCategory;
 use App\Models\Partner;
 use App\Widget;
 use Illuminate\Http\Request;
@@ -85,24 +86,28 @@ class PageController extends Controller {
 	}
 
 
-	public function getPage($lang, $alias) {
+	public static function getPage($lang, $alias) {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
 			$page = Page :: where('alias_'.$language -> title, $alias) -> first();
 
 			if($page) {
-				$active_module = Module :: where('page', $page -> id) -> first();
+				// $active_module = Module :: where('page', $page -> id) -> first();
 
 			
-				if($active_module) {
-					switch($active_module -> alias) {
-						case 'news':
-							return NewsController :: getStep0($language, $page);
+				// if($active_module) {
+				// 	switch($active_module -> alias) {
+				// 		case 'news':
+				// 			return NewsController :: getStep0($language, $page);
 							
-							break;
-					}
-				}
+				// 			break;
+				// 		case 'photo_gallery':
+				// 			return PhotoGalleryController :: getStep0($language, $page);
+							
+				// 			break;
+				// 	}
+				// }
 
 				return view('static', self :: getDefaultData($language, $page));
 			} else {

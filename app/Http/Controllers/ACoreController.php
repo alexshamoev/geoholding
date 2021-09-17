@@ -207,6 +207,7 @@ class ACoreController extends Controller {
 
 			// Multiply Checkbox
 				$multiplyCheckbox = [];
+				
 				if($data -> type === 'multiply_checkboxes') {
 					$checkboxText = $data -> sql_select_with_checkboxes_option_text;														
 					$checkboxArray = array();
