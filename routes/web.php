@@ -1,18 +1,19 @@
 <?php
+use App\Models\Page;
+use App\Models\Language;
+use App\Models\Module;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\PhotoGalleryController;
 
 use App\Mail\WelcomeMail;
+
 
 Route :: prefix('admin') -> group(function() {
 	Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
 	Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
 });
 
-
-// Route :: get('/email', function() {
-// 	Mail :: to('email@email.com') -> send(new WelcomeMail());
-
-// 	return new WelcomeMail();
-// });
 
 Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 	Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
@@ -107,19 +108,55 @@ Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 Route::get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
 Route::post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
 
-// Auth :: routes();
+
+
+// Route :: get('/email', function() {
+// 	Mail :: to('email@email.com') -> send(new WelcomeMail());
+
+// 	return new WelcomeMail();
+// });
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
-
-// Route :: get('/logout', function() {
-// 	Auth :: logout();
-
-// 	return redirect() -> route('main');
-// }) -> name('logout');
-
-
-
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
-Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
+
+
+
+Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
+	$language = Language :: where('title', $lang) -> first();
+
+	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+
+	$active_module = Module :: where('page', $page -> id) -> first();
+
+	if($active_module) {
+		switch($active_module -> alias) {
+			case 'news':
+				return NewsController :: getStep0($language, $page);
+				
+				break;
+			case 'photo_gallery':
+				return PhotoGalleryController :: getStep0($language, $page);
+				
+				break;
+		}
+	} else {
+		return PageController :: getPage($lang, $pageAlias);
+	}
+}) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
+
+
+
+// Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
 Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
+
+
+
+// Auth :: routes();
+
+
+// Route :: get('/email', function() {
+// 	Mail :: to('email@email.com') -> send(new WelcomeMail());
+
+// 	return new WelcomeMail();
+// });
