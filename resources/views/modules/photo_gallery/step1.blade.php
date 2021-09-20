@@ -25,10 +25,10 @@
 	</div>
 
 	<div class="p-2">
-		<img src="{{ asset('/images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+		{!! $activePhotoGalleryCategory -> text !!}
 	</div>
 
 	<div class="p-2">
-		{{ $activePhotoGalleryCategory -> text }}
+		<img src="{{ asset('/images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
 	</div>
 @endsection

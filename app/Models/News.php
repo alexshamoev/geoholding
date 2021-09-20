@@ -14,48 +14,35 @@ class News extends Model {
      */
     protected $table = 'news_step_0';
 
-	public function getData($lang) {
-		$updatedData = (object) array();
-		$updatedData -> title = '';
-		$updatedData -> alias = '';
-		$updatedData -> text = '';
 
-		if($this -> published) {
-			$updatedData = $this;
-			
-			foreach(Language :: where('published', 1) -> get() as $data) {
-				if($data -> title === $lang) {
-					$updatedData -> alias = $this -> { 'alias_'.$lang };
-					$updatedData -> title = $this -> { 'title_'.$lang };
-					$updatedData -> text = $this -> { 'text_'.$lang };
-				}
-			}
-		}
+	private static $lang;
+	private static $pageAlias;
 
-		return $updatedData;
+
+	public static function setLang($value) {
+		self :: $lang = $value;
+	}
+
+	public static function setPageAlias($value) {
+		self :: $pageAlias = $value;
 	}
 
 
-    public static function getFullData($lang) {
-		$newsPage = Page :: where('slug', 'news') -> first();
-
-		$news = self :: where('published', 1) -> get();
-		$newsUpdatedData = $news;
-
-		$i = 0;
-
-		foreach($newsUpdatedData as $data) {
-			$newsUpdatedData[$i] -> alias = $newsUpdatedData[$i] -> { 'alias_'.$lang };
-			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> { 'title_'.$lang };
-			$newsUpdatedData[$i] -> text = $newsUpdatedData[$i] -> { 'text_'.$lang };
-			
-			$newsUpdatedData[$i] -> fullUrl = '/'.$lang.'/'.$newsPage -> { 'alias_'.$lang }.'/'.$newsUpdatedData[$i] -> alias;
+	public function getAliasAttribute() {
+        return $this -> { 'alias_'.self :: $lang };
+    }
 
 
-			$i++;
-		}
+	public function getTitleAttribute() {
+        return $this -> { 'title_'.self :: $lang };
+    }
 
 
-		return $newsUpdatedData;
-	}
+	public function getTextAttribute() {
+        return $this -> { 'text_'.self :: $lang };
+    }
+
+	public function getFullUrlAttribute() {
+        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
+    }
 }

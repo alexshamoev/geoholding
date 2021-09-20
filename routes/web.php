@@ -3,6 +3,7 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
 use App\Models\PhotoGalleryCategory;
+use App\Models\News;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
@@ -131,6 +132,9 @@ Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 	if($active_module) {
 		switch($active_module -> alias) {
 			case 'news':
+				News :: setLang($language -> title);
+				News :: setPageAlias($pageAlias);
+
 				return NewsController :: getStep0($language, $page);
 				
 				break;
@@ -161,7 +165,10 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $st
 	if($active_module) {
 		switch($active_module -> alias) {
 			case 'news':
-				return NewsController :: getStep0($language, $page);
+				News :: setLang($language -> title);
+				News :: setPageAlias($pageAlias);
+
+				return NewsController :: getStep1($language, $page, $step0Alias);
 				
 				break;
 			case 'photo_gallery':
