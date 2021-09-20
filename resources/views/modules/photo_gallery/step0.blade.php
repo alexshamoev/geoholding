@@ -7,7 +7,7 @@
 
 
 @section('content')
-    <h1 class="p-2">
+	<h1 class="p-2">
         {{ $page -> title }}
     </h1>
 
@@ -26,6 +26,14 @@
 
 						<div class="p-2">
 							{{ $data -> title }}
+						</div>
+
+						<div class="p-2">
+							{{ $data -> alias }}
+						</div>
+
+						<div class="p-2">
+							{{ $data -> fullUrl }}
 						</div>
 
 						<div class="p-2">

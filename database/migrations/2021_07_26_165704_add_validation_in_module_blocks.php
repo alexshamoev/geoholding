@@ -11,10 +11,9 @@ class AddValidationInModuleBlocks extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::table('module_blocks', function (Blueprint $table) {
-            if (!Schema::hasColumn('module_blocks', 'validation')) {
+    public function up() {
+        Schema :: table('module_blocks', function (Blueprint $table) {
+            if(!Schema::hasColumn('module_blocks', 'validation')) {
                 $table -> string('validation') -> default('');
             }
         });
@@ -25,9 +24,8 @@ class AddValidationInModuleBlocks extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::table('module_blocks', function (Blueprint $table) {
+    public function down() {
+        Schema :: table('module_blocks', function (Blueprint $table) {
             $table -> dropColumn('validation');
         });
     }

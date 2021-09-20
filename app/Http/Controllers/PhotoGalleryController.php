@@ -15,21 +15,17 @@ use Illuminate\Http\Request;
 
 class PhotoGalleryController extends Controller {
     public static function getStep0($language, $page) {
-        $data = PageController :: getDefaultData($language, $page);
-
-		$data = array_merge($data, ['photoGalleryStep0' => PhotoGalleryCategory :: getFullData($language -> title)]);
-
+        $data = array_merge(PageController :: getDefaultData($language, $page),
+                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> get()]);
+        
         return view('modules.photo_gallery.step0', $data);
     }
 
 
-    public static function getStep1($language, $pageAlias, $stepAlias, $page) {
-        $activePhotoGalleryCategory = PhotoGalleryCategory :: where('alias_'.$language -> title, $stepAlias) -> first();
-
-        $data = PageController :: getDefaultData($language, $page);
-
-        $data = array_merge($data, ['photoGalleryStep0' => PhotoGalleryCategory :: getFullData($language -> title),
-                                    'activePhotoGalleryCategory' => $activePhotoGalleryCategory -> getData($language -> title)]);
+    public static function getStep1($language, $page, $stepAlias) {
+        $data = array_merge(PageController :: getDefaultData($language, $page),
+                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> get(),
+                             'activePhotoGalleryCategory' => PhotoGalleryCategory :: where('alias_'.$language -> title, $stepAlias) -> first()]);
 
         return view('modules.photo_gallery.step1', $data);
     }
