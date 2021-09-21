@@ -24,10 +24,7 @@ class Partner extends Model
 			
 			foreach(Language :: where('published', 1) -> get() as $data) {
 				if($data -> title === $lang) {
-					$var_title = 'title_'.$lang;
-
-
-					$updatedData -> title = $this -> $var_title;
+					$updatedData -> title = $this -> { 'title_'.$lang };
 				}
 			}
 		}
@@ -45,10 +42,7 @@ class Partner extends Model
 		$i = 0;
 
 		foreach($newsUpdatedData as $data) {
-			$var_title = 'title_'.$lang;
-
-			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> $var_title;
-
+			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> { 'title_'.$lang };
 
 			$i++;
 		}

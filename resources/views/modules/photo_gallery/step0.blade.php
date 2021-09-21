@@ -7,7 +7,7 @@
 
 
 @section('content')
-    <h1 class="p-2">
+	<h1 class="p-2">
         {{ $page -> title }}
     </h1>
 

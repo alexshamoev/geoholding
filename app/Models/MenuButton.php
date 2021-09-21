@@ -23,9 +23,7 @@ class MenuButton extends Model {
 			$menuPage = Page :: where('id', $data -> page) -> where('published', 1) -> first();
 
 			if($menuPage) {
-				$var_title = 'title_'.$lang;
-
-				$menuButtonsUpdatedData[$i] -> title = $data -> $var_title;
+				$menuButtonsUpdatedData[$i] -> title = $data -> { 'title_'.$lang };
 
 				if($menuPage -> like_default) {
 					if($currentLanguage -> like_default) {
@@ -34,9 +32,7 @@ class MenuButton extends Model {
 						$menuButtonsUpdatedData[$i] -> url = '/'.$lang;
 					}
 				} else {
-					$var_alias = 'alias_'.$lang;
-
-					$menuButtonsUpdatedData[$i] -> url = '/'.$lang.'/'.$menuPage -> $var_alias;
+					$menuButtonsUpdatedData[$i] -> url = '/'.$lang.'/'.$menuPage -> { 'alias_'.$lang };
 				}
 			}
 

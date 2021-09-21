@@ -27,6 +27,7 @@ class PageController extends Controller {
 		}
 
 		$data = ['page' => $page -> getFullData($lang -> title),
+				'language' => $lang,
 				'menuButtons' => MenuButton :: getFullData($lang -> title),
 				'languages' => Language :: getFullData($lang -> title, $page),
 				'bsc' => Bsc :: getFullData(),

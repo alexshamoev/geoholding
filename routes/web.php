@@ -11,12 +11,17 @@ use App\Http\Controllers\PhotoGalleryController;
 use App\Mail\WelcomeMail;
 
 
+Route :: prefix('admin') -> group(function() {
+	Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
+	Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
+});
+
+
 // A.
 	Route :: prefix('admin') -> group(function() {
 		Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
 		Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
 	});
-
 
 	Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
 		Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
@@ -110,14 +115,12 @@ use App\Mail\WelcomeMail;
 // 
 
  
-Route :: get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
-Route :: post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
-
+// Route :: get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
+// Route :: post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
-
 
 
 Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
@@ -158,7 +161,7 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $st
 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
 
 	$active_module = Module :: where('page', $page -> id) -> first();
-
+ 
 	if($active_module) {
 		switch($active_module -> alias) {
 			case 'news':

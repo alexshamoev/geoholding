@@ -10,9 +10,7 @@ class Bsc extends Model
 		$bscs = (object)[];
 
 		foreach(Bsc :: all() as $data) {
-			$varSystemWord = $data -> system_word;
-
-			$bscs -> $varSystemWord = $data -> configuration;
+			$bscs -> { $data -> system_word } = $data -> configuration;
 		}
 
 		return $bscs;
