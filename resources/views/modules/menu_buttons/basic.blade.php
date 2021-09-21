@@ -7,10 +7,12 @@
 						<a href="{{ $data -> url }}">
 							<div class="p-2">
 								{{ $data -> title }}
+								{{ $data -> active }}
 							</div>
 						</a>
 					</div>
 				@endforeach
+
 
 				@if(Auth :: check())
 					<div class="nav-item">
@@ -44,6 +46,7 @@
 					</div>
 				@endif
 			</div>
+
 
 			<div class="d-xl-none d-lg-none d-block">
 				@include('modules.languages.basic')

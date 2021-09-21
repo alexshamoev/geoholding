@@ -6,7 +6,6 @@ use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model {
-
 	/**
      * The table associated with the model.
      *

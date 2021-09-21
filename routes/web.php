@@ -4,17 +4,12 @@ use App\Models\Language;
 use App\Models\Module;
 use App\Models\PhotoGalleryCategory;
 use App\Models\News;
+use App\Models\MenuButton;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
 
 use App\Mail\WelcomeMail;
-
-
-Route :: prefix('admin') -> group(function() {
-	Route :: get('/login', 'AAdminController@getLogin') -> name('adminLogin');
-	Route :: post('/login', 'AAdminController@login') -> name('adminLoginUpdate');
-});
 
 
 // A.
@@ -114,7 +109,7 @@ Route :: prefix('admin') -> group(function() {
 	});
 // 
 
- 
+
 // Route :: get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
 // Route :: post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
 
@@ -125,6 +120,12 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 
 Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 	$language = Language :: where('title', $lang) -> first();
+	
+	Page :: setLang($language -> title);
+
+	MenuButton :: setLang($language -> title);
+	MenuButton :: setPage($pageAlias);
+
 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
 
 	$active_module = Module :: where('page', $page -> id) -> first();
@@ -152,12 +153,14 @@ Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
 
 
-// Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
-// Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
-
-
 Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $step0Alias) {
 	$language = Language :: where('title', $lang) -> first();
+
+	Page :: setLang($language -> title);
+
+	MenuButton :: setLang($language -> title);
+	MenuButton :: setPage($pageAlias);
+
 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
 
 	$active_module = Module :: where('page', $page -> id) -> first();

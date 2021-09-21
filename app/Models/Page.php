@@ -12,24 +12,26 @@ class Page extends Model {
      */
     protected $table = 'pages_step_0';
 
-    public function getFullData($lang) {
-		$pageUpdatedData = (object) array();
-		$pageUpdatedData -> title = '';
-		$pageUpdatedData -> alias = '';
-		$pageUpdatedData -> text = '';
 
-		if($this -> published) {
-			$pageUpdatedData = $this;
-			
-			foreach(Language :: where('published', 1) -> get() as $data) {
-				if($data -> title === $lang) {
-					$pageUpdatedData -> title = $this -> { 'title_'.$lang };
-					$pageUpdatedData -> alias = $this -> { 'alias_'.$lang };
-					$pageUpdatedData -> text = $this -> { 'text_'.$lang };
-				}
-			}
-		}
+	private static $lang;
 
-		return $pageUpdatedData;
+
+	public static function setLang($value) {
+		self :: $lang = $value;
 	}
+
+
+	public function getAliasAttribute() {
+        return $this -> { 'alias_'.self :: $lang };
+    }
+
+
+	public function getTitleAttribute() {
+        return $this -> { 'title_'.self :: $lang };
+    }
+
+
+	public function getTextAttribute() {
+        return $this -> { 'text_'.self :: $lang };
+    }
 }

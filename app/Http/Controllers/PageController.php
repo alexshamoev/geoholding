@@ -26,15 +26,17 @@ class PageController extends Controller {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
-		$data = ['page' => $page -> getFullData($lang -> title),
+		Partner :: setLang($lang -> title);
+
+		$data = ['page' => $page,
 				'language' => $lang,
-				'menuButtons' => MenuButton :: getFullData($lang -> title),
+				'menuButtons' => MenuButton :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'languages' => Language :: getFullData($lang -> title, $page),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),
-				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang -> title) -> alias,
-				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang -> title) -> alias,
-				'partners' => Partner :: getFullData($lang -> title),
+				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
+				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> alias,
+				'partners' => Partner :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
 
@@ -43,8 +45,14 @@ class PageController extends Controller {
 
 	
 	public function getDefaultPageWithDefaultLanguage() {
-		$page = Page :: where('like_default', 1) -> first();
 		$language = Language :: where('like_default', 1) -> first();
+		
+		Page :: setLang($language -> title);
+
+		$page = Page :: where('like_default', 1) -> first();
+
+		MenuButton :: setLang($language -> title);
+		MenuButton :: setPage($page -> alias);
 
 		if($language && $page) {
 			$page_template = 'static';
@@ -66,7 +74,12 @@ class PageController extends Controller {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
+			Page :: setLang($language -> title);
+
 			$page = Page :: where('like_default', 1) -> first();
+
+			MenuButton :: setLang($language -> title);
+			MenuButton :: setPage($page -> alias);
 
 			if($page) {
 				$page_template = 'static';
