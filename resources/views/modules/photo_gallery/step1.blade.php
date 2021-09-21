@@ -8,14 +8,14 @@
 
 @section('content')
     <h1 class="p-2">
-        {{ $activeNews -> alias }}
+        {{ $activePhotoGalleryCategory -> alias }}
     </h1>
 
 	<div class="p-2">
-		{{ $activeNews -> title }}
+		{{ $activePhotoGalleryCategory -> title }}
 	</div>
 
 	<div class="p-2">
-		{{ $activeNews -> text }}
+		{!! $activePhotoGalleryCategory -> text !!}
 	</div>
 @endsection

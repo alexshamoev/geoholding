@@ -16,6 +16,6 @@
 	</div>
 
 	<div class="p-2">
-		{{ $activeNews -> text }}
+		{!! $activeNews -> text !!}
 	</div>
 @endsection

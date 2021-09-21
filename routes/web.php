@@ -2,6 +2,8 @@
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
+use App\Models\PhotoGalleryCategory;
+use App\Models\News;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
@@ -120,7 +122,6 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 
 Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 	$language = Language :: where('title', $lang) -> first();
-
 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
 
 	$active_module = Module :: where('page', $page -> id) -> first();
@@ -128,10 +129,16 @@ Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 	if($active_module) {
 		switch($active_module -> alias) {
 			case 'news':
+				News :: setLang($language -> title);
+				News :: setPageAlias($pageAlias);
+
 				return NewsController :: getStep0($language, $page);
 				
 				break;
 			case 'photo_gallery':
+				PhotoGalleryCategory :: setLang($language -> title);
+				PhotoGalleryCategory :: setPageAlias($pageAlias);
+
 				return PhotoGalleryController :: getStep0($language, $page);
 				
 				break;
@@ -142,10 +149,39 @@ Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
 
 
-
 // Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
-Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
+// Route :: get('/{lang}/{pageAlias}/{step0Alias}', 'PageController@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
 
+
+Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $step0Alias) {
+	$language = Language :: where('title', $lang) -> first();
+	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+
+	$active_module = Module :: where('page', $page -> id) -> first();
+
+	if($active_module) {
+		switch($active_module -> alias) {
+			case 'news':
+				News :: setLang($language -> title);
+				News :: setPageAlias($pageAlias);
+
+				return NewsController :: getStep1($language, $page, $step0Alias);
+				
+				break;
+			case 'photo_gallery':
+				PhotoGalleryCategory :: setLang($language -> title);
+				PhotoGalleryCategory :: setPageAlias($pageAlias);
+
+				return PhotoGalleryController :: getStep1($language, $page, $step0Alias);
+				
+				break;
+		}
+	} else {
+		// return PageController :: getPage($lang, $pageAlias);
+
+		return 555;
+	}
+}) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
 
 
 // Auth :: routes();

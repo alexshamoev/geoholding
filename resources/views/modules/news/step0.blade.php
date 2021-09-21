@@ -29,7 +29,7 @@
 						</div>
 
 						<div class="p-2">
-							{{ $data -> text }}
+							{!! $data -> text !!}
 						</div>
 					</div>
 				</a>

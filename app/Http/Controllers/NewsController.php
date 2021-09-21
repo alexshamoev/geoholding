@@ -16,21 +16,17 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller {
     public static function getStep0($language, $page) {
-        $data = PageController :: getDefaultData($language, $page);
-
-		$data = array_merge($data, ['newsStep0' => News :: getFullData($language -> title)]);
+        $data = array_merge(PageController :: getDefaultData($language, $page),
+                            ['newsStep0' => News :: where('published', 1) -> get()]);
 
         return view('modules.news.step0', $data);
     }
 
 
-    public static function getStep1($language, $pageAlias, $stepAlias, $page) {
-        $activeNews = News :: where('alias_'.$language -> title, $stepAlias) -> first();
-
-        $data = PageController :: getDefaultData($language, $page);
-
-        $data = array_merge($data, ['newsStep0' => News :: getFullData($language -> title),
-                                    'activeNews' => $activeNews -> getData($language -> title)]);
+    public static function getStep1($language, $page, $stepAlias) {
+        $data = array_merge(PageController :: getDefaultData($language, $page),
+                            ['newsStep0' => News :: where('published', 1) -> get(),
+                             'activeNews' => News :: where('alias_'.$language -> title, $stepAlias) -> first()]);
 
         return view('modules.news.step1', $data);
     }

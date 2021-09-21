@@ -14,57 +14,35 @@ class News extends Model {
      */
     protected $table = 'news_step_0';
 
-	public function getData($lang) {
-		$updatedData = (object) array();
-		$updatedData -> title = '';
-		$updatedData -> alias = '';
-		$updatedData -> text = '';
 
-		if($this -> published) {
-			$updatedData = $this;
-			
-			foreach(Language :: where('published', 1) -> get() as $data) {
-				if($data -> title === $lang) {
-					$var_title = 'title_'.$lang;
-					$var_alias = 'alias_'.$lang;
-					$var_text = 'text_'.$lang;
+	private static $lang;
+	private static $pageAlias;
 
 
-					$updatedData -> title = $this -> $var_title;
-					$updatedData -> alias = $this -> $var_alias;
-					$updatedData -> text = $this -> $var_text;
-				}
-			}
-		}
+	public static function setLang($value) {
+		self :: $lang = $value;
+	}
 
-		return $updatedData;
+	public static function setPageAlias($value) {
+		self :: $pageAlias = $value;
 	}
 
 
-    public static function getFullData($lang) {
-		$newsPage = Page :: where('slug', 'news') -> first();
-
-		$news = self :: where('published', 1) -> get();
-		$newsUpdatedData = $news;
-
-		$i = 0;
-
-		foreach($newsUpdatedData as $data) {
-			$varAlias = 'alias_'.$lang;
-			$var_title = 'title_'.$lang;
-			$var_text = 'text_'.$lang;
-
-			$newsUpdatedData[$i] -> alias = $newsUpdatedData[$i] -> $varAlias;
-			$newsUpdatedData[$i] -> title = $newsUpdatedData[$i] -> $var_title;
-			$newsUpdatedData[$i] -> text = $newsUpdatedData[$i] -> $var_text;
-			
-			$newsUpdatedData[$i] -> fullUrl = '/'.$lang.'/'.$newsPage -> $varAlias.'/'.$newsUpdatedData[$i] -> alias;
+	public function getAliasAttribute() {
+        return $this -> { 'alias_'.self :: $lang };
+    }
 
 
-			$i++;
-		}
+	public function getTitleAttribute() {
+        return $this -> { 'title_'.self :: $lang };
+    }
 
 
-		return $newsUpdatedData;
-	}
+	public function getTextAttribute() {
+        return $this -> { 'text_'.self :: $lang };
+    }
+
+	public function getFullUrlAttribute() {
+        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
+    }
 }
