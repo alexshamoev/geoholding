@@ -5,9 +5,18 @@
 				@foreach($menuButtons as $data)
 					<div class="nav-item">
 						<a href="{{ $data -> url }}">
-							<div class="p-2">
+							@php
+								$activeCssClass = '';
+
+								if($data -> active) {
+									$activeCssClass = 'active_class';
+								}
+							@endphp
+							
+							<div class="p-2 {{ $activeCssClass }}">
 								{{ $data -> title }}
-								{{ $data -> active }}
+
+								{{ $activeCssClass }}
 							</div>
 						</a>
 					</div>

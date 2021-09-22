@@ -17,6 +17,9 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller {
 	public static function getDefaultData($lang, $page) {
+		Language :: setLang($lang);
+		Language :: setPage($page);
+
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
 		$bsc = Bsc :: getFullData();
@@ -31,7 +34,7 @@ class PageController extends Controller {
 		$data = ['page' => $page,
 				'language' => $lang,
 				'menuButtons' => MenuButton :: where('published', '1') -> orderByDesc('rang') -> get(),
-				'languages' => Language :: getFullData($lang -> title, $page),
+				'languages' => Language :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,

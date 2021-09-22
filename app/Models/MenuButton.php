@@ -39,7 +39,6 @@ class MenuButton extends Model {
     }
 
 
-
 	public function getActiveAttribute() {
 		$page = Page :: where('id', $this -> page) -> where('published', 1) -> first();
 
@@ -49,8 +48,6 @@ class MenuButton extends Model {
 			return 0;
 		}
     }
-
-
 
 
     // public static function getFullData($lang) {

@@ -5,38 +5,47 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model {
-    public static function getFullData($lang, $page) {
-		$languages = self :: where('published', 1) -> orderByDesc('rang') -> get();
+	/**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'languages';
+	
+	private static $lang;
+	private static $page;
 
-		$languagesUpdatedData = $languages;
- 
 
-		$i = 0;
+	public static function setLang($value) {
+		self :: $lang = $value;
+	}
 
-		foreach($languagesUpdatedData as $data) {
-			$languagesUpdatedData[$i] -> full_url = '';
-			$languagesUpdatedData[$i] -> active = false;
-			
-			
-			if($page -> like_default) {
-				if($data -> like_default) {
-					$languagesUpdatedData[$i] -> full_url = '/';
-				} else {
-					$languagesUpdatedData[$i] -> full_url = '/'.$data -> title;
-				}
+	public static function setPage($value) {
+		self :: $page = $value;
+	}
+
+
+	public function getFullUrlAttribute() {
+		$full_url = '';
+		
+		if(self :: $page -> like_default) {
+			if($this -> like_default) {
+				$full_url = '/';
 			} else {
-				$languagesUpdatedData[$i] -> full_url = '/'.$data -> title.'/'.$page -> { 'alias_'.$data -> title };
+				$full_url = '/'.$this -> title;
 			}
-
-			if($lang === $data -> title) {
-				$languagesUpdatedData[$i] -> active = true;
-			}
-
-
-			$i++;
+		} else {
+			$full_url = '/'.$this -> title.'/'.self :: $page -> { 'alias_'.$this -> title };
 		}
 
 
-		return $languagesUpdatedData;
-	}
+        return $full_url;
+    }
+
+
+	public function getActiveAttribute() {
+		if(self :: $lang === $this -> title) {
+			$languagesUpdatedData[$i] -> active = true;
+		}
+    }
 }
