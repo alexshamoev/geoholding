@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Bsc extends Model
-{
+class Bsc extends Model {
     public static function getFullData() {
 		$bscs = (object)[];
 

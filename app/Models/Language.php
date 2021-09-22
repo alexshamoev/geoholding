@@ -44,8 +44,10 @@ class Language extends Model {
 
 
 	public function getActiveAttribute() {
-		if(self :: $lang === $this -> title) {
-			$languagesUpdatedData[$i] -> active = true;
+		if(self :: $lang -> title == $this -> title) {
+			return true;
 		}
+
+		return false;
     }
 }
