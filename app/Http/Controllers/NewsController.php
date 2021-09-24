@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 class NewsController extends Controller {
     public static function getStep0($language, $page) {
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['newsStep0' => News :: where('published', 1) -> get()]);
+                            ['newsStep0' => News :: where('published', 1) -> orderByDesc('rang') -> get()]);
 
         return view('modules.news.step0', $data);
     }
@@ -25,7 +25,7 @@ class NewsController extends Controller {
 
     public static function getStep1($language, $page, $stepAlias) {
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['newsStep0' => News :: where('published', 1) -> get(),
+                            ['newsStep0' => News :: where('published', 1) -> orderByDesc('rang') -> get(),
                              'activeNews' => News :: where('alias_'.$language -> title, $stepAlias) -> first()]);
 
         return view('modules.news.step1', $data);

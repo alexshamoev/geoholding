@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class PhotoGalleryController extends Controller {
     public static function getStep0($language, $page) {
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> get()]);
+                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> orderByDesc('rang') -> get()]);
         
         return view('modules.photo_gallery.step0', $data);
     }
@@ -24,7 +24,7 @@ class PhotoGalleryController extends Controller {
 
     public static function getStep1($language, $page, $stepAlias) {
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> get(),
+                            ['photoGalleryStep0' => PhotoGalleryCategory :: where('published', 1) -> orderByDesc('rang') -> get(),
                              'activePhotoGalleryCategory' => PhotoGalleryCategory :: where('alias_'.$language -> title, $stepAlias) -> first()]);
 
         return view('modules.photo_gallery.step1', $data);
