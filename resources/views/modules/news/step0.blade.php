@@ -21,7 +21,7 @@
 				<a href="{{ $data -> fullUrl }}">
 					<div class="p-2">
 						<div class="p-2">
-							<img src="{{ asset('/images/modules/news/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+							<img src="{{ asset('/storage/images/modules/news/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
 						</div>
 
 						<div class="p-2">
