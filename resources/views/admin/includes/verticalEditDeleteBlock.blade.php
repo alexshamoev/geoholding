@@ -1,7 +1,7 @@
 <div class="p-2">
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-2 p-0">
-			<div style="background-image: url('{{ asset('/images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
+			<div style="background-image: url('{{ asset('/storage/images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 
