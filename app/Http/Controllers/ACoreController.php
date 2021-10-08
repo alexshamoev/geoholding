@@ -398,7 +398,7 @@ class ACoreController extends Controller {
 
 
 
-						// $request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
 
 
 
@@ -410,13 +410,17 @@ class ACoreController extends Controller {
 						
 
 
-						$image = $request -> file('image');
-						$filename = $image -> getClientOriginalName();
+						// $image = $request -> file('image');
+						// $filename = $image -> getClientOriginalName();
 					
-						$image_resize = Image :: make($image -> getRealPath());              
-						$image_resize -> resize(300, 300);
+						// $image_resize = Image :: make($image -> getRealPath());              
+						// $image_resize -> resize(300, 300);
 
-						$image_resize -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
+						// $image_resize -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
+
+
+
+
 
 						// Storage :: putFile('images/modules/'.$module -> alias.'/', $image_resize);
 						// $image_resize -> save(public_path('images/modules/'.$module -> alias.'/'.$id.'.jpg'));
