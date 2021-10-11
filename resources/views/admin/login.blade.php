@@ -9,16 +9,16 @@
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/custom-bootstrap.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/classes.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/identifiers.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/for_editors.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/html_tags.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ URL :: asset('css/admin/jquery_ui.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/custom-bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/classes.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/identifiers.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/for_editors.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/html_tags.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/jquery_ui.css') }}">
 
 		<!-- basic.js must be first because it loads jquery -->
-		<script src="{{ URL :: asset('js/admin/basic.js') }}"></script>
-		<script src="{{ URL :: asset('js/admin/rangs.js') }}"></script>
+		<script src="{{ asset('js/admin/basic.js') }}"></script>
+		<script src="{{ asset('js/admin/rangs.js') }}"></script>
 	</head>
 
 	<body>
