@@ -12,7 +12,7 @@ use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManagerStatic;
 use DB;
 
 
@@ -383,7 +383,7 @@ class ACoreController extends Controller {
 
 
 			// dd($request -> all());
-
+ 
 
 			// Image
 				if($data -> type === 'image') {
@@ -392,38 +392,15 @@ class ACoreController extends Controller {
 					if($request -> hasFile('image')) {
 					// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 
-						// $path = $request -> file('image') -> path();
-						// $extension = $request -> file('image') -> extension();
-
-
-
-
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
-
-
-
-
-
-						// return $extension;
-
-						// return 555;
 						
 
+						// $image = ImageManagerStatic :: make($request -> file('image')) -> resize(300, 300);
+						$image = ImageManagerStatic :: make($request -> file('image')) -> fit(300, 300);
+						$image -> save();
 
-						// $image = $request -> file('image');
-						// $filename = $image -> getClientOriginalName();
-					
-						// $image_resize = Image :: make($image -> getRealPath());              
-						// $image_resize -> resize(300, 300);
-
-						// $image_resize -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
-
-
-
-
-
-						// Storage :: putFile('images/modules/'.$module -> alias.'/', $image_resize);
-						// $image_resize -> save(public_path('images/modules/'.$module -> alias.'/'.$id.'.jpg'));
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
+        				
+						
 						
 
 					}
