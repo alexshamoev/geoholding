@@ -150,6 +150,7 @@ class AModuleBlockController extends Controller {
 		
 		$moduleBlock -> image_width = $request -> input('image_width');
 		$moduleBlock -> image_height = $request -> input('image_height');
+		$moduleBlock -> fit_position = $request -> input('fit_position');
 
 		if($request -> input('image_cover')) {
 			$moduleBlock -> image_cover = $request -> input('image_cover');

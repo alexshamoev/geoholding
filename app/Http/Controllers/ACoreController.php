@@ -387,29 +387,18 @@ class ACoreController extends Controller {
 
 			// Image
 				if($data -> type === 'image') {
-					// return var_dump($request -> hasFile('image'));
-
 					if($request -> hasFile('image')) {
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
-						
-						
 
-						// $image = ImageManagerStatic :: make($request -> file('image')) -> resize(300, 300);
-
-						$image = ImageManagerStatic :: make($request -> file('image')) -> fit(500, 500, function() {}, 'top');
+						$image = ImageManagerStatic :: make($request -> file('image')) -> fit($data -> image_width,
+																							  $data -> image_height,
+																							  function() {},
+																							  $data -> fit_position);
 						
 						$image -> save();
 						
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');
-        				
-						
-						
-						
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
 					}
-
-
-
-					// $updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 				}
 			// 
 

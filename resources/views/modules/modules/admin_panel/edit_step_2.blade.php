@@ -136,6 +136,28 @@
 						<div class="col-2 p-2">
 							{{ Form :: checkbox('image_fill', '1') }} image_fill?
 						</div>
+
+						<div class="col-4 p-2">
+							<div>
+								fit_position
+							</div>
+
+							<div>
+								{{ Form :: select('fit_position',
+													[
+														'top-left' => 'top-left',
+														'top' => 'top',
+														'top-right' => 'top-right',
+														'left' => 'left',
+														'center' => 'center',
+														'right' => 'right',
+														'bottom-left' => 'bottom-left',
+														'bottom' => 'bottom',
+														'bottom-right' => 'bottom-right'
+													],
+													$moduleBlock -> fit_position) }}
+							</div>
+						</div>
 					</div>
 				</div>
 

@@ -29,6 +29,6 @@
 	</div>
 
 	<div class="p-2">
-		<img src="{{ asset('/storage/images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+		<img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
 	</div>
 @endsection
