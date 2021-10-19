@@ -401,9 +401,6 @@ class ACoreController extends Controller {
 					}
 				}
 			// 
-
-
-
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
