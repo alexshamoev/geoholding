@@ -1,23 +1,4 @@
-// COLORS
-$color0: red;
-$color1: green;
-$color2: blue;
-$color3: yellow;
-$color4: pink;
-$color5: brown;
-$input_warning_color: #F00;
 
-
-
-
-
-
-//MEDIA QUERY BREAKPOINTS
-$xl_size : 1400px;
-$lg_size : 1250px;
-$md_size : 1024px;
-$sm_size : 576px;
-$xs_size : 576px;
 //MEDIA QUERY BREAKPOINTS
 @import "./atom";
 

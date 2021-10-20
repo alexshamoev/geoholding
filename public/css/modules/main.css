@@ -22,26 +22,20 @@
 .header {
   background-color: #fff;
 }
-
 .header__close-search {
   display: none;
 }
-
-.header__close-search,
-.header__open-search {
+.header__close-search, .header__open-search {
   cursor: pointer;
 }
-
 .header__search-input {
   width: 0px;
   transition: 0.2s all ease-in-out;
   overflow: hidden;
 }
-
 .header__search-input.expanded {
   width: 200px;
 }
-
 .header__search-input input {
   width: 100%;
 }
@@ -49,9 +43,7 @@
 .languages {
   border: 3px solid blue;
 }
-
 .languages__lang--active {
   opacity: 0.5;
   pointer-events: none;
 }
-

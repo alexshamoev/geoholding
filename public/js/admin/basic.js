@@ -1,100 +1,14 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ({
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/jquery-ui/ui/data.js":
 /*!*******************************************!*\
   !*** ./node_modules/jquery-ui/ui/data.js ***!
   \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI :data 1.12.1
+ * jQuery UI :data 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -108,16 +22,20 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //>>docs: http://api.jqueryui.com/data-selector/
 
 ( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-} ( function( $ ) {
-return $.extend( $.expr[ ":" ], {
+} )( function( $ ) {
+"use strict";
+
+return $.extend( $.expr.pseudos, {
 	data: $.expr.createPseudo ?
 		$.expr.createPseudo( function( dataName ) {
 			return function( elem ) {
@@ -130,7 +48,7 @@ return $.extend( $.expr[ ":" ], {
 			return !!$.data( elem, match[ 3 ] );
 		}
 } );
-} ) );
+} );
 
 
 /***/ }),
@@ -139,23 +57,25 @@ return $.extend( $.expr[ ":" ], {
 /*!*****************************************!*\
   !*** ./node_modules/jquery-ui/ui/ie.js ***!
   \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-} ( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 // This file is deprecated
 return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
-} ) );
+} );
 
 
 /***/ }),
@@ -164,11 +84,10 @@ return $.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
 /*!****************************************************!*\
   !*** ./node_modules/jquery-ui/ui/scroll-parent.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Scroll Parent 1.12.1
+ * jQuery UI Scroll Parent 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -182,15 +101,18 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //>>docs: http://api.jqueryui.com/scrollParent/
 
 ( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-} ( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 return $.fn.scrollParent = function( includeHidden ) {
 	var position = this.css( "position" ),
@@ -210,7 +132,7 @@ return $.fn.scrollParent = function( includeHidden ) {
 		scrollParent;
 };
 
-} ) );
+} );
 
 
 /***/ }),
@@ -219,25 +141,27 @@ return $.fn.scrollParent = function( includeHidden ) {
 /*!**********************************************!*\
   !*** ./node_modules/jquery-ui/ui/version.js ***!
   \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-} ( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 $.ui = $.ui || {};
 
-return $.ui.version = "1.12.1";
+return $.ui.version = "1.13.0";
 
-} ) );
+} );
 
 
 /***/ }),
@@ -246,11 +170,10 @@ return $.ui.version = "1.12.1";
 /*!*********************************************!*\
   !*** ./node_modules/jquery-ui/ui/widget.js ***!
   \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Widget 1.12.1
+ * jQuery UI Widget 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -265,33 +188,33 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //>>demos: http://jqueryui.com/widget/
 
 ( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
 		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-}( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 var widgetUuid = 0;
+var widgetHasOwnProperty = Array.prototype.hasOwnProperty;
 var widgetSlice = Array.prototype.slice;
 
 $.cleanData = ( function( orig ) {
 	return function( elems ) {
 		var events, elem, i;
 		for ( i = 0; ( elem = elems[ i ] ) != null; i++ ) {
-			try {
 
-				// Only trigger remove when necessary to save time
-				events = $._data( elem, "events" );
-				if ( events && events.remove ) {
-					$( elem ).triggerHandler( "remove" );
-				}
-
-			// Http://bugs.jquery.com/ticket/8235
-			} catch ( e ) {}
+			// Only trigger remove when necessary to save time
+			events = $._data( elem, "events" );
+			if ( events && events.remove ) {
+				$( elem ).triggerHandler( "remove" );
+			}
 		}
 		orig( elems );
 	};
@@ -313,12 +236,12 @@ $.widget = function( name, base, prototype ) {
 		base = $.Widget;
 	}
 
-	if ( $.isArray( prototype ) ) {
+	if ( Array.isArray( prototype ) ) {
 		prototype = $.extend.apply( null, [ {} ].concat( prototype ) );
 	}
 
 	// Create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
+	$.expr.pseudos[ fullName.toLowerCase() ] = function( elem ) {
 		return !!$.data( elem, fullName );
 	};
 
@@ -358,7 +281,7 @@ $.widget = function( name, base, prototype ) {
 	// inheriting from
 	basePrototype.options = $.widget.extend( {}, basePrototype.options );
 	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
+		if ( typeof value !== "function" ) {
 			proxiedPrototype[ prop ] = value;
 			return;
 		}
@@ -437,7 +360,7 @@ $.widget.extend = function( target ) {
 	for ( ; inputIndex < inputLength; inputIndex++ ) {
 		for ( key in input[ inputIndex ] ) {
 			value = input[ inputIndex ][ key ];
-			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
+			if ( widgetHasOwnProperty.call( input[ inputIndex ], key ) && value !== undefined ) {
 
 				// Clone objects
 				if ( $.isPlainObject( value ) ) {
@@ -486,7 +409,8 @@ $.widget.bridge = function( name, object ) {
 							"attempted to call method '" + options + "'" );
 					}
 
-					if ( !$.isFunction( instance[ options ] ) || options.charAt( 0 ) === "_" ) {
+					if ( typeof instance[ options ] !== "function" ||
+						options.charAt( 0 ) === "_" ) {
 						return $.error( "no such method '" + options + "' for " + name +
 							" widget instance" );
 					}
@@ -747,12 +671,30 @@ $.Widget.prototype = {
 			classes: this.options.classes || {}
 		}, options );
 
+		function bindRemoveEvent() {
+			options.element.each( function( _, element ) {
+				var isTracked = $.map( that.classesElementLookup, function( elements ) {
+					return elements;
+				} )
+					.some( function( elements ) {
+						return elements.is( element );
+					} );
+
+				if ( !isTracked ) {
+					that._on( $( element ), {
+						remove: "_untrackClassesElement"
+					} );
+				}
+			} );
+		}
+
 		function processClassString( classes, checkOption ) {
 			var current, i;
 			for ( i = 0; i < classes.length; i++ ) {
 				current = that.classesElementLookup[ classes[ i ] ] || $();
 				if ( options.add ) {
-					current = $( $.unique( current.get().concat( options.element.get() ) ) );
+					bindRemoveEvent();
+					current = $( $.uniqueSort( current.get().concat( options.element.get() ) ) );
 				} else {
 					current = $( current.not( options.element ).get() );
 				}
@@ -763,10 +705,6 @@ $.Widget.prototype = {
 				}
 			}
 		}
-
-		this._on( options.element, {
-			"remove": "_untrackClassesElement"
-		} );
 
 		if ( options.keys ) {
 			processClassString( options.keys.match( /\S+/g ) || [], true );
@@ -785,6 +723,8 @@ $.Widget.prototype = {
 				that.classesElementLookup[ key ] = $( value.not( event.target ).get() );
 			}
 		} );
+
+		this._off( $( event.target ) );
 	},
 
 	_removeClass: function( element, keys, extra ) {
@@ -865,7 +805,7 @@ $.Widget.prototype = {
 	_off: function( element, eventName ) {
 		eventName = ( eventName || "" ).split( " " ).join( this.eventNamespace + " " ) +
 			this.eventNamespace;
-		element.off( eventName ).off( eventName );
+		element.off( eventName );
 
 		// Clear the stack to avoid memory leaks (#10056)
 		this.bindings = $( this.bindings.not( element ).get() );
@@ -931,7 +871,7 @@ $.Widget.prototype = {
 		}
 
 		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
+		return !( typeof callback === "function" &&
 			callback.apply( this.element[ 0 ], [ event ].concat( data ) ) === false ||
 			event.isDefaultPrevented() );
 	}
@@ -953,6 +893,8 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 		options = options || {};
 		if ( typeof options === "number" ) {
 			options = { duration: options };
+		} else if ( options === true ) {
+			options = {};
 		}
 
 		hasOptions = !$.isEmptyObject( options );
@@ -980,7 +922,7 @@ $.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
 
 return $.widget;
 
-} ) );
+} );
 
 
 /***/ }),
@@ -989,11 +931,10 @@ return $.widget;
 /*!****************************************************!*\
   !*** ./node_modules/jquery-ui/ui/widgets/mouse.js ***!
   \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Mouse 1.12.1
+ * jQuery UI Mouse 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -1007,6 +948,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //>>docs: http://api.jqueryui.com/mouse/
 
 ( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
@@ -1016,11 +959,12 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
 			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-}( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 var mouseHandled = false;
 $( document ).on( "mouseup", function() {
@@ -1028,7 +972,7 @@ $( document ).on( "mouseup", function() {
 } );
 
 return $.widget( "ui.mouse", {
-	version: "1.12.1",
+	version: "1.13.0",
 	options: {
 		cancel: "input, textarea, button, select, option",
 		distance: 1,
@@ -1073,7 +1017,9 @@ return $.widget( "ui.mouse", {
 		this._mouseMoved = false;
 
 		// We may have missed mouseup (out of window)
-		( this._mouseStarted && this._mouseUp( event ) );
+		if ( this._mouseStarted ) {
+			this._mouseUp( event );
+		}
 
 		this._mouseDownEvent = event;
 
@@ -1166,7 +1112,11 @@ return $.widget( "ui.mouse", {
 		if ( this._mouseDistanceMet( event ) && this._mouseDelayMet( event ) ) {
 			this._mouseStarted =
 				( this._mouseStart( this._mouseDownEvent, event ) !== false );
-			( this._mouseStarted ? this._mouseDrag( event ) : this._mouseUp( event ) );
+			if ( this._mouseStarted ) {
+				this._mouseDrag( event );
+			} else {
+				this._mouseUp( event );
+			}
 		}
 
 		return !this._mouseStarted;
@@ -1213,10 +1163,12 @@ return $.widget( "ui.mouse", {
 	_mouseStart: function( /* event */ ) {},
 	_mouseDrag: function( /* event */ ) {},
 	_mouseStop: function( /* event */ ) {},
-	_mouseCapture: function( /* event */ ) { return true; }
+	_mouseCapture: function( /* event */ ) {
+		return true;
+	}
 } );
 
-} ) );
+} );
 
 
 /***/ }),
@@ -1225,11 +1177,10 @@ return $.widget( "ui.mouse", {
 /*!*******************************************************!*\
   !*** ./node_modules/jquery-ui/ui/widgets/sortable.js ***!
   \*******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, exports, __webpack_require__) => {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Sortable 1.12.1
+ * jQuery UI Sortable 1.13.0
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -1245,6 +1196,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 //>>css.structure: ../../themes/base/sortable.css
 
 ( function( factory ) {
+	"use strict";
+
 	if ( true ) {
 
 		// AMD. Register as an anonymous module.
@@ -1257,14 +1210,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
 			__webpack_require__(/*! ../widget */ "./node_modules/jquery-ui/ui/widget.js")
 		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	} else {}
-}( function( $ ) {
+} )( function( $ ) {
+"use strict";
 
 return $.widget( "ui.sortable", $.ui.mouse, {
-	version: "1.12.1",
+	version: "1.13.0",
 	widgetEventPrefix: "sort",
 	ready: false,
 	options: {
@@ -1424,6 +1378,11 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		// mouseCapture
 		this.refreshPositions();
 
+		//Prepare the dragged items parent
+		this.appendTo = $( o.appendTo !== "parent" ?
+				o.appendTo :
+				this.currentItem.parent() );
+
 		//Create and append the visible helper
 		this.helper = this._createHelper( event );
 
@@ -1438,9 +1397,6 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		//Cache the margins of the original element
 		this._cacheMargins();
 
-		//Get the next scrolling parent
-		this.scrollParent = this.helper.scrollParent();
-
 		//The element's absolute position on the page minus margins
 		this.offset = this.currentItem.offset();
 		this.offset = {
@@ -1453,25 +1409,22 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				left: event.pageX - this.offset.left,
 				top: event.pageY - this.offset.top
 			},
-			parent: this._getParentOffset(),
 
 			// This is a relative to absolute position minus the actual position calculation -
 			// only used for relative positioned helper
 			relative: this._getRelativeOffset()
 		} );
 
-		// Only after we got the offset, we can change the helper's position to absolute
+		// After we get the helper offset, but before we get the parent offset we can
+		// change the helper's position to absolute
 		// TODO: Still need to figure out a way to make relative sorting possible
 		this.helper.css( "position", "absolute" );
 		this.cssPosition = this.helper.css( "position" );
 
-		//Generate the original position
-		this.originalPosition = this._generatePosition( event );
-		this.originalPageX = event.pageX;
-		this.originalPageY = event.pageY;
-
 		//Adjust the mouse offset relative to the helper if "cursorAt" is supplied
-		( o.cursorAt && this._adjustOffsetFromHelper( o.cursorAt ) );
+		if ( o.cursorAt ) {
+			this._adjustOffsetFromHelper( o.cursorAt );
+		}
 
 		//Cache the former DOM position
 		this.domPosition = {
@@ -1487,6 +1440,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		//Create the placeholder
 		this._createPlaceholder();
+
+		//Get the next scrolling parent
+		this.scrollParent = this.placeholder.scrollParent();
+
+		$.extend( this.offset, {
+			parent: this._getParentOffset()
+		} );
 
 		//Set a containment if given in the options
 		if ( o.containment ) {
@@ -1504,18 +1464,21 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				$( "<style>*{ cursor: " + o.cursor + " !important; }</style>" ).appendTo( body );
 		}
 
-		if ( o.opacity ) { // opacity option
-			if ( this.helper.css( "opacity" ) ) {
-				this._storedOpacity = this.helper.css( "opacity" );
-			}
-			this.helper.css( "opacity", o.opacity );
-		}
-
+		// We need to make sure to grab the zIndex before setting the
+		// opacity, because setting the opacity to anything lower than 1
+		// causes the zIndex to change from "auto" to 0.
 		if ( o.zIndex ) { // zIndex option
 			if ( this.helper.css( "zIndex" ) ) {
 				this._storedZIndex = this.helper.css( "zIndex" );
 			}
 			this.helper.css( "zIndex", o.zIndex );
+		}
+
+		if ( o.opacity ) { // opacity option
+			if ( this.helper.css( "opacity" ) ) {
+				this._storedOpacity = this.helper.css( "opacity" );
+			}
+			this.helper.css( "opacity", o.opacity );
 		}
 
 		//Prepare scrolling
@@ -1552,77 +1515,82 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		this._addClass( this.helper, "ui-sortable-helper" );
 
-		// Execute the drag once - this causes the helper not to be visiblebefore getting its
-		// correct position
+		//Move the helper, if needed
+		if ( !this.helper.parent().is( this.appendTo ) ) {
+			this.helper.detach().appendTo( this.appendTo );
+
+			//Update position
+			this.offset.parent = this._getParentOffset();
+		}
+
+		//Generate the original position
+		this.position = this.originalPosition = this._generatePosition( event );
+		this.originalPageX = event.pageX;
+		this.originalPageY = event.pageY;
+		this.lastPositionAbs = this.positionAbs = this._convertPositionTo( "absolute" );
+
 		this._mouseDrag( event );
+
 		return true;
 
 	},
 
+	_scroll: function( event ) {
+		var o = this.options,
+			scrolled = false;
+
+		if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
+				this.scrollParent[ 0 ].tagName !== "HTML" ) {
+
+			if ( ( this.overflowOffset.top + this.scrollParent[ 0 ].offsetHeight ) -
+					event.pageY < o.scrollSensitivity ) {
+				this.scrollParent[ 0 ].scrollTop =
+					scrolled = this.scrollParent[ 0 ].scrollTop + o.scrollSpeed;
+			} else if ( event.pageY - this.overflowOffset.top < o.scrollSensitivity ) {
+				this.scrollParent[ 0 ].scrollTop =
+					scrolled = this.scrollParent[ 0 ].scrollTop - o.scrollSpeed;
+			}
+
+			if ( ( this.overflowOffset.left + this.scrollParent[ 0 ].offsetWidth ) -
+					event.pageX < o.scrollSensitivity ) {
+				this.scrollParent[ 0 ].scrollLeft = scrolled =
+					this.scrollParent[ 0 ].scrollLeft + o.scrollSpeed;
+			} else if ( event.pageX - this.overflowOffset.left < o.scrollSensitivity ) {
+				this.scrollParent[ 0 ].scrollLeft = scrolled =
+					this.scrollParent[ 0 ].scrollLeft - o.scrollSpeed;
+			}
+
+		} else {
+
+			if ( event.pageY - this.document.scrollTop() < o.scrollSensitivity ) {
+				scrolled = this.document.scrollTop( this.document.scrollTop() - o.scrollSpeed );
+			} else if ( this.window.height() - ( event.pageY - this.document.scrollTop() ) <
+					o.scrollSensitivity ) {
+				scrolled = this.document.scrollTop( this.document.scrollTop() + o.scrollSpeed );
+			}
+
+			if ( event.pageX - this.document.scrollLeft() < o.scrollSensitivity ) {
+				scrolled = this.document.scrollLeft(
+					this.document.scrollLeft() - o.scrollSpeed
+				);
+			} else if ( this.window.width() - ( event.pageX - this.document.scrollLeft() ) <
+					o.scrollSensitivity ) {
+				scrolled = this.document.scrollLeft(
+					this.document.scrollLeft() + o.scrollSpeed
+				);
+			}
+
+		}
+
+		return scrolled;
+	},
+
 	_mouseDrag: function( event ) {
 		var i, item, itemElement, intersection,
-			o = this.options,
-			scrolled = false;
+			o = this.options;
 
 		//Compute the helpers position
 		this.position = this._generatePosition( event );
-		this.positionAbs = this._convertPositionTo( "absolute" );
-
-		if ( !this.lastPositionAbs ) {
-			this.lastPositionAbs = this.positionAbs;
-		}
-
-		//Do scrolling
-		if ( this.options.scroll ) {
-			if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
-					this.scrollParent[ 0 ].tagName !== "HTML" ) {
-
-				if ( ( this.overflowOffset.top + this.scrollParent[ 0 ].offsetHeight ) -
-						event.pageY < o.scrollSensitivity ) {
-					this.scrollParent[ 0 ].scrollTop =
-						scrolled = this.scrollParent[ 0 ].scrollTop + o.scrollSpeed;
-				} else if ( event.pageY - this.overflowOffset.top < o.scrollSensitivity ) {
-					this.scrollParent[ 0 ].scrollTop =
-						scrolled = this.scrollParent[ 0 ].scrollTop - o.scrollSpeed;
-				}
-
-				if ( ( this.overflowOffset.left + this.scrollParent[ 0 ].offsetWidth ) -
-						event.pageX < o.scrollSensitivity ) {
-					this.scrollParent[ 0 ].scrollLeft = scrolled =
-						this.scrollParent[ 0 ].scrollLeft + o.scrollSpeed;
-				} else if ( event.pageX - this.overflowOffset.left < o.scrollSensitivity ) {
-					this.scrollParent[ 0 ].scrollLeft = scrolled =
-						this.scrollParent[ 0 ].scrollLeft - o.scrollSpeed;
-				}
-
-			} else {
-
-				if ( event.pageY - this.document.scrollTop() < o.scrollSensitivity ) {
-					scrolled = this.document.scrollTop( this.document.scrollTop() - o.scrollSpeed );
-				} else if ( this.window.height() - ( event.pageY - this.document.scrollTop() ) <
-						o.scrollSensitivity ) {
-					scrolled = this.document.scrollTop( this.document.scrollTop() + o.scrollSpeed );
-				}
-
-				if ( event.pageX - this.document.scrollLeft() < o.scrollSensitivity ) {
-					scrolled = this.document.scrollLeft(
-						this.document.scrollLeft() - o.scrollSpeed
-					);
-				} else if ( this.window.width() - ( event.pageX - this.document.scrollLeft() ) <
-						o.scrollSensitivity ) {
-					scrolled = this.document.scrollLeft(
-						this.document.scrollLeft() + o.scrollSpeed
-					);
-				}
-
-			}
-
-			if ( scrolled !== false && $.ui.ddmanager && !o.dropBehaviour ) {
-				$.ui.ddmanager.prepareOffsets( this, event );
-			}
-		}
-
-		//Regenerate the absolute position used for position checks
 		this.positionAbs = this._convertPositionTo( "absolute" );
 
 		//Set the helper position
@@ -1633,55 +1601,78 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			this.helper[ 0 ].style.top = this.position.top + "px";
 		}
 
-		//Rearrange
-		for ( i = this.items.length - 1; i >= 0; i-- ) {
-
-			//Cache variables and intersection, continue if no intersection
-			item = this.items[ i ];
-			itemElement = item.item[ 0 ];
-			intersection = this._intersectsWithPointer( item );
-			if ( !intersection ) {
-				continue;
-			}
-
-			// Only put the placeholder inside the current Container, skip all
-			// items from other containers. This works because when moving
-			// an item from one container to another the
-			// currentContainer is switched before the placeholder is moved.
-			//
-			// Without this, moving items in "sub-sortables" can cause
-			// the placeholder to jitter between the outer and inner container.
-			if ( item.instance !== this.currentContainer ) {
-				continue;
-			}
-
-			// Cannot intersect with itself
-			// no useless actions that have been done before
-			// no action if the item moved is the parent of the item checked
-			if ( itemElement !== this.currentItem[ 0 ] &&
-				this.placeholder[ intersection === 1 ? "next" : "prev" ]()[ 0 ] !== itemElement &&
-				!$.contains( this.placeholder[ 0 ], itemElement ) &&
-				( this.options.type === "semi-dynamic" ?
-					!$.contains( this.element[ 0 ], itemElement ) :
-					true
-				)
-			) {
-
-				this.direction = intersection === 1 ? "down" : "up";
-
-				if ( this.options.tolerance === "pointer" || this._intersectsWithSides( item ) ) {
-					this._rearrange( event, item );
-				} else {
-					break;
-				}
-
-				this._trigger( "change", event, this._uiHash() );
-				break;
-			}
-		}
-
 		//Post events to containers
 		this._contactContainers( event );
+
+		if ( this.innermostContainer !== null ) {
+
+			//Do scrolling
+			if ( o.scroll ) {
+				if ( this._scroll( event ) !== false ) {
+
+					//Update item positions used in position checks
+					this._refreshItemPositions( true );
+
+					if ( $.ui.ddmanager && !o.dropBehaviour ) {
+						$.ui.ddmanager.prepareOffsets( this, event );
+					}
+				}
+			}
+
+			this.dragDirection = {
+				vertical: this._getDragVerticalDirection(),
+				horizontal: this._getDragHorizontalDirection()
+			};
+
+			//Rearrange
+			for ( i = this.items.length - 1; i >= 0; i-- ) {
+
+				//Cache variables and intersection, continue if no intersection
+				item = this.items[ i ];
+				itemElement = item.item[ 0 ];
+				intersection = this._intersectsWithPointer( item );
+				if ( !intersection ) {
+					continue;
+				}
+
+				// Only put the placeholder inside the current Container, skip all
+				// items from other containers. This works because when moving
+				// an item from one container to another the
+				// currentContainer is switched before the placeholder is moved.
+				//
+				// Without this, moving items in "sub-sortables" can cause
+				// the placeholder to jitter between the outer and inner container.
+				if ( item.instance !== this.currentContainer ) {
+					continue;
+				}
+
+				// Cannot intersect with itself
+				// no useless actions that have been done before
+				// no action if the item moved is the parent of the item checked
+				if ( itemElement !== this.currentItem[ 0 ] &&
+					this.placeholder[ intersection === 1 ?
+					"next" : "prev" ]()[ 0 ] !== itemElement &&
+					!$.contains( this.placeholder[ 0 ], itemElement ) &&
+					( this.options.type === "semi-dynamic" ?
+						!$.contains( this.element[ 0 ], itemElement ) :
+						true
+					)
+				) {
+
+					this.direction = intersection === 1 ? "down" : "up";
+
+					if ( this.options.tolerance === "pointer" ||
+							this._intersectsWithSides( item ) ) {
+						this._rearrange( event, item );
+					} else {
+						break;
+					}
+
+					this._trigger( "change", event, this._uiHash() );
+					break;
+				}
+			}
+		}
 
 		//Interconnect with droppables
 		if ( $.ui.ddmanager ) {
@@ -1885,12 +1876,12 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			return false;
 		}
 
-		verticalDirection = this._getDragVerticalDirection();
-		horizontalDirection = this._getDragHorizontalDirection();
+		verticalDirection = this.dragDirection.vertical;
+		horizontalDirection = this.dragDirection.horizontal;
 
 		return this.floating ?
-			( ( horizontalDirection === "right" || verticalDirection === "down" ) ? 2 : 1 )
-			: ( verticalDirection && ( verticalDirection === "down" ? 2 : 1 ) );
+			( ( horizontalDirection === "right" || verticalDirection === "down" ) ? 2 : 1 ) :
+			( verticalDirection && ( verticalDirection === "down" ? 2 : 1 ) );
 
 	},
 
@@ -1900,8 +1891,8 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				this.offset.click.top, item.top + ( item.height / 2 ), item.height ),
 			isOverRightHalf = this._isOverAxis( this.positionAbs.left +
 				this.offset.click.left, item.left + ( item.width / 2 ), item.width ),
-			verticalDirection = this._getDragVerticalDirection(),
-			horizontalDirection = this._getDragHorizontalDirection();
+			verticalDirection = this.dragDirection.vertical,
+			horizontalDirection = this.dragDirection.horizontal;
 
 		if ( this.floating && horizontalDirection ) {
 			return ( ( horizontalDirection === "right" && isOverRightHalf ) ||
@@ -1950,7 +1941,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				for ( j = cur.length - 1; j >= 0; j-- ) {
 					inst = $.data( cur[ j ], this.widgetFullName );
 					if ( inst && inst !== this && !inst.options.disabled ) {
-						queries.push( [ $.isFunction( inst.options.items ) ?
+						queries.push( [ typeof inst.options.items === "function" ?
 							inst.options.items.call( inst.element ) :
 							$( inst.options.items, inst.element )
 								.not( ".ui-sortable-helper" )
@@ -1960,7 +1951,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			}
 		}
 
-		queries.push( [ $.isFunction( this.options.items ) ?
+		queries.push( [ typeof this.options.items === "function" ?
 			this.options.items
 				.call( this.element, null, { options: this.options, item: this.currentItem } ) :
 			$( this.options.items, this.element )
@@ -2000,7 +1991,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		var i, j, cur, inst, targetData, _queries, item, queriesLength,
 			items = this.items,
-			queries = [ [ $.isFunction( this.options.items ) ?
+			queries = [ [ typeof this.options.items === "function" ?
 				this.options.items.call( this.element[ 0 ], event, { item: this.currentItem } ) :
 				$( this.options.items, this.element ), this ] ],
 			connectWith = this._connectWith();
@@ -2012,7 +2003,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				for ( j = cur.length - 1; j >= 0; j-- ) {
 					inst = $.data( cur[ j ], this.widgetFullName );
 					if ( inst && inst !== this && !inst.options.disabled ) {
-						queries.push( [ $.isFunction( inst.options.items ) ?
+						queries.push( [ typeof inst.options.items === "function" ?
 							inst.options.items
 								.call( inst.element[ 0 ], event, { item: this.currentItem } ) :
 							$( inst.options.items, inst.element ), inst ] );
@@ -2043,26 +2034,14 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 	},
 
-	refreshPositions: function( fast ) {
-
-		// Determine whether items are being displayed horizontally
-		this.floating = this.items.length ?
-			this.options.axis === "x" || this._isFloating( this.items[ 0 ].item ) :
-			false;
-
-		//This has to be redone because due to the item being moved out/into the offsetParent,
-		// the offsetParent's position will change
-		if ( this.offsetParent && this.helper ) {
-			this.offset.parent = this._getParentOffset();
-		}
-
+	_refreshItemPositions: function( fast ) {
 		var i, item, t, p;
 
 		for ( i = this.items.length - 1; i >= 0; i-- ) {
 			item = this.items[ i ];
 
 			//We ignore calculating positions of all connected containers when we're not over them
-			if ( item.instance !== this.currentContainer && this.currentContainer &&
+			if ( this.currentContainer && item.instance !== this.currentContainer &&
 					item.item[ 0 ] !== this.currentItem[ 0 ] ) {
 				continue;
 			}
@@ -2080,6 +2059,20 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 			item.left = p.left;
 			item.top = p.top;
 		}
+	},
+
+	refreshPositions: function( fast ) {
+
+		// Determine whether items are being displayed horizontally
+		this.floating = this.items.length ?
+			this.options.axis === "x" || this._isFloating( this.items[ 0 ].item ) :
+			false;
+
+		if ( this.innermostContainer !== null ) {
+			this._refreshItemPositions( fast );
+		}
+
+		var i, p;
 
 		if ( this.options.custom && this.options.custom.refreshContainers ) {
 			this.options.custom.refreshContainers.call( this );
@@ -2100,20 +2093,20 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 	_createPlaceholder: function( that ) {
 		that = that || this;
-		var className,
+		var className, nodeName,
 			o = that.options;
 
 		if ( !o.placeholder || o.placeholder.constructor === String ) {
 			className = o.placeholder;
+			nodeName = that.currentItem[ 0 ].nodeName.toLowerCase();
 			o.placeholder = {
 				element: function() {
 
-					var nodeName = that.currentItem[ 0 ].nodeName.toLowerCase(),
-						element = $( "<" + nodeName + ">", that.document[ 0 ] );
+					var element = $( "<" + nodeName + ">", that.document[ 0 ] );
 
-						that._addClass( element, "ui-sortable-placeholder",
-								className || that.currentItem[ 0 ].className )
-							._removeClass( element, "ui-sortable-helper" );
+					that._addClass( element, "ui-sortable-placeholder",
+							className || that.currentItem[ 0 ].className )
+						._removeClass( element, "ui-sortable-helper" );
 
 					if ( nodeName === "tbody" ) {
 						that._createTrPlaceholder(
@@ -2142,9 +2135,15 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 						return;
 					}
 
-					//If the element doesn't have a actual height by itself (without styles coming
-					// from a stylesheet), it receives the inline height from the dragged item
-					if ( !p.height() ) {
+					// If the element doesn't have a actual height or width by itself (without
+					// styles coming from a stylesheet), it receives the inline height and width
+					// from the dragged item. Or, if it's a tbody or tr, it's going to have a height
+					// anyway since we're populating them with <td>s above, but they're unlikely to
+					// be the correct height on their own if the row heights are dynamic, so we'll
+					// always assign the height of the dragged item given forcePlaceholderSize
+					// is true.
+					if ( !p.height() || ( o.forcePlaceholderSize &&
+							( nodeName === "tbody" || nodeName === "tr" ) ) ) {
 						p.height(
 							that.currentItem.innerHeight() -
 							parseInt( that.currentItem.css( "paddingTop" ) || 0, 10 ) -
@@ -2219,6 +2218,8 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 		}
 
+		this.innermostContainer = innermostContainer;
+
 		// If no intersecting containers found, return
 		if ( !innermostContainer ) {
 			return;
@@ -2277,15 +2278,26 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 				return;
 			}
 
-			itemWithLeastDistance ?
-				this._rearrange( event, itemWithLeastDistance, null, true ) :
+			if ( itemWithLeastDistance ) {
+				this._rearrange( event, itemWithLeastDistance, null, true );
+			} else {
 				this._rearrange( event, null, this.containers[ innermostIndex ].element, true );
+			}
 			this._trigger( "change", event, this._uiHash() );
 			this.containers[ innermostIndex ]._trigger( "change", event, this._uiHash( this ) );
 			this.currentContainer = this.containers[ innermostIndex ];
 
 			//Update the placeholder
 			this.options.placeholder.update( this.currentContainer, this.placeholder );
+
+			//Update scrollParent
+			this.scrollParent = this.placeholder.scrollParent();
+
+			//Update overflowOffset
+			if ( this.scrollParent[ 0 ] !== this.document[ 0 ] &&
+					this.scrollParent[ 0 ].tagName !== "HTML" ) {
+				this.overflowOffset = this.scrollParent.offset();
+			}
 
 			this.containers[ innermostIndex ]._trigger( "over", event, this._uiHash( this ) );
 			this.containers[ innermostIndex ].containerCache.over = 1;
@@ -2296,15 +2308,13 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 	_createHelper: function( event ) {
 
 		var o = this.options,
-			helper = $.isFunction( o.helper ) ?
+			helper = typeof o.helper === "function" ?
 				$( o.helper.apply( this.element[ 0 ], [ event, this.currentItem ] ) ) :
 				( o.helper === "clone" ? this.currentItem.clone() : this.currentItem );
 
 		//Add the helper to the DOM if that didn't happen already
 		if ( !helper.parents( "body" ).length ) {
-			$( o.appendTo !== "parent" ?
-				o.appendTo :
-				this.currentItem[ 0 ].parentNode )[ 0 ].appendChild( helper[ 0 ] );
+			this.appendTo[ 0 ].appendChild( helper[ 0 ] );
 		}
 
 		if ( helper[ 0 ] === this.currentItem[ 0 ] ) {
@@ -2332,7 +2342,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 		if ( typeof obj === "string" ) {
 			obj = obj.split( " " );
 		}
-		if ( $.isArray( obj ) ) {
+		if ( Array.isArray( obj ) ) {
 			obj = { left: +obj[ 0 ], top: +obj[ 1 ] || 0 };
 		}
 		if ( "left" in obj ) {
@@ -2612,9 +2622,12 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 	_rearrange: function( event, i, a, hardRefresh ) {
 
-		a ? a[ 0 ].appendChild( this.placeholder[ 0 ] ) :
+		if ( a ) {
+			a[ 0 ].appendChild( this.placeholder[ 0 ] );
+		} else {
 			i.item[ 0 ].parentNode.insertBefore( this.placeholder[ 0 ],
 				( this.direction === "down" ? i.item[ 0 ] : i.item[ 0 ].nextSibling ) );
+		}
 
 		//Various things done here to improve the performance:
 		// 1. we create a setTimeout, that calls refreshPositions
@@ -2780,7 +2793,7 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 
 } );
 
-} ) );
+} );
 
 
 /***/ }),
@@ -2789,21 +2802,20 @@ return $.widget( "ui.sortable", $.ui.mouse, {
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
   \********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery JavaScript Library v3.5.1
+ * jQuery JavaScript Library v3.6.0
  * https://jquery.com/
  *
  * Includes Sizzle.js
  * https://sizzlejs.com/
  *
- * Copyright JS Foundation and other contributors
+ * Copyright OpenJS Foundation and other contributors
  * Released under the MIT license
  * https://jquery.org/license
  *
- * Date: 2020-05-04T22:49Z
+ * Date: 2021-03-02T17:08Z
  */
 ( function( global, factory ) {
 
@@ -2870,12 +2882,16 @@ var support = {};
 
 var isFunction = function isFunction( obj ) {
 
-      // Support: Chrome <=57, Firefox <=52
-      // In some browsers, typeof returns "function" for HTML <object> elements
-      // (i.e., `typeof document.createElement( "object" ) === "function"`).
-      // We don't want to classify *any* DOM node as a function.
-      return typeof obj === "function" && typeof obj.nodeType !== "number";
-  };
+		// Support: Chrome <=57, Firefox <=52
+		// In some browsers, typeof returns "function" for HTML <object> elements
+		// (i.e., `typeof document.createElement( "object" ) === "function"`).
+		// We don't want to classify *any* DOM node as a function.
+		// Support: QtWeb <=3.8.5, WebKit <=534.34, wkhtmltopdf tool <=0.12.5
+		// Plus for old WebKit, typeof returns "function" for HTML collections
+		// (e.g., `typeof document.getElementsByTagName("div") === "function"`). (gh-4756)
+		return typeof obj === "function" && typeof obj.nodeType !== "number" &&
+			typeof obj.item !== "function";
+	};
 
 
 var isWindow = function isWindow( obj ) {
@@ -2941,7 +2957,7 @@ function toType( obj ) {
 
 
 var
-	version = "3.5.1",
+	version = "3.6.0",
 
 	// Define a local copy of jQuery
 	jQuery = function( selector, context ) {
@@ -3195,7 +3211,7 @@ jQuery.extend( {
 			if ( isArrayLike( Object( arr ) ) ) {
 				jQuery.merge( ret,
 					typeof arr === "string" ?
-					[ arr ] : arr
+						[ arr ] : arr
 				);
 			} else {
 				push.call( ret, arr );
@@ -3290,9 +3306,9 @@ if ( typeof Symbol === "function" ) {
 
 // Populate the class2type map
 jQuery.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
-function( _i, name ) {
-	class2type[ "[object " + name + "]" ] = name.toLowerCase();
-} );
+	function( _i, name ) {
+		class2type[ "[object " + name + "]" ] = name.toLowerCase();
+	} );
 
 function isArrayLike( obj ) {
 
@@ -3312,14 +3328,14 @@ function isArrayLike( obj ) {
 }
 var Sizzle =
 /*!
- * Sizzle CSS Selector Engine v2.3.5
+ * Sizzle CSS Selector Engine v2.3.6
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
  * Released under the MIT license
  * https://js.foundation/
  *
- * Date: 2020-03-14
+ * Date: 2021-02-16
  */
 ( function( window ) {
 var i,
@@ -3902,8 +3918,8 @@ support = Sizzle.support = {};
  * @returns {Boolean} True iff elem is a non-HTML XML node
  */
 isXML = Sizzle.isXML = function( elem ) {
-	var namespace = elem.namespaceURI,
-		docElem = ( elem.ownerDocument || elem ).documentElement;
+	var namespace = elem && elem.namespaceURI,
+		docElem = elem && ( elem.ownerDocument || elem ).documentElement;
 
 	// Support: IE <=8
 	// Assume HTML when documentElement doesn't yet exist, such as inside loading iframes
@@ -5818,9 +5834,9 @@ var rneedsContext = jQuery.expr.match.needsContext;
 
 function nodeName( elem, name ) {
 
-  return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
+	return elem.nodeName && elem.nodeName.toLowerCase() === name.toLowerCase();
 
-};
+}
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
 
@@ -6791,8 +6807,8 @@ jQuery.extend( {
 			resolveContexts = Array( i ),
 			resolveValues = slice.call( arguments ),
 
-			// the master Deferred
-			master = jQuery.Deferred(),
+			// the primary Deferred
+			primary = jQuery.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
@@ -6800,30 +6816,30 @@ jQuery.extend( {
 					resolveContexts[ i ] = this;
 					resolveValues[ i ] = arguments.length > 1 ? slice.call( arguments ) : value;
 					if ( !( --remaining ) ) {
-						master.resolveWith( resolveContexts, resolveValues );
+						primary.resolveWith( resolveContexts, resolveValues );
 					}
 				};
 			};
 
 		// Single- and empty arguments are adopted like Promise.resolve
 		if ( remaining <= 1 ) {
-			adoptValue( singleValue, master.done( updateFunc( i ) ).resolve, master.reject,
+			adoptValue( singleValue, primary.done( updateFunc( i ) ).resolve, primary.reject,
 				!remaining );
 
 			// Use .then() to unwrap secondary thenables (cf. gh-3000)
-			if ( master.state() === "pending" ||
+			if ( primary.state() === "pending" ||
 				isFunction( resolveValues[ i ] && resolveValues[ i ].then ) ) {
 
-				return master.then();
+				return primary.then();
 			}
 		}
 
 		// Multiple arguments are aggregated like Promise.all array elements
 		while ( i-- ) {
-			adoptValue( resolveValues[ i ], updateFunc( i ), master.reject );
+			adoptValue( resolveValues[ i ], updateFunc( i ), primary.reject );
 		}
 
-		return master.promise();
+		return primary.promise();
 	}
 } );
 
@@ -6974,8 +6990,8 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 			for ( ; i < len; i++ ) {
 				fn(
 					elems[ i ], key, raw ?
-					value :
-					value.call( elems[ i ], i, fn( elems[ i ], key ) )
+						value :
+						value.call( elems[ i ], i, fn( elems[ i ], key ) )
 				);
 			}
 		}
@@ -7883,10 +7899,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 }
 
 
-var
-	rkeyEvent = /^key/,
-	rmouseEvent = /^(?:mouse|pointer|contextmenu|drag|drop)|click/,
-	rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
+var rtypenamespace = /^([^.]*)(?:\.(.+)|)/;
 
 function returnTrue() {
 	return true;
@@ -8181,8 +8194,8 @@ jQuery.event = {
 			event = jQuery.event.fix( nativeEvent ),
 
 			handlers = (
-					dataPriv.get( this, "events" ) || Object.create( null )
-				)[ event.type ] || [],
+				dataPriv.get( this, "events" ) || Object.create( null )
+			)[ event.type ] || [],
 			special = jQuery.event.special[ event.type ] || {};
 
 		// Use the fix-ed jQuery.Event rather than the (read-only) native event
@@ -8306,12 +8319,12 @@ jQuery.event = {
 			get: isFunction( hook ) ?
 				function() {
 					if ( this.originalEvent ) {
-							return hook( this.originalEvent );
+						return hook( this.originalEvent );
 					}
 				} :
 				function() {
 					if ( this.originalEvent ) {
-							return this.originalEvent[ name ];
+						return this.originalEvent[ name ];
 					}
 				},
 
@@ -8450,7 +8463,13 @@ function leverageNative( el, type, expectSync ) {
 						// Cancel the outer synthetic event
 						event.stopImmediatePropagation();
 						event.preventDefault();
-						return result.value;
+
+						// Support: Chrome 86+
+						// In Chrome, if an element having a focusout handler is blurred by
+						// clicking outside of it, it invokes the handler synchronously. If
+						// that handler calls `.remove()` on the element, the data is cleared,
+						// leaving `result` undefined. We need to guard against this.
+						return result && result.value;
 					}
 
 				// If this is an inner synthetic event for an event with a bubbling surrogate
@@ -8615,34 +8634,7 @@ jQuery.each( {
 	targetTouches: true,
 	toElement: true,
 	touches: true,
-
-	which: function( event ) {
-		var button = event.button;
-
-		// Add which for key events
-		if ( event.which == null && rkeyEvent.test( event.type ) ) {
-			return event.charCode != null ? event.charCode : event.keyCode;
-		}
-
-		// Add which for click: 1 === left; 2 === middle; 3 === right
-		if ( !event.which && button !== undefined && rmouseEvent.test( event.type ) ) {
-			if ( button & 1 ) {
-				return 1;
-			}
-
-			if ( button & 2 ) {
-				return 3;
-			}
-
-			if ( button & 4 ) {
-				return 2;
-			}
-
-			return 0;
-		}
-
-		return event.which;
-	}
+	which: true
 }, jQuery.event.addProp );
 
 jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
@@ -8665,6 +8657,12 @@ jQuery.each( { focus: "focusin", blur: "focusout" }, function( type, delegateTyp
 			leverageNative( this, type );
 
 			// Return non-false to allow normal event-path propagation
+			return true;
+		},
+
+		// Suppress native focus or blur as it's already being fired
+		// in leverageNative.
+		_default: function() {
 			return true;
 		},
 
@@ -9335,6 +9333,10 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 		// set in CSS while `offset*` properties report correct values.
 		// Behavior in IE 9 is more subtle than in newer versions & it passes
 		// some versions of this test; make sure not to make it pass there!
+		//
+		// Support: Firefox 70+
+		// Only Firefox includes border widths
+		// in computed dimensions. (gh-4529)
 		reliableTrDimensions: function() {
 			var table, tr, trChild, trStyle;
 			if ( reliableTrDimensionsVal == null ) {
@@ -9342,9 +9344,22 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 				tr = document.createElement( "tr" );
 				trChild = document.createElement( "div" );
 
-				table.style.cssText = "position:absolute;left:-11111px";
+				table.style.cssText = "position:absolute;left:-11111px;border-collapse:separate";
+				tr.style.cssText = "border:1px solid";
+
+				// Support: Chrome 86+
+				// Height set through cssText does not get applied.
+				// Computed height then comes back as 0.
 				tr.style.height = "1px";
 				trChild.style.height = "9px";
+
+				// Support: Android 8 Chrome 86+
+				// In our bodyBackground.html iframe,
+				// display for all div elements is set to "inline",
+				// which causes a problem only in Android 8 Chrome 86.
+				// Ensuring the div is display: block
+				// gets around this issue.
+				trChild.style.display = "block";
 
 				documentElement
 					.appendChild( table )
@@ -9352,7 +9367,9 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 					.appendChild( trChild );
 
 				trStyle = window.getComputedStyle( tr );
-				reliableTrDimensionsVal = parseInt( trStyle.height ) > 3;
+				reliableTrDimensionsVal = ( parseInt( trStyle.height, 10 ) +
+					parseInt( trStyle.borderTopWidth, 10 ) +
+					parseInt( trStyle.borderBottomWidth, 10 ) ) === tr.offsetHeight;
 
 				documentElement.removeChild( table );
 			}
@@ -9816,10 +9833,10 @@ jQuery.each( [ "height", "width" ], function( _i, dimension ) {
 					// Running getBoundingClientRect on a disconnected node
 					// in IE throws an error.
 					( !elem.getClientRects().length || !elem.getBoundingClientRect().width ) ?
-						swap( elem, cssShow, function() {
-							return getWidthOrHeight( elem, dimension, extra );
-						} ) :
-						getWidthOrHeight( elem, dimension, extra );
+					swap( elem, cssShow, function() {
+						return getWidthOrHeight( elem, dimension, extra );
+					} ) :
+					getWidthOrHeight( elem, dimension, extra );
 			}
 		},
 
@@ -9878,7 +9895,7 @@ jQuery.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 					swap( elem, { marginLeft: 0 }, function() {
 						return elem.getBoundingClientRect().left;
 					} )
-				) + "px";
+			) + "px";
 		}
 	}
 );
@@ -10017,7 +10034,7 @@ Tween.propHooks = {
 			if ( jQuery.fx.step[ tween.prop ] ) {
 				jQuery.fx.step[ tween.prop ]( tween );
 			} else if ( tween.elem.nodeType === 1 && (
-					jQuery.cssHooks[ tween.prop ] ||
+				jQuery.cssHooks[ tween.prop ] ||
 					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
 				jQuery.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
@@ -10262,7 +10279,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 			anim.done( function() {
 
-			/* eslint-enable no-loop-func */
+				/* eslint-enable no-loop-func */
 
 				// The final step of a "hide" animation is actually hiding the element
 				if ( !hidden ) {
@@ -10382,7 +10399,7 @@ function Animation( elem, properties, options ) {
 			tweens: [],
 			createTween: function( prop, end ) {
 				var tween = jQuery.Tween( elem, animation.opts, prop, end,
-						animation.opts.specialEasing[ prop ] || animation.opts.easing );
+					animation.opts.specialEasing[ prop ] || animation.opts.easing );
 				animation.tweens.push( tween );
 				return tween;
 			},
@@ -10555,7 +10572,8 @@ jQuery.fn.extend( {
 					anim.stop( true );
 				}
 			};
-			doAnimation.finish = doAnimation;
+
+		doAnimation.finish = doAnimation;
 
 		return empty || optall.queue === false ?
 			this.each( doAnimation ) :
@@ -11195,8 +11213,8 @@ jQuery.fn.extend( {
 				if ( this.setAttribute ) {
 					this.setAttribute( "class",
 						className || value === false ?
-						"" :
-						dataPriv.get( this, "__className__" ) || ""
+							"" :
+							dataPriv.get( this, "__className__" ) || ""
 					);
 				}
 			}
@@ -11211,7 +11229,7 @@ jQuery.fn.extend( {
 		while ( ( elem = this[ i++ ] ) ) {
 			if ( elem.nodeType === 1 &&
 				( " " + stripAndCollapse( getClass( elem ) ) + " " ).indexOf( className ) > -1 ) {
-					return true;
+				return true;
 			}
 		}
 
@@ -11501,9 +11519,7 @@ jQuery.extend( jQuery.event, {
 				special.bindType || type;
 
 			// jQuery handler
-			handle = (
-					dataPriv.get( cur, "events" ) || Object.create( null )
-				)[ event.type ] &&
+			handle = ( dataPriv.get( cur, "events" ) || Object.create( null ) )[ event.type ] &&
 				dataPriv.get( cur, "handle" );
 			if ( handle ) {
 				handle.apply( cur, data );
@@ -11650,7 +11666,7 @@ var rquery = ( /\?/ );
 
 // Cross-browser xml parsing
 jQuery.parseXML = function( data ) {
-	var xml;
+	var xml, parserErrorElem;
 	if ( !data || typeof data !== "string" ) {
 		return null;
 	}
@@ -11659,12 +11675,17 @@ jQuery.parseXML = function( data ) {
 	// IE throws on parseFromString with invalid input.
 	try {
 		xml = ( new window.DOMParser() ).parseFromString( data, "text/xml" );
-	} catch ( e ) {
-		xml = undefined;
-	}
+	} catch ( e ) {}
 
-	if ( !xml || xml.getElementsByTagName( "parsererror" ).length ) {
-		jQuery.error( "Invalid XML: " + data );
+	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
+	if ( !xml || parserErrorElem ) {
+		jQuery.error( "Invalid XML: " + (
+			parserErrorElem ?
+				jQuery.map( parserErrorElem.childNodes, function( el ) {
+					return el.textContent;
+				} ).join( "\n" ) :
+				data
+		) );
 	}
 	return xml;
 };
@@ -11765,16 +11786,14 @@ jQuery.fn.extend( {
 			// Can add propHook for "elements" to filter or add form elements
 			var elements = jQuery.prop( this, "elements" );
 			return elements ? jQuery.makeArray( elements ) : this;
-		} )
-		.filter( function() {
+		} ).filter( function() {
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
 			return this.name && !jQuery( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
-		} )
-		.map( function( _i, elem ) {
+		} ).map( function( _i, elem ) {
 			var val = jQuery( this ).val();
 
 			if ( val == null ) {
@@ -11827,7 +11846,8 @@ var
 
 	// Anchor tag for parsing the document origin
 	originAnchor = document.createElement( "a" );
-	originAnchor.href = location.href;
+
+originAnchor.href = location.href;
 
 // Base "constructor" for jQuery.ajaxPrefilter and jQuery.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
@@ -12208,8 +12228,8 @@ jQuery.extend( {
 			// Context for global events is callbackContext if it is a DOM node or jQuery collection
 			globalEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
-					jQuery( callbackContext ) :
-					jQuery.event,
+				jQuery( callbackContext ) :
+				jQuery.event,
 
 			// Deferreds
 			deferred = jQuery.Deferred(),
@@ -12521,8 +12541,10 @@ jQuery.extend( {
 				response = ajaxHandleResponses( s, jqXHR, responses );
 			}
 
-			// Use a noop converter for missing script
-			if ( !isSuccess && jQuery.inArray( "script", s.dataTypes ) > -1 ) {
+			// Use a noop converter for missing script but not if jsonp
+			if ( !isSuccess &&
+				jQuery.inArray( "script", s.dataTypes ) > -1 &&
+				jQuery.inArray( "json", s.dataTypes ) < 0 ) {
 				s.converters[ "text script" ] = function() {};
 			}
 
@@ -13260,12 +13282,6 @@ jQuery.offset = {
 			options.using.call( elem, props );
 
 		} else {
-			if ( typeof props.top === "number" ) {
-				props.top += "px";
-			}
-			if ( typeof props.left === "number" ) {
-				props.left += "px";
-			}
 			curElem.css( props );
 		}
 	}
@@ -13434,8 +13450,11 @@ jQuery.each( [ "top", "left" ], function( _i, prop ) {
 
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
 jQuery.each( { Height: "height", Width: "width" }, function( name, type ) {
-	jQuery.each( { padding: "inner" + name, content: type, "": "outer" + name },
-		function( defaultExtra, funcName ) {
+	jQuery.each( {
+		padding: "inner" + name,
+		content: type,
+		"": "outer" + name
+	}, function( defaultExtra, funcName ) {
 
 		// Margin is only for outerHeight, outerWidth
 		jQuery.fn[ funcName ] = function( margin, value ) {
@@ -13520,7 +13539,8 @@ jQuery.fn.extend( {
 	}
 } );
 
-jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
+jQuery.each(
+	( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( _i, name ) {
@@ -13531,7 +13551,8 @@ jQuery.each( ( "blur focus focusin focusout resize scroll click dblclick " +
 				this.on( name, null, data, fn ) :
 				this.trigger( name );
 		};
-	} );
+	}
+);
 
 
 
@@ -13627,7 +13648,7 @@ if ( true ) {
 	!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function() {
 		return jQuery;
 	}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 }
 
 
@@ -13667,16 +13688,83 @@ return jQuery;
 } );
 
 
-/***/ }),
+/***/ })
 
-/***/ "./resources/js/admin/basic.js":
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	(() => {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = (exports, definition) => {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+(() => {
+"use strict";
 /*!*************************************!*\
   !*** ./resources/js/admin/basic.js ***!
   \*************************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery-ui/ui/widgets/sortable */ "./node_modules/jquery-ui/ui/widgets/sortable.js");
 /* harmony import */ var jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_sortable__WEBPACK_IMPORTED_MODULE_0__);
@@ -13867,175 +13955,7 @@ jQuery(function () {
   // $('.modulesStep0__type' + $(this).val() + 'Box').fadeIn(0);
   //
 });
+})();
 
-/***/ }),
-
-/***/ "./resources/sass/admin/_atom.scss":
-/*!*****************************************!*\
-  !*** ./resources/sass/admin/_atom.scss ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/classes.scss":
-/*!*******************************************!*\
-  !*** ./resources/sass/admin/classes.scss ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/custom-bootstrap.scss":
-/*!****************************************************!*\
-  !*** ./resources/sass/admin/custom-bootstrap.scss ***!
-  \****************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/for_editors.scss":
-/*!***********************************************!*\
-  !*** ./resources/sass/admin/for_editors.scss ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/html_tags.scss":
-/*!*********************************************!*\
-  !*** ./resources/sass/admin/html_tags.scss ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/identifiers.scss":
-/*!***********************************************!*\
-  !*** ./resources/sass/admin/identifiers.scss ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/admin/jquery_ui.scss":
-/*!*********************************************!*\
-  !*** ./resources/sass/admin/jquery_ui.scss ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/_atom.scss":
-/*!*******************************************!*\
-  !*** ./resources/sass/modules/_atom.scss ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/app.scss":
-/*!*****************************************!*\
-  !*** ./resources/sass/modules/app.scss ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/custom-bootstrap.scss":
-/*!******************************************************!*\
-  !*** ./resources/sass/modules/custom-bootstrap.scss ***!
-  \******************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/html_tags.scss":
-/*!***********************************************!*\
-  !*** ./resources/sass/modules/html_tags.scss ***!
-  \***********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/icons.scss":
-/*!*******************************************!*\
-  !*** ./resources/sass/modules/icons.scss ***!
-  \*******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ "./resources/sass/modules/main.scss":
-/*!******************************************!*\
-  !*** ./resources/sass/modules/main.scss ***!
-  \******************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
-/***/ 0:
-/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/admin/basic.js ./resources/sass/modules/_atom.scss ./resources/sass/modules/html_tags.scss ./resources/sass/modules/icons.scss ./resources/sass/modules/app.scss ./resources/sass/modules/main.scss ./resources/sass/modules/custom-bootstrap.scss ./resources/sass/admin/_atom.scss ./resources/sass/admin/classes.scss ./resources/sass/admin/for_editors.scss ./resources/sass/admin/html_tags.scss ./resources/sass/admin/identifiers.scss ./resources/sass/admin/custom-bootstrap.scss ./resources/sass/admin/jquery_ui.scss ***!
-  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/js/admin/basic.js */"./resources/js/admin/basic.js");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/_atom.scss */"./resources/sass/modules/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/html_tags.scss */"./resources/sass/modules/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/icons.scss */"./resources/sass/modules/icons.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/app.scss */"./resources/sass/modules/app.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/main.scss */"./resources/sass/modules/main.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/modules/custom-bootstrap.scss */"./resources/sass/modules/custom-bootstrap.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/_atom.scss */"./resources/sass/admin/_atom.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/classes.scss */"./resources/sass/admin/classes.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/for_editors.scss */"./resources/sass/admin/for_editors.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/html_tags.scss */"./resources/sass/admin/html_tags.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/identifiers.scss */"./resources/sass/admin/identifiers.scss");
-__webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/custom-bootstrap.scss */"./resources/sass/admin/custom-bootstrap.scss");
-module.exports = __webpack_require__(/*! /Applications/MAMP/htdocs/laravel-template/resources/sass/admin/jquery_ui.scss */"./resources/sass/admin/jquery_ui.scss");
-
-
-/***/ })
-
-/******/ });
+/******/ })()
+;

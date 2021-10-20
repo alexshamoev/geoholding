@@ -11,11 +11,16 @@ const mix = require('laravel-mix');
  |
  */
 
-// mix.react('resources/js/app.js', 'public/js')
-//    .sass('resources/sass/app.scss', 'public/css');
+   // mix.react('resources/js/app.js', 'public/js')
+   //    .sass('resources/sass/app.scss', 'public/css');
+
+   // mix.js('resources/js/app.js', 'public/js')
+   //  .react()
+   //  .sass('resources/sass', 'public/css', [
+   //  ]);
 
 
-   mix.react('resources/js/app.js', 'public/js')
+   mix.js('resources/js/app.js', 'public/js').react()
     .js('resources/js/admin/basic.js', 'public/js/admin')
     .js('resources/js/modules/modules/a/basic.js', 'public/js/modules/modules/a/basic.js')
     .js('resources/js/admin/rangs.js', 'public/js/admin')
@@ -33,4 +38,5 @@ const mix = require('laravel-mix');
     .sass('resources/sass/admin/identifiers.scss', 'public/css/admin')
     .sass('resources/sass/admin/custom-bootstrap.scss', 'public/css/admin')
     .sass('resources/sass/admin/jquery_ui.scss', 'public/css/admin')
+    .sass('resources/sass/modules/menu_buttons/styles.scss', 'public/css/modules/menu_buttons')
     .copy('storage/app/public/', 'public/', false);
