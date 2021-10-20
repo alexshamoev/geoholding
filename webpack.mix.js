@@ -17,6 +17,7 @@ const mix = require('laravel-mix');
 
    mix.react('resources/js/app.js', 'public/js')
     .js('resources/js/admin/basic.js', 'public/js/admin')
+    .js('resources/js/modules/modules/a/basic.js', 'public/js/modules/modules/a/basic.js')
     .js('resources/js/admin/rangs.js', 'public/js/admin')
     .js('resources/js/modules/basic.js', 'public/js/modules')
     .sass('resources/sass/modules/_atom.scss', 'public/css/modules')

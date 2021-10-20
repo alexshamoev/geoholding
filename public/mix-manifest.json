@@ -15,5 +15,6 @@
     "/css/admin/jquery_ui.css": "/css/admin/jquery_ui.css",
     "/js/admin/rangs.js": "/js/admin/rangs.js",
     "/js/app.js": "/js/app.js",
-    "/js/modules/basic.js": "/js/modules/basic.js"
+    "/js/modules/basic.js": "/js/modules/basic.js",
+    "/js/modules/modules/a/basic.js": "/js/modules/modules/a/basic.js"
 }
