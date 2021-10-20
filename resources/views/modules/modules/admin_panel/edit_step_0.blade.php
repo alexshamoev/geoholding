@@ -68,7 +68,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '0') }}
+								{{ Form :: radio('include_type', '0', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -83,7 +83,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '1') }}
+								{{ Form :: radio('include_type', '1', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -98,7 +98,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '2') }}
+								{{ Form :: radio('include_type', '2', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -113,7 +113,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '3') }}
+								{{ Form :: radio('include_type', '3', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -127,7 +127,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '4') }}
+								{{ Form :: radio('include_type', '4', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">

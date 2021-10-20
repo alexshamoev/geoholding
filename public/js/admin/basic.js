@@ -13858,14 +13858,14 @@ jQuery(function () {
   // Modules.
 
   $('.modulesStep0__typeBox').fadeOut(0);
-  var active_include_type = $('.modulesStep0 input[name="include_type"]:checked').val();
-  $('.modulesStep0__type' + active_include_type + 'Box').fadeIn(0);
-  $('.modulesStep0 input[name="include_type"]').on('change', function () {
+  console.log($('.include_type:checked').val());
+  $('.modulesStep0__type' + $('.include_type:checked').val() + 'Box').fadeIn(0);
+  $('.include_type').on('change', function () {
     $('.modulesStep0__typeBox').fadeOut(0);
-    $('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0);
-  });
-  $('.modulesStep0__typeBox').fadeOut(0);
-  $('.modulesStep0__type' + $(this).val() + 'box').fadeIn(0); //
+    $('.modulesStep0__type' + $(this).val() + 'Box').fadeIn(0);
+  }); // $('.modulesStep0__typeBox').fadeOut(0);
+  // $('.modulesStep0__type' + $(this).val() + 'Box').fadeIn(0);
+  //
 });
 
 /***/ }),
