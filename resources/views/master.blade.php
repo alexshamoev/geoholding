@@ -28,6 +28,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/icons.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/menu_buttons/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/header/styles.css') }}">
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
