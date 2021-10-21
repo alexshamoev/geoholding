@@ -1,7 +1,7 @@
 @font-face {
   font-family: "master_font";
   src: url(/fonts/master_font.eot?ecc1cd296429fbfe9026a5b0d696ea49);
-  src: url(/fonts/master_font.eot?ecc1cd296429fbfe9026a5b0d696ea49) format("embedded-opentype"), url(/fonts/master_font.ttf?2592ded39032c219a2a74e96ef946e67) format("truetype"), url(/fonts/master_font.woff?a694310d2a918cf2f84dc20768e74551) format("woff"), url(/fonts/master_font.svg?ae044a0088d754685df4a17809556d0d) format("svg");
+  src: url(/fonts/master_font.eot?ecc1cd296429fbfe9026a5b0d696ea49) format("embedded-opentype"), url(/fonts/master_font.ttf?2592ded39032c219a2a74e96ef946e67) format("truetype"), url(/fonts/master_font.woff?a694310d2a918cf2f84dc20768e74551) format("woff"), url(/fonts/master_font.svg?2af744a6f00952082b4ea2f8f00462b1) format("svg");
   font-weight: normal;
   font-style: normal;
 }

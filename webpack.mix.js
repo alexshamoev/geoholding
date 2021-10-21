@@ -40,4 +40,5 @@ const mix = require('laravel-mix');
     .sass('resources/sass/admin/jquery_ui.scss', 'public/css/admin')
     .sass('resources/sass/modules/menu_buttons/styles.scss', 'public/css/modules/menu_buttons')
     .sass('resources/sass/modules/header/styles.scss', 'public/css/modules/header')
+    .sass('resources/sass/modules/footer/styles.scss', 'public/css/modules/footer')
     .copy('storage/app/public/', 'public/', false);

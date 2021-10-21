@@ -1,10 +1,12 @@
 @if($widgetGetVisibility['footer'])
-    <footer class="p-2 row">
-        <div class="container">
+    <footer>
+        <div class="container p-2">
             <div class="p-2">
                 Footer Menu
             </div>
         </div>
+
+        <div class="footer_horizontal_line"></div>
 
         <div class="container">
             <div class="row">
