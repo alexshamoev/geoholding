@@ -39,9 +39,9 @@
                             </div>
                         </div>
 
-                        <div class="order-lg-4 order-3">
+                        <div class="col-1 order-lg-4 order-3">
                             <div class="p-0 mainHeader__mobNav">
-                                <button class="navbar-toggler p-0 ms-sm-3 ms-2"
+                                <button class="navbar-toggler p-0 ms-sm-3 ms-0"
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#navbar"
@@ -59,6 +59,24 @@
                         
                         <div class="col-xl-2 col-6 ms-auto d-block order-lg-2 order-1">
                             @include('modules.languages.basic')
+                        </div>
+
+                        <div class="col-lg-2 col-1 ms-auto text-lg-center text-end order-lg-3 order-2">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <div>
+                                    <a href="#">
+                                        <div class="pe-sm-1 pe-3 ba_user_newest"></div>
+                                    </a>
+                                </div>
+
+                                <div class="d-lg-block d-none">
+                                    <a href="#">
+                                        <div>									
+                                            authorization
+                                        </div>	
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>
