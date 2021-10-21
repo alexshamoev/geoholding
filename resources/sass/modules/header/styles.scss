@@ -1,3 +1,17 @@
+
 .mainHeader {
     background-color: #fff;
+    position: relative;
+    z-index: 999;
+
+    &__mobNav {
+        .navbar-toggler {
+            outline: none;
+            border: none;
+
+            &:focus {
+                box-shadow: 0 0 0 0 !important;
+            }
+        }
+    }
 }
