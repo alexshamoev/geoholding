@@ -2,7 +2,27 @@
 // @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // // Variables
-// @import 'variables';
+@import 'variables';
+// @import 'containers';
+
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+
+
+// @import "~bootstrap/scss/containers";
 
 // // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+    padding-right: 0;
+    padding-left: 0;
+}

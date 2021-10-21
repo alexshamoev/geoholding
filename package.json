@@ -26,6 +26,7 @@
         "resolve-url-loader": "^4.0.0",
         "sass": "^1.32.7",
         "sass-loader": "^7.1.0",
-        "vue-template-compiler": "^2.6.12"
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^5.59.1"
     }
 }
