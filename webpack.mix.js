@@ -41,4 +41,5 @@ const mix = require('laravel-mix');
     .sass('resources/sass/modules/menu_buttons/styles.scss', 'public/css/modules/menu_buttons')
     .sass('resources/sass/modules/header/styles.scss', 'public/css/modules/header')
     .sass('resources/sass/modules/footer/styles.scss', 'public/css/modules/footer')
+    .sass('resources/sass/modules/text_lines.scss', 'public/css/modules')
     .copy('storage/app/public/', 'public/', false);

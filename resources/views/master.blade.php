@@ -25,6 +25,7 @@
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/app.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/html_tags.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/text_lines.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/icons.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/menu_buttons/styles.css') }}">
