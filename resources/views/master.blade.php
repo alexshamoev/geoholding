@@ -41,14 +41,10 @@
 		@include('modules.header.basic')
 		
 
-        <div class="container">
-			@yield('content')
+        
+		@yield('content')
 
-			<div id="example">
-				
-			</div>
-        </div>
-
+			
 
 		@include('modules.partners.step0')
 
