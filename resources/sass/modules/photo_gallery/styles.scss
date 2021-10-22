@@ -1,0 +1,9 @@
+.photo_gallery {
+    &__block {      
+        background-color: #fff;  
+   
+        &:hover {
+            box-shadow: 0px 0px 19px -8px #000000;
+        }
+    }
+}

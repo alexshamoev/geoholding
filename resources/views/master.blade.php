@@ -30,6 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/icons.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/menu_buttons/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photo_gallery/styles.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/header/styles.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/footer/styles.css') }}">
 		
