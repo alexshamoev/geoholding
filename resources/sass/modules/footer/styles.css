@@ -1,0 +1,11 @@
+.top_footer__media_icon {
+  font-size: 30px;
+  margin-right: 5px;
+  -webkit-transition: color 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out;
+}
+
+.footer_horizontal_line {
+  border-top: 2px solid #000;
+}
+/*# sourceMappingURL=styles.css.map */

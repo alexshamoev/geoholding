@@ -1,1 +1,16 @@
-/* No CSS *//*# sourceMappingURL=styles.css.map */
+.mainHeader {
+  background-color: #fff;
+  position: relative;
+  z-index: 999;
+}
+
+.mainHeader__mobNav .navbar-toggler {
+  outline: none;
+  border: none;
+}
+
+.mainHeader__mobNav .navbar-toggler:focus {
+  -webkit-box-shadow: 0 0 0 0 !important;
+          box-shadow: 0 0 0 0 !important;
+}
+/*# sourceMappingURL=styles.css.map */

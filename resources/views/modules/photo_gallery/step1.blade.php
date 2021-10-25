@@ -7,28 +7,40 @@
 
 
 @section('content')
-	<div class="p-2">
-		<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
-        	{{ $page -> title }}
-		</a>
-		>
-        {{ $activePhotoGalleryCategory -> title }}
-    </div>
+	<div class="container">
+		<div class="p-2">
+			<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
+				{{ $page -> title }}
+			</a>
+			>
+			{{ $activePhotoGalleryCategory -> title }}
+		</div>
 
+		<div>
+			<h1 class="py-lg-5 py-3 px-2 text-center">
+				{{ $activePhotoGalleryCategory -> alias }}
+			</h1>
+		</div>
 
-    <h1 class="p-2">
-        {{ $activePhotoGalleryCategory -> alias }}
-    </h1>
+		<div class="row pb-lg-5 pb-3">
+			<div class="col-lg-6 col-12">
+				<div class="p-2">
+					<h3>
+						{{ $activePhotoGalleryCategory -> title }}
+					</h3>
+				</div>
 
-	<div class="p-2">
-		{{ $activePhotoGalleryCategory -> title }}
-	</div>
+				<div class="p-2">
+					{!! $activePhotoGalleryCategory -> text !!}
+				</div>
+			</div>
 
-	<div class="p-2">
-		{!! $activePhotoGalleryCategory -> text !!}
-	</div>
-
-	<div class="p-2">
-		<img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+			<div class="col-lg-6 col-12">
+				<div class="p-2">
+					<!-- <img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}"> -->
+					<img src="{{ asset('images/test_images/test.jpg') }}">
+				</div>
+			</div>
+		</div>
 	</div>
 @endsection

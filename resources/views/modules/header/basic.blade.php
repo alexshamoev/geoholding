@@ -34,14 +34,14 @@
                     <div class="row d-flex w-100 align-items-center">
                   
                         <div class="col-xl-1 col-md-2 col-3 mainHeader__logo order-0">
-                            <div class="p-2">
+                            <div class="pe-2">
                                 <img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
                             </div>
                         </div>
 
-                        <div class="order-lg-4 order-3">
-                            <div class="p-0 mainHeader__mobNav">
-                                <button class="navbar-toggler p-0 ms-sm-3 ms-2"
+                        <div class="col-md-1 col-2 order-lg-4 order-3">
+                            <div class="p-0 mainHeader__mobNav d-flex justify-content-end">
+                                <button class="navbar-toggler p-0 ms-sm-3 ms-0"
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#navbar"
@@ -59,6 +59,24 @@
                         
                         <div class="col-xl-2 col-6 ms-auto d-block order-lg-2 order-1">
                             @include('modules.languages.basic')
+                        </div>
+
+                        <div class="col-lg-2 col-1 ms-auto text-lg-center text-end order-lg-3 order-2">
+                            <div class="d-flex justify-content-end align-items-center">
+                                <div>
+                                    <a href="#">
+                                        <div class="pe-md-1 pe-0 ba_user_newest"></div>
+                                    </a>
+                                </div>
+
+                                <div class="d-lg-block d-none">
+                                    <a href="#">
+                                        <div>									
+                                            authorization
+                                        </div>	
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </nav>

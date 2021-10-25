@@ -1,0 +1,15 @@
+body {
+    
+}
+
+.top_footer {
+    &__media_icon {
+        font-size: 30px;
+        margin-right: 5px;
+        transition: color 0.2s ease-in-out;
+    }
+}
+
+.footer_horizontal_line {
+    border-top: 2px solid #000;
+}
