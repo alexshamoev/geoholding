@@ -1,15 +1,33 @@
-<nav class="navbar-expand-lg">
+@if($widgetGetVisibility['menu_buttons'])
 	<div class="navbar-collapse collapse justify-content-center" id="navbar">
-		<div class="navbar-nav">
+		<div class="navbar-nav
+					d-flex
+					justify-content-between
+					position-relative">
 			@foreach($menuButtons as $data)
-				<div class="nav-item">
+				<div class="nav-item
+							ps-lg-0
+							ps-4
+							pt-lg-0
+							pt-1">
 					<a href="{{ $data -> url }}">
-						<div class="p-2">
+						@php
+							$activeCssClass = '';
+
+							if($data -> active) {
+								$activeCssClass = 'active_class';
+							}
+						@endphp
+						
+						<div class="p-2 {{ $activeCssClass }}">
 							{{ $data -> title }}
+
+							{{ $activeCssClass }}
 						</div>
 					</a>
 				</div>
 			@endforeach
+
 
 			@if(Auth :: check())
 				<div class="nav-item">
@@ -43,9 +61,5 @@
 				</div>
 			@endif
 		</div>
-
-		<div class="d-xl-none d-lg-none d-block">
-			@include('modules.languages.basic')
-		</div>
 	</div>
-</nav>
+@endif

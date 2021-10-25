@@ -29,8 +29,7 @@ class ModuleBlocksRemoveColumns extends Migration
      *
      * @return void
      */
-    public function down()
-    {
+    public function down() {
 		Schema :: table('module_blocks', function (Blueprint $table) {
 			if(!Schema :: hasColumn('module_blocks', 'column_length')) {
 				$table -> integer('column_length') -> default(0);

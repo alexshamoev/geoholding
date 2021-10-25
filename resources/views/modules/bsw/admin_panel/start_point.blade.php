@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -9,8 +9,8 @@
 @section('content')
 	@include('admin.includes.tags', ['tag0Text' => 'BSW', 'tag0Url' => route('bswStartPoint')])
 
-	<div class="p-2 module-entry-main">
-		@include('admin.includes.addButton', ['text' => 'BSW', 'url' => route('bswAdd')])
+	<div class="p-2">
+		@include('admin.includes.addButton', ['text' => 'Add BSW', 'url' => route('bswAdd')])
 
 
 		@foreach($bsws as $data)
@@ -24,7 +24,7 @@
 			@endphp
 
 
-			@include('admin.includes.horizontalEditDeleteBlock', [
+			@include('modules.bsw.admin_panel.includes.horizontalEditDeleteBlock', [
 				'title' => $data -> system_word,
 				'text' => $text,
 				'editLink' => route('bswEdit', $data -> id),

@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -38,6 +38,12 @@
 						{{ Form :: text('title') }}
 					</div>
 				</div>
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -51,24 +57,22 @@
 						{{ Form :: text('full_title') }}
 					</div>
 				</div>
+
+				@error('full_title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
-			<div class="p-2 w-100">
-				<div class="standard-block standard-block--no-left-border row">
-					<div class="col-3 p-3 checkbox-block">
-						<label>
-							{{ Form :: checkbox('like_default', '1') }}
-
-							Default for front?
-						</label>
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-1">
+						<span>დროშის ფოტო:</span>
 					</div>
 
-					<div class="col-3 p-3 checkbox-block">
-						<label>
-							{{ Form :: checkbox('like_default_for_admin', '1') }}
-
-							Default for admin?
-						</label>
+					<div class="p-1">
+						{{ Form :: file('svg_icon_languages') }}
 					</div>
 				</div>
 			</div>

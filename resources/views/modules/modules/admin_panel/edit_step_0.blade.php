@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -24,9 +24,8 @@
 		'backRoute' => route('moduleStartPoint')
 	])
 
-
-	{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
-		<div class="p-2">
+	<div class="p-2 modulesStep0">
+		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -38,47 +37,42 @@
 						{{ Form :: text('alias') }}
 					</div>
 				</div>
+
+				@error('alias')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
-			@foreach($languages as $data)
-				<div class="p-2">
-					<div class="standard-block p-2">
-						<div class="p-2">
-							<span>Full title: * {{ $data -> title }}</span>
-						</div>
-						
-						<div class="p-2">
-							{{ Form :: text('title_'.$data -> title) }}
-						</div>
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2">
+						<span>Title: * </span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('title') }}
 					</div>
 				</div>
-			@endforeach
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
 
 			<div class="px-2 pt-2 row w-100">
 				<div class="col p-0 standard-block standard-block--no-right-border standard-block--no-bottom-border d-flex align-items-center">
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '0') }}
+								{{ Form :: radio('include_type', '0', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
-								<span>Attach page</span>
-							</div>
-						</div>
-					</label>
-				</div>
-
-					
-				<div class="col p-0 standard-block standard-block--no-right-border standard-block--no-bottom-border d-flex align-items-center">
-					<label class="w-100">
-						<div class="d-flex flex-column align-items-center text-center p-2">
-							<div class="p-1">
-								{{ Form :: radio('include_type', '1') }}
-							</div>
-
-							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე</span>
+								<span>Attach page (0)</span>
 							</div>
 						</div>
 					</label>
@@ -89,11 +83,11 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '2') }}
+								{{ Form :: radio('include_type', '1', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ გვერდებზე</span>
+								<span>გამოვაჩინოთ ყველა გვერდზე (1)</span>
 							</div>
 						</div>
 					</label>
@@ -104,11 +98,26 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '3') }}
+								{{ Form :: radio('include_type', '2', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
-								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა</span>
+								<span>გამოვაჩინოთ გვერდებზე (2)</span>
+							</div>
+						</div>
+					</label>
+				</div>
+
+					
+				<div class="col p-0 standard-block standard-block--no-right-border standard-block--no-bottom-border d-flex align-items-center">
+					<label class="w-100">
+						<div class="d-flex flex-column align-items-center text-center p-2">
+							<div class="p-1">
+								{{ Form :: radio('include_type', '3', null, array('class' => 'include_type')) }}
+							</div>
+
+							<div class="p-1">
+								<span>გამოვაჩინოთ ყველა გვერდზე, გარდა (3)</span>
 							</div>
 						</div>
 					</label>
@@ -118,11 +127,11 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '4') }}
+								{{ Form :: radio('include_type', '4', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
-								<span>არ მივაბათ მოდული არცერთ გვერდს</span>
+								<span>არ მივაბათ მოდული არცერთ გვერდს (4)</span>
 							</div>
 						</div>
 					</label>
@@ -131,23 +140,36 @@
 			
 
 			<div class="px-2">
-				<div class="d-flex flex-column standard-block p-2">
-					<div class="p-1">
-						<span>გვერდი</span>
-					</div>
-					
-					<div class="p-1">
+				<div class="d-flex flex-column standard-block">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
 						{{ Form :: select('page', $pagesForSelect, $module -> page) }}
 					</div>
 
-					<div class="p-2">
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
 						@foreach($pagesForIncludeInPages as $key => $data)
 							<div>
 								<label>
 									<input type="checkbox"
 											value="{{ $key }}"
-											name="page_include_{{ $key }}">
-									
+											name="page_include_{{ $key }}"
+											{{ $data['checked'] }}>
+											
+									{{ $data['alias'] }} 
+								</label>
+							</div>
+						@endforeach
+					</div>
+
+
+					<div class="p-2 modulesStep0__typeBox modulesStep0__type3Box">
+						@foreach($pagesNotIncludeInPages as $key => $data)
+							<div>
+								<label>
+									<input type="checkbox"
+											value="{{ $key }}"
+											name="page_not_include_{{ $key }}"
+											{{ $data['checked'] }}>
+											
 									{{ $data['alias'] }} 
 								</label>
 							</div>
@@ -190,6 +212,12 @@
 						{{ Form :: input('color', 'icon_bg_color') }}
 					</div>
 				</div>
+
+				@error('icon_bg_color')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 
@@ -209,21 +237,23 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
+		{{ Form :: close() }}
 
+		
+		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
+
+
+		<div>
+			<div id="rangBlocks" data-db_table="module_steps">
+				@foreach($moduleSteps as $data)
+					@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $data -> id,
+						'title' => $data -> title,
+						'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
+						'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
+					])
+				@endforeach
+			</div>	
 		</div>
-	{{ Form :: close() }}
-
-	<div class="p-2">
-		@include('admin.includes.addButton', ['text' => 'Step', 'url' => route('moduleStepAdd', $module -> id)])
 	</div>
-
-    <div class="p-2">
-		@foreach($moduleSteps as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> title,
-				'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-				'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-			])
-		@endforeach
-    </div>
 @endsection

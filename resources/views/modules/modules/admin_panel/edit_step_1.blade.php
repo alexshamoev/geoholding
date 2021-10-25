@@ -1,4 +1,4 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
@@ -40,6 +40,12 @@
 						{{ Form :: text('title') }}
 					</div>
 				</div>
+
+				@error('title')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -53,6 +59,12 @@
 						{{ Form :: text('db_table') }}
 					</div>
 				</div>
+
+				@error('db_table')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -142,17 +154,21 @@
 
 
 	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Block', 'url' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id))])
+		@include('admin.includes.addButton', ['text' => 'Add Block', 'url' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id))])
 	</div>
 
 
-	<div class="px-2">
-		@foreach($moduleBlocks as $data)
-			@include('admin.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> db_column,
-				'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
-				'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
-			])
-		@endforeach
+	<div class="px-2 pb-2">
+		<div id="rangBlocks" data-db_table="module_blocks">
+			@foreach($moduleBlocks as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'id' => $data -> id,
+					'title' => $data -> db_column,
+					'text' => $data -> label,
+					'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
+					'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
+				])
+			@endforeach
+		</div>
     </div>
 @endsection

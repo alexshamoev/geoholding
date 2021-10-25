@@ -47,6 +47,7 @@ body {
   color: #333;
   margin: 0;
   overflow-y: scroll;
+  font-size: 16px;
 }
 
 footer {
@@ -150,3 +151,4 @@ textarea {
 label {
   cursor: pointer;
 }
+/*# sourceMappingURL=html_tags.css.map */

@@ -15,8 +15,8 @@ class CreateLanguagesTable extends Migration
     {
         Schema::create('languages', function (Blueprint $table) {
             $table->bigIncrements('id');
-			$table -> string('title') -> default('');
-			$table -> string('full_title') -> default('');
+			$table -> string('title') -> nullable();
+			$table -> string('full_title') -> nullable();
 			$table -> integer('disable') -> default(0);
 			$table -> integer('like_default') -> default(0);
 			$table -> integer('like_default_for_admin') -> default(0);

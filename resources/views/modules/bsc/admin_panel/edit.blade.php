@@ -1,8 +1,8 @@
-@extends('admin.layouts.master')
+@extends('admin.master')
 
 
 @section('pageMetaTitle')
-    Modules
+    BSC > Edit > {{ $activeBsc -> system_word }}
 @endsection
 
 
@@ -10,13 +10,13 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSC',
 		'tag0Url' => route('bscStartPoint'),
-		'tag1Text' => $bsc -> system_word
+		'tag1Text' => $activeBsc -> system_word
 	])
 
 
 	@include('admin.includes.bar', [
 		'addUrl' => route('bscAdd'),
-		'deleteUrl' => route('bscDelete', $bsc -> id),
+		'deleteUrl' => route('bscDelete', $activeBsc -> id),
 		'nextId' => $nextBscId,
 		'prevId' => $prevBscId,
 		'nextRoute' => route('bscEdit', $nextBscId),
@@ -25,8 +25,8 @@
 	])
 
 
-	{{ Form :: model($bsc, array('route' => array('bscUpdate', $bsc -> id))) }}
-	<div class="p-2">
+	{{ Form :: model($activeBsc, array('route' => array('bscUpdate', $activeBsc -> id))) }}
+		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -38,6 +38,12 @@
 						{{ Form :: text('system_word') }}
 					</div>
 				</div>
+
+				@error('system_word')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2">
@@ -51,6 +57,12 @@
 						{{ Form :: text('configuration') }}
 					</div>
 				</div>
+
+				@error('configuration')
+					<div class="alert alert-danger">
+						{{ $message }}
+					</div>
+				@enderror
 			</div>
 
 			<div class="p-2 submit-button">

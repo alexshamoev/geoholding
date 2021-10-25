@@ -1,5 +1,11 @@
 // @import '~jquery-ui/themes/base/all.css';
 
+.sortable {
+   position: relative;
+   overflow-y: hidden;
+}
+
 .sortable-item {
    user-select: none;
+   // vertical-align:bottom;
 }

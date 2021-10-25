@@ -14,10 +14,10 @@ class CreateBscsTable extends Migration
     public function up()
     {
         Schema::create('bscs', function (Blueprint $table) {
-			$table->bigIncrements('id');
-			$table -> string('system_word') -> default('');
-			$table -> string('configuration') -> default('');
-            $table->timestamps();
+			$table -> bigIncrements('id');
+			$table -> string('system_word') -> nullable();
+			$table -> string('configuration') -> nullable();
+            $table -> timestamps();
         });
     }
 
@@ -26,8 +26,7 @@ class CreateBscsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('bscs');
+    public function down() {
+        Schema :: dropIfExists('bscs');
     }
 }

@@ -29,6 +29,6 @@ class PagesAddSlugColumn extends Migration
     {
         Schema :: table('pages', function($table) {
 			$table -> dropColumn('slug');
-		 });
+		});
     }
 }

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,SAAS,CAAC;EACP,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,MAAM;CACpB;;AAED,AAAA,cAAc,CAAC;EACZ,WAAW,EAAE,IAAI;CAEnB",
+    "sources": [
+        "jquery_ui.scss"
+    ],
+    "names": [],
+    "file": "jquery_ui.css"
+}

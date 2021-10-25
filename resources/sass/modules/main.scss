@@ -21,8 +21,6 @@
     outline: none !important;
 }
 
-// Header
-
 .header {
     background-color: #fff;
     &__close-search {
@@ -48,16 +46,13 @@
     }
 }
 
-// Header
-
-// Languages
 .languages {
-    border: 3px solid blue;
-    &__lang {
-        &--active {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-    }
+	border: 3px solid blue;
+
+	&__lang {
+		&--active {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+	}
 }
-// Languages
