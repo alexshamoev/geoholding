@@ -21,7 +21,7 @@
 
 
         <title>HobbyStudio Template - @yield('pageMetaTitle')</title>
-
+ 
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/app.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/html_tags.css') }}">
