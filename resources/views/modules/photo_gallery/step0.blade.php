@@ -27,8 +27,8 @@
 				<div class="col-lg-4 col-md-6 col-12 px-sm-3 px-2 py-3">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="photo_gallery__block">						
-							<!-- <img src="{{ asset('images/modules/photo_gallery/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}"> -->
-							<img src="{{ asset('images/test_images/test.jpg') }}">
+							<img src="{{ asset('images/modules/photo_gallery/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+							<!-- <img src="{{ asset('images/test_images/test.jpg') }}"> -->
 
 							<div class="px-3 pb-2 pt-4">
 								<h3 class="line_2">

@@ -37,8 +37,8 @@
 
 			<div class="col-lg-6 col-12">
 				<div class="p-2">
-					<!-- <img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}"> -->
-					<img src="{{ asset('images/test_images/test.jpg') }}">
+					<img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+					<!-- <img src="{{ asset('images/test_images/test.jpg') }}"> -->
 				</div>
 			</div>
 		</div>
