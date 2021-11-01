@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost:8889
--- Время создания: Окт 20 2021 г., 09:00
+-- Время создания: Ноя 01 2021 г., 15:14
 -- Версия сервера: 5.7.34
 -- Версия PHP: 7.4.21
 
@@ -306,7 +306,7 @@ INSERT INTO `bsws` (`id`, `system_word`, `word_ge`, `word_en`, `word_ru`, `creat
 (161, 'a_info', 'მონაცემები', 'information', 'информацию', NULL, NULL),
 (162, 'a_example_company_phone', '+995 000 00 00 00; +995 000 00 00 00', '+995 000 00 00 00; +995 000 00 00 00', '+995 000 00 00 00; +995 000 00 00 00', NULL, NULL),
 (163, 'a_example_company_facebook_url', 'https://www.facebook.com/hobbystudio', 'https://www.facebook.com/hobbystudio', 'https://www.facebook.com/hobbystudio', NULL, NULL),
-(164, 'a_about_zero', '0 ნიშნავს უსასროლო რაოდენობას', '0 means infinite number', '0 означает бесконечное кол-во', NULL, '2021-01-14 16:08:27'),
+(164, 'a_about_zero', '0 ნიშნავს უსასროლო რაოდენობას', '0 means infinite number', '0 означает бесконечное кол-во', NULL, '2021-10-25 12:06:09'),
 (165, 'a_example_blocks_max_number', '5', '5', '5', NULL, NULL),
 (166, 'a_blocks_max_number', 'ბლოკების მაქსიმალური რაოდენობა', 'Maximum number of blocks', 'Максимальное кол-во блоков', NULL, NULL),
 (167, 'persons', 'მოზრდილები', 'Persons', 'Персон', NULL, NULL),
@@ -1129,7 +1129,7 @@ INSERT INTO `pages_step_0` (`id`, `alias_ge`, `title_ge`, `text_ge`, `alias_en`,
 (3, 'მთავარი', 'მთავარი გვერდი', 'მთავარის ტექსტური აღწერა', 'home', 'Home Page', 'Home page text', 'главная', 'Главная', 'Текст главной страницы', NULL, NULL, 1, 1, 'home', 0),
 (4, 'სიახლეები', 'ჩვენი სიახლეები', 'სიახლეების საერთო ტექსტი.', 'news', 'News Title', 'News text', 'новости', 'Новости', 'Текст новостей', NULL, NULL, 0, 1, 'news', 0),
 (5, 'რეგისტრაცია', 'რეგისტრაცია', 'რეგისტრაციის ტექსტი', 'registration', 'Registration', 'Registration Text', 'регистрация', 'Регистрация', 'Текст регистрации', NULL, NULL, 0, 1, 'registration', 0),
-(6, 'ავტორიზაცია', 'ავტორიზაცია', '<p>ავტორიზაციის ტექსტი</p>', 'authorization', 'Authorization', '<p>Authorization text</p>', 'увквати', 'Авторизация', '<p>Текст автоизации</p>', NULL, NULL, 0, 1, 'authorization', 19),
+(6, 'ავტორიზაცია', 'ავტორიზაცია', '<p>ავტორიზაციის ტექსტი</p>', 'authorization', 'Authorization', '<p>Authorization text</p>', 'увквати', 'Авторизация', '<p>Текст автоизации</p>', NULL, NULL, 0, 1, 'authorization', 24),
 (7, 'ფოტო-გალერეა', 'ფოტო გალერეა', '.', 'photo-gallery', 'Photo Gallery', '..', 'фото-галерея', 'Фото Галерея', '...', NULL, NULL, 0, 1, 'photo-gallery', 0);
 
 -- --------------------------------------------------------
