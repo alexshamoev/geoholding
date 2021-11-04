@@ -389,15 +389,17 @@ class ACoreController extends Controller {
 				if($data -> type === 'image') {
 					if($request -> hasFile('image')) {
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
-
-						$image = ImageManagerStatic :: make($request -> file('image')) -> fit($data -> image_width,
-																							  $data -> image_height,
-																							  function() {},
-																							  $data -> fit_position);
+						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
+						
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
+						
+						$image = ImageManagerStatic :: make(public_path('storage/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
+																																			$data -> image_height,
+																																			function() {},
+																																			$data -> fit_position);
 						
 						$image -> save();
 						
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
 					}
 				}
 			// 
