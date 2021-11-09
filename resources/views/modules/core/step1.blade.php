@@ -78,8 +78,8 @@
 									<div class="p-2">
 										{{ Form :: file('image') }}
 									</div>
-
-									<img class="w-25" src="{{ asset('/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
+									{{ asset('/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break

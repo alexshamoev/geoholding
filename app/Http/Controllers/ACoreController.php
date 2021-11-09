@@ -393,7 +393,7 @@ class ACoreController extends Controller {
 						
 						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
 						
-						$image = ImageManagerStatic :: make(public_path('storage/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
+						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
 																																			$data -> image_height,
 																																			function() {},
 																																			$data -> fit_position);
