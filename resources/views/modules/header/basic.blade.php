@@ -35,7 +35,7 @@
                   
                         <div class="col-xl-1 col-md-2 col-3 mainHeader__logo order-0">
                             <div class="pe-2">
-                                <img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
+                                <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
                             </div>
                         </div>
 

@@ -43,5 +43,4 @@ const mix = require('laravel-mix');
     .sass('resources/sass/modules/footer/styles.scss', 'public/css/modules/footer')
     .sass('resources/sass/modules/photo_gallery/styles.scss', 'public/css/modules/photo_gallery')
     .sass('resources/sass/modules/text_lines.scss', 'public/css/modules')
-    .sass('resources/sass/modules/text_lines_max.scss', 'public/css/modules')
-    .copy('storage/app/public/', 'public/', false);
+    .sass('resources/sass/modules/text_lines_max.scss', 'public/css/modules');
