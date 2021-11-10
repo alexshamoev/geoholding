@@ -99,6 +99,7 @@ class ALanguageController extends Controller {
 																			'public');
 		}
 
+
 		return redirect() -> route('languageEdit', $language -> id);
 	}
 

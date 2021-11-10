@@ -25,7 +25,7 @@
 	])
 
 
-	{{ Form :: model($language, array('route' => array('languageUpdate', $language -> id))) }}
+	{{ Form :: model($language, array('route' => array('languageUpdate', $language -> id), 'files' => 'true')) }}
 		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">

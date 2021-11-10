@@ -16,7 +16,7 @@
 			@endif
 
 			<div class="p-2">
-				<img src="{{ asset('/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
+				<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
 			</div>
 
 			@if(isset($tag1Text))
@@ -35,7 +35,7 @@
 				@endif
 
 				<div class="p-2">
-					<img src="{{ asset('/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
+					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
 				</div>
 			@endif
 
@@ -55,7 +55,7 @@
 					</div>
 				@endif
 				<div class="p-2">
-					<img src="{{ asset('/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
+					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
 				</div>
 			@endif
 
@@ -75,7 +75,7 @@
 					</div>
 				@endif
 				<div class="p-2">
-					<img src="{{ asset('/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
+					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
 				</div>
 			@endif
 
@@ -95,7 +95,7 @@
 					</div>
 				@endif
 				<div class="p-2">
-					<img src="{{ asset('/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
+					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
 				</div>
 			@endif
 		</div>
