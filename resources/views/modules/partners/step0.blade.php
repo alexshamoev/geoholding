@@ -9,7 +9,7 @@
 				<div class="col-3">
 					<a href="{{ $data -> link }}" target="_blank">
 						<div class="p-2">
-							<img src="{{ asset('/images/modules/partners/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+							<img src="{{ asset('/storage/images/modules/partners/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
 						</div>
 						
 						<div class="p-2">
