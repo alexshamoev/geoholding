@@ -1,56 +1,44 @@
-@import "./atom";
-
-@media only screen and (max-width: $xs_size) {
+@media only screen and (max-width: 576px) {
   section {
     padding: 20px 0 40px;
   }
 }
-
-@media only screen and (min-width: $sm_size) {
+@media only screen and (min-width: 576px) {
   section {
     padding: 20px 0 40px;
   }
 }
-
-@media only screen and (min-width: $md_size) {
+@media only screen and (min-width: 1024px) {
   section {
     padding: 20px 0 40px;
   }
 }
-
-@media only screen and (min-width: $lg_size) {
+@media only screen and (min-width: 1250px) {
   section {
     padding: 30px 0 70px;
   }
 }
-
-@media only screen and (min-width: $xl_size) {
+@media only screen and (min-width: 1400px) {
   section {
     padding: 30px 0 70px;
   }
 }
-
 * {
   box-sizing: border-box;
 }
 
-a {
-  &:link,
-  &:active,
-  &:visited {
-    color: #1e8cf3;
-    outline: none;
-    text-decoration: none;
-  }
-
-  &:hover {
-    color: #004b91;
-  }
+a:link, a:active, a:visited {
+  color: #1e8cf3;
+  outline: none;
+  text-decoration: none;
+}
+a:hover {
+  color: #004b91;
 }
 
 body {
   color: #333;
-  margin: 0; 
+  margin: 0;
   overflow-y: scroll;
   font-size: 16px;
 }
@@ -87,41 +75,28 @@ img {
   width: 100%;
 }
 
-input {
-	&[type="checkbox"] {
-		margin: 3px;
-	}
-	
-	&[type="submit"],
-	&[type="button"] {
-		border-radius: 0;
-		-webkit-appearance: none;
-	}
-
-	&[type="text"],
-	&[type="file"],
-	&[type="password"],
-	&[type="date"],
-	&[type="tel"],
-	&[type="email"] {
-		margin: 0;
-		outline: none;
-    padding: 5px;
-    width: 200px;
-    border: 1px solid #000;
-  }
-
-  &[type="text"]:focus,
-  &[type="tel"]:focus {
-    outline: none;
-  }
-
-  &[type="password"] {
-    &:focus {
-      outline: none;
-    }
-    outline: none;
-  }
+input[type=checkbox] {
+  margin: 3px;
+}
+input[type=submit], input[type=button] {
+  border-radius: 0;
+  -webkit-appearance: none;
+}
+input[type=text], input[type=file], input[type=password], input[type=date], input[type=tel], input[type=email] {
+  margin: 0;
+  outline: none;
+  padding: 5px;
+  width: 200px;
+  border: 1px solid #000;
+}
+input[type=text]:focus, input[type=tel]:focus {
+  outline: none;
+}
+input[type=password] {
+  outline: none;
+}
+input[type=password]:focus {
+  outline: none;
 }
 
 p {

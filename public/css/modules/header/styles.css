@@ -1,0 +1,12 @@
+.mainHeader {
+  background-color: #fff;
+  position: relative;
+  z-index: 999;
+}
+.mainHeader__mobNav .navbar-toggler {
+  outline: none;
+  border: none;
+}
+.mainHeader__mobNav .navbar-toggler:focus {
+  box-shadow: 0 0 0 0 !important;
+}
