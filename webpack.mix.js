@@ -44,4 +44,4 @@ mix.js('resources/js/app.js', 'public/js').react()
   .sass('resources/sass/modules/photo_gallery/styles.scss', 'public/css/modules/photo_gallery')
   .sass('resources/sass/modules/text_lines.scss', 'public/css/modules')
   .sass('resources/sass/modules/text_lines_max.scss', 'public/css/modules')
-  .sass('resources/sass/modules/modules.scss', 'public/css/modules');
+  .sass('resources/sass/modules.scss', 'public/css');
