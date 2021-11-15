@@ -33,7 +33,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photo_gallery/styles.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/header/styles.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/footer/styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/modules.scss') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/modules.css') }}">
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
