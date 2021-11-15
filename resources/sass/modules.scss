@@ -1,0 +1,57 @@
+// || Intergrations
+@import "modules/atom";
+// Integrations
+
+// || Breakpoints
+@media only screen and (max-width: $xs_size) {
+    // || News XS
+    .img_wrapper {
+        width: 100%;
+    }
+    //
+}
+
+@media only screen and (min-width: $sm_size) {
+    // || News SM
+    .img_wrapper {
+        width: 100%;
+    }
+    //
+}
+
+@media only screen and (min-width: $md_size) {
+     // || News MD
+     .img_wrapper {
+        width: 50%;
+        float: right;
+    }
+
+    //
+}
+
+@media only screen and (min-width: $lg_size) {
+    // || News LG
+ 
+    //
+}
+
+@media only screen and (min-width: $xl_size) {
+     // || News XL
+
+    // 
+}
+// Breakpoints
+
+
+// || News
+.news_step1 {
+    &__section {
+        min-height: 700px;
+    }
+}
+// 
+
+// || Footer
+
+// 
+
