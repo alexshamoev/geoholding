@@ -7,6 +7,7 @@
 
 
 @section('content')
+<div class="container">
     <h1 class="p-2">
         {{ $page -> title }}
     </h1>
@@ -36,4 +37,5 @@
 			</div>
 		@endforeach
 	</div>
+</div>
 @endsection
