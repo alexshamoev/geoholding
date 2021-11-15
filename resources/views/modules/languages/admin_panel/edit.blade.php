@@ -24,7 +24,7 @@
 		'backRoute' => route('languageStartPoint')
 	])
 
-
+	
 	{{ Form :: model($language, array('route' => array('languageUpdate', $language -> id), 'files' => 'true')) }}
 		<div class="p-2">
 			<div class="p-2">
@@ -74,6 +74,12 @@
 					<div class="p-1">
 						{{ Form :: file('svg_icon_languages') }}
 					</div>
+
+					@if(null !== "/storage/images/modules/languages/$language -> id.svg")
+						<div class="p-3">
+							<img src="{{ asset('/storage/images/modules/languages/'.$language -> id.'.svg') }}" alt="close" style="width: 50px;">
+						</div>
+					@endif
 				</div>
 			</div>
 
