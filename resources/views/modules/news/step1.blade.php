@@ -7,6 +7,7 @@
 
 
 @section('content')
+<div class="container">
 	<div class="p-2">
 		<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
         	{{ $page -> title }}
@@ -28,7 +29,10 @@
 		{!! $activeNews -> text !!}
 	</div>
 
-	<div class="p-2">
-		<img src="{{ asset('images/modules/news/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
+	<div class="float-right img_wrapper">
+		<div class="p-2">
+			<img src="{{ asset('images/modules/news/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
+		</div>
 	</div>
+</div>
 @endsection
