@@ -30,7 +30,7 @@
 		
 			<div class="float-right img_wrapper">
 				<div class="p-2">
-					<img src="{{ asset('images/modules/news/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
+					<img src="{{ asset('/storage/images/modules/news/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
 				</div>
 			</div>
 			<div class="p-2">
