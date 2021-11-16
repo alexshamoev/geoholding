@@ -15,6 +15,9 @@ class ChangeFitTypeDeleteResize extends Migration
     {
         Schema :: table('module_blocks', function (Blueprint $table) {
             $table -> string('fit_type', 50) -> nullable(null) -> default('') -> change();
+            $table -> string('fit_type_1', 50) -> nullable(null) -> default('') -> change();
+            $table -> string('fit_type_2', 50) -> nullable(null) -> default('') -> change();
+            $table -> string('fit_type_3', 50) -> nullable(null) -> default('') -> change();
         });
     }
 
@@ -26,7 +29,10 @@ class ChangeFitTypeDeleteResize extends Migration
     public function down()
     {
         Schema :: table('module_blocks', function (Blueprint $table) {
-            $table -> bigInteger('fit_type') -> charset(null) -> collation(null) -> default(0) -> change();
+            $table -> bigInteger('fit_type') -> nullable(null) -> charset(null) -> collation(null) -> default(0) -> change();
+            $table -> bigInteger('fit_type_1') -> nullable(null) -> charset(null) -> collation(null) -> default(0) -> change();
+            $table -> bigInteger('fit_type_2') -> nullable(null) -> charset(null) -> collation(null) -> default(0) -> change();
+            $table -> bigInteger('fit_type_3') -> nullable(null) -> charset(null) -> collation(null) -> default(0) -> change();
         });
     }
 }

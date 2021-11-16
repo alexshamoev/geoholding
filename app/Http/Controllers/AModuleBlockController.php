@@ -146,7 +146,6 @@ class AModuleBlockController extends Controller {
 		} else {
 			$moduleBlock -> file_possibility_to_delete = 0;
 		}
-
 		
 		$moduleBlock -> image_width = $request -> input('image_width');
 		$moduleBlock -> image_height = $request -> input('image_height');
@@ -159,57 +158,26 @@ class AModuleBlockController extends Controller {
 		$moduleBlock -> image_width_1 = $request -> input('image_width_1');
 		$moduleBlock -> image_height_1 = $request -> input('image_height_1');
 
-		if($request -> input('image_cover_1')) {
-			$moduleBlock -> image_cover_1 = $request -> input('image_cover_1');
-		} else {
-			$moduleBlock -> image_cover_1 = 0;
+		if($request -> input('fit_type_1')) {
+			$moduleBlock -> fit_type_1 = $request -> input('fit_type_1');
 		}
-
-		if($request -> input('image_fill_1')) {
-			$moduleBlock -> image_fill_1 = $request -> input('image_fill_1');
-		} else {
-			$moduleBlock -> image_fill_1 = 0;
-		}
-
 
 		$moduleBlock -> image_width_2 = $request -> input('image_width_2');
 		$moduleBlock -> image_height_2 = $request -> input('image_height_2');
 
-		if($request -> input('image_cover_2')) {
-			$moduleBlock -> image_cover_2 = $request -> input('image_cover_2');
-		} else {
-			$moduleBlock -> image_cover_2 = 0;
+		if($request -> input('fit_type_2')) {
+			$moduleBlock -> fit_type_2 = $request -> input('fit_type_2');
 		}
 
-		if($request -> input('image_fill_2')) {
-			$moduleBlock -> image_fill_2 = $request -> input('image_fill_2');
-		} else {
-			$moduleBlock -> image_fill_2 = 0;
+		if($request -> input('fit_type_3')) {
+			$moduleBlock -> fit_type_3 = $request -> input('fit_type_3');
 		}
-
-
-		$moduleBlock -> image_width_3 = $request -> input('image_width_3');
-		$moduleBlock -> image_height_3 = $request -> input('image_height_3');
-
-		if($request -> input('image_cover_3')) {
-			$moduleBlock -> image_cover_3 = $request -> input('image_cover_3');
-		} else {
-			$moduleBlock -> image_cover_3 = 0;
-		}
-
-		if($request -> input('image_fill_3')) {
-			$moduleBlock -> image_fill_3 = $request -> input('image_fill_3');
-		} else {
-			$moduleBlock -> image_fill_3 = 0;
-		}
-
 
 		if($request -> input('hide')) {
 			$moduleBlock -> hide = $request -> input('hide');
 		} else {
 			$moduleBlock -> hide = 0;
 		}
-
 
 		$moduleBlock -> min_range = $request -> input('min_range');
 		$moduleBlock -> max_range = $request -> input('max_range');
