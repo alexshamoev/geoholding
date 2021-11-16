@@ -130,11 +130,15 @@
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_cover', '1') }} image_cover?
+							{{ Form :: radio('fit_type', 'fit') }} fit_type
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_fill', '1') }} image_fill?
+							{{ Form :: radio('fit_type', 'resize') }} resize
+						</div>
+
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type', 'default') }} default
 						</div>
 
 						<div class="col-4 p-2">

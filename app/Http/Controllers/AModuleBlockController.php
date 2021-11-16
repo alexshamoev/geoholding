@@ -152,18 +152,9 @@ class AModuleBlockController extends Controller {
 		$moduleBlock -> image_height = $request -> input('image_height');
 		$moduleBlock -> fit_position = $request -> input('fit_position');
 
-		if($request -> input('image_cover')) {
-			$moduleBlock -> image_cover = $request -> input('image_cover');
-		} else {
-			$moduleBlock -> image_cover = 0;
-		}
-
-		if($request -> input('image_fill')) {
-			$moduleBlock -> image_fill = $request -> input('image_fill');
-		} else {
-			$moduleBlock -> image_fill = 0;
-		}
-
+		if($request -> input('fit_type')) {
+			$moduleBlock -> fit_type = $request -> input('fit_type');
+		} 
 
 		$moduleBlock -> image_width_1 = $request -> input('image_width_1');
 		$moduleBlock -> image_height_1 = $request -> input('image_height_1');
