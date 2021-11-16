@@ -462,7 +462,29 @@ class ACoreController extends Controller {
 						// self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
 						
 						$image -> save();
-						
+
+						for($i = 1; $i < 4; $i++) {
+							if($data -> { 'prefix_'.$i }) {
+								$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
+
+								if($data -> { 'fit_type_'.$i } === 'fit') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
+																																															$data -> image_height,
+																																															function() {},
+																																															$data -> fit_position);
+								}
+								
+								if($data -> { 'fit_type_'.$i } === 'resize') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> resize($data -> image_width,
+																																															$data -> image_height,
+																																															function ($constraint) {
+																																																$constraint->aspectRatio();
+																																															});
+								}
+
+								$image -> save();
+							}
+						}
 					}
 				}
 			// 

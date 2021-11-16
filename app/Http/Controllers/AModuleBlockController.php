@@ -173,6 +173,18 @@ class AModuleBlockController extends Controller {
 			$moduleBlock -> fit_type_3 = $request -> input('fit_type_3');
 		}
 
+		if($request -> input('prefix_1')) {
+			$moduleBlock -> prefix_1 = $request -> input('prefix_1');
+		}
+
+		if($request -> input('prefix_2')) {
+			$moduleBlock -> prefix_2 = $request -> input('prefix_2');
+		}
+
+		if($request -> input('prefix_3')) {
+			$moduleBlock -> prefix_3 = $request -> input('prefix_3');
+		}
+
 		if($request -> input('hide')) {
 			$moduleBlock -> hide = $request -> input('hide');
 		} else {
