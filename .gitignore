@@ -1,6 +1,5 @@
 /node_modules
 /public
-/public old
 /storage
 /vendor
 /config/database.php
