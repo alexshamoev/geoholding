@@ -438,28 +438,28 @@ class ACoreController extends Controller {
 						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
 						
 
-						// if($data -> fit_type === 'fit') {
-						// 	$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
-						// 																															$data -> image_height,
-						// 																															function() {},
-						// 																															$data -> fit_position);
-						// }
+						if($data -> fit_type === 'fit') {
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
+																																					$data -> image_height,
+																																					function() {},
+																																					$data -> fit_position);
+						}
 						
-						// if($data -> fit_type === 'resize') {
-						// 	$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> resize($data -> image_width,
-						// 																																$data -> image_height,
-						// 																																function ($constraint) {
-						// 																																	$constraint->aspectRatio();
-						// 																																});
-						// }
+						if($data -> fit_type === 'resize') {
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> resize($data -> image_width,
+																																						$data -> image_height,
+																																						function ($constraint) {
+																																							$constraint->aspectRatio();
+																																						});
+						}
 
 							// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fill('#ff00ff',
 							// 																														0,
 							// 																														0);
 				
-						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg'));
+						// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg'));
 
-						self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
+						// self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
 						
 						$image -> save();
 						
