@@ -4,7 +4,7 @@
 			<a href="{{ $backRoute }}" class="d-inline-block">
 				<div class="d-flex align-items-center pl-2">
 					<div class="p-2">
-						<img src="{{ asset('/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-small-img">
+						<img src="{{ asset('/storage/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-small-img">
 					</div>
 
 					<div class="p-2">
@@ -26,12 +26,12 @@
 			@if($prevId)
 				<a href="{{ $prevRoute }}">
 					<div class="p-3 bar__button">
-						<img src="{{ asset('/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-big-img">
+						<img src="{{ asset('/storage/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-big-img">
 					</div>
 				</a>
 			@else
 				<div class="p-3 bar__button">
-					<img src="{{ asset('/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-big-img bar-tag-big-img--disabled">
+					<img src="{{ asset('/storage/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-big-img bar-tag-big-img--disabled">
 				</div>
 			@endif
 
@@ -39,12 +39,12 @@
 			@if($nextId)
 				<a href="{{ $nextRoute }}">
 					<div class="p-3 bar__button">
-						<img src="{{ asset('/images/admin/arrow_right.svg') }}" alt="arrow_left" class="bar-tag-big-img">
+						<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" alt="arrow_left" class="bar-tag-big-img">
 					</div>
 				</a>
 			@else
 				<div class="p-3 bar__button">
-					<img src="{{ asset('/images/admin/arrow_right.svg') }}" alt="arrow_left" class="bar-tag-big-img bar-tag-big-img--disabled">
+					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" alt="arrow_left" class="bar-tag-big-img bar-tag-big-img--disabled">
 				</div>
 			@endif
 
@@ -52,7 +52,7 @@
 			@if(isset($addUrl))
 				<a href="{{ $addUrl }}">
 					<div class="p-3 bar__button">
-						<img src="{{ asset('/images/admin/plus.svg') }}" alt="plus" class="bar-tag-big-img">
+						<img src="{{ asset('/storage/images/admin/plus.svg') }}" alt="plus" class="bar-tag-big-img">
 					</div>
 				</a>
 			@endif
@@ -61,7 +61,7 @@
 			@if(isset($deleteUrl))
 				<a href="{{ $deleteUrl }}">
 					<div class="p-3 bar__button">
-						<img src="{{ asset('/images/admin/close.svg') }}" alt="close" class="bar-tag-big-img">
+						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-big-img">
 					</div>
 				</a>
 			@endif

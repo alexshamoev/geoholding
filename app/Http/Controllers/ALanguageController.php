@@ -94,10 +94,11 @@ class ALanguageController extends Controller {
 		$language -> save();
 
 		if($request -> file('svg_icon_languages')) {
-			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/language',
-																			$language -> id.'_icon.svg',
+			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/languages',
+																			$language -> id.'.svg',
 																			'public');
 		}
+
 
 		return redirect() -> route('languageEdit', $language -> id);
 	}

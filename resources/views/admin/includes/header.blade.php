@@ -2,7 +2,7 @@
 	<div class="row align-items-center">
 		<div class="col-1">
 			<div class="p-2">
-				<img src="{{ asset('/images/admin/logo.svg') }}" alt="HobbyStudio">
+				<img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio">
 			</div>
 		</div>
 

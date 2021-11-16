@@ -1,10 +1,6 @@
-body {
-    
-}
-
 .top_footer {
     &__media_icon {
-        font-size: 30px;
+        font-size: 30px;  
         margin-right: 5px;
         transition: color 0.2s ease-in-out;
     }
@@ -12,4 +8,13 @@ body {
 
 .footer_horizontal_line {
     border-top: 2px solid #000;
+}
+
+.admin_button {
+    height: 20px;
+    left: 0;
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    z-index: 400;
 }

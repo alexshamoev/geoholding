@@ -78,8 +78,8 @@
 									<div class="p-2">
 										{{ Form :: file('image') }}
 									</div>
-
-									<img class="w-25" src="{{ asset('/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
+									
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break
@@ -153,7 +153,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
 										</div>
 
 										<div class="p-2">
@@ -181,7 +181,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
 										</div>
 
 										<div class="p-2">
@@ -209,7 +209,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/images/modules/languages/admin/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
 										</div>
 
 										<div class="p-2">

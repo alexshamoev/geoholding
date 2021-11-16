@@ -130,11 +130,15 @@
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_cover', '1') }} image_cover?
+							{{ Form :: radio('fit_type', 'fit') }} fit
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_fill', '1') }} image_fill?
+							{{ Form :: radio('fit_type', 'resize') }} resize
+						</div>
+
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type', 'default') }} default
 						</div>
 
 						<div class="col-4 p-2">
@@ -171,13 +175,17 @@
 						<div class="col-4 p-2">
 							image_height_1 {{ Form :: number('image_height_1') }}
 						</div>
-						
+
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_cover_1', '1') }} image_cover_1?
+							{{ Form :: radio('fit_type_1', 'fit') }} fit_1
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_fill_1', '1') }} image_fill_1?
+							{{ Form :: radio('fit_type_1', 'resize') }} resize_1
+						</div>
+
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_1', 'default') }} default_1
 						</div>
 					</div>
 				</div>
@@ -194,11 +202,15 @@
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_cover_2', '1') }} image_cover_2?
+							{{ Form :: radio('fit_type_2', 'fit') }} fit_2
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_fill_2', '1') }} image_fill_2?
+							{{ Form :: radio('fit_type_2', 'resize') }} resize_2
+						</div>
+
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_2', 'default') }} default_2
 						</div>
 					</div>
 				</div>
@@ -213,13 +225,17 @@
 						<div class="col-4 p-2">
 							image_height_3 {{ Form :: number('image_height_3') }}
 						</div>
-						
+
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_cover_3', '1') }} image_cover_3?
+							{{ Form :: radio('fit_type_3', 'fit') }} fit_3
 						</div>
 						
 						<div class="col-2 p-2">
-							{{ Form :: checkbox('image_fill_3', '1') }} image_fill_3?
+							{{ Form :: radio('fit_type_3', 'resize') }} resize_3
+						</div>
+
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_3', 'default') }} default_3
 						</div>
 					</div>
 				</div>

@@ -2,7 +2,7 @@
 	<a href="{{ $url }}" title="{{ $text }}">
 		<div class="p-2 d-flex justify-content-center align-items-center addButton">
 			<div class="p-2">
-				<img src="{{ asset('/images/admin/plus.svg') }}"
+				<img src="{{ asset('/storage/images/admin/plus.svg') }}"
 					 alt="{{ $text }}"
 					 class="bar-tag-bigger-img">
 			</div>

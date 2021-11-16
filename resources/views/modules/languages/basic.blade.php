@@ -4,11 +4,15 @@
 			@if($data -> active)
 				<div class="languages__lang languages__lang--active col-4 d-flex justify-content-center">
 					{{ $data -> full_title }}
+					
+					<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" style="width: 30px;">
 				</div>
 			@else
 				<div class="languages__lang col-4 d-flex justify-content-center">
 					<a href="{{ $data -> full_url }}">
 						{{ $data -> full_title }}
+
+						<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" style="width: 30px;">
 					</a>
 				</div>
 			@endif

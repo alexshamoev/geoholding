@@ -1,7 +1,7 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-2 p-0">
-			<div style="background-image: url('{{ asset('images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
+			<div style="background-image: url('{{ asset('storage/images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 
@@ -32,20 +32,20 @@
 				<div class="text-right edit-block__edit-delete-block">
 					<a href="{{ $editLink }}">
 						<div class="p-3">
-							<img src="{{ asset('/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
 						</div>
 					</a>
 				</div>
 
 				<div class="text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
 					<div class="p-3">
-						<img src="{{ asset('/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
+						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
 					</div>
 				</div>
 
 				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
 					<div class="p-3">
-						<img src="{{ asset('/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
+						<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
 					</div>
 				</div>
 			</div>

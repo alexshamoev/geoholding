@@ -40,7 +40,7 @@
 		<a href="/admin/{{ $data -> alias }}">
 			<div class="row align-items-center p-1 menu__link menu__link--{{$data -> alias}}">
 				<div class="col-3">
-					<img src="{{ asset('/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+					<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
 				</div>
 
 				<div class="col-9">

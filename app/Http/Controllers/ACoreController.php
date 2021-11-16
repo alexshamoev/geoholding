@@ -13,10 +13,54 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\Image;
 use DB;
 
 
 class ACoreController extends Controller {
+	private static function cropImage(Image $image, $width, $height ,$x=null, $y=null, $bg_color=null){
+        // What is the size of the image to crop
+        $image_width=$image->width();
+        $image_height=$image->height();
+
+        // Do we have a special case based on the following conditions
+        if ($image_width<$width+abs($x) or $x<0   // Is the crop width outside the image
+            or $image_height<$height+abs($y) or $y<0) {// Is the crop height outside the image
+
+            // Determine the size of background image
+            $canvas_width=abs($x)+$width;
+            $canvas_height=abs($y)+ $height;
+
+            // Create a background image with  background color ;
+            $background = \Intervention\Image\Image::canvas($canvas_width, $canvas_height);
+            if ($bg_color) {
+                $background->fill($bg_color);
+            }
+            
+            // Determine the insert position of the image to crop inside the background image
+            $ins_x=abs(($x-abs($x))/2);
+            $ins_y=abs(($y-abs($y))/2);
+
+            // Adjust x and y with respect to the background image
+            $x=abs(($x+abs($x))/2);
+            $y=abs(($y+abs($y))/2);
+
+            // Insert the image to crop into the background.
+            //TODO: I can't really think now, but I think we could just return this as the crop?
+            $background->insert($image, 'top-left',$ins_x,$ins_y);
+            
+            //TODO: Any need to unset $image here to reclaim memory? 
+            //unset($image);
+
+            $image=$background;
+
+            //TODO: Any need for this to reclaim memory? 
+            unset($background);
+        }
+
+        return $image->crop($width,$height,$x,$y);
+    }
+
     public function getStep0($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
@@ -389,18 +433,40 @@ class ACoreController extends Controller {
 				if($data -> type === 'image') {
 					if($request -> hasFile('image')) {
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
+						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
+						
+						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
+						
 
-						$image = ImageManagerStatic :: make($request -> file('image')) -> fit($data -> image_width,
-																							  $data -> image_height,
-																							  function() {},
-																							  $data -> fit_position);
+						if($data -> fit_type === 'fit') {
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fit($data -> image_width,
+																																					$data -> image_height,
+																																					function() {},
+																																					$data -> fit_position);
+						}
+						
+						if($data -> fit_type === 'resize') {
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> resize($data -> image_width,
+																																						$data -> image_height,
+																																						function ($constraint) {
+																																							$constraint->aspectRatio();
+																																						});
+						}
+
+							// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fill('#ff00ff',
+							// 																														0,
+							// 																														0);
+				
+						// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg'));
+
+						// self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
 						
 						$image -> save();
 						
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias, $id.'.jpg');	
 					}
 				}
 			// 
+
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
@@ -409,7 +475,6 @@ class ACoreController extends Controller {
 		// Status for success.
 			$request -> session() -> flash('successStatus', 'Data is Saved!');
 		//
-
 
 		return redirect() -> route('coreEditStep0', array($module -> alias, $id));
 	}
