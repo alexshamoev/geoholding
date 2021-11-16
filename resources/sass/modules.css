@@ -1,0 +1,23 @@
+@media only screen and (max-width: 576px) {
+  .img_wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .img_wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .img_wrapper {
+    width: 50%;
+    float: right;
+  }
+}
+
+.news_step1__section {
+  min-height: 700px;
+}
+/*# sourceMappingURL=modules.css.map */

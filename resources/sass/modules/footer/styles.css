@@ -8,4 +8,13 @@
 .footer_horizontal_line {
   border-top: 2px solid #000;
 }
+
+.admin_button {
+  height: 20px;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  z-index: 400;
+}
 /*# sourceMappingURL=styles.css.map */

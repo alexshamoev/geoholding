@@ -55,9 +55,7 @@
         </div>
 
         <div id="admin-panel-link">
-            <a href="/admin" target="_blank">
-                Admin Panel
-            </a>
+            <a href="/admin" target="_blank" class="admin_button"></a>
         </div>
     </footer>
 @endif

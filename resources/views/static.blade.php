@@ -7,6 +7,7 @@
 
 
 @section('content')
+<div class="container">
 	<div class="p-2">
 		<div class="p-2">
 			<h1 class="text-center">
@@ -30,6 +31,7 @@
 		</div>
 		--}}
 	</div>
+</div>
 @endsection
 
 
