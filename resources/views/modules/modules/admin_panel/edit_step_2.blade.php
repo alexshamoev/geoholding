@@ -176,6 +176,10 @@
 							image_height_1 {{ Form :: number('image_height_1') }}
 						</div>
 
+						<div class="">
+							{{ Form :: text('prefix_1') }}
+						</div>
+
 						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_1', 'fit') }} fit_1
 						</div>
@@ -201,6 +205,10 @@
 							image_height_2 {{ Form :: number('image_height_2') }}
 						</div>
 						
+						<div class="">
+							{{ Form :: text('prefix_2') }}
+						</div>
+
 						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_2', 'fit') }} fit_2
 						</div>
@@ -224,6 +232,10 @@
 						
 						<div class="col-4 p-2">
 							image_height_3 {{ Form :: number('image_height_3') }}
+						</div>
+
+						<div class="">
+							{{ Form :: text('prefix_3') }}
 						</div>
 
 						<div class="col-2 p-2">
