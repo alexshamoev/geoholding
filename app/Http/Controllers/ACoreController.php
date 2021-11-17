@@ -632,7 +632,7 @@ class ACoreController extends Controller {
 											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
 											'moduleStep1Data' => $moduleStepStep1,
 											'moduleStep2' => $moduleStep2,
-											'moduleStepTableData2' => DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+											// 'moduleStepTableData2' => DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,

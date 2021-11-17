@@ -37,7 +37,7 @@
 
 			<div class="col-lg-6 col-12">
 				<div class="p-2">
-					<img src="{{ asset('/storage/images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
 					<!-- <img src="{{ asset('images/test_images/test.jpg') }}"> -->
 				</div>
 			</div>
