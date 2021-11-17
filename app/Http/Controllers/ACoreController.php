@@ -357,8 +357,14 @@ class ACoreController extends Controller {
 			//
 
 
-
-			if($data -> type !== 'image' && $data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages' && $data -> type !== 'checkbox' && $data -> type !== 'multiply_checkboxes_with_category') {
+			if($data -> type !== 'image'
+				&& $data -> type !== 'published'
+				&& $data -> type !== 'rang'
+				&& $data -> type !== 'alias'
+				&& $data -> type !== 'input_with_languages'
+				&& $data -> type !== 'editor_with_languages'
+				&& $data -> type !== 'checkbox'
+				&& $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
@@ -645,31 +651,73 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			if($data -> type !== 'published'
+			if($data -> type !== 'image'
+				&& $data -> type !== 'published'
 				&& $data -> type !== 'rang'
-				&& $data -> type !== 'alias') {
+				&& $data -> type !== 'alias'
+				&& $data -> type !== 'input_with_languages'
+				&& $data -> type !== 'editor_with_languages'
+				&& $data -> type !== 'checkbox'
+				&& $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
 			if($data -> type === 'alias') {
-				$value = $request -> input($data -> db_column);
-				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
-										'',
-										$value);
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$value = $request -> input($data -> db_column.'_'.$langData -> title);
+					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+											'',
+											$value);
 
-				// $value = strtolower(trim($value));
-				$value = mb_strtolower(trim($value));
+					$value = mb_strtolower(trim($value));
 
-				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+					$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
-				$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+					$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
 
-				$value = str_replace($symbols,
-										$replace_symbols,
-										$value);
-										
-				$updateQuery[$data -> db_column] = $value;
+					$value = str_replace($symbols,
+											$replace_symbols,
+											$value);
+											
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $value;
+				}
 			}
+
+			if($data -> type === 'input_with_languages') {
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
+				}
+			}
+
+			if($data -> type === 'editor_with_languages') {
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
+				}
+			}
+
+
+
+
+
+			// if($data -> type === 'alias') {
+			// 	$value = $request -> input($data -> db_column);
+			// 	$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+			// 							'',
+			// 							$value);
+
+			// 	// $value = strtolower(trim($value));
+			// 	$value = mb_strtolower(trim($value));
+
+			// 	$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+
+			// 	$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+
+			// 	$value = str_replace($symbols,
+			// 							$replace_symbols,
+			// 							$value);
+										
+			// 	$updateQuery[$data -> db_column] = $value;
+			// }
 
 		}
 
