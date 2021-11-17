@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="p-2">
-			<img src="{{ asset('/storage/images/modules/news/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
+			<img src="{{ asset('/storage/images/modules/news/step_0/'.$activeNews -> id.'.jpg') }}" alt="{{ $activeNews -> title }}">
 		</div>
 
 
