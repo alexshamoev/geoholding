@@ -186,7 +186,7 @@
 										{{ Form :: file('image') }}
 									</div>
 									
-									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_1/'.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break
