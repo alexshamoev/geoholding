@@ -4,6 +4,7 @@ use App\Models\Language;
 use App\Models\Module;
 use App\Models\PhotoGalleryCategory;
 use App\Models\News;
+use App\Models\NewsStep1;
 use App\Models\MenuButton;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
@@ -170,6 +171,10 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $st
 			case 'news':
 				News :: setLang($language -> title);
 				News :: setPageAlias($pageAlias);
+
+				NewsStep1 :: setLang($language -> title);
+				NewsStep1 :: setPageAlias($pageAlias);
+				NewsStep1 :: setStep0Alias($step0Alias);
 
 				return NewsController :: getStep1($language, $page, $step0Alias);
 				
