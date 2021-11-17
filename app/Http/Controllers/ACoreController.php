@@ -612,6 +612,7 @@ class ACoreController extends Controller {
 
 		$moduleStep2 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
 
+		// return $moduleStep2;
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
@@ -669,6 +670,7 @@ class ACoreController extends Controller {
 										
 				$updateQuery[$data -> db_column] = $value;
 			}
+
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
