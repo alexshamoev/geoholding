@@ -18,7 +18,7 @@ use DB;
 
 
 class ACoreController extends Controller {
-	private static function cropImage(Image $image, $width, $height ,$x=null, $y=null, $bg_color=null){
+	private static function cropImage(Image $image, $width, $height ,$x = null, $y = null, $bg_color = null){
         // What is the size of the image to crop
         $image_width=$image->width();
         $image_height=$image->height();
@@ -617,8 +617,14 @@ class ACoreController extends Controller {
 		$moduleBlockStep1 = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('a_use_for_tags', 1) -> first();
 
 		$moduleStep2 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
+		
 
-		// return $moduleStep2;
+		$moduleStepTableData2 = false;
+
+		if($moduleStep2) {
+			$moduleStepTableData2 = DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get();
+		}
+		
 
 		$data = array_merge($defaultData, ['module' => $module,
 											'moduleStep' => $moduleStep,
@@ -631,13 +637,13 @@ class ACoreController extends Controller {
 											'id' => $id,
 											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
 											'moduleStep1Data' => $moduleStepStep1,
-											'moduleStep2' => $moduleStep2,
-											// 'moduleStepTableData2' => DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
 											'data' => $pageData,
 											'prevId' => $prevId,
 											'nextId' => $nextId,
 											'use_for_tags' => $use_for_tags,
-											'parentData' => $pageParentData]);
+											'parentData' => $pageParentData,
+											'moduleStep2' => $moduleStep2,
+											'moduleStepTableData2' => $moduleStepTableData2]);
 
 		return view('modules.core.step2', $data);
 	}
