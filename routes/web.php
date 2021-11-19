@@ -3,6 +3,7 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
 use App\Models\PhotoGalleryCategory;
+use App\Models\PhotoGalleryImage;
 use App\Models\News;
 use App\Models\NewsStep1;
 use App\Models\MenuButton;
@@ -182,6 +183,9 @@ Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $st
 			case 'photo_gallery':
 				PhotoGalleryCategory :: setLang($language -> title);
 				PhotoGalleryCategory :: setPageAlias($pageAlias);
+
+				PhotoGalleryImage :: setLang($language -> title);
+				PhotoGalleryImage :: setPageAlias($pageAlias);
 
 				return PhotoGalleryController :: getStep1($language, $page, $step0Alias);
 				
