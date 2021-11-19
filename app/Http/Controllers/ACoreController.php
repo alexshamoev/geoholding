@@ -61,6 +61,7 @@ class ACoreController extends Controller {
         return $image->crop($width,$height,$x,$y);
     }
 
+	
     public function getStep0($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
