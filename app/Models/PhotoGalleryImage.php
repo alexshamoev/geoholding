@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoGalleryCategory extends Model {
+class PhotoGalleryImage extends Model {
 	/**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'photo_gallery_step_0';
+    protected $table = 'photo_gallery_step_1';
 
 
 	private static $lang;
@@ -22,26 +22,13 @@ class PhotoGalleryCategory extends Model {
 		self :: $lang = $value;
 	}
 
+
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
 	}
 
 
-	public function getAliasAttribute() {
-        return $this -> { 'alias_'.self :: $lang };
-    }
-
-
 	public function getTitleAttribute() {
         return $this -> { 'title_'.self :: $lang };
-    }
-
-
-	public function getTextAttribute() {
-        return $this -> { 'text_'.self :: $lang };
-    }
-
-	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
     }
 }
