@@ -173,17 +173,15 @@ class AModuleBlockController extends Controller {
 			$moduleBlock -> fit_type_3 = $request -> input('fit_type_3');
 		}
 
-		if($request -> input('prefix_1')) {
+		//image prefix in the name (exp: prefix_3.jpg)
+			$moduleBlock -> prefix = $request -> input('prefix');
+		//
+
+		//aditional images with prefixes (exp: 3_prefix_1.jpg)
 			$moduleBlock -> prefix_1 = $request -> input('prefix_1');
-		}
-
-		if($request -> input('prefix_2')) {
 			$moduleBlock -> prefix_2 = $request -> input('prefix_2');
-		}
-
-		if($request -> input('prefix_3')) {
 			$moduleBlock -> prefix_3 = $request -> input('prefix_3');
-		}
+		//
 
 		if($request -> input('hide')) {
 			$moduleBlock -> hide = $request -> input('hide');

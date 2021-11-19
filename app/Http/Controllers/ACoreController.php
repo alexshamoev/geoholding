@@ -438,26 +438,26 @@ class ACoreController extends Controller {
 
 			// Image
 				if($data -> type === 'image') {
-					if($request -> hasFile('image')) {
+					if($request -> hasFile($data -> db_column)) {
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
 						
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $id.'.jpg');	
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $data -> db_column.'_'.$id.'.jpg');	
 						
 
 						if($data -> fit_type === 'fit') {
-							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$id.'.jpg')) -> fit($data -> image_width,
-																																					$data -> image_height,
-																																					function() {},
-																																					$data -> fit_position);
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'.jpg')) -> fit($data -> image_width,
+																																													$data -> image_height,
+																																													function() {},
+																																													$data -> fit_position);
 						}
 						
 						if($data -> fit_type === 'resize') {
-							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$id.'.jpg')) -> resize($data -> image_width,
-																																						$data -> image_height,
-																																						function ($constraint) {
-																																							$constraint->aspectRatio();
-																																						});
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'.jpg')) -> resize($data -> image_width,
+																																													$data -> image_height,
+																																													function ($constraint) {
+																																														$constraint->aspectRatio();
+																																													});
 						}
 
 							// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fill('#ff00ff',
@@ -472,10 +472,10 @@ class ACoreController extends Controller {
 
 						for($i = 1; $i < 4; $i++) {
 							if($data -> { 'prefix_'.$i }) {
-								$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
+								$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $data -> db_column.'_'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
 
 								if($data -> { 'fit_type_'.$i } === 'fit') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
 																																															$data -> image_height,
 																																															function() {},
 																																															$data -> fit_position);

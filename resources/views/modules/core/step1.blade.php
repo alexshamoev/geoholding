@@ -76,10 +76,10 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: file('image') }}
+										{{ Form :: file($moduleBlock -> db_column) }}
 									</div>
 									
-									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_0/'.$data -> id.'.jpg') }}" alt="">
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_0/'.$moduleBlock -> db_column.'_'.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break

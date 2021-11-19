@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forImage forFile forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column:</span>
@@ -64,6 +64,18 @@
 						
 						<div class="p-2">
 							{{ Form :: text('db_column') }}
+						</div>
+					</div>
+				</div>
+
+				<div class="p-2 dataBlock forImage forFile">
+					<div class="standard-block p-2">
+						<div class="p-2 d-flex flex-column">
+							<span>prefix:</span>
+						</div>
+						
+						<div class="p-2">
+							{{ Form :: text('prefix') }}
 						</div>
 					</div>
 				</div>
@@ -222,7 +234,6 @@
 						</div>
 					</div>
 				</div>
-
 
 				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
