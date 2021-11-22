@@ -484,7 +484,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_folder</span>
@@ -494,9 +494,9 @@
 							{{ Form :: text('file_folder') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_title</span>
@@ -506,7 +506,7 @@
 							{{ Form :: text('file_title') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
@@ -520,7 +520,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_1</span>
@@ -530,9 +530,9 @@
 							{{ Form :: text('file_name_index_1') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_2</span>
@@ -554,7 +554,7 @@
 							{{ Form :: text('file_name_index_3') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
