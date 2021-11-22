@@ -15,16 +15,10 @@ class PhotoGalleryImage extends Model {
 
 
 	private static $lang;
-	private static $pageAlias;
 
 
 	public static function setLang($value) {
 		self :: $lang = $value;
-	}
-
-
-	public static function setPageAlias($value) {
-		self :: $pageAlias = $value;
 	}
 
 

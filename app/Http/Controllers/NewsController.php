@@ -15,7 +15,15 @@ use Illuminate\Http\Request;
 
 
 class NewsController extends Controller {
-    public static function getStep0($language, $page) {
+    private const PAGE_SLUG = 'news';
+
+
+    public static function getStep0($langTitle) {
+        News :: setLang($langTitle);
+
+        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
+        $language = Language :: where('title', $langTitle) -> first();
+
         $data = array_merge(PageController :: getDefaultData($language, $page),
                             ['newsStep0' => News :: where('published', 1) -> orderByDesc('rang') -> get()]);
 
