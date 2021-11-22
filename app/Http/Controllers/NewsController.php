@@ -18,11 +18,15 @@ class NewsController extends Controller {
     private const PAGE_SLUG = 'news';
 
 
-    public static function getStep0($langTitle) {
-        News :: setLang($langTitle);
-
+    public static function getStep0($lang) {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        $language = Language :: where('title', $langTitle) -> first();
+        $language = Language :: where('title', $lang) -> first();
+
+        News :: setLang($lang);
+
+        Page :: setLang($language -> title);
+        
+        News :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
                             ['newsStep0' => News :: where('published', 1) -> orderByDesc('rang') -> get()]);
@@ -31,8 +35,22 @@ class NewsController extends Controller {
     }
 
 
-    public static function getStep1($language, $page, $stepAlias) {
+    public static function getStep1($lang, $stepAlias) {
+        $language = Language :: where('title', $lang) -> first();
+        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
+
+        
+        News :: setLang($language -> title);
+
+        Page :: setLang($language -> title);
+
+        News :: setPageAlias($page -> alias);
+
         $parent = News :: where('alias_'.$language -> title, $stepAlias) -> first();
+
+        NewsStep1 :: setLang($language -> title);
+        NewsStep1 :: setPageAlias($page -> alias);
+        NewsStep1 :: setStep0Alias($parent -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
                             ['newsStep0' => News :: where('published', 1) -> orderByDesc('rang') -> get(),
