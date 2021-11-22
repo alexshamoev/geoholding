@@ -319,6 +319,7 @@ class ACoreController extends Controller {
 											'nextId' => $nextId,
 											'use_for_tags' => $use_for_tags,
 											'multiplyCheckbox' => $multiplyCheckbox,
+											'multiplyCheckbox' => $multiplyCheckbox,
 											'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
 
 		return view('modules.core.step1', $data);
@@ -439,54 +440,59 @@ class ACoreController extends Controller {
 			// Image
 				if($data -> type === 'image') {
 					if($request -> hasFile($data -> db_column)) {
+						$prefix = '';
+
+						if($data -> prefix) {
+							$prefix = $data -> prefix.'_';
+						}
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
 						
-						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $data -> db_column.'_'.$id.'.jpg');	
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.jpg');	
 						
 
 						if($data -> fit_type === 'fit') {
-							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'.jpg')) -> fit($data -> image_width,
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'.jpg')) -> fit($data -> image_width,
 																																													$data -> image_height,
 																																													function() {},
 																																													$data -> fit_position);
 						}
 						
 						if($data -> fit_type === 'resize') {
-							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'.jpg')) -> resize($data -> image_width,
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'.jpg')) -> resize($data -> image_width,
 																																													$data -> image_height,
 																																													function ($constraint) {
 																																														$constraint->aspectRatio();
 																																													});
 						}
 
-							// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fill('#ff00ff',
-							// 																														0,
-							// 																														0);
-				
-						// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg'));
+						if($data -> fit_type === 'default') {
+							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'.jpg'));
+						}
 
-						// self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
-						
 						$image -> save();
 
 						for($i = 1; $i < 4; $i++) {
 							if($data -> { 'prefix_'.$i }) {
-								$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $data -> db_column.'_'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
+								$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
 
 								if($data -> { 'fit_type_'.$i } === 'fit') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$data -> db_column.'_'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
 																																															$data -> image_height,
 																																															function() {},
 																																															$data -> fit_position);
 								}
 								
 								if($data -> { 'fit_type_'.$i } === 'resize') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> resize($data -> image_width,
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> resize($data -> image_width,
 																																															$data -> image_height,
 																																															function ($constraint) {
 																																																$constraint->aspectRatio();
 																																															});
+								}
+
+								if($data -> { 'fit_type_'.$i } === 'default') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg'));
 								}
 
 								$image -> save();
@@ -705,56 +711,61 @@ class ACoreController extends Controller {
 
 			if($data -> type === 'image') {
 				if($request -> hasFile('image')) {
+
+					$prefix = '';
+
+					if($data -> prefix) {
+						$prefix = $data -> prefix.'_';
+					}
 					// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 					// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
 					
-					$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $id.'.jpg');	
+					$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.jpg');	
 					
 
 					if($data -> fit_type === 'fit') {
-						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$id.'.jpg')) -> fit($data -> image_width,
+						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.jpg')) -> fit($data -> image_width,
 																																				$data -> image_height,
 																																				function() {},
 																																				$data -> fit_position);
 					}
 					
 					if($data -> fit_type === 'resize') {
-						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$id.'.jpg')) -> resize($data -> image_width,
+						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.jpg')) -> resize($data -> image_width,
 																																					$data -> image_height,
 																																					function ($constraint) {
 																																						$constraint->aspectRatio();
 																																					});
 					}
 
-						// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg')) -> fill('#ff00ff',
-						// 																														0,
-						// 																														0);
-			
-					// $image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/'.$id.'.jpg'));
-
-					// self :: cropImage($image, $data -> image_width, $data -> image_height, null, null, '#808080');
+					if($data -> fit_type === 'default') {
+						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.jpg'));
+					}
 					
 					$image -> save();
 
 					for($i = 1; $i < 4; $i++) {
 						if($data -> { 'prefix_'.$i }) {
-							$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
+							$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg' );
 
 							if($data -> { 'fit_type_'.$i } === 'fit') {
-								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
+								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> fit($data -> image_width,
 																																														$data -> image_height,
 																																														function() {},
 																																														$data -> fit_position);
 							}
 							
 							if($data -> { 'fit_type_'.$i } === 'resize') {
-								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> resize($data -> image_width,
+								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg')) -> resize($data -> image_width,
 																																														$data -> image_height,
 																																														function ($constraint) {
 																																															$constraint->aspectRatio();
 																																														});
 							}
 
+							if($data -> { 'fit_type_'.$i } === 'default') {
+								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.jpg'));
+							}
 							$image -> save();
 						}
 					}
