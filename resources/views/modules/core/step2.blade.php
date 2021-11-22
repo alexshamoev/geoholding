@@ -178,6 +178,12 @@
 											if($moduleBlock -> validation) {
 												echo '*';
 											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
 										@endphp
 									</div>
 
@@ -185,7 +191,7 @@
 										{{ Form :: file('image') }}
 									</div>
 									
-									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_1/'.$data -> id.'.jpg') }}" alt="">
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_1/'.$prefix.$data -> id.'.jpg') }}" alt="">
 								</div>
 
 								@break
