@@ -136,32 +136,32 @@ class PageController extends Controller {
 	}
 
 
-	public function getStep0($lang, $pageAlias, $stepAlias) {
-		$language = Language :: where('title', $lang) -> first();
+	// public function getStep0($lang, $pageAlias, $stepAlias) {
+	// 	$language = Language :: where('title', $lang) -> first();
 
-		if($language) {
-			$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
+	// 	if($language) {
+	// 		$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
 
-			if($page) {
-				$active_module = Module :: where('page', $page -> id) -> first();
+	// 		if($page) {
+	// 			$active_module = Module :: where('page', $page -> id) -> first();
 			
-				if($active_module) {
-					switch($active_module -> alias) {
-						case 'news':
-							return NewsController :: getStep1($language, $pageAlias, $stepAlias, $page);
+	// 			if($active_module) {
+	// 				switch($active_module -> alias) {
+	// 					case 'news':
+	// 						return NewsController :: getStep1($language, $pageAlias, $stepAlias, $page);
 
-							break;
-					}
-				}
+	// 						break;
+	// 				}
+	// 			}
 
-				return view('static', self :: getDefaultData($language, $page));
-			} else {
-				abort(404);
-			}
-		} else {
-			abort(404);
-		}
-	}
+	// 			return view('static', self :: getDefaultData($language, $page));
+	// 		} else {
+	// 			abort(404);
+	// 		}
+	// 	} else {
+	// 		abort(404);
+	// 	}
+	// }
 
 
 	// public function getStep1($lang, $pageAlias, $step0Alias, $step1Alias) {

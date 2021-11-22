@@ -120,6 +120,19 @@ Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('m
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 
 
+
+
+// Check if this page is attached with module.
+	foreach(Module :: where('page', '>', '0') -> get() as $module) {
+		Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);;
+	}
+// 
+
+
+
+
+
+
 Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
 	$language = Language :: where('title', $lang) -> first();
 	
