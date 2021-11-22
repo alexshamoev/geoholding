@@ -18,7 +18,7 @@
 
 		<div>
 			<h1 class="py-lg-5 py-3 px-2 text-center">
-				{{ $activePhotoGalleryCategory -> alias }}
+				{{ $activePhotoGalleryCategory -> title }}
 			</h1>
 		</div>
 
@@ -37,10 +37,26 @@
 
 			<div class="col-lg-6 col-12">
 				<div class="p-2">
-					<img src="{{ asset('images/modules/photo_gallery/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
-					<!-- <img src="{{ asset('images/test_images/test.jpg') }}"> -->
+					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
 				</div>
 			</div>
+		</div>
+
+
+		<div class="row">
+			@foreach($photoGalleryStep1 as $data)
+				<div class="col-3">
+					<div class="p-2">
+						<div class="p-2">
+							<img src="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+						</div>
+
+						<div class="p-2">
+							{{ $data -> title }}
+						</div>
+					</div>
+				</div>
+			@endforeach
 		</div>
 	</div>
 @endsection

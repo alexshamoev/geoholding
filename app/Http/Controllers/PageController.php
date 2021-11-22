@@ -20,6 +20,11 @@ class PageController extends Controller {
 		Language :: setLang($lang);
 		Language :: setPage($page);
 
+		Page :: setLang($lang -> title);
+
+		MenuButton :: setLang($lang -> title);
+		MenuButton :: setPage($page -> alias);
+
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
 		$bsc = Bsc :: getFullData();
@@ -49,13 +54,8 @@ class PageController extends Controller {
 	
 	public function getDefaultPageWithDefaultLanguage() {
 		$language = Language :: where('like_default', 1) -> first();
-		
-		Page :: setLang($language -> title);
 
 		$page = Page :: where('like_default', 1) -> first();
-
-		MenuButton :: setLang($language -> title);
-		MenuButton :: setPage($page -> alias);
 
 		if($language && $page) {
 			$page_template = 'static';
@@ -77,12 +77,7 @@ class PageController extends Controller {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
-			Page :: setLang($language -> title);
-
 			$page = Page :: where('like_default', 1) -> first();
-
-			MenuButton :: setLang($language -> title);
-			MenuButton :: setPage($page -> alias);
 
 			if($page) {
 				$page_template = 'static';
@@ -103,57 +98,13 @@ class PageController extends Controller {
 	}
 
 
-	public static function getPage($lang, $alias) {
-		$language = Language :: where('title', $lang) -> first();
-
-		if($language) {
-			$page = Page :: where('alias_'.$language -> title, $alias) -> first();
-
-			if($page) {
-				// $active_module = Module :: where('page', $page -> id) -> first();
-
-			
-				// if($active_module) {
-				// 	switch($active_module -> alias) {
-				// 		case 'news':
-				// 			return NewsController :: getStep0($language, $page);
-							
-				// 			break;
-				// 		case 'photo_gallery':
-				// 			return PhotoGalleryController :: getStep0($language, $page);
-							
-				// 			break;
-				// 	}
-				// }
-
-				return view('static', self :: getDefaultData($language, $page));
-			} else {
-				abort(404);
-			}
-		} else {
-			abort(404);
-		}
-	}
-
-
-	public function getStep0($lang, $pageAlias, $stepAlias) {
+	public static function getPage($lang, $pageAlias) {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {
 			$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
 
 			if($page) {
-				$active_module = Module :: where('page', $page -> id) -> first();
-			
-				if($active_module) {
-					switch($active_module -> alias) {
-						case 'news':
-							return NewsController :: getStep1($language, $pageAlias, $stepAlias, $page);
-
-							break;
-					}
-				}
-
 				return view('static', self :: getDefaultData($language, $page));
 			} else {
 				abort(404);
@@ -162,6 +113,7 @@ class PageController extends Controller {
 			abort(404);
 		}
 	}
+
 
 
 	// public function getStep1($lang, $pageAlias, $step0Alias, $step1Alias) {

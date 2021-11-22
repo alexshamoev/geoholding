@@ -173,6 +173,16 @@ class AModuleBlockController extends Controller {
 			$moduleBlock -> fit_type_3 = $request -> input('fit_type_3');
 		}
 
+		//image prefix in the name (exp: prefix_3.jpg)
+			$moduleBlock -> prefix = $request -> input('prefix');
+		//
+
+		//aditional images with prefixes (exp: 3_prefix_1.jpg)
+			$moduleBlock -> prefix_1 = $request -> input('prefix_1');
+			$moduleBlock -> prefix_2 = $request -> input('prefix_2');
+			$moduleBlock -> prefix_3 = $request -> input('prefix_3');
+		//
+
 		if($request -> input('hide')) {
 			$moduleBlock -> hide = $request -> input('hide');
 		} else {
@@ -201,12 +211,12 @@ class AModuleBlockController extends Controller {
 		$moduleBlock -> select_first_option_value = $request -> input('select_first_option_value');
 		$moduleBlock -> select_first_option_text = $request -> input('select_first_option_text');
 		$moduleBlock -> label_for_ajax_select = $request -> input('label_for_ajax_select');
-		$moduleBlock -> file_folder = $request -> input('file_folder');
-		$moduleBlock -> file_title = $request -> input('file_title');
+		// $moduleBlock -> file_folder = $request -> input('file_folder');
+		// $moduleBlock -> file_title = $request -> input('file_title');
 		$moduleBlock -> file_format = $request -> input('file_format');
-		$moduleBlock -> file_name_index_1 = $request -> input('file_name_index_1');
-		$moduleBlock -> file_name_index_2 = $request -> input('file_name_index_2');
-		$moduleBlock -> file_name_index_3 = $request -> input('file_name_index_3');
+		// $moduleBlock -> file_name_index_1 = $request -> input('file_name_index_1');
+		// $moduleBlock -> file_name_index_2 = $request -> input('file_name_index_2');
+		// $moduleBlock -> file_name_index_3 = $request -> input('file_name_index_3');
 		$moduleBlock -> radio_value = $request -> input('radio_value');
 		$moduleBlock -> radio_class = $request -> input('radio_class');
 		$moduleBlock -> sql_select_with_checkboxes_table = $request -> input('sql_select_with_checkboxes_table');

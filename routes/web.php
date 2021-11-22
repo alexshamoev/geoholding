@@ -3,7 +3,9 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
 use App\Models\PhotoGalleryCategory;
+use App\Models\PhotoGalleryImage;
 use App\Models\News;
+use App\Models\NewsStep1;
 use App\Models\MenuButton;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
@@ -118,76 +120,83 @@ Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('m
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 
 
-Route :: get('/{lang}/{pageAlias}', function($lang, $pageAlias) {
-	$language = Language :: where('title', $lang) -> first();
-	
-	Page :: setLang($language -> title);
+// Check if this page is attached with module.
+	foreach(Module :: where('page', '>', '0') -> get() as $module) {
+		$page = Page :: where('id', $module -> page) -> first();
 
-	MenuButton :: setLang($language -> title);
-	MenuButton :: setPage($pageAlias);
+		$moduleTitleForControllerArray = explode('_', $module -> alias);
 
-	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+		$moduleTitleForController = '';
 
-	$active_module = Module :: where('page', $page -> id) -> first();
-
-	if($active_module) {
-		switch($active_module -> alias) {
-			case 'news':
-				News :: setLang($language -> title);
-				News :: setPageAlias($pageAlias);
-
-				return NewsController :: getStep0($language, $page);
-				
-				break;
-			case 'photo_gallery':
-				PhotoGalleryCategory :: setLang($language -> title);
-				PhotoGalleryCategory :: setPageAlias($pageAlias);
-
-				return PhotoGalleryController :: getStep0($language, $page);
-				
-				break;
+		foreach($moduleTitleForControllerArray as $data) {
+			$moduleTitleForController .= ucfirst($data);
 		}
-	} else {
-		return PageController :: getPage($lang, $pageAlias);
+
+		foreach(Language :: where('published', '1') -> get() as $language) {
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }, $moduleTitleForController.'Controller@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
+
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
+		}
 	}
-}) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+']);
+// Else show static page.
+	Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);;
+// 
 
 
-Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $step0Alias) {
-	$language = Language :: where('title', $lang) -> first();
 
-	Page :: setLang($language -> title);
 
-	MenuButton :: setLang($language -> title);
-	MenuButton :: setPage($pageAlias);
 
-	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
 
-	$active_module = Module :: where('page', $page -> id) -> first();
+
+
+
+
+// Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $step0Alias) {
+// 	$language = Language :: where('title', $lang) -> first();
+
+// 	Page :: setLang($language -> title);
+
+// 	MenuButton :: setLang($language -> title);
+// 	MenuButton :: setPage($pageAlias);
+
+// 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
+
+// 	$active_module = Module :: where('page', $page -> id) -> first();
  
-	if($active_module) {
-		switch($active_module -> alias) {
-			case 'news':
-				News :: setLang($language -> title);
-				News :: setPageAlias($pageAlias);
+// 	if($active_module) {
+// 		switch($active_module -> alias) {
+// 			case 'news':
+// 				News :: setLang($language -> title);
+// 				News :: setPageAlias($pageAlias);
 
-				return NewsController :: getStep1($language, $page, $step0Alias);
+// 				NewsStep1 :: setLang($language -> title);
+// 				NewsStep1 :: setPageAlias($pageAlias);
+// 				NewsStep1 :: setStep0Alias($step0Alias);
+
+// 				return NewsController :: getStep1($language, $page, $step0Alias);
 				
-				break;
-			case 'photo_gallery':
-				PhotoGalleryCategory :: setLang($language -> title);
-				PhotoGalleryCategory :: setPageAlias($pageAlias);
+// 				break;
+// 			case 'photo_gallery':
+// 				PhotoGalleryCategory :: setLang($language -> title);
+// 				PhotoGalleryCategory :: setPageAlias($pageAlias);
 
-				return PhotoGalleryController :: getStep1($language, $page, $step0Alias);
+// 				PhotoGalleryImage :: setLang($language -> title);
+// 				PhotoGalleryImage :: setPageAlias($pageAlias);
+
+// 				return PhotoGalleryController :: getStep1($language, $page, $step0Alias);
 				
-				break;
-		}
-	} else {
-		// return PageController :: getPage($lang, $pageAlias);
+// 				break;
+// 		}
+// 	} else {
+// 		// return PageController :: getPage($lang, $pageAlias);
 
-		return 555;
-	}
-}) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
+// 		return 555;
+// 	}
+// }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
+
+
+
+
 
 
 // Auth :: routes();

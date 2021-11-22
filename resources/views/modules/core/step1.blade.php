@@ -72,14 +72,44 @@
 											if($moduleBlock -> validation) {
 												echo '*';
 											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
 										@endphp
 									</div>
 
 									<div class="p-2">
-										{{ Form :: file('image') }}
+										{{ Form :: file($moduleBlock -> db_column) }}
 									</div>
 									
-									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/'.$data -> id.'.jpg') }}" alt="">
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_0/'.$prefix.$data -> id.'.jpg') }}" alt="">
+								</div>
+
+								@break
+							@case('file')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
+										@endphp
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
 								</div>
 
 								@break

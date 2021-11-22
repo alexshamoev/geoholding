@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forImage forFile forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column:</span>
@@ -64,6 +64,18 @@
 						
 						<div class="p-2">
 							{{ Form :: text('db_column') }}
+						</div>
+					</div>
+				</div>
+
+				<div class="p-2 dataBlock forImage forFile">
+					<div class="standard-block p-2">
+						<div class="p-2 d-flex flex-column">
+							<span>prefix:</span>
+						</div>
+						
+						<div class="p-2">
+							{{ Form :: text('prefix') }}
 						</div>
 					</div>
 				</div>
@@ -176,6 +188,10 @@
 							image_height_1 {{ Form :: number('image_height_1') }}
 						</div>
 
+						<div class="">
+							{{ Form :: text('prefix_1') }}
+						</div>
+
 						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_1', 'fit') }} fit_1
 						</div>
@@ -201,6 +217,10 @@
 							image_height_2 {{ Form :: number('image_height_2') }}
 						</div>
 						
+						<div class="">
+							{{ Form :: text('prefix_2') }}
+						</div>
+
 						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_2', 'fit') }} fit_2
 						</div>
@@ -215,7 +235,6 @@
 					</div>
 				</div>
 
-
 				<div class="p-2 dataBlock forImage">
 					<div class="standard-block row p-2">
 						<div class="col-4 p-2">
@@ -224,6 +243,10 @@
 						
 						<div class="col-4 p-2">
 							image_height_3 {{ Form :: number('image_height_3') }}
+						</div>
+
+						<div class="">
+							{{ Form :: text('prefix_3') }}
 						</div>
 
 						<div class="col-2 p-2">
@@ -461,7 +484,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_folder</span>
@@ -471,9 +494,9 @@
 							{{ Form :: text('file_folder') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_title</span>
@@ -483,7 +506,7 @@
 							{{ Form :: text('file_title') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
@@ -497,7 +520,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_1</span>
@@ -507,9 +530,9 @@
 							{{ Form :: text('file_name_index_1') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
-				<div class="p-2 dataBlock forFile">
+				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>file_name_index_2</span>
@@ -531,7 +554,7 @@
 							{{ Form :: text('file_name_index_3') }}
 						</div>
 					</div>
-				</div>
+				</div> -->
 
 				<div class="p-2 dataBlock">
 					<div class="standard-block p-2">
