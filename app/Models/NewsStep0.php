@@ -5,13 +5,13 @@ namespace App\Models;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoGalleryCategory extends Model {
+class NewsStep0 extends Model {
 	/**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'photo_gallery_step_0';
+    protected $table = 'news_step_0';
 
 
 	private static $lang;
@@ -21,6 +21,7 @@ class PhotoGalleryCategory extends Model {
 	public static function setLang($value) {
 		self :: $lang = $value;
 	}
+
 
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
@@ -41,6 +42,7 @@ class PhotoGalleryCategory extends Model {
         return $this -> { 'text_'.self :: $lang };
     }
 
+    
 	public function getFullUrlAttribute() {
         return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
     }

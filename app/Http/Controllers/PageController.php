@@ -25,6 +25,8 @@ class PageController extends Controller {
 		MenuButton :: setLang($lang -> title);
 		MenuButton :: setPage($page -> alias);
 
+		Partner :: setLang($lang -> title);
+
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
 		$bsc = Bsc :: getFullData();
@@ -33,8 +35,6 @@ class PageController extends Controller {
 		if($bsc -> year_of_site_creation < date('Y')) {
 			$copyrightDate .= ' - '.date('Y');
 		}
-
-		Partner :: setLang($lang -> title);
 
 		$data = ['page' => $page,
 				'language' => $lang,
@@ -113,49 +113,4 @@ class PageController extends Controller {
 			abort(404);
 		}
 	}
-
-
-
-	// public function getStep1($lang, $pageAlias, $step0Alias, $step1Alias) {
-	// 	$language = Language :: where('title', $lang) -> first();
-
-	// 	if($language) {
-	// 		$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
-
-	// 		if($page) {
-	// 			$active_module = Module :: where('page', $page -> id) -> first();
-			
-	// 			if($active_module) {
-	// 				switch($active_module -> alias) {
-	// 					case 'news':
-	// 						$activeNews = News :: where('alias_'.$lang, $stepAlias) -> first();
-
-	// 						return view('modules.news.step1', ['page' => $page -> getFullData($lang),
-	// 									'menuButtons' => MenuButton :: getFullData($lang),
-	// 									'languages' => Language :: getFullData($lang, $page),
-	// 									'bsc' => Bsc :: getFullData(),
-	// 									'bsw' => Bsw :: getFullData($language -> title),
-	// 									'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-	// 									'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias,
-	// 									'newsStep0' => News :: getFullData($lang),
-	// 									'activeNews' => $activeNews -> getData($lang)]);
-							
-	// 						break;
-	// 				}
-	// 			}
-
-	// 			return view('static', ['page' => $page -> getFullData($lang),
-	// 									'menuButtons' => MenuButton :: getFullData($lang),
-	// 									'languages' => Language :: getFullData($lang, $page),
-	// 									'bsc' => Bsc :: getFullData(),
-	// 									'bsw' => Bsw :: getFullData($language -> title),
-	// 									'registrationUrl' => '/'.$lang.'/'.Page :: where('slug', 'registration') -> first() -> getFullData($lang) -> alias,
-	// 									'authorizationUrl' => '/'.$lang.'/'.Page :: where('slug', 'authorization') -> first() -> getFullData($lang) -> alias]);
-	// 		} else {
-	// 			abort(404);
-	// 		}
-	// 	} else {
-	// 		abort(404);
-	// 	}
-	// }
 }

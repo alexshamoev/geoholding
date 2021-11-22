@@ -23,9 +23,11 @@ class NewsStep1 extends Model {
 		self :: $lang = $value;
 	}
 
+
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
 	}
+
 
 	public static function setStep0Alias($value) {
 		self :: $step0Alias = $value;
@@ -46,6 +48,7 @@ class NewsStep1 extends Model {
         return $this -> { 'text_'.self :: $lang };
     }
 
+	
 	public function getFullUrlAttribute() {
         return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.$this -> alias;
     }

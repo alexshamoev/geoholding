@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoGalleryImage extends Model {
+class PhotoGalleryStep1 extends Model {
 	/**
      * The table associated with the model.
      *

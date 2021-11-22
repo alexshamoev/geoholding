@@ -112,10 +112,6 @@ use App\Mail\WelcomeMail;
 // 
 
 
-// Route :: get('/image-upload', 'ImageUploadController@img_upload') -> name("img.upload");
-// Route :: post('/imgstore', 'ImageUploadController@imagestore') -> name("img.store");
-
-
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
 
@@ -141,62 +137,6 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 // Else show static page.
 	Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);;
 // 
-
-
-
-
-
-
-
-
-
-
-// Route :: get('/{lang}/{pageAlias}/{step0Alias}', function($lang, $pageAlias, $step0Alias) {
-// 	$language = Language :: where('title', $lang) -> first();
-
-// 	Page :: setLang($language -> title);
-
-// 	MenuButton :: setLang($language -> title);
-// 	MenuButton :: setPage($pageAlias);
-
-// 	$page = Page :: where('alias_'.$lang, $pageAlias) -> first();
-
-// 	$active_module = Module :: where('page', $page -> id) -> first();
- 
-// 	if($active_module) {
-// 		switch($active_module -> alias) {
-// 			case 'news':
-// 				News :: setLang($language -> title);
-// 				News :: setPageAlias($pageAlias);
-
-// 				NewsStep1 :: setLang($language -> title);
-// 				NewsStep1 :: setPageAlias($pageAlias);
-// 				NewsStep1 :: setStep0Alias($step0Alias);
-
-// 				return NewsController :: getStep1($language, $page, $step0Alias);
-				
-// 				break;
-// 			case 'photo_gallery':
-// 				PhotoGalleryCategory :: setLang($language -> title);
-// 				PhotoGalleryCategory :: setPageAlias($pageAlias);
-
-// 				PhotoGalleryImage :: setLang($language -> title);
-// 				PhotoGalleryImage :: setPageAlias($pageAlias);
-
-// 				return PhotoGalleryController :: getStep1($language, $page, $step0Alias);
-				
-// 				break;
-// 		}
-// 	} else {
-// 		// return PageController :: getPage($lang, $pageAlias);
-
-// 		return 555;
-// 	}
-// }) -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё-]+', 'step0Alias' => '[a-zა-ჰа-яё-]+']);
-
-
-
-
 
 
 // Auth :: routes();

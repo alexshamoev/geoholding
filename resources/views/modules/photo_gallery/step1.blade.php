@@ -13,12 +13,12 @@
 				{{ $page -> title }}
 			</a>
 			>
-			{{ $activePhotoGalleryCategory -> title }}
+			{{ $activePhotoGalleryStep0 -> title }}
 		</div>
 
 		<div>
 			<h1 class="py-lg-5 py-3 px-2 text-center">
-				{{ $activePhotoGalleryCategory -> title }}
+				{{ $activePhotoGalleryStep0 -> title }}
 			</h1>
 		</div>
 
@@ -26,18 +26,18 @@
 			<div class="col-lg-6 col-12">
 				<div class="p-2">
 					<h3>
-						{{ $activePhotoGalleryCategory -> title }}
+						{{ $activePhotoGalleryStep0 -> title }}
 					</h3>
 				</div>
 
 				<div class="p-2">
-					{!! $activePhotoGalleryCategory -> text !!}
+					{!! $activePhotoGalleryStep0 -> text !!}
 				</div>
 			</div>
 
 			<div class="col-lg-6 col-12">
 				<div class="p-2">
-					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryCategory -> id.'.jpg') }}" alt="{{ $activePhotoGalleryCategory -> title }}">
+					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryStep0 -> id.'.jpg') }}" alt="{{ $activePhotoGalleryStep0 -> title }}">
 				</div>
 			</div>
 		</div>
