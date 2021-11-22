@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic;
-use Intervention\Image\Image;
 use DB;
 
 
@@ -360,6 +359,7 @@ class ACoreController extends Controller {
 
 
 			if($data -> type !== 'image'
+				&& $data -> type !== 'file'
 				&& $data -> type !== 'published'
 				&& $data -> type !== 'rang'
 				&& $data -> type !== 'alias'
@@ -470,6 +470,7 @@ class ACoreController extends Controller {
 							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'.jpg'));
 						}
 
+
 						$image -> save();
 
 						for($i = 1; $i < 4; $i++) {
@@ -498,6 +499,24 @@ class ACoreController extends Controller {
 								$image -> save();
 							}
 						}
+					}
+				}
+			// 
+
+			// File
+				if($data -> type === 'file') {
+					if($request -> hasFile($data -> db_column)) {
+						$prefix = '';
+
+						if($data -> prefix) {
+							$prefix = $data -> prefix.'_';
+						}
+						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
+						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
+						
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.'.$data -> file_format);	
+
+						// $image -> save();
 					}
 				}
 			// 

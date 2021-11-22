@@ -89,6 +89,30 @@
 								</div>
 
 								@break
+							@case('file')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
+										@endphp
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
+								</div>
+
+								@break
 							@case('select')
 								<div class="p-2 standard-block">
 									<div class="p-2">
