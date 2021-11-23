@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-	{{ $activeNewsStep0 -> title }}
+	{{ $activeNewsStep1 -> title }}
 @endsection
 
 
@@ -16,34 +16,40 @@
 
 				>
 
-				{{ $activeNewsStep0 -> title }}
+				<a href="{{ $activeNewsStep0 -> fullUrl }}">
+					{{ $activeNewsStep0 -> title }}
+				</a>
+
+				>
+
+				{{ $activeNewsStep1 -> title }}
 			</div>
 			
 			
 			<h1 class="p-2">
-				{{ $activeNewsStep0 -> title }}
+				{{ $activeNewsStep1 -> title }}
 			</h1>
 
 			<div class="float-right img_wrapper">
 				<div class="p-2">
-					<img src="{{ asset('/storage/images/modules/news/step_0/'.$activeNewsStep0 -> id.'.jpg') }}" alt="{{ $activeNewsStep0 -> title }}">
+					<img src="{{ asset('/storage/images/modules/news/step_1/'.$activeNewsStep1 -> id.'.jpg') }}" alt="{{ $activeNewsStep1 -> title }}">
 				</div>
 			</div>
 
 			<div class="p-2">
-				{!! $activeNewsStep0 -> text !!}
+				{!! $activeNewsStep1 -> text !!}
 			</div>
 
 			<div class="clearfix"></div>
-
+			
 
 			<div class="row">
-				@foreach($newsStep1 as $data)
+				@foreach($newsStep2 as $data)
 					<div class="col-3">
 						<a href="{{ $data -> fullUrl }}">
 							<div class="p-2">
 								<div class="p-2">
-									<img src="{{ asset('/storage/images/modules/news/step_1/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+									<img src="{{ asset('/storage/images/modules/news/step_2/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
 								</div>
 								
 								<div class="p-2">

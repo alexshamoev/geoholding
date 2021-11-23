@@ -2,11 +2,6 @@
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
-use App\Models\PhotoGalleryCategory;
-use App\Models\PhotoGalleryImage;
-use App\Models\News;
-use App\Models\NewsStep1;
-use App\Models\MenuButton;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
@@ -129,9 +124,10 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 		}
 
 		foreach(Language :: where('published', '1') -> get() as $language) {
-			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }, $moduleTitleForController.'Controller@getStep0') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
-
-			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }, $moduleTitleForController.'Controller@getStep0') -> where(['lang' => '[a-z]+']);
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}/{step2Alias}', $moduleTitleForController.'Controller@getStep3') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+']);
 		}
 	}
 // Else show static page.
