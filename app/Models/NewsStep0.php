@@ -5,18 +5,17 @@ namespace App\Models;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
-class NewsStep1 extends Model {
+class NewsStep0 extends Model {
 	/**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'news_step_1';
+    protected $table = 'news_step_0';
 
 
 	private static $lang;
 	private static $pageAlias;
-	private static $step0Alias;
 
 
 	public static function setLang($value) {
@@ -26,11 +25,6 @@ class NewsStep1 extends Model {
 
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
-	}
-
-
-	public static function setStep0Alias($value) {
-		self :: $step0Alias = $value;
 	}
 
 
@@ -48,8 +42,8 @@ class NewsStep1 extends Model {
         return $this -> { 'text_'.self :: $lang };
     }
 
-	
+    
 	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.$this -> alias;
+        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
     }
 }

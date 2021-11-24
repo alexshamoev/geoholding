@@ -5,25 +5,44 @@ namespace App\Models;
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
 
-class PhotoGalleryCategory extends Model {
+class NewsStep2 extends Model {
 	/**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'photo_gallery_step_0';
+    protected $table = 'news_step_2';
 
 
 	private static $lang;
 	private static $pageAlias;
+	private static $step0Alias;
+	private static $step1Alias;
+	private static $step2Alias;
 
 
 	public static function setLang($value) {
 		self :: $lang = $value;
 	}
 
+
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
+	}
+
+
+	public static function setStep0Alias($value) {
+		self :: $step0Alias = $value;
+	}
+
+
+	public static function setStep1Alias($value) {
+		self :: $step1Alias = $value;
+	}
+
+
+	public static function setStep2Alias($value) {
+		self :: $step2Alias = $value;
 	}
 
 
@@ -41,7 +60,8 @@ class PhotoGalleryCategory extends Model {
         return $this -> { 'text_'.self :: $lang };
     }
 
+	
 	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
+        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.self :: $step1Alias.'/'.$this -> alias;
     }
 }
