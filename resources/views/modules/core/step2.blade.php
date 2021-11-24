@@ -24,7 +24,12 @@
 		'prevRoute' => route('coreEditStep1', [$module -> alias, $data -> parent, $prevId]),
 		'backRoute' => route('coreEditStep0', [$module -> alias, $data -> parent])
 	])
-
+	
+	@if($errors->any())
+		<div class="alert alert-danger">
+			Whoops, looks like something went wrong
+		</div>
+	@endif
     
 	<div class="p-2">
 		{{ Form :: open(array('route' => array('coreUpdateStep1', $module -> alias, $data -> parent, $data -> id), 'files' => true)) }}
@@ -107,6 +112,30 @@
 										</div>
 									@enderror
 								@endforeach
+
+								@break
+							@case('file')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
+										@endphp
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
+								</div>
 
 								@break
 							@case('input_with_languages')
@@ -206,11 +235,19 @@
 									</div>
 								</div>
 						@endswitch
+
+						@if($moduleBlock -> type !== 'alias' && $moduleBlock -> type !== 'input_with_languages' && $moduleBlock -> type !== 'editor_with_languages')
+							@error($moduleBlock -> db_column)
+								<div class="alert alert-danger">
+									{{ $message }}
+								</div>
+							@enderror	
+						@endif
 					</div>
 				@endif
 			@endforeach
 
-			<div class="p-2">
+			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}

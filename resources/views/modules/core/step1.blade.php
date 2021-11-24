@@ -27,7 +27,7 @@
 	
 	@if($errors->any())
 		<div class="alert alert-danger">
-			Some error
+			Whoops, looks like something went wrong
 		</div>
 	@endif
 	
