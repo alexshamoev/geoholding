@@ -2,17 +2,25 @@
 	<div class="p-2 languages row align-items-center">
 		@foreach($languages as $data)
 			@if($data -> active)
-				<div class="languages__lang languages__lang--active col-4 d-flex justify-content-center">
-					{{ $data -> full_title }}
-					
-					<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" style="width: 30px;">
+				<div class="languages__lang languages__lang--active col-4 text-center">
+					<div class="p-2">
+						<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" >
+					</div>
+
+					<div class="p-2 d-xl-block d-lg-block d-none">
+						{{ $data -> full_title }}
+					</div>
 				</div>
 			@else
-				<div class="languages__lang col-4 d-flex justify-content-center">
+				<div class="languages__lang col-4 text-center">
 					<a href="{{ $data -> full_url }}">
-						{{ $data -> full_title }}
+						<div class="p-2">
+							<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" >
+						</div>
 
-						<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="Flag" style="width: 30px;">
+						<div class="p-2 d-xl-block d-lg-block d-none">
+							{{ $data -> full_title }}
+						</div>
 					</a>
 				</div>
 			@endif

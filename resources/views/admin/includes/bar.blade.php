@@ -59,11 +59,9 @@
 
 
 			@if(isset($deleteUrl))
-				<a href="{{ $deleteUrl }}">
-					<div class="p-3 bar__button">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-big-img">
-					</div>
-				</a>
+				<div class="p-3 bar__button delete-block" data-delete-link="{{ $deleteUrl }}">
+					<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-big-img">
+				</div>
 			@endif
 		</div>
 	</div>
