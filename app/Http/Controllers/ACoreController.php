@@ -433,10 +433,6 @@ class ACoreController extends Controller {
 				$updateQuery[$data -> db_column] = $multiplyCheckboxString;
 			}
 
-
-			// dd($request -> all());
- 
-
 			// Image
 				if($data -> type === 'image') {
 					if($request -> hasFile($data -> db_column)) {
@@ -445,10 +441,17 @@ class ACoreController extends Controller {
 						if($data -> prefix) {
 							$prefix = $data -> prefix.'_';
 						}
-						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
-						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
 						
+						$validator = Validator :: make($request -> all(), array(
+							$data -> db_column => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+						));
+
+						if($validator -> fails()) {
+							return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+						}
+
 						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.jpg');	
+						
 						
 
 						if($data -> fit_type === 'fit') {
@@ -470,6 +473,7 @@ class ACoreController extends Controller {
 							$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$id.'.jpg'));
 						}
 
+						
 
 						$image -> save();
 
@@ -512,12 +516,6 @@ class ACoreController extends Controller {
 							$prefix = $data -> prefix.'_';
 						}
 
-						// $extension = $request -> file('file') -> extension();
-
-						// if($data -> file_format == $extension) {
-								
-						// }
-
 						$validator = Validator :: make($request -> all(), array(
 							$data -> db_column => "required|mimes:".$data -> file_format."|max:10000"
 						));
@@ -527,11 +525,7 @@ class ACoreController extends Controller {
 							return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
 						}
 						
-						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
-						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
-						
 						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.'.$data -> file_format);
-						// return $extension;
 					}
 				}
 			// 
