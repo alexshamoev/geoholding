@@ -511,12 +511,18 @@ class ACoreController extends Controller {
 						if($data -> prefix) {
 							$prefix = $data -> prefix.'_';
 						}
+
+						$extension = $request->file('file')->extension();
+
+						if($data -> file_format == $extension) {
+							$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.'.$data -> file_format);	
+						}
+
 						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
 						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
 						
-						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_0', $prefix.$id.'.'.$data -> file_format);	
-
-						// $image -> save();
+						
+						// return $extension;
 					}
 				}
 			// 
