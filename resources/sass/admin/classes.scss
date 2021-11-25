@@ -159,6 +159,10 @@
 
 .addButton {
 	border: 1px solid #ccc;
+
+	&:hover {
+		cursor: pointer !important;
+	}
 }
 
 
