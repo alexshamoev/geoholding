@@ -25,6 +25,7 @@ mix.js('resources/js/app.js', 'public/js').react()
   .js('resources/js/modules/modules/a/basic.js', 'public/js/modules/modules/a/basic.js')
   .js('resources/js/admin/rangs.js', 'public/js/admin')
   .js('resources/js/modules/basic.js', 'public/js/modules')
+  .copy('node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js', 'public/js/modules')
   .sass('resources/sass/modules/_atom.scss', 'public/css/modules')
   .sass('resources/sass/modules/html_tags.scss', 'public/css/modules')
   .sass('resources/sass/modules/icons.scss', 'public/css/modules')
@@ -45,3 +46,4 @@ mix.js('resources/js/app.js', 'public/js').react()
   .sass('resources/sass/modules/text_lines.scss', 'public/css/modules')
   .sass('resources/sass/modules/text_lines_max.scss', 'public/css/modules')
   .sass('resources/sass/modules.scss', 'public/css');
+  

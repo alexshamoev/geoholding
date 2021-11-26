@@ -36,9 +36,12 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules.css') }}">
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js" defer></script> -->
 
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/basic.js') }}"></script>
+		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
+		<script src="{{ asset('js/modules/ckeditor.js') }}"></script>
     </head>
 
     <body>
