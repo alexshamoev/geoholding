@@ -44,9 +44,11 @@
 
 
 //  News
-.news_step1 {
-    &__section {
-        min-height: 700px;
+.news {
+    &_step1 {
+        &__container {
+            min-height: 700px;
+        }
     }
 }
 // 
@@ -54,7 +56,7 @@
 // Gallery
 .gallery {
     &_step1 {
-        &__section {
+        &__container {
             min-height: 700px;
         }
     }

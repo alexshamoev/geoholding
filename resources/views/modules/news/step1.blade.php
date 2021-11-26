@@ -7,8 +7,8 @@
 
 
 @section('content')
-	<section class="news_step1__section">
-		<div class="container">
+	<section>
+		<div class="container news_step1__container">
 			<div class="p-2">
 				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 					{{ $page -> title }}
@@ -18,7 +18,6 @@
 
 				{{ $activeNewsStep0 -> title }}
 			</div>
-			
 			<h1 class="p-2">
 				{{ $activeNewsStep0 -> title }}
 			</h1>
@@ -38,7 +37,7 @@
 
 			<div class="row">
 				@foreach($newsStep1 as $data)
-					<div class="col-3">
+					<div class="col-6">
 						<a href="{{ $data -> fullUrl }}">
 							<div class="p-2">
 								<div class="p-2">
