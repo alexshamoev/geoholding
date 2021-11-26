@@ -7,6 +7,7 @@
 
 
 @section('content')
+<section class="gallery_step1__section">
 	<div class="container">
 		<div class="p-2">
 			<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
@@ -15,7 +16,7 @@
 			>
 			{{ $activePhotoGalleryStep0 -> title }}
 		</div>
-
+ 
 		<div>
 			<h1 class="py-lg-5 py-3 px-2 text-center">
 				{{ $activePhotoGalleryStep0 -> title }}
@@ -59,4 +60,5 @@
 			@endforeach
 		</div>
 	</div>
+</section>
 @endsection
