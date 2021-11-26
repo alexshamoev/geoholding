@@ -41,8 +41,6 @@
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/basic.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
-		<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
-
 
     </head>
 

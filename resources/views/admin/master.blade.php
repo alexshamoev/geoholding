@@ -20,6 +20,7 @@
 		<!-- basic.js must be first because it loads jquery -->
 		<script src="{{ asset('js/admin/basic.js') }}"></script>
 		<script src="{{ asset('js/admin/rangs.js') }}"></script>
+		<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
 
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
 	</head>

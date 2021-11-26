@@ -48,7 +48,12 @@
                                         aria-controls="navbar"
                                         aria-expanded="false" 
                                         aria-label="Toggle navigation">
-                                    <div class="navbar__toggler-icon"></div>
+                                    <div id="nav-icon3">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>	
                                 </button>
                             </div>
                         </div>
