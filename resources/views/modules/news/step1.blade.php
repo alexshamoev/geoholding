@@ -19,7 +19,6 @@
 				{{ $activeNewsStep0 -> title }}
 			</div>
 			
-			
 			<h1 class="p-2">
 				{{ $activeNewsStep0 -> title }}
 			</h1>
