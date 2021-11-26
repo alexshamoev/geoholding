@@ -40,10 +40,6 @@
 						
 						</div>
 					</a>
-
-					<div id="editor">
-						<p>Here goes the initial content of the editor.</p>
-					</div>
 				</div>
 			@endforeach
 		</div>
