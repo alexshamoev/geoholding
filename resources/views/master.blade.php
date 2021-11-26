@@ -41,7 +41,7 @@
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/basic.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
-		<script src="{{ asset('js/modules/ckeditor.js') }}"></script>
+		<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
 
 
     </head>
@@ -59,16 +59,5 @@
 
 
 		@include('modules.footer.basic')
-
-		<script>
-			ClassicEditor
-			.create( document.querySelector( '#editor' ) )
-			.then( editor => {
-				console.log( editor );
-			} )
-			.catch( error => {
-				console.error( error );
-			} );
-		</script>
     </body>
 </html>
