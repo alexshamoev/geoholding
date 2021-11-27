@@ -35,9 +35,6 @@
 		{{ Form :: open(array('route' => array('coreUpdateStep2', $module -> alias, $parentFirst, $parentSecond, $id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
-					@php
-						$tempVar = $moduleBlock -> db_column;
-					@endphp
 					<div class="p-2">
 						@switch($moduleBlock -> type)
 							@case('input')
@@ -47,7 +44,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -59,7 +56,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -84,7 +81,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -96,7 +93,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -108,7 +105,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 						@endswitch

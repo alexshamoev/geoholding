@@ -6,7 +6,6 @@
 @endsection
 
 @section('content')
-
 	@include('admin.includes.tags', [
 		'tag0Text' => $module -> title,
 		'tag0Url' => route('coreGetStep0', $module -> alias),
@@ -25,12 +24,12 @@
 		'backRoute' => route('coreEditStep0', [$module -> alias, $data -> parent])
 	])
 	
-	@if($errors->any())
+	@if($errors -> any())
 		<div class="alert alert-danger">
 			Whoops, looks like something went wrong
 		</div>
 	@endif
-    
+
 	<div class="p-2">
 		{{ Form :: open(array('route' => array('coreUpdateStep1', $module -> alias, $data -> parent, $data -> id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
