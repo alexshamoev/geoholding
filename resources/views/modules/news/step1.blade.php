@@ -9,12 +9,12 @@
 @section('content')
 	<section>
 		<div class="container news_step1__container">
-			<div class="p-2">
+			<div class="p-2 d-flex align-items-center">
 				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 					{{ $page -> title }}
 				</a>
 
-				>
+				<span class="ba_arrow_right px-2 tag_next"></span>
 
 				{{ $activeNewsStep0 -> title }}
 			</div>

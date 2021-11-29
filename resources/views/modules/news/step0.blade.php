@@ -28,7 +28,7 @@
 							<div class="p-2">
 								{{ $data -> title }}
 							</div>
-
+							
 							<div class="p-2">
 								{!! $data -> text !!}
 							</div>
