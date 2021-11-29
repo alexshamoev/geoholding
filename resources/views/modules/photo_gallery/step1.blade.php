@@ -8,7 +8,7 @@
 
 @section('content')
 <section>
-	<div class="container gallery_step1__container">
+	<div class="container main_content--height">
 		<div class="p-2 d-flex align-items-center">
 			<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 				{{ $page -> title }}
@@ -36,12 +36,14 @@
 				<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryStep0 -> id.'.jpg') }}" alt="{{ $activePhotoGalleryStep0 -> title }}">
 			</div>
 		</div>
+		
+		<div class="clearfix"></div>
 
 		<div class="p-2">
 			{!! $activePhotoGalleryStep0 -> text !!}
 		</div>
 
-		<div class="clearfix"></div>
+
 
 		<div class="row">
 			@foreach($photoGalleryStep1 as $data)

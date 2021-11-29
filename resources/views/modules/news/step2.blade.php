@@ -8,7 +8,7 @@
 
 @section('content')
 	<section class="news_step1__section">
-		<div class="container">
+		<div class="container main_content--height">
 			<div class="p-2 d-flex align-items-center">
 				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 					{{ $page -> title }}

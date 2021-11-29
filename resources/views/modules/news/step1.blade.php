@@ -8,7 +8,7 @@
 
 @section('content')
 	<section>
-		<div class="container news_step1__container">
+		<div class="container main_content--height">
 			<div class="p-2 d-flex align-items-center">
 				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 					{{ $page -> title }}
@@ -18,6 +18,7 @@
 
 				{{ $activeNewsStep0 -> title }}
 			</div>
+	
 			<h1 class="p-2">
 				{{ $activeNewsStep0 -> title }}
 			</h1>
@@ -28,11 +29,12 @@
 				</div>
 			</div>
 
+			<div class="clearfix"></div>
+
 			<div class="p-2">
 				{!! $activeNewsStep0 -> text !!}
 			</div>
 
-			<div class="clearfix"></div>
 
 
 			<div class="row">
