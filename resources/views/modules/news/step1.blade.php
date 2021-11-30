@@ -18,10 +18,12 @@
 
 				{{ $activeNewsStep0 -> title }}
 			</div>
-	
-			<h1 class="p-2">
-				{{ $activeNewsStep0 -> title }}
-			</h1>
+
+			<div>
+				<h1 class="p-2">
+					{{ $activeNewsStep0 -> title }}
+				</h1>
+			</div>
 
 			<div class="float-right img_wrapper">
 				<div class="p-2">
@@ -29,13 +31,11 @@
 				</div>
 			</div>
 
-			<div class="clearfix"></div>
-
 			<div class="p-2">
 				{!! $activeNewsStep0 -> text !!}
 			</div>
-
-
+			
+			<div class="clear_both"></div>
 
 			<div class="row">
 				@foreach($newsStep1 as $data)

@@ -30,19 +30,20 @@
 				{{ $activePhotoGalleryStep0 -> title }}
 			</h3>
 		</div>
-
-		<div class="float-right img_wrapper">
-			<div class="p-2">
-				<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryStep0 -> id.'.jpg') }}" alt="{{ $activePhotoGalleryStep0 -> title }}">
+		<div>
+			<div class="float-right img_wrapper">
+				<div class="p-2">
+					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryStep0 -> id.'.jpg') }}" alt="{{ $activePhotoGalleryStep0 -> title }}">
+				</div>
 			</div>
-		</div>
-		
-		<div class="clearfix"></div>
+	
+			<div class="p-2">
+				{!! $activePhotoGalleryStep0 -> text !!}
+			</div>
+	
+			<div class="clear_both"></div>
 
-		<div class="p-2">
-			{!! $activePhotoGalleryStep0 -> text !!}
 		</div>
-
 
 
 		<div class="row">

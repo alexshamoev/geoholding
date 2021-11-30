@@ -40,7 +40,7 @@
 				{!! $activeNewsStep1 -> text !!}
 			</div>
 
-			<div class="clearfix"></div>
+			<div class="clear_both"></div>
 			
 
 			<div class="row">
