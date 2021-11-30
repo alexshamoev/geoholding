@@ -1,5 +1,5 @@
 @if($widgetGetVisibility['menu_buttons'])
-	<div class="navbar-collapse collapse justify-content-center" id="navbar">
+	<div class="navbar-collapse collapse justify-content-center menu_buttons" id="navbar">
 		<div class="navbar-nav
 					d-flex
 					justify-content-between
@@ -19,10 +19,8 @@
 							}
 						@endphp
 						
-						<div class="p-2 {{ $activeCssClass }}">
-							{{ $data -> title }}
-
-							{{ $activeCssClass }}
+						<div class="p-2 menu_buttons__link  {{ $activeCssClass }}">
+							{{ $data -> title }}			
 						</div>
 					</a>
 				</div>

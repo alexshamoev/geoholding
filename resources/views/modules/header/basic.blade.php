@@ -35,7 +35,9 @@
                   
                         <div class="col-xl-1 col-md-2 col-3 mainHeader__logo order-0">
                             <div class="pe-2">
-                                <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
+                                <a href="">
+                                    <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
+                                </a>
                             </div>
                         </div>
 
@@ -67,20 +69,18 @@
                         </div>
 
                         <div class="col-lg-2 col-1 ms-auto text-lg-center text-end order-lg-3 order-2">
-                            <div class="d-flex justify-content-end align-items-center">
-                                <div>
-                                    <a href="#">
-                                        <div class="pe-md-1 pe-0 ba_user_newest"></div>
-                                    </a>
-                                </div>
+                            <div class="mainHeader__authorization">
+                                <a href="#">
+                                    <div class="d-flex justify-content-end align-items-center">
+                                        <div>                                  
+                                            <div class="pe-md-1 pe-0 ba_user_newest"></div>                                
+                                        </div>
 
-                                <div class="d-lg-block d-none">
-                                    <a href="#">
-                                        <div>									
+                                        <div class="d-lg-block d-none">									
                                             authorization
-                                        </div>	
-                                    </a>
-                                </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>

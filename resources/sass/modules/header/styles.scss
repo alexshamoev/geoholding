@@ -14,6 +14,16 @@
             }
         }
     }
+
+	&__authorization {
+        a {
+            color: #4A494A;
+
+            &:hover {
+                color: #FF484F;
+            }
+        }  
+    }
 }
 
 #nav-icon3 {

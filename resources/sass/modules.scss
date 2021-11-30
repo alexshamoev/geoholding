@@ -58,6 +58,33 @@
 }
 // 
 
+// || Menu_Buttons
+
+.menu_buttons {
+    .active_class {
+        color: #FF484F;
+    }
+
+    &__link {
+        color: #4A494A;
+    }
+}
+
+// || Partners
+
+.partners {
+    &__partner {
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &__title {
+        color: #4A494A;
+    }
+}
+
+
 // || Footer
 
 // 
