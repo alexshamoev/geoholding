@@ -1009,9 +1009,21 @@ class ACoreController extends Controller {
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
-			if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
+			if($data -> type !== 'image'
+				&& $data -> type !== 'file'
+				&& $data -> type !== 'published'
+				&& $data -> type !== 'rang'
+				&& $data -> type !== 'alias'
+				&& $data -> type !== 'input_with_languages'
+				&& $data -> type !== 'editor_with_languages'
+				&& $data -> type !== 'checkbox'
+				&& $data -> type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
+
+			// if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
+			// 	$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
+			// }
 
 			if($data -> type === 'alias') {
 				$value = $request -> input($data -> db_column);
@@ -1056,17 +1068,17 @@ class ACoreController extends Controller {
 
 					if($data -> fit_type === 'fit') {
 						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format)) -> fit($data -> image_width,
-																																				$data -> image_height,
-																																				function() {},
-																																				$data -> fit_position);
+																																												$data -> image_height,
+																																												function() {},
+																																												$data -> fit_position);
 					}
 					
 					if($data -> fit_type === 'resize') {
 						$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																					$data -> image_height,
-																																					function ($constraint) {
-																																						$constraint->aspectRatio();
-																																					});
+																																													$data -> image_height,
+																																													function ($constraint) {
+																																														$constraint->aspectRatio();
+																																													});
 					}
 
 					if($data -> fit_type === 'default') {
@@ -1081,17 +1093,17 @@ class ACoreController extends Controller {
 
 							if($data -> { 'fit_type_'.$i } === 'fit') {
 								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> fit($data -> image_width,
-																																														$data -> image_height,
-																																														function() {},
-																																														$data -> fit_position);
+																																																						$data -> image_height,
+																																																						function() {},
+																																																						$data -> fit_position);
 							}
 							
 							if($data -> { 'fit_type_'.$i } === 'resize') {
 								$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																														$data -> image_height,
-																																														function ($constraint) {
-																																															$constraint->aspectRatio();
-																																														});
+																																																							$data -> image_height,
+																																																							function ($constraint) {
+																																																								$constraint->aspectRatio();
+																																																							});
 							}
 
 							if($data -> { 'fit_type_'.$i } === 'default') {
