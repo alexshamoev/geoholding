@@ -44,23 +44,32 @@
 
 
 //  News
-.news {
-    &_step1 {
-        &__container {
-            min-height: 700px;
-        }
-    }
-}
+
 // 
 
 // Gallery
-.gallery {
-    &_step1 {
-        &__container {
-            min-height: 700px;
-        }
-    }
+
+//
+
+
+
+// GENERAL 
+
+// Tags
+.tag_next {
+    font-size: 13px;
 }
 //
+
+
+.main_content--height {
+    min-height: 430px;
+}
+.clear_both {
+    clear: both;
+}
+
+//  
+
 
 

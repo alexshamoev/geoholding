@@ -7,7 +7,7 @@
 
 
 @section('content')
-	<div class="container">
+	<div class="container main_content--height">
 		<h1 class="p-2">
 			{{ $page -> title }}
 		</h1>
@@ -16,7 +16,7 @@
 			{!! $page -> text !!}
 		</div>
 
-		<div class="row">
+		<div class="row ">
 			@foreach($newsStep0 as $data)
 				<div class="col-3">
 					<a href="{{ $data -> fullUrl }}">
@@ -28,7 +28,7 @@
 							<div class="p-2">
 								{{ $data -> title }}
 							</div>
-
+							
 							<div class="p-2">
 								{!! $data -> text !!}
 							</div>

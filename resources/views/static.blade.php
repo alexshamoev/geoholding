@@ -7,9 +7,9 @@
 
 
 @section('content')
-<div class="container">
+<div class="container main_content--height">
 	<div class="p-2">
-		<div class="p-2">
+		<div class="p-2 ">
 			<h1 class="text-center">
 				Static page - 
 

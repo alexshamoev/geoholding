@@ -7,7 +7,7 @@
 
 
 @section('content')
-	<div class="container photo_gallery">
+	<div class="container photo_gallery main_content--height">
 		<div>	
 			<h1 class="py-lg-5 py-3 px-2 text-center">
 				{{ $page -> title }}
