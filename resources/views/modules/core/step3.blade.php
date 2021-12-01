@@ -35,11 +35,36 @@
 		{{ Form :: open(array('route' => array('coreUpdateStep2', $module -> alias, $parentFirst, $parentSecond, $id))) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
-					@php
-						$tempVar = $moduleBlock -> db_column;
-					@endphp
 					<div class="p-2">
 						@switch($moduleBlock -> type)
+							@case('alias')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											URL Alias:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
 							@case('input')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -47,7 +72,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -59,7 +84,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -84,7 +109,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -96,7 +121,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -108,7 +133,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 						@endswitch

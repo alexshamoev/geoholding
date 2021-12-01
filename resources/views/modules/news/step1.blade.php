@@ -7,22 +7,23 @@
 
 
 @section('content')
-	<section class="news_step1__section">
-		<div class="container">
-			<div class="p-2">
+	<section>
+		<div class="container main_content--height">
+			<div class="p-2 d-flex align-items-center">
 				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
 					{{ $page -> title }}
 				</a>
 
-				>
+				<span class="ba_arrow_right px-2 tag_next"></span>
 
 				{{ $activeNewsStep0 -> title }}
 			</div>
-			
-			
-			<h1 class="p-2">
-				{{ $activeNewsStep0 -> title }}
-			</h1>
+
+			<div>
+				<h1 class="p-2">
+					{{ $activeNewsStep0 -> title }}
+				</h1>
+			</div>
 
 			<div class="float-right img_wrapper">
 				<div class="p-2">
@@ -33,13 +34,12 @@
 			<div class="p-2">
 				{!! $activeNewsStep0 -> text !!}
 			</div>
-
-			<div class="clearfix"></div>
-
+			
+			<div class="clear_both"></div>
 
 			<div class="row">
 				@foreach($newsStep1 as $data)
-					<div class="col-3">
+					<div class="col-6">
 						<a href="{{ $data -> fullUrl }}">
 							<div class="p-2">
 								<div class="p-2">

@@ -1,10 +1,10 @@
-// || Intergrations
+//  Intergrations
 @import "modules/atom";
 // Integrations
 
-// || Breakpoints
+// Breakpoints
 @media only screen and (max-width: $xs_size) {
-    // || News XS
+    //  News XS
     .img_wrapper {
         width: 100%;
     }
@@ -12,7 +12,7 @@
 }
 
 @media only screen and (min-width: $sm_size) {
-    // || News SM
+    //  News SM
     .img_wrapper {
         width: 100%;
     }
@@ -20,8 +20,8 @@
 }
 
 @media only screen and (min-width: $md_size) {
-     // || News MD
-     .img_wrapper {
+    //  News MD
+    .img_wrapper {
         width: 50%;
         float: right;
     }
@@ -30,15 +30,34 @@
 }
 
 @media only screen and (min-width: $lg_size) {
-    // || News LG
+    //  News LG
  
     //
 }
 
 @media only screen and (min-width: $xl_size) {
-     // || News XL
+    //  News XL
 
     // 
+} 
+// || Breakpoints
+
+
+//  News
+
+// 
+
+// Gallery
+
+//
+
+
+
+// GENERAL 
+
+// Tags
+.tag_next {
+    font-size: 13px;
 }
 
 @media only screen and (min-width: $xxl_size) {
@@ -50,13 +69,13 @@
 // Breakpoints
 
 
-// || News
-.news_step1 {
-    &__section {
-        min-height: 700px;
-    }
+.main_content--height {
+    min-height: 430px;
 }
-// 
+
+.clear_both {
+    clear: both;
+}
 
 // || Menu_Buttons
 
@@ -87,5 +106,4 @@
 
 // || Footer
 
-// 
 

@@ -68,6 +68,8 @@
 					</div>
 				</div>
 
+				
+
 				<div class="p-2 dataBlock forImage forFile">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
@@ -76,6 +78,18 @@
 						
 						<div class="p-2">
 							{{ Form :: text('prefix') }}
+						</div>
+					</div>
+				</div>
+
+				<div class="p-2 dataBlock forFile forImage">
+					<div class="standard-block p-2">
+						<div class="p-2 d-flex flex-column">
+							<span>file_format</span>
+						</div>
+						
+						<div class="p-2">
+							{{ Form :: text('file_format') }}
 						</div>
 					</div>
 				</div>
@@ -507,18 +521,6 @@
 						</div>
 					</div>
 				</div> -->
-
-				<div class="p-2 dataBlock forFile">
-					<div class="standard-block p-2">
-						<div class="p-2 d-flex flex-column">
-							<span>file_format</span>
-						</div>
-						
-						<div class="p-2">
-							{{ Form :: text('file_format') }}
-						</div>
-					</div>
-				</div>
 
 				<!-- <div class="p-2 dataBlock forFile">
 					<div class="standard-block p-2">

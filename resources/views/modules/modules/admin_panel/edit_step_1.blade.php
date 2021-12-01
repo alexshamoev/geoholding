@@ -164,7 +164,8 @@
 				@include('admin.includes.horizontalEditDeleteBlock', [
 					'id' => $data -> id,
 					'title' => $data -> db_column,
-					'text' => $data -> label,
+					'text' => $data -> type,
+					'text1' => $data -> label,
 					'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
 					'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
 				])
