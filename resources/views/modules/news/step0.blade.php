@@ -16,7 +16,7 @@
 			{!! $page -> text !!}
 		</div>
 
-		<div class="row ">
+		<div class="row">
 			@foreach($newsStep0 as $data)
 				<div class="col-3">
 					<a href="{{ $data -> fullUrl }}">
@@ -29,7 +29,7 @@
 								{{ $data -> title }}
 							</div>
 							
-							<div class="p-2">
+							<div class="p-2 line_5">
 								{!! $data -> text !!}
 							</div>
 						</div>
