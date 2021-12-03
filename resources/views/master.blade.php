@@ -45,14 +45,15 @@
     </head>
 
     <body>
+		@include('includes.bootstrap_size_getter')
+
+
 		@include('modules.header.basic')
 		
 
-        
 		@yield('content')
 
-			
-
+		
 		@include('modules.partners.step0')
 
 

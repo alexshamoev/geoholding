@@ -77,33 +77,61 @@
     clear: both;
 }
 
-// || Menu_Buttons
+// Menu_Buttons
+    .menu_buttons {
+        .active_class {
+            color: #FF484F;
+        }
 
-.menu_buttons {
-    .active_class {
-        color: #FF484F;
-    }
-
-    &__link {
-        color: #4A494A;
-    }
-}
-
-// || Partners
-
-.partners {
-    &__partner {
-        &:hover {
-            opacity: 0.8;
+        &__link {
+            color: #4A494A;
         }
     }
+// 
 
-    &__title {
-        color: #4A494A;
+
+// Partners
+    .partners {
+        &__partner {
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        &__title {
+            color: #4A494A;
+        }
+    }
+// 
+
+
+// Footer
+
+// 
+
+
+.bootstrap_size_getter {
+    background-color: #ffffff;
+    border: 2px solid black;
+    font-weight: bold;
+
+    &__xxl {
+        background-color: #FF484F;
+    }
+
+    &__xl {
+        background-color: #6ce255;
+    }
+
+    &__md {
+        background-color: #48adff;
+    }
+
+    &__sm {
+        background-color: #da48ff;
+    }
+
+    &__xs {
+        background-color: #ffed48;
     }
 }
-
-
-// || Footer
-
-
