@@ -1,72 +1,42 @@
-//  Intergrations
 @import "modules/atom";
-// Integrations
 
-// Breakpoints
+
 @media only screen and (max-width: $xs_size) {
-    //  News XS
-    .img_wrapper {
-        width: 100%;
-    }
+    // News
+        .img_wrapper {
+            width: 100%;
+        }
     //
 }
 
 @media only screen and (min-width: $sm_size) {
-    //  News SM
-    .img_wrapper {
-        width: 100%;
-    }
+    // News
+        .img_wrapper {
+            width: 100%;
+        }
     //
 }
 
 @media only screen and (min-width: $md_size) {
-    //  News MD
-    .img_wrapper {
-        width: 50%;
-        float: right;
-    }
-
+    // News
+        .img_wrapper {
+            width: 50%;
+            float: right;
+        }
     //
 }
 
 @media only screen and (min-width: $lg_size) {
-    //  News LG
- 
-    //
+    
 }
 
 @media only screen and (min-width: $xl_size) {
-    //  News XL
-
-    // 
-} 
-// || Breakpoints
-
-
-//  News
-
-// 
-
-// Gallery
-
-//
-
-
-
-// GENERAL 
-
-// Tags
-.tag_next {
-    font-size: 13px;
+    
 }
 
 @media only screen and (min-width: $xxl_size) {
-    // || News XXL
-
-   // 
+   
 }
-
-// Breakpoints
 
 
 .main_content--height {
@@ -76,6 +46,54 @@
 .clear_both {
     clear: both;
 }
+
+.bootstrap_size_getter {
+    background-color: #ffffff;
+    border: 2px solid black;
+    font-weight: bold;
+
+    &__xxl {
+        background-color: #FF484F;
+    }
+
+    &__xl {
+        background-color: #6ce255;
+    }
+
+    &__lg {
+        background-color: #bebebe;
+    }
+
+    &__md {
+        background-color: #48adff;
+    }
+
+    &__sm {
+        background-color: #da48ff;
+    }
+
+    &__xs {
+        background-color: #ffed48;
+    }
+}
+
+
+// News
+
+// 
+
+
+// Photo gallery
+
+//
+
+
+// Tags
+    .tag_next {
+        font-size: 13px;
+    }
+// 
+
 
 // Menu_Buttons
     .menu_buttons {
@@ -108,30 +126,3 @@
 // Footer
 
 // 
-
-
-.bootstrap_size_getter {
-    background-color: #ffffff;
-    border: 2px solid black;
-    font-weight: bold;
-
-    &__xxl {
-        background-color: #FF484F;
-    }
-
-    &__xl {
-        background-color: #6ce255;
-    }
-
-    &__md {
-        background-color: #48adff;
-    }
-
-    &__sm {
-        background-color: #da48ff;
-    }
-
-    &__xs {
-        background-color: #ffed48;
-    }
-}

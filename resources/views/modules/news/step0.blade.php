@@ -18,7 +18,7 @@
 
 		<div class="row">
 			@foreach($newsStep0 as $data)
-				<div class="col-3">
+				<div class="col-lg-4 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">
 							<img src="{{ asset('/storage/images/modules/news/step_0/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">

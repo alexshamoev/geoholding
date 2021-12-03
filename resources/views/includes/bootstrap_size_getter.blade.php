@@ -7,7 +7,11 @@
         XL
     </div>
     
-    <div class="d-xl-none d-md-block d-none p-2 bootstrap_size_getter__md">
+    <div class="d-xl-none d-lg-block d-none p-2 bootstrap_size_getter__lg">
+        LG
+    </div>
+    
+    <div class="d-lg-none d-md-block d-none p-2 bootstrap_size_getter__md">
         MD
     </div>
     
