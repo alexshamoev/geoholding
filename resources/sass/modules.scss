@@ -84,7 +84,11 @@
 
 
 // Photo gallery
-
+    .photo_gallery {
+        &__block {      
+            background-color: #fff;
+        }
+    } 
 //
 
 
