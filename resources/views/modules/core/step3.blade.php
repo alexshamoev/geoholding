@@ -126,6 +126,92 @@
 								</div>
 
 								@break
+							@case('input_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
+							@case('editor_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+
+									<script>
+										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+									</script>
+								@endforeach
+
+								@break
+							@case('image')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
+										@endphp
+									</div>
+
+									<div class="p-2">
+										{{ Form :: file('image') }}
+									</div>
+									
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_1/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
+								</div>
+
+								@break
 							@default
 								<div class="p-2 standard-block">
 									<div class="p-2">

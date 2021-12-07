@@ -573,6 +573,8 @@ class ACoreController extends Controller {
 		$pageData = DB :: table($moduleStep -> db_table) -> find($id);
 		$pageParentData = DB :: table($moduleParentStep -> db_table) -> find($parent);
 
+		// return print_r($pageData);
+
 		$moduleBlock = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('a_use_for_tags', 1) -> first();
 
 		$use_for_tags = 'id';
@@ -1026,23 +1028,24 @@ class ACoreController extends Controller {
 			// }
 
 			if($data -> type === 'alias') {
-				$value = $request -> input($data -> db_column);
-				$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
-										'',
-										$value);
+				foreach(Language :: where('published', 1) -> get() as $langData) {
+					$value = $request -> input($data -> db_column.'_'.$langData -> title);
+					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
+											'',
+											$value);
 
-				// $value = strtolower(trim($value));
-				$value = mb_strtolower(trim($value));
+					$value = mb_strtolower(trim($value));
 
-				$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
+					$symbols = array('     ', '    ', '   ', '  ', ' ', '.', ',', '!', '?', '=', '#', '%', '+', '*', '/', '_', '\'', '"');
 
-				$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
+					$replace_symbols = array('-', '-', '-', '-', '-', '-', '-', '', '-', '-', '', '', '-', '', '-', '-', '', '');
 
-				$value = str_replace($symbols,
-										$replace_symbols,
-										$value);
-										
-				$updateQuery[$data -> db_column] = $value;
+					$value = str_replace($symbols,
+											$replace_symbols,
+											$value);
+											
+					$updateQuery[$data -> db_column.'_'.$langData -> title] = $value;
+				}
 			}
 
 			//image

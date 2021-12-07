@@ -36,6 +36,34 @@
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					<div class="p-2">
 						@switch($moduleBlock -> type)
+							@case('alias')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											URL Alias:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
 							@case('input')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -53,7 +81,7 @@
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
 									</div>
-
+							
 									<div class="p-2">
 										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
@@ -83,34 +111,6 @@
 										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
-
-								@break
-							@case('alias')
-								@foreach($languages as $langData)
-									<div class="p-2 standard-block">
-										<div class="p-2">
-											URL Alias:
-
-											@php
-												if($moduleBlock -> validation) {
-													echo '*';
-												}
-											@endphp
-
-											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
-										</div>
-
-										<div class="p-2">
-											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
-										</div>
-									</div>
-
-									@error($moduleBlock -> db_column.'_'.$langData -> title)
-										<div class="alert alert-danger">
-											{{ $message }}
-										</div>
-									@enderror
-								@endforeach
 
 								@break
 							@case('file')
