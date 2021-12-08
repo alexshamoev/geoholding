@@ -5,8 +5,8 @@
     Modules
 @endsection
 
-@section('content')
 
+@section('content')
     @include('admin.includes.tags', [
 		'tag0Text' => $module -> title,
 		'tag0Url' => route('coreGetStep0', $module -> alias),
@@ -30,14 +30,39 @@
 	])
 
     <div class="p-2">
-		{{ Form :: open(array('route' => array('coreUpdateStep3', $module -> alias, $parentFirst, $parentSecond, $parentThird, $id))) }}
+		{{ Form :: open(array('route' => array('coreUpdateStep3', $module -> alias, $parentFirst, $parentSecond, $parentThird, $id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
-					@php
-						$tempVar = $moduleBlock -> db_column;
-					@endphp
 					<div class="p-2">
 						@switch($moduleBlock -> type)
+							@case('alias')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											URL Alias:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
 							@case('input')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -45,7 +70,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -57,7 +82,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> $tempVar) }}
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
@@ -82,20 +107,94 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 
 								@break
-							@case('alias')
+							@case('input_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: text($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+								@endforeach
+
+								@break
+							@case('editor_with_languages')
+								@foreach($languages as $langData)
+									<div class="p-2 standard-block">
+										<div class="p-2">
+											{{ $moduleBlock -> label }}:
+
+											@php
+												if($moduleBlock -> validation) {
+													echo '*';
+												}
+											@endphp
+
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+										</div>
+
+										<div class="p-2">
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+										</div>
+									</div>
+
+									@error($moduleBlock -> db_column.'_'.$langData -> title)
+										<div class="alert alert-danger">
+											{{ $message }}
+										</div>
+									@enderror
+
+									<script>
+										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+									</script>
+								@endforeach
+
+								@break
+							@case('image')
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock -> label }}
+
+										@php
+											if($moduleBlock -> validation) {
+												echo '*';
+											}
+
+											$prefix = '';
+
+											if($moduleBlock -> prefix) {
+												$prefix = $moduleBlock -> prefix.'_';
+											}
+										@endphp
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: file('image') }}
 									</div>
+									
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_3/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
 								</div>
 
 								@break
@@ -106,7 +205,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> $tempVar) }}
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
 									</div>
 								</div>
 						@endswitch

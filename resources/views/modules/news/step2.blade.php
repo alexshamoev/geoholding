@@ -52,20 +52,20 @@
 		<div class="clear_both"></div>
 		
 
-		<div class="row">
+		<div class="row mt-4">
 			@foreach($newsStep2 as $data)
-				<div class="col-3">
+				<div class="col-xxl-4 col-xl-6 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">
-							<div class="p-2">
-								<img src="{{ asset('/storage/images/modules/news/step_2/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
-							</div>
-							
-							<div class="p-2">
-								{{ $data -> title }}
-							</div>
+							<img src="{{ asset('/storage/images/modules/news/step_2/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+						</div>
+						
+						<h3 class="p-2">
+							{{ $data -> title }}
+						</h3>
 
-							<div class="p-2">
+						<div class="p-2">
+							<div class="line_5">
 								{!! $data -> text !!}
 							</div>
 						</div>

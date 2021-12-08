@@ -5,9 +5,8 @@
     Modules
 @endsection
 
+
 @section('content')
-
-
 	@include('admin.includes.tags', [
 		'tag0Text' => $module -> title,
 		'tag0Url' => route('coreGetStep0', $module -> alias),
@@ -29,10 +28,8 @@
 	])
 
     
-    
 	<div class="p-2">
-
-		{{ Form :: open(array('route' => array('coreUpdateStep2', $module -> alias, $parentFirst, $parentSecond, $id))) }}
+		{{ Form :: open(array('route' => array('coreUpdateStep2', $module -> alias, $parentFirst, $parentSecond, $id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					<div class="p-2">
@@ -208,7 +205,7 @@
 										{{ Form :: file('image') }}
 									</div>
 									
-									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_1/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
+									<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_2/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
 								</div>
 
 								@break
