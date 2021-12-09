@@ -1,34 +1,56 @@
 @import "./atom";
 
-.bar-tag-small-img {
-	width: 16px;
-	transition: 0.125s all ease-in-out;
-}
-
-.bar-tag-big-img {
-	width: 22px;
-	&--disabled {
-		opacity: 0.2;
+// Bar.
+	.bar-tag-small-img {
+		width: 16px;
+		transition: 0.125s all ease-in-out;
 	}
-}
 
-.bar-tag-bigger-img {
-	width: 27px;
-}
+	.bar-tag-big-img {
+		width: 22px;
+
+		&--disabled {
+			opacity: 0.2;
+		}
+	}
+
+	.bar-tag-bigger-img {
+		width: 27px;
+	}
+
+	.bar {
+		border-bottom: 1px solid #ccc;
+
+		&__button {
+			border-left: 1px solid #ccc;
+		}
+
+		&__button.delete-block {
+			cursor: pointer;
+		}
+	}
+//
+
+
+
 
 .standard-block {
 	background-color: #ebebeb;
 	border: 1px solid #ccc;
 	z-index: 0;
+
 	&--no-left-border {
 		border-left: none;
 	}
+
 	&--no-right-border {
 		border-right: none;
 	}
+
 	&--no-top-border {
 		border-top: none;
 	}
+
 	&--no-bottom-border {
 		border-bottom: none;
 	}
@@ -56,7 +78,7 @@
 
 .submit-button button,
 .submit-button input[type="submit"] {
-	background-color: #a2d5fb;
+	background-color: #a2d5fb; 
 	padding: 10px 16px;
 	// transition: 0.2s all ease-in-out;
 	border: 1px solid #666;
@@ -143,14 +165,6 @@
 
 .content {
 	border-left: 1px solid #ccc;
-}
-
-.bar {
-	border-bottom: 1px solid #ccc;
-
-	&__button {
-		border-left: 1px solid #ccc;
-	}
 }
 
 .tags {

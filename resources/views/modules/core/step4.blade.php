@@ -213,7 +213,7 @@
 				@endif
 			@endforeach
 
-			<div class="p-2">
+			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}

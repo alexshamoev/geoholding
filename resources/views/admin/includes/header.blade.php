@@ -1,5 +1,5 @@
 <header>
-	<div class="row align-items-center">
+	<div class="row p-2 align-items-center">
 		<div class="col-1">
 			<div class="p-2">
 				<img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio">
@@ -11,6 +11,7 @@
 				<span class="header__cms-version">CMS</span>
 				<span class="header__cms-version-numbers">v2.9.4</span>
 			</div>
+
 			<div class="p-2">
 				<span>Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a></span>
 			</div>
