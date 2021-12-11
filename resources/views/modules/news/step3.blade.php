@@ -76,7 +76,9 @@
 							</div>
 
 							<div class="p-2">
-								{!! $data -> text !!}
+								<div class="line_5">
+									{!! $data -> text !!}
+								</div>
 							</div>
 						</div>
 					</a>
