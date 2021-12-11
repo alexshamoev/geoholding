@@ -107,9 +107,21 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
+										{{ Form :: textarea($moduleBlock -> db_column,
+															$data -> { $moduleBlock -> db_column },
+															[
+																'id' => $moduleBlock -> db_column
+															]) }}
 									</div>
 								</div>
+
+								<script>
+									ClassicEditor
+										.create( document.querySelector( '#{{ $moduleBlock -> db_column }}' ) )
+										.catch( error => {
+											console.error( error );
+										} );					
+								</script>
 
 								@break
 							@case('input_with_languages')
@@ -156,7 +168,11 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title, 
+																$data -> { $moduleBlock -> db_column.'_'.$langData -> title },
+																[
+																	'id' => $moduleBlock -> db_column.'_'.$langData -> title
+																]) }}
 										</div>
 									</div>
 
@@ -167,7 +183,11 @@
 									@enderror
 
 									<script>
-										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+										ClassicEditor
+											.create( document.querySelector( '#{{$moduleBlock -> db_column.'_'.$langData -> title}}' ) )
+											.catch( error => {
+												console.error( error );
+											} );					
 									</script>
 								@endforeach
 

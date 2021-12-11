@@ -162,12 +162,20 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
+										{{ Form :: textarea($moduleBlock -> db_column,
+															$data -> { $moduleBlock -> db_column },
+															[
+																'id' => $moduleBlock -> db_column
+															]) }}
 									</div>
 								</div>
 
 								<script>
-									CKEDITOR.replace('{{ $moduleBlock -> db_column }}');
+									ClassicEditor
+										.create( document.querySelector( '#{{ $moduleBlock -> db_column }}' ) )
+										.catch( error => {
+											console.error( error );
+										} );					
 								</script>
 
 								@break
@@ -243,8 +251,11 @@
 										</div>
 
 										<div class="p-2">
-											<!-- {{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }} -->
-											<textarea name="{{ $moduleBlock -> db_column.'_'.$langData -> title }}" id="{{$moduleBlock -> db_column.'_'.$langData -> title}}" cols="30" rows="10"></textarea>
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title, 
+																$data -> { $moduleBlock -> db_column.'_'.$langData -> title },
+																[
+																	'id' => $moduleBlock -> db_column.'_'.$langData -> title
+																]) }}
 										</div>
 									</div>
 
@@ -255,8 +266,6 @@
 									@enderror
 										
 									<script>
-										// CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
-										
 										ClassicEditor
 											.create( document.querySelector( '#{{$moduleBlock -> db_column.'_'.$langData -> title}}' ) )
 											.catch( error => {
