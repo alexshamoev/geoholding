@@ -243,7 +243,8 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+											<!-- {{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }} -->
+											<textarea name="{{ $moduleBlock -> db_column.'_'.$langData -> title }}" id="{{$moduleBlock -> db_column.'_'.$langData -> title}}" cols="30" rows="10"></textarea>
 										</div>
 									</div>
 
@@ -252,9 +253,15 @@
 											{{ $message }}
 										</div>
 									@enderror
-
+										
 									<script>
-										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+										// CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+										
+										ClassicEditor
+											.create( document.querySelector( '#{{$moduleBlock -> db_column.'_'.$langData -> title}}' ) )
+											.catch( error => {
+												console.error( error );
+											} );					
 									</script>
 								@endforeach
 
