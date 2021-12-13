@@ -20,12 +20,17 @@
 						@endphp
 						
 						<div class="p-2 menu_buttons__link  {{ $activeCssClass }}">
-							{{ $data -> title }}			
+							{{ $data -> title }}
+
+							<div>
+								@foreach($menuButtonsStep1 as $dataInside)
+									{{ $dataInside -> title }}sss
+								@endforeach
+							</div>
 						</div>
 					</a>
 				</div>
 			@endforeach
-
 
 			@if(Auth :: check())
 				<div class="nav-item">

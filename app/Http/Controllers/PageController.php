@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\MenuButton;
+use App\Models\MenuButtonStep1;
 use App\Models\Language;
 use App\Models\Module;
 use App\Models\Bsc;
@@ -25,6 +26,9 @@ class PageController extends Controller {
 		MenuButton :: setLang($lang -> title);
 		MenuButton :: setPage($page -> alias);
 
+		MenuButtonStep1 :: setLang($lang -> title);
+		MenuButtonStep1 :: setPage($page -> alias);
+
 		Partner :: setLang($lang -> title);
 
 		$widgetGetVisibility = Widget :: getVisibility($page);
@@ -39,6 +43,7 @@ class PageController extends Controller {
 		$data = ['page' => $page,
 				'language' => $lang,
 				'menuButtons' => MenuButton :: where('published', '1') -> orderByDesc('rang') -> get(),
+				'menuButtonsStep1' => MenuButtonStep1 :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'languages' => Language :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),
