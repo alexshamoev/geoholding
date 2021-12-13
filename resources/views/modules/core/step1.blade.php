@@ -278,11 +278,11 @@
 							@case('checkbox')
 								<div class="p-2 standard-block">
 									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+										<label>
+											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+											
+											{{ $moduleBlock -> label }}
+										<label>
 									</div>
 								</div>
 

@@ -149,6 +149,18 @@
 								</div>
 
 								@break
+							@case('checkbox')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										<label>
+											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+											
+											{{ $moduleBlock -> label }}
+										<label>
+									</div>
+								</div>
+
+								@break
 							@case('input_with_languages')
 								@foreach($languages as $langData)
 									<div class="p-2 standard-block">

@@ -203,6 +203,18 @@
 								@endforeach
 
 								@break
+							@case('checkbox')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										<label>
+											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+											
+											{{ $moduleBlock -> label }}
+										<label>
+									</div>
+								</div>
+
+								@break
 							@case('image')
 								<div class="p-2 standard-block">
 									<div class="p-2">
