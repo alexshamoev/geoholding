@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MenuButton extends Model {
+class MenuButtonStep0 extends Model {
 	/**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'menu_buttons';
+    protected $table = 'menu_buttons_step_0';
 
 
 	private static $lang;
@@ -32,10 +32,37 @@ class MenuButton extends Model {
     }
 
 
-	public function getUrlAttribute() {
-		$page = Page :: where('id', $this -> page) -> where('published', 1) -> first();
+	public function getFreeLinkAttribute() {
+        return $this -> { 'free_link_'.self :: $lang };
+    }
+	
 
-        return '/'.self :: $lang.'/'.$page -> alias;
+	public function getUrlTargetAttribute() {
+		if($this -> open_in_new_tab) {
+			return '_blank';
+		}
+		
+		return '_self';
+    }
+
+
+	public function getUrlAttribute() {
+		switch($this -> link_type) {
+			case 'page':
+				$page = Page :: where('id', $this -> page) -> where('published', 1) -> first();
+
+				return '/'.self :: $lang.'/'.$page -> alias;
+
+				break;
+			case 'free_link':
+				return $this -> freeLink;
+
+				break;
+			case 'without_link':
+				return false;
+
+				break;
+		}
     }
 
 
@@ -47,6 +74,13 @@ class MenuButton extends Model {
 		} else {
 			return 0;
 		}
+    }
+
+
+	public function getSubMenuButtonsAttribute() {
+		// $subMenuButtons = MenuButtonStep1 :: where('published', '1') -> where('parent', $this -> id) -> orderByDesc('rang') -> get();
+
+        return MenuButtonStep1 :: where('published', '1') -> where('parent', $this -> id) -> orderByDesc('rang') -> get();
     }
 
 

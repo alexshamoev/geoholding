@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\MenuButton;
+use App\Models\MenuButtonStep0;
 use App\Models\MenuButtonStep1;
 use App\Models\Language;
 use App\Models\Module;
@@ -23,8 +23,8 @@ class PageController extends Controller {
 
 		Page :: setLang($lang -> title);
 
-		MenuButton :: setLang($lang -> title);
-		MenuButton :: setPage($page -> alias);
+		MenuButtonStep0 :: setLang($lang -> title);
+		MenuButtonStep0 :: setPage($page -> alias);
 
 		MenuButtonStep1 :: setLang($lang -> title);
 		MenuButtonStep1 :: setPage($page -> alias);
@@ -42,8 +42,7 @@ class PageController extends Controller {
 
 		$data = ['page' => $page,
 				'language' => $lang,
-				'menuButtons' => MenuButton :: where('published', '1') -> orderByDesc('rang') -> get(),
-				'menuButtonsStep1' => MenuButtonStep1 :: where('published', '1') -> orderByDesc('rang') -> get(),
+				'menuButtons' => MenuButtonStep0 :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'languages' => Language :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),

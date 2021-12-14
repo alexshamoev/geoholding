@@ -10,25 +10,31 @@
 							ps-4
 							pt-lg-0
 							pt-1">
-					<a href="{{ $data -> url }}">
-						@php
-							$activeCssClass = '';
+					@php
+						$activeCssClass = '';
 
-							if($data -> active) {
-								$activeCssClass = 'active_class';
-							}
-						@endphp
-						
-						<div class="p-2 menu_buttons__link  {{ $activeCssClass }}">
-							{{ $data -> title }}
-
-							<div>
-								@foreach($menuButtonsStep1 as $dataInside)
-									{{ $dataInside -> title }}sss
-								@endforeach
+						if($data -> active) {
+							$activeCssClass = 'active_class';
+						}
+					@endphp
+					
+					<div class="p-2">
+						<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
+							<div class="menu_buttons__link {{ $activeCssClass }}">
+								{{ $data -> title }}
 							</div>
+						</a>
+
+						<div>
+							@foreach($data -> subMenuButtons as $dataInside)
+								<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+									<div>
+										{{ $dataInside -> title }}
+									</div>
+								</a>
+							@endforeach
 						</div>
-					</a>
+					</div>
 				</div>
 			@endforeach
 

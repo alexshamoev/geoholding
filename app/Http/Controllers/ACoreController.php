@@ -196,24 +196,18 @@ class ACoreController extends Controller {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				$tempVar = $data -> select_option_text;
-				$sort_by_this = $data -> select_sort_by_text;
-
-				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
-					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
 				}
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
-				$tempVar = $data -> select_optgroup_text;														
 				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --');
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
-					$tempVarSecond = $data -> select_optgroup_2_text;
-
 					foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$alex[$dataInside -> $tempVar][$dataInsideTwice -> id] = $dataInsideTwice -> $tempVarSecond;
+						$alex[$dataInside -> { $data -> select_optgroup_text }][$dataInsideTwice -> id] = $dataInsideTwice -> { $data -> select_optgroup_2_text };
 					}
 				}
 
@@ -620,24 +614,17 @@ class ACoreController extends Controller {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				$tempVar = $data -> select_option_text;
-				$sort_by_this = $data -> select_sort_by_text;
-
-				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
-					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
 				}
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				$tempVar = $data -> select_optgroup_text;
-
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
-					$tempVarSecond = $data -> select_optgroup_2_text;
-
 					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
+						$selectOptgroudData[$data -> db_column] = array($dataInside -> { $data -> select_optgroup_text } => array($dataInside -> id => $dataInsideTwice -> { $data -> select_optgroup_2_text }, '124' => 'Lion'),
 																		'tiger' => array('12' => 'Grizzle'),
 																		'Dogs' => array('54' => 'Spaniel'));
 					}
@@ -732,11 +719,17 @@ class ACoreController extends Controller {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
+			
 
 			if($data -> type === 'editor_with_languages') {
 				foreach(Language :: where('published', 1) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
+			}
+
+			
+			if($data -> type === 'checkbox') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 			}
 
 			//image
@@ -928,18 +921,13 @@ class ACoreController extends Controller {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				$tempVar = $data -> select_option_text;
-				$sort_by_this = $data -> select_sort_by_text;
-
-				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
-					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
 				}
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
-
-				$tempVar = $data -> select_optgroup_text;
 				
 				// $sort_by_this = $data -> select_sort_by_text;
 
@@ -950,12 +938,11 @@ class ACoreController extends Controller {
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
 					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
-					$tempVarSecond = $data -> select_optgroup_2_text;
 
 					// $banks = Bank::pluck('name', 'id'); 
 
 					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
+						$selectOptgroudData[$data -> db_column] = array($dataInside -> { $data -> select_optgroup_text } => array($dataInside -> id => $dataInsideTwice -> { $data -> select_optgroup_2_text },'124' => 'Lion'),
 																		'tiger' => array('12' => 'Grizzle'),
 																		'Dogs' => array('54' => 'Spaniel'));
 					}
@@ -1048,17 +1035,25 @@ class ACoreController extends Controller {
 				}
 			}
 
+
 			if($data -> type === 'input_with_languages') {
 				foreach(Language :: where('published', 1) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
 
+
 			if($data -> type === 'editor_with_languages') {
 				foreach(Language :: where('published', 1) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
+
+
+			if($data -> type === 'checkbox') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
+			}
+
 
 			//image
 				if($data -> type === 'image') {
@@ -1249,18 +1244,13 @@ class ACoreController extends Controller {
 			if($data -> type === 'select') {
 				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				$tempVar = $data -> select_option_text;
-				$sort_by_this = $data -> select_sort_by_text;
-
-				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $sort_by_this) -> get() as $dataInside) {
-					$selectData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
+				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
+					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> $data -> select_option_text;
 				}
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
 				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
-
-				$tempVar = $data -> select_optgroup_text;
 				
 				// $sort_by_this = $data -> select_sort_by_text;
 
@@ -1271,12 +1261,11 @@ class ACoreController extends Controller {
 
 				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
 					// $selectOptgroudData[$data -> db_column][$dataInside -> id] = $dataInside -> $tempVar;
-					$tempVarSecond = $data -> select_optgroup_2_text;
 
 					// $banks = Bank::pluck('name', 'id'); 
 
 					foreach(DB :: table($data -> select_optgroup_2_table) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$selectOptgroudData[$data -> db_column] = array($dataInside -> $tempVar => array($dataInside -> id => $dataInsideTwice -> $tempVarSecond,'124' => 'Lion'),
+						$selectOptgroudData[$data -> db_column] = array($dataInside -> { $data -> select_optgroup_text } => array($dataInside -> id => $dataInsideTwice -> { $data -> select_optgroup_2_text },'124' => 'Lion'),
 																		'tiger' => array('12' => 'Grizzle'),
 																		'Dogs' => array('54' => 'Spaniel'));
 					}
@@ -1373,16 +1362,23 @@ class ACoreController extends Controller {
 				}
 			}
 
+			
 			if($data -> type === 'input_with_languages') {
 				foreach(Language :: where('published', 1) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
 
+
 			if($data -> type === 'editor_with_languages') {
 				foreach(Language :: where('published', 1) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
+			}
+
+
+			if($data -> type === 'checkbox') {
+				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 			}
 
 

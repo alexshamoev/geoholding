@@ -32,10 +32,37 @@ class MenuButtonStep1 extends Model {
     }
 
 
-	public function getUrlAttribute() {
-		$page = Page :: where('id', $this -> page) -> where('published', 1) -> first();
+	public function getFreeLinkAttribute() {
+        return $this -> { 'free_link_'.self :: $lang };
+    }
 
-        return '/'.self :: $lang.'/'.$page -> alias;
+
+	public function getUrlTargetAttribute() {
+		if($this -> open_in_new_tab) {
+			return '_blank';
+		}
+		
+		return '_self';
+    }
+
+
+	public function getUrlAttribute() {
+		switch($this -> link_type) {
+			case 'page':
+				$page = Page :: where('id', $this -> page) -> where('published', 1) -> first();
+
+				return '/'.self :: $lang.'/'.$page -> alias;
+
+				break;
+			case 'free_link':
+				return $this -> freeLink;
+
+				break;
+			case 'without_link':
+				return false;
+
+				break;
+		}
     }
 
 

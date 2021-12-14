@@ -156,7 +156,7 @@
 											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
 											
 											{{ $moduleBlock -> label }}
-										<label>
+										</label>
 									</div>
 								</div>
 
