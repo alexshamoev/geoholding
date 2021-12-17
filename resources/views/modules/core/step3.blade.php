@@ -261,30 +261,34 @@
 			</div>
 		{{ Form :: close() }}
 
-        @include('admin.includes.addButton', [
-			'text' => $bsw -> a_add.' '.$moduleStep2 -> title,
-			'url' => route('coreAddStep3', array($module -> alias, $parentFirst, $parentSecond, $data -> id))
-		])
+		@if($moduleStep3)
+			<div class="p-3"></div>
+			
+			
+			@include('admin.includes.addButton', [
+				'text' => $bsw -> a_add.' '.$moduleStep3 -> title,
+				'url' => route('coreAddStep3', array($module -> alias, $parentFirst, $parentSecond, $data -> id))
+			])
 
-        <div id="rangBlocks" data-db_table="{{ $moduleStep3 -> db_table }}">
-			@foreach($moduleStepTableData3 as $dataIn)
-				@if($sortBy === 'rang')
-					@include('admin.includes.horizontalEditDeleteBlock', [
-						'id' => $dataIn -> id,
-						'title' => $dataIn -> $use_for_tags,
-						'editLink' => route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id)),
-						'deleteLink' => route('coreDeleteStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id))
-					])
-				@else 
-					@include('admin.includes.horizontalEditDelete', [
+			<div id="rangBlocks" data-db_table="{{ $moduleStep3 -> db_table }}">
+				@foreach($moduleStepTableData3 as $dataIn)
+					@if($sortBy === 'rang')
+						@include('admin.includes.horizontalEditDeleteBlock', [
 							'id' => $dataIn -> id,
 							'title' => $dataIn -> $use_for_tags,
 							'editLink' => route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id)),
 							'deleteLink' => route('coreDeleteStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id))
-					])
-				@endif
-			@endforeach
-		</div>
-        
+						])
+					@else 
+						@include('admin.includes.horizontalEditDelete', [
+								'id' => $dataIn -> id,
+								'title' => $dataIn -> $use_for_tags,
+								'editLink' => route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id)),
+								'deleteLink' => route('coreDeleteStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id))
+						])
+					@endif
+				@endforeach
+			</div>
+		@endif
     </div>
 @endsection

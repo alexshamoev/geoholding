@@ -284,6 +284,9 @@
 		{{ Form :: close() }}
 		
 		@if($moduleStep2)
+			<div class="p-3"></div>
+			
+			
 			@include('admin.includes.addButton', [
 				'text' => $bsw -> a_add.' '.$moduleStep2 -> title,
 				'url' => route('coreAddStep2', array($module -> alias, $data -> parent, $data -> id))
