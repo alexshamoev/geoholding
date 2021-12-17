@@ -27,8 +27,16 @@
 
 						<div>
 							@foreach($data -> subMenuButtons as $dataInside)
+								@php
+									$activeCssClass = '';
+
+									if($dataInside -> active) {
+										$activeCssClass = 'active_class';
+									}
+								@endphp
+								
 								<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-									<div>
+									<div class="{{ $activeCssClass }}">
 										{{ $dataInside -> title }}
 									</div>
 								</a>
