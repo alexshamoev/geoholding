@@ -13,7 +13,7 @@
 						</div>
 						
 						<div class="p-2 text-center partners__title">
-							<h3 class="line_max_3">
+							<h3 class="line_2">
 								{{ $data -> title }}
 							</h3>
 						</div>
