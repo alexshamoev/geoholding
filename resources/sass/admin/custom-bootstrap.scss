@@ -1,79 +1,67 @@
-$container-max-widths: (
-	sm: 540px,
-	md: 990px,
-	lg: 1230px,
-	xl: 1370px
-);
+// // Fonts
+// @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-$grid-breakpoints: (
-	xs: 0,
-	sm: 576px,
-	md: 1024px,
-	lg: 1250px,
-	xl: 1400px
-);
+// // Variables
+// @import 'variables';
+// @import 'containers';
 
-//Variables should always be placed before bootstrap import
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
 
-// @import 'bootstrap-scss/bootstrap';
-@import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 
-.container,
-.row > * {
-	padding: 0;
-}
+// @import "~bootstrap/scss/containers";
+
+// // Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
 @media (max-width: 576px){
     .container-sm, .container {
-        max-width: 100%;
+        max-width: 540px;  
     }
-}
+}   
 
 @media (min-width: 768px) {
     .container-md, .container-sm, .container {
-        max-width: 100%;
+        max-width: 720px;
     }
 }
 
 @media (min-width: 992px) {
     .container-lg, .container-md, .container-sm, .container {
-        max-width: 942px;
+        max-width: 960px;
     }
 }
 
 @media (min-width: 1200px) {
     .container-xl, .container-lg, .container-md, .container-sm, .container {
-        max-width: 1150px;
+        max-width: 1140px;
     }
 }
 
 @media (min-width: 1400px) {
     .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-        max-width: 1350px;
+        max-width: 80%;
     }
 }
 
 
-[class^="col-"],
-[class*=" col-"],
-[class^="container-"],
-[class*=" container-"],
+
+.container,
+.container-fluid,
+.container-xxl,
+.container-xl,
+.container-lg,
+.container-md,
+.container-sm {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .row {
-	margin: 0;
-	flex: unset;
+    --bs-gutter-x: 0;
+    --bs-gutter-y: 0;
 }
 
-[class^="col-"],
-[class*=" col-"] {
-    padding: 8px;
-}
 
-ol,
-ul, 
-dl,
-p,
-label {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+
+
