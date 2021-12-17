@@ -357,6 +357,9 @@
 		
 		
 		@if($moduleStepTableData)
+			<div class="p-3"></div>
+
+
 			@include('admin.includes.addButton', [
 				'text' => $bsw -> a_add.' '.$moduleStep -> title,
 				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
