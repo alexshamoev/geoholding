@@ -78,26 +78,26 @@ use App\Mail\WelcomeMail;
 		});
 	
 
-		Route :: get('/{moduleAlias}', 'ACoreController@getStep0') -> name('coreGetStep0');
-		Route :: get('/{moduleAlias}/add', 'ACoreController@addStep0') -> name('coreAddStep0');
-		Route :: get('/{moduleAlias}/{id}', 'ACoreController@editStep0') -> name('coreEditStep0');
-		Route :: post('/{moduleAlias}/{id}', 'ACoreController@updateStep0') -> name('coreUpdateStep0');
-		Route :: get('/{moduleAlias}/{id}/delete', 'ACoreController@deleteStep0') -> name('coreDeleteStep0');
+		Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
+		Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
+		Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
+		Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
+		Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
 
-		Route :: get('/{moduleAlias}/{parent}/add', 'ACoreController@addStep1') -> name('coreAddStep1');
-		Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreController@editStep1') -> name('coreEditStep1');
-		Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreController@updateStep1') -> name('coreUpdateStep1');
-		Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreController@deleteStep1') -> name('coreDeleteStep1');
+		Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
+		Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@edit') -> name('coreEditStep1');
+		Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@update') -> name('coreUpdateStep1');
+		Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreControllerStep1@delete') -> name('coreDeleteStep1');
 
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreController@addStep2') -> name('coreAddStep2');
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@editStep2') -> name('coreEditStep2');
-		Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreController@updateStep2') -> name('coreUpdateStep2');
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreController@deleteStep2') -> name('coreDeleteStep2');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreControllerStep2@add') -> name('coreAddStep2');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@edit') -> name('coreEditStep2');
+		Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@update') -> name('coreUpdateStep2');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreControllerStep2@delete') -> name('coreDeleteStep2');
 
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreController@addStep3') -> name('coreAddStep3');
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@editStep3') -> name('coreEditStep3');
-		Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreController@updateStep3') -> name('coreUpdateStep3');
-		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreController@deleteStep3') -> name('coreDeleteStep3');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreControllerStep3@add') -> name('coreAddStep3');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@edit') -> name('coreEditStep3');
+		Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@update') -> name('coreUpdateStep3');
+		Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreControllerStep3@delete') -> name('coreDeleteStep3');
 
 
 		// Ajax
@@ -128,6 +128,7 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}/{step2Alias}', $moduleTitleForController.'Controller@getStep3') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+']);
+			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}/{step2Alias}/{step3Alias}', $moduleTitleForController.'Controller@getStep4') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+', 'step3Alias' => '[a-zა-ჰа-яё0-9-]+']);
 		}
 	}
 // Else show static page.

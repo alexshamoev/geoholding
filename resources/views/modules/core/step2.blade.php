@@ -36,55 +36,6 @@
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					<div class="p-2">
 						@switch($moduleBlock -> type)
-							@case('input')
-								<div class="p-2 standard-block">
-									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
-									</div>
-								</div>
-
-								@break
-							@case('select')
-								<div class="p-2 standard-block">
-									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
-									</div>
-								</div>
-
-								@break
-							@case('select_with_optgroup')
-								<div class="p-2 standard-block">
-									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column]) }}
-									</div>
-								</div>
-								
-								@break
-
-							@case('editor')
-								<div class="p-2 standard-block">
-									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
-									</div>
-								</div>
-
-								@break
 							@case('alias')
 								@foreach($languages as $langData)
 									<div class="p-2 standard-block">
@@ -113,6 +64,67 @@
 								@endforeach
 
 								@break
+							@case('input')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: text($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
+									</div>
+								</div>
+
+								@break
+							@case('select')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+							
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectData[$moduleBlock -> db_column], $data -> { $moduleBlock -> db_column }) }}
+									</div>
+								</div>
+
+								@break
+							@case('select_with_optgroup')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: select($moduleBlock -> db_column, $selectOptgroudData[$moduleBlock -> db_column]) }}
+									</div>
+								</div>
+								
+								@break
+
+							@case('editor')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										{{ $moduleBlock -> label }}
+									</div>
+
+									<div class="p-2">
+										{{ Form :: textarea($moduleBlock -> db_column,
+															$data -> { $moduleBlock -> db_column },
+															[
+																'id' => $moduleBlock -> db_column
+															]) }}
+									</div>
+								</div>
+
+								<script>
+									ClassicEditor
+										.create( document.querySelector( '#{{ $moduleBlock -> db_column }}' ) )
+										.catch( error => {
+											console.error( error );
+										} );					
+								</script>
+
+								@break
 							@case('file')
 								<div class="p-2 standard-block">
 									<div class="p-2">
@@ -133,6 +145,18 @@
 
 									<div class="p-2">
 										{{ Form :: file($moduleBlock -> db_column) }}
+									</div>
+								</div>
+
+								@break
+							@case('checkbox')
+								<div class="p-2 standard-block">
+									<div class="p-2">
+										<label>
+											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+											
+											{{ $moduleBlock -> label }}
+										</label>
 									</div>
 								</div>
 
@@ -181,7 +205,11 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title, 
+																	$data -> { $moduleBlock -> db_column.'_'.$langData -> title },
+																	[
+																		'id' => $moduleBlock -> db_column.'_'.$langData -> title
+																	]) }}
 										</div>
 									</div>
 
@@ -192,7 +220,11 @@
 									@enderror
 
 									<script>
-										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+										ClassicEditor
+											.create( document.querySelector( '#{{$moduleBlock -> db_column.'_'.$langData -> title}}' ) )
+											.catch( error => {
+												console.error( error );
+											} );					
 									</script>
 								@endforeach
 
@@ -252,6 +284,9 @@
 		{{ Form :: close() }}
 		
 		@if($moduleStep2)
+			<div class="p-3"></div>
+			
+			
 			@include('admin.includes.addButton', [
 				'text' => $bsw -> a_add.' '.$moduleStep2 -> title,
 				'url' => route('coreAddStep2', array($module -> alias, $data -> parent, $data -> id))

@@ -1,8 +1,8 @@
 <div class="p-2">
 	<div class="d-flex align-items-center edit-block">
-		<div class="col-10 p-0">
+		<div class="col-10 p-2">
 			<div class="row">
-				<div class="col-6">
+				<div class="col-6 p-2">
 					<div class="p-2 d-flex align-items-center">
 						<a href="{{ $editLink }}">
 							<span class="line_max_1">
@@ -12,7 +12,7 @@
 					</div>
 				</div>
 
-				<div class="col-6 d-flex align-items-center">
+				<div class="col-6 p-2 d-flex align-items-center">
 					@if(isset($text))
 						<div  class="p-2 d-flex align-items-center">
 							<span class="line_max_1">{{ $text }}</span>
@@ -22,18 +22,18 @@
 			</div>
 		</div>
 		
-		<div class="col-2 p-0">
-			<div class=" d-flex justify-content-end">
-				<div class="text-right edit-block__edit-delete-block">
+		<div class="col-2">
+			<div class="d-flex justify-content-end">
+				<div class="edit-block__edit-delete-block p-2">
 					<a href="{{ $editLink }}">
-						<div class="p-3">
+						<div class="p-2">
 							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
 						</div>
 					</a>
 				</div>
 
-				<div class="text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
-					<div class="p-3">
+				<div class="edit-block__edit-delete-block delete-block p-2" data-delete-link="{{ $deleteLink }}">
+					<div class="p-2">
 						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
 					</div>
 				</div>

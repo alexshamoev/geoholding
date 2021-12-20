@@ -47,9 +47,11 @@
 						<div class="p-2">
 							<img src="{{ asset('/storage/images/modules/news/step_1/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
 						</div>
-						
+
 						<div class="p-2">
-							{{ $data -> title }}
+							<h3 class="line_2">
+								{{ $data -> title }}
+							</h3>
 						</div>
 
 						<div class="p-2">

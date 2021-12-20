@@ -28,30 +28,23 @@
 			.menu__link--{{$data -> alias}}:hover {
 				background-color: {{ $data -> icon_bg_color }};
 				color: #fff;
-			}
-
-			.divider {
-				width: 100%;
-				height: 1px;
-				background-color: #ccc;
 			}			
 		</style>
 
 		<a href="/admin/{{ $data -> alias }}">
-			<div class="row align-items-center p-1 menu__link menu__link--{{$data -> alias}}">
-				<div class="col-3">
+			<div class="row align-items-center p-2 menu__link menu__link--{{$data -> alias}}">
+				<div class="col-3 p-2">
 					<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
 				</div>
 
-				<div class="col-9">
+				<div class="col-9 p-2">
 					<span>{{ $data -> title }}</span>
 				</div>
 			</div>
 		</a>
 	@endforeach
 
-	<div class="py-3">
-	</div>
+	<div class="p-3"></div>
 
 	<div class="p-2">
 		<a href="/admin/modules">

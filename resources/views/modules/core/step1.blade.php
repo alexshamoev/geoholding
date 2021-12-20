@@ -162,12 +162,20 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: textarea($moduleBlock -> db_column, $data -> { $moduleBlock -> db_column }) }}
+										{{ Form :: textarea($moduleBlock -> db_column,
+															$data -> { $moduleBlock -> db_column },
+															[
+																'id' => $moduleBlock -> db_column
+															]) }}
 									</div>
 								</div>
 
 								<script>
-									CKEDITOR.replace('{{ $moduleBlock -> db_column }}');
+									ClassicEditor
+										.create( document.querySelector( '#{{ $moduleBlock -> db_column }}' ) )
+										.catch( error => {
+											console.error( error );
+										} );					
 								</script>
 
 								@break
@@ -243,7 +251,11 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title,  $data -> { $moduleBlock -> db_column.'_'.$langData -> title }) }}
+											{{ Form :: textarea($moduleBlock -> db_column.'_'.$langData -> title, 
+																$data -> { $moduleBlock -> db_column.'_'.$langData -> title },
+																[
+																	'id' => $moduleBlock -> db_column.'_'.$langData -> title
+																]) }}
 										</div>
 									</div>
 
@@ -252,9 +264,13 @@
 											{{ $message }}
 										</div>
 									@enderror
-
+										
 									<script>
-										CKEDITOR.replace('{{ $moduleBlock -> db_column.'_'.$langData -> title }}');
+										ClassicEditor
+											.create( document.querySelector( '#{{$moduleBlock -> db_column.'_'.$langData -> title}}' ) )
+											.catch( error => {
+												console.error( error );
+											} );					
 									</script>
 								@endforeach
 
@@ -262,11 +278,11 @@
 							@case('checkbox')
 								<div class="p-2 standard-block">
 									<div class="p-2">
-										{{ $moduleBlock -> label }}
-									</div>
-
-									<div class="p-2">
-										{{ Form::checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+										<label>
+											{{ Form :: checkbox($moduleBlock -> db_column, 1, $data -> { $moduleBlock -> db_column }) }}
+											
+											{{ $moduleBlock -> label }}
+										</label>
 									</div>
 								</div>
 
@@ -341,6 +357,9 @@
 		
 		
 		@if($moduleStepTableData)
+			<div class="p-3"></div>
+
+
 			@include('admin.includes.addButton', [
 				'text' => $bsw -> a_add.' '.$moduleStep -> title,
 				'url' => route('coreAddStep1', array($module -> alias, $data -> id))

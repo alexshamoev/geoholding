@@ -9,23 +9,49 @@
 							ps-lg-0
 							ps-4
 							pt-lg-0
-							pt-1">
-					<a href="{{ $data -> url }}">
-						@php
-							$activeCssClass = '';
+							pt-1
+							me5">
+					@php
+						$activeCssClass = '';
 
-							if($data -> active) {
-								$activeCssClass = 'active_class';
-							}
-						@endphp
-						
-						<div class="p-2 menu_buttons__link  {{ $activeCssClass }}">
-							{{ $data -> title }}			
+						if($data -> active) {
+							$activeCssClass = 'me2';
+						}
+					@endphp
+					
+					<div class="d-block py-2 px-4 {{ $activeCssClass }}"> 
+					
+						<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
+							<span>
+								{{ $data -> title }}
+							</span>
+						</a>
+
+					</div>
+
+					@if(count($data -> subMenuButtons))
+						<div class="me7 mt-3">
+							@foreach($data -> subMenuButtons as $dataInside)
+								@php
+									$activeCssClass = '';
+
+									if($dataInside -> active) {
+										$activeCssClass = 'me3';
+									}
+								@endphp
+								
+								<div class="me6 {{ $activeCssClass }}">
+									<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+										<span>
+											{{ $dataInside -> title }}
+										</span>
+									</a>
+								</div>
+							@endforeach
 						</div>
-					</a>
+					@endif
 				</div>
 			@endforeach
-
 
 			@if(Auth :: check())
 				<div class="nav-item">

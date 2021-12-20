@@ -53,12 +53,11 @@
 
 		@include('modules.header.basic')
 		
-
-		@yield('content')
-
-		
-		@include('modules.partners.step0')
-
+		<section>
+			@yield('content')
+			
+			@include('modules.partners.step0')
+		</section>
 
 		@include('modules.footer.basic')
     </body>
