@@ -27,6 +27,9 @@
 							</span>
 						</a>
 
+						<div class="js_arrow_div me10">
+							<span class="ba_thin_arrow_right"></span>
+						</div>
 					</div>
 
 					@if(count($data -> subMenuButtons))

@@ -138,7 +138,7 @@ $(window).on('resize', function () {
 		$('.me5').off('mouseover');
 		
 		$('.me5').each(function () {
-			if ($(this).find('.me9').length) {
+			if ($(this).find('.me7').length) {
 				$(this).find('.js_arrow_div').css('display', 'inline-block');
 			}
 		});
