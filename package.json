@@ -30,7 +30,6 @@
         "webpack": "^5.61.0"
     },
     "dependencies": {
-        "@ckeditor/ckeditor5-build-classic": "^31.0.0",
-        "photoswipe": "git://github.com/dimsemenov/photoswipe.git#v5-beta"
+        "@ckeditor/ckeditor5-build-classic": "^31.0.0"
     }
 }

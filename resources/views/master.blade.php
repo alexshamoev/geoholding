@@ -40,10 +40,10 @@
 		<!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js" defer></script> -->
 
 		<script src="{{ asset('js/app.js') }}"></script>
-		<script src="{{ asset('js/modules/basic.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
-		<script src="{{ asset('js/admin/photoswipe-lightbox.esm.js') }}"></script>
-		<script src="{{ asset('js/admin/photoswipe.esm.js') }}"></script>
+		<!-- <script src="{{ asset('js/admin/photoswipe-lightbox.esm.js') }}"></script>
+		<script src="{{ asset('js/admin/photoswipe.esm.js') }}"></script> -->
+		<script src="{{ asset('js/modules/basic.js') }}"></script>
 
     </head>
 
