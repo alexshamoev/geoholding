@@ -67,6 +67,54 @@ class ACoreControllerStep0 extends Controller {
 	}
 
 
+
+
+
+
+
+	private static function deleteEmpty() {
+		$tmp = '';
+
+		foreach(Module :: get() as $module) {
+			echo $module -> alias.'<br>';
+
+			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {
+				echo $moduleStep -> db_table.'<br>';
+
+				foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> get() as $moduleBlock) {
+					if($moduleBlock -> validation) {
+						echo $moduleBlock -> label.' | '.$moduleBlock -> validation.'<br> ';
+
+						$validator = Validator :: make($request -> all(), array(
+							$data -> db_column => $data -> validation
+						));
+	
+						if($validator -> fails()) {
+							echo 'delete data';
+
+							// return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+						}
+
+					}
+
+					echo '--------------------<br>';
+				}
+
+				echo '------------------------------------------------<br>';
+			}
+
+			echo '---------------------------------------------------------------------------------------------------------------------<br>';
+		}
+
+		// return $tmp;
+	}
+
+
+
+
+
+
+
 	public function add($moduleAlias) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
@@ -78,6 +126,10 @@ class ACoreControllerStep0 extends Controller {
 
 
 	public function edit($moduleAlias, $id) {
+		return self :: deleteEmpty();
+
+
+
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
