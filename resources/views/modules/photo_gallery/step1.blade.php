@@ -57,4 +57,28 @@
 			@endforeach
 		</div>
 	</div>
+	<div style="width:200px">
+		<div class="pswp-gallery" id="gallery--zoom-transition">
+			<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg" 
+				data-pswp-width="1875" 
+				data-pswp-height="2500" 
+				target="_blank">
+				<img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg" alt="" />
+			</a>
+			<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg" 
+				data-pswp-width="1669" 
+				data-pswp-height="2500" 
+				target="_blank">
+				<img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg" alt="" />
+			</a>
+			<a href="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg" 
+				data-pswp-width="2500" 
+				data-pswp-height="1666" 
+				target="_blank">
+				<img src="https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg" alt="" />
+			</a>
+		</div>
+	</div>
+
+</section>
 @endsection

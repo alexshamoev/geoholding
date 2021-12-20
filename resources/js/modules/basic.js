@@ -157,6 +157,7 @@ $(document).ready(function () {
         r_menu_buttons_show();
     });
 
+    lightbox.init();
 // menu buttons script
     w_mb_init();
 	menu_active();

@@ -6,7 +6,6 @@
 
 require('./bootstrap');
 
-
 // ClassicEditor
 //     .create( document.querySelector( '#editor' ) )
 //     .then( editor => {
