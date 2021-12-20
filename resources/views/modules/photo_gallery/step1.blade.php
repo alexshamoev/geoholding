@@ -41,7 +41,7 @@
 	
 			<div class="clear_both"></div>
 		</div>
-
+		
 
 		<div class="row">
 			@foreach($photoGalleryStep1 as $data)
@@ -57,5 +57,8 @@
 			@endforeach
 		</div>
 	</div>
+
+
+	<button id="btn">Open PhotoSwipe</button>
 </section>
 @endsection

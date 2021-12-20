@@ -89,6 +89,15 @@
             background-color: #fff;
         }
     } 
+
+    .pswp__button--arrow--left .ba_arrow_left,
+    .pswp__button--arrow--right .ba_arrow_right {
+        font-size: 2rem;
+    }
+
+    .pswp__button--arrow--left:before, .pswp__button--arrow--right:before { 
+        background-color: transparent !important;
+    }
 //
 
 
