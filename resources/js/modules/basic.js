@@ -59,6 +59,6 @@ $(document).ready(function () {
         r_menu_buttons_show();
     });
 
-
+    lightbox.init();
 	// alert('jquery load');
 });
