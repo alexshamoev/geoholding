@@ -9,39 +9,44 @@
 							ps-lg-0
 							ps-4
 							pt-lg-0
-							pt-1">
+							pt-1
+							me5">
 					@php
 						$activeCssClass = '';
 
 						if($data -> active) {
-							$activeCssClass = 'active_class';
+							$activeCssClass = 'me2';
 						}
 					@endphp
 					
-					<div class="p-2">
+					<div class="d-block py-2 px-4 {{ $activeCssClass }}"> 
+					
 						<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
-							<div class="menu_buttons__link {{ $activeCssClass }}">
+							<span>
 								{{ $data -> title }}
-							</div>
+							</span>
 						</a>
 
-						<div>
-							@foreach($data -> subMenuButtons as $dataInside)
-								@php
-									$activeCssClass = '';
+					</div>
 
-									if($dataInside -> active) {
-										$activeCssClass = 'active_class';
-									}
-								@endphp
-								
+					<div class="me7 mt-3">
+						@foreach($data -> subMenuButtons as $dataInside)
+							@php
+								$activeCssClass = '';
+
+								if($dataInside -> active) {
+									$activeCssClass = 'me3';
+								}
+							@endphp
+							
+							<div class="me6 {{ $activeCssClass }}">
 								<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-									<div class="{{ $activeCssClass }}">
+									<span>
 										{{ $dataInside -> title }}
-									</div>
+									</span>
 								</a>
-							@endforeach
-						</div>
+							</div>
+						@endforeach
 					</div>
 				</div>
 			@endforeach
