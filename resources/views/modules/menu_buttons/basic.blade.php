@@ -29,25 +29,27 @@
 
 					</div>
 
-					<div class="me7 mt-3">
-						@foreach($data -> subMenuButtons as $dataInside)
-							@php
-								$activeCssClass = '';
+					@if(count($data -> subMenuButtons))
+						<div class="me7 mt-3">
+							@foreach($data -> subMenuButtons as $dataInside)
+								@php
+									$activeCssClass = '';
 
-								if($dataInside -> active) {
-									$activeCssClass = 'me3';
-								}
-							@endphp
-							
-							<div class="me6 {{ $activeCssClass }}">
-								<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-									<span>
-										{{ $dataInside -> title }}
-									</span>
-								</a>
-							</div>
-						@endforeach
-					</div>
+									if($dataInside -> active) {
+										$activeCssClass = 'me3';
+									}
+								@endphp
+								
+								<div class="me6 {{ $activeCssClass }}">
+									<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+										<span>
+											{{ $dataInside -> title }}
+										</span>
+									</a>
+								</div>
+							@endforeach
+						</div>
+					@endif
 				</div>
 			@endforeach
 
