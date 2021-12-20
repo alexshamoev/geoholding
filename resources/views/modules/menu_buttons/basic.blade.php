@@ -52,6 +52,27 @@
 								</div>
 							@endforeach
 						</div>
+
+
+						<div class="me9 mt-3">
+							@foreach($data -> subMenuButtons as $dataInside)
+								@php
+									$activeCssClass = '';
+
+									if($dataInside -> active) {
+										$activeCssClass = 'me3';
+									}
+								@endphp
+								
+								<div class="me6 {{ $activeCssClass }}">
+									<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+										<span>
+											{{ $dataInside -> title }}
+										</span>
+									</a>
+								</div>
+							@endforeach
+						</div>
 					@endif
 				</div>
 			@endforeach
