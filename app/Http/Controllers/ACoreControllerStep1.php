@@ -16,7 +16,7 @@ use DB;
 
 
 class ACoreControllerStep1 extends Controller {
-    public function add($moduleAlias, $parent) {
+	public function add($moduleAlias, $parent) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 
