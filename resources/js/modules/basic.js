@@ -192,7 +192,13 @@ $(document).ready(function () {
 	}
 // menu buttons script
 
-
+	// search 
+	$('#search').keypress(function (e) {
+		if (e.which == 13) {
+		  $('#search_form').submit();
+		  return false;    
+		}
+	});
 
 
 

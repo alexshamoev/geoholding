@@ -10,7 +10,9 @@
                     <div class="d-flex align-items-center justify-content-end">
                         <div class="header__search-input js_search">
                             <div class="p-2">
-                                <input type="text" placeholder="ძიება">
+                                <form action="#" id="search_form">
+                                    <input type="text" id="search" placeholder="ძიება">
+                                </form>
                             </div>
                         </div>
 
