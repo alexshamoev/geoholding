@@ -51,7 +51,7 @@ class PageController extends Controller {
 				'partners' => Partner :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
-
+		
 		return $data;
 	}
 
