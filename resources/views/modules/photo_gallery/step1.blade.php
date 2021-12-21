@@ -23,7 +23,7 @@
 				{{ $activePhotoGalleryStep0 -> title }}
 			</div>
 		</div>
- 
+
 		<h1 class="p-2">
 			{{ $activePhotoGalleryStep0 -> title }}
 		</h1>

@@ -170,71 +170,72 @@ $(document).ready(function () {
     
     $('nav').on('show.bs.collapse', function () {
         r_menu_buttons_show();
-    }); 
-    // lightbox.init();
-// menu buttons script
-    w_mb_init();
-	menu_active();
-	r_show_hide_sub_menu();
+    });
 
-	if ($(window).width() < 1180) {
-
-		$('.me5').off('mouseover');
-
-	} else {
-		$('.js_arrow_div').css({ 'display': 'none', 'transform': 'rotate(0deg)' });
-
-		$('.me9').css('display', 'none');
-
-		$('.me5').on('mouseover');
-
+	// menu buttons script
 		w_mb_init();
-	}
-// menu buttons script
+		menu_active();
+		r_show_hide_sub_menu();
+
+		if ($(window).width() < 1180) {
+
+			$('.me5').off('mouseover');
+
+		} else {
+			$('.js_arrow_div').css({ 'display': 'none', 'transform': 'rotate(0deg)' });
+
+			$('.me9').css('display', 'none');
+
+			$('.me5').on('mouseover');
+
+			w_mb_init();
+		}
+	// menu buttons script
 
 	// search 
-	$('#search').keypress(function (e) {
-		if (e.which == 13) {
-		  $('#search_form').submit();
-		  return false;    
-		}
-	});
+		$('#search').keypress(function (e) {
+			if (e.which == 13) {
+			$('#search_form').submit();
+			return false;    
+			}
+		});
+	//
 
 
+	// photo Swipe
+		var openPhotoSwipe = function() {
+			var pswpElement = document.querySelectorAll('.pswp')[0];
 
-// photo Swipe
-var openPhotoSwipe = function() {
-    var pswpElement = document.querySelectorAll('.pswp')[0];
-
-    // build items array
-    var items = [
-        {
-            src: 'https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg',
-            w: 964,
-            h: 1024
-        },
-        {
-            src: 'https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg',
-            w: 1024,
-            h: 683
-        }
-    ];
-    
-    // define options (if needed)
-    var options = {
-			 // history & focus options are disabled on CodePen        
-      	history: false,
-      	focus: false,
+			// build items array
+			var items = [
+				{
+					src: 'https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg',
+					w: 1000,
+					h: 1000
+				},
+				{
+					src: 'https://farm7.staticflickr.com/6175/6176698785_7dee72237e_b.jpg',
+					w: 1024,
+					h: 683
+				}
+			];
+			
+			// define options (if needed)
+			var options = {
+					// history & focus options are disabled on CodePen        
+				history: false,
+				focus: false,
+				
+				showAnimationDuration: 0,
+				hideAnimationDuration: 0,
+				
+				closeOnScroll: false
+			};
+			
+			var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+			gallery.init();
+		};
 		
-        showAnimationDuration: 0,
-        hideAnimationDuration: 0,
-        
-		closeOnScroll: false
-    };
-    
-    var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
-    gallery.init();
-};
-
-document.getElementById('btn').onclick = openPhotoSwipe;
+		document.getElementById('btn').onclick = openPhotoSwipe;
+	//
 });
