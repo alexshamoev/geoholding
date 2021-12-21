@@ -1,13 +1,13 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
-	<div class="d-flex align-items-center edit-block">
+	<div class="row align-items-stretch edit-block">
 		<div class="col-2">
 			<div style="background-image: url('{{ asset('storage/images/modules/'.$moduleAlias.'/step_0/'.$id.'.jpg') }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 
-		<div class="col-8">
-			<div class="row p-2">
-				<div class="col-6">
+		<div class="col-7">
+			<div class="row h-100">
+				<div class="col-6 d-flex align-items-center">
 					<div class="p-2 d-flex align-items-center">
 						<a href="{{ $editLink }}">
 							<span class="line_max_1">
@@ -27,9 +27,9 @@
 			</div>
 		</div>
 		
-		<div class="col-2">
-			<div class=" d-flex justify-content-end">
-				<div class="text-right edit-block__edit-delete-block">
+		<div class="col-3">
+			<div class="row h-100 d-flex justify-content-end">
+				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block">
 					<a href="{{ $editLink }}">
 						<div class="p-3">
 							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
@@ -37,13 +37,13 @@
 					</a>
 				</div>
 
-				<div class="text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
+				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
 					<div class="p-3">
 						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
 					</div>
 				</div>
 
-				<div class="text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
+				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
 					<div class="p-3">
 						<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
 					</div>
