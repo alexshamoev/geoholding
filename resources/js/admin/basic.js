@@ -89,6 +89,192 @@ function hide_type_blocks(speed_delay) {
 	$('.type_div').fadeOut(speed_delay);
 }
 
+// ///////////////////////////
+
+'use strict';
+
+
+var required_fields_exists = false;
+var published = true;
+
+
+function published_init() {
+	if($('.required').length) {
+		for(var i = 0; i < $('.required').length; i++) {
+			if($('.required').eq(i).val() === '1') {
+				required_fields_exists = true;
+			}
+		}
+	}
+
+	if(required_fields_exists) {
+		check_publication();
+	}
+
+	$('.ajax_select').on('change', function() {
+		check_publication();
+	});
+}
+
+
+function check_file_exists(url) {
+	var http = new XMLHttpRequest();
+
+    http.open('HEAD', url, false);
+    http.send();
+
+    return http.status != 404;
+}
+
+
+function check_publication() {
+	published = true;
+
+	var published_value = 0;
+
+	$('.ajax_select').each(function() {
+		var value = $(this).val();
+		var required = $(this).parent().find('.required').val();
+
+		if(Number(required)) {
+			if(Boolean(value) === false) {
+				published = false;
+
+				$(this).addClass('required_warning_input');
+			} else {
+				$(this).removeClass('required_warning_input');
+			}
+		}
+	});
+
+
+	$('.ajax_text_input').each(function() {
+		var value = $(this).val();
+		var required = $(this).parent().find('.required').val();
+
+		if(Number(required)) {
+			if(value === '') {
+				published = false;
+
+				$(this).addClass('required_warning_input');
+			} else {
+				$(this).removeClass('required_warning_input');
+			}
+		}
+	});
+
+
+	$('.alias_text_input').each(function() {
+		var value = $(this).val();
+		var required = $(this).parent().find('.required').val();
+
+		if(Number(required)) {
+			if(value === '') {
+				published = false;
+
+				$(this).addClass('required_warning_input');
+			} else {
+				$(this).removeClass('required_warning_input');
+			}
+		}
+	});
+
+
+	$('.ajax_editor').each(function() {
+		var required = $(this).parent().find('.required').val();
+		var value = CKEDITOR.instances[$(this).attr('id')].getData();
+
+		if(Number(required)) {
+			if(value === '') {
+				published = false;
+
+				$(this).parent().addClass('required_warning_input');
+			} else {
+				$(this).parent().removeClass('required_warning_input');
+			}
+		}
+	});
+
+
+	$('.file_uploader').each(function() {
+		var required = Number($(this).find('.required').val());
+
+		if(required) {
+			let file_exists = Number($(this).find('.file_exists').val());
+
+			if(!file_exists) {
+				published = false;
+
+				$(this).addClass('required_warning_input');
+			} else {
+				$(this).removeClass('required_warning_input');
+			}
+		}
+	});
+
+
+	if($('#status_line_div').length) {
+		if(published) {
+			$('#content_div').removeClass('fail');
+			$('#content_div').addClass('ok');
+
+			published_value = 1;
+		} else {
+			$('#content_div').removeClass('ok');
+			$('#content_div').addClass('fail');
+
+			published_value = 0;
+		}
+
+		if($('#js_published_sql_table').length) {
+			var published_sql_table = $('#js_published_sql_table').val();
+
+			var id = $('#js_sql_id').val();
+
+			mysql_update(published_sql_table, "published = '" + published_value + "'", "id = '" + id + "'");
+		}
+	} else {
+		if(published) {
+			published_value = 1;
+		} else {
+			published_value = 0;
+		}
+
+		if($('#js_published_sql_table').length) {
+			var published_sql_table = $('#js_published_sql_table').val();
+
+			var id = $('#js_sql_id').val();
+
+			mysql_update(published_sql_table, "published = '" + published_value + "'", "id = '" + id + "'");
+		}
+	}
+	
+	
+	if($('#submit_button').length) {
+		if(published) {
+			$('#submit_button').css('opacity', '1');
+		} else {
+			$('#submit_button').css('opacity', '0.3');
+			
+		}
+	}
+}
+
+
+function submit_data_form() {
+	console.log("submit_data_form", published, $('#submit_button').length);
+	
+//	if(published && $('#data_form').length && $('#submit_button').length) {
+	if(published && $('#submit_button').length) {
+		document.getElementById('data_form').submit();
+	}
+}
+
+
+$(document).ready();
+
+
+// ////////////////////
 
 // function show_type_blocks(id, speed_delay) {
 // 	let block_id = $('#block_id_input').val();
@@ -151,6 +337,10 @@ jQuery(function () {
 			}
 		});
 	//
+
+	
+	// menu buttons select script
+	published_init();
 
 
     jQuery('.svg_img').each(function () {
