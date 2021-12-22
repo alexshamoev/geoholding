@@ -3,100 +3,100 @@
 		<div class="d-flex align-items-center">
 			@if(isset($tag0Url))
 				<a href="{{ $tag0Url }}">
-					<div class="p-2">
+					<span class="p-2">
 						{{ $tag0Text }}
-					</div>
+					</span>
 				</a>
 			@else
-				<div class="p-2">
+				<span class="p-2">
 					<span>
 						{{ $tag0Text }}
 					</span>
-				</div>
+				</span>
 			@endif
 
-			<div class="p-2">
+			<span class="p-2">
 				<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
-			</div>
+			</span>
 
 			@if(isset($tag1Text))
 				@if(isset($tag1Url))
 					<a href="{{ $tag1Url }}">
-						<div class="p-2">
+						<span class="p-2">
 							{{ $tag1Text }}
-						</div>
+						</span>
 					</a>
 				@else
-					<div class="p-2">
+					<span class="p-2">
 						<span>
 							{{ $tag1Text }}
 						</span>
-					</div>
+					</span>
 				@endif
 
-				<div class="p-2">
+				<span class="p-2">
 					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
-				</div>
+				</span>
 			@endif
 
 
 			@if(isset($tag2Text))
 				@if(isset($tag2Url))
 					<a href="{{ $tag2Url }}">
-						<div class="p-2">
+						<span class="p-2">
 							{{ $tag2Text }}
-						</div>
+						</span>
 					</a>
 				@else
-					<div class="p-2">
+					<span class="p-2">
 						<span>
 							{{ $tag2Text }}
 						</span>
-					</div>
+					</span>
 				@endif
-				<div class="p-2">
+				<span class="p-2">
 					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
-				</div>
+				</span>
 			@endif
 
 
 			@if(isset($tag3Text))
 				@if(isset($tag3Url))
 					<a href="{{ $tag3Url }}">
-						<div class="p-2">
+						<span class="p-2">
 							{{ $tag3Text }}
-						</div>
+						</span>
 					</a>
 				@else
-					<div class="p-2">
+					<span class="p-2">
 						<span>
 							{{ $tag3Text }}
 						</span>
-					</div>
+					</span>
 				@endif
-				<div class="p-2">
+				<span class="p-2">
 					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
-				</div>
+				</span>
 			@endif
 
 
 			@if(isset($tag4Text))
 				@if(isset($tag4Url))
 					<a href="{{ $tag4Url }}">
-						<div class="p-2">
+						<span class="p-2">
 							{{ $tag4Text }}
-						</div>
+						</span>
 					</a>
 				@else
-					<div class="p-2">
+					<span class="p-2">
 						<span>
 							{{ $tag4Text }}
 						</span>
-					</div>
+					</span>
 				@endif
-				<div class="p-2">
+				<span class="p-2">
 					<img src="{{ asset('/storage/images/admin/arrow_right.svg') }}" class="bar-tag-small-img">
-				</div>
+				</span>
 			@endif
 		</div>
 	@endif
