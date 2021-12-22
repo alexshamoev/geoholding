@@ -3,12 +3,12 @@
 		<div class="tags_wrapper">
 			@if(isset($tag0Url))
 				<a href="{{ $tag0Url }}">
-					<span class="p-2">
+					<span class="">
 						{{ $tag0Text }}
 					</span>
 				</a>
 			@else
-				<span class="p-2">
+				<span class="">
 					<span>
 						{{ $tag0Text }}
 					</span>
@@ -22,12 +22,12 @@
 			@if(isset($tag1Text))
 				@if(isset($tag1Url))
 					<a href="{{ $tag1Url }}">
-						<span class="p-2">
+						<span class="">
 							{{ $tag1Text }}
 						</span>
 					</a>
 				@else
-					<span class="p-2">
+					<span class="">
 						<span>
 							{{ $tag1Text }}
 						</span>
@@ -43,12 +43,12 @@
 			@if(isset($tag2Text))
 				@if(isset($tag2Url))
 					<a href="{{ $tag2Url }}">
-						<span class="p-2">
+						<span class="">
 							{{ $tag2Text }}
 						</span>
 					</a>
 				@else
-					<span class="p-2">
+					<span class="">
 						<span>
 							{{ $tag2Text }}
 						</span>
@@ -63,12 +63,12 @@
 			@if(isset($tag3Text))
 				@if(isset($tag3Url))
 					<a href="{{ $tag3Url }}">
-						<span class="p-2">
+						<span class="">
 							{{ $tag3Text }}
 						</span>
 					</a>
 				@else
-					<span class="p-2">
+					<span class="">
 						<span>
 							{{ $tag3Text }}
 						</span>
@@ -83,12 +83,12 @@
 			@if(isset($tag4Text))
 				@if(isset($tag4Url))
 					<a href="{{ $tag4Url }}">
-						<span class="p-2">
+						<span class="">
 							{{ $tag4Text }}
 						</span>
 					</a>
 				@else
-					<span class="p-2">
+					<span class="">
 						<span>
 							{{ $tag4Text }}
 						</span>
