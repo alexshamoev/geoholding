@@ -1,6 +1,6 @@
 <div class="p-2 tags">
 	@if(isset($tag0Text))
-		<div class="d-flex align-items-center">
+		<div class="tags_wrapper">
 			@if(isset($tag0Url))
 				<a href="{{ $tag0Url }}">
 					<span class="p-2">
