@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 
 class ABscController extends Controller {
 	public function getStartPoint() {
+		self :: deleteEmpty();
+
+
 		$defaultData = ADefaultData :: get();
 
 		$data = array_merge($defaultData, ['bscs' => Bsc :: all() -> sortBy('system_word')]);
@@ -96,5 +99,24 @@ class ABscController extends Controller {
 		Bsc :: destroy($id);
 
 		return redirect() -> route('bscStartPoint');
+	}
+
+	
+	private static function deleteEmpty() {
+		$validateRules = array(
+			'system_word' => 'required|min:2'
+		);
+		
+		foreach(Bsc :: all() as $data) {
+			$bscData['system_word'] = $data -> system_word;
+
+			// Validation
+				$validator = Validator :: make($bscData, $validateRules);
+
+				if($validator -> fails()) {
+					Bsc :: destroy($data -> id);
+				}
+			//
+		}
 	}
 }

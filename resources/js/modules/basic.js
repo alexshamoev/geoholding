@@ -170,7 +170,7 @@ $(document).ready(function () {
     
     $('nav').on('show.bs.collapse', function () {
         r_menu_buttons_show();
-    }); 
+    });
 
 	// menu buttons script
 		w_mb_init();
@@ -195,9 +195,8 @@ $(document).ready(function () {
 	// search 
 		$('#search').keypress(function (e) {
 			if (e.which == 13) {
-				console.log(2);
-				$('#search_form').submit();
-				return false;    
+			$('#search_form').submit();
+			return false;    
 			}
 		});
 	//
