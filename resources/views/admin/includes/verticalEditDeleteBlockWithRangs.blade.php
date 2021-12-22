@@ -1,7 +1,7 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
 	<div class="row align-items-stretch edit-block">
 		<div class="col-2">
-			<div style="background-image: url('{{ asset('storage/images/modules/'.$moduleAlias.'/step_0/'.$id.'.jpg') }}');"
+			<div style="background-image: url('{{ asset($imageUrl) }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 

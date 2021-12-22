@@ -101,7 +101,6 @@ class ACoreControllerStep1 extends Controller {
 
 
 		$use_for_sort = 'rang';
-		$defaultData = ADefaultData :: get();
 
 		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -117,24 +116,34 @@ class ACoreControllerStep1 extends Controller {
 		}
 		
 
-		$data = array_merge($defaultData, ['module' => $module,
-											'moduleStep' => $moduleStep,
-											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
-											'moduleBlocks' => $moduleBlocks,
-											'selectData' => $selectData,
-											'selectOptgroudData' => $selectOptgroudData,
-											'languages' => Language :: where('published', 1) -> get(),
-											'sortBy' => $use_for_sort,
-											'id' => $id,
-											'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
-											'moduleStep1Data' => $moduleStepStep1,
-											'data' => $pageData,
-											'prevId' => $prevId,
-											'nextId' => $nextId,
-											'use_for_tags' => $use_for_tags,
-											'parentData' => $pageParentData,
-											'moduleStep2' => $moduleStep2,
-											'moduleStepTableData2' => $moduleStepTableData2]);
+		$imageFormat = 'jpg';
+
+		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('type', 'image') -> first();
+
+		if($moduleBlockForImage) {
+			$imageFormat = $moduleBlockForImage -> file_format;
+		}
+
+
+		$data = array_merge(ADefaultData :: get(), ['module' => $module,
+													'moduleStep' => $moduleStep,
+													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
+													'moduleBlocks' => $moduleBlocks,
+													'selectData' => $selectData,
+													'selectOptgroudData' => $selectOptgroudData,
+													'languages' => Language :: where('published', 1) -> get(),
+													'sortBy' => $use_for_sort,
+													'id' => $id,
+													'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+													'moduleStep1Data' => $moduleStepStep1,
+													'data' => $pageData,
+													'imageFormat' => $imageFormat,
+													'prevId' => $prevId,
+													'nextId' => $nextId,
+													'use_for_tags' => $use_for_tags,
+													'parentData' => $pageParentData,
+													'moduleStep2' => $moduleStep2,
+													'moduleStepTableData2' => $moduleStepTableData2]);
 
 		return view('modules.core.step2', $data);
 	}

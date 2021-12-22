@@ -45,7 +45,7 @@
 						@include('admin.includes.verticalEditDeleteBlockWithRangs', [
 										'id' => $data -> id,
 										'title' => $data -> $use_for_tags,
-										'moduleAlias' => $module -> alias,
+										'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_0/'.$data -> id.'.'.$imageFormat,
 										'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
 										'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))
 									])
@@ -53,6 +53,7 @@
 						@include('admin.includes.verticalEditDeleteBlock', [
 										'id' => $data -> id,
 										'title' => $data -> $use_for_tags,
+										'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_0/'.$data -> id.'.'.$imageFormat,
 										'moduleAlias' => $module -> alias,
 										'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
 										'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))

@@ -57,14 +57,22 @@ class ACoreControllerStep0 extends Controller {
 		}
 
 
-		$defaultData = ADefaultData :: get();
+		$imageFormat = 'jpg';
 
-		$data = array_merge($defaultData, ['module' => $module,
-											'moduleStep' => $moduleStep,
-											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
-											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get(),
-											'sortBy' => $orderBy,
-											'use_for_tags' => $use_for_tags]);
+		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('type', 'image') -> first();
+
+		if($moduleBlockForImage) {
+			$imageFormat = $moduleBlockForImage -> file_format;
+		}
+
+
+		$data = array_merge(ADefaultData :: get(), ['module' => $module,
+													'moduleStep' => $moduleStep,
+													'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
+													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get(),
+													'imageFormat' => $imageFormat,
+													'sortBy' => $orderBy,
+													'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step0', $data);
 	}
@@ -229,7 +237,6 @@ class ACoreControllerStep0 extends Controller {
 
 		
 		$use_for_sort = 'rang';
-		$defaultData = ADefaultData :: get();
 
 		$moduleStepTableData = false;
 
@@ -253,24 +260,35 @@ class ACoreControllerStep0 extends Controller {
 			}
 		}
 
-		$data = array_merge($defaultData, ['module' => $module,
-											'moduleStep' => $moduleStepStep1,
-											'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
-											'moduleBlocks' => $moduleBlocks,
-											'selectData' => $selectData,
-											'selectOptgroudData' => $selectOptgroudData,
-											'languages' => Language :: where('published', 1) -> orderBy('rang', 'desc') -> get(),
-											'sortBy' => $use_for_sort,
-											'id' => $id,
-											'moduleStepTableData' => $moduleStepTableData,
-											'moduleStep1Data' => $moduleStepStep1,
-											'data' => $pageData,
-											'prevId' => $prevId,
-											'nextId' => $nextId,
-											'use_for_tags' => $use_for_tags,
-											'multiplyCheckbox' => $multiplyCheckbox,
-											'multiplyCheckbox' => $multiplyCheckbox,
-											'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
+
+		$imageFormat = 'jpg';
+
+		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('type', 'image') -> first();
+
+		if($moduleBlockForImage) {
+			$imageFormat = $moduleBlockForImage -> file_format;
+		}
+
+
+		$data = array_merge(ADefaultData :: get(), ['module' => $module,
+													'moduleStep' => $moduleStepStep1,
+													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
+													'moduleBlocks' => $moduleBlocks,
+													'selectData' => $selectData,
+													'selectOptgroudData' => $selectOptgroudData,
+													'languages' => Language :: where('published', 1) -> orderBy('rang', 'desc') -> get(),
+													'sortBy' => $orderBy,
+													'id' => $id,
+													'imageFormat' => $imageFormat,
+													'moduleStepTableData' => $moduleStepTableData,
+													'moduleStep1Data' => $moduleStepStep1,
+													'data' => $pageData,
+													'prevId' => $prevId,
+													'nextId' => $nextId,
+													'use_for_tags' => $use_for_tags,
+													'multiplyCheckbox' => $multiplyCheckbox,
+													'multiplyCheckbox' => $multiplyCheckbox,
+													'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
 
 		return view('modules.core.step1', $data);
 	}

@@ -364,7 +364,7 @@
 				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 			])
 
-			<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
+			{{--<div id="rangBlocks" data-db_table="{{ $moduleStep1Data -> db_table }}">
 				@foreach($moduleStepTableData as $dataIn)
 					@if($sortBy === 'rang')
 						@include('admin.includes.horizontalEditDeleteBlock', [
@@ -382,6 +382,51 @@
 						])
 					@endif
 				@endforeach
+			</div>--}}
+
+
+
+			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep -> db_table }}">
+				@if(!$moduleStep -> images)
+					@foreach($moduleStepTableData as $dataIn)
+						@if($sortBy === 'rang')
+							@include('admin.includes.horizontalEditDeleteBlock', [
+								'id' => $dataIn -> id,
+								'title' => $dataIn -> $use_for_tags,
+								'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+								'deleteLink' => route('coreDeleteStep0', array($module -> alias, $dataIn -> id))
+							])
+						@else 
+							@include('admin.includes.horizontalEditDelete', [
+									'id' => $dataIn -> id,
+									'title' => $dataIn -> $use_for_tags,
+									'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+									'deleteLink' => route('coreDeleteStep0', array($module -> alias, $dataIn -> id))
+							])
+						@endif
+					@endforeach
+				@else
+					@foreach($moduleStepTableData as $dataIn)
+						@if($sortBy === 'rang')
+							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep0', array($module -> alias, $dataIn -> id))
+										])
+						@else
+							@include('admin.includes.verticalEditDeleteBlock', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'moduleAlias' => $module -> alias,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep0', array($module -> alias, $dataIn -> id))
+										])
+						@endif
+					@endforeach
+				@endif
 			</div>
 		@endif
 	</div>
