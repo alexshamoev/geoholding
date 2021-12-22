@@ -257,7 +257,7 @@ $(window).on('resize', function () {
 
 			if(index >= 0) {
 				// open PhotoSwipe if valid index found
-				openPhotoSwipe( index, clickedGallery );
+				openPhotoSwipe( index, clickedGallery, true);
 			}
 			return false;
 		};
@@ -341,6 +341,7 @@ $(window).on('resize', function () {
 
 			if(disableAnimation) {
 				options.showAnimationDuration = 0;
+				options.hideAnimationDuration = 0;
 			}
 
 			// Pass data to PhotoSwipe and initialize it
