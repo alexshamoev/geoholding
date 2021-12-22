@@ -106,6 +106,27 @@
 .pswp__button--arrow--right {
     font-size: 2rem;
 }
+
+.pswp img {
+    max-width: none;
+    object-fit: contain;
+}
+.pswp__button--arrow--left:before, 
+.pswp__button--arrow--right:before {
+    top: 30px !important;
+    height: 41px !important;
+    width: 40px !important;
+}
+
+.close_button span,
+.close_button button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+}
 //
 
 

@@ -1,11 +1,7 @@
 <!-- <h2>First gallery:</h2>
 
 <h2>Second gallery:</h2>
-
   <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-
-  
-
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
       <a href="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="contentUrl" data-size="964x1024">
           <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg" itemprop="thumbnail" alt="Image description" />
@@ -26,9 +22,7 @@
       </a>
       <figcaption itemprop="caption description">Image caption 2.3</figcaption>
     </figure>
-
-
-  </div> -->
+</div> -->
 
 
 
@@ -59,13 +53,17 @@
 
                 <div class="pswp__counter"></div>
 
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <div class="relative close_button">
+                    <span class="ba_close_fat"></span>
+                    <button class="pswp__button pswp__button--close text-white" title="Close (Esc)">
+                    </button>
+                </div>
 
-                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <!-- <button class="pswp__button pswp__button--share" title="Share"></button> -->
 
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <!-- <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button> -->
 
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button> -->
 
                 <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
                 <!-- element will get class pswp__preloader--active when preloader is running -->
@@ -93,9 +91,6 @@
             <div class="pswp__caption">
                 <div class="pswp__caption__center"></div>
             </div>
-
-          </div>
-
         </div>
-
+    </div>
 </div>
