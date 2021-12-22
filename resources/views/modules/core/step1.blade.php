@@ -25,7 +25,7 @@
 	])
 	
 	
-	@if($errors->any())
+	@if($errors -> any())
 		<div class="alert alert-danger">
 			Whoops, looks like something went wrong
 		</div>
@@ -358,7 +358,6 @@
 		
 		@if($moduleStepTableData)
 			<div class="p-3"></div>
-
 
 			@include('admin.includes.addButton', [
 				'text' => $bsw -> a_add.' '.$moduleStep -> title,

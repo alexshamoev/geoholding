@@ -1,8 +1,8 @@
 <div class="row bar">
 	@if(isset($backRoute))
-		<div class="col-8 p-0 d-flex align-items-center">
+		<div class="col-8 p-2 d-flex align-items-center">
 			<a href="{{ $backRoute }}" class="d-inline-block">
-				<div class="d-flex align-items-center pl-2">
+				<div class="d-flex align-items-center">
 					<div class="p-2">
 						<img src="{{ asset('/storage/images/admin/arrow_left.svg') }}" alt="arrow_left" class="bar-tag-small-img">
 					</div>
