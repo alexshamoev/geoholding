@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Validator;
 
 class ALanguageController extends Controller {
 	public function getStartPoint() {
+		self :: deleteEmpty();
+
+
 		$bsc = Bsc :: getFullData();
 		$copyrightDate = $bsc -> year_of_site_creation;
 
@@ -78,8 +81,8 @@ class ALanguageController extends Controller {
 		
 		// Validation
 			$validator = Validator :: make($request -> all(), array(
-				'title' => 'required|min:2|max:10',
-				'full_title' => 'required|min:2|max:10'
+				'title' => 'required|min:2|max:20',
+				'full_title' => 'required|min:2|max:20'
 			));
 
 			if($validator -> fails()) {
@@ -128,5 +131,26 @@ class ALanguageController extends Controller {
 		$language -> save();
 		
 		return redirect() -> route('languageStartPoint');
+	}
+
+	
+	private static function deleteEmpty() {
+		$validateRules = array(
+			'title' => 'required|min:2|max:20',
+			'full_title' => 'required|min:2|max:20'
+		);
+		
+		foreach(Language :: all() as $data) {
+			$languageData['title'] = $data -> title;
+			$languageData['full_title'] = $data -> full_title;
+
+			// Validation
+				$validator = Validator :: make($languageData, $validateRules);
+
+				if($validator -> fails()) {
+					Language :: destroy($data -> id);
+				}
+			//
+		}
 	}
 }
