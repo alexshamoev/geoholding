@@ -56,9 +56,9 @@
 				</div>
 			@endforeach
 		</div>
+
+		@include('includes.photoswipe')
+	
 	</div>
-
-
-	<button id="btn">Open PhotoSwipe</button>
 </section>
 @endsection
