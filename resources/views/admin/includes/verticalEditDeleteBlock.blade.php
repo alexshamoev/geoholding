@@ -1,12 +1,12 @@
 <div class="p-2">
 	<div class="d-flex align-items-center edit-block">
-		<div class="col-2 p-0">
+		<div class="col-2">
 			<div style="background-image: url('{{ asset('/storage/images/modules/'.$moduleAlias.'/'.$id.'.jpg') }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 
-		<div class="col-8 p-0">
-			<div class="row">
+		<div class="col-8">
+			<div class="row p-2">
 				<div class="col-6">
 					<div class="p-2 d-flex align-items-center">
 						<a href="{{ $editLink }}">
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		
-		<div class="col-2 p-0">
+		<div class="col-2">
 			<div class=" d-flex justify-content-end">
 				<div class="text-right edit-block__edit-delete-block">
 					<a href="{{ $editLink }}">

@@ -23,7 +23,7 @@
 				{{ $activePhotoGalleryStep0 -> title }}
 			</div>
 		</div>
- 
+
 		<h1 class="p-2">
 			{{ $activePhotoGalleryStep0 -> title }}
 		</h1>
@@ -56,9 +56,9 @@
 				</div>
 			@endforeach
 		</div>
+
+		@include('includes.photoswipe')
+	
 	</div>
-
-
-	<button id="btn">Open PhotoSwipe</button>
 </section>
 @endsection

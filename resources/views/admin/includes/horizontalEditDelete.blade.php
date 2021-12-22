@@ -3,7 +3,7 @@
 		<div class="col-10 p-2">
 			<div class="row">
 				<div class="col-6 p-2">
-					<div class="p-2 d-flex align-items-center">
+					<div class="d-flex align-items-center">
 						<a href="{{ $editLink }}">
 							<span class="line_max_1">
 								{{ $title }}
@@ -27,14 +27,14 @@
 				<div class="edit-block__edit-delete-block p-2">
 					<a href="{{ $editLink }}">
 						<div class="p-2">
-							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="Edit" class="bar-tag-bigger-img">
 						</div>
 					</a>
 				</div>
 
 				<div class="edit-block__edit-delete-block delete-block p-2" data-delete-link="{{ $deleteLink }}">
 					<div class="p-2">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
+						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="Close" class="bar-tag-bigger-img">
 					</div>
 				</div>
 			</div>

@@ -36,16 +36,17 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photoswipe.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/default-skin.css') }}">
-		<!-- <link rel="stylesheet" type="text/css" href="path/to/photoswipe.css"> -->
-
-		<script src="{{ asset('js/modules/photoswipe-ui-default.min.js') }}"></script>
-		<script src="{{ asset('js/modules/photoswipe.min.js') }}"></script>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<script src="{{ asset('js/modules/photoswipe-ui-default.min.js') }}"></script>
+		<script src="{{ asset('js/modules/photoswipe.min.js') }}"></script>
+		
 		<!-- <script src="https://cdn.ckeditor.com/ckeditor5/31.0.0/classic/ckeditor.js" defer></script> -->
-
+		
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
+		
 		<script src="{{ asset('js/modules/basic.js') }}"></script>
 
     </head>
@@ -53,7 +54,6 @@
     <body>
 		@include('includes.bootstrap_size_getter')
 
-		@include('includes.photoswipe')
 		@include('modules.header.basic')
 		
 		<section>

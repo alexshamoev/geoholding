@@ -1,11 +1,11 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
 	<div class="row align-items-stretch edit-block">
-		<div class="col-2 p-0">
+		<div class="col-2">
 			<div style="background-image: url('{{ asset('storage/images/modules/'.$moduleAlias.'/step_0/'.$id.'.jpg') }}');"
 				 class="edit-block__image_div"></div>
 		</div>
 
-		<div class="col-7 p-0">
+		<div class="col-7">
 			<div class="row h-100">
 				<div class="col-6 d-flex align-items-center">
 					<div class="p-2 d-flex align-items-center">
@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		
-		<div class="col-3 p-0">
+		<div class="col-3">
 			<div class="row h-100 d-flex justify-content-end">
 				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block">
 					<a href="{{ $editLink }}">
