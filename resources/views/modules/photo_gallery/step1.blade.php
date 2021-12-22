@@ -47,8 +47,8 @@
 			@foreach($photoGalleryStep1 as $data)
 
 					<figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-						<a href="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'_preview.jpg') }}" itemprop="contentUrl" data-size="2000x1200">
-							<img src="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}" itemprop="thumbnail" alt="Image description" />
+						<a href="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}" itemprop="contentUrl" data-size="2000x1200">
+							<img src="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'_preview.jpg') }}" itemprop="thumbnail" alt="Image description" />
 						</a>
 						<figcaption itemprop="caption description">{{ $data -> title }}</figcaption>
 					</figure>
