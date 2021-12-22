@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Validator;
 
 class ABswController extends Controller {
 	public function getStartPoint() {
+		self :: deleteEmpty();
+
+		
 		$defaultData = ADefaultData :: get();
 
 		$data = array_merge($defaultData, ['languages' => Language :: where('published', 1) -> get(),
@@ -104,5 +107,24 @@ class ABswController extends Controller {
 		Bsw :: destroy($id);
 
 		return redirect() -> route('bswStartPoint');
+	}
+
+	
+	private static function deleteEmpty() {
+		$validateRules = array(
+			'system_word' => 'required|min:2'
+		);
+		
+		foreach(Bsw :: all() as $data) {
+			$bswData['system_word'] = $data -> system_word;
+
+			// Validation
+				$validator = Validator :: make($bswData, $validateRules);
+
+				if($validator -> fails()) {
+					Bsw :: destroy($data -> id);
+				}
+			//
+		}
 	}
 }

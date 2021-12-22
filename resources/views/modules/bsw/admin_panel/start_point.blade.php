@@ -19,7 +19,7 @@
 
 				foreach($languages as $langData) {
 						$text .= $data -> { 'word_'.$langData -> title };
-						$text .= ' / ';
+						$text .= ' | ';
 				}
 			@endphp
 
