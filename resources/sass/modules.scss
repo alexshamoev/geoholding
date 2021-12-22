@@ -84,20 +84,28 @@
 
 
 // Photo gallery
-    .photo_gallery {
-        &__block {      
-            background-color: #fff;
-        }
-    } 
+.my-gallery {
+    width: 100%;
+    display: flex;
+}
+.my-gallery img {
+    width: 100%;
+    height: auto;
+}
+.my-gallery figure {
+    display: block;
+    display: flex;
+    margin: 0 5px 5px 0;
+    width: 150px;
+}
+.my-gallery figcaption {
+    display: none;
+}
 
-    .pswp__button--arrow--left .ba_arrow_left,
-    .pswp__button--arrow--right .ba_arrow_right {
-        font-size: 2rem;
-    }
-
-    .pswp__button--arrow--left:before, .pswp__button--arrow--right:before { 
-        background-color: transparent !important;
-    }
+.pswp__button--arrow--left,
+.pswp__button--arrow--right {
+    font-size: 2rem;
+}
 //
 
 

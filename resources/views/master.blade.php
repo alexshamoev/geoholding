@@ -47,11 +47,12 @@
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
 		
-		<script src="{{ asset('js/modules/basic.js') }}"></script>
 
     </head>
 
     <body>
+		@include('includes.photoswipe')
+
 		@include('includes.bootstrap_size_getter')
 
 		@include('modules.header.basic')
@@ -63,7 +64,8 @@
 		</section>
 
 
-
 		@include('modules.footer.basic')
+
+		<script src="{{ asset('js/modules/basic.js') }}"></script>
     </body>
 </html>
