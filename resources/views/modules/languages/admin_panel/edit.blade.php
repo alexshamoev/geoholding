@@ -31,7 +31,7 @@
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
 						<span>ენის დასახელება, ინგლისურ ენაზე: *</span>
-						<span>(მაგალითად: georgian)</span>
+						<span>(მაგალითად: ge)</span>
 					</div>
 					
 					<div class="p-2">
@@ -50,7 +50,7 @@
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
 						<span>ენის სრული დასახელება: *</span>
-						<span>(მაგალითად: ქართული)</span>
+						<span>(მაგალითად: ქა)</span>
 					</div>
 
 					<div class="p-2">
@@ -68,7 +68,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-1">
-						<span>დროშის ფოტო:</span>
+						<span>Image (SVG):</span>
 					</div>
 
 					<div class="p-1">
