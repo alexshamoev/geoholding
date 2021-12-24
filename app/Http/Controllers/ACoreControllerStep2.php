@@ -123,6 +123,15 @@ class ACoreControllerStep2 extends Controller {
 
 		// $moduleParent = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> first();
 
+
+		$imageFormat = 'jpg';
+
+		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('type', 'image') -> first();
+
+		if($moduleBlockForImage) {
+			$imageFormat = $moduleBlockForImage -> file_format;
+		}
+
 		
 		$data = array_merge(ADefaultData :: get(), ['module' => $module,
 													'moduleStep' => $moduleStep,
@@ -140,13 +149,13 @@ class ACoreControllerStep2 extends Controller {
 													'moduleStep2' => $moduleStep2,
 													'moduleStep3' => $moduleStep3,
 													'data' => $pageData,
+													'imageFormat' => $imageFormat,
 													'prevId' => $prevId,
 													'nextId' => $nextId,
 													'use_for_tags' => $use_for_tags,
 													'parentData' => $pageParentData,
 													'parentDataSecond' => $pageParentDataSecond]);
 
-		// return $moduleStep2 -> db_table;
 		return view('modules.core.step3', $data);
 	}
 
