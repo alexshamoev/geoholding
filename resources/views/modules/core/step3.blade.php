@@ -291,7 +291,6 @@
 			</div> -->
 
 
-
 			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep3 -> db_table }}">
 				@if(!$moduleStep3 -> images)
 					@foreach($moduleStepTableData3 as $dataIn)

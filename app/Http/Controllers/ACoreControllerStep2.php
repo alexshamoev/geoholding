@@ -126,12 +126,11 @@ class ACoreControllerStep2 extends Controller {
 
 		$imageFormat = 'jpg';
 
-		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep -> id) -> where('type', 'image') -> first();
+		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep3 -> id) -> where('type', 'image') -> first();
 
 		if($moduleBlockForImage) {
 			$imageFormat = $moduleBlockForImage -> file_format;
 		}
-
 		
 		$data = array_merge(ADefaultData :: get(), ['module' => $module,
 													'moduleStep' => $moduleStep,
