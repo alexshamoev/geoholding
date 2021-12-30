@@ -158,26 +158,30 @@ class ACoreControllerStep0 extends Controller {
 		$multCheckboxCatTable = '';
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
-			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+			// Select
+				if($data -> type === 'select') {
+					$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
 
-				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
-					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
-				}
-			}
-			
-			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
-				$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --');
-
-				foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
-					foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
-						$alex[$dataInside -> { $data -> select_optgroup_text }][$dataInsideTwice -> id] = $dataInsideTwice -> { $data -> select_optgroup_2_text };
+					foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
+						$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
 					}
 				}
+			// 
+			
+			// Select with optgroups
+				if($data -> type === 'select_with_optgroup') {
+					$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+					$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --');
 
-				$selectOptgroudData[$data -> db_column] = $alex;
-			}
+					foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
+						foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {
+							$alex[$dataInside -> { $data -> select_optgroup_text }][$dataInsideTwice -> id] = $dataInsideTwice -> { $data -> select_optgroup_2_text };
+						}
+					}
+
+					$selectOptgroudData[$data -> db_column] = $alex;
+				}
+			// 
 			
 
 			// Multiply Checkbox With Category
@@ -238,16 +242,24 @@ class ACoreControllerStep0 extends Controller {
 		
 		$use_for_sort = 'rang';
 
-		$moduleStepTableData = false;
 
-		$moduleStep1 = Module :: where('alias', $moduleAlias) -> first();
-		$moduleStepStep1 = ModuleStep :: where('top_level', $moduleStep1 -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		$imageFormat = 'jpg';
+
+		$nextModuleStepData = false;
+
+		$nextModuleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 		
-		if($moduleStepStep1) {
-			$moduleStepTableData = DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) -> orderBy($use_for_sort, 'desc') -> get();
+		if($nextModuleStep) {
+			$nextModuleStepData = DB :: table($nextModuleStep -> db_table) -> where('parent', $id) -> orderBy($use_for_sort, 'desc') -> get();
+
+			$moduleBlockForImage = ModuleBlock :: where('top_level', $nextModuleStep -> id) -> where('type', 'image') -> first();
+
+			if($moduleBlockForImage) {
+				$imageFormat = $moduleBlockForImage -> file_format;
+			}
 		}
 
-		$moduleBlockForSort = ModuleBlock :: where('top_level', $moduleStep1 -> id) -> where('a_use_for_sort', 1) -> first();
+		$moduleBlockForSort = ModuleBlock :: where('top_level', $module -> id) -> where('a_use_for_sort', 1) -> first();
 
 		$use_for_sort = 'id';
 		$sort_by = 'DESC';
@@ -261,17 +273,11 @@ class ACoreControllerStep0 extends Controller {
 		}
 
 
-		$imageFormat = 'jpg';
-
-		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStepStep1 -> id) -> where('type', 'image') -> first();
-
-		if($moduleBlockForImage) {
-			$imageFormat = $moduleBlockForImage -> file_format;
-		}
+		
 
 
 		$data = array_merge(ADefaultData :: get(), ['module' => $module,
-													'moduleStep' => $moduleStepStep1,
+													'moduleStep' => $moduleStep,
 													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
 													'moduleBlocks' => $moduleBlocks,
 													'selectData' => $selectData,
@@ -280,8 +286,8 @@ class ACoreControllerStep0 extends Controller {
 													'sortBy' => $orderBy,
 													'id' => $id,
 													'imageFormat' => $imageFormat,
-													'moduleStepTableData' => $moduleStepTableData,
-													'moduleStep1Data' => $moduleStepStep1,
+													'nextModuleStepData' => $nextModuleStepData,
+													'moduleStep1Data' => $nextModuleStep,
 													'data' => $pageData,
 													'prevId' => $prevId,
 													'nextId' => $nextId,

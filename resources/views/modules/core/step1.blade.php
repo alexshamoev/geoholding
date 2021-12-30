@@ -356,7 +356,7 @@
 		{{ Form :: close() }}
 		
 		
-		@if($moduleStepTableData)
+		@if($nextModuleStepData)
 			<div class="p-3"></div>
 
 			@include('admin.includes.addButton', [
@@ -367,7 +367,7 @@
 
 			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep -> db_table }}">
 				@if(!$moduleStep -> images)
-					@foreach($moduleStepTableData as $dataIn)
+					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')
 							@include('admin.includes.horizontalEditDeleteBlock', [
 								'id' => $dataIn -> id,
@@ -385,7 +385,7 @@
 						@endif
 					@endforeach
 				@else
-					@foreach($moduleStepTableData as $dataIn)
+					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')
 							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
 											'id' => $dataIn -> id,
