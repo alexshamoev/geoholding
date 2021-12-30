@@ -43,7 +43,7 @@ class PhotoGalleryController extends Controller {
 
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language, $page, $activeCategory),
                             ['photoGalleryStep0' => PhotoGalleryStep0 :: where('published', 1) -> orderByDesc('rang') -> get(),
                              'activePhotoGalleryStep0' => $activeCategory,
                              'photoGalleryStep1' => PhotoGalleryStep1 :: where('published', 1) -> where('parent', $activeCategory -> id) -> orderByDesc('rang') -> get()]);

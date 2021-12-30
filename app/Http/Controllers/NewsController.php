@@ -51,7 +51,7 @@ class NewsController extends Controller {
         NewsStep1 :: setPageAlias($page -> alias);
         NewsStep1 :: setStep0Alias($activeNews -> alias);
 
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language, $page, $activeNews),
                             ['activeNewsStep0' => $activeNews,
                              'newsStep1' => NewsStep1 :: where('published', 1) -> where('parent', $activeNews -> id) -> orderByDesc('rang') -> get()]);
 
@@ -83,7 +83,7 @@ class NewsController extends Controller {
         NewsStep2 :: setStep1Alias($activeNewsStep1 -> alias);
 
 
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language, $page, $activeNewsStep0, $activeNewsStep1),
                             ['activeNewsStep0' => $activeNewsStep0,
                             'activeNewsStep1' => $activeNewsStep1,
                             'newsStep2' => NewsStep2 :: where('published', 1) -> where('parent', $activeNewsStep1 -> id) -> orderByDesc('rang') -> get()]);
@@ -124,7 +124,7 @@ class NewsController extends Controller {
         NewsStep3 :: setStep2Alias($activeNewsStep2 -> alias);
 
 
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language, $page, $activeNewsStep0, $activeNewsStep1, $activeNewsStep2),
                             ['activeNewsStep0' => $activeNewsStep0,
                             'activeNewsStep1' => $activeNewsStep1,
                             'activeNewsStep2' => $activeNewsStep2,
@@ -168,7 +168,7 @@ class NewsController extends Controller {
         $activeNewsStep3 = NewsStep3 :: where('alias_'.$language -> title, $step3Alias) -> first();
 
 
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language, $page, $activeNewsStep0, $activeNewsStep1, $activeNewsStep2, $activeNewsStep3),
                             ['activeNewsStep0' => $activeNewsStep0,
                             'activeNewsStep1' => $activeNewsStep1,
                             'activeNewsStep2' => $activeNewsStep2,

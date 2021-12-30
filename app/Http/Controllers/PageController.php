@@ -17,9 +17,26 @@ use Illuminate\Http\Request;
 
 
 class PageController extends Controller {
-	public static function getDefaultData($lang, $page) {
+	public static function getDefaultData($lang, $page, $alias0Model = false, $alias1Model = false, $alias2Model = false, $alias3Model = false) {
 		Language :: setLang($lang);
 		Language :: setPage($page);
+
+		if($alias0Model) {
+			Language :: setAlias0Model($alias0Model);
+		}
+
+		if($alias1Model) {
+			Language :: setAlias1Model($alias1Model);
+		}
+
+		if($alias2Model) {
+			Language :: setAlias2Model($alias2Model);
+		}
+
+		if($alias3Model) {
+			Language :: setAlias3Model($alias3Model);
+		}
+
 
 		Page :: setLang($lang -> title);
 
@@ -42,8 +59,8 @@ class PageController extends Controller {
 
 		$data = ['page' => $page,
 				'language' => $lang,
-				'menuButtons' => MenuButtonStep0 :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'languages' => Language :: where('published', '1') -> orderByDesc('rang') -> get(),
+				'menuButtons' => MenuButtonStep0 :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
