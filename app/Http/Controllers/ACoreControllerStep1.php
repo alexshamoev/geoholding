@@ -111,17 +111,16 @@ class ACoreControllerStep1 extends Controller {
 
 		$moduleStepTableData2 = false;
 
-		if($moduleStep2) {
-			$moduleStepTableData2 = DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get();
-		}
-		
-
 		$imageFormat = 'jpg';
 
-		$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep2 -> id) -> where('type', 'image') -> first();
+		if($moduleStep2) {
+			$moduleStepTableData2 = DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get();
 
-		if($moduleBlockForImage) {
-			$imageFormat = $moduleBlockForImage -> file_format;
+			$moduleBlockForImage = ModuleBlock :: where('top_level', $moduleStep2 -> id) -> where('type', 'image') -> first();
+
+			if($moduleBlockForImage) {
+				$imageFormat = $moduleBlockForImage -> file_format;
+			}
 		}
 
 
