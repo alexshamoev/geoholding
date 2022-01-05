@@ -104,7 +104,7 @@ use App\Mail\WelcomeMail;
 			Route :: post('/set-rangs', 'ARangController@set');
 		// 
 	});
-// 
+//
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');

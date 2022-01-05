@@ -46,8 +46,6 @@
 		
 		<script src="{{ asset('js/app.js') }}"></script>
 		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
-		
-
     </head>
 
     <body>

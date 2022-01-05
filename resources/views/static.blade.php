@@ -10,7 +10,7 @@
 <div class="container p-2 main_content--height">
 	<div class="p-2">
 		<h1>
-			Static page - 
+			{{ __('bsw.static_page') }} - 
 
 			{{ $page -> title }}
 		</h1>

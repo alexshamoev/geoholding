@@ -13,13 +13,17 @@ use App\Models\News;
 use App\Models\PhotoGalleryCategory;
 use App\Models\Partner;
 use App\Widget;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 
 class PageController extends Controller {
 	public static function getDefaultData($lang, $page, $alias0Model = false, $alias1Model = false, $alias2Model = false, $alias3Model = false) {
 		Language :: setLang($lang);
 		Language :: setPage($page);
+
+		App :: setLocale($lang -> title);
 
 		if($alias0Model) {
 			Language :: setAlias0Model($alias0Model);
