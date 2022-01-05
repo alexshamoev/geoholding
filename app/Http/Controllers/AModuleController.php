@@ -75,18 +75,20 @@ class AModuleController extends Controller {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(Module :: all() -> sortBy('alias') as $data) {
-			if($nextIdIsSaved && !$nextId) {
-				$nextId = $data -> id;
-			}
-			
-			if($module -> id === $data -> id) {
-				$prevIdIsSaved = true;
-				$nextIdIsSaved = true;
-			}
-			
-			if(!$prevIdIsSaved) {
-				$prevId = $data -> id;
+		foreach(Module :: all() -> sortByDesc('rang') as $data) {
+			if(ModuleStep :: where('top_level', $data['id']) -> first()) {
+				if($nextIdIsSaved && !$nextId) {
+					$nextId = $data -> id;
+				}
+				
+				if($module -> id === $data -> id) {
+					$prevIdIsSaved = true;
+					$nextIdIsSaved = true;
+				}
+				
+				if(!$prevIdIsSaved) {
+					$prevId = $data -> id;
+				}
 			}
 		}
 
