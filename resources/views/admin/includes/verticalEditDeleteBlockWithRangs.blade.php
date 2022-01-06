@@ -7,7 +7,7 @@
 
 		<div class="col-7">
 			<div class="row h-100">
-				<div class="col-6 d-flex align-items-center">
+				<div class="col-6 p-2 d-flex align-items-center">
 					<div class="p-2 d-flex align-items-center">
 						<a href="{{ $editLink }}">
 							<span class="line_max_1">
