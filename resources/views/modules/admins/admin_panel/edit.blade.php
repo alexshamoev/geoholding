@@ -30,7 +30,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Name: *</span>
+						<span>სახელი: *</span>
 					</div>
 					
 					<div class="p-2">
@@ -48,7 +48,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>E-mail: *</span>
+						<span>ელ. ფოსტა: *</span>
 					</div>
 
 					<div class="p-2">
@@ -66,7 +66,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Password *</span>
+						<span>პაროლი: *</span>
 					</div>
 
 					<div class="p-2">
@@ -84,7 +84,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Confirm Password: *</span>
+						<span>გაიმეორეთ პაროლი: *</span>
 					</div>
 
 					<div class="p-2">
