@@ -49,7 +49,7 @@ class ALanguageController extends Controller {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(Language :: all() -> sortBy('title') as $data) {
+		foreach(Language :: all() -> sortByDesc('rang') as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}

@@ -67,16 +67,16 @@
 
 			<div class="p-2">
 				<div class="standard-block p-2">
-					<div class="p-1">
+					<div class="p-2">
 						<span>Image (SVG):</span>
 					</div>
 
-					<div class="p-1">
+					<div class="p-2">
 						{{ Form :: file('svg_icon_languages') }}
 					</div>
 
 					@if(null !== "/storage/images/modules/languages/$language -> id.svg")
-						<div class="p-3">
+						<div class="p-2">
 							<img src="{{ asset('/storage/images/modules/languages/'.$language -> id.'.svg') }}" alt="close" style="width: 50px;">
 						</div>
 					@endif
