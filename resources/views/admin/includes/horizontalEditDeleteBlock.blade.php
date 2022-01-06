@@ -35,7 +35,7 @@
 		</div>
 		
 		<div class="col-2">
-			<div class=" d-flex justify-content-end">
+			<div class="d-flex justify-content-end">
 				<div class="edit-block__edit-delete-block p-2">
 					<a href="{{ $editLink }}">
 						<div class="p-2">

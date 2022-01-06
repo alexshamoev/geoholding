@@ -100,7 +100,7 @@
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{ Form :: submit('მონაცემების შეცვლა') }}
 			</div>
 		</div>
 	{{ Form :: close() }}
