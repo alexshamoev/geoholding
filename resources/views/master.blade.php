@@ -23,6 +23,7 @@
 		</title>
 
 		<meta name="description" content="@yield('pageMetaDescription')">
+		<meta property="og:image" content="@yield('pageMetaUrl')">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photoswipe.css') }}">

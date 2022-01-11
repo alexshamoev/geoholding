@@ -32,12 +32,31 @@ class Page extends Model {
 
 
 	public function getMetaTitleAttribute() {
-        return 'ddd '.$this -> { 'title_'.self :: $lang };
+        if($this -> { 'meta_title_'.self :: $lang }) {
+            return $this -> { 'meta_title_'.self :: $lang };
+        } else {
+            return $this -> { 'title_'.self :: $lang };
+        }
     }
 
 
 	public function getMetaDescriptionAttribute() {
-        return 'ddd '.$this -> { 'title_'.self :: $lang };
+        if($this -> { 'meta_description_'.self :: $lang }) {
+            $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
+            return substr($textAsDesc, 0, 255);
+        } else {
+            $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
+            return substr($textAsDesc, 0, 255);
+        }
+    }
+
+
+    public function getMetaUrlAttribute() {
+        if(file_exists(public_path('/storage/images/modules/pages/step_0/'.$this -> { 'id' }.'.jpg'))) {
+            return '/storage/images/modules/pages/step_0/'.$this -> { 'id' }.'.jpg';
+        } else {
+            return '/storage/images/meta_default.jpg';
+        }
     }
 
 
