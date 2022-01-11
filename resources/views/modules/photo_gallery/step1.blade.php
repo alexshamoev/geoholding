@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Photo Gallery Step 0
+	{{ $activePhotoGalleryStep0 -> title }}
 @endsection
 
 

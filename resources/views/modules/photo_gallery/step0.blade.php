@@ -8,11 +8,9 @@
 
 @section('content')
 	<div class="container p-2 photo_gallery main_content--height">
-		<div>	
-			<h1 class="p-2 text-center">
-				{{ $page -> title }}
-			</h1>
-		</div>
+		<h1 class="p-2">
+			{{ $page -> title }}
+		</h1>
 
 		<div class="p-2">
 			{!! $page -> text !!}

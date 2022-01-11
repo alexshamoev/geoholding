@@ -7,8 +7,6 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		{{--<title>{{ config('app.name', 'Laravel') }}</title>--}}
-
 		<!-- Scripts -->
 		<!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
@@ -20,7 +18,11 @@
 		<!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 
-        <title>HobbyStudio Template - @yield('pageMetaTitle')</title>
+        <title>
+			@yield('pageMetaTitle')
+		</title>
+
+		<meta name="description" content="@yield('pageMetaDescription')">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photoswipe.css') }}">

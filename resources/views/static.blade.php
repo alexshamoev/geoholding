@@ -2,7 +2,11 @@
 
 
 @section('pageMetaTitle')
-    Home
+	{{ $page -> metaTitle }}
+@endsection
+
+@section('pageMetaDescription')
+	{{ $page -> metaDescription }}
 @endsection
 
 
@@ -19,16 +23,6 @@
 		<div class="p-2">
 			{!! $page -> text !!} 
 		</div>
-
-		{{--
-		<div class="p-2">
-			BSC Sample: {{ $bsc -> a_folders_url }}
-		</div>
-
-		<div class="p-2">
-			BSW Sample: {{ $bsw -> a_add_image }}
-		</div>
-		--}}
 	</div>
 @endsection
 

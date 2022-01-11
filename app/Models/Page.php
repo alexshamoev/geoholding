@@ -31,6 +31,16 @@ class Page extends Model {
     }
 
 
+	public function getMetaTitleAttribute() {
+        return 'ddd '.$this -> { 'title_'.self :: $lang };
+    }
+
+
+	public function getMetaDescriptionAttribute() {
+        return 'ddd '.$this -> { 'title_'.self :: $lang };
+    }
+
+
 	public function getTextAttribute() {
         return $this -> { 'text_'.self :: $lang };
     }
