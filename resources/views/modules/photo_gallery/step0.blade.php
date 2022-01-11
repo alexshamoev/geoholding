@@ -1,10 +1,10 @@
 @extends('master')
 
+@section('pageMetaTitle'){{ $page -> metaTitle }}@endsection
 
-@section('pageMetaTitle')
-	{{ $page -> title }}
-@endsection
+@section('pageMetaDescription'){{ $page -> metaDescription }}@endsection
 
+@section('pageMetaUrl'){{ $page -> metaUrl }}@endsection
 
 @section('content')
 	<div class="container p-2 photo_gallery main_content--height">
