@@ -1,9 +1,7 @@
 @extends('master')
 
 @section('pageMetaTitle'){{ $activePhotoGalleryStep0 -> metaTitle }}@endsection
-
 @section('pageMetaDescription'){{ $activePhotoGalleryStep0 -> metaDescription }}@endsection
-
 @section('pageMetaUrl'){{ $activePhotoGalleryStep0 -> metaUrl }}@endsection
 
 @section('content')

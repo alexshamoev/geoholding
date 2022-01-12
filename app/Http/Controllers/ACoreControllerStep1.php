@@ -209,14 +209,13 @@ class ACoreControllerStep1 extends Controller {
 
 			//image
 				if($data -> type === 'image') {
-					if($request -> hasFile('image')) {
-
+					if($request -> hasFile($data -> db_column)) {
 						$prefix = '';
-
+						
 						if($data -> prefix) {
 							$prefix = $data -> prefix.'_';
 						}
-
+						
 						$validator = Validator :: make($request -> all(), array(
 							$data -> db_column => 'mimes:jpeg,jpg,png,gif|required|max:10000'
 						));
@@ -225,7 +224,7 @@ class ACoreControllerStep1 extends Controller {
 							return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
 						}
 						
-						$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);	
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);	
 						
 
 						if($data -> fit_type === 'fit') {

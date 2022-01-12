@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Bsw;
 
 class PhotoGalleryStep0 extends Model {
 	/**
@@ -48,23 +49,28 @@ class PhotoGalleryStep0 extends Model {
     }
 
     public function getMetaTitleAttribute() {
+        $bsw = Bsw :: getFullData(self :: $lang);
+
         if($this -> { 'meta_title_'.self :: $lang }) {
             return $this -> { 'meta_title_'.self :: $lang };
-        } else {
+        } else if($this -> { 'title_'.self :: $lang }) {
             return $this -> { 'title_'.self :: $lang };
+        } else {
+            return $bsw -> meta_title;
         }
     }
 
 
 	public function getMetaDescriptionAttribute() {
+        $bsw = Bsw :: getFullData(self :: $lang);
         if($this -> { 'meta_description_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
-            
+            return mb_substr($textAsDesc, 0, 255, 'UTF-8');
+        } else if($this -> { 'text_'.self :: $lang }) {
+            $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
-            $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
-
-            return mb_substr($textAsDesc, 0, 255, 'UTF-8');
+            return $bsw -> meta_description;
         }
     }
 

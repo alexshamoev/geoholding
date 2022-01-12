@@ -248,7 +248,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form :: file('image') }}
+										{{ Form :: file($moduleBlock -> db_column) }}
 									</div>
 									
 									<div class="p-2">

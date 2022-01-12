@@ -1,10 +1,8 @@
 @extends('master')
 
-
-@section('pageMetaTitle')
-	{{ $activeNewsStep2 -> title }}
-@endsection
-
+@section('pageMetaTitle'){{ $activeNewsStep2 -> metaTitle }}@endsection
+@section('pageMetaDescription'){{ $activeNewsStep2 -> metaDescription }}@endsection
+@section('pageMetaUrl'){{ $activeNewsStep2 -> metaUrl }}@endsection
 
 @section('content')
 	<div class="container p-2 main_content--height">
