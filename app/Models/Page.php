@@ -43,10 +43,12 @@ class Page extends Model {
 	public function getMetaDescriptionAttribute() {
         if($this -> { 'meta_description_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
-            return substr($textAsDesc, 0, 255);
+            
+            return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
             $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
-            return substr($textAsDesc, 0, 255);
+            
+            return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         }
     }
 
