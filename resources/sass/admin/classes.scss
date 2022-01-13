@@ -212,12 +212,17 @@
 	&__input_wrapper {
 		background-color: #ebebeb;
 		border: 1px solid #ccc;
+
+		span {
+			color: #004b91;
+		}
 	}
 
 	&__submit {
 		background-color: #A2D5FB;
 		cursor: pointer;
 		border: 1px solid #666;
+		font-size: 14px;
 
 		&:hover {
 			background-color: #2092F4;

@@ -340,9 +340,9 @@ jQuery(function () {
 
 	// login submit
 
-	$('#login_submit').on('click', function() {
-		$('#login_form').submit();
-	})
+	// $('#login_submit').on('click', function() {
+	// 	$('#login_form').submit();
+	// })
 
 	
 	// menu buttons select script
