@@ -40,6 +40,7 @@
 
                     <div class="login__body p-2">
                         <form method="POST" action="{{ route('adminLogin') }}">
+                            @csrf
 
                             <div class="login__input_wrapper row flex-column p-3 mb-4">
                                 <label for="email" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('E-Mail Address') }}: <span>*</span></label>
