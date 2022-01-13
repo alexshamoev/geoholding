@@ -24,7 +24,7 @@
 	<body>
         <div class="container mt-5">
             <div class="row justify-content-center">
-                <div class="col-lg-3 col-md-6 col-12 mt-5 login p-2">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-12 mt-5 login p-2">
                    
                     <div class="d-flex align-items-center login__header">
                         <div class="login__header_image">
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="d-flex flex-column ps-3">
-                            <div style="font-size: 25px" class="fw-bold pb-1">Cms <span style="font-size: 14px">v2.9.4</span></div>
+                            <div style="font-size: 28px" class="pb-1">Cms <span style="font-size: 14px; color: #004b91;">v2.9.4</span></div>
 
                             <div style="font-size: 13px">Created By <a href="#">HobbyStudio</a></div>
                         </div>
@@ -107,7 +107,7 @@
                                 </div> -->
 
                                 <button type="submit" class="login__submit py-2 px-3 d-inline-block">
-                                    სისტემაში შესვლა
+                                    Login
                                 </button>
 
 
@@ -116,6 +116,10 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
+                            </div>
+
+                            <div class="mt-3">
+                                <a href="#">პაროლის აღდგენა</a>
                             </div>
                         </form>
                     </div>
