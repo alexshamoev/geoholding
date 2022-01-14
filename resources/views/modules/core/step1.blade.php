@@ -84,10 +84,12 @@
 									<div class="p-2">
 										{{ Form :: file($moduleBlock -> db_column) }}
 									</div>
-									
-									<div class="p-2">
-										<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_0/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
-									</div>
+
+									@if(file_exists(public_path('/storage/images/modules/'.$module -> alias.'/step_0/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format)))
+										<div class="p-2">
+											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module -> alias.'/step_0/'.$prefix.$data -> id.'.'.$moduleBlock -> file_format) }}" alt="">
+										</div>
+									@endif
 								</div>
 
 								@break
