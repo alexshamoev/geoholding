@@ -1,5 +1,5 @@
 <div class="menu">
-	@foreach($modules as $data)
+	@foreach($modulesForMenu as $data)
 		<style>
 			.menu__link {
 				transition: .2s all ease-in-out;

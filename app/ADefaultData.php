@@ -23,15 +23,17 @@ class ADefaultData {
 		}
 
 		
-		$modules = array();
+		$modulesForMenu = array();
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			if(ModuleStep :: where('top_level', $data['id']) -> first()) {
-				$modules[] = $data;
+			// if(ModuleStep :: where('top_level', $data['id']) -> first()) {
+			if($data -> hide_for_admin === 0) {
+				$modulesForMenu[] = $data;
 			}
 		}
 
-		$data = ['modules' => $modules,
+		$data = ['modules' => Module :: all() -> sortByDesc('rang'),
+				'modulesForMenu' => $modulesForMenu,
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
 				'copyrightDate' => $copyrightDate,
