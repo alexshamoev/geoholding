@@ -25,55 +25,60 @@
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-xl-3 col-lg-4 col-md-6 col-12 mt-5 login p-2">
-                   
-                    <div class="d-flex align-items-center login__header">
-                        <div class="login__header_image">
-                            <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100 p-2">
+                    <div class="d-flex align-items-center login__header row">
+                        <div class="col-4 p-2">
+                            <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio">
                         </div>
 
-                        <div class="d-flex flex-column ps-3">
+                        <div class="col-8 p-2">
                             <div style="font-size: 28px" class="pb-1">Cms <span style="font-size: 14px; color: #004b91;">v2.9.4</span></div>
 
                             <div style="font-size: 13px">Created By <a href="#">HobbyStudio</a></div>
                         </div>
                     </div>
 
-                    <div class="login__body p-2">
+                    <div class="login__body">
                         <form method="POST" action="{{ route('adminLogin') }}">
                             @csrf
 
-                            <div class="login__input_wrapper row flex-column p-3 mb-4">
-                                <label for="email" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('E-Mail Address') }}: <span>*</span></label>
+                            @error('email')
+                                <div class="p-2 invalid-feedback d-block">
+                                    <span role="alert">
+                                        <strong>{{ __('bsw.aBadLoginData') }}</strong>
+                                    </span>
+                                </div>
+                            @enderror
 
-                                <div class="col-md-6 w-100">
-                                    <input id="email"
-                                            type="email"
-                                            class="form-control @error('email') is-invalid @enderror w-100"
-                                            name="email"
-                                            value="{{ old('email') }}"
-                                            required
-                                            autocomplete="email"
-                                            autofocus>
+                            <div class="p-2">
+                                <div class="login__input_wrapper row flex-column p-3">
+                                    <label for="email" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('E-Mail Address') }}: <span>*</span></label>
 
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    <div class="col-md-6 w-100">
+                                        <input id="email"
+                                                type="email"
+                                                class="form-control w-100"
+                                                name="email"
+                                                value="{{ old('email') }}"
+                                                required
+                                                autocomplete="email"
+                                                autofocus>
+                                    </div>
                                 </div>
                             </div>
                             
-                            <div class="login__input_wrapper row flex-column p-3">
-                                <label for="password" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('Password') }}: <span>*</span></label>
+                            <div class="p-2">
+                                <div class="login__input_wrapper row flex-column p-3">
+                                    <label for="password" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('Password') }}: <span>*</span></label>
 
-                                <div class="col-md-6 w-100">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror w-100" name="password" required autocomplete="current-password">
+                                    <div class="col-md-6 w-100">
+                                        <input id="password" type="password" class="form-control w-100" name="password" required autocomplete="current-password">
 
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
 
@@ -101,7 +106,7 @@
                                 </div>
                             </div> -->
 
-                            <div class="form-group mb-0 mt-3">
+                            <div class="form-group p-2">
                                 <!-- <div class="login__submit py-2 px-3 d-inline-block" id="login_submit">
                                     სისტემაში შესვლა
                                 </div> -->
@@ -118,9 +123,9 @@
                                 @endif
                             </div>
 
-                            <div class="mt-3">
-                                <a href="#">პაროლის აღდგენა</a>
-                            </div>
+                            <!-- <div class="p-2">
+                                <a href="#">Forgot Password?</a>
+                            </div> -->
                         </form>
                     </div>
                 </div>
