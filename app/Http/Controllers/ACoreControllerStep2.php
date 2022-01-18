@@ -245,26 +245,39 @@ class ACoreControllerStep2 extends Controller {
 						
 						$imagePath = 'app/public/images/modules/'.$module -> alias.'/step_2/'.$prefix.$id.'.'.$data -> file_format;
 
+						$image = ImageManagerStatic :: make(storage_path($imagePath));
+						$width = $image -> width();
+						$height = $image -> height();
+
 						if($data -> fit_type === 'fit') {
-							$image = ImageManagerStatic :: make(storage_path($imagePath)) -> fit($data -> image_width,
-																									$data -> image_height,
-																									function() {},
-																									$data -> fit_position);
+							$image = $image -> fit($data -> image_width,
+													$data -> image_height,
+													function() {},
+													$data -> fit_position);
 						}
 						
 						if($data -> fit_type === 'resize') {
-							$image = ImageManagerStatic :: make(storage_path($imagePath)) -> resize($data -> image_width,
-																									$data -> image_height,
-																									function ($constraint) {
-																									$constraint->aspectRatio();
-																									});
-							
-							$width = ImageManagerStatic::make(storage_path($imagePath)) -> width();
-							$height = ImageManagerStatic::make(storage_path($imagePath)) -> height();
+							$image = $image -> resize($data -> image_width,
+														$data -> image_height,
+														function ($constraint) {
+														$constraint->aspectRatio();
+														});
 
 							if($width < $data -> image_width && $height < $data -> image_height) {
 								$image = ImageManagerStatic :: make(storage_path($imagePath));																																			
 							}
+						}
+
+						if($data -> fit_type === 'resize_with_bg') {
+							if($width > $data -> image_width || $height > $data -> image_height) {
+								$image -> resize($data -> image_width,
+													$data -> image_height,
+													function ($constraint) {
+													$constraint->aspectRatio();
+													});																																	
+							}
+
+							$image->resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
 						}
 
 						if($data -> fit_type === 'default') {
@@ -297,6 +310,18 @@ class ACoreControllerStep2 extends Controller {
 									if($width < $data -> image_width && $height < $data -> image_height) {
 										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_2/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));																																			
 									}
+								}
+
+								if($data -> { 'fit_type_'.$i } === 'resize_with_bg') {
+									if($width > $data -> image_width || $height > $data -> image_height) {
+										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_2/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
+																																																									$data -> image_height,
+																																																									function ($constraint) {
+																																																									$constraint->aspectRatio();
+																																																									});																																	
+									}
+									
+									$image -> resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
 								}
 
 								if($data -> { 'fit_type_'.$i } === 'default') {
