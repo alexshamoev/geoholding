@@ -77,7 +77,7 @@ use App\Mail\WelcomeMail;
 			Route :: get('/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
 		});
 
-		//Modulis without core
+		// Modulis without core
 			Route :: get('/contacts', 'AContactsController@edit') -> name('contactsEdit');
 			Route :: post('/contacts', 'AContactsController@update') -> name('contactsUpdate');
 		//

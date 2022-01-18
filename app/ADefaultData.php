@@ -26,7 +26,6 @@ class ADefaultData {
 		$modulesForMenu = array();
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			// if(ModuleStep :: where('top_level', $data['id']) -> first()) {
 			if($data -> hide_for_admin === 0) {
 				$modulesForMenu[] = $data;
 			}
@@ -37,6 +36,7 @@ class ADefaultData {
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
 				'copyrightDate' => $copyrightDate,
+				'languages' => Language :: where('disable', 0) -> get(),
 				'activeUser' => Auth :: user()];
 
 		return $data;
