@@ -20,12 +20,15 @@
 					@endphp
 					
 					<div class="d-block py-2 px-4 {{ $activeCssClass }}"> 
-					
-						<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
-							<span>
-								{{ $data -> title }}
-							</span>
-						</a>
+						@if($data -> url)
+							<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
+						@endif
+								<span>
+									{{ $data -> title }}
+								</span>
+						@if($data -> url)
+							</a>
+						@endif
 
 						<div class="js_arrow_div me10">
 							<span class="ba_thin_arrow_right"></span>
@@ -44,11 +47,15 @@
 								@endphp
 								
 								<div class="me6 {{ $activeCssClass }}">
-									<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-										<span>
-											{{ $dataInside -> title }}
-										</span>
-									</a>
+									@if($dataInside -> url)
+										<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+									@endif
+											<span>
+												{{ $dataInside -> title }}
+											</span>
+									@if($dataInside -> url)
+										</a>
+									@endif
 								</div>
 							@endforeach
 						</div>
@@ -65,11 +72,15 @@
 								@endphp
 								
 								<div class="me6 {{ $activeCssClass }}">
-									<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-										<span>
-											{{ $dataInside -> title }}
-										</span>
-									</a>
+									@if($dataInside -> url)
+										<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
+									@endif
+											<span>
+												{{ $dataInside -> title }}
+											</span>
+									@if($dataInside -> url)
+										</a>
+									@endif
 								</div>
 							@endforeach
 						</div>
