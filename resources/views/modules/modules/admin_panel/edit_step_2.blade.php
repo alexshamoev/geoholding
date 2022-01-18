@@ -164,6 +164,10 @@
 						</div>
 
 						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type', 'resize_with_bg') }} resize_with_bg
+						</div>
+
+						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type', 'default') }} default
 						</div>
 
@@ -215,6 +219,10 @@
 						</div>
 
 						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_1', 'resize_with_bg') }} resize_with_bg_1
+						</div>
+
+						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_1', 'default') }} default_1
 						</div>
 					</div>
@@ -244,6 +252,10 @@
 						</div>
 
 						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_2', 'resize_with_bg') }} resize_with_bg_2
+						</div>
+
+						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_2', 'default') }} default_2
 						</div>
 					</div>
@@ -269,6 +281,10 @@
 						
 						<div class="col-2 p-2">
 							{{ Form :: radio('fit_type_3', 'resize') }} resize_3
+						</div>
+						
+						<div class="col-2 p-2">
+							{{ Form :: radio('fit_type_3', 'resize_with_bg') }} resize_with_bg_3
 						</div>
 
 						<div class="col-2 p-2">
