@@ -21,7 +21,7 @@ body {
 	font: 15px Arial;
 	margin: 0;
 	overflow-y: scroll;
-	padding: 20px 0;
+	padding: 0;
 }
 
 button {
@@ -83,11 +83,11 @@ input[type="button"] {
 
 input[type="text"],
 input[type="file"],
+input[type="email"],
 input[type="password"] {
 	background-color: #fff;
 	border: 1px solid #ccc;
 	padding: 3px;
-	width: 350px;
 }
 
 input[type="range"] {

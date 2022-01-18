@@ -193,3 +193,40 @@
 .tags_wrapper {
 	line-height: 30px;
 }
+
+// login page
+
+.login {
+	background-color: #fff;
+	border: 1px solid #ccc;
+
+	&__header {
+		
+	}
+
+	&__header_image {
+		width: 90px;
+		height: 110px;
+	}
+
+	&__input_wrapper {
+		background-color: #ebebeb;
+		border: 1px solid #ccc;
+
+		span {
+			color: #004b91;
+		}
+	}
+
+	&__submit {
+		background-color: #A2D5FB;
+		cursor: pointer;
+		border: 1px solid #666;
+		font-size: 14px;
+
+		&:hover {
+			background-color: #2092F4;
+    		color: #fff;
+		}
+	}
+}
