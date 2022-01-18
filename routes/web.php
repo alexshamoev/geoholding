@@ -16,6 +16,8 @@ use App\Mail\WelcomeMail;
 	});
 
 	Route :: group(['middleware' => 'auth', 'prefix' => 'admin'], function() {
+		App :: setLocale(Language :: where('like_default_for_admin', '1') -> first() -> title);
+
 		Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
 
 		Route :: get('/logout', 'AAdminController@logout') -> name('logout');

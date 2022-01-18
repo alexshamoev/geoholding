@@ -79,10 +79,9 @@ class AContactsController extends Controller {
 		$bsw -> save();
 
         // Status for success.
-            $request -> session() -> flash('successStatus', 'Data is Saved!');
+            $request -> session() -> flash('successStatus', __('bsw.successStatus'));
         //
 
 		return redirect() -> route('contactsEdit');
-		// return $request -> input('contactsEdit');
 	}
 }
