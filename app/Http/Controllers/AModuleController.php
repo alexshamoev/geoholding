@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AModuleController extends Controller {
     public function getStartPoint() {
-		$defaultData = ADefaultData :: get();
-
 		ModuleBlock :: deleteEmpty();
 		ModuleStep :: deleteEmpty();
 		Module :: deleteEmpty();
+		
+		$defaultData = ADefaultData :: get();
 
 		return view('modules.modules.admin_panel.start_point', $defaultData);
 	}

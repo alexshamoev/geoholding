@@ -282,7 +282,7 @@ class ACoreControllerStep0 extends Controller {
 													'moduleBlocks' => $moduleBlocks,
 													'selectData' => $selectData,
 													'selectOptgroudData' => $selectOptgroudData,
-													'languages' => Language :: where('published', 1) -> orderBy('rang', 'desc') -> get(),
+													'languages' => Language :: where('disable', 0) -> orderBy('rang', 'desc') -> get(),
 													'sortBy' => $orderBy,
 													'id' => $id,
 													'imageFormat' => $imageFormat,
@@ -305,34 +305,32 @@ class ACoreControllerStep0 extends Controller {
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
 
-		$updateQuery = [];
+		
+		// Validation
+			$validationArray = [];
 
-		foreach($moduleBlocks as $data) {
-			// Validation
+			foreach($moduleBlocks as $data) {
 				if($data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages') {
-					$validator = Validator :: make($request -> all(), array(
-						$data -> db_column => $data -> validation
-					));
-
-					if($validator -> fails()) {
-						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
-					}
+					$validationArray[$data -> db_column] = $data -> validation;
 				} else {
 					$validationData = [];
 
-					foreach(Language :: where('published', 1) -> get() as $langData) {
-						$validationData[$data -> db_column.'_'.$langData -> title] = $data -> validation;
-					}
-					
-					$validator = Validator :: make($request -> all(), $validationData);
-
-					if($validator -> fails()) {
-						return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+					foreach(Language :: where('disable', 0) -> get() as $langData) {
+						$validationArray[$data -> db_column.'_'.$langData -> title] = $data -> validation;
 					}
 				}
-			//
+			}
 
+			$validator = Validator :: make($request -> all(), $validationArray);
 
+			if($validator -> fails()) {
+				return redirect() -> route('coreEditStep0', array($module -> alias, $id)) -> withErrors($validator) -> withInput();
+			}
+		//
+
+		$updateQuery = [];
+		
+		foreach($moduleBlocks as $data) {
 			if($data -> type !== 'image'
 				&& $data -> type !== 'file'
 				&& $data -> type !== 'published'
@@ -346,7 +344,7 @@ class ACoreControllerStep0 extends Controller {
 			}
 
 			if($data -> type === 'alias') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$value = $request -> input($data -> db_column.'_'.$langData -> title);
 					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
 											'',
@@ -367,13 +365,13 @@ class ACoreControllerStep0 extends Controller {
 			}
 
 			if($data -> type === 'input_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
 
 			if($data -> type === 'editor_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
@@ -576,13 +574,15 @@ class ACoreControllerStep0 extends Controller {
 					foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> get() as $moduleBlock) {
 						if($moduleBlock -> validation) {
 							if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
-								foreach(Language :: where('published', 1) -> get() as $langData) {
+								foreach(Language :: where('disable', 0) -> get() as $langData) {
 									$validateRules[$moduleBlock -> db_column.'_'.$langData -> title] = $moduleBlock -> validation;
 									$data[$moduleBlock -> db_column.'_'.$langData -> title] = $dbTableData -> { $moduleBlock -> db_column.'_'.$langData -> title };
 								}
 							} else {
-								$validateRules[$moduleBlock -> db_column] = $moduleBlock -> validation;
-								$data[$moduleBlock -> db_column] = $dbTableData -> { $moduleBlock -> db_column };
+								if($moduleBlock -> type !== 'image' && $moduleBlock -> type !== 'file') {
+									$validateRules[$moduleBlock -> db_column] = $moduleBlock -> validation;
+									$data[$moduleBlock -> db_column] = $dbTableData -> { $moduleBlock -> db_column };
+								}
 							}
 						}
 					}
