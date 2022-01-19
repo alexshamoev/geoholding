@@ -20,6 +20,10 @@ class AModuleController extends Controller {
     public function getStartPoint() {
 		$defaultData = ADefaultData :: get();
 
+		ModuleBlock :: deleteEmpty();
+		ModuleStep :: deleteEmpty();
+		Module :: deleteEmpty();
+
 		return view('modules.modules.admin_panel.start_point', $defaultData);
 	}
 
@@ -93,6 +97,9 @@ class AModuleController extends Controller {
 		}
 
 		$defaultData = ADefaultData :: get();
+
+		ModuleBlock :: deleteEmpty();
+		ModuleStep :: deleteEmpty();
 
 		$data = array_merge($defaultData, ['pagesForSelect' => $pagesForSelect,
 											'pagesForIncludeInPages' => $pagesForIncludeInPages,

@@ -58,6 +58,8 @@ class AModuleStepController extends Controller {
 
 		$defaultData = ADefaultData :: get();
 
+		ModuleBlock :: deleteEmpty();
+
 		$data = array_merge($defaultData, ['pages' => Page :: where('published', 1) -> get(),
 											'languages' => Language :: where('published', 1) -> get(),
 											'module' => $module,
