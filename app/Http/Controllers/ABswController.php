@@ -79,9 +79,9 @@ class ABswController extends Controller {
 				'system_word' => 'required|min:2|max:255'
 			);
 
-			foreach(Language :: where('published', 1) -> get() as $data) {
-				$dataForValidation['word_'.$data -> title] = 'max:255';
-			}
+			// foreach(Language :: where('published', 1) -> get() as $data) {
+			// 	$dataForValidation['word_'.$data -> title] = 'max:255';
+			// }
 			
 			$validator = Validator :: make($request -> all(), $dataForValidation);
 

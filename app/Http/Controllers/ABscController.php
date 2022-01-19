@@ -77,7 +77,7 @@ class ABscController extends Controller {
 		// Validation
 			$validator = Validator :: make($request -> all(), array(
 				'system_word' => 'required|min:2|max:255',
-				'configuration' => 'nullable|max:255'
+				'configuration' => 'required|nullable|max:255'
 			));
 
 			if($validator -> fails()) {
@@ -104,7 +104,8 @@ class ABscController extends Controller {
 	
 	private static function deleteEmpty() {
 		$validateRules = array(
-			'system_word' => 'required|min:2'
+			'system_word' => 'required|min:2',
+			'configuration' => 'nullable'
 		);
 		
 		foreach(Bsc :: all() as $data) {
