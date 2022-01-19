@@ -10,8 +10,7 @@ use App\Models\Language;
 use App\ADefaultData;
 use Illuminate\Support\Facades\Validator;
 
-class AContactsController extends Controller
-{
+class AContactsController extends Controller {
     public function edit() {
 		$defaultData = ADefaultData :: get();
         $bswAddress = Bsw :: find(430); 
@@ -22,6 +21,7 @@ class AContactsController extends Controller
 
 		return view('modules.contacts.admin_panel.start_point', $data);
 	}
+
 
     public function update(Request $request) {
         // Validation
@@ -44,15 +44,15 @@ class AContactsController extends Controller
 		$bsc -> configuration = $request -> input('admin_email');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(636);
+        $bsc = Bsc :: find(706);
 		$bsc -> configuration = $request -> input('facebook_link');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(706);
+        $bsc = Bsc :: find(707);
 		$bsc -> configuration = $request -> input('instagram_link');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(707);
+        $bsc = Bsc :: find(708);
 		$bsc -> configuration = $request -> input('twitter_link');
 		$bsc -> save();
 
@@ -60,15 +60,15 @@ class AContactsController extends Controller
 		$bsc -> configuration = $request -> input('phone_number');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(708);
+        $bsc = Bsc :: find(709);
 		$bsc -> configuration = $request -> input('cordinate_x');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(709);
+        $bsc = Bsc :: find(710);
 		$bsc -> configuration = $request -> input('cordinate_y');
 		$bsc -> save();
 
-        $bsc = Bsc :: find(710);
+        $bsc = Bsc :: find(711);
 		$bsc -> configuration = $request -> input('map_number');
 		$bsc -> save();
 
@@ -79,10 +79,9 @@ class AContactsController extends Controller
 		$bsw -> save();
 
         // Status for success.
-            $request -> session() -> flash('successStatus', 'Data is Saved!');
+            $request -> session() -> flash('successStatus', __('bsw.successStatus'));
         //
 
 		return redirect() -> route('contactsEdit');
-		// return $request -> input('contactsEdit');
 	}
 }

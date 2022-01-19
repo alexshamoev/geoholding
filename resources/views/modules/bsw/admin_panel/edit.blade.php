@@ -25,6 +25,13 @@
 	])
 
 
+	@if(Session :: has('successStatus'))
+        <div class="alert alert-success" role="alert">
+            {{ Session :: get('successStatus') }}
+        </div>
+    @endif
+
+
 	{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
 		<div class="p-2">
 			<div class="p-2">

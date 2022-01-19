@@ -99,6 +99,10 @@ class ABswController extends Controller {
 
 		$bsw -> save();
 
+		// Status for success.
+			$request -> session() -> flash('successStatus', __('bsw.successStatus'));
+        //
+
 		return redirect() -> route('bswEdit', $bsw -> id);
 	}
 

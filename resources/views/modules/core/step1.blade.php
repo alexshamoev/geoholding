@@ -355,7 +355,7 @@
 			@endforeach
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('მონაცემების შეცვლა') }}
+				{{ Form :: submit(__('bsw.submit')) }}
 			</div>
 		{{ Form :: close() }}
 		

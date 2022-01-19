@@ -44,41 +44,54 @@
                             @error('email')
                                 <div class="p-2 invalid-feedback d-block">
                                     <span role="alert">
-                                        <strong>{{ __('bsw.aBadLoginData') }}</strong>
+                                        <strong>{{ __('bsw.badLoginData') }}</strong>
                                     </span>
                                 </div>
                             @enderror
 
                             <div class="p-2">
-                                <div class="login__input_wrapper row flex-column p-3">
-                                    <label for="email" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('E-Mail Address') }}: <span>*</span></label>
+                                <div class="standard-block p-2">
+                                    <label>
+                                        <div class="p-2">
+                                            {{ __('bsw.email') }}: <span>*</span>
+                                        </div>
 
-                                    <div class="col-md-6 w-100">
-                                        <input id="email"
-                                                type="email"
-                                                class="form-control w-100"
-                                                name="email"
-                                                value="{{ old('email') }}"
-                                                required
-                                                autocomplete="email"
-                                                autofocus>
-                                    </div>
+                                        <div class="p-2">
+                                            <input id="email"
+                                                    type="email"
+                                                    class="form-control w-100"
+                                                    name="email"
+                                                    value="{{ old('email') }}"
+                                                    required
+                                                    autocomplete="email"
+                                                    autofocus>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                             
                             <div class="p-2">
-                                <div class="login__input_wrapper row flex-column p-3">
-                                    <label for="password" class="col-md-4 pt-0 pb-1 col-form-label text-md-right w-100">{{ __('Password') }}: <span>*</span></label>
+                                <div class="standard-block p-2">
+                                    <label>
+                                        <div class="p-2">
+                                            {{ __('bsw.password') }}: <span>*</span>
+                                        </div>
 
-                                    <div class="col-md-6 w-100">
-                                        <input id="password" type="password" class="form-control w-100" name="password" required autocomplete="current-password">
+                                        <div class="p-2">
+                                            <input id="password"
+                                                    type="password"
+                                                    class="form-control w-100"
+                                                    name="password"
+                                                    required
+                                                    autocomplete="current-password">
 
-                                        @error('password')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
 
@@ -111,10 +124,10 @@
                                     სისტემაში შესვლა
                                 </div> -->
 
-                                <button type="submit" class="login__submit py-2 px-3 d-inline-block">
-                                    Login
-                                </button>
-
+                                <input type="submit"
+                                        class="login__submit px-3 py-2"
+                                        value="{{ __('bsw.login') }}">
+                                
 
                                 @if(Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
