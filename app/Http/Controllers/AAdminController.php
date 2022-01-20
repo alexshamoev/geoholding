@@ -7,7 +7,6 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
-use App\ADefaultData;
 use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 
 
-class AAdminController extends Controller {
+class AAdminController extends AController {
     public function logout() {
         if(Auth :: check()) {
             Auth :: logout();
@@ -55,9 +54,7 @@ class AAdminController extends Controller {
 
 
     public function getStartPoint() {
-        $defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['admins' => User :: all() -> sortBy('email')]);
+		$data = array_merge(self :: getDefaultData(), ['admins' => User :: all() -> sortBy('email')]);
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
@@ -100,12 +97,10 @@ class AAdminController extends Controller {
 			}
 		}
 
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['admins' => User :: all() -> sortBy('email'),
-											'activeAdmin' => User :: find($id),
-											'prevAdminId' => $prevId,
-											'nextAdminId' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['admins' => User :: all() -> sortBy('email'),
+                                                        'activeAdmin' => User :: find($id),
+                                                        'prevAdminId' => $prevId,
+                                                        'nextAdminId' => $nextId]);
 
 		return view('modules.admins.admin_panel.edit', $data);
 	}

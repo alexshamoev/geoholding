@@ -9,12 +9,11 @@ use App\Models\Page;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Language;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class AModuleStepController extends Controller {
+class AModuleStepController extends AController {
 	public function add($moduleId) {
 		$module = Module :: find($moduleId);
 
@@ -55,19 +54,16 @@ class AModuleStepController extends Controller {
 			}
 		}
 
-
-		$defaultData = ADefaultData :: get();
-
 		ModuleBlock :: deleteEmpty();
 
-		$data = array_merge($defaultData, ['pages' => Page :: where('published', 1) -> get(),
-											'languages' => Language :: where('published', 1) -> get(),
-											'module' => $module,
-											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-											'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get(),
-											'moduleStep' => $moduleStep,
-											'prev' => ModuleStep :: find($prevId),
-											'next' => ModuleStep :: find($nextId)]);
+		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: where('published', 1) -> get(),
+														'languages' => Language :: where('published', 1) -> get(),
+														'module' => $module,
+														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
+														'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get(),
+														'moduleStep' => $moduleStep,
+														'prev' => ModuleStep :: find($prevId),
+														'next' => ModuleStep :: find($nextId)]);
 
 
 		return view('modules.modules.admin_panel.edit_step_1', $data);

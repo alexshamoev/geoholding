@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class ARangController extends Controller {
+class ARangController extends AController {
     public function set(Request $request) {
         $rang = 0;
         $i = 0;

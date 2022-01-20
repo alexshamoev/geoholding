@@ -7,7 +7,6 @@ use App\Models\ModuleBlock;
 use App\Models\Language;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +14,7 @@ use Intervention\Image\ImageManagerStatic;
 use DB;
 
 
-class ACoreControllerStep3 extends Controller {
+class ACoreControllerStep3 extends AController {
     public function add($moduleAlias, $parentFirst, $parentSecond, $parentThird) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(3) -> take(1) -> first();
@@ -136,28 +135,28 @@ class ACoreControllerStep3 extends Controller {
 		}
 
 
-		$data = array_merge(ADefaultData :: get(), ['module' => $module,
-													'moduleStep' => $moduleStep,
-													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
-													'moduleBlocks' => $moduleBlocks,
-													'selectData' => $selectData,
-													'selectOptgroudData' => $selectOptgroudData,
-													'languages' => Language :: where('published', 1) -> get(),
-													'sortBy' => $use_for_sort,
-													'id' => $id,
-													'parentFirst' => $parentFirst,
-													'parentSecond' => $parentSecond,
-													'parentThird' => $parentThird,
-													'moduleStepTableData2' => DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
-													'moduleStep2' => $moduleStep2,
-													'data' => $pageData,
-													'imageFormat' => $imageFormat,
-													'prevId' => $prevId,
-													'nextId' => $nextId,
-													'use_for_tags' => $use_for_tags,
-													'parentData' => $pageParentData,
-													'parentDataSecond' => $pageParentDataSecond,
-													'parentDataThird' => $pageParentDataThird]);
+		$data = array_merge(self :: getDefaultData(), ['module' => $module,
+														'moduleStep' => $moduleStep,
+														'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
+														'moduleBlocks' => $moduleBlocks,
+														'selectData' => $selectData,
+														'selectOptgroudData' => $selectOptgroudData,
+														'languages' => Language :: where('published', 1) -> get(),
+														'sortBy' => $use_for_sort,
+														'id' => $id,
+														'parentFirst' => $parentFirst,
+														'parentSecond' => $parentSecond,
+														'parentThird' => $parentThird,
+														'moduleStepTableData2' => DB :: table($moduleStep2 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+														'moduleStep2' => $moduleStep2,
+														'data' => $pageData,
+														'imageFormat' => $imageFormat,
+														'prevId' => $prevId,
+														'nextId' => $nextId,
+														'use_for_tags' => $use_for_tags,
+														'parentData' => $pageParentData,
+														'parentDataSecond' => $pageParentDataSecond,
+														'parentDataThird' => $pageParentDataThird]);
 
 		// return $moduleStep2 -> db_table;
 		return view('modules.core.step4', $data);

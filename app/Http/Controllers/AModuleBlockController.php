@@ -9,12 +9,11 @@ use App\Models\Page;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Language;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class AModuleBlockController extends Controller {
+class AModuleBlockController extends AController {
 	public function add($moduleId, $stepId) {
 		$module = Module :: find($moduleId);
 		$moduleStep = ModuleStep :: find($stepId);
@@ -78,18 +77,16 @@ class AModuleBlockController extends Controller {
 							'multiply_input_params' => 'multiply_input_params');
 		
 
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['pages' => Page :: where('published', 1) -> get(),
-											'languages' => Language :: where('published', 1) -> get(),
-											'module' => $module,
-											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-											'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
-											'moduleStep' => $moduleStep,
-											'moduleBlock' => $moduleBlock,
-											'blockTypes' => $blockTypes,
-											'prev' => $prevId,
-											'next' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: where('published', 1) -> get(),
+														'languages' => Language :: where('published', 1) -> get(),
+														'module' => $module,
+														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
+														'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
+														'moduleStep' => $moduleStep,
+														'moduleBlock' => $moduleBlock,
+														'blockTypes' => $blockTypes,
+														'prev' => $prevId,
+														'next' => $nextId]);
 
 		return view('modules.modules.admin_panel.edit_step_2', $data);
 	}

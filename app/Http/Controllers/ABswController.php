@@ -5,20 +5,17 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class ABswController extends Controller {
+class ABswController extends AController {
 	public function getStartPoint() {
 		self :: deleteEmpty();
 
-		
-		$defaultData = ADefaultData :: get();
 
-		$data = array_merge($defaultData, ['languages' => Language :: where('published', 1) -> get(),
-											'bsws' => Bsw :: all() -> sortBy('system_word')]);
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('published', 1) -> get(),
+														'bsws' => Bsw :: all() -> sortBy('system_word')]);
 		
 		return view('modules.bsw.admin_panel.start_point', $data);
 	}
@@ -57,14 +54,11 @@ class ABswController extends Controller {
 			}
 		}
 
-
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['languages' => Language :: where('published', 1) -> get(),
-											'bsws' => Bsw :: all() -> sortBy('system_word'),
-											'activeBsw' => Bsw :: find($id),
-											'prevBswId' => $prevId,
-											'nextBswId' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('published', 1) -> get(),
+														'bsws' => Bsw :: all() -> sortBy('system_word'),
+														'activeBsw' => Bsw :: find($id),
+														'prevBswId' => $prevId,
+														'nextBswId' => $nextId]);
 		
 		return view('modules.bsw.admin_panel.edit', $data);
 	}

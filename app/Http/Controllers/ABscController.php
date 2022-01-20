@@ -5,19 +5,15 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
-use App\ADefaultData;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 
-class ABscController extends Controller {
+class ABscController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmpty();
+		Bsc :: deleteEmpty();
 
-
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['bscs' => Bsc :: all() -> sortBy('system_word')]);
+		$data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
 
 		return view('modules.bsc.admin_panel.start_point', $data);
 	}
@@ -52,19 +48,17 @@ class ABscController extends Controller {
 			if($bsc -> id === $data -> id) {
 				$prevIdIsSaved = true;
 				$nextIdIsSaved = true;
-			}
+			} 
 			
 			if(!$prevIdIsSaved) {
 				$prevId = $data -> id;
 			}
 		}
 
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['bscs' => Bsc :: all() -> sortBy('system_word'),
-											'activeBsc' => Bsc :: find($id),
-											'prevBscId' => $prevId,
-											'nextBscId' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word'),
+														'activeBsc' => Bsc :: find($id),
+														'prevBscId' => $prevId,
+														'nextBscId' => $nextId]);
 
 		return view('modules.bsc.admin_panel.edit', $data);
 	}
@@ -103,25 +97,5 @@ class ABscController extends Controller {
 		Bsc :: destroy($id);
 
 		return redirect() -> route('bscStartPoint');
-	}
-
-	
-	private static function deleteEmpty() {
-		$validateRules = array(
-			'system_word' => 'required|min:2',
-			'configuration' => 'nullable'
-		);
-		
-		foreach(Bsc :: all() as $data) {
-			$bscData['system_word'] = $data -> system_word;
-
-			// Validation
-				$validator = Validator :: make($bscData, $validateRules);
-
-				if($validator -> fails()) {
-					Bsc :: destroy($data -> id);
-				}
-			//
-		}
 	}
 }

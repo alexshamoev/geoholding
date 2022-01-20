@@ -7,7 +7,6 @@ use App\Models\ModuleBlock;
 use App\Models\Language;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +14,7 @@ use Intervention\Image\ImageManagerStatic;
 use DB;
 
 
-class ACoreControllerStep1 extends Controller {
+class ACoreControllerStep1 extends AController {
 	public function add($moduleAlias, $parent) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -124,25 +123,25 @@ class ACoreControllerStep1 extends Controller {
 		}
 
 
-		$data = array_merge(ADefaultData :: get(), ['module' => $module,
-													'moduleStep' => $moduleStep,
-													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
-													'moduleBlocks' => $moduleBlocks,
-													'selectData' => $selectData,
-													'selectOptgroudData' => $selectOptgroudData,
-													'languages' => Language :: where('published', 1) -> get(),
-													'sortBy' => $use_for_sort,
-													'id' => $id,
-													'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
-													'moduleStep1Data' => $moduleStepStep1,
-													'data' => $pageData,
-													'imageFormat' => $imageFormat,
-													'prevId' => $prevId,
-													'nextId' => $nextId,
-													'use_for_tags' => $use_for_tags,
-													'parentData' => $pageParentData,
-													'moduleStep2' => $moduleStep2,
-													'moduleStepTableData2' => $moduleStepTableData2]);
+		$data = array_merge(self :: getDefaultData(), ['module' => $module,
+														'moduleStep' => $moduleStep,
+														'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy('rang', 'desc') -> get(),
+														'moduleBlocks' => $moduleBlocks,
+														'selectData' => $selectData,
+														'selectOptgroudData' => $selectOptgroudData,
+														'languages' => Language :: where('published', 1) -> get(),
+														'sortBy' => $use_for_sort,
+														'id' => $id,
+														'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
+														'moduleStep1Data' => $moduleStepStep1,
+														'data' => $pageData,
+														'imageFormat' => $imageFormat,
+														'prevId' => $prevId,
+														'nextId' => $nextId,
+														'use_for_tags' => $use_for_tags,
+														'parentData' => $pageParentData,
+														'moduleStep2' => $moduleStep2,
+														'moduleStepTableData2' => $moduleStepTableData2]);
 
 		return view('modules.core.step2', $data);
 	}

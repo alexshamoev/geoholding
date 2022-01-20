@@ -6,12 +6,11 @@ use App\Models\Module;
 use App\Models\Language;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class ALanguageController extends Controller {
+class ALanguageController extends AController {
 	public function getStartPoint() {
 		self :: deleteEmpty();
 
@@ -23,9 +22,7 @@ class ALanguageController extends Controller {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortByDesc('rang')]);
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: all() -> sortByDesc('rang')]);
 
 		return view('modules.languages.admin_panel.start_point', $data);
 	}
@@ -64,12 +61,10 @@ class ALanguageController extends Controller {
 			}
 		}
 
-		$defaultData = ADefaultData :: get();
-
-		$data = array_merge($defaultData, ['languages' => Language :: all() -> sortBy('title'),
-											'language' => Language :: find($id),
-											'prevLanguageId' => $prevId,
-											'nextLanguageId' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: all() -> sortBy('title'),
+														'language' => Language :: find($id),
+														'prevLanguageId' => $prevId,
+														'nextLanguageId' => $nextId]);
 
 		return view('modules.languages.admin_panel.edit', $data);
 	}
