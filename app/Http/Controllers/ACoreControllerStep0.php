@@ -614,29 +614,33 @@ class ACoreControllerStep0 extends Controller {
 								if($moduleBlock -> type !== 'image' && $moduleBlock -> type !== 'file') {
 									$validateRules[$moduleBlock -> db_column] = $moduleBlock -> validation;
 									$data[$moduleBlock -> db_column] = $dbTableData -> { $moduleBlock -> db_column };
-
-									$prefix = '';
-				
-									if($moduleBlock -> prefix) {
-										$prefix = $moduleBlock -> prefix.'_';
-									}
-									
-									$filePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$dbTableData -> id.'.'.$moduleBlock -> file_format);
-									dd($moduleBlock);
-									if(file_exists($filePath)) {
-										unlink($filePath);
-									}
 								}
 							}
 						}
-
-						
 					}
 
 					$validator = Validator :: make($data, $validateRules);
 
 					if($validator -> fails()) {
 						DB :: table($moduleStep -> db_table) -> delete($dbTableData -> id);
+
+						// Delete files.
+							foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> get() as $moduleBlock) {
+								$prefix = '';
+				
+								if($moduleBlock -> prefix) {
+									$prefix = $moduleBlock -> prefix.'_';
+								}
+								
+								$filePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_0/'.$prefix.$dbTableData -> id.'.'.$moduleBlock -> file_format);
+		
+								// dd($moduleBlock);
+								
+								if(file_exists($filePath)) {
+									unlink($filePath);
+								}
+							}
+						// 
 					}
 				}
 			}
