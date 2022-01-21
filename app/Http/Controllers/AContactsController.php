@@ -13,7 +13,8 @@ class AContactsController extends AController {
     public function edit() {
         $bswAddress = Bsw :: find(430); 
 
-		$data = array_merge(self :: getDefaultData(), ['address_ge' => $bswAddress -> word_ge, 
+		$data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'contacts') -> first(),
+                                                        'address_ge' => $bswAddress -> word_ge, 
                                                         'address_en' => $bswAddress -> word_en, 
                                                         'address_ru' => $bswAddress -> word_ru]);
 
