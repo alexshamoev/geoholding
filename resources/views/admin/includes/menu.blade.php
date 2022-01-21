@@ -2,7 +2,7 @@
 	@foreach($modulesForMenu as $data)
 		<style>
 			.menu__link {
-				transition: .2s all ease-in-out;
+				transition: 0.2s all ease-in-out;
 				background-color: transparent;
 			}
 
@@ -28,20 +28,41 @@
 			.menu__link--{{$data -> alias}}:hover {
 				background-color: {{ $data -> icon_bg_color }};
 				color: #fff;
-			}			
+			}
+
+			.menu__link--{{$data -> alias}}_active {
+				background-color: {{ $data -> icon_bg_color }};
+				border: 1px solid {{ $data -> icon_bg_color }};
+				border-left-width: 7px;
+				color: #fff;
+			}	
 		</style>
 
-		<a href="/admin/{{ $data -> alias }}">
-			<div class="row align-items-center p-2 menu__link menu__link--{{$data -> alias}}">
-				<div class="col-3 p-2">
-					<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
-				</div>
+		@if(isset($module) && $module -> alias === $data -> alias)
+			<a href="/admin/{{ $data -> alias }}">
+				<div class="row align-items-center p-2 menu__link--{{$data -> alias}}_active">
+					<div class="col-3 p-2">
+						<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+					</div>
 
-				<div class="col-9 p-2">
-					<span>{{ $data -> title }}</span>
+					<div class="col-9 p-2">
+						<span>{{ $data -> title }}</span>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
+		@else
+			<a href="/admin/{{ $data -> alias }}">
+				<div class="row align-items-center p-2 menu__link menu__link--{{ $data -> alias }}">
+					<div class="col-3 p-2">
+						<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+					</div>
+
+					<div class="col-9 p-2">
+						<span>{{ $data -> title }}</span>
+					</div>
+				</div>
+			</a>
+		@endif
 	@endforeach
 
 	<div class="p-3"></div>
