@@ -11,20 +11,17 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\ModulesIncludesValue;
 use App\Models\ModulesNotIncludesValue;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 
-class AModuleController extends Controller {
+class AModuleController extends AController {
     public function getStartPoint() {
 		ModuleBlock :: deleteEmpty();
 		ModuleStep :: deleteEmpty();
 		Module :: deleteEmpty();
-		
-		$defaultData = ADefaultData :: get();
 
-		return view('modules.modules.admin_panel.start_point', $defaultData);
+		return view('modules.modules.admin_panel.start_point', self :: getDefaultData());
 	}
 
 
@@ -96,20 +93,18 @@ class AModuleController extends Controller {
 			}
 		}
 
-		$defaultData = ADefaultData :: get();
-
 		ModuleBlock :: deleteEmpty();
 		ModuleStep :: deleteEmpty();
 
-		$data = array_merge($defaultData, ['pagesForSelect' => $pagesForSelect,
-											'pagesForIncludeInPages' => $pagesForIncludeInPages,
-											'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
-											'pages' => Page :: where('published', 1) -> get(),
-											'languages' => Language :: where('published', 1) -> get(),
-											'module' => $module,
-											'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
-											'prevModuleId' => $prevId,
-											'nextModuleId' => $nextId]);
+		$data = array_merge(self :: getDefaultData(), ['pagesForSelect' => $pagesForSelect,
+														'pagesForIncludeInPages' => $pagesForIncludeInPages,
+														'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
+														'pages' => Page :: where('published', 1) -> get(),
+														'languages' => Language :: where('published', 1) -> get(),
+														'module' => $module,
+														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
+														'prevModuleId' => $prevId,
+														'nextModuleId' => $nextId]);
 
 		return view('modules.modules.admin_panel.edit_step_0', $data);
 	}

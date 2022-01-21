@@ -7,17 +7,15 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
-use App\ADefaultData;
 use Illuminate\Support\Facades\Validator;
 
-class AContactsController extends Controller {
+class AContactsController extends AController {
     public function edit() {
-		$defaultData = ADefaultData :: get();
         $bswAddress = Bsw :: find(430); 
 
-		$data = array_merge($defaultData, ['address_ge' => $bswAddress -> word_ge, 
-                                            'address_en' => $bswAddress -> word_en, 
-                                            'address_ru' => $bswAddress -> word_ru]);
+		$data = array_merge(self :: getDefaultData(), ['address_ge' => $bswAddress -> word_ge, 
+                                                        'address_en' => $bswAddress -> word_en, 
+                                                        'address_ru' => $bswAddress -> word_ru]);
 
 		return view('modules.contacts.admin_panel.start_point', $data);
 	}

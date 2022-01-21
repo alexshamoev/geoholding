@@ -7,7 +7,6 @@ use App\Models\ModuleBlock;
 use App\Models\Language;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\ADefaultData;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
@@ -15,7 +14,7 @@ use Intervention\Image\ImageManagerStatic;
 use DB;
 
 
-class ACoreControllerStep0 extends Controller {
+class ACoreControllerStep0 extends AController {
     public function get($moduleAlias) {
 		self :: deleteEmpty();
 
@@ -66,13 +65,13 @@ class ACoreControllerStep0 extends Controller {
 		}
 
 
-		$data = array_merge(ADefaultData :: get(), ['module' => $module,
-													'moduleStep' => $moduleStep,
-													'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
-													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get(),
-													'imageFormat' => $imageFormat,
-													'sortBy' => $orderBy,
-													'use_for_tags' => $use_for_tags]);
+		$data = array_merge(self :: getDefaultData(), ['module' => $module,
+														'moduleStep' => $moduleStep,
+														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
+														'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($orderBy, $sortBy) -> get(),
+														'imageFormat' => $imageFormat,
+														'sortBy' => $orderBy,
+														'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step0', $data);
 	}
@@ -276,25 +275,25 @@ class ACoreControllerStep0 extends Controller {
 		
 
 
-		$data = array_merge(ADefaultData :: get(), ['module' => $module,
-													'moduleStep' => $moduleStep,
-													'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
-													'moduleBlocks' => $moduleBlocks,
-													'selectData' => $selectData,
-													'selectOptgroudData' => $selectOptgroudData,
-													'languages' => Language :: where('disable', 0) -> orderBy('rang', 'desc') -> get(),
-													'sortBy' => $orderBy,
-													'id' => $id,
-													'imageFormat' => $imageFormat,
-													'nextModuleStepData' => $nextModuleStepData,
-													'moduleStep1Data' => $nextModuleStep,
-													'data' => $pageData,
-													'prevId' => $prevId,
-													'nextId' => $nextId,
-													'use_for_tags' => $use_for_tags,
-													'multiplyCheckbox' => $multiplyCheckbox,
-													'multiplyCheckbox' => $multiplyCheckbox,
-													'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
+		$data = array_merge(self :: getDefaultData(), ['module' => $module,
+														'moduleStep' => $moduleStep,
+														'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
+														'moduleBlocks' => $moduleBlocks,
+														'selectData' => $selectData,
+														'selectOptgroudData' => $selectOptgroudData,
+														'languages' => Language :: where('disable', 0) -> orderBy('rang', 'desc') -> get(),
+														'sortBy' => $orderBy,
+														'id' => $id,
+														'imageFormat' => $imageFormat,
+														'nextModuleStepData' => $nextModuleStepData,
+														'moduleStep1Data' => $nextModuleStep,
+														'data' => $pageData,
+														'prevId' => $prevId,
+														'nextId' => $nextId,
+														'use_for_tags' => $use_for_tags,
+														'multiplyCheckbox' => $multiplyCheckbox,
+														'multiplyCheckbox' => $multiplyCheckbox,
+														'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
 
 		return view('modules.core.step1', $data);
 	}
