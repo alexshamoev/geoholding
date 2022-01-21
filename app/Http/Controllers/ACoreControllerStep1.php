@@ -153,6 +153,181 @@ class ACoreControllerStep1 extends Controller {
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
 
+		// Image - uploading image without checking it passed validation or not
+			foreach($moduleBlocks as $data) {
+				if($data -> type === 'image') {
+					if($request -> hasFile($data -> db_column)) {
+						$prefix = '';
+
+						if($data -> prefix) {
+							$prefix = $data -> prefix.'_';
+						}
+						
+						$validator = Validator :: make($request -> all(), array(
+							$data -> db_column => 'mimes:jpeg,jpg,png,gif|required|max:10000'
+						));
+						
+						if($validator -> fails()) {
+							return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
+						}
+
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);	
+						
+						$imagePath = 'app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format;
+
+						$image = ImageManagerStatic :: make(storage_path($imagePath));
+						$width = $image -> width();
+						$height = $image -> height();
+
+						if($data -> fit_type === 'fit') {
+							$image -> fit($data -> image_width,
+											$data -> image_height,
+											function() {},
+											$data -> fit_position);
+						}
+						
+						if($data -> fit_type === 'resize') {
+							$image -> resize($data -> image_width,
+												$data -> image_height,
+												function ($constraint) {
+												$constraint->aspectRatio();
+												});
+								
+							if($width < $data -> image_width && $height < $data -> image_height) {
+								$image = ImageManagerStatic :: make(storage_path($imagePath));																																			
+							}
+						}
+						
+						if($data -> fit_type === 'resize_with_bg') {
+							if($width > $data -> image_width || $height > $data -> image_height) {
+								$image -> resize($data -> image_width,
+													$data -> image_height,
+													function ($constraint) {
+													$constraint->aspectRatio();
+													});																																	
+							}
+
+							$image->resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
+						}
+
+						if($data -> fit_type === 'default') {
+							$image = ImageManagerStatic :: make(storage_path($imagePath));
+						}
+
+						$image -> save();
+
+						for($i = 1; $i < 4; $i++) {
+							if($data -> { 'prefix_'.$i }) {
+								$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format );
+
+								if($data -> { 'fit_type_'.$i } === 'fit') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> fit($data -> image_width,
+																																															$data -> image_height,
+																																															function() {},
+																																															$data -> fit_position);
+								}
+								
+								if($data -> { 'fit_type_'.$i } === 'resize') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
+																																															$data -> image_height,
+																																															function ($constraint) {
+																																																$constraint->aspectRatio();
+																																															});
+
+									$width = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> width();
+									$height = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> height();
+
+									if($width < $data -> image_width && $height < $data -> image_height) {
+										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));																																			
+									}
+								}
+
+								if($data -> fit_type === 'resize_with_bg') {
+									if($width > $data -> image_width || $height > $data -> image_height) {
+										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
+																																																									$data -> image_height,
+																																																									function ($constraint) {
+																																																									$constraint->aspectRatio();
+																																																									});																																	
+									}
+									
+									$image-> resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
+								}
+
+								if($data -> { 'fit_type_'.$i } === 'default') {
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));
+								}
+
+								$image -> save();
+							}
+						}
+					}
+				}
+			}
+		// 
+
+		// File - uploading file without checking it passed validation or not
+			foreach($moduleBlocks as $data) {
+				if($data -> type === 'file') {
+					if($request -> hasFile($data -> db_column)) {
+						$prefix = '';
+
+						if($data -> prefix) {
+							$prefix = $data -> prefix.'_';
+						}
+
+						$validator = Validator :: make($request -> all(), array(
+							$data -> db_column => "required|mimes:".$data -> file_format."|max:10000"
+						));
+
+						if($validator -> fails()) {
+
+							return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
+						}
+						
+						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);
+					}
+				}
+			}
+		// 
+
+		// Validation
+			$validationArray = [];
+
+			foreach($moduleBlocks as $data) {
+				$prefix = '';
+
+				if($data -> prefix) {
+					$prefix = $data -> prefix.'_';
+				}
+				
+				$imagePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format);
+				
+				if($data -> type === 'image' || $data -> type === 'file') {
+					if(!file_exists($imagePath)){
+						$validationArray[$data -> db_column] = $data -> validation;
+					}
+				} else {
+					if($data -> type !== 'alias' && $data -> type !== 'input_with_languages' && $data -> type !== 'editor_with_languages') {
+						$validationArray[$data -> db_column] = $data -> validation;
+					} else {
+						$validationData = [];
+
+						foreach(Language :: where('disable', 0) -> get() as $langData) {
+							$validationArray[$data -> db_column.'_'.$langData -> title] = $data -> validation;
+						}
+					}
+				}
+				
+			}
+
+			$validator = Validator :: make($request -> all(), $validationArray);
+
+			if($validator -> fails()) {
+				return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
+			}
+		//
+
 		$updateQuery = [];
 
 		foreach($moduleBlocks as $data) {
@@ -206,148 +381,6 @@ class ACoreControllerStep1 extends Controller {
 			if($data -> type === 'checkbox') {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : 0);
 			}
-
-			//image
-				if($data -> type === 'image') {
-					if($request -> hasFile($data -> db_column)) {
-						$prefix = '';
-						
-						if($data -> prefix) {
-							$prefix = $data -> prefix.'_';
-						}
-						
-						$validator = Validator :: make($request -> all(), array(
-							$data -> db_column => 'mimes:jpeg,jpg,png,gif|required|max:10000'
-						));
-
-						if($validator -> fails()) {
-							return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
-						}
-						
-						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);	
-						
-						$imagePath = 'app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format;
-
-						$image = ImageManagerStatic :: make(storage_path($imagePath));
-						$width = $image -> width();
-						$height = $image -> height();
-
-						if($data -> fit_type === 'fit') {
-							$image -> fit($data -> image_width,
-											$data -> image_height,
-											function() {},
-											$data -> fit_position);
-						}
-						
-						if($data -> fit_type === 'resize') {
-							$image -> resize($data -> image_width,
-												$data -> image_height,
-												function ($constraint) {
-												$constraint->aspectRatio();
-												});
-							
-							if($width < $data -> image_width && $height < $data -> image_height) {
-								$image = ImageManagerStatic :: make(storage_path($imagePath));																																			
-							}
-						}
-
-						if($data -> fit_type === 'resize_with_bg') {
-							if($width > $data -> image_width || $height > $data -> image_height) {
-								$image -> resize($data -> image_width,
-													$data -> image_height,
-													function ($constraint) {
-													$constraint->aspectRatio();
-													});																																	
-							}
-
-							$image->resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
-						}
-
-						if($data -> fit_type === 'default') {
-							$image = ImageManagerStatic :: make(storage_path($imagePath));
-						}
-						
-						$image -> save();
-
-						for($i = 1; $i < 4; $i++) {
-							if($data -> { 'prefix_'.$i }) {
-								$request -> file('image') -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format );
-
-								if($data -> { 'fit_type_'.$i } === 'fit') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> fit($data -> image_width,
-																																															$data -> image_height,
-																																															function() {},
-																																															$data -> fit_position);
-								}
-								
-								if($data -> { 'fit_type_'.$i } === 'resize') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																															$data -> image_height,
-																																															function ($constraint) {
-																																																$constraint->aspectRatio();
-																																															});
-
-									$width = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> width();
-									$height = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> height();
-
-									if($width < $data -> image_width && $height < $data -> image_height) {
-										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));																																			
-									}
-								}
-
-								if($data -> { 'fit_type_'.$i } === 'resize_with_bg') {
-									if($width > $data -> image_width || $height > $data -> image_height) {
-										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																																									$data -> image_height,
-																																																									function ($constraint) {
-																																																									$constraint->aspectRatio();
-																																																									});																																	
-									}
-									
-									$image -> resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
-								}
-
-								if($data -> { 'fit_type_'.$i } === 'default') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));
-								}
-								$image -> save();
-							}
-						}
-					}
-				}
-			//
-
-			// File
-				if($data -> type === 'file') {
-					if($request -> hasFile($data -> db_column)) {
-						$prefix = '';
-
-						if($data -> prefix) {
-							$prefix = $data -> prefix.'_';
-						}
-
-						// $extension = $request -> file('file') -> extension();
-
-						// if($data -> file_format == $extension) {
-								
-						// }
-
-						$validator = Validator :: make($request -> all(), array(
-							$data -> db_column => "required|mimes:".$data -> file_format."|max:10000"
-						));
-
-						if($validator -> fails()) {
-							return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id)) -> withErrors($validator) -> withInput();
-						}
-						
-						// if($request -> hasFile('image') && $request -> file('image') -> isValid()) {
-						// return file_get_contents('images/modules/'.$module -> alias.'/'.$id.'.jpg');
-						
-						$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$id.'.'.$data -> file_format);
-						// return $extension;
-					}
-				}
-			//
 		}
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
