@@ -29,6 +29,18 @@
 		'backRoute' => route('coreEditStep2', [$module -> alias, $parentFirst, $parentSecond, $parentThird])
 	])
 
+	@if($errors -> any())
+		<div class="alert alert-danger">
+			Whoops, looks like something went wrong
+		</div>
+	@endif
+	
+	@if(Session :: has('successStatus'))
+		<div class="alert alert-success" role="alert">
+			{{ Session :: get('successStatus') }}
+		</div>
+	@endif
+
     <div class="p-2">
 		{{ Form :: open(array('route' => array('coreUpdateStep3', $module -> alias, $parentFirst, $parentSecond, $parentThird, $id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
@@ -245,6 +257,14 @@
 									</div>
 								</div>
 						@endswitch
+
+						@if($moduleBlock -> type !== 'alias' && $moduleBlock -> type !== 'input_with_languages' && $moduleBlock -> type !== 'editor_with_languages')
+							@error($moduleBlock -> db_column)
+								<div class="alert alert-danger">
+									{{ $message }}
+								</div>
+							@enderror	
+						@endif
 					</div>
 				@endif
 			@endforeach

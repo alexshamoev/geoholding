@@ -23,10 +23,17 @@
 		'prevRoute' => route('coreEditStep1', [$module -> alias, $data -> parent, $prevId]),
 		'backRoute' => route('coreEditStep0', [$module -> alias, $data -> parent])
 	])
-	
+
 	@if($errors -> any())
 		<div class="alert alert-danger">
 			Whoops, looks like something went wrong
+		</div>
+	@endif
+	
+	
+	@if(Session :: has('successStatus'))
+		<div class="alert alert-success" role="alert">
+			{{ Session :: get('successStatus') }}
 		</div>
 	@endif
 

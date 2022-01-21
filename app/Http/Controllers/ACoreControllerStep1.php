@@ -26,6 +26,8 @@ class ACoreControllerStep1 extends AController {
 
 
 	public function edit($moduleAlias, $parent, $id) {
+		ACoreControllerStep2 :: deleteEmpty();
+
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleParentStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -393,9 +395,75 @@ class ACoreControllerStep1 extends AController {
 	public function delete($moduleAlias, $parent, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
+
+		foreach($moduleBlocks as $data) {
+			$prefix = '';
+
+			if($data -> prefix) {
+				$prefix = $data -> prefix.'_';
+			}
+			
+			$filePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$id.'.'.$data -> file_format);
+			
+			if(file_exists($filePath)) {
+				unlink($filePath);
+			}
+		}
 
 		DB :: table($moduleStep -> db_table) -> delete($id);
 
-		return redirect() -> route('coreEditStep0', array($module -> alias, $parent));
+		return redirect() -> route('coreEditStep0', array($module -> alias, $parent, $id));
+	}
+
+	public static function deleteEmpty() {
+		foreach(Module :: get() as $module) {
+			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {
+				foreach(DB :: table($moduleStep -> db_table) -> get() as $dbTableData) {
+					$data = [];
+					$validateRules = [];
+
+					foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> get() as $moduleBlock) {
+						if($moduleBlock -> validation) {
+							if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
+								foreach(Language :: where('disable', 0) -> get() as $langData) {
+									$validateRules[$moduleBlock -> db_column.'_'.$langData -> title] = $moduleBlock -> validation;
+									$data[$moduleBlock -> db_column.'_'.$langData -> title] = $dbTableData -> { $moduleBlock -> db_column.'_'.$langData -> title };
+								}
+							} else {
+								if($moduleBlock -> type !== 'image' && $moduleBlock -> type !== 'file') {
+									$validateRules[$moduleBlock -> db_column] = $moduleBlock -> validation;
+									$data[$moduleBlock -> db_column] = $dbTableData -> { $moduleBlock -> db_column };
+								}
+							}
+						}
+					}
+
+					$validator = Validator :: make($data, $validateRules);
+
+					if($validator -> fails()) {
+						DB :: table($moduleStep -> db_table) -> delete($dbTableData -> id);
+
+						// Delete files.
+							foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> get() as $moduleBlock) {
+								$prefix = '';
+				
+								if($moduleBlock -> prefix) {
+									$prefix = $moduleBlock -> prefix.'_';
+								}
+								
+								$filePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$dbTableData -> id.'.'.$moduleBlock -> file_format);
+		
+								// dd($moduleBlock);
+								
+								if(file_exists($filePath)) {
+									unlink($filePath);
+								}
+							}
+						// 
+					}
+				}
+			}
+		}
 	}
 }
