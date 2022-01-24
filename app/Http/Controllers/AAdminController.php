@@ -58,16 +58,15 @@ class AAdminController extends AController {
 
         if($activeUser -> super_administrator) {
             $data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
-                                                            'admins' => User :: all() -> sortBy('email')]);
+                                                            'admins' => User :: all() -> where('admin', '1') -> sortBy('email')]);
         } else {
             $data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
-                                                            'admins' => User :: all() -> where('super_administrator', '0') -> sortBy('email')]);
+                                                            'admins' => User :: all() -> where('admin', '1') -> where('super_administrator', '0') -> sortBy('email')]);
         }
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
-
-
+    
     public function add() {
         $user = new User();
 
