@@ -54,8 +54,15 @@ class AAdminController extends AController {
 
 
     public function getStartPoint() {
-		$data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
-                                                        'admins' => User :: all() -> sortBy('email')]);
+        $activeUser = Auth :: user();
+
+        if($activeUser -> super_administrator) {
+            $data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
+                                                            'admins' => User :: all() -> sortBy('email')]);
+        } else {
+            $data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
+                                                            'admins' => User :: all() -> where('super_administrator', '0') -> sortBy('email')]);
+        }
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
@@ -129,6 +136,7 @@ class AAdminController extends AController {
 		$admin -> name = $request -> input('name');
 		$admin -> email = $request -> input('email');
 		$admin -> password = $request -> input('password');
+		$admin -> admin = 1;
 
 		$admin -> save();
 

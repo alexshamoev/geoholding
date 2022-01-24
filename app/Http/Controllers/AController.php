@@ -26,6 +26,7 @@ class AController extends Controller {
 
 	public static function getDefaultData() {
 		$bsc = Bsc :: getFullData();
+		$activeUser = Auth :: user();
 		$copyrightDate = $bsc -> year_of_site_creation;
 
 		if($bsc -> year_of_site_creation < date('Y')) {
@@ -36,7 +37,9 @@ class AController extends Controller {
 		$modulesForMenu = array();
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			if($data -> hide_for_admin === 0) {
+			if($activeUser -> super_administrator === 1) {
+				$modulesForMenu[] = $data;
+			} else if($data -> hide_for_admin === 0) {
 				$modulesForMenu[] = $data;
 			}
 		}

@@ -111,6 +111,7 @@ use App\Mail\WelcomeMail;
 	});
 //
 
+Route :: get('/ge/registration', 'auth/RegisterController@create') -> name('register');
 
 // Registration Routes...
 Route :: get('/ge/register', 'Auth\RegisterController@showRegistrationForm') -> name('register');
