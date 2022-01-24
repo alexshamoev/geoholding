@@ -100,12 +100,12 @@
 			</div>
 		</a>
 
-		<a href="{{ route('adminStartPoint') }}">
+		{{--<a href="{{ route('adminStartPoint') }}">
 			<div class="d-flex align-items-center px-2">
 				<div class="p-2">
 					<span>Admins</span>
 				</div>
 			</div>
-		</a>
+		</a>--}}
 	</div>
 </div>

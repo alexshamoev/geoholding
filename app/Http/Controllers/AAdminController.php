@@ -54,7 +54,8 @@ class AAdminController extends AController {
 
 
     public function getStartPoint() {
-		$data = array_merge(self :: getDefaultData(), ['admins' => User :: all() -> sortBy('email')]);
+		$data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
+                                                        'admins' => User :: all() -> sortBy('email')]);
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
@@ -97,7 +98,8 @@ class AAdminController extends AController {
 			}
 		}
 
-		$data = array_merge(self :: getDefaultData(), ['admins' => User :: all() -> sortBy('email'),
+		$data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'admins') -> first(),
+                                                        'admins' => User :: all() -> sortBy('email'),
                                                         'activeAdmin' => User :: find($id),
                                                         'prevAdminId' => $prevId,
                                                         'nextAdminId' => $nextId]);
@@ -130,11 +132,11 @@ class AAdminController extends AController {
 
 		$admin -> save();
 
-        Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
+        // Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
 
 		return redirect(route('adminEdit', $admin -> id));
 
-        return $admin -> password;
+        // return $admin -> password;
 	}
 
 

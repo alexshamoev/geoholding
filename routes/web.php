@@ -21,15 +21,6 @@ use App\Mail\WelcomeMail;
 		Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
 
 		Route :: get('/logout', 'AAdminController@logout') -> name('logout');
-
-
-		Route :: prefix('admins') -> group(function() {
-			Route :: get('', 'AAdminController@getStartPoint') -> name('adminStartPoint');
-			Route :: get('/add', 'AAdminController@add') -> name('adminAdd');
-			Route :: get('/{id}', 'AAdminController@edit') -> name('adminEdit');
-			Route :: post('/{id}', 'AAdminController@update') -> name('adminUpdate');
-			Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
-		});
 		
 		
 		Route :: prefix('modules') -> group(function() {
@@ -80,6 +71,14 @@ use App\Mail\WelcomeMail;
 		});
 
 		// Modulis without core
+			Route :: prefix('admins') -> group(function() {
+				Route :: get('', 'AAdminController@getStartPoint') -> name('adminStartPoint');
+				Route :: get('/add', 'AAdminController@add') -> name('adminAdd');
+				Route :: get('/{id}', 'AAdminController@edit') -> name('adminEdit');
+				Route :: post('/{id}', 'AAdminController@update') -> name('adminUpdate');
+				Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
+			});
+
 			Route :: get('/contacts', 'AContactsController@edit') -> name('contactsEdit');
 			Route :: post('/contacts', 'AContactsController@update') -> name('contactsUpdate');
 		//
