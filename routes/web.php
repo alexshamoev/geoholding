@@ -111,6 +111,7 @@ use App\Mail\WelcomeMail;
 	});
 //
 
+Route :: get('/ge/registration', 'auth/RegisterController@create') -> name('register');
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
 Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');

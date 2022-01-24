@@ -67,45 +67,47 @@
 
 	<div class="p-3"></div>
 
-	<div class="p-2">
-		<a href="/admin/modules">
-			<div class="d-flex align-items-center px-2">
-				<div class="p-2">
-					<span>Modules</span>
+	@if( $activeUser -> super_administrator )
+		<div class="p-2">
+			<a href="/admin/modules">
+				<div class="d-flex align-items-center px-2">
+					<div class="p-2">
+						<span>Modules</span>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
 
-		<a href="/admin/bsw">
-			<div class="d-flex align-items-center px-2">
-				<div class="p-2">
-					<span>BSW</span>
+			<a href="/admin/bsw">
+				<div class="d-flex align-items-center px-2">
+					<div class="p-2">
+						<span>BSW</span>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
 
-		<a href="/admin/bsc">
-			<div class="d-flex align-items-center px-2">
-				<div class="p-2">
-					<span>BSC</span>
+			<a href="/admin/bsc">
+				<div class="d-flex align-items-center px-2">
+					<div class="p-2">
+						<span>BSC</span>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
 
-		<a href="/admin/languages">
-			<div class="d-flex align-items-center px-2">
-				<div class="p-2">
-					<span>Languages</span>
+			<a href="/admin/languages">
+				<div class="d-flex align-items-center px-2">
+					<div class="p-2">
+						<span>Languages</span>
+					</div>
 				</div>
-			</div>
-		</a>
+			</a>
 
-		{{--<a href="{{ route('adminStartPoint') }}">
-			<div class="d-flex align-items-center px-2">
-				<div class="p-2">
-					<span>Admins</span>
+			{{--<a href="{{ route('adminStartPoint') }}">
+				<div class="d-flex align-items-center px-2">
+					<div class="p-2">
+						<span>Admins</span>
+					</div>
 				</div>
-			</div>
-		</a>--}}
-	</div>
+			</a>--}}
+		</div>
+	@endif
 </div>
