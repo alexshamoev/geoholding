@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use App\Page;
+use App\Models\User;
+use App\Models\Page;
 use App\MenuButton;
-use App\Language;
+use App\Models\Language;
 use App\Module;
 use App\Bsc;
 use App\Bsw;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -78,7 +79,16 @@ class RegisterController extends Controller
 
 
 	public function showRegistrationForm() {
-		return view('auth.m-register');
+        // $data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
+
+		// return view('modules.bsc.admin_panel.start_point', $data);
+
+        $page = Page :: where('slug', 'registration') -> first();
+        $language = Language :: where('title', 'ge') -> first();
+
+        Page :: setLang($language -> title);
+
+		return view('auth.m-register', PageController :: getDefaultData($language, $page));
 
 
 		$page = Page :: where('id', 5) -> first();
@@ -93,11 +103,11 @@ class RegisterController extends Controller
 				$page_template = $active_module -> alias;
 			}
 
-			return view($page_template, ['page' => $page -> getFullData($language -> title),
-											'menuButtons' => MenuButton :: getFullData($language -> title),
-											'languages' => Language :: getFullData($language -> title, $page),
-											'bsc' => Bsc :: getFullData(),
-											'bsw' => Bsw :: getFullData($language -> title)]);
+			// return view($page_template, ['page' => $page -> getFullData($language -> title),
+			// 								'menuButtons' => MenuButton :: getFullData($language -> title),
+			// 								'languages' => Language :: getFullData($language -> title, $page),
+			// 								'bsc' => Bsc :: getFullData(),
+			// 								'bsw' => Bsw :: getFullData($language -> title)]);
 		} else {
 			abort(404);
 		}
