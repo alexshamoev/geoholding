@@ -79,6 +79,12 @@ use App\Mail\WelcomeMail;
 				Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
 			});
 
+			Route :: prefix('users') -> group(function() {
+				Route :: get('', 'AUsersController@getStartPoint') -> name('userStartPoint');
+				Route :: get('/{id}', 'AUsersController@edit') -> name('userEdit');
+				Route :: get('/{id}/delete', 'AUsersController@delete') -> name('userDelete');
+			});
+
 			Route :: get('/contacts', 'AContactsController@edit') -> name('contactsEdit');
 			Route :: post('/contacts', 'AContactsController@update') -> name('contactsUpdate');
 		//
