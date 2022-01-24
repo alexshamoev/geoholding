@@ -42,7 +42,11 @@
 			<a href="/admin/{{ $data -> alias }}">
 				<div class="row align-items-center p-2 menu__link--{{$data -> alias}}_active">
 					<div class="col-3 p-2">
-						<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@if(Storage :: exists('/public/images/modules/modules/'.$data -> id.'_icon.svg'))
+							<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@else
+							<img src="{{ asset('/storage/images/admin/default_module_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@endif
 					</div>
 
 					<div class="col-9 p-2">
@@ -54,7 +58,11 @@
 			<a href="/admin/{{ $data -> alias }}">
 				<div class="row align-items-center p-2 menu__link menu__link--{{ $data -> alias }}">
 					<div class="col-3 p-2">
-						<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@if(Storage :: exists('/public/images/modules/modules/'.$data -> id.'_icon.svg'))
+							<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@else
+							<img src="{{ asset('/storage/images/admin/default_module_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
+						@endif
 					</div>
 
 					<div class="col-9 p-2">
