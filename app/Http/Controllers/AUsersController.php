@@ -35,7 +35,7 @@ class AUsersController extends AController
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(User :: all() -> sortBy('email') as $data) {
+		foreach(User :: all() -> where('admin', 0) -> sortBy('id') as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}
