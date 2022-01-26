@@ -20,7 +20,7 @@ use App\Mail\WelcomeMail;
 
 		Route :: get('/', 'AController@getDefaultPage') -> name('adminDefaultPage');
 
-		Route :: get('/logout', 'AAdminController@logout') -> name('logout');
+		Route :: get('/logout', 'AAdminController@logout') -> name('aLogout');
 		
 		
 		Route :: prefix('modules') -> group(function() {
@@ -117,11 +117,22 @@ use App\Mail\WelcomeMail;
 	});
 //
 
-Route :: get('/ge/registration', 'auth/RegisterController@create') -> name('register');
 
-// Registration Routes...
-Route :: get('/ge/register', 'Auth\RegisterController@showRegistrationForm') -> name('register');
-Route :: post('/ge/register', 'Auth\RegisterController@register');
+// Auth routes
+	// Route :: get('/ge/registration', 'auth/RegisterController@create') -> name('register');
+
+	// Registration Routes...
+	// Route :: get('/ge/register', 'PageController@test') -> name('register');
+	Route :: get('/ge/register', 'Auth\RegisterController@showRegistrationForm') -> name('register');
+	Route :: post('/ge/register', 'Auth\RegisterController@register');
+
+	Route :: get('login', 'Auth\LoginController@showLoginForm') -> name('login');
+	Route :: post('login', 'Auth\LoginController@login');
+	Route :: get('logout', 'Auth\LoginController@logout') -> name('logout');
+// 
+
+
+
 
 
 Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
