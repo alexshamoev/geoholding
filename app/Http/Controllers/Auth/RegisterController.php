@@ -83,6 +83,8 @@ class RegisterController extends Controller
 
 		// return view('modules.bsc.admin_panel.start_point', $data);
 
+        // dd(5555);
+
         $page = Page :: where('slug', 'registration') -> first();
         $language = Language :: where('title', 'ge') -> first();
 

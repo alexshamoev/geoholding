@@ -104,7 +104,7 @@
 				</div>
 			@else
 				<div class="nav-item">
-					<a href="{{ $registrationUrl }}">
+					<a href="{{ route('register') }}">
 						<div class="p-2">
 							Registration
 						</div>
@@ -112,7 +112,7 @@
 				</div>
 
 				<div class="nav-item">
-					<a href="{{ $authorizationUrl }}">
+					<a href="{{ route('login') }}">
 						<div class="p-2">
 							Authorization
 						</div>

@@ -18,7 +18,7 @@
 
 	<div class="col-8 d-flex align-items-end flex-column">
 		<div class="p-2">
-			<a href="{{ route('logout') }}">
+			<a href="{{ route('aLogout') }}">
 				{{ $bsw -> logout }}
 			</a>
 		</div>

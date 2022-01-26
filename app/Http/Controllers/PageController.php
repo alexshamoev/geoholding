@@ -76,6 +76,22 @@ class PageController extends Controller {
 		return $data;
 	}
 
+
+
+	public static function test() {
+		// dd(32);
+
+		$page = Page :: where('slug', 'registration') -> first();
+        $language = Language :: where('title', 'ge') -> first();
+
+        Page :: setLang($language -> title);
+
+		return view('auth.m-register', PageController :: getDefaultData($language, $page));
+	}
+
+
+
+
 	
 	public function getDefaultPageWithDefaultLanguage() {
 		$language = Language :: where('like_default', 1) -> first();
@@ -97,7 +113,7 @@ class PageController extends Controller {
 		}
 	}
 
-
+	
 	public function getDefaultPage($lang) {
 		$language = Language :: where('title', $lang) -> first();
 
