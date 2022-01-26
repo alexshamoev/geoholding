@@ -26,7 +26,9 @@ class AAdminController extends AController {
 
     public function getLogin() {
         if(Auth :: check()) {
-            return redirect() -> intended(route('adminDefaultPage'));
+            if(Auth :: user() -> admin) {
+                return redirect() -> intended(route('adminDefaultPage'));
+            }
         }
         
         return view('admin.login');
@@ -35,14 +37,18 @@ class AAdminController extends AController {
 
     public function login(Request $request) {
         if(Auth :: check()) {
-            return redirect() -> intended(route('adminDefaultPage'));
+            if(Auth :: user() -> admin) {
+                return redirect() -> intended(route('adminDefaultPage'));
+            }
         }
 
 
         $formFields = $request -> only(['email', 'password']);
 
         if(Auth :: attempt($formFields)) {
-            return redirect() -> intended(route('adminDefaultPage'));
+            if(Auth :: user() -> admin) {
+                return redirect() -> intended(route('adminDefaultPage'));
+            }
         }
 
         return redirect(route('adminLogin')) -> withErrors([
