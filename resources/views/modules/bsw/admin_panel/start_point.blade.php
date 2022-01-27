@@ -2,12 +2,14 @@
 
 
 @section('pageMetaTitle')
-    BSW Start Point
+    BSW
 @endsection
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => 'BSW', 'tag0Url' => route('bswStartPoint')])
+	@include('admin.includes.tags', [
+		'tag0Text' => 'BSW'
+	])
 
 	<div class="p-2">
 		@include('admin.includes.addButton', ['text' => 'Add BSW', 'url' => route('bswAdd')])

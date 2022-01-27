@@ -2,14 +2,13 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    {{ $module -> title }}
 @endsection
 
 
 @section('content')
 	@include('admin.includes.tags', [
-		'tag0Text' => $module -> title,
-		'tag0Url' => route('coreGetStep0', $module -> alias)
+		'tag0Text' => $module -> title
 	])
 
 

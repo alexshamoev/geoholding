@@ -7,7 +7,9 @@
 
 
 @section('content')
-	@include('admin.includes.tags', ['tag0Text' => 'Language', 'tag0Url' => route('languageStartPoint')])
+	@include('admin.includes.tags', [
+		'tag0Text' => 'Language'
+	])
 
 	{{ Form :: open(array('url' => route('languageStartPoint'))) }}
 		<div class="p-2 languages">

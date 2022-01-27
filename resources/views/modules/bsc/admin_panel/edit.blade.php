@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    BSC > Edit > {{ $activeBsc -> system_word }}
+    BSC > {{ $activeBsc -> system_word }}
 @endsection
 
 

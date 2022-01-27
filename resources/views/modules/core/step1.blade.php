@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    {{ $module -> title }}
+    {{ $module -> title }} > {{ $data -> $use_for_tags }}
 @endsection
 
 

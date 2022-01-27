@@ -2,20 +2,13 @@
 
 
 @section('pageMetaTitle')
-    Contacts
+	{{ $module -> title }}
 @endsection
-
-@if($errors -> any())
-    <div class="alert alert-danger">
-        Whoops, looks like something went wrong
-    </div>
-@endif
 
 
 @section('content')
     @include('admin.includes.tags', [
-		'tag0Text' => 'Contacts',
-		'tag0Url' => route('contactsEdit')
+		'tag0Text' => $module -> title
 	])
 
     
@@ -24,6 +17,13 @@
             {{ Session :: get('successStatus') }}
         </div>
     @endif
+
+	
+	@if($errors -> any())
+		<div class="alert alert-danger">
+			Whoops, looks like something went wrong
+		</div>
+	@endif
 
 
     {{ Form::open(array('route' => 'contactsUpdate')) }}

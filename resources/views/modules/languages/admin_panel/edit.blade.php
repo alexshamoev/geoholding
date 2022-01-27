@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+	Languages > {{ $language -> title }}
 @endsection
 
 

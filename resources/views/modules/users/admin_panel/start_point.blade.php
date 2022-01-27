@@ -2,15 +2,13 @@
 
 
 @section('pageMetaTitle')
-    Users
+    {{ $module -> title }}
 @endsection
 
 
 @section('content')
     @include('admin.includes.tags', [
-		'tag0Text' => 'Users',
-		'tag0Url' => route('userStartPoint'),
-		'tag0ArrowData' => $users
+		'tag0Text' => $module -> title
 	])
 
     <div class="p-2">
