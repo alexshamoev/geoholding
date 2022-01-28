@@ -110,7 +110,7 @@ class ALanguageController extends AController {
 
 
 	public function updateStartPoint(Request $request) {
-		Language :: where('published', 1) -> update(['like_default' => 0,
+		Language :: where('disable', 0) -> update(['like_default' => 0,
 													'like_default_for_admin' => 0]);
 
 		$language = Language :: find($request -> input('like_default'));

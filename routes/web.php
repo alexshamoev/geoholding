@@ -151,7 +151,7 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 			$moduleTitleForController .= ucfirst($data);
 		}
 
-		foreach(Language :: where('published', '1') -> get() as $language) {
+		foreach(Language :: where('disable', '0') -> get() as $language) {
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }, $moduleTitleForController.'Controller@getStep0') -> where(['lang' => '[a-z]+']);
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
 			Route :: get('/{lang}/'.$page -> { 'alias_'.$language -> title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2') -> where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
@@ -162,8 +162,11 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 // Else show static page.
 	Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
 // 
+$contacts = Page :: where('slug', 'contact') -> first();
 
-
+foreach(Language :: where('disable', '0') -> get() as $language) {
+	Route :: post('/'.$language -> title.'/'.$contacts -> { 'alias_'.$language -> title }, 'ContactsController@update') -> name('contactUpdate');
+}
 
 
 

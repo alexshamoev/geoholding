@@ -63,7 +63,7 @@ class PageController extends Controller {
 
 		$data = ['page' => $page,
 				'language' => $lang,
-				'languages' => Language :: where('published', '1') -> orderByDesc('rang') -> get(),
+				'languages' => Language :: where('disable', '0') -> orderByDesc('rang') -> get(),
 				'menuButtons' => MenuButtonStep0 :: where('published', '1') -> orderByDesc('rang') -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),

@@ -1,36 +1,25 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Contact;
 use App\Models\Page;
 use App\Models\MenuButton;
 use App\Models\Language;
 use App\Models\Module;
 use App\Models\Bsc;
 use App\Models\Bsw;
+use App\Models\Contact;
+use App\Models\NewsStep0;
+use App\Models\NewsStep1;
+use App\Models\NewsStep2;
+use App\Models\NewsStep3;
+use App\Models\Partner;
+use App\Widget;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 class ContactsController extends Controller {
     private const PAGE_SLUG = 'contact';
-
-    public function submit(Request $request) {
-		$this -> validate($request, [
-			'name' => 'required|min:2|max:255',
-			'email' => 'required|min:4'
-		]);
-
-
-        $contact = new Contact();
-
-        $contact -> name = $request -> input('name');
-        $contact -> subject = $request -> input('email');
-        $contact -> text = 'Temp text';
-
-        $contact -> save();
-
-        
-        return redirect() -> route('contact') -> with('success', 'Its OK!');
-    }
 
     public static function getStep0($lang) {
         
@@ -45,8 +34,22 @@ class ContactsController extends Controller {
     }
 
     public function update(Request $request) {
-		// $bsc = Bsc :: find($id);
-        dd(123);
+        $language = Language :: where('title', 'en') -> first();
+        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
+
+        Page :: setLang($language -> title);
+
+		$contacts = new Contact();
+
+        $contacts -> name = $request -> input('name');
+        $contacts -> last_name = $request -> input('lastName');
+        $contacts -> email = $request -> input('email');
+        $contacts -> phone = $request -> input('phone');
+        $contacts -> address = $request -> input('address');
+        $contacts -> comment = $request -> input('comment');
+
+        $contacts -> save();
+        // dd($email);
 
 		// // Validation
 		// 	$validator = Validator :: make($request -> all(), array(
@@ -69,11 +72,20 @@ class ContactsController extends Controller {
 		// 	$request -> session() -> flash('successStatus', __('bsw.successStatus'));
         // //
 
-		return view('modules.contacts.step0');
-	}
+        $arrayEmails = ['lashalashka61@gmail.com'];
+        $emailSubject = 'My Subject';
+        $emailBody = 'Hello, this is my message content.';
+        $data = array_merge(PageController :: getDefaultData($language, $page));
 
-    public function test() {
-        dd(23233);
-    }
+        $dataEmail = array('name'=>"Virat Gandhi");
+        Mail::send(['text'=>'mail'], $dataEmail, function($message) {
+            $message->to('lashalashka61@gmail.com', 'Tutorials Point')->subject
+               ('Laravel Basic Testing Mail');
+            $message->from('xyz@gmail.com','Virat Gandhi');
+         });
+
+
+		return view('modules.contacts.step0', $data);
+	}
 
 }

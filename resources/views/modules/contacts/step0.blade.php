@@ -14,9 +14,15 @@
 			{!! $page -> text !!}
 		</div>
 
-		{{ Form :: open(array('action' => 'ContactsController@update')) }}
-            სახელი: {{ Form :: text('name') }}
-            გვარი: {{ Form :: text('lastName') }}
+		{{ Form :: open(array('route' => 'contactUpdate', 'method' => 'post')) }}
+            სახელი: {{ Form :: text('name') }} <br>
+            გვარი: {{ Form :: text('lastName') }} <br>
+            ელ.ფოსტა: {{ Form :: email('email') }} <br>
+            ტელეფონი: {{ Form :: text('phone') }} <br>
+            მისამართი: {{ Form :: text('address') }} <br>
+            კომენტარი: {{ Form :: textarea('comment') }} <br>
+
+			{{ Form :: submit('Click Me!') }}
 	    {{ Form :: close() }}
 
 	</div>
