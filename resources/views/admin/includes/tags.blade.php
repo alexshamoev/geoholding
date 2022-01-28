@@ -8,11 +8,7 @@
 					</span>
 				</a>
 			@else
-				<span class="">
-					<span>
-						{{ $tag0Text }}
-					</span>
-				</span>
+				{{ $tag0Text }}
 			@endif
 
 
@@ -23,16 +19,14 @@
 				
 				@if(isset($tag1Url))
 					<a href="{{ $tag1Url }}">
-						<span class="">
-							{{ $tag1Text }}
-						</span>
+						{{ $tag1Text }}
 					</a>
 				@else
-					<span class="">
-						<span>
-							{{ $tag1Text }}
-						</span>
-					</span>
+					@if($tag1Text)
+						{{ $tag1Text }}
+					@else
+						-- Empty --
+					@endif
 				@endif
 			@endif
 
@@ -44,16 +38,14 @@
 
 				@if(isset($tag2Url))
 					<a href="{{ $tag2Url }}">
-						<span class="">
-							{{ $tag2Text }}
-						</span>
+						{{ $tag2Text }}
 					</a>
 				@else
-					<span class="">
-						<span>
-							{{ $tag2Text }}
-						</span>
-					</span>
+					@if($tag2Text)
+						{{ $tag2Text }}
+					@else
+						-- Empty --
+					@endif
 				@endif
 			@endif
 
@@ -65,16 +57,14 @@
 
 				@if(isset($tag3Url))
 					<a href="{{ $tag3Url }}">
-						<span class="">
-							{{ $tag3Text }}
-						</span>
+						{{ $tag3Text }}
 					</a>
 				@else
-					<span class="">
-						<span>
-							{{ $tag3Text }}
-						</span>
-					</span>
+					@if($tag3Text)
+						{{ $tag3Text }}
+					@else
+						-- Empty --
+					@endif
 				@endif
 			@endif
 
@@ -86,16 +76,14 @@
 
 				@if(isset($tag4Url))
 					<a href="{{ $tag4Url }}">
-						<span class="">
-							{{ $tag4Text }}
-						</span>
+						{{ $tag4Text }}
 					</a>
 				@else
-					<span class="">
-						<span>
-							{{ $tag4Text }}
-						</span>
-					</span>
+					@if($tag4Text)
+						{{ $tag4Text }}
+					@else
+						-- Empty --
+					@endif
 				@endif
 			@endif
 		</div>

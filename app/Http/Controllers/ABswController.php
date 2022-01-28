@@ -14,7 +14,7 @@ class ABswController extends AController {
 		self :: deleteEmpty();
 
 
-		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('published', 1) -> get(),
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 1) -> get(),
 														'bsws' => Bsw :: all() -> sortBy('system_word')]);
 		
 		return view('modules.bsw.admin_panel.start_point', $data);
@@ -54,7 +54,7 @@ class ABswController extends AController {
 			}
 		}
 
-		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('published', 1) -> get(),
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 1) -> get(),
 														'bsws' => Bsw :: all() -> sortBy('system_word'),
 														'activeBsw' => Bsw :: find($id),
 														'prevBswId' => $prevId,
@@ -72,10 +72,6 @@ class ABswController extends AController {
 			$dataForValidation = array(
 				'system_word' => 'required|min:2|max:255'
 			);
-
-			// foreach(Language :: where('published', 1) -> get() as $data) {
-			// 	$dataForValidation['word_'.$data -> title] = 'max:255';
-			// }
 			
 			$validator = Validator :: make($request -> all(), $dataForValidation);
 
@@ -87,7 +83,7 @@ class ABswController extends AController {
 
 		$bsw -> system_word = $request -> input('system_word');
 
-		foreach(Language :: where('published', 1) -> get() as $data) {
+		foreach(Language :: where('disable', 0) -> get() as $data) {
 			$bsw -> { 'word_'.$data -> title } = $request -> input('word_'.$data -> title);
 		}
 

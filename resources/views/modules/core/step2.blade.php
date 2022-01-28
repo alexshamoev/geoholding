@@ -2,8 +2,9 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    {{ $module -> title }} > {{ $parentData -> title_ge }} > {{ $data -> $use_for_tags }}
 @endsection
+
 
 @section('content')
 	@include('admin.includes.tags', [

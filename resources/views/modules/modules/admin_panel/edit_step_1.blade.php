@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    Modules > {{ $module -> alias }} > {{ $moduleStep -> title }}
 @endsection
 
 

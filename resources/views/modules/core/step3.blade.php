@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules
+    {{ $module -> title }} > {{ $parentData -> title_ge }} > {{ $parentDataSecond -> title_ge }} > {{ $data -> title_ge }}
 @endsection
 
 

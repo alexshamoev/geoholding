@@ -2,13 +2,13 @@
 
 
 @section('pageMetaTitle')
-    Users > Edit Admin
+	{{ $module -> title }} > {{ $activeAdmin -> email }}
 @endsection
 
 
 @section('content')
     @include('admin.includes.tags', [
-		'tag0Text' => 'Users',
+		'tag0Text' => $module -> title,
 		'tag0Url' => route('userStartPoint'),
 		'tag1Text' => $activeAdmin -> email
 	])

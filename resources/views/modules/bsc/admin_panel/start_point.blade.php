@@ -8,9 +8,7 @@
 
 @section('content')
 	@include('admin.includes.tags', [
-		'tag0Text' => 'BSC',
-		'tag0Url' => route('bscStartPoint'),
-		'tag0ArrowData' => $bscs
+		'tag0Text' => 'BSC'
 	])
 
 	<div class="p-2">

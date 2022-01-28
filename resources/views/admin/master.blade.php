@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app() -> getLocale()) }}">
 	<head>
-		<title>Admin - @yield('pageMetaTitle')</title>
+		<title>Admin > @yield('pageMetaTitle')</title>
 
 		<meta name="csrf-token" content="{{ csrf_token() }}" />
 

@@ -69,7 +69,7 @@ class PageController extends Controller {
 				'bsw' => Bsw :: getFullData($lang -> title),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
 				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> alias,
-				'partners' => Partner :: where('published', '1') -> orderByDesc('rang') -> get(),
+				'partners' => Partner :: orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
 		
