@@ -36,56 +36,28 @@ class ContactsController extends Controller {
     public function update(Request $request) {
         $language = Language :: where('title', 'en') -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
         Page :: setLang($language -> title);
 
 		$contacts = new Contact();
-
-        $contacts -> name = $request -> input('name');
-        $contacts -> last_name = $request -> input('lastName');
-        $contacts -> email = $request -> input('email');
-        $contacts -> phone = $request -> input('phone');
-        $contacts -> address = $request -> input('address');
-        $contacts -> comment = $request -> input('comment');
-
+        $name = $request -> input('name');
+        $lastName = $request -> input('lastName');
+        $email = $request -> input('email');
+        $phone = $request -> input('phone');
+        $address = $request -> input('address');
+        $comment = $request -> input('comment');
+        $contacts -> name = $name;
+        $contacts -> last_name = $lastName;
+        $contacts -> email = $email;
+        $contacts -> phone = $phone;
+        $contacts -> address = $address;
+        $contacts -> comment = $comment;
         $contacts -> save();
-        // dd($email);
 
-		// // Validation
-		// 	$validator = Validator :: make($request -> all(), array(
-		// 		'system_word' => 'required|min:2|max:255',
-		// 		'configuration' => 'required|nullable|max:255'
-		// 	));
-
-		// 	if($validator -> fails()) {
-		// 		return redirect() -> route('bscEdit', $bsc -> id) -> withErrors($validator) -> withInput();
-		// 	}
-		// //
-
-
-		// $bsc -> system_word = $request -> input('system_word');
-		// $bsc -> configuration = $request -> input('configuration');
-
-		// $bsc -> save();
-
-		// // Status for success.
-		// 	$request -> session() -> flash('successStatus', __('bsw.successStatus'));
-        // //
-
-        $arrayEmails = ['lashalashka61@gmail.com'];
-        $emailSubject = 'My Subject';
-        $emailBody = 'Hello, this is my message content.';
+        MailController :: sendMail($name, $lastName, $email, $phone, $address, $comment);
+        
         $data = array_merge(PageController :: getDefaultData($language, $page));
 
-        $dataEmail = array('name'=>"Virat Gandhi");
-        Mail::send(['text'=>'mail'], $dataEmail, function($message) {
-            $message->to('lashalashka61@gmail.com', 'Tutorials Point')->subject
-               ('Laravel Basic Testing Mail');
-            $message->from('xyz@gmail.com','Virat Gandhi');
-         });
-
-
-		return view('modules.contacts.step0', $data);
+        return view('modules.contacts.step0', $data);
 	}
 
 }
