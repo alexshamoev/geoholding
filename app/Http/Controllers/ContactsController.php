@@ -21,6 +21,7 @@ use App\Mail\MailNotify;
 class ContactsController extends Controller {
     private const PAGE_SLUG = 'contact';
 
+    
     public static function getStep0($lang) {
         
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();

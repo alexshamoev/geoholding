@@ -17,6 +17,21 @@ use DB;
 
 
 class AController extends Controller {
+	public static function deleteEmptyBlocks() {
+		Bsc :: deleteEmpty();
+		Bsw :: deleteEmpty();
+		Language :: deleteEmpty();
+		Module :: deleteEmpty();
+		ModuleStep :: deleteEmpty();
+		ModuleBlock :: deleteEmpty();
+
+		ACoreControllerStep0 :: deleteEmpty();
+		// ACoreControllerStep1 :: deleteEmpty();
+		// ACoreControllerStep2 :: deleteEmpty();
+		// ACoreControllerStep3 :: deleteEmpty();
+	}
+
+
 	public function getDefaultPage() {
 		$firstModule = Module :: orderBy('rang', 'desc') -> first();
 

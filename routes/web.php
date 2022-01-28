@@ -178,4 +178,4 @@ foreach(Language :: where('disable', '0') -> get() as $language) {
 // 	Mail :: to('email@email.com') -> send(new WelcomeMail());
 
 // 	return new WelcomeMail();
-// });
+// });f

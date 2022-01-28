@@ -44,7 +44,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages forPublished forColorPicker forRang forFile forCalendar forImage forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages forColorPicker forRang forFile forCalendar forImage forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>label</span>
@@ -56,7 +56,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forImage forFile forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forImage forFile forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							<span>db_column:</span>
@@ -106,7 +106,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forRang forPublished forColorPicker forCalendar forEditor forEditorWithLanguages forRang">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forRang forColorPicker forCalendar forEditor forEditorWithLanguages forRang">
 					<div class="standard-block p-2">
 						<div class="p-2">
 							<label>
@@ -694,7 +694,7 @@
 					</div>
 				</div>
 
-				<div class="p-2 dataBlock forInput forInputWithLanguages forImage forFile forAlias forColorPicker forMultiplyCheckboxesWithCategory forPublished forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="p-2 dataBlock forInput forInputWithLanguages forImage forFile forAlias forColorPicker forMultiplyCheckboxesWithCategory forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 					<div class="standard-block p-2">
 						<div class="p-2 d-flex flex-column">
 							validation

@@ -16,7 +16,9 @@ use DB;
 
 class ACoreControllerStep0 extends AController {
     public function get($moduleAlias) {
-		self :: deleteEmpty();
+		// self :: deleteEmpty();
+
+		self :: deleteEmptyBlocks();
 
 
 		$module = Module :: where('alias', $moduleAlias) -> first();
@@ -487,7 +489,6 @@ class ACoreControllerStep0 extends AController {
 		foreach($moduleBlocks as $data) {
 			if($data -> type !== 'image'
 				&& $data -> type !== 'file'
-				&& $data -> type !== 'published'
 				&& $data -> type !== 'rang'
 				&& $data -> type !== 'alias'
 				&& $data -> type !== 'input_with_languages'
@@ -597,7 +598,7 @@ class ACoreControllerStep0 extends AController {
 	}
 
 
-	private static function deleteEmpty() {
+	public static function deleteEmpty() {
 		foreach(Module :: get() as $module) {
 			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {
 				foreach(DB :: table($moduleStep -> db_table) -> get() as $dbTableData) {

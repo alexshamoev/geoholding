@@ -5,8 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
-class Module extends Model
-{
+class Module extends Model {
     public static function deleteEmpty() {
 		$validateRules = array(
 			'alias' => 'required|min:2',

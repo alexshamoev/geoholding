@@ -28,6 +28,7 @@ class ACoreControllerStep2 extends AController {
 
 	public function edit($moduleAlias, $parentFirst, $parentSecond, $id) {
 		ACoreControllerStep3 :: deleteEmpty();
+
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleParentStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleParentStep2 = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) ->first();
@@ -138,7 +139,7 @@ class ACoreControllerStep2 extends AController {
 														'moduleBlocks' => $moduleBlocks,
 														'selectData' => $selectData,
 														'selectOptgroudData' => $selectOptgroudData,
-														'languages' => Language :: where('published', 1) -> get(),
+														'languages' => Language :: where('disable', 0) -> get(),
 														'sortBy' => $use_for_sort,
 														'id' => $id,
 														'parentFirst' => $parentFirst,
@@ -344,7 +345,6 @@ class ACoreControllerStep2 extends AController {
 		foreach($moduleBlocks as $data) {
 			if($data -> type !== 'image'
 				&& $data -> type !== 'file'
-				&& $data -> type !== 'published'
 				&& $data -> type !== 'rang'
 				&& $data -> type !== 'alias'
 				&& $data -> type !== 'input_with_languages'
@@ -354,12 +354,9 @@ class ACoreControllerStep2 extends AController {
 				$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
 			}
 
-			// if($data -> type !== 'published' && $data -> type !== 'rang' && $data -> type !== 'alias') {
-			// 	$updateQuery[$data -> db_column] = (!is_null($request -> input($data -> db_column)) ? $request -> input($data -> db_column) : '');
-			// }
 
 			if($data -> type === 'alias') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$value = $request -> input($data -> db_column.'_'.$langData -> title);
 					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
 											'',
@@ -381,14 +378,14 @@ class ACoreControllerStep2 extends AController {
 
 
 			if($data -> type === 'input_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
 
 
 			if($data -> type === 'editor_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
@@ -432,6 +429,7 @@ class ACoreControllerStep2 extends AController {
 		// return $moduleAlias.' '.$parentFirst.' '.$parentSecond.' '.$id;
 	}
 
+	
 	public static function deleteEmpty() {
 		foreach(Module :: get() as $module) {
 			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {

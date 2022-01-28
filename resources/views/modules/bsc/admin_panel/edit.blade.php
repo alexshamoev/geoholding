@@ -37,8 +37,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>System word: *</span>
-						<span>(e.g: images_folder)</span>
+						System word: *
 					</div>
 					
 					<div class="p-2">
@@ -56,8 +55,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Configuration: *</span>
-						<span>(e.g: modules/gallery/uploads/)</span>
+						Configuration: *
 					</div>
 
 					<div class="p-2">
@@ -71,7 +69,7 @@
 					</div>
 				@enderror
 			</div>
-
+			
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>

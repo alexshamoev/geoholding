@@ -29,6 +29,9 @@ class AModuleStepController extends AController {
 
 
 	public function edit($moduleId, $id) {
+		ModuleBlock :: deleteEmpty();
+
+
 		$module = Module :: find($moduleId);
 		$moduleStep = ModuleStep :: find($id);
 
@@ -53,8 +56,6 @@ class AModuleStepController extends AController {
 				$prevId = $data -> id;
 			}
 		}
-
-		ModuleBlock :: deleteEmpty();
 
 		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: all(),
 														'languages' => Language :: where('disable', 1) -> get(),

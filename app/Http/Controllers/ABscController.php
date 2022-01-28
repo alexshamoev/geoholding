@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 
 class ABscController extends AController {
 	public function getStartPoint() {
-		Bsc :: deleteEmpty();
+		// Bsc :: deleteEmpty();
+		self :: deleteEmptyBlocks();
 
 		$data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
 

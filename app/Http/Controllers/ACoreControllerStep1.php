@@ -131,7 +131,7 @@ class ACoreControllerStep1 extends AController {
 														'moduleBlocks' => $moduleBlocks,
 														'selectData' => $selectData,
 														'selectOptgroudData' => $selectOptgroudData,
-														'languages' => Language :: where('published', 1) -> get(),
+														'languages' => Language :: where('disable', 0) -> get(),
 														'sortBy' => $use_for_sort,
 														'id' => $id,
 														'moduleStepTableData' => DB :: table($moduleStepStep1 -> db_table) -> where('parent', $id) ->  orderBy($use_for_sort, 'desc') -> get(),
@@ -334,7 +334,6 @@ class ACoreControllerStep1 extends AController {
 		foreach($moduleBlocks as $data) {
 			if($data -> type !== 'image'
 				&& $data -> type !== 'file'
-				&& $data -> type !== 'published'
 				&& $data -> type !== 'rang'
 				&& $data -> type !== 'alias'
 				&& $data -> type !== 'input_with_languages'
@@ -345,7 +344,7 @@ class ACoreControllerStep1 extends AController {
 			}
 
 			if($data -> type === 'alias') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$value = $request -> input($data -> db_column.'_'.$langData -> title);
 					$value = preg_replace("/[^A-ZА-Яა-ჰ0-9 -]+/ui",
 											'',
@@ -366,14 +365,14 @@ class ACoreControllerStep1 extends AController {
 			}
 
 			if($data -> type === 'input_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
 			
 
 			if($data -> type === 'editor_with_languages') {
-				foreach(Language :: where('published', 1) -> get() as $langData) {
+				foreach(Language :: where('disable', 0) -> get() as $langData) {
 					$updateQuery[$data -> db_column.'_'.$langData -> title] = $request -> input($data -> db_column.'_'.$langData -> title);
 				}
 			}
@@ -416,6 +415,7 @@ class ACoreControllerStep1 extends AController {
 		return redirect() -> route('coreEditStep0', array($module -> alias, $parent, $id));
 	}
 
+	
 	public static function deleteEmpty() {
 		foreach(Module :: get() as $module) {
 			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {

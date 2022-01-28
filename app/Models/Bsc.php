@@ -20,8 +20,7 @@ class Bsc extends Model {
 
 	public static function deleteEmpty() {
 		$validateRules = array(
-			'system_word' => 'required|min:2',
-			'configuration' => 'nullable'
+			'system_word' => 'required|min:2'
 		);
 		
 		foreach(Bsc :: all() as $data) {

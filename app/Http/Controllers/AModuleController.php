@@ -17,13 +17,11 @@ use Illuminate\Support\Facades\Validator;
 
 class AModuleController extends AController {
     public function getStartPoint() {
-		ModuleBlock :: deleteEmpty();
-		ModuleStep :: deleteEmpty();
-		Module :: deleteEmpty();
+		self :: deleteEmptyBlocks();
 
 		return view('modules.modules.admin_panel.start_point', self :: getDefaultData());
 	}
-
+	
 
 	public function add() {
 		$module = new Module();
@@ -38,6 +36,9 @@ class AModuleController extends AController {
 
 
 	public function edit($id) {
+		ModuleStep :: deleteEmpty();
+
+		
 		$module = Module :: find($id);
 
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();

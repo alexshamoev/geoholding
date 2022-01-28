@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class ALanguageController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmpty();
+		self :: deleteEmptyBlocks();
 
 
 		$bsc = Bsc :: getFullData();
@@ -126,26 +126,5 @@ class ALanguageController extends AController {
 		$language -> save();
 		
 		return redirect() -> route('languageStartPoint');
-	}
-
-	
-	private static function deleteEmpty() {
-		$validateRules = array(
-			'title' => 'required|min:2|max:20',
-			'full_title' => 'required|min:2|max:20'
-		);
-		
-		foreach(Language :: all() as $data) {
-			$languageData['title'] = $data -> title;
-			$languageData['full_title'] = $data -> full_title;
-
-			// Validation
-				$validator = Validator :: make($languageData, $validateRules);
-
-				if($validator -> fails()) {
-					Language :: destroy($data -> id);
-				}
-			//
-		}
 	}
 }

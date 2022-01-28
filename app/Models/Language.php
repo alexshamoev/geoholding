@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Validator;
 
 class Language extends Model {
 	/**
@@ -87,4 +88,25 @@ class Language extends Model {
 
 		return false;
     }
+
+	
+	public static function deleteEmpty() {
+		$validateRules = array(
+			'title' => 'required|min:2|max:20',
+			'full_title' => 'required|min:2|max:20'
+		);
+		
+		foreach(Language :: all() as $data) {
+			$languageData['title'] = $data -> title;
+			$languageData['full_title'] = $data -> full_title;
+
+			// Validation
+				$validator = Validator :: make($languageData, $validateRules);
+
+				if($validator -> fails()) {
+					Language :: destroy($data -> id);
+				}
+			//
+		}
+	}
 }

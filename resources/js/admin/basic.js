@@ -1,3 +1,6 @@
+'use strict';
+
+
 window.$ = window.jQuery = require('jquery');
 import  'jquery-ui/ui/widgets/sortable';
 // import  'jquery-ui/ui/widgets/draggable';
@@ -55,10 +58,6 @@ function checkBlockType(blockType) {
 		$('.step2 .forRang').fadeIn(0);
 	}
 
-	if(blockType === 'published') {
-		$('.step2 .forPublished').fadeIn(0);
-	}
-
 	if(blockType === 'select_with_optgroup') {
 		$('.step2 .forSelectWithOptgroup').fadeIn(0);
 	}
@@ -91,7 +90,6 @@ function hide_type_blocks(speed_delay) {
 
 // ///////////////////////////
 
-'use strict';
 
 
 var required_fields_exists = false;
@@ -271,7 +269,6 @@ function submit_data_form() {
 }
 
 
-$(document).ready();
 
 
 // ////////////////////
