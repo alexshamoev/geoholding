@@ -14,10 +14,10 @@ class DropPublishedColumnFromPartners extends Migration
     public function up()
     {
         Schema :: table('partners_step_0', function (Blueprint $table) {
-			if(Schema :: hasColumn('partners_step_0', 'published')) {
-				$table -> dropColumn('published');
-			}
-		});
+          if(Schema :: hasColumn('partners_step_0', 'published')) {
+            $table -> dropColumn('published');
+          }
+      });
     }
 
     /**
@@ -27,10 +27,10 @@ class DropPublishedColumnFromPartners extends Migration
      */
     public function down()
     {
-        Schema :: table('partners_step_0', function (Blueprint $table) {
-			if(!Schema :: hasColumn('partners_step_0', 'published')) {
-				$table -> integer('published') -> default(0);
-			}
-		});
+      Schema :: table('partners_step_0', function (Blueprint $table) {
+        if(!Schema :: hasColumn('partners_step_0', 'published')) {
+          $table -> integer('published') -> default(0);
+        }
+      });
     }
 }
