@@ -23,7 +23,7 @@
 					</a>
 				@else
 					@if($tag1Text)
-						{{ $tag1Text }}sss
+						{{ $tag1Text }}
 					@else
 						-- Empty --
 					@endif
