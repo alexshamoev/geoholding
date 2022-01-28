@@ -54,7 +54,7 @@ class ABswController extends AController {
 			}
 		}
 
-		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 1) -> get(),
+		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 0) -> get(),
 														'bsws' => Bsw :: all() -> sortBy('system_word'),
 														'activeBsw' => Bsw :: find($id),
 														'prevBswId' => $prevId,

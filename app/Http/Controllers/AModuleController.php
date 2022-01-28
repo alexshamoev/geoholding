@@ -47,7 +47,7 @@ class AModuleController extends AController {
 		$pagesForIncludeInPages = array();
 		$pagesNotIncludeInPages = array();
 
-		foreach(Page :: where('published', 1) -> get() as $data) {
+		foreach(Page :: all() as $data) {
 			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
 			
 			$pagesForIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
@@ -99,8 +99,8 @@ class AModuleController extends AController {
 		$data = array_merge(self :: getDefaultData(), ['pagesForSelect' => $pagesForSelect,
 														'pagesForIncludeInPages' => $pagesForIncludeInPages,
 														'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
-														'pages' => Page :: where('published', 1) -> get(),
-														'languages' => Language :: where('published', 1) -> get(),
+														'pages' => Page :: all(),
+														'languages' => Language :: where('disable', 1) -> get(),
 														'module' => $module,
 														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 														'prevModuleId' => $prevId,
@@ -141,7 +141,7 @@ class AModuleController extends AController {
 		ModulesNotIncludesValue :: where('module', $module -> id) -> delete();
 
 
-		foreach(Page :: where('published', 1) -> get() as $data) {
+		foreach(Page :: all() as $data) {
 			if(!is_null($request -> input('page_include_'.$data -> id))) {
 				$modulesIncludesValue = new ModulesIncludesValue;
 				$modulesIncludesValue -> module = $module -> id;

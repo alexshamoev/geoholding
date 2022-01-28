@@ -56,8 +56,8 @@ class AModuleStepController extends AController {
 
 		ModuleBlock :: deleteEmpty();
 
-		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: where('published', 1) -> get(),
-														'languages' => Language :: where('published', 1) -> get(),
+		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: all(),
+														'languages' => Language :: where('disable', 1) -> get(),
 														'module' => $module,
 														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
 														'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get(),

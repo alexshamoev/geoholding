@@ -37,8 +37,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>System word: *</span>
-						<span>(e.g: images_folder)</span>
+						System word: *
 					</div>
 					
 					<div class="p-2">
@@ -51,11 +50,9 @@
 						{{ $message }}
 					</div>
 				@enderror
-			</div>
-		</div>		
+			</div>		
 
-		<div class="px-3">
-			<div class="top-border">
+			<div class="p-2">
 				@foreach($languages as $langData)
 					<div class="standard-block standard-block--no-top-border p-2">
 						<div class="p-2">
@@ -76,11 +73,11 @@
 					@enderror
 				@endforeach
 			</div>
-		</div>
 
-		<div class="p-2">
-			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+			<div class="p-2">
+				<div class="submit-button">
+					{{ Form :: submit('Submit') }}
+				</div>
 			</div>
 		</div>
 	{{ Form :: close() }}

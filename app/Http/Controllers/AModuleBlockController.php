@@ -68,7 +68,6 @@ class AModuleBlockController extends AController {
 							'calendar' => 'calendar',
 							'color_picker' => 'color_picker',
 							'rang' => 'rang',
-							'published' => 'published',
 							'select_with_optgroup' => 'select_with_optgroup',
 							'select_with_ajax' => 'select_with_ajax',
 							'checkbox' => 'checkbox',
@@ -77,8 +76,8 @@ class AModuleBlockController extends AController {
 							'multiply_input_params' => 'multiply_input_params');
 		
 
-		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: where('published', 1) -> get(),
-														'languages' => Language :: where('published', 1) -> get(),
+		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: all(),
+														'languages' => Language :: where('disable', 1) -> get(),
 														'module' => $module,
 														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
 														'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> get(),
