@@ -30,7 +30,7 @@ class NewsController extends Controller {
         NewsStep0 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['newsStep0' => NewsStep0 :: where('published', 1) -> orderByDesc('rang') -> get()]);
+                            ['newsStep0' => NewsStep0 :: orderByDesc('rang') -> get()]);
 
         return view('modules.news.step0', $data);
     }
@@ -53,7 +53,7 @@ class NewsController extends Controller {
 
         $data = array_merge(PageController :: getDefaultData($language, $page, $activeNews),
                             ['activeNewsStep0' => $activeNews,
-                             'newsStep1' => NewsStep1 :: where('published', 1) -> where('parent', $activeNews -> id) -> orderByDesc('rang') -> get()]);
+                             'newsStep1' => NewsStep1 :: where('parent', $activeNews -> id) -> orderByDesc('rang') -> get()]);
 
         return view('modules.news.step1', $data);
     }
@@ -86,7 +86,7 @@ class NewsController extends Controller {
         $data = array_merge(PageController :: getDefaultData($language, $page, $activeNewsStep0, $activeNewsStep1),
                             ['activeNewsStep0' => $activeNewsStep0,
                             'activeNewsStep1' => $activeNewsStep1,
-                            'newsStep2' => NewsStep2 :: where('published', 1) -> where('parent', $activeNewsStep1 -> id) -> orderByDesc('rang') -> get()]);
+                            'newsStep2' => NewsStep2 :: where('parent', $activeNewsStep1 -> id) -> orderByDesc('rang') -> get()]);
 
         return view('modules.news.step2', $data);
     }
@@ -128,7 +128,7 @@ class NewsController extends Controller {
                             ['activeNewsStep0' => $activeNewsStep0,
                             'activeNewsStep1' => $activeNewsStep1,
                             'activeNewsStep2' => $activeNewsStep2,
-                            'newsStep3' => NewsStep3 :: where('published', 1) -> where('parent', $activeNewsStep2 -> id) -> orderByDesc('rang') -> get()]);
+                            'newsStep3' => NewsStep3 :: where('parent', $activeNewsStep2 -> id) -> orderByDesc('rang') -> get()]);
 
         return view('modules.news.step3', $data);
     }

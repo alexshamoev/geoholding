@@ -28,7 +28,7 @@ class PhotoGalleryController extends Controller {
         PhotoGalleryStep0 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
-                            ['photoGalleryStep0' => PhotoGalleryStep0 :: where('published', 1) -> orderByDesc('rang') -> get()]);
+                            ['photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get()]);
 
         return view('modules.photo_gallery.step0', $data);
     }
@@ -44,9 +44,9 @@ class PhotoGalleryController extends Controller {
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
         $data = array_merge(PageController :: getDefaultData($language, $page, $activeCategory),
-                            ['photoGalleryStep0' => PhotoGalleryStep0 :: where('published', 1) -> orderByDesc('rang') -> get(),
+                            ['photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get(),
                              'activePhotoGalleryStep0' => $activeCategory,
-                             'photoGalleryStep1' => PhotoGalleryStep1 :: where('published', 1) -> where('parent', $activeCategory -> id) -> orderByDesc('rang') -> get()]);
+                             'photoGalleryStep1' => PhotoGalleryStep1 :: where('parent', $activeCategory -> id) -> orderByDesc('rang') -> get()]);
 
         return view('modules.photo_gallery.step1', $data);
     }
