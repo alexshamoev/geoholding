@@ -113,11 +113,11 @@ class AModuleBlockController extends AController {
 		$moduleBlock -> label = $request -> input('label');
 		$moduleBlock -> example = $request -> input('example');
 
-		if($request -> input('check_in_delete_empty')) {
-			$moduleBlock -> check_in_delete_empty = $request -> input('check_in_delete_empty');
-		} else {
-			$moduleBlock -> check_in_delete_empty = 0;
-		}
+		// if($request -> input('check_in_delete_empty')) {
+		// 	$moduleBlock -> check_in_delete_empty = $request -> input('check_in_delete_empty');
+		// } else {
+		// 	$moduleBlock -> check_in_delete_empty = 0;
+		// }
 
 		if($request -> input('a_use_for_sort')) {
 			$moduleBlock -> a_use_for_sort = $request -> input('a_use_for_sort');

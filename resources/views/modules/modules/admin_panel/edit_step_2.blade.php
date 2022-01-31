@@ -108,13 +108,13 @@
 
 				<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forRang forColorPicker forCalendar forEditor forEditorWithLanguages forRang">
 					<div class="standard-block p-2">
-						<div class="p-2">
+						<!-- <div class="p-2">
 							<label>
 								{{ Form :: checkbox('check_in_delete_empty', '1') }}
 
 								check_in_delete_empty?
 							</label>
-						</div>
+						</div> -->
 
 						
 						<div class="p-2">

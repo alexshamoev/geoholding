@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropPublishedColumnFromNewsStep3 extends Migration
+class RemoveCheckInDeleteEmptyFromModuleBlocks extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class DropPublishedColumnFromNewsStep3 extends Migration
      */
     public function up()
     {
-        Schema::table('news_step_3', function (Blueprint $table) {
-            $table -> dropColumn('published');
+        Schema::table('module_blocks', function (Blueprint $table) {
+            $table -> dropColumn('check_in_delete_empty');
         });
     }
 
@@ -25,8 +25,8 @@ class DropPublishedColumnFromNewsStep3 extends Migration
      */
     public function down()
     {
-        Schema::table('news_step_3', function (Blueprint $table) {
-            $table -> integer('published') -> default(0);
+        Schema::table('module_blocks', function (Blueprint $table) {
+            $table -> integer('check_in_delete_empty') -> default(0);
         });
     }
 }
