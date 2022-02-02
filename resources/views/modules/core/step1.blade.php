@@ -195,7 +195,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30">
 										</div>
 
 										<div class="p-2">
@@ -223,7 +223,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30">
 										</div>
 
 										<div class="p-2">
@@ -251,7 +251,7 @@
 												}
 											@endphp
 
-											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+											<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30">
 										</div>
 
 										<div class="p-2">
