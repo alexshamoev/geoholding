@@ -1,6 +1,3 @@
-@import "modules/atom";
-
-
 @media only screen and (max-width: $xs_size) {
     // News
         .img_wrapper {
@@ -286,3 +283,62 @@ a:active {
 // Footer
 
 // 
+
+
+.container {
+    border: 3px solid red;
+}
+
+#admin-panel-link {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.navbar__toggler-icon {
+    background-image: url('/images/show_hide.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 544px 34px;
+    background-position: 0 0;
+    height: 38px;
+    width: 34px;
+    outline: none !important;
+}
+
+.header {
+    background-color: #fff;
+    
+    &__close-search {
+        display: none;
+    }
+
+    &__close-search,
+    &__open-search {
+        cursor: pointer;
+    }
+
+    &__search-input {
+        width: 0px;
+        transition: 0.2s all ease-in-out;
+        overflow: hidden;
+        &.expanded {
+            width: 200px;
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+}
+
+.languages {
+	border: 3px solid blue;
+
+	&__lang {
+		&--active {
+			opacity: 0.5;
+			pointer-events: none;
+		}
+	}
+}

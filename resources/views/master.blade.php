@@ -25,19 +25,9 @@
 		<meta name="description" content="@yield('pageMetaDescription')">
 		<meta property="og:image" content="@yield('pageMetaUrl')">
 
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photoswipe.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/default-skin.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/html_tags.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/text_lines.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/text_lines_max.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/icons.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/main.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/menu_buttons/styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photo_gallery/styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/header/styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/footer/styles.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/app.css') }}">
 
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
