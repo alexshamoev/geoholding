@@ -1,16 +1,18 @@
 $container-max-widths: (
-	sm: 540px,
-	md: 990px,
-	lg: 1230px,
-	xl: 1370px
+	sm: $container_sm_size,
+	md: $container_md_size,
+	lg: $container_lg_size,
+	xl: $container_xl_size,
+	xxl: $container_xxl_size
 );
 
 $grid-breakpoints: (
 	xs: 0,
-	sm: 576px,
-	md: 1024px,
-	lg: 1250px,
-	xl: 1400px
+	sm: $sm_size,
+	md: $md_size,
+	lg: $lg_size,
+	xl: $xl_size,
+	xxl: $xxl_size
 );
 
 //Variables should always be placed before bootstrap import
