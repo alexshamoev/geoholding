@@ -418,7 +418,7 @@ class ACoreControllerStep1 extends AController {
 	
 	public static function deleteEmpty() {
 		foreach(Module :: get() as $module) {
-			foreach(ModuleStep :: where('top_level', $module -> id) -> get() as $moduleStep) {
+			foreach(ModuleStep :: where('top_level', $module -> id) -> skip(1) -> take(10) -> get() as $moduleStep) {
 				foreach(DB :: table($moduleStep -> db_table) -> get() as $dbTableData) {
 					$data = [];
 					$validateRules = [];

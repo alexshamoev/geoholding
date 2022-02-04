@@ -91,7 +91,7 @@ class ACoreControllerStep0 extends AController {
 
 	public function edit($moduleAlias, $id) {
 		ACoreControllerStep1 :: deleteEmpty();
-
+		
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
