@@ -41,14 +41,15 @@ class ACoreControllerStep3 extends AController {
 
 		$use_for_tags = 'id';
 
+		$activeSiteLang = Language :: where('like_default', 1) -> first();
+
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock -> db_column;
 
 			if($moduleBlock -> type === 'alias' || $moduleBlock -> type === 'input_with_languages' || $moduleBlock -> type === 'editor_with_languages') {
-				$use_for_tags .= '_ge';
+				$use_for_tags .= '_'.$activeSiteLang -> title;
 			}
 		}
-
 
 		$prevId = 0;
 		$nextId = 0;
