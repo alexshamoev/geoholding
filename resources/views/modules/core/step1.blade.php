@@ -362,15 +362,15 @@
 		
 		@if($nextModuleStepData)
 			<div class="p-3"></div>
-
+			
 			@include('admin.includes.addButton', [
-				'text' => $bsw -> a_add.' '.$moduleStep -> title,
+				'text' => $bsw -> a_add.' '.$nextModuleStep -> title,
 				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 			])
 			
 
-			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep -> db_table }}">
-				@if(!$moduleStep -> images)
+			<div class="row" id="rangBlocks" data-db_table="{{ $nextModuleStep -> db_table }}">
+				@if(!$nextModuleStep -> images)
 					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')
 							@include('admin.includes.horizontalEditDeleteBlock', [
