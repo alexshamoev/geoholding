@@ -9,8 +9,6 @@ use App\Models\Language;
 use App\Models\Module;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\Models\News;
-use App\Models\PhotoGalleryCategory;
 use App\Models\Partner;
 use App\Widget;
 
@@ -79,8 +77,6 @@ class PageController extends Controller {
 
 
 	public static function test() {
-		// dd(32);
-
 		$page = Page :: where('slug', 'registration') -> first();
         $language = Language :: where('title', 'ge') -> first();
 
@@ -96,46 +92,16 @@ class PageController extends Controller {
 	public function getDefaultPageWithDefaultLanguage() {
 		$language = Language :: where('like_default', 1) -> first();
 
-		$page = Page :: where('like_default', 1) -> first();
+		$NewsController = new NewsController;
 
-		if($language && $page) {
-			$page_template = 'static';
-			
-			$active_module = Module :: where('page', $page -> id) -> first();
-			
-			if($active_module) {
-				$page_template = 'modules.'.$active_module -> alias.'.step0';
-			}
-
-			return view($page_template, self :: getDefaultData($language, $page));
-		} else {
-			abort(404);
-		}
+		return $NewsController -> getStep0($language -> title);
 	}
 
 	
 	public function getDefaultPage($lang) {
-		$language = Language :: where('title', $lang) -> first();
-
-		if($language) {
-			$page = Page :: where('like_default', 1) -> first();
-
-			if($page) {
-				$page_template = 'static';
-
-				$active_module = Module :: where('page', $page -> id) -> first();
-			
-				if($active_module) {
-					$page_template = 'modules.'.$active_module -> alias.'.step0';
-				}
-				
-				return view($page_template, self :: getDefaultData($language, $page));
-			} else {
-				abort(404);
-			}
-		} else {
-			abort(404);
-		}
+		$NewsController = new NewsController;
+		
+		return $NewsController -> getStep0($lang);
 	}
 
 

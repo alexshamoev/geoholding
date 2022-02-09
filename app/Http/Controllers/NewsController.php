@@ -26,7 +26,7 @@ class NewsController extends Controller {
 
         Page :: setLang($language -> title);
 
-        NewsStep0 :: setLang($lang);
+        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
