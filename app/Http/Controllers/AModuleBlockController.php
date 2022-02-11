@@ -96,28 +96,10 @@ class AModuleBlockController extends AController {
 		$moduleStep = ModuleStep :: find($stepId);
 		$moduleBlock = ModuleBlock :: find($id);
 
-
-		// Validation
-			// $validator = Validator :: make($request -> all(), array(
-			// 	'db_column' => 'required|min:2|max:100'
-			// ));
-
-			// if($validator -> fails()) {
-			// 	return redirect() -> route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $moduleBlock -> id)) -> withErrors($validator) -> withInput();
-			// }
-		//
-
-
 		$moduleBlock -> type = $request -> input('type');
 		$moduleBlock -> db_column = $request -> input('db_column');
 		$moduleBlock -> label = $request -> input('label');
 		$moduleBlock -> example = $request -> input('example');
-
-		// if($request -> input('check_in_delete_empty')) {
-		// 	$moduleBlock -> check_in_delete_empty = $request -> input('check_in_delete_empty');
-		// } else {
-		// 	$moduleBlock -> check_in_delete_empty = 0;
-		// }
 
 		if($request -> input('a_use_for_sort')) {
 			$moduleBlock -> a_use_for_sort = $request -> input('a_use_for_sort');
@@ -225,8 +207,10 @@ class AModuleBlockController extends AController {
 		$moduleBlock -> div_id = $request -> input('div_id');
 		$moduleBlock -> validation = $request -> input('validation');
 
-
 		$moduleBlock -> save();
+
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $moduleBlock -> id));
 	}

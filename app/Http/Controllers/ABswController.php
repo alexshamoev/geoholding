@@ -7,6 +7,7 @@ use App\Models\Module;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ABswUpdateRequest;
 
 
 class ABswController extends AController {
@@ -64,22 +65,8 @@ class ABswController extends AController {
 	}
 
 
-	public function update(Request $request, $id) {
+	public function update(ABswUpdateRequest $request, $id) {
 		$bsw = Bsw :: find($id);
-
-
-		// Validation
-			$dataForValidation = array(
-				'system_word' => 'required|min:2|max:255'
-			);
-			
-			$validator = Validator :: make($request -> all(), $dataForValidation);
-
-			if($validator -> fails()) {
-				return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$bsw -> system_word = $request -> input('system_word');
 
@@ -89,9 +76,8 @@ class ABswController extends AController {
 
 		$bsw -> save();
 
-		// Status for success.
-			$request -> session() -> flash('successStatus', __('bsw.successStatus'));
-        //
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('bswEdit', $bsw -> id);
 	}

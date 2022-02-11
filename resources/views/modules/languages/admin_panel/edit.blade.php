@@ -25,6 +25,13 @@
 	])
 
 	
+	@if(Session :: has('successStatus'))
+        <div class="alert alert-success" role="alert">
+            {{ Session :: get('successStatus') }}
+        </div>
+    @endif
+	
+	
 	{{ Form :: model($language, array('route' => array('languageUpdate', $language -> id), 'files' => 'true')) }}
 		<div class="p-2">
 			<div class="p-2">

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\AAdminUpdateRequest;
 
 
 class AAdminController extends AController {
@@ -51,11 +52,7 @@ class AAdminController extends AController {
             }
         }
 
-        return redirect(route('adminLogin')) -> withErrors([
-            'email' => 'Bad data!'
-        ]) -> withInput();
-
-        // return redirect() -> route('bswEdit', $bsw -> id) -> withErrors($validator) -> withInput();
+        return redirect(route('adminLogin')) -> withErrors(['email' => 'Bad data!']) -> withInput();
     }
 
 
@@ -72,6 +69,7 @@ class AAdminController extends AController {
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
+    
     
     public function add() {
         $user = new User();
@@ -120,23 +118,8 @@ class AAdminController extends AController {
 	}
 
 
-    public function update(Request $request, $id) {
+    public function update(AAdminUpdateRequest $request, $id) {
         $admin = User :: find($id);
-
-
-        // Validation
-			$validator = Validator :: make($request -> all(), array(
-                'name' => 'required|max:255',
-				'email' => 'required|email|max:255',
-				'password' => 'required|max:255',
-				'password_confirmation' => 'required|max:255'
-            ));
-
-			if($validator -> fails()) {
-				return redirect() -> route('adminEdit', $admin -> id) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$admin -> name = $request -> input('name');
 		$admin -> email = $request -> input('email');
@@ -145,11 +128,13 @@ class AAdminController extends AController {
 
 		$admin -> save();
 
+
         // Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
 
-		return redirect(route('adminEdit', $admin -> id));
 
-        // return $admin -> password;
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
+
+		return redirect(route('adminEdit', $admin -> id));
 	}
 
 

@@ -13,6 +13,7 @@ use App\Models\ModulesIncludesValue;
 use App\Models\ModulesNotIncludesValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\AModuleUpdateRequest;
 
 
 class AModuleController extends AController {
@@ -111,22 +112,8 @@ class AModuleController extends AController {
 	}
 
 
-	public function update(Request $request, $id) {
+	public function update(AModuleUpdateRequest $request, $id) {
 		$module = Module :: find($id);
-
-
-		// Validation
-			$validator = Validator :: make($request -> all(), array(
-				'alias' => 'required|min:2|max:100',
-				'title' => 'required|min:2|max:100',
-				'icon_bg_color' => 'required|min:3|max:20'
-			));
-
-			if($validator -> fails()) {
-				return redirect() -> route('moduleEdit', $module -> id) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$module -> alias = $request -> input('alias');
 		$module -> title = $request -> input('title');
@@ -164,6 +151,8 @@ class AModuleController extends AController {
 																'public');
 		}
 
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('moduleEdit', $module -> id);
 	}

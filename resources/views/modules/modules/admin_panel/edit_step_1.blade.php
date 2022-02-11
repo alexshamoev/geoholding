@@ -26,6 +26,13 @@
 		'backRoute' => route('moduleEdit', $module -> id)
 	])
 
+	
+	@if(Session :: has('successStatus'))
+        <div class="alert alert-success" role="alert">
+            {{ Session :: get('successStatus') }}
+        </div>
+    @endif
+	
 
 	{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $module -> id, $moduleStep -> id))) }}
 		<div class="p-2">

@@ -8,6 +8,7 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ALanguageUpdateRequest;
 
 
 class ALanguageController extends AController {
@@ -70,26 +71,14 @@ class ALanguageController extends AController {
 	}
 
 
-	public function update(Request $request, $id) {
+	public function update(ALanguageUpdateRequest $request, $id) {
 		$language = Language :: find($id);
-
-		
-		// Validation
-			$validator = Validator :: make($request -> all(), array(
-				'title' => 'required|min:2|max:20',
-				'full_title' => 'required|min:2|max:20'
-			));
-
-			if($validator -> fails()) {
-				return redirect() -> route('languageEdit', $language -> id) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$language -> title = $request -> input('title');
 		$language -> full_title = $request -> input('full_title');
 
 		$language -> save();
+		
 
 		if($request -> file('svg_icon_languages')) {
 			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/languages',
@@ -97,6 +86,8 @@ class ALanguageController extends AController {
 																			'public');
 		}
 
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('languageEdit', $language -> id);
 	}

@@ -24,6 +24,14 @@
 		'backRoute' => route('moduleStartPoint')
 	])
 
+
+	@if(Session :: has('successStatus'))
+        <div class="alert alert-success" role="alert">
+            {{ Session :: get('successStatus') }}
+        </div>
+    @endif
+	
+
 	<div class="p-2 modulesStep0">
 		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">

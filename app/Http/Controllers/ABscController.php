@@ -7,11 +7,11 @@ use App\Models\Module;
 use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Http\Requests\ABscUpdateRequest;
 
 
 class ABscController extends AController {
 	public function getStartPoint() {
-		// Bsc :: deleteEmpty();
 		self :: deleteEmptyBlocks();
 
 		$data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
@@ -65,30 +65,16 @@ class ABscController extends AController {
 	}
 
 
-	public function update(Request $request, $id) {
+	public function update(ABscUpdateRequest $request, $id) {
 		$bsc = Bsc :: find($id);
-
-
-		// Validation
-			$validator = Validator :: make($request -> all(), array(
-				'system_word' => 'required|min:2|max:255',
-				'configuration' => 'required|nullable|max:255'
-			));
-
-			if($validator -> fails()) {
-				return redirect() -> route('bscEdit', $bsc -> id) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$bsc -> system_word = $request -> input('system_word');
 		$bsc -> configuration = $request -> input('configuration');
 
 		$bsc -> save();
 
-		// Status for success.
-			$request -> session() -> flash('successStatus', __('bsw.successStatus'));
-        //
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('bscEdit', $bsc -> id);
 	}

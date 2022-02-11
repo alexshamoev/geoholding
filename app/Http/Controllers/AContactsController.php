@@ -8,6 +8,7 @@ use App\Models\Bsw;
 use App\Models\Module;
 use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\AContactsUpdateRequest;
 
 class AContactsController extends AController {
     public function edit() {
@@ -22,23 +23,7 @@ class AContactsController extends AController {
 	}
 
 
-    public function update(Request $request) {
-        // Validation
-            $validator = Validator :: make($request -> all(), array(
-                'admin_email' => 'required|email|max:255',
-                'facebook_link' => 'max:255',
-                'instagram_link' => 'max:255',
-                'twitter_link' => 'max:255',
-                'phone_number' => 'max:255',
-                'cordinate_x' => 'max:255',
-                'cordinate_y' => 'max:255'
-            ));
-            
-            if($validator -> fails()) {
-                return redirect() -> route('contactsEdit') -> withErrors($validator) -> withInput();
-            }
-		//
-        
+    public function update(AContactsUpdateRequest $request) {        
         $bsc = Bsc :: where('system_word', 'admin_email') -> first();
 		$bsc -> configuration = $request -> input('admin_email');
 		$bsc -> save();
@@ -77,9 +62,8 @@ class AContactsController extends AController {
 		$bsw -> word_ru = $request -> input('address_ru');
 		$bsw -> save();
 
-        // Status for success.
-            $request -> session() -> flash('successStatus', __('bsw.successStatus'));
-        //
+        
+        $request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('contactsEdit');
 	}

@@ -11,6 +11,7 @@ use App\Models\Bsw;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\AModuleStepUpdateRequest;
 
 
 class AModuleStepController extends AController {
@@ -71,23 +72,10 @@ class AModuleStepController extends AController {
 	}
 
 
-	public function update(Request $request, $moduleId, $id) {
+	public function update(AModuleStepUpdateRequest $request, $moduleId, $id) {
 		$module = Module :: find($moduleId);
 
 		$moduleStep = ModuleStep :: find($id);
-
-
-		// Validation
-			$validator = Validator :: make($request -> all(), array(
-				'title' => 'required|min:2|max:100',
-				'db_table' => 'required|min:2|max:100'
-			));
-
-			if($validator -> fails()) {
-				return redirect() -> route('moduleStepEdit', array($module -> id, $moduleStep -> id)) -> withErrors($validator) -> withInput();
-			}
-		//
-
 
 		$moduleStep -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
 		$moduleStep -> db_table = (!is_null($request -> input('db_table')) ? $request -> input('db_table') : '');
@@ -100,6 +88,9 @@ class AModuleStepController extends AController {
 		$moduleStep -> blocks_max_number = (!is_null($request -> input('blocks_max_number')) ? $request -> input('blocks_max_number') : 0);
 
 		$moduleStep -> save();
+
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('moduleStepEdit', array($module -> id, $moduleStep -> id));
 	}
