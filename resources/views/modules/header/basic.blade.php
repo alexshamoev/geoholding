@@ -1,13 +1,51 @@
 @if($widgetGetVisibility['header'])
-    <header>
-        <div class="container p-2 mainHeader">
+    <header class="header position-relative">
+        <div class="container p-2">
             <div class="row">
-                <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex
+                            align-items-center
+                            justify-content-between">
                     <div class="p-2">
                         <span>{{ $bsw -> phone_number }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
-                    <div class="d-flex align-items-center justify-content-end">
+
+                    @if(Auth :: check())
+                        <div class="nav-item">
+                            <div class="p-2">
+                                {{ Auth :: user() -> name }}
+                            </div>
+                        </div>
+                
+                        <div class="nav-item">
+                            <a href="{{ route('logout') }}">
+                                <div class="p-2">
+                                    Logout
+                                </div>
+                            </a>
+                        </div>
+                    @else
+                        <div class="nav-item">
+                            <a href="{{ route('register') }}">
+                                <div class="p-2">
+                                    Registration
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="nav-item">
+                            <a href="{{ route('login') }}">
+                                <div class="p-2">
+                                    Authorization
+                                </div>
+                            </a>
+                        </div>
+                    @endif
+
+
+                    <div class="d-flex
+                                align-items-center
+                                justify-content-end">
                         <div class="header__search-input js_search">
                             <div class="p-2">
                                 <form action="#" id="search_form">
@@ -17,11 +55,16 @@
                         </div>
 
                         <div>
-                            <div class="p-2 js_open_search header__open-search">
+                            <div class="p-2
+                                        js_open_search
+                                        header__open-search">
                                 <span class="ba_search"></span>
                             </div>
 
-                            <div class="p-2 js_close_search header__close-search">
+                            <div class="p-2
+                                        d-none
+                                        js_close_search
+                                        header__close-search">
                                 <span class="ba_close"></span>
                             </div>
                         </div>
@@ -33,18 +76,34 @@
                             navbar-expand-xl
                             navbar-light
                             p-0">
-                    <div class="row d-flex w-100 align-items-center">
+                    <div class="row
+                                d-flex
+                                w-100
+                                align-items-center">
                   
-                        <div class="col-xl-1 col-md-2 col-3 mainHeader__logo order-0">
+                        <div class="col-xl-1
+                                    col-md-2
+                                    col-3
+                                    header position-relative__logo
+                                    order-0">
                             <div class="pe-2">
-                                <a href="">
-                                    <img src="{{ asset('/storage/images/admin/logo.svg') }}" alt="HobbyStudio" class="w-100">
+                                <a href="#">
+                                    <img src="{{ asset('/storage/images/admin/logo.svg') }}">
                                 </a>
                             </div>
                         </div>
 
-                        <div class="col-md-1 col-2 order-lg-4 order-3">
-                            <div class="p-0 mainHeader__mobNav d-flex justify-content-end">
+                        <div class="col-md-1
+                                    col-2
+                                    d-xl-none
+                                    d-block
+                                    order-lg-4
+                                    order-3">
+                            <div class="p-0
+                                        header
+                                        position-relative__mobNav
+                                        d-flex
+                                        justify-content-end">
                                 <button class="navbar-toggler p-0 ms-sm-3 ms-0"
                                         type="button"
                                         data-bs-toggle="collapse"
@@ -62,28 +121,20 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-7 col-12 order-xl-1 order-4">
+                        <div class="col-xl-9
+                                    col-12
+                                    order-xl-1
+                                    order-4">
                             @include('modules.menu_buttons.basic')
                         </div>
                         
-                        <div class="col-xl-2 col-6 ms-auto d-block order-lg-2 order-1">
+                        <div class="col-xl-2
+                                    col-6
+                                    ms-auto
+                                    d-block
+                                    order-lg-2
+                                    order-1">
                             @include('modules.languages.basic')
-                        </div>
-
-                        <div class="col-lg-2 col-1 ms-auto text-lg-center text-end order-lg-3 order-2">
-                            <div class="mainHeader__authorization">
-                                <a href="#">
-                                    <div class="d-flex justify-content-end align-items-center">
-                                        <div>                                  
-                                            <div class="pe-md-1 pe-0 ba_user_newest"></div>                                
-                                        </div>
-
-                                        <div class="d-lg-block d-none">									
-                                            authorization
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
                         </div>
                     </div>
                 </nav>

@@ -1,12 +1,17 @@
 @if($widgetGetVisibility['footer'])
-    <footer>
-        <div class="container p-2 top_footer">
+    <footer class="footer">
+        <div class="container p-2">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-0 p-2">
+                <div class="col-md-6 col-0 p-2">
                     menu_buttons
                 </div>
 
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-0 text-right d-flex flex-column align-items-end">
+                <div class="col-md-6
+                            col-12
+                            text-right
+                            d-flex
+                            flex-column
+                            align-items-end">
                     <div class="p-2">
                         yazbegis 70
                     </div>
@@ -19,51 +24,63 @@
                         <div class="col-3 p-2">
                             <a href="#"
                                 target="_blank"
-                                class="ba_fb text-decoration-none m-0 top_footer__media_icon"
-                                style="color: #3b5998;"></a>
+                                class="ba_fb
+                                        footer__media_icon
+                                        footer__media_icon--fb"></a>
                         </div>
                         
                         <div class="col-3 p-2">
                             <a href="#"
                                 target="_blank"
-                                class="ba_inst top_footer__media_icon"
-                                style="color: #8a3ab9;"></a>
+                                class="ba_inst
+                                        footer__media_icon
+                                        footer__media_icon--instagram"></a>
                         </div>
                         
                         <div class="col-3 p-2">
                             <a href="#"
                                 target="_blank"
-                                class="ba_tw top_footer__media_icon"
-                                style="color: #1DA1F2;"></a>
+                                class="ba_tw
+                                        footer__media_icon
+                                        footer__media_icon--twitter"></a>
                         </div>
 
                         <div class="col-3 p-2">
                             <a href="#"
                                 target="_blank"
-                                class="ba_in top_footer__media_icon"
-                                style="color: #0077b5;"></a>
+                                class="ba_in
+                                        footer__media_icon
+                                        footer__media_icon--linkedin"></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="footer_horizontal_line"></div>
+        <div class="footer__horizontal_line"></div>
 
         <div class="container p-2">
             <div class="row">
-                <div class="col-md-8 col-12 p-2 text-md-start text-center">
+                <div class="col-lg-8
+                            col-12
+                            p-2
+                            text-lg-start
+                            text-center">
                     © {{ $copyrightDate }} {{ $bsw -> copyright }} 
                 </div>
 
-                <div class="col-md-4 col-12 p-2 text-md-end text-center">
-                    Created by <a href="http://hobbystudio.ge/" target="_blank" class="legends">HobbyStudio</a>
+                <div class="col-lg-4
+                            col-12
+                            p-2
+                            text-lg-end
+                            text-center">
+                    Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a>
                 </div>
             </div>
         </div>
 
-        <div id="admin-panel-link">
-            <a href="/admin" target="_blank" class="admin_button"></a>
+        <div id="footer__admin_panel_link">
+            <a href="/admin" target="_blank" class="footer__admin_button"></a>
         </div>
     </footer>
 @endif

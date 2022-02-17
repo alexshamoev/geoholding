@@ -1,0 +1,99 @@
+@media only screen and (max-width: $xs_size) {
+    
+}
+
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+
+@media only screen and (min-width: $xl_size) {
+    
+}
+
+
+@media only screen and (min-width: $xxl_size) {
+   
+}
+
+
+.menu_buttons {
+    &__item {
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+    
+        span {
+            color: #4a494a;
+    
+            a {
+                color: #ff484f;
+            }
+    
+            &:hover {
+                color: #ff484f;
+            }
+        }
+    
+        &:hover {
+            a {
+                color: #4a494a !important;
+            }
+        }
+    }
+
+    &__slide_down_block {
+        background-color: #fff;
+        display: none;
+        left: 0;
+        position: absolute;
+        top: 40px;
+        width: 180px;
+        box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    &__active_item_block {
+        color: #4a494a;
+    }
+
+    &__active_item_block span {
+        cursor: pointer;
+    }
+    
+    &__active_item_block > a span {
+        color: #ff484f;
+    }
+
+    &__arrow_block {
+        transition: 0.3s;
+    }
+
+    &__slide_down_block_in_burger {
+        display: none;
+    }
+
+    &__sub_menu_item {
+        padding: 10px;
+        transition: all 0.2s ease-in-out;
+    
+        &:hover {
+            background-color: #fff;
+            color: #4a494a;
+        }
+
+
+        &--active > a span {
+            color: #ff484f;
+        }
+    }
+}

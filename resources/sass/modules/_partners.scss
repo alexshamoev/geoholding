@@ -1,0 +1,45 @@
+@media only screen and (max-width: $xs_size) {
+    
+}
+
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+
+@media only screen and (min-width: $xl_size) {
+
+}
+
+
+@media only screen and (min-width: $xxl_size) {
+
+}
+
+
+.partners {
+    &__block {
+        background-color: white;
+        transition: all 0.2s ease-in-out;
+        border: 2px solid #fff;
+
+        &:hover {
+            border: 2px solid #333;
+        }
+    }
+
+    &__title {
+        color: #4A494A;
+    }
+}

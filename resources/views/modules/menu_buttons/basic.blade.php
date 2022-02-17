@@ -1,5 +1,8 @@
 @if($widgetGetVisibility['menu_buttons'])
-	<div class="navbar-collapse collapse justify-content-center menu_buttons" id="navbar">
+	<div class="navbar-collapse
+				collapse
+				justify-content-center
+				menu_buttons" id="navbar">
 		<div class="navbar-nav
 					d-flex
 					justify-content-between
@@ -10,76 +13,89 @@
 							ps-4
 							pt-lg-0
 							pt-1
-							me5">
+							menu_buttons__item
+							position-relative
+							js_menu_buttons__item">
 					@php
 						$activeCssClass = '';
 
 						if($data -> active) {
-							$activeCssClass = 'me2';
+							$activeCssClass = 'menu_buttons__active_item_block';
 						}
 					@endphp
 					
-					<div class="d-block py-2 px-4 {{ $activeCssClass }}"> 
+					<div class="d-block
+								py-2
+								px-4
+								{{ $activeCssClass }}"> 
 						@if($data -> url)
 							<a href="{{ $data -> url }}" target="{{ $data -> urlTarget }}">
 						@endif
-								<span>
-									{{ $data -> title }}
-								</span>
+
+						<span>
+							{{ $data -> title }}
+						</span>
+						
 						@if($data -> url)
 							</a>
 						@endif
 
-						<div class="js_arrow_div me10">
+						<div class="js_arrow_div
+									d-inline-block
+									menu_buttons__arrow_block">
 							<span class="ba_thin_arrow_right"></span>
 						</div>
 					</div>
 
 					@if(count($data -> subMenuButtons))
-						<div class="me7 mt-3">
+						<div class="menu_buttons__slide_down_block mt-3">
 							@foreach($data -> subMenuButtons as $dataInside)
 								@php
 									$activeCssClass = '';
 
 									if($dataInside -> active) {
-										$activeCssClass = 'me3';
+										$activeCssClass = 'menu_buttons__sub_menu_item--active';
 									}
 								@endphp
 								
-								<div class="me6 {{ $activeCssClass }}">
+								<div class="menu_buttons__sub_menu_item {{ $activeCssClass }}">
 									@if($dataInside -> url)
 										<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-									@endif
 											<span>
 												{{ $dataInside -> title }}
 											</span>
-									@if($dataInside -> url)
 										</a>
+									@else
+										<span>
+											{{ $dataInside -> title }}
+										</span>
 									@endif
 								</div>
 							@endforeach
 						</div>
 
 
-						<div class="me9 mt-1">
+						<div class="menu_buttons__slide_down_block_in_burger mt-1">
 							@foreach($data -> subMenuButtons as $dataInside)
 								@php
 									$activeCssClass = '';
 
 									if($dataInside -> active) {
-										$activeCssClass = 'me3';
+										$activeCssClass = 'menu_buttons__sub_menu_item--active';
 									}
 								@endphp
 								
-								<div class="me6 {{ $activeCssClass }}">
+								<div class="menu_buttons__sub_menu_item {{ $activeCssClass }}">
 									@if($dataInside -> url)
 										<a href="{{ $dataInside -> url }}" target="{{ $dataInside -> urlTarget }}">
-									@endif
 											<span>
 												{{ $dataInside -> title }}
 											</span>
-									@if($dataInside -> url)
 										</a>
+									@else
+										<span>
+											{{ $dataInside -> title }}
+										</span>
 									@endif
 								</div>
 							@endforeach
@@ -87,38 +103,6 @@
 					@endif
 				</div>
 			@endforeach
-
-			@if(Auth :: check())
-				<div class="nav-item">
-					<div class="p-2">
-						{{ Auth :: user() -> name }}
-					</div>
-				</div>
-		
-				<div class="nav-item">
-					<a href="{{ route('logout') }}">
-						<div class="p-2">
-							Logout
-						</div>
-					</a>
-				</div>
-			@else
-				<div class="nav-item">
-					<a href="{{ route('register') }}">
-						<div class="p-2">
-							Registration
-						</div>
-					</a>
-				</div>
-
-				<div class="nav-item">
-					<a href="{{ route('login') }}">
-						<div class="p-2">
-							Authorization
-						</div>
-					</a>
-				</div>
-			@endif
 		</div>
 	</div>
 @endif

@@ -1,10 +1,23 @@
-@import 'atom';
-@import 'custom-bootstrap';
-@import 'html_tags';
-@import 'icons';
-@import 'modules';
-@import 'text_lines_max';
-@import 'text_lines';
-@import 'modules/footer';
-@import 'modules/header';
-@import 'modules/menu_buttons';
+// Basic
+    @import 'atom';
+    @import 'custom-bootstrap';
+    @import 'html_tags';
+    @import 'icons';
+    @import 'classes';
+    @import 'text_lines_max';
+    @import 'text_lines';
+    @import 'tags';
+// 
+
+// Plugins
+    @import 'plugins/photo_swipe';
+// 
+
+// Modules
+    @import 'modules/footer';
+    @import 'modules/header';
+    @import 'modules/menu_buttons';
+    @import 'modules/partners';
+    @import 'modules/photo_gallery';
+    @import 'modules/languages';
+//

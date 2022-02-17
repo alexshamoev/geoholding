@@ -1,20 +1,75 @@
-.top_footer {
+@media only screen and (max-width: $xs_size) {
+    
+}
+
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+
+@media only screen and (min-width: $xl_size) {
+
+}
+
+
+@media only screen and (min-width: $xxl_size) {
+
+}
+
+
+.footer {
+    background-color: rgb(186, 236, 173);
+    position: relative;
+    z-index: 20;
+
     &__media_icon {
-        font-size: 30px;  
-        margin-right: 5px;
+        font-size: 30px;
         transition: color 0.2s ease-in-out;
+        
+        &--fb {
+            color: #3b5998 !important;
+        }
+        
+        &--instagram {
+            color: #8a3ab9 !important;
+        }
+        
+        &--twitter {
+            color: #1DA1F2 !important;
+        }
+
+        &--linkedin {
+            color: #0077b5 !important;
+        }
     }
-}
 
-.footer_horizontal_line {
-    border-top: 2px solid #000;
-}
+    &__horizontal_line {
+        border-top: 2px solid #000;
+    }
 
-.admin_button {
-    height: 20px;
-    left: 0;
-    position: absolute;
-    bottom: 0;
-    width: 20px;
-    z-index: 400;
+    &__admin_button {
+        height: 20px;
+        left: 0;
+        position: absolute;
+        bottom: 0;
+        width: 20px;
+        z-index: 400;
+    }
+
+    &__admin_panel_link {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
 }

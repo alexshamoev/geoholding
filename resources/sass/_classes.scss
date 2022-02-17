@@ -1,0 +1,57 @@
+@media only screen and (max-width: $xs_size) {
+    
+}
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+@media only screen and (min-width: $xl_size) {
+    
+}
+
+@media only screen and (min-width: $xxl_size) {
+   
+}
+
+
+.main_content--height {
+    min-height: 430px;
+}
+
+.bootstrap_size_getter {
+    background-color: #ffffff;
+    border: 2px solid black;
+
+    &__xxl {
+        background-color: #FF484F;
+    }
+
+    &__xl {
+        background-color: #6ce255;
+    }
+
+    &__lg {
+        background-color: #bebebe;
+    }
+
+    &__md {
+        background-color: #48adff;
+    }
+
+    &__sm {
+        background-color: #da48ff;
+    }
+
+    &__xs {
+        background-color: #ffed48;
+    }
+}

@@ -1,9 +1,56 @@
-.mainHeader {
-    background-color: #fff;
-    position: relative;
-    z-index: 999;
+@media only screen and (max-width: $xs_size) {
+    
+}
 
-    &__mobNav {
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+
+@media only screen and (min-width: $xl_size) {
+    
+}
+
+
+@media only screen and (min-width: $xxl_size) {
+   
+}
+
+
+.header {
+	background-color: #e4e1b5;
+    z-index: 20;
+
+    &__close-search,
+    &__open-search {
+        cursor: pointer;
+    }
+
+    &__search-input {
+        width: 0px;
+        transition: 0.2s all ease-in-out;
+        overflow: hidden;
+        &.expanded {
+            width: 200px;
+        }
+
+        input {
+            width: 100%;
+        }
+    }
+
+	&__mobNav {
         .navbar-toggler {
             outline: none;
             border: none;
@@ -24,6 +71,7 @@
         }  
     }
 }
+
 
 #nav-icon3 {
 	width: 30px;
