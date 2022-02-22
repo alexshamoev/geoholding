@@ -18,7 +18,7 @@
 		</div>
 
 		<div class="p-2">
-			{!! $page -> text !!} 
+			{!! $page -> text !!}
 		</div>
 	</div>
 @endsection

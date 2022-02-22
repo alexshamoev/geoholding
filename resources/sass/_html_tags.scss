@@ -69,11 +69,13 @@ h4,
 h5,
 h6 {
   margin: 0 !important;
+  border: 1px solid #666;
 }
 
 header {
   background-color: yellow;
   position: relative;
+  border: 1px solid #666;
   z-index: 30;
 }
 
@@ -133,6 +135,7 @@ section {
   background-color: #b6d2e7;
   min-height: 400px;
   position: relative;
+  border: 1px solid #666;
   z-index: 5;
 }
 
