@@ -7,15 +7,9 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<!-- Scripts -->
-		<!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-
 		<!-- Fonts -->
 		<!-- <link rel="dns-prefetch" href="//fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> -->
-
-		<!-- Styles -->
-		<!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 
 
         <title>
@@ -26,18 +20,13 @@
 		<meta property="og:image" content="@yield('pageMetaUrl')">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/photoswipe.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/modules/default-skin.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
 
-
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		
-		<script src="{{ asset('js/modules/photoswipe-ui-default.min.js') }}"></script>
-		<script src="{{ asset('js/modules/photoswipe.min.js') }}"></script>
-		
 		<script src="{{ asset('js/app.js') }}"></script>
-		<script src="{{ asset('js/modules/modules/a/basic.js') }}"></script>
-		<script src="{{ asset('js/modules/basic.js') }}"></script>
+		
+		<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
+		<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
     </head>
 
     <body>

@@ -4,7 +4,17 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
+
+
 require('./bootstrap');
+require('./bootstrap_size_getter'); // Comment this, after project finish.
+
+require('./plugins/photo_swipe');
+
+require('./modules/menu_buttons');
+require('./modules/search');
+
+
 
 // ClassicEditor
 //     .create( document.querySelector( '#editor' ) )
