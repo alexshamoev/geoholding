@@ -99,12 +99,12 @@
                                     d-block
                                     order-lg-4
                                     order-3">
-                            <div class="p-0
-                                        header
+                            <div class="header
                                         position-relative__mobNav
                                         d-flex
                                         justify-content-end">
-                                <button class="navbar-toggler p-0 ms-sm-3 ms-0"
+                                <button class="navbar-toggler
+                                                p-0"
                                         type="button"
                                         data-bs-toggle="collapse"
                                         data-bs-target="#navbar"

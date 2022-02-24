@@ -28,6 +28,4 @@ mix.js('resources/js/app.js', 'public/js').react()
   .copy('node_modules/photoswipe/dist/photoswipe.css', 'public/css/plugins')
   .copy('node_modules/photoswipe/dist/default-skin/default-skin.css', 'public/css/plugins')
   .sass('resources/sass/admin/main.scss', 'public/css/admin')
-  .sass('resources/sass/main.scss', 'public/css'); 
-  
- 
+  .sass('resources/sass/main.scss', 'public/css');
