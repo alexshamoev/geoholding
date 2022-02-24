@@ -21,7 +21,7 @@ function checkBlockType(blockType) {
 	if(blockType === 'input') {
 		$('.step2 .forInput').fadeIn(0);
 	}
-
+	
 	if(blockType === 'input_with_languages') {
 		$('.step2 .forInputWithLanguages').fadeIn(0);
 	}
