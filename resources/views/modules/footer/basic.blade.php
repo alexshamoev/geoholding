@@ -79,8 +79,8 @@
             </div>
         </div>
 
-        <div id="footer__admin_panel_link">
-            <a href="/admin" target="_blank" class="footer__admin_button"></a>
-        </div>
+        <a href="/admin" target="_blank">
+            <div class="footer__admin_button"></div>
+        </a>
     </footer>
 @endif
