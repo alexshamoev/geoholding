@@ -48,6 +48,7 @@ class PhotoGalleryStep0 extends Model {
         return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.$this -> alias;
     }
 
+
     public function getMetaTitleAttribute() {
         $bsw = Bsw :: getFullData(self :: $lang);
 
@@ -65,9 +66,11 @@ class PhotoGalleryStep0 extends Model {
         $bsw = Bsw :: getFullData(self :: $lang);
         if($this -> { 'meta_description_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else if($this -> { 'text_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
             return $bsw -> meta_description;
@@ -82,5 +85,10 @@ class PhotoGalleryStep0 extends Model {
         } else {
             return '/storage/images/meta_default.jpg';
         }
+    }
+
+
+	public function images() {
+        return $this -> hasMany(PhotoGalleryStep1 :: class, 'parent', 'id');
     }
 }

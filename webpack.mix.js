@@ -20,7 +20,7 @@ const mix = require('laravel-mix');
 //  ]);
 
 
-mix.js('resources/js/app.js', 'public/js').react()
+mix.js('resources/js/app.js', 'public/js').vue()
   .js('resources/js/admin/main.js', 'public/js/admin')
   .copy('node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js', 'public/js/admin')
   .copy('node_modules/photoswipe/dist/photoswipe.min.js', 'public/js/plugins')

@@ -32,21 +32,6 @@ class NewsStep2 extends Model {
 	}
 
 
-	public static function setStep0Alias($value) {
-		self :: $step0Alias = $value;
-	}
-
-
-	public static function setStep1Alias($value) {
-		self :: $step1Alias = $value;
-	}
-
-
-	public static function setStep2Alias($value) {
-		self :: $step2Alias = $value;
-	}
-
-
 	public function getAliasAttribute() {
         return $this -> { 'alias_'.self :: $lang };
     }
@@ -63,8 +48,9 @@ class NewsStep2 extends Model {
 
 	
 	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.self :: $step1Alias.'/'.$this -> alias;
+        return $this -> parentModel -> fullUrl.'/'.$this -> alias;
     }
+
 
 	public function getMetaTitleAttribute() {
         $bsw = Bsw :: getFullData(self :: $lang);
@@ -81,17 +67,21 @@ class NewsStep2 extends Model {
 
 	public function getMetaDescriptionAttribute() {
         $bsw = Bsw :: getFullData(self :: $lang);
+
         if($this -> { 'meta_description_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else if($this -> { 'text_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
             return $bsw -> meta_description;
         }
     }
-
+    
+    
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/news/step_2/meta_'.$this -> { 'id' }.'.jpg'))) {
             return '/storage/images/modules/photo_gallery/step_2/meta_'.$this -> { 'id' }.'.jpg';
@@ -100,5 +90,15 @@ class NewsStep2 extends Model {
         } else {
             return '/storage/images/meta_default.jpg';
         }
+    }
+
+
+	public function newsStep3() {
+        return $this -> hasMany(NewsStep3 :: class, 'parent', 'id');
+    }
+
+
+	public function parentModel() {
+        return $this -> hasOne(NewsStep1 :: class, 'id', 'parent');
     }
 }

@@ -7,15 +7,22 @@
 
 
 require('./bootstrap');
-require('./bootstrap_size_getter'); // Comment this, after project finish.
+// require('./bootstrap_size_getter'); // Comment this, after project finish.
 
-require('./plugins/photo_swipe');
+// require('./plugins/photo_swipe');
 
-require('./modules/menu_buttons');
-require('./modules/search');
+// require('./modules/menu_buttons');
+// require('./modules/search');
 
 
+window.Vue = require('vue').default;
 
+Vue.component('test', require('./components/ExampleComponent.vue').default);
+
+const app = new Vue({
+    el: '#app',
+});
+ 
 // ClassicEditor
 //     .create( document.querySelector( '#editor' ) )
 //     .then( editor => {

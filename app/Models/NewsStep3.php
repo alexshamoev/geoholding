@@ -17,9 +17,6 @@ class NewsStep3 extends Model {
 
 	private static $lang;
 	private static $pageAlias;
-	private static $step0Alias;
-	private static $step1Alias;
-	private static $step2Alias;
 
 
 	public static function setLang($value) {
@@ -29,21 +26,6 @@ class NewsStep3 extends Model {
 
 	public static function setPageAlias($value) {
 		self :: $pageAlias = $value;
-	}
-
-
-	public static function setStep0Alias($value) {
-		self :: $step0Alias = $value;
-	}
-
-
-	public static function setStep1Alias($value) {
-		self :: $step1Alias = $value;
-	}
-
-
-	public static function setStep2Alias($value) {
-		self :: $step2Alias = $value;
 	}
 
 
@@ -63,8 +45,9 @@ class NewsStep3 extends Model {
 
 	
 	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.self :: $step1Alias.'/'.self :: $step2Alias.'/'.$this -> alias;
+        return $this -> parentModel -> fullUrl.'/'.$this -> alias;
     }
+
 
 	public function getMetaTitleAttribute() {
         $bsw = Bsw :: getFullData(self :: $lang);
@@ -81,16 +64,20 @@ class NewsStep3 extends Model {
 
 	public function getMetaDescriptionAttribute() {
         $bsw = Bsw :: getFullData(self :: $lang);
+
         if($this -> { 'meta_description_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else if($this -> { 'text_'.self :: $lang }) {
             $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
+
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
             return $bsw -> meta_description;
         }
     }
+
 
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/news/step_3/meta_'.$this -> { 'id' }.'.jpg'))) {
@@ -100,5 +87,10 @@ class NewsStep3 extends Model {
         } else {
             return '/storage/images/meta_default.jpg';
         }
+    }
+
+
+	public function parentModel() {
+        return $this -> hasOne(NewsStep2 :: class, 'id', 'parent');
     }
 }

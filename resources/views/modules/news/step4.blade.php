@@ -18,8 +18,8 @@
 			</div>
 
 			<div class="p-2">
-				<a href="{{ $activeNewsStep0 -> fullUrl }}">
-					{{ $activeNewsStep0 -> title }}
+				<a href="{{ $activeNewsStep3 -> parentModel -> parentModel -> parentModel -> fullUrl }}">
+					{{ $activeNewsStep3 -> parentModel -> parentModel -> parentModel -> title }}
 				</a>
 			</div>
 
@@ -28,8 +28,8 @@
 			</div>
 
 			<div class="p-2">
-				<a href="{{ $activeNewsStep1 -> fullUrl }}">
-					{{ $activeNewsStep1 -> title }}
+				<a href="{{ $activeNewsStep3 -> parentModel -> parentModel -> fullUrl }}">
+					{{ $activeNewsStep3 -> parentModel -> parentModel -> title }}
 				</a>
 			</div>
 
@@ -38,8 +38,8 @@
 			</div>
 
 			<div class="p-2">
-				<a href="{{ $activeNewsStep2 -> fullUrl }}">
-					{{ $activeNewsStep2 -> title }}
+				<a href="{{ $activeNewsStep3 -> parentModel -> fullUrl }}">
+					{{ $activeNewsStep3 -> parentModel -> title }}
 				</a>
 			</div>
 

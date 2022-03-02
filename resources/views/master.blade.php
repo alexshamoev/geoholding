@@ -15,7 +15,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
 
-		<script src="{{ asset('js/app.js') }}"></script>
+		
 		
 		<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
 		<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
@@ -28,13 +28,19 @@
 
 		@include('modules.header.basic')
 		
+		<div id="app">
+			<test>...</test>
+		</div>
+
 		<section>
 			@yield('content')
 			
 			@include('modules.partners.step0')
 		</section>
 
-
 		@include('modules.footer.basic')
+
+
+		<script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

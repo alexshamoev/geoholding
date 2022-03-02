@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="row my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-			@foreach($photoGalleryStep1 as $data)
+			@foreach($activePhotoGalleryStep0 -> images as $data)
 				<figure itemprop="associatedMedia" class="col-3">
 					<a href="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}"
 						itemprop="contentUrl"

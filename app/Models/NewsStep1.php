@@ -30,11 +30,6 @@ class NewsStep1 extends Model {
 	}
 
 
-	public static function setStep0Alias($value) {
-		self :: $step0Alias = $value;
-	}
-
-
 	public function getAliasAttribute() {
         return $this -> { 'alias_'.self :: $lang };
     }
@@ -51,7 +46,7 @@ class NewsStep1 extends Model {
 
 	
 	public function getFullUrlAttribute() {
-        return '/'.self :: $lang.'/'.self :: $pageAlias.'/'.self :: $step0Alias.'/'.$this -> alias;
+        return $this -> parentModel -> fullUrl.'/'.$this -> alias;
     }
 
 	public function getMetaTitleAttribute() {
@@ -88,5 +83,15 @@ class NewsStep1 extends Model {
         } else {
             return '/storage/images/meta_default.jpg';
         }
+    }
+
+
+	public function newsStep2() {
+        return $this -> hasMany(NewsStep2 :: class, 'parent', 'id');
+    }
+
+
+	public function parentModel() {
+        return $this -> hasOne(NewsStep0 :: class, 'id', 'parent');
     }
 }

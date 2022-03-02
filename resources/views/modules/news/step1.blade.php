@@ -39,7 +39,7 @@
 		<div class="clear_both"></div>
 
 		<div class="row mt-4">
-			@foreach($newsStep1 as $data)
+			@foreach($activeNewsStep0 -> newsStep1 as $data)
 				<div class="col-xxl-4 col-xl-6 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">

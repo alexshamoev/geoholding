@@ -18,8 +18,8 @@
 			</div>
 
 			<div class="p-2">
-				<a href="{{ $activeNewsStep0 -> fullUrl }}">
-					{{ $activeNewsStep0 -> title }}
+				<a href="{{ $activeNewsStep1 -> parentModel -> fullUrl }}">
+					{{ $activeNewsStep1 -> parentModel -> title }}
 				</a>
 			</div>
 
@@ -51,7 +51,7 @@
 		
 
 		<div class="row mt-4">
-			@foreach($newsStep2 as $data)
+			@foreach($activeNewsStep1 -> newsStep2 as $data)
 				<div class="col-xxl-4 col-xl-6 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">

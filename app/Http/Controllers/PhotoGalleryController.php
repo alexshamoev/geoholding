@@ -45,8 +45,7 @@ class PhotoGalleryController extends Controller {
 
         $data = array_merge(PageController :: getDefaultData($language, $page, $activeCategory),
                             ['photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get(),
-                             'activePhotoGalleryStep0' => $activeCategory,
-                             'photoGalleryStep1' => PhotoGalleryStep1 :: where('parent', $activeCategory -> id) -> orderByDesc('rang') -> get()]);
+                             'activePhotoGalleryStep0' => $activeCategory]);
 
         return view('modules.photo_gallery.step1', $data);
     }

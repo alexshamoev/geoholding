@@ -33,6 +33,10 @@
 						@endif
 
 						<span>
+							@php
+								echo $data -> page -> alias;
+							@endphp
+
 							{{ $data -> title }}
 						</span>
 						
@@ -47,9 +51,9 @@
 						</div>
 					</div>
 
-					@if(count($data -> subMenuButtons))
+					@if(count($data -> subMenus))
 						<div class="menu_buttons__slide_down_block mt-3">
-							@foreach($data -> subMenuButtons as $dataInside)
+							@foreach($data -> subMenus as $dataInside)
 								@php
 									$activeCssClass = '';
 
@@ -76,7 +80,7 @@
 
 
 						<div class="menu_buttons__slide_down_block_in_burger mt-1">
-							@foreach($data -> subMenuButtons as $dataInside)
+							@foreach($data -> subMenus as $dataInside)
 								@php
 									$activeCssClass = '';
 

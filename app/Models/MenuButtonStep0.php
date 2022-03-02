@@ -49,9 +49,7 @@ class MenuButtonStep0 extends Model {
 	public function getUrlAttribute() {
 		switch($this -> link_type) {
 			case 'page':
-				$page = Page :: where('id', $this -> page) -> first();
-
-				return '/'.self :: $lang.'/'.$page -> alias;
+				return '/'.self :: $lang.'/'.$this -> page -> alias;
 
 				break;
 			case 'free_link':
@@ -65,19 +63,22 @@ class MenuButtonStep0 extends Model {
 		}
     }
 
-
+	
 	public function getActiveAttribute() {
-		$page = Page :: where('id', $this -> page) -> first();
-
-		if($page -> alias === self :: $pageAlias) {
+		if($this -> page -> alias === self :: $pageAlias) {
         	return 1;
 		} else {
 			return 0;
 		}
     }
+	
+
+	public function page() {
+        return $this -> hasOne(Page :: class, 'id', 'page_id');
+    }
 
 
-	public function getSubMenuButtonsAttribute() {
-		return MenuButtonStep1 :: where('parent', $this -> id) -> orderByDesc('rang') -> get();
+	public function subMenus() {
+        return $this -> hasMany(MenuButtonStep1 :: class, 'parent', 'id');
     }
 }

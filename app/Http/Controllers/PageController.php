@@ -42,6 +42,8 @@ class PageController extends Controller {
 
 		Page :: setLang($lang -> title);
 
+		// dd(MenuButtonStep0 :: first());
+
 		MenuButtonStep0 :: setLang($lang -> title);
 		MenuButtonStep0 :: setPage($page -> alias);
 
@@ -62,7 +64,9 @@ class PageController extends Controller {
 		$data = ['page' => $page,
 				'language' => $lang,
 				'languages' => Language :: where('disable', '0') -> orderByDesc('rang') -> get(),
-				'menuButtons' => MenuButtonStep0 :: orderByDesc('rang') -> get(),
+				'menuButtons' => MenuButtonStep0 :: orderByDesc('rang') -> with([
+					'page'
+				]) -> get(),
 				'bsc' => Bsc :: getFullData(),
 				'bsw' => Bsw :: getFullData($lang -> title),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
