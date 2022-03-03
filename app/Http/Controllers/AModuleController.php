@@ -26,9 +26,6 @@ class AModuleController extends AController {
 
 	public function add() {
 		$module = new Module();
-
-		$module -> alias = 'temp';
-
 		$module -> save();
 
 
@@ -104,7 +101,6 @@ class AModuleController extends AController {
 														'pages' => Page :: all(),
 														'languages' => Language :: where('disable', 1) -> get(),
 														'module' => $module,
-														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> get(),
 														'prevModuleId' => $prevId,
 														'nextModuleId' => $nextId]);
 

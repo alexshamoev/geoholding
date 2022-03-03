@@ -25,4 +25,9 @@ class PhotoGalleryStep1 extends Model {
 	public function getTitleAttribute() {
         return $this -> { 'title_'.self :: $lang };
     }
+
+
+    public function parentModel() {
+        return $this -> hasOne(PhotoGalleryStep0 :: class, 'id', 'parent');
+    }
 }

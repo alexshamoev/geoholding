@@ -33,4 +33,14 @@ class ModuleStep extends Model {
             ModuleBlock :: destroy($data -> id);
         }
 	}
+
+
+    public function parentModel() {
+        return $this -> hasOne(Module :: class, 'id', 'top_level');
+    }
+
+
+    public function moduleBlocks() {
+        return $this -> hasMany(ModuleBlock :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
+    }
 }

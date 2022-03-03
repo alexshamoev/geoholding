@@ -32,8 +32,6 @@ class AModuleStepController extends AController {
 	public function edit($moduleId, $id) {
 		ModuleBlock :: deleteEmpty();
 
-
-		$module = Module :: find($moduleId);
 		$moduleStep = ModuleStep :: find($id);
 
 
@@ -43,7 +41,7 @@ class AModuleStepController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(ModuleStep :: where('top_level', $module -> id) -> orderBy('rang') -> get() as $data) {
+		foreach(ModuleStep :: where('top_level', $moduleStep -> parentModel -> id) -> orderBy('rang') -> get() as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}
@@ -60,9 +58,6 @@ class AModuleStepController extends AController {
 
 		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: all(),
 														'languages' => Language :: where('disable', 1) -> get(),
-														'module' => $module,
-														'moduleSteps' => ModuleStep :: where('top_level', $module -> id) -> get(),
-														'moduleBlocks' => ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get(),
 														'moduleStep' => $moduleStep,
 														'prev' => ModuleStep :: find($prevId),
 														'next' => ModuleStep :: find($nextId)]);

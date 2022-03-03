@@ -26,6 +26,7 @@ class Module extends Model {
         //
 	}
 
+
     public static function destroy($id) {
 		Parent :: destroy($id);
 
@@ -33,4 +34,14 @@ class Module extends Model {
             ModuleStep :: destroy($data -> id);
         }
 	}
+
+
+    public function pageModel() {
+        return $this -> hasOne(Page :: class, 'id', 'page');
+    }
+
+
+    public function moduleSteps() {
+        return $this -> hasMany(ModuleStep :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
+    }
 }

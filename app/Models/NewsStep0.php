@@ -89,6 +89,6 @@ class NewsStep0 extends Model {
 
 
 	public function newsStep1() {
-        return $this -> hasMany(NewsStep1 :: class, 'parent', 'id');
+        return $this -> hasMany(NewsStep1 :: class, 'parent', 'id') -> orderBy('rang', 'desc');
     }
 }

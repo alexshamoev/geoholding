@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $module -> alias }} > {{ $moduleStep -> title }} > {{ $moduleBlock -> db_column }}
+    Modules > {{ $moduleBlock -> parentModel -> parentModel -> alias }} > {{ $moduleBlock -> parentModel -> title }} > {{ $moduleBlock -> db_column }}
 @endsection
 
 
@@ -10,22 +10,22 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $module -> alias,
-		'tag1Url' => route('moduleEdit', $module -> id),
-		'tag2Text' => $moduleStep -> title,
-		'tag2Url' => route('moduleStepEdit', array($module -> id, $moduleStep -> id)),
+		'tag1Text' => $moduleBlock -> parentModel -> parentModel -> alias,
+		'tag1Url' => route('moduleEdit', $moduleBlock -> parentModel -> parentModel -> id),
+		'tag2Text' => $moduleBlock -> parentModel -> title,
+		'tag2Url' => route('moduleStepEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id)),
 		'tag3Text' => $moduleBlock -> db_column
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id)),
-		'deleteUrl' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $moduleBlock -> id)),
+		'addUrl' => route('moduleBlockAdd', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id)),
+		'deleteUrl' => route('moduleBlockDelete', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $moduleBlock -> id)),
 		'nextId' => $next,
 		'prevId' => $prev,
-		'nextRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $next)),
-		'prevRoute' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $prev)),
-		'backRoute' => route('moduleStepEdit', array($module -> id, $moduleStep -> id))
+		'nextRoute' => route('moduleBlockEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $next)),
+		'prevRoute' => route('moduleBlockEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $prev)),
+		'backRoute' => route('moduleStepEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id))
 	])
 
 	
@@ -37,7 +37,7 @@
 	
 
 	<div class="step2">
-		{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $module -> id, $moduleStep -> id, $moduleBlock -> id))) }}
+		{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $moduleBlock -> id))) }}
 			<div class="p-2">
 				<div class="p-2">
 					<div class="standard-block p-2">

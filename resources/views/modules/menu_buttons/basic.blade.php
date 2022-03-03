@@ -33,10 +33,6 @@
 						@endif
 
 						<span>
-							@php
-								echo $data -> page -> alias;
-							@endphp
-
 							{{ $data -> title }}
 						</span>
 						

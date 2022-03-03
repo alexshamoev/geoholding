@@ -253,7 +253,7 @@
 
 		<div>
 			<div id="rangBlocks" data-db_table="module_steps">
-				@foreach($moduleSteps as $data)
+				@foreach($module -> moduleSteps as $data)
 					@include('admin.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,
 						'title' => $data -> title,

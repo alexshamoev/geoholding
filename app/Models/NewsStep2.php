@@ -99,6 +99,6 @@ class NewsStep2 extends Model {
 
 
 	public function parentModel() {
-        return $this -> hasOne(NewsStep1 :: class, 'id', 'parent');
+        return $this -> hasOne(NewsStep1 :: class, 'id', 'parent') -> orderBy('rang', 'desc');
     }
 }

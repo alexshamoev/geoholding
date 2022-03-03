@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $module -> alias }} > {{ $moduleStep -> title }}
+    Modules > {{ $moduleStep -> parentModel -> alias }} > {{ $moduleStep -> title }}
 @endsection
 
 
@@ -10,20 +10,20 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $module -> alias,
-		'tag1Url' => route('moduleEdit', $module -> id),
+		'tag1Text' => $moduleStep -> parentModel -> alias,
+		'tag1Url' => route('moduleEdit', $moduleStep -> parentModel -> id),
 		'tag2Text' => $moduleStep -> title
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleStepAdd', $module -> id),
-		'deleteUrl' => route('moduleStepDelete', array($module -> id, $moduleStep -> id)),
+		'addUrl' => route('moduleStepAdd', $moduleStep -> parentModel -> id),
+		'deleteUrl' => route('moduleStepDelete', array($moduleStep -> parentModel -> id, $moduleStep -> id)),
 		'nextId' => 5,
 		'prevId' => 5,
-		'nextRoute' => route('moduleStepEdit', array($module -> id, 4)),
-		'prevRoute' => route('moduleStepEdit', array($module -> id, 4)),
-		'backRoute' => route('moduleEdit', $module -> id)
+		'nextRoute' => route('moduleStepEdit', array($moduleStep -> parentModel -> id, 4)),
+		'prevRoute' => route('moduleStepEdit', array($moduleStep -> parentModel -> id, 4)),
+		'backRoute' => route('moduleEdit', $moduleStep -> parentModel -> id)
 	])
 
 	
@@ -34,7 +34,7 @@
     @endif
 	
 
-	{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $module -> id, $moduleStep -> id))) }}
+	{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> parentModel -> id, $moduleStep -> id))) }}
 		<div class="p-2">
 			<div class="p-2">
 				<div class="standard-block p-2">
@@ -161,20 +161,20 @@
 
 
 	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Add Block', 'url' => route('moduleBlockAdd', array($module -> id, $moduleStep -> id))])
+		@include('admin.includes.addButton', ['text' => 'Add Block', 'url' => route('moduleBlockAdd', array($moduleStep -> parentModel -> id, $moduleStep -> id))])
 	</div>
 
 
 	<div class="px-2 pb-2">
 		<div id="rangBlocks" data-db_table="module_blocks">
-			@foreach($moduleBlocks as $data)
+			@foreach($moduleStep -> moduleBlocks as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
 					'id' => $data -> id,
 					'title' => $data -> db_column,
 					'text' => $data -> type,
 					'text1' => $data -> label,
-					'editLink' => route('moduleBlockEdit', array($module -> id, $moduleStep -> id, $data -> id)),
-					'deleteLink' => route('moduleBlockDelete', array($module -> id, $moduleStep -> id, $data -> id))
+					'editLink' => route('moduleBlockEdit', array($moduleStep -> parentModel -> id, $moduleStep -> id, $data -> id)),
+					'deleteLink' => route('moduleBlockDelete', array($moduleStep -> parentModel -> id, $moduleStep -> id, $data -> id))
 				])
 			@endforeach
 		</div>
