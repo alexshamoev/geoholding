@@ -29,7 +29,7 @@
 		@include('modules.header.basic')
 		
 		<div id="app">
-			<test>...</test>
+			<example></example>
 		</div>
 
 		<section>

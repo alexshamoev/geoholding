@@ -44,8 +44,7 @@ class PhotoGalleryController extends Controller {
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
         $data = array_merge(PageController :: getDefaultData($language, $page, $activeCategory),
-                            ['photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get(),
-                             'activePhotoGalleryStep0' => $activeCategory]);
+                            ['activePhotoGalleryStep0' => $activeCategory]);
 
         return view('modules.photo_gallery.step1', $data);
     }
