@@ -10,6 +10,7 @@
                             col-12
                             text-right
                             d-flex
+                            p-0
                             flex-column
                             align-items-end">
                     <div class="p-2">
