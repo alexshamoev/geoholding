@@ -14,21 +14,18 @@ require('./modules/menu_buttons');
 require('./modules/search');
 
 
-import { createApp } from 'vue';
-import Example from './components/Example';
+// Vue.
+    import { createApp } from 'vue';
+    import Example from './components/Example';
 
-const app = createApp({});
+    const app = createApp({});
 
-app.component('example', Example);
+    app.component('example', Example);
 
-app.mount('#app'); 
+    app.mount('#app');
+//
 
- 
-// ClassicEditor
-//     .create( document.querySelector( '#editor' ) )
-//     .then( editor => {
-//         console.log( editor );
-//     } )
-//     .catch( error => {
-//         console.error( error );
-//     } );
+
+// React.
+    require('./components/ExampleReact');
+//

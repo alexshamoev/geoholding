@@ -32,6 +32,8 @@
 			<example></example>
 		</div>
 
+		<div id="examplereact"></div>
+
 		<section>
 			@yield('content')
 			
