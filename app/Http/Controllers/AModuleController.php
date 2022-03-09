@@ -76,7 +76,7 @@ class AModuleController extends AController {
 		$nextIdIsSaved = false;
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			if(ModuleStep :: where('top_level', $data['id']) -> first()) {
+			// if($data -> moduleSteps) {
 				if($nextIdIsSaved && !$nextId) {
 					$nextId = $data -> id;
 				}
@@ -89,7 +89,7 @@ class AModuleController extends AController {
 				if(!$prevIdIsSaved) {
 					$prevId = $data -> id;
 				}
-			}
+			// }
 		}
 
 		ModuleBlock :: deleteEmpty();
@@ -146,7 +146,7 @@ class AModuleController extends AController {
 																$module -> id.'_icon.svg',
 																'public');
 		}
-
+		
 
 		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 

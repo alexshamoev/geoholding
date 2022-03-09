@@ -26,14 +26,6 @@ class ModuleStep extends Model {
         //
 	}
 
-    public static function destroy($id) {
-		Parent :: destroy($id);
-
-        foreach(ModuleBlock :: where('top_level', $id) -> get() as $data) {
-            ModuleBlock :: destroy($data -> id);
-        }
-	}
-
 
     public function parentModel() {
         return $this -> hasOne(Module :: class, 'id', 'top_level');

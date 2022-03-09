@@ -68,8 +68,6 @@ class AModuleStepController extends AController {
 
 
 	public function update(AModuleStepUpdateRequest $request, $moduleId, $id) {
-		$module = Module :: find($moduleId);
-
 		$moduleStep = ModuleStep :: find($id);
 
 		$moduleStep -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
@@ -87,7 +85,7 @@ class AModuleStepController extends AController {
 		
 		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect() -> route('moduleStepEdit', array($module -> id, $moduleStep -> id));
+		return redirect() -> route('moduleStepEdit', array($moduleStep -> parentModel -> id, $moduleStep -> id));
 	}
 	
 

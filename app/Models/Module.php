@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+
 
 class Module extends Model {
     public static function deleteEmpty() {
@@ -24,15 +26,6 @@ class Module extends Model {
                 }
             }
         //
-	}
-
-
-    public static function destroy($id) {
-		Parent :: destroy($id);
-
-        foreach(ModuleStep :: where('top_level', $id) -> get() as $data) {
-            ModuleStep :: destroy($data -> id);
-        }
 	}
 
 

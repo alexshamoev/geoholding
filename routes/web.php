@@ -47,7 +47,7 @@ use App\Mail\WelcomeMail;
 			Route :: get('', 'ABscController@getStartPoint') -> name('bscStartPoint');
 			Route :: get('/add', 'ABscController@add') -> name('bscAdd');
 			Route :: get('/{id}', 'ABscController@edit') -> name('bscEdit');
-			Route :: post('/{id}', 'ABscController@update') -> name('bscUpdate');
+			Route :: post('/{id}', 'ABscController@update') -> name('bscUpd ate');
 			Route :: get('/{id}/delete', 'ABscController@delete') -> name('bscDelete');
 		});
 

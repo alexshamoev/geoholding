@@ -7,6 +7,13 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
+use App\Models\Module;
+use App\Models\ModuleStep;
+use App\Models\Language;
+use App\Observers\ModuleObserver;
+use App\Observers\ModuleStepObserver;
+use App\Observers\LanguageObserver;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -29,6 +36,8 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        //
+        Module :: observe(ModuleObserver :: class);
+        ModuleStep :: observe(ModuleStepObserver :: class);
+        Language :: observe(LanguageObserver :: class);
     }
 }

@@ -31,7 +31,7 @@ class ALanguageController extends AController {
 	
 	public function add() {
 		$language = new Language();
-
+		$language -> title = 'temp';
 		$language -> save();
 
 		return redirect() -> route('languageEdit', $language -> id);
