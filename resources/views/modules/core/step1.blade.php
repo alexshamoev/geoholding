@@ -24,22 +24,25 @@
 		'backRoute' => route('coreGetStep0', $module -> alias)
 	])
 	
-	
-	@if($errors -> any())
-		<div class="alert alert-danger">
-			Whoops, looks like something went wrong
-		</div>
-	@endif
-	
-	
-	@if(Session :: has('successStatus'))
-		<div class="alert alert-success" role="alert">
-			{{ Session :: get('successStatus') }}
-		</div>
-	@endif
+	<div class="p-2">
+		@if($errors -> any())
+			<div class="p-2">
+				<div class="alert alert-danger m-0">
+					Whoops, looks like something went wrong
+				</div>
+			</div>
+		@endif
+		
+		
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
 
 	
-	<div class="p-2">
 		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')

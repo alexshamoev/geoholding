@@ -400,9 +400,12 @@ class ACoreControllerStep2 extends AController {
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
+
+		// Status for success.s
+			$request -> session() -> flash('successStatus', 'Data is Saved!');
+		//
+
 		return redirect() -> route('coreEditStep2', array($module -> alias, $parentFirst, $parentSecond, $id));
-		
-		// return $moduleStep -> db_table;
 	}
 
 

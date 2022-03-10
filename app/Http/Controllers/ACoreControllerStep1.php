@@ -387,9 +387,12 @@ class ACoreControllerStep1 extends AController {
 
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
-		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
 
-		// return $moduleStep -> db_table;
+		// Status for success.
+			$request -> session() -> flash('successStatus', 'Data is Saved!');
+		//
+
+		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
 	}
 
 	
