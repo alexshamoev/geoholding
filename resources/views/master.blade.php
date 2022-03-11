@@ -27,12 +27,6 @@
 		@include('includes.bootstrap_size_getter')
 
 		@include('modules.header.basic')
-		
-		<div id="app">
-			<example></example>
-		</div>
-
-		<div id="examplereact"></div>
 
 		<section>
 			@yield('content')
