@@ -159,13 +159,7 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 	}
 // Else show static page.
 	Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
-// 
-$contacts = Page :: where('slug', 'contact') -> first();
-
-foreach(Language :: where('disable', '0') -> get() as $language) {
-	Route :: post('/'.$language -> title.'/'.$contacts -> { 'alias_'.$language -> title }, 'ContactsController@update') -> name('contactUpdate');
-}
-
+//
 
 
 

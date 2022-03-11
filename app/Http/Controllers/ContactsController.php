@@ -29,35 +29,7 @@ class ContactsController extends Controller {
         Page :: setLang($language -> title);
 
         $data = array_merge(PageController :: getDefaultData($language, $page));
-
+        
         return view('modules.contacts.step0', $data);
     }
-
-    public function update(Request $request) {
-        $language = Language :: where('title', 'en') -> first();
-        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        Page :: setLang($language -> title);
-
-		$contacts = new Contact();
-        $name = $request -> input('name');
-        $lastName = $request -> input('lastName');
-        $email = $request -> input('email');
-        $phone = $request -> input('phone');
-        $address = $request -> input('address');
-        $comment = $request -> input('comment');
-        $contacts -> name = $name;
-        $contacts -> last_name = $lastName;
-        $contacts -> email = $email;
-        $contacts -> phone = $phone;
-        $contacts -> address = $address;
-        $contacts -> comment = $comment;
-        $contacts -> save();
-
-        MailController :: sendMail($name, $lastName, $email, $phone, $address, $comment);
-        
-        $data = array_merge(PageController :: getDefaultData($language, $page));
-
-        return view('modules.contacts.step0', $data);
-	}
-
 }

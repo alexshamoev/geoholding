@@ -14,16 +14,12 @@
 			{!! $page -> text !!}
 		</div>
 
-		{{ Form :: open(array('route' => 'contactUpdate', 'method' => 'post')) }}
-            სახელი: {{ Form :: text('name') }} <br>
-            გვარი: {{ Form :: text('lastName') }} <br>
-            ელ.ფოსტა: {{ Form :: email('email') }} <br>
-            ტელეფონი: {{ Form :: text('phone') }} <br>
-            მისამართი: {{ Form :: text('address') }} <br>
-            კომენტარი: {{ Form :: textarea('comment') }} <br>
+		<div class="p-2">
+			{{ $bsc -> phone_number }}
+		</div>
 
-			{{ Form :: submit('Click Me!') }}
-	    {{ Form :: close() }}
-
+		<div class="p-2">
+			{{ $bsc -> email }}
+		</div>
 	</div>
 @endsection
