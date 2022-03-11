@@ -23,17 +23,28 @@
 		'prevRoute' => route('adminEdit', $prevAdminId),
 		'backRoute' => route('adminStartPoint')
 	])
-
-
-	@if(Session :: has('successStatus'))
-        <div class="alert alert-success" role="alert">
-            {{ Session :: get('successStatus') }}
-        </div>
-    @endif
 	
 
-    {{ Form :: model($activeAdmin, array('route' => array('adminUpdate', $activeAdmin -> id))) }}
-		<div class="p-2">
+	<div class="p-2">
+		@if($errors -> any())
+			<div class="p-2">
+				<div class="alert alert-danger m-0">
+					Whoops, looks like something went wrong
+				</div>
+			</div>
+		@endif
+		
+		
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
+
+
+    	{{ Form :: model($activeAdmin, array('route' => array('adminUpdate', $activeAdmin -> id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -109,8 +120,8 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('მონაცემების შეცვლა') }}
 			</div>
-		</div>
-	{{ Form :: close() }}
+		{{ Form :: close() }}
+	</div>
 
 
     <!-- <div class="row justify-content-center">

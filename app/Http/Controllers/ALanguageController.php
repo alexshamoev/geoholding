@@ -105,16 +105,14 @@ class ALanguageController extends AController {
 													'like_default_for_admin' => 0]);
 
 		$language = Language :: find($request -> input('like_default'));
-		
 		$language -> like_default = 1;
-
 		$language -> save();
 
 		$language = Language :: find($request -> input('like_default_for_admin'));
-		
 		$language -> like_default_for_admin = 1;
-
 		$language -> save();
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 		
 		return redirect() -> route('languageStartPoint');
 	}

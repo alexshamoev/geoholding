@@ -24,24 +24,21 @@
 	])
 
 
+	<div class="p-2">
 		<div class="p-2">
-			<div class="p-2">
-				<div class="standard-block p-2">
-					<div class="p-2 d-flex flex-column">
-						<span>სახელი: {{ $name }}</span>
-					</div>
-				</div>
-			</div>
-
-			<div class="p-2">
-				<div class="standard-block p-2">
-					<div class="p-2 d-flex flex-column">
-						<span>ელ. ფოსტა: {{ $email }}</span>
-					</div>
+			<div class="standard-block p-2">
+				<div class="p-2 d-flex flex-column">
+					<span>სახელი: {{ $name }}</span>
 				</div>
 			</div>
 		</div>
 
-
-  
+		<div class="p-2">
+			<div class="standard-block p-2">
+				<div class="p-2 d-flex flex-column">
+					<span>ელ. ფოსტა: {{ $email }}</span>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection

@@ -11,8 +11,17 @@
 		'tag0Text' => 'Language'
 	])
 
-	{{ Form :: open(array('url' => route('languageStartPoint'))) }}
-		<div class="p-2 languages">
+	<div class="p-2 languages">
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
+
+
+		{{ Form :: open(array('url' => route('languageStartPoint'))) }}
 			@include('admin.includes.addButton', ['text' => 'Add Language', 'url' => route('languageAdd')])
 			
 			<div id="rangBlocks" data-db_table="languages">
@@ -31,6 +40,6 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
-		</div>
-	{{ Form :: close() }}
+		{{ Form :: close() }}
+	</div>
 @endsection

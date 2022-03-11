@@ -26,16 +26,26 @@
 		'backRoute' => route('moduleEdit', $moduleStep -> parentModel -> id)
 	])
 
-	
-	@if(Session :: has('successStatus'))
-        <div class="alert alert-success" role="alert">
-            {{ Session :: get('successStatus') }}
-        </div>
-    @endif
-	
+	<div class="p-2">
+		@if($errors -> any())
+			<div class="p-2">
+				<div class="alert alert-danger m-0">
+					Whoops, looks like something went wrong
+				</div>
+			</div>
+		@endif
+		
+		
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
 
-	{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> parentModel -> id, $moduleStep -> id))) }}
-		<div class="p-2">
+
+		{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> parentModel -> id, $moduleStep -> id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -156,8 +166,8 @@
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
-		</div>
-	{{ Form :: close() }}
+		{{ Form :: close() }}
+	</div>
 
 
 	<div class="px-2">
