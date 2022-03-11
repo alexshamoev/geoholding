@@ -23,7 +23,6 @@ class ContactsController extends Controller {
 
     
     public static function getStep0($lang) {
-        
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 

@@ -48,7 +48,7 @@ class NewsStep2 extends Model {
 
 	
 	public function getFullUrlAttribute() {
-        return $this -> parentModel -> fullUrl.'/'.$this -> alias;
+        return $this -> newsStep1 -> fullUrl.'/'.$this -> alias;
     }
 
 
@@ -98,7 +98,7 @@ class NewsStep2 extends Model {
     }
 
 
-	public function parentModel() {
+	public function newsStep1() {
         return $this -> hasOne(NewsStep1 :: class, 'id', 'parent') -> orderBy('rang', 'desc');
     }
 }

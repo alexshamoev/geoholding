@@ -157,7 +157,7 @@ ddd -->
 			<div class="px-2">
 				<div class="d-flex flex-column standard-block">
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
-						{{ Form :: select('page', $pagesForSelect, $module -> page) }}
+						{{ Form :: select('page_id', $pagesForSelect, $module -> page_id) }}
 					</div>
 
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
@@ -260,7 +260,7 @@ ddd -->
 
 		<div>
 			<div id="rangBlocks" data-db_table="module_steps">
-				@foreach($module -> moduleSteps as $data)
+				@foreach($module -> moduleStep as $data)
 					@include('admin.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,
 						'title' => $data -> title,

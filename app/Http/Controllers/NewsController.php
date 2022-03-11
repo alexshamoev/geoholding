@@ -85,7 +85,7 @@ class NewsController extends Controller {
 
         $data = array_merge(PageController :: getDefaultData($language,
                                                             $page,
-                                                            $activeNewsStep1 -> parentModel,
+                                                            $activeNewsStep1 -> newsStep0,
                                                             $activeNewsStep1),
                                                             [
                                                                 'activeNewsStep1' => $activeNewsStep1
@@ -120,8 +120,8 @@ class NewsController extends Controller {
 
         $data = array_merge(PageController :: getDefaultData($language,
                                                                 $page,
-                                                                $activeNewsStep2 -> parentModel -> parentModel,
-                                                                $activeNewsStep2 -> parentModel,
+                                                                $activeNewsStep2 -> newsStep1 -> newsStep0,
+                                                                $activeNewsStep2 -> newsStep1,
                                                                 $activeNewsStep2),
                                                                 [
                                                                     'activeNewsStep2' => $activeNewsStep2
@@ -156,9 +156,9 @@ class NewsController extends Controller {
 
         $data = array_merge(PageController :: getDefaultData($language,
                                                                 $page,
-                                                                $activeNewsStep3 -> parentModel -> parentModel -> parentModel,
-                                                                $activeNewsStep3 -> parentModel -> parentModel,
-                                                                $activeNewsStep3 -> parentModel,
+                                                                $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0,
+                                                                $activeNewsStep3 -> newsStep2 -> newsStep1,
+                                                                $activeNewsStep3 -> newsStep2,
                                                                 $activeNewsStep3),
                                                                 [
                                                                     'activeNewsStep3' => $activeNewsStep3

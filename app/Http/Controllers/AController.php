@@ -50,13 +50,15 @@ class AController extends Controller {
 			}
 		}
 
-		$data = ['modules' => Module :: all() -> sortByDesc('rang'),
-				'modulesForMenu' => $modulesForMenu,
-				'bsc' => Bsc :: getFullData(),
-				'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
-				'copyrightDate' => $copyrightDate,
-				'languages' => Language :: where('disable', 0) -> get(),
-				'activeUser' => Auth :: user()];
+		$data = [
+					'modules' => Module :: all() -> sortByDesc('rang'),
+					'modulesForMenu' => $modulesForMenu,
+					'bsc' => Bsc :: getFullData(),
+					'bsw' => Bsw :: getFullData(Language :: where('like_default_for_admin', 1) -> first() -> title),
+					'copyrightDate' => $copyrightDate,
+					'languages' => Language :: where('disable', 0) -> get(),
+					'activeUser' => Auth :: user()
+				];
 
 		return $data;
 	}

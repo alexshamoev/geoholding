@@ -18,8 +18,8 @@
 			</div>
 
 			<div class="p-2">
-				<a href="{{ $activeNewsStep1 -> parentModel -> fullUrl }}">
-					{{ $activeNewsStep1 -> parentModel -> title }}
+				<a href="{{ $activeNewsStep1 -> newsStep0 -> fullUrl }}">
+					{{ $activeNewsStep1 -> newsStep0 -> title }}
 				</a>
 			</div>
 

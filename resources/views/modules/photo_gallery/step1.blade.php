@@ -1,8 +1,8 @@
 @extends('master')
 
-@section('pageMetaTitle'){{ $activePhotoGalleryStep0 -> metaTitle }}@endsection
-@section('pageMetaDescription'){{ $activePhotoGalleryStep0 -> metaDescription }}@endsection
-@section('pageMetaUrl'){{ $activePhotoGalleryStep0 -> metaUrl }}@endsection
+@section('pageMetaTitle'){{ $activeCategory -> metaTitle }}@endsection
+@section('pageMetaDescription'){{ $activeCategory -> metaDescription }}@endsection
+@section('pageMetaUrl'){{ $activeCategory -> metaUrl }}@endsection
 
 @section('content')
 	<div class="container
@@ -21,30 +21,30 @@
 			</div>
 			
 			<div class="p-2">
-				{{ $activePhotoGalleryStep0 -> title }}
+				{{ $activeCategory -> title }}
 			</div>
 		</div>
 
 		<h1 class="p-2">
-			{{ $activePhotoGalleryStep0 -> title }}
+			{{ $activeCategory -> title }}
 		</h1>
 
 		<div class="mb-3">
 			<div class="float-right img_wrapper">
 				<div class="p-2">
-					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activePhotoGalleryStep0 -> id.'.jpg') }}" alt="{{ $activePhotoGalleryStep0 -> title }}">
+					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activeCategory -> id.'.jpg') }}" alt="{{ $activeCategory -> title }}">
 				</div>
 			</div>
 	
 			<div class="p-2">
-				{!! $activePhotoGalleryStep0 -> text !!}
+				{!! $activeCategory -> text !!}
 			</div>
 	
 			<div class="clear_both"></div>
 		</div>
 
 		<div class="row my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-			@foreach($activePhotoGalleryStep0 -> images as $data)
+			@foreach($activeCategory -> photoGalleryStep1 as $data)
 				<figure itemprop="associatedMedia" class="col-3">
 					<a href="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}"
 						itemprop="contentUrl"

@@ -29,12 +29,12 @@ class Module extends Model {
 	}
 
 
-    public function pageModel() {
-        return $this -> hasOne(Page :: class, 'id', 'page');
+    public function page() {
+        return $this -> hasOne(Page :: class, 'id', 'page_id');
     }
 
 
-    public function moduleSteps() {
+    public function moduleStep() {
         return $this -> hasMany(ModuleStep :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
 }

@@ -45,7 +45,7 @@ class NewsStep3 extends Model {
 
 	
 	public function getFullUrlAttribute() {
-        return $this -> parentModel -> fullUrl.'/'.$this -> alias;
+        return $this -> newsStep2 -> fullUrl.'/'.$this -> alias;
     }
 
 
@@ -90,7 +90,7 @@ class NewsStep3 extends Model {
     }
 
 
-	public function parentModel() {
+	public function newsStep2() {
         return $this -> hasOne(NewsStep2 :: class, 'id', 'parent');
     }
 }
