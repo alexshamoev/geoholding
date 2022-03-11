@@ -44,7 +44,7 @@ class ModuleObserver
             Storage :: delete($file);
         }
 
-        foreach($module -> moduleSteps as $data) {
+        foreach($module -> moduleStep as $data) {
             ModuleStep :: destroy($data -> id);
         }
     }

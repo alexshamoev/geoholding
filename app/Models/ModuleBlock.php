@@ -25,7 +25,7 @@ class ModuleBlock extends Model {
 	}
 
 
-    public function parentModel() {
+    public function moduleStep() {
         return $this -> hasOne(ModuleStep :: class, 'id', 'top_level');
     }
 }

@@ -39,7 +39,7 @@ class AModuleBlockController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(ModuleBlock :: where('top_level', $moduleBlock -> parentModel -> id) -> orderBy('rang', 'desc') -> get() as $data) {
+		foreach(ModuleBlock :: where('top_level', $moduleBlock -> moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}

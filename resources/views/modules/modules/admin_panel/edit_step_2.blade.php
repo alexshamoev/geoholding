@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $moduleBlock -> parentModel -> parentModel -> alias }} > {{ $moduleBlock -> parentModel -> title }} > {{ $moduleBlock -> db_column }}
+    Modules > {{ $moduleBlock -> moduleStep -> module -> alias }} > {{ $moduleBlock -> moduleStep -> title }} > {{ $moduleBlock -> db_column }}
 @endsection
 
 
@@ -10,22 +10,22 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $moduleBlock -> parentModel -> parentModel -> alias,
-		'tag1Url' => route('moduleEdit', $moduleBlock -> parentModel -> parentModel -> id),
-		'tag2Text' => $moduleBlock -> parentModel -> title,
-		'tag2Url' => route('moduleStepEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id)),
+		'tag1Text' => $moduleBlock -> moduleStep -> module -> alias,
+		'tag1Url' => route('moduleEdit', $moduleBlock -> moduleStep -> module -> id),
+		'tag2Text' => $moduleBlock -> moduleStep -> title,
+		'tag2Url' => route('moduleStepEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id)),
 		'tag3Text' => $moduleBlock -> db_column
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleBlockAdd', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id)),
-		'deleteUrl' => route('moduleBlockDelete', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $moduleBlock -> id)),
+		'addUrl' => route('moduleBlockAdd', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id)),
+		'deleteUrl' => route('moduleBlockDelete', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $moduleBlock -> id)),
 		'nextId' => $next,
 		'prevId' => $prev,
-		'nextRoute' => route('moduleBlockEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $next)),
-		'prevRoute' => route('moduleBlockEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $prev)),
-		'backRoute' => route('moduleStepEdit', array($moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id))
+		'nextRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $next)),
+		'prevRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $prev)),
+		'backRoute' => route('moduleStepEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id))
 	])
 	
 
@@ -48,7 +48,7 @@
 		@endif
 
 
-		{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $moduleBlock -> parentModel -> parentModel -> id, $moduleBlock -> parentModel -> id, $moduleBlock -> id))) }}
+		{{ Form :: model($moduleBlock, array('route' => array('moduleBlockUpdate', $moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $moduleBlock -> id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

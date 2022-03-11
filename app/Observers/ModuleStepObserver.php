@@ -37,7 +37,7 @@ class ModuleStepObserver
      */
     public function deleted(ModuleStep $moduleStep)
     {
-        foreach($moduleStep -> moduleBlocks as $data) {
+        foreach($moduleStep -> moduleBlock as $data) {
             ModuleBlock :: destroy($data -> id);
         }
     }

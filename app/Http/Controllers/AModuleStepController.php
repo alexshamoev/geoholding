@@ -41,7 +41,9 @@ class AModuleStepController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(ModuleStep :: where('top_level', $moduleStep -> parentModel -> id) -> orderBy('rang') -> get() as $data) {
+		// dd($moduleStep -> module -> moduleStep);
+
+		foreach($moduleStep -> module -> moduleStep as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}
@@ -56,11 +58,15 @@ class AModuleStepController extends AController {
 			}
 		}
 
-		$data = array_merge(self :: getDefaultData(), ['pages' => Page :: all(),
+		// dd(ModuleStep :: find($prevId));
+
+		$data = array_merge(self :: getDefaultData(), [
+														'pages' => Page :: all(),
 														'languages' => Language :: where('disable', 1) -> get(),
 														'moduleStep' => $moduleStep,
-														'prev' => ModuleStep :: find($prevId),
-														'next' => ModuleStep :: find($nextId)]);
+														'prev' => $prevId,
+														'next' => $nextId
+													]);
 
 
 		return view('modules.modules.admin_panel.edit_step_1', $data);
@@ -70,22 +76,22 @@ class AModuleStepController extends AController {
 	public function update(AModuleStepUpdateRequest $request, $moduleId, $id) {
 		$moduleStep = ModuleStep :: find($id);
 
-		$moduleStep -> title = (!is_null($request -> input('title')) ? $request -> input('title') : '');
-		$moduleStep -> db_table = (!is_null($request -> input('db_table')) ? $request -> input('db_table') : '');
-		$moduleStep -> images = (!is_null($request -> input('images')) ? $request -> input('images') : 0);
-		$moduleStep -> possibility_to_add = (!is_null($request -> input('possibility_to_add')) ? $request -> input('possibility_to_add') : 0);
-		$moduleStep -> possibility_to_delete = (!is_null($request -> input('possibility_to_delete')) ? $request -> input('possibility_to_delete') : 0);
-		$moduleStep -> possibility_to_rang = (!is_null($request -> input('possibility_to_rang')) ? $request -> input('possibility_to_rang') : 0);
-		$moduleStep -> possibility_to_edit = (!is_null($request -> input('possibility_to_edit')) ? $request -> input('possibility_to_edit') : 0);
-		$moduleStep -> use_existing_step = (!is_null($request -> input('use_existing_step')) ? $request -> input('use_existing_step') : 0);
-		$moduleStep -> blocks_max_number = (!is_null($request -> input('blocks_max_number')) ? $request -> input('blocks_max_number') : 0);
+		$moduleStep -> title = $request -> input('title');
+		$moduleStep -> db_table = $request -> input('db_table');
+		$moduleStep -> images = $request -> has('images');
+		$moduleStep -> possibility_to_add = $request -> has('possibility_to_add');
+		$moduleStep -> possibility_to_delete = $request -> has('possibility_to_delete');
+		$moduleStep -> possibility_to_rang = $request -> has('possibility_to_rang');
+		$moduleStep -> possibility_to_edit = $request -> has('possibility_to_edit');
+		$moduleStep -> use_existing_step = $request -> has('use_existing_step');
+		$moduleStep -> blocks_max_number = $request -> has('blocks_max_number');
 
 		$moduleStep -> save();
 
 		
 		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect() -> route('moduleStepEdit', array($moduleStep -> parentModel -> id, $moduleStep -> id));
+		return redirect() -> route('moduleStepEdit', array($moduleStep -> module -> id, $moduleStep -> id));
 	}
 	
 

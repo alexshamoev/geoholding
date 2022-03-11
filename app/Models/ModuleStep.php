@@ -27,12 +27,12 @@ class ModuleStep extends Model {
 	}
 
 
-    public function parentModel() {
+    public function module() {
         return $this -> hasOne(Module :: class, 'id', 'top_level');
     }
 
 
-    public function moduleBlocks() {
+    public function moduleBlock() {
         return $this -> hasMany(ModuleBlock :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
 }
