@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use App;
 
 class Bsw extends Model {
-    public static function getFullData($lang) {
+    public static function getFullData() {
 		$bsws = (object)[];
 
 		foreach(Bsw :: all() as $data) {
-			$bsws -> { $data -> system_word } = $data -> { 'word_'.$lang };
+			$bsws -> { $data -> system_word } = $data -> { 'word_'.App :: getLocale() };
 		}
 		
 		return $bsws;

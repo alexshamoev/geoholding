@@ -12,6 +12,15 @@
 	])
 
     <div class="p-2">
+        @if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
+
+
         @foreach($users as $data)
             @include('admin.includes.horizontalEditDelete', [
                     'id' => $data -> id,

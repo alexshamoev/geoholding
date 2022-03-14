@@ -67,8 +67,8 @@ class PageController extends Controller {
 				'menuButtons' => MenuButtonStep0 :: orderByDesc('rang') -> with([
 					'page'
 				]) -> get(),
-				'bsc' => Bsc :: getFullData(),
-				'bsw' => Bsw :: getFullData($lang -> title),
+				'bsc' => $bsc,
+				'bsw' => Bsw :: getFullData(),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
 				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> alias,
 				'partners' => Partner :: orderByDesc('rang') -> get(),

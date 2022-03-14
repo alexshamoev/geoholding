@@ -8,6 +8,7 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ABswUpdateRequest;
+use Session;
 
 
 class ABswController extends AController {
@@ -85,6 +86,8 @@ class ABswController extends AController {
 
 	public function delete($id) {
 		Bsw :: destroy($id);
+
+		Session :: flash('successStatus', __('bsw.deleteSuccessStatus')); // Status for success.
 
 		return redirect() -> route('bswStartPoint');
 	}

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AAdminUpdateRequest;
+use Session;
 
 
 class AAdminController extends AController {
@@ -140,6 +141,8 @@ class AAdminController extends AController {
 
     public function delete($id) {
         User :: destroy($id);
+
+		Session :: flash('successStatus', __('bsw.deleteSuccessStatus'));
 
         return redirect() -> route('adminStartPoint');
     }

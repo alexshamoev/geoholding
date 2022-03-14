@@ -12,9 +12,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Mail;
+use Session;
 
-class AUsersController extends AController
-{
+
+class AUsersController extends AController {
     public function getStartPoint() {
         $activeUser = Auth :: user();
 
@@ -61,8 +62,11 @@ class AUsersController extends AController
 		return view('modules.users.admin_panel.edit', $data);
 	}
 
+	
     public function delete($id) {
         User :: destroy($id);
+
+		Session :: flash('successStatus', __('bsw.deleteSuccessStatus'));
 
         return redirect() -> route('userStartPoint');
     }

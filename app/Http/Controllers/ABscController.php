@@ -8,6 +8,7 @@ use App\Models\Language;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Requests\ABscUpdateRequest;
+use Session;
 
 
 class ABscController extends AController {
@@ -74,7 +75,7 @@ class ABscController extends AController {
 		$bsc -> save();
 
 		
-		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
+		$request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('bscEdit', $bsc -> id);
 	}
@@ -82,6 +83,8 @@ class ABscController extends AController {
 
 	public function delete($id) {
 		Bsc :: destroy($id);
+
+		Session :: flash('successStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect() -> route('bscStartPoint');
 	}

@@ -7,4 +7,5 @@ return [
     'email' => 'ელ. ფოსტა',
     'password' => 'პაროლი',
     'login' => 'შესვლა',
+    'deleteSuccessStatus' => 'მონაცემები წაშლილია წარმატებით',
 ];

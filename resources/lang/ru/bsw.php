@@ -7,4 +7,5 @@ return [
     'email' => 'Эл. почта',
     'password' => 'Пароль',
     'login' => 'Войти',
+    'deleteSuccessStatus' => 'Данные успешно удалены',
 ];

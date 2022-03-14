@@ -12,6 +12,15 @@
 	])
 
 	<div class="p-2">
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
+		
+
 		@include('admin.includes.addButton', ['text' => 'Add Bsc', 'url' => route('bscAdd')])
 
 		@foreach($bscs as $data)
