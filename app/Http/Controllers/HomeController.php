@@ -26,8 +26,6 @@ class HomeController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        Page :: setLang($language -> title);
-
         $data = array_merge(PageController :: getDefaultData($language, $page));
         
         return view('modules.home.step0', $data);

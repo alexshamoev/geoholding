@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App;
+
 
 class MenuButtonStep1 extends Model {
 	/**
@@ -13,13 +15,7 @@ class MenuButtonStep1 extends Model {
     protected $table = 'menu_buttons_step_1';
 
 
-	private static $lang;
 	private static $pageAlias;
-
-
-	public static function setLang($value) {
-		self :: $lang = $value;
-	}
 
 
 	public static function setPage($value) {
@@ -28,12 +24,12 @@ class MenuButtonStep1 extends Model {
 
 
 	public function getTitleAttribute() {
-        return $this -> { 'title_'.self :: $lang };
+        return $this -> { 'title_'.App :: getLocale() };
     }
 
 
 	public function getFreeLinkAttribute() {
-        return $this -> { 'free_link_'.self :: $lang };
+        return $this -> { 'free_link_'.App :: getLocale() };
     }
 
 
@@ -49,7 +45,7 @@ class MenuButtonStep1 extends Model {
 	public function getUrlAttribute() {
 		switch($this -> link_type) {
 			case 'page':
-				return '/'.self :: $lang.'/'.$this -> page -> alias;
+				return '/'.App :: getLocale().'/'.$this -> page -> alias;
 
 				break;
 			case 'free_link':

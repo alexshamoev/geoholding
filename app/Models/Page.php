@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App;
+
 
 class Page extends Model {
 	/**
@@ -13,40 +15,32 @@ class Page extends Model {
     protected $table = 'pages_step_0';
 
 
-	private static $lang;
-
-
-	public static function setLang($value) {
-		self :: $lang = $value;
-	}
-
-
 	public function getAliasAttribute() {
-        return $this -> { 'alias_'.self :: $lang };
+        return $this -> { 'alias_'.App :: getLocale() };
     }
 
 
 	public function getTitleAttribute() {
-        return $this -> { 'title_'.self :: $lang };
+        return $this -> { 'title_'.App :: getLocale() };
     }
 
 
 	public function getMetaTitleAttribute() {
-        if($this -> { 'meta_title_'.self :: $lang }) {
-            return $this -> { 'meta_title_'.self :: $lang };
+        if($this -> { 'meta_title_'.App :: getLocale() }) {
+            return $this -> { 'meta_title_'.App :: getLocale() };
         } else {
-            return $this -> { 'title_'.self :: $lang };
+            return $this -> { 'title_'.App :: getLocale() };
         }
     }
 
 
 	public function getMetaDescriptionAttribute() {
-        if($this -> { 'meta_description_'.self :: $lang }) {
-            $textAsDesc = strip_tags($this -> { 'meta_description_'.self :: $lang });
+        if($this -> { 'meta_description_'.App :: getLocale() }) {
+            $textAsDesc = strip_tags($this -> { 'meta_description_'.App :: getLocale() });
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
-            $textAsDesc = strip_tags($this -> { 'text_'.self :: $lang });
+            $textAsDesc = strip_tags($this -> { 'text_'.App :: getLocale() });
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         }
@@ -63,6 +57,6 @@ class Page extends Model {
 
 
 	public function getTextAttribute() {
-        return $this -> { 'text_'.self :: $lang };
+        return $this -> { 'text_'.App :: getLocale() };
     }
 }

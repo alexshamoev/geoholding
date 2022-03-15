@@ -14,6 +14,7 @@ use App\Models\NewsStep3;
 use App\Models\Partner;
 use App\Widget;
 use Illuminate\Http\Request;
+use App;
 
 
 class NewsController extends Controller {
@@ -24,9 +25,6 @@ class NewsController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        Page :: setLang($language -> title);
-
-        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language,
@@ -42,15 +40,11 @@ class NewsController extends Controller {
     public static function getStep1($lang, $step0Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
-        Page :: setLang($language -> title);
         
-        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
         $activeNews = NewsStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
-        NewsStep1 :: setLang($language -> title);
         NewsStep1 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language,
@@ -68,19 +62,13 @@ class NewsController extends Controller {
     public static function getStep2($lang, $step0Alias, $step1Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
-
-        Page :: setLang($language -> title);
         
-        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
-        NewsStep1 :: setLang($language -> title);
         NewsStep1 :: setPageAlias($page -> alias);
 
         $activeNewsStep1 = NewsStep1 :: where('alias_'.$language -> title, $step1Alias) -> first();
 
-        NewsStep2 :: setLang($language -> title);
         NewsStep2 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language,
@@ -99,22 +87,15 @@ class NewsController extends Controller {
     public static function getStep3($lang, $step0Alias, $step1Alias, $step2Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
-
-        Page :: setLang($language -> title);
         
-        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
-        NewsStep1 :: setLang($language -> title);
         NewsStep1 :: setPageAlias($page -> alias);
 
-        NewsStep2 :: setLang($language -> title);
         NewsStep2 :: setPageAlias($page -> alias);
 
         $activeNewsStep2 = NewsStep2 :: where('alias_'.$language -> title, $step2Alias) -> first();
 
-        NewsStep3 :: setLang($language -> title);
         NewsStep3 :: setPageAlias($page -> alias);
 
 
@@ -135,20 +116,13 @@ class NewsController extends Controller {
     public static function getStep4($lang, $step0Alias, $step1Alias, $step2Alias, $step3Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
-
-        Page :: setLang($language -> title);
         
-        NewsStep0 :: setLang($language -> title);
         NewsStep0 :: setPageAlias($page -> alias);
 
-        NewsStep1 :: setLang($language -> title);
         NewsStep1 :: setPageAlias($page -> alias);
 
-        NewsStep2 :: setLang($language -> title);
         NewsStep2 :: setPageAlias($page -> alias);
 
-        NewsStep3 :: setLang($language -> title);
         NewsStep3 :: setPageAlias($page -> alias);
 
         $activeNewsStep3 = NewsStep3 :: where('alias_'.$language -> title, $step3Alias) -> first();

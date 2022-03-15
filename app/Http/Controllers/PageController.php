@@ -13,15 +13,14 @@ use App\Models\Partner;
 use App\Widget;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use App;
 
 
 class PageController extends Controller {
 	public static function getDefaultData($lang, $page, $alias0Model = false, $alias1Model = false, $alias2Model = false, $alias3Model = false) {
-		Language :: setLang($lang);
-		Language :: setPage($page);
-
 		App :: setLocale($lang -> title);
+
+		Language :: setPage($page);
 
 		if($alias0Model) {
 			Language :: setAlias0Model($alias0Model);
@@ -39,18 +38,9 @@ class PageController extends Controller {
 			Language :: setAlias3Model($alias3Model);
 		}
 
-
-		Page :: setLang($lang -> title);
-
-		// dd(MenuButtonStep0 :: first());
-
-		MenuButtonStep0 :: setLang($lang -> title);
 		MenuButtonStep0 :: setPage($page -> alias);
 
-		MenuButtonStep1 :: setLang($lang -> title);
 		MenuButtonStep1 :: setPage($page -> alias);
-
-		Partner :: setLang($lang -> title);
 
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
@@ -83,8 +73,6 @@ class PageController extends Controller {
 	public static function test() {
 		$page = Page :: where('slug', 'registration') -> first();
         $language = Language :: where('title', 'ge') -> first();
-
-        Page :: setLang($language -> title);
 
 		return view('auth.m-register', PageController :: getDefaultData($language, $page));
 	}

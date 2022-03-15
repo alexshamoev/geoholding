@@ -26,11 +26,6 @@ class AController extends Controller {
 
 
 	public static function getDefaultData() {
-		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
-
-		Page :: setLang($activeLang -> title);
-
-
 		$bsc = Bsc :: getFullData();
 		$activeUser = Auth :: user();
 		$copyrightDate = $bsc -> year_of_site_creation;

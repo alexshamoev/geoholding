@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use App;
+
 
 class Language extends Model {
 	/**
@@ -13,17 +15,12 @@ class Language extends Model {
      */
     protected $table = 'languages';
 	
-	private static $lang;
 	private static $page;
 	private static $alias0Model = false;
 	private static $alias1Model = false;
 	private static $alias2Model = false;
 	private static $alias3Model = false;
 
-
-	public static function setLang($value) {
-		self :: $lang = $value;
-	}
 
 	public static function setPage($value) {
 		self :: $page = $value;
@@ -82,7 +79,7 @@ class Language extends Model {
 
 
 	public function getActiveAttribute() {
-		if(self :: $lang -> title == $this -> title) {
+		if(App :: getLocale() == $this -> title) {
 			return true;
 		}
 

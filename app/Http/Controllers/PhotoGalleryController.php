@@ -22,10 +22,7 @@ class PhotoGalleryController extends Controller {
     public static function getStep0($lang) {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
-        
-        Page :: setLang($language -> title);
 
-        PhotoGalleryStep0 :: setLang($language -> title);
         PhotoGalleryStep0 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language, $page),
@@ -40,9 +37,6 @@ class PhotoGalleryController extends Controller {
     public static function getStep1($lang, $step0Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-
-        PhotoGalleryStep0 :: setLang($language -> title);
-        PhotoGalleryStep1 :: setLang($language -> title);
 
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 

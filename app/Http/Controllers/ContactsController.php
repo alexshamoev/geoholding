@@ -26,8 +26,6 @@ class ContactsController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        Page :: setLang($language -> title);
-
         $data = array_merge(PageController :: getDefaultData($language, $page));
         
         return view('modules.contacts.step0', $data);
