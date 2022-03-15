@@ -13,6 +13,15 @@
 
 
 	<div class="p-2">
+		@if(Session :: has('successDeleteStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successDeleteStatus') }}
+				</div>
+			</div>
+		@endif
+
+
 		@include('admin.includes.addButton', [
 			'text' => $bsw -> a_add.' '.$moduleStep -> title,
 			'url' => route('coreAddStep0', $module -> alias)

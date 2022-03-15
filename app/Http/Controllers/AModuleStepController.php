@@ -12,6 +12,7 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AModuleStepUpdateRequest;
+use Session;
 
 
 class AModuleStepController extends AController {
@@ -97,6 +98,8 @@ class AModuleStepController extends AController {
 
 	public function delete($moduleId, $id) {
 		ModuleStep :: destroy($id);
+
+		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect() -> route('moduleEdit', $moduleId);
 	}

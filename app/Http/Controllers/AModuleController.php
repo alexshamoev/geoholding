@@ -14,6 +14,7 @@ use App\Models\ModulesNotIncludesValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AModuleUpdateRequest;
+use Session;
 
 
 class AModuleController extends AController {
@@ -156,6 +157,8 @@ class AModuleController extends AController {
 
 	public function delete($id) {
 		Module :: destroy($id);
+
+		Session :: flash('successStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect() -> route('moduleStartPoint');
 	}

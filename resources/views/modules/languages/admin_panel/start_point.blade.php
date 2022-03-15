@@ -21,6 +21,15 @@
 		@endif
 
 
+		@if(Session :: has('successDeleteStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successDeleteStatus') }}
+				</div>
+			</div>
+		@endif
+
+
 		{{ Form :: open(array('url' => route('languageStartPoint'))) }}
 			@include('admin.includes.addButton', ['text' => 'Add Language', 'url' => route('languageAdd')])
 			

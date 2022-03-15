@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic;
 use DB;
+use Session;
 
 
 class ACoreControllerStep2 extends AController {
@@ -414,6 +415,8 @@ class ACoreControllerStep2 extends AController {
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(2) -> take(1) -> first();
 		$moduleBlocks = ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get();
 
+		// dd(array($module -> alias, $parentFirst, $parentSecond));
+
 		foreach($moduleBlocks as $data) {
 			$prefix = '';
 
@@ -430,8 +433,11 @@ class ACoreControllerStep2 extends AController {
 
 		DB :: table($moduleStep -> db_table) -> delete($id);
 
+		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+		
+		// dd(array($module -> alias, $parentFirst, $parentSecond));
+
 		return redirect() -> route('coreEditStep1', array($module -> alias, $parentFirst, $parentSecond));
-		// return $moduleAlias.' '.$parentFirst.' '.$parentSecond.' '.$id;
 	}
 
 	

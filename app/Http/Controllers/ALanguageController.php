@@ -9,6 +9,7 @@ use App\Models\Bsw;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ALanguageUpdateRequest;
+use Session;
 
 
 class ALanguageController extends AController {
@@ -93,13 +94,6 @@ class ALanguageController extends AController {
 	}
 
 
-	public function delete($id) {
-		Language :: destroy($id);
-
-		return redirect() -> route('languageStartPoint');
-	}
-
-
 	public function updateStartPoint(Request $request) {
 		Language :: where('disable', 0) -> update(['like_default' => 0,
 													'like_default_for_admin' => 0]);
@@ -114,6 +108,15 @@ class ALanguageController extends AController {
 
 		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 		
+		return redirect() -> route('languageStartPoint');
+	}
+
+
+	public function delete($id) {
+		Language :: destroy($id);
+
+		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+
 		return redirect() -> route('languageStartPoint');
 	}
 }

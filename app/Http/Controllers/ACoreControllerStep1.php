@@ -12,6 +12,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic;
 use DB;
+use Session;
 
 
 class ACoreControllerStep1 extends AController {
@@ -417,7 +418,9 @@ class ACoreControllerStep1 extends AController {
 
 		DB :: table($moduleStep -> db_table) -> delete($id);
 
-		return redirect() -> route('coreEditStep0', array($module -> alias, $parent, $id));
+		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+
+		return redirect() -> route('coreEditStep0', array($module -> alias, $parent));
 	}
 
 	

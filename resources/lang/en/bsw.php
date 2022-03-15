@@ -7,5 +7,5 @@ return [
     'email' => 'E-mail',
     'password' => 'Password',
     'login' => 'Login',
-    'deleteSuccessStatus' => 'Data deleted successfully',
+    'deleteSuccessStatus' => 'Data deleted successfully!',
 ];

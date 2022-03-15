@@ -43,6 +43,15 @@
 			</div>
 		@endif
 
+
+		@if(Session :: has('successDeleteStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successDeleteStatus') }}
+				</div>
+			</div>
+		@endif
+
 		
 		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">

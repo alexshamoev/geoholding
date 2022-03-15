@@ -11,6 +11,7 @@ use App\Models\Bsw;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Session;
 
 
 class AModuleBlockController extends AController {
@@ -212,6 +213,8 @@ class AModuleBlockController extends AController {
 
 	public function delete($moduleId, $stepId, $id) {
 		ModuleBlock :: destroy($id);
+		
+		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect() -> route('moduleStepEdit', array($moduleId, $stepId));
 	}

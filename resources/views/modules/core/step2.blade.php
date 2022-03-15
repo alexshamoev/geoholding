@@ -44,6 +44,15 @@
 		@endif
 
 
+		@if(Session :: has('successDeleteStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successDeleteStatus') }}
+				</div>
+			</div>
+		@endif
+		
+
 		{{ Form :: open(array('route' => array('coreUpdateStep1', $module -> alias, $data -> parent, $data -> id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
