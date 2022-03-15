@@ -12,6 +12,7 @@
 		<meta property="og:image" content="@yield('pageMetaUrl')">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('css/'.app() -> getLocale().'.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
 

@@ -1,36 +1,39 @@
 // MEDIA QUERY BREAKPOINTS
-    $xxl_size : 1400px;
-    $xl_size : 1200px;
-    $lg_size : 992px;
-    $md_size : 768px;
-    $sm_size : 576px;
-    $xs_size : 576px;
+    $xxl_size: 1400px;
+    $xl_size: 1200px;
+    $lg_size: 992px;
+    $md_size: 768px;
+    $sm_size: 576px;
+    $xs_size: 576px;
 
-    $container_xxl_size : 1350px;
-    $container_xl_size : 1150px;
-    $container_lg_size : 940px;
-    $container_md_size : 720px;
-    $container_sm_size : 100%;
-    $container_xs_size : 100%;
+    $container_xxl_size: 1350px;
+    $container_xl_size: 1150px;
+    $container_lg_size: 940px;
+    $container_md_size: 720px;
+    $container_sm_size: 100%;
+    $container_xs_size: 100%;
 //
 
+// Fonts
+    @font-face {
+        font-family: 'HB_Georgia';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/storage/fonts/hb_georgia.ttf');
+    }
 
-// Body
-$body-bg: #f8fafc;
+    @font-face {
+        font-family: 'Test';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/storage/fonts/test.ttf');
+    }
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
-
-// Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+    $font_family_0: 'HB_Georgia';
+    $font_family_1: 'Test';
+    $font_family_2: 'Arial';
+    $font_family_3: 'Arial';
+    $font_family_4: 'Arial';
+    $font_family_5: 'Arial';
+    $font_family_6: 'Arial';
+//  
