@@ -404,9 +404,7 @@ class ACoreControllerStep3 extends AController {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 
-		// Status for success.
-			$request -> session() -> flash('successStatus', 'Data is Saved!');
-		//
+		$request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $parentThird, $id));
 	}

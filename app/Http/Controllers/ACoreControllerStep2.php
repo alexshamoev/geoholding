@@ -402,9 +402,7 @@ class ACoreControllerStep2 extends AController {
 		DB :: table($moduleStep -> db_table) -> where('id', $id) -> update($updateQuery);
 
 
-		// Status for success.s
-			$request -> session() -> flash('successStatus', 'Data is Saved!');
-		//
+		$request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('coreEditStep2', array($module -> alias, $parentFirst, $parentSecond, $id));
 	}
@@ -434,8 +432,6 @@ class ACoreControllerStep2 extends AController {
 		DB :: table($moduleStep -> db_table) -> delete($id);
 
 		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
-		
-		// dd(array($module -> alias, $parentFirst, $parentSecond));
 
 		return redirect() -> route('coreEditStep1', array($module -> alias, $parentFirst, $parentSecond));
 	}
