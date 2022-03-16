@@ -16,13 +16,7 @@ class NewsStep0 extends Model {
      */
     protected $table = 'news_step_0';
 
-
-	private static $pageAlias;
-
-
-	public static function setPageAlias($value) {
-		self :: $pageAlias = $value;
-	}
+    protected static $pageSlug = 'news';
 
 
 	public function getAliasAttribute() {
@@ -41,7 +35,16 @@ class NewsStep0 extends Model {
 
     
 	public function getFullUrlAttribute() {
-        return '/'.App :: getLocale().'/'.self :: $pageAlias.'/'.$this -> alias;
+        $page = Page :: where('slug', self :: $pageSlug) -> first();
+
+        return $page -> fullUrl.'/'.$this -> alias;
+    }
+
+    
+	public function getFullUrl($lang) {
+        $page = Page :: where('slug', self :: $pageSlug) -> first();
+
+        return $page -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
     }
 
 
@@ -74,6 +77,7 @@ class NewsStep0 extends Model {
         }
     }
 
+    
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/news/step_0/meta_'.$this -> { 'id' }.'.jpg'))) {
             return '/storage/images/modules/photo_gallery/step_0/meta_'.$this -> { 'id' }.'.jpg';

@@ -17,26 +17,17 @@ use App;
 
 
 class PageController extends Controller {
-	public static function getDefaultData($lang, $page, $alias0Model = false, $alias1Model = false, $alias2Model = false, $alias3Model = false) {
+	public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
 		App :: setLocale($lang -> title);
 
-		Language :: setPage($page);
+		// dd(parse_url(url() -> current()));
 
-		if($alias0Model) {
-			Language :: setAlias0Model($alias0Model);
+		if($activeInfoBlockModel) {
+			Language :: setActiveInfoBlock($activeInfoBlockModel);
+		} else {
+			Language :: setActiveInfoBlock($page);
 		}
-
-		if($alias1Model) {
-			Language :: setAlias1Model($alias1Model);
-		}
-
-		if($alias2Model) {
-			Language :: setAlias2Model($alias2Model);
-		}
-
-		if($alias3Model) {
-			Language :: setAlias3Model($alias3Model);
-		}
+		
 
 		MenuButtonStep0 :: setPage($page -> alias);
 
@@ -104,7 +95,7 @@ class PageController extends Controller {
 			$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
 
 			if($page) {
-				return view('static', self :: getDefaultData($language, $page));
+				return view('static', self :: getDefaultData($language, $page, $page));
 			} else {
 				abort(404);
 			}

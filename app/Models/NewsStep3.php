@@ -17,14 +17,6 @@ class NewsStep3 extends Model {
     protected $table = 'news_step_3';
 
 
-	private static $pageAlias;
-
-
-	public static function setPageAlias($value) {
-		self :: $pageAlias = $value;
-	}
-
-
 	public function getAliasAttribute() {
         return $this -> { 'alias_'.App :: getLocale() };
     }
@@ -42,6 +34,11 @@ class NewsStep3 extends Model {
 	
 	public function getFullUrlAttribute() {
         return $this -> newsStep2 -> fullUrl.'/'.$this -> alias;
+    }
+
+    
+	public function getFullUrl($lang) {
+        return $this -> newsStep2 -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
     }
 
 

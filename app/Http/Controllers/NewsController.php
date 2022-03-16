@@ -25,8 +25,6 @@ class NewsController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        NewsStep0 :: setPageAlias($page -> alias);
-
         $data = array_merge(PageController :: getDefaultData($language,
                                                             $page),
                                                             [
@@ -40,12 +38,8 @@ class NewsController extends Controller {
     public static function getStep1($lang, $step0Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        
-        NewsStep0 :: setPageAlias($page -> alias);
 
         $activeNews = NewsStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
-
-        NewsStep1 :: setPageAlias($page -> alias);
 
         $data = array_merge(PageController :: getDefaultData($language,
                                                             $page,
@@ -62,18 +56,11 @@ class NewsController extends Controller {
     public static function getStep2($lang, $step0Alias, $step1Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        
-        NewsStep0 :: setPageAlias($page -> alias);
-
-        NewsStep1 :: setPageAlias($page -> alias);
 
         $activeNewsStep1 = NewsStep1 :: where('alias_'.$language -> title, $step1Alias) -> first();
 
-        NewsStep2 :: setPageAlias($page -> alias);
-
         $data = array_merge(PageController :: getDefaultData($language,
                                                             $page,
-                                                            $activeNewsStep1 -> newsStep0,
                                                             $activeNewsStep1),
                                                             [
                                                                 'activeNewsStep1' => $activeNewsStep1
@@ -87,22 +74,12 @@ class NewsController extends Controller {
     public static function getStep3($lang, $step0Alias, $step1Alias, $step2Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        
-        NewsStep0 :: setPageAlias($page -> alias);
-
-        NewsStep1 :: setPageAlias($page -> alias);
-
-        NewsStep2 :: setPageAlias($page -> alias);
 
         $activeNewsStep2 = NewsStep2 :: where('alias_'.$language -> title, $step2Alias) -> first();
-
-        NewsStep3 :: setPageAlias($page -> alias);
 
 
         $data = array_merge(PageController :: getDefaultData($language,
                                                                 $page,
-                                                                $activeNewsStep2 -> newsStep1 -> newsStep0,
-                                                                $activeNewsStep2 -> newsStep1,
                                                                 $activeNewsStep2),
                                                                 [
                                                                     'activeNewsStep2' => $activeNewsStep2
@@ -116,23 +93,11 @@ class NewsController extends Controller {
     public static function getStep4($lang, $step0Alias, $step1Alias, $step2Alias, $step3Alias) {
         $language = Language :: where('title', $lang) -> first();
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
-        
-        NewsStep0 :: setPageAlias($page -> alias);
-
-        NewsStep1 :: setPageAlias($page -> alias);
-
-        NewsStep2 :: setPageAlias($page -> alias);
-
-        NewsStep3 :: setPageAlias($page -> alias);
 
         $activeNewsStep3 = NewsStep3 :: where('alias_'.$language -> title, $step3Alias) -> first();
 
-
         $data = array_merge(PageController :: getDefaultData($language,
                                                                 $page,
-                                                                $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0,
-                                                                $activeNewsStep3 -> newsStep2 -> newsStep1,
-                                                                $activeNewsStep3 -> newsStep2,
                                                                 $activeNewsStep3),
                                                                 [
                                                                     'activeNewsStep3' => $activeNewsStep3

@@ -8,7 +8,7 @@
 	<div class="container p-2 main_content--height">
 		<div class="d-flex align-items-center">
 			<div class="p-2">
-				<a href="{{ '/'.$language -> title.'/'.$page -> alias }}">
+				<a href="{{ $page -> fullUrl }}">
 					{{ $page -> title }}
 				</a>
 			</div>

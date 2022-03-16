@@ -20,6 +20,16 @@ class PhotoGalleryStep1 extends Model {
         return $this -> { 'title_'.App :: getLocale() };
     }
 
+    
+    public function getFullUrlAttribute() {
+        return $this -> photoGalleryStep0 -> fullUrl.'/'.$this -> alias;
+    }
+
+    
+	public function getFullUrl($lang) {
+        return $this -> photoGalleryStep0 -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
+    }
+
 
     public function photoGalleryStep0() {
         return $this -> hasOne(PhotoGalleryStep0 :: class, 'id', 'parent');

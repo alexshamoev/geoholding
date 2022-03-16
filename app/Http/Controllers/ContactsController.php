@@ -25,9 +25,7 @@ class ContactsController extends Controller {
     public static function getStep0($lang) {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
-
-        $data = array_merge(PageController :: getDefaultData($language, $page));
         
-        return view('modules.contacts.step0', $data);
+        return view('modules.contacts.step0', PageController :: getDefaultData($language, $page));
     }
 }

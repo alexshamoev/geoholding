@@ -15,6 +15,11 @@ class Page extends Model {
     protected $table = 'pages_step_0';
 
 
+	public function getFullUrlAttribute() {
+        return '/'.App :: getLocale().'/'.$this -> alias;
+    }
+
+
 	public function getAliasAttribute() {
         return $this -> { 'alias_'.App :: getLocale() };
     }
@@ -58,5 +63,14 @@ class Page extends Model {
 
 	public function getTextAttribute() {
         return $this -> { 'text_'.App :: getLocale() };
+    }
+
+    
+    public function getFullUrl($lang) {
+        // if($this -> like_default) {
+        //     return '/'.$lang;
+        // }
+
+        return '/'.$lang.'/'.$this -> { 'alias_'.$lang };
     }
 }

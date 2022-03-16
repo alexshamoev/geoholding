@@ -3,7 +3,7 @@
 			row
 			align-items-center">
 	@foreach($languages as $data)
-		@if($data -> active)
+		@if($data -> isActive)
 			<div class="languages__block
 						languages__block--active
 						col-4
@@ -22,7 +22,7 @@
 			<div class="languages__block
 						col-4
 						text-center">
-				<a href="{{ $data -> full_url }}">
+				<a href="{{ $data -> fullUrl }}">
 					<div class="p-2">
 						<img src="{{ asset('/storage/images/modules/languages/'.$data -> id.'.svg') }}" alt="{{ $data -> full_title }}" >
 					</div>

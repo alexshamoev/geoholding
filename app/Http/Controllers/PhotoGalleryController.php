@@ -23,9 +23,8 @@ class PhotoGalleryController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        PhotoGalleryStep0 :: setPageAlias($page -> alias);
-
-        $data = array_merge(PageController :: getDefaultData($language, $page),
+        $data = array_merge(PageController :: getDefaultData($language,
+                                                             $page),
                             [
                                 'photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get()
                             ]);
@@ -40,7 +39,9 @@ class PhotoGalleryController extends Controller {
 
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language, $page, $activeCategory),
+        $data = array_merge(PageController :: getDefaultData($language,
+                                                             $page,
+                                                             $activeCategory),
                             [
                                 'activeCategory' => $activeCategory
                             ]);
