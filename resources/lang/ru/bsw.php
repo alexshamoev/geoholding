@@ -8,4 +8,5 @@ return [
     'password' => 'Пароль',
     'login' => 'Войти',
     'deleteSuccessStatus' => 'Данные удалены!',
+    'warningStatus' => 'Заполните все поля корректно',
 ];

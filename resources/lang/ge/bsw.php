@@ -8,4 +8,5 @@ return [
     'password' => 'პაროლი',
     'login' => 'შესვლა',
     'deleteSuccessStatus' => 'მონაცემები წაშლილია!',
+    'warningStatus' => 'შეავსეთ ყველა ველი კორექტულად',
 ];

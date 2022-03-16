@@ -34,7 +34,7 @@
 		@if($errors -> any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
-					Whoops, looks like something went wrong
+					{{ __('bsw.warningStatus') }}
 				</div>
 			</div>
 		@endif

@@ -8,4 +8,5 @@ return [
     'password' => 'Password',
     'login' => 'Login',
     'deleteSuccessStatus' => 'Data deleted successfully!',
+    'warningStatus' => 'Fill all fields correctly',
 ];
