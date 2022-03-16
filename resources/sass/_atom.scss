@@ -29,9 +29,16 @@
         src: url('/storage/fonts/test.ttf');
     }
 
+    @font-face {
+        font-family: 'Trebuchet MS';
+        font-style: normal;
+        font-weight: 400;
+        src: url('/storage/fonts/Trebuchet MS.ttf');
+    }
+
     $font_family_0: 'HB_Georgia';
     $font_family_1: 'Test';
-    $font_family_2: 'Arial';
+    $font_family_2: 'Trebuchet MS';
     $font_family_3: 'Arial';
     $font_family_4: 'Arial';
     $font_family_5: 'Arial';
