@@ -2,30 +2,91 @@
 
 
 @media only screen and (max-width: $xs_size) {
-
+	
 }
 
 
 @media only screen and (min-width: $sm_size) {
-
+	
 }
 
 
 @media only screen and (min-width: $md_size) {
-
+	
 }
 
 
 @media only screen and (min-width: $lg_size) {
-
+	
 }
 
 
 @media only screen and (min-width: $xl_size) {
-
+	
 }
 
 
-body {
-	font-family: $font_family_0;
+@media only screen and (min-width: $xxl_size) {
+	
 }
+
+
+// <>
+	body,
+	input,
+	textarea,
+	select {
+		font: 16px/140% $font_family_0;
+		word-wrap: break-word;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: $font_family_0;
+		font-weight: normal;
+		line-height: 120%;
+		word-wrap: break-word;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	h1 {
+		font-size: 40px;
+	}
+
+	h2 {
+		font-size: 32px;
+	}
+
+	h3 {
+		font-size: 28px;
+	}
+
+	h4 {
+		font-size: 18px;
+	}
+
+	h5 {
+		font-size: 17px;
+	}
+
+	h6 {
+		font-size: 13px;
+	}
+// 
+
+
+// #
+
+// 
+
+
+// .
+
+// 
