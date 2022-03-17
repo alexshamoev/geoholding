@@ -36,9 +36,9 @@ class PageController extends Controller {
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
 		$bsc = Bsc :: getFullData();
-		$copyrightDate = $bsc -> year_of_site_creation;
+		$copyrightDate = config('constants.year_of_site_creation');
 
-		if($bsc -> year_of_site_creation < date('Y')) {
+		if($copyrightDate < date('Y')) {
 			$copyrightDate .= ' - '.date('Y');
 		}
 

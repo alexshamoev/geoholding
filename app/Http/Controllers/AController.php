@@ -28,9 +28,9 @@ class AController extends Controller {
 	public static function getDefaultData() {
 		$bsc = Bsc :: getFullData();
 		$activeUser = Auth :: user();
-		$copyrightDate = $bsc -> year_of_site_creation;
+		$copyrightDate = config('constants.year_of_site_creation');
 
-		if($bsc -> year_of_site_creation < date('Y')) {
+		if($copyrightDate < date('Y')) {
 			$copyrightDate .= ' - '.date('Y');
 		}
 
