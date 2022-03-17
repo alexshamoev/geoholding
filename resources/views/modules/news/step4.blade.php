@@ -6,50 +6,40 @@
 
 @section('content')
 	<div class="container p-2 main_content--height">
-		<div class="d-flex align-items-center">
-			<div class="p-2">
-				<a href="{{ $page -> fullUrl }}">
-					{{ $page -> title }}
-				</a>
+		<div class="p-2 tags">
+			<a href="{{ $page -> fullUrl }}">
+				{{ $page -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
+			<a href="{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0 -> fullUrl }}">
+				{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0 -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<a href="{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0 -> fullUrl }}">
-					{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> newsStep0 -> title }}
-				</a>
+			<a href="{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> fullUrl }}">
+				{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
+			<a href="{{ $activeNewsStep3 -> newsStep2 -> fullUrl }}">
+				{{ $activeNewsStep3 -> newsStep2 -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<a href="{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> fullUrl }}">
-					{{ $activeNewsStep3 -> newsStep2 -> newsStep1 -> title }}
-				</a>
-			</div>
-
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
-			</div>
-
-			<div class="p-2">
-				<a href="{{ $activeNewsStep3 -> newsStep2 -> fullUrl }}">
-					{{ $activeNewsStep3 -> newsStep2 -> title }}
-				</a>
-			</div>
-
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
-			</div>
-
-			<div class="p-2">
-				{{ $activeNewsStep3 -> title }}
-			</div>
+			{{ $activeNewsStep3 -> title }}
 		</div>
 		
 		

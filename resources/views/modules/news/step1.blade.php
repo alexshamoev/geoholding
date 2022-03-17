@@ -6,20 +6,16 @@
 
 @section('content')
 	<div class="container p-2 main_content--height">
-		<div class="d-flex align-items-center">
-			<div class="p-2">
-				<a href="{{ $page -> fullUrl }}">
-					{{ $page -> title }}
-				</a>
+		<div class="p-2 tags">
+			<a href="{{ $page -> fullUrl }}">
+				{{ $page -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
-			</div>
-
-			<div class="p-2">
-				{{ $activeNewsStep0 -> title }}
-			</div>
+			{{ $activeNewsStep0 -> title }}
 		</div>
 
 		<h1 class="p-2">

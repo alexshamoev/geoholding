@@ -28,6 +28,10 @@
 }
 
 
-.tag_next {
-    font-size: 13px;
+.tags {
+    line-height: 30px;
+
+    &__arrow {
+        font-size: 13px;
+    }
 }

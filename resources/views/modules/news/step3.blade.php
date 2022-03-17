@@ -6,40 +6,32 @@
 
 @section('content')
 	<div class="container p-2 main_content--height">
-		<div class="d-flex align-items-center">
-			<div class="p-2">
-				<a href="{{ $page -> fullUrl }}">
-					{{ $page -> title }}
-				</a>
+		<div class="p-2 tags">
+			<a href="{{ $page -> fullUrl }}">
+				{{ $page -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
+			<a href="{{ $activeNewsStep2 -> newsStep1 -> newsStep0 -> fullUrl }}">
+				{{ $activeNewsStep2 -> newsStep1 -> newsStep0 -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<a href="{{ $activeNewsStep2 -> newsStep1 -> newsStep0 -> fullUrl }}">
-					{{ $activeNewsStep2 -> newsStep1 -> newsStep0 -> title }}
-				</a>
+			<a href="{{ $activeNewsStep2 -> newsStep1 -> fullUrl }}">
+				{{ $activeNewsStep2 -> newsStep1 -> title }}
+			</a>
+
+			<div class="px-2 d-inline-block">
+				<span class="ba_arrow_right tags__arrow"></span>
 			</div>
 
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
-			</div>
-
-			<div class="p-2">
-				<a href="{{ $activeNewsStep2 -> newsStep1 -> fullUrl }}">
-					{{ $activeNewsStep2 -> newsStep1 -> title }}
-				</a>
-			</div>
-
-			<div class="p-2">
-				<span class="ba_arrow_right tag_next"></span>
-			</div>
-
-			<div class="p-2">
-				{{ $activeNewsStep2 -> title }}
-			</div>
+			{{ $activeNewsStep2 -> title }}
 		</div>
 		
 		
