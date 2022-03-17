@@ -39,7 +39,7 @@ return [
     'digits_between' => ':attribute უნდა იყოს :min და :max ციფრებს შორის.',
     'dimensions' => ':attribute აქვს არასწორი გამოსახულების ზომები.',
     'distinct' => ':attribute ველს აქვს დუბლიკატი მნიშვნელობა.',
-    'email' => ':attribute უნდა იყოს სწორი ელფოსტის მისამართი.',
+    'email' => ':attribute უნდა იყოს ელ. ფოსტის მისამართი.',
     'ends_with' => ':attribute უნდა დასრულდეს ერთ-ერთი შემდეგი მნიშვნელობით: :values',
     'exists' => 'მონიშნული :attribute არ არსებობს.',
     'file' => ':attribute უნდა იყოს ფაილი.',

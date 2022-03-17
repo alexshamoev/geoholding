@@ -39,7 +39,7 @@ return [
     'digits_between' => ':attribute должен быть между :min и :max цифрами.',
     'dimensions' => ':attribute имеет неверные размеры изображения.',
     'distinct' => ':attribute имеет повторяющиеся значения.',
-    'email' => ':attribute должен быть действительным адресом электронной почты.',
+    'email' => ':attribute должен быть адресом эл. почты.',
     'ends_with' => ':attribute должен заканчиваться одним из следующих значений: :values',
     'exists' => 'Выбранный :attribute недействителен.',
     'file' => ':attribute должен быть файлом.',
