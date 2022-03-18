@@ -130,23 +130,25 @@ use App\Mail\WelcomeMail;
 // 
 
 
-Route :: get('/', function() {
-	$language = Language :: firstWhere('like_default', 1);
+// Default routes.
+	Route :: get('/', function() {
+		$language = Language :: firstWhere('like_default', 1);
 
-	App :: setLocale($language -> title);
+		App :: setLocale($language -> title);
 
-	$page = Page :: firstWhere('slug', 'home');
+		$page = Page :: firstWhere('slug', 'home');
 
-	return redirect('/'.$language -> title.'/'.$page -> alias);
-}) -> name('main');
+		return redirect('/'.$language -> title.'/'.$page -> alias);
+	}) -> name('main');
 
-Route :: get('/{lang}', function($lang) {
-	App :: setLocale($lang);
+	Route :: get('/{lang}', function($lang) {
+		App :: setLocale($lang);
 
-	$page = Page :: firstWhere('slug', 'home');
+		$page = Page :: firstWhere('slug', 'home');
 
-	return redirect('/'.$lang.'/'.$page -> alias);
-}) -> where('lang', '[a-z]+');
+		return redirect('/'.$lang.'/'.$page -> alias);
+	}) -> where('lang', '[a-z]+');
+// 
 
 
 // Check if this page is attached with module.

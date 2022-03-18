@@ -15,14 +15,6 @@ class MenuButtonStep0 extends Model {
     protected $table = 'menu_buttons_step_0';
 
 
-	private static $pageAlias;
-
-
-	public static function setPage($value) {
-		self :: $pageAlias = $value;
-	}
-
-
 	public function getTitleAttribute() {
         return $this -> { 'title_'.App :: getLocale() };
     }
@@ -61,7 +53,7 @@ class MenuButtonStep0 extends Model {
 
 	
 	public function getActiveAttribute() {
-		if($this -> page -> alias === self :: $pageAlias) {
+		if($this -> page -> alias === config('activePageAlias')) {
         	return 1;
 		} else {
 			return 0;

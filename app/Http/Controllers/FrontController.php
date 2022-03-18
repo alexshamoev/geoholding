@@ -13,15 +13,22 @@ use App\Models\Partner;
 use App\Widget;
 
 use Illuminate\Http\Request;
-use App;
 
 
-class FrontController extends Controller
-{
+class FrontController extends Controller {
+	public function __construct() {
+		$requesPath = urldecode(\Request :: path());
+
+		$activePageArray = explode('/', $requesPath);
+
+		$activePage = $activePageArray[1];
+
+		config(['activePageAlias' => $activePage]);
+    }
+	
+
     public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
-		App :: setLocale($lang -> title);
-
-		// dd(parse_url(url() -> current()));
+		\App :: setLocale($lang -> title);
 
 		if($activeInfoBlockModel) {
 			Language :: setActiveInfoBlock($activeInfoBlockModel);
@@ -29,10 +36,6 @@ class FrontController extends Controller
 			Language :: setActiveInfoBlock($page);
 		}
 		
-		
-		MenuButtonStep0 :: setPage($page -> alias);
-
-		MenuButtonStep1 :: setPage($page -> alias);
 
 		$widgetGetVisibility = Widget :: getVisibility($page);
 
@@ -51,8 +54,8 @@ class FrontController extends Controller
 				]) -> get(),
 				'bsc' => $bsc,
 				'bsw' => Bsw :: getFullData(),
-				'registrationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'registration') -> first() -> alias,
-				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: where('slug', 'authorization') -> first() -> alias,
+				'registrationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'registration') -> alias,
+				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'authorization') -> alias,
 				'partners' => Partner :: orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
@@ -62,10 +65,10 @@ class FrontController extends Controller
 
 
     public static function getPage($lang, $pageAlias) {
-		$language = Language :: where('title', $lang) -> first();
+		$language = Language :: firstWhere('title', $lang);
 
 		if($language) {
-			$page = Page :: where('alias_'.$language -> title, $pageAlias) -> first();
+			$page = Page :: firstWhere('alias_'.$language -> title, $pageAlias);
 
 			if($page) {
 				return view('static', self :: getDefaultData($language, $page, $page));
