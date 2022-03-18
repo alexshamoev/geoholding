@@ -87,7 +87,7 @@
                                     header position-relative__logo
                                     order-0">
                             <div class="pe-2">
-                                <a href="#">
+                                <a href="{{ '/'.app() -> getLocale() }}">
                                     <img src="{{ asset('/storage/images/admin/logo.svg') }}">
                                 </a>
                             </div>

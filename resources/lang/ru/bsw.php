@@ -16,4 +16,6 @@ return [
     'add' => 'Добавить',
     'select' => 'Выберите',
     'phone_number' => 'Номер Телефона',
+    'meta_title' => 'meta_title',
+    'meta_description' => 'meta_description',
 ];

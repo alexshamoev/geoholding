@@ -16,4 +16,6 @@ return [
     'add' => 'Add',
     'select' => 'Select',
     'phone_number' => 'Phone Number',
+    'meta_title' => 'meta_title',
+    'meta_description' => 'meta_description',
 ];

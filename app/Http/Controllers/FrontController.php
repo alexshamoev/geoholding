@@ -16,8 +16,9 @@ use Illuminate\Http\Request;
 use App;
 
 
-class PageController extends Controller {
-	public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
+class FrontController extends Controller
+{
+    public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
 		App :: setLocale($lang -> title);
 
 		// dd(parse_url(url() -> current()));
@@ -28,7 +29,7 @@ class PageController extends Controller {
 			Language :: setActiveInfoBlock($page);
 		}
 		
-
+		
 		MenuButtonStep0 :: setPage($page -> alias);
 
 		MenuButtonStep1 :: setPage($page -> alias);
@@ -60,35 +61,7 @@ class PageController extends Controller {
 	}
 
 
-
-	public static function test() {
-		$page = Page :: where('slug', 'registration') -> first();
-        $language = Language :: where('title', 'ge') -> first();
-
-		return view('auth.m-register', PageController :: getDefaultData($language, $page));
-	}
-
-
-
-
-	
-	public function getDefaultPageWithDefaultLanguage() {
-		$language = Language :: where('like_default', 1) -> first();
-
-		$NewsController = new NewsController;
-
-		return $NewsController -> getStep0($language -> title);
-	}
-
-	
-	public function getDefaultPage($lang) {
-		$NewsController = new NewsController;
-		
-		return $NewsController -> getStep0($lang);
-	}
-
-
-	public static function getPage($lang, $pageAlias) {
+    public static function getPage($lang, $pageAlias) {
 		$language = Language :: where('title', $lang) -> first();
 
 		if($language) {

@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 use App;
 
 
-class NewsController extends Controller {
+class NewsController extends FrontController {
     private const PAGE_SLUG = 'news';
 
 
@@ -25,11 +25,11 @@ class NewsController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language,
-                                                            $page),
-                                                            [
-                                                                'newsStep0' => NewsStep0 :: orderByDesc('rang') -> get()
-                                                            ]);
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page),
+                                                    [
+                                                        'newsStep0' => NewsStep0 :: orderByDesc('rang') -> get()
+                                                    ]);
 
         return view('modules.news.step0', $data);
     }
@@ -41,12 +41,12 @@ class NewsController extends Controller {
 
         $activeNews = NewsStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language,
-                                                            $page,
-                                                            $activeNews),
-                                                            [
-                                                                'activeNewsStep0' => $activeNews
-                                                            ]
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page,
+                                                    $activeNews),
+                                                    [
+                                                        'activeNewsStep0' => $activeNews
+                                                    ]
                             );
 
         return view('modules.news.step1', $data);
@@ -59,12 +59,12 @@ class NewsController extends Controller {
 
         $activeNewsStep1 = NewsStep1 :: where('alias_'.$language -> title, $step1Alias) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language,
-                                                            $page,
-                                                            $activeNewsStep1),
-                                                            [
-                                                                'activeNewsStep1' => $activeNewsStep1
-                                                            ]
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page,
+                                                    $activeNewsStep1),
+                                                    [
+                                                        'activeNewsStep1' => $activeNewsStep1
+                                                    ]
                             );
 
         return view('modules.news.step2', $data);
@@ -78,12 +78,12 @@ class NewsController extends Controller {
         $activeNewsStep2 = NewsStep2 :: where('alias_'.$language -> title, $step2Alias) -> first();
 
 
-        $data = array_merge(PageController :: getDefaultData($language,
-                                                                $page,
-                                                                $activeNewsStep2),
-                                                                [
-                                                                    'activeNewsStep2' => $activeNewsStep2
-                                                                ]
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page,
+                                                    $activeNewsStep2),
+                                                    [
+                                                        'activeNewsStep2' => $activeNewsStep2
+                                                    ]
                             );
 
         return view('modules.news.step3', $data);
@@ -96,12 +96,12 @@ class NewsController extends Controller {
 
         $activeNewsStep3 = NewsStep3 :: where('alias_'.$language -> title, $step3Alias) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language,
-                                                                $page,
-                                                                $activeNewsStep3),
-                                                                [
-                                                                    'activeNewsStep3' => $activeNewsStep3
-                                                                ]
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page,
+                                                    $activeNewsStep3),
+                                                    [
+                                                        'activeNewsStep3' => $activeNewsStep3
+                                                    ]
                             );
 
         return view('modules.news.step4', $data);

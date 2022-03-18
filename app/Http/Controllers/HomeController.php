@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
 
-class HomeController extends Controller {
+class HomeController extends FrontController {
     private const PAGE_SLUG = 'home';
 
     
@@ -26,7 +26,7 @@ class HomeController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        $data = array_merge(PageController :: getDefaultData($language, $page));
+        $data = array_merge(self :: getDefaultData($language, $page));
         
         return view('modules.home.step0', $data);
     }

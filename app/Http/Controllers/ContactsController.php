@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MailNotify;
 
-class ContactsController extends Controller {
+class ContactsController extends FrontController {
     private const PAGE_SLUG = 'contact';
 
     
@@ -26,6 +26,6 @@ class ContactsController extends Controller {
         $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
         
-        return view('modules.contacts.step0', PageController :: getDefaultData($language, $page));
+        return view('modules.contacts.step0', self :: getDefaultData($language, $page));
     }
 }

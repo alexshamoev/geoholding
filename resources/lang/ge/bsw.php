@@ -16,4 +16,6 @@ return [
     'add' => 'დაამატეთ',
     'select' => 'აირჩიეთ',
     'phone_number' => 'ტელეფონის ნომერი',
+    'meta_title' => 'meta_title',
+    'meta_description' => 'meta_description',
 ];

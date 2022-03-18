@@ -56,7 +56,7 @@ class NewsStep0 extends Model {
         } else if($this -> { 'title_'.App :: getLocale() }) {
             return $this -> { 'title_'.App :: getLocale() };
         } else {
-            return $bsw -> meta_title;
+            return __('bsw.meta_title');
         }
     }
 
@@ -73,7 +73,7 @@ class NewsStep0 extends Model {
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
-            return $bsw -> meta_description;
+            return __('bsw.meta_description');
         }
     }
 

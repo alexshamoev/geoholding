@@ -2,7 +2,6 @@
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
-use App\Http\Controllers\PageController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
 
@@ -122,7 +121,6 @@ use App\Mail\WelcomeMail;
 	// Route :: get('/ge/registration', 'auth/RegisterController@create') -> name('register');
 
 	// Registration Routes...
-	// Route :: get('/ge/register', 'PageController@test') -> name('register');
 	Route :: get('/ge/register', 'Auth\RegisterController@showRegistrationForm') -> name('register');
 	Route :: post('/ge/register', 'Auth\RegisterController@register');
 
@@ -132,11 +130,23 @@ use App\Mail\WelcomeMail;
 // 
 
 
+Route :: get('/', function() {
+	$language = Language :: firstWhere('like_default', 1);
 
+	App :: setLocale($language -> title);
 
+	$page = Page :: firstWhere('slug', 'home');
 
-Route :: get('/', 'PageController@getDefaultPageWithDefaultLanguage') -> name('main');
-Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]+');
+	return redirect('/'.$language -> title.'/'.$page -> alias);
+}) -> name('main');
+
+Route :: get('/{lang}', function($lang) {
+	App :: setLocale($lang);
+
+	$page = Page :: firstWhere('slug', 'home');
+
+	return redirect('/'.$lang.'/'.$page -> alias);
+}) -> where('lang', '[a-z]+');
 
 
 // Check if this page is attached with module.
@@ -158,7 +168,7 @@ Route :: get('/{lang}', 'PageController@getDefaultPage') -> where('lang', '[a-z]
 		}
 	}
 // Else show static page.
-	Route :: get('/{lang}/{pageAlias}', 'PageController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
+	Route :: get('/{lang}/{pageAlias}', 'FrontController@getPage') -> where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
 //
 
 
