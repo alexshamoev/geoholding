@@ -51,7 +51,7 @@ class AController extends Controller {
 					'bsc' => Bsc :: getFullData(),
 					'bsw' => Bsw :: getFullData(),
 					'copyrightDate' => $copyrightDate,
-					'languages' => Language :: where('disable', 0) -> get(),
+					'languages' => Language :: where('disable', 0) -> orderByDesc('rang') -> get(),
 					'activeUser' => Auth :: user()
 				];
 

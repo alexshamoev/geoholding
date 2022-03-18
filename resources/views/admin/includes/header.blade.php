@@ -19,12 +19,12 @@
 	<div class="col-8 d-flex align-items-end flex-column">
 		<div class="p-2">
 			<a href="{{ route('aLogout') }}">
-				{{ $bsw -> logout }}
+				{{ __('bsw.logout') }}
 			</a>
 		</div>
 
 		<div class="p-2">
-			{{ $bsw -> greet_user }}
+			{{  __('bsw.welcome') }}
 
 			<a href="{{ route('adminEdit', $activeUser -> id) }}">
 				{{ $activeUser -> name }}
@@ -33,7 +33,7 @@
 
 		<div class="p-2">
 			<a href="/" target="_blank">
-				<span>{{ $bsw -> a_open_web_page }}</span>
+				<span>{{ __('bsw.open_web_page') }}</span>
 			</a>
 		</div>
 	</div>

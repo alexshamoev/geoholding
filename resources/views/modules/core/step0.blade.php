@@ -23,7 +23,7 @@
 
 
 		@include('admin.includes.addButton', [
-			'text' => $bsw -> a_add.' '.$moduleStep -> title,
+			'text' => __('bsw.add').' '.$moduleStep -> title,
 			'url' => route('coreAddStep0', $module -> alias)
 		])
 

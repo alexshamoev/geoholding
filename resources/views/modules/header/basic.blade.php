@@ -6,7 +6,7 @@
                             align-items-center
                             justify-content-between">
                     <div class="p-2">
-                        <span>{{ $bsw -> phone_number }}: {{ $bsc -> phone_number }}</span>
+                        <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
 

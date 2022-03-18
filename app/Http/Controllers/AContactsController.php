@@ -12,7 +12,7 @@ use App\Http\Requests\AContactsUpdateRequest;
 
 class AContactsController extends AController {
     public function edit() {
-        $bswAddress = Bsw :: find(430); 
+        $bswAddress = Bsw :: where('system_word', 'address') -> first(); 
 
 		$data = array_merge(self :: getDefaultData(), ['module' => Module :: where('alias', 'contacts') -> first(),
                                                         'address_ge' => $bswAddress -> word_ge, 
@@ -63,7 +63,7 @@ class AContactsController extends AController {
 		$bsw -> save();
 
         
-        $request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
+        $request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('contactsEdit');
 	}

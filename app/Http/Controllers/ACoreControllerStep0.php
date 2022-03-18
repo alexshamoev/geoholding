@@ -165,7 +165,7 @@ class ACoreControllerStep0 extends AController {
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			// Select
 				if($data -> type === 'select') {
-					$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+					$selectData[$data -> db_column][0] = '-- '.__('bsw.select').' --';
 
 					foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
 						$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> { $data -> select_option_text };
@@ -175,8 +175,8 @@ class ACoreControllerStep0 extends AController {
 			
 			// Select with optgroups
 				if($data -> type === 'select_with_optgroup') {
-					$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
-					$alex = array('-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --');
+					$selectOptgroudData[$data -> db_column][0] = '-- '.__('bsw.select').' --';
+					$alex = array('-- '.__('bsw.select').' --');
 
 					foreach(DB :: table($data -> select_optgroup_table) -> orderBy($data -> select_optgroup_sort_by, 'desc') -> get() as $dataInside) {
 						foreach(DB :: table($data -> select_optgroup_2_table) -> where('parent', $dataInside -> id) -> orderBy($data -> select_optgroup_2_sort_by, 'desc') -> get() as $dataInsideTwice) {

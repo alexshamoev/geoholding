@@ -17,14 +17,7 @@ class ALanguageController extends AController {
 		self :: deleteEmptyBlocks();
 
 
-		$bsc = Bsc :: getFullData();
-		$copyrightDate = $bsc -> year_of_site_creation;
-
-		if($bsc -> year_of_site_creation < date('Y')) {
-			$copyrightDate .= ' - '.date('Y');
-		}
-
-		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: all() -> sortByDesc('rang')]);
+		$data = array_merge(self :: getDefaultData(), []);
 
 		return view('modules.languages.admin_panel.start_point', $data);
 	}

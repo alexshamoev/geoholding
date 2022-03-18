@@ -1,7 +1,7 @@
 <footer>
 	<div class="row p-2">
 		<div class="col-6 p-2">
-			© {{ $copyrightDate }} {{ $bsw -> copyright }}
+			© {{ $copyrightDate }} {{ __('bsw.copyright') }}
 		</div>
 		
 		<div class="col-6 p-2 d-flex justify-content-end">

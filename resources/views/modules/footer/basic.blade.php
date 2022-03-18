@@ -14,11 +14,11 @@
                             flex-column
                             align-items-end">
                     <div class="p-2">
-                        yazbegis 70
+                        {{ $bsw -> address }}
                     </div>
                     
                     <div class="p-2">
-                        phone number: +995 599101010
+                        {{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}
                     </div>
 
                     <div class="row">
@@ -67,7 +67,7 @@
                             p-2
                             text-lg-start
                             text-center">
-                    © {{ $copyrightDate }} {{ $bsw -> copyright }} 
+                    © {{ $copyrightDate }} {{ __('bsw.copyright') }} 
                 </div>
 
                 <div class="col-lg-4
