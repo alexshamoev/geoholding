@@ -3,7 +3,12 @@
 		<style>
 			.menu__link {
 				transition: 0.2s all ease-in-out;
-				background-color: transparent;
+			}
+
+			.menu__link svg {
+				width: 100%;
+				max-width: 35px;
+				max-height: 35px;
 			}
 
 			.menu__link--{{$data -> alias}} {
@@ -13,11 +18,7 @@
 				border-right: none;
 			}
 
-			.menu__link--{{$data -> alias}} svg {
-				width: 100%;
-			}
-
-			.menu__link--{{$data -> alias}} svg *{
+			.menu__link--{{$data -> alias}} svg * {
 				fill: {{ $data -> icon_bg_color }};
 			}
 
@@ -35,13 +36,13 @@
 				border: 1px solid {{ $data -> icon_bg_color }};
 				border-left-width: 7px;
 				color: #fff;
-			}	
+			}
 		</style>
 
 		@if(isset($module) && $module -> alias === $data -> alias)
 			<a href="/admin/{{ $data -> alias }}">
-				<div class="row align-items-center p-2 menu__link--{{$data -> alias}}_active">
-					<div class="col-3 p-2">
+				<div class="row align-items-center p-2 menu__link menu__link--{{$data -> alias}}_active">
+					<div class="col-3 p-1">
 						@if(Storage :: exists('/public/images/modules/modules/'.$data -> id.'_icon.svg'))
 							<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
 						@else
@@ -57,7 +58,7 @@
 		@else
 			<a href="/admin/{{ $data -> alias }}">
 				<div class="row align-items-center p-2 menu__link menu__link--{{ $data -> alias }}">
-					<div class="col-3 p-2">
+					<div class="col-3 p-1">
 						@if(Storage :: exists('/public/images/modules/modules/'.$data -> id.'_icon.svg'))
 							<img src="{{ asset('/storage/images/modules/modules/'.$data -> id.'_icon.svg') }}" alt="menu_icon" width="30" height="30" class="svg_img">
 						@else
