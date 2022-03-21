@@ -8,14 +8,13 @@
 	<div class="container p-2 main_content--height">
 		<!-- Vue -->
 			<div id="app">
-				<example></example>
+				<example title="Vue - {{ $page -> title }}"></example>
 			</div>
 		<!--  -->
 
 		<!-- React -->
 			<div id="examplereact"></div>
 		<!--  -->
-
 
 		<h1 class="p-2">
 			{{ $page -> title }}

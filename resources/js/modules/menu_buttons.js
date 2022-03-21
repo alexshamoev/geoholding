@@ -1,7 +1,5 @@
 'use strict';
 
-// File prefix will be: mb
-
 
 let r_mb_show_hide_frame_speed = 40;
 let r_mb_show_hide_frames_number = 16;
@@ -144,7 +142,7 @@ $(document).ready(function() {
 
 
 $(window).on('resize', function () {
-	if ($(window).width() > 1150) {
+	if($(window).width() > 1150) {
 		$('.js_arrow_div').css({ 'display': 'none', 'transform': 'rotate(0deg)' });
 
 		$('.menu_buttons__slide_down_block_in_burger').css('display', 'none');

@@ -10,6 +10,11 @@
     export default {
         setup: () => ({
             title: 'How To Install Vue 3 in Laravel 8 From Scratch'
-        })
+        }),
+        props: {
+            page: Object,
+            title: String,
+            likes: Number
+        }
     }
 </script>
