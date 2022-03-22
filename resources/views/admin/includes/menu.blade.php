@@ -76,7 +76,7 @@
 
 	<div class="p-3"></div>
 
-	@if( $activeUser -> super_administrator )
+	@if($activeUser -> super_administrator )
 		<div class="p-2">
 			<a href="/admin/modules">
 				<div class="d-flex align-items-center px-2">

@@ -38,10 +38,12 @@ class AController extends Controller {
 		$modulesForMenu = array();
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			if($activeUser -> super_administrator === 1) {
-				$modulesForMenu[] = $data;
-			} else if($data -> hide_for_admin === 0) {
-				$modulesForMenu[] = $data;
+			if(count($data -> moduleStep) || \View :: exists('modules/'.$data -> alias.'/admin_panel/start_point')) {
+				if($activeUser -> super_administrator === 1) {
+					$modulesForMenu[] = $data;
+				} else if($data -> hide_for_admin === 0) {
+					$modulesForMenu[] = $data;
+				}
 			}
 		}
 
@@ -57,6 +59,7 @@ class AController extends Controller {
 
 		return $data;
 	}
+	
 
 	public static function deleteEmptyBlocks() {
 		Bsc :: deleteEmpty();

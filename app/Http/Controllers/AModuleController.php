@@ -42,7 +42,7 @@ class AModuleController extends AController {
 
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
 
-		$pagesForSelect[0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+		$pagesForSelect[0] = '-- '.__('bsw.select').' --';
 
 		$pagesForIncludeInPages = array();
 		$pagesNotIncludeInPages = array();
