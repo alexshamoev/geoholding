@@ -28,4 +28,5 @@ require('./modules/search');
 
 // React.
     require('./components/ExampleReact');
+    require('./components/ReactApp');
 //
