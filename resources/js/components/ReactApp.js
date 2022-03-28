@@ -15,14 +15,14 @@ export default class ReactApp extends Component {
 
     render() {
         return (
-            <div className='p-3'>
+            <div className='p-2 main_react_component'>
                 <h1>
-                    React Component { this.props.temp }
+                    React Component
                 </h1>
 
 				<ExampleReact/>
-				<ExampleReact temp="dddd"/>
-				<ExampleReact temp="vvv"/>
+				<ExampleReact temp="temp first text"/>
+				<ExampleReact temp="temp second text"/>
             </div>
         );
     }
