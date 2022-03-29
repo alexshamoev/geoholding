@@ -11,14 +11,25 @@ export default class ExampleReact extends Component {
     }
 
     render() {
-        return (
-            <div className='p-3'>
-				<div className='p-2'>
-					<h1>
-						React Component
-					</h1>
-				</div>
+        let temp = '';
 
+        if(this.props.temp) {
+            temp = <h4 className='p-2'>
+                        { this.props.temp }
+                    </h4>
+    }
+
+        return (
+            <div className='p-2'>
+                <div className="p-2">
+                    <h3>
+                        Example React Component
+                    </h3>
+                </div>
+
+
+                { temp }
+                
                 <div className='p-2 col-xxl-12 col-6'>
                     <button onClick={this.handleClick}>change text</button>
                 </div>
@@ -29,9 +40,4 @@ export default class ExampleReact extends Component {
             </div>
         );
     }
-}
-
-
-if (document.getElementById('examplereact')) {
-	ReactDOM.render(<ExampleReact />, document.getElementById('examplereact'));
 }

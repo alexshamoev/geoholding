@@ -1,5 +1,5 @@
 <template>
-    <div class="p-3">
+    <div class="p-3 main_vue_component">
         <div class="p-2">
             <h1>{{ title }}</h1>
         </div>

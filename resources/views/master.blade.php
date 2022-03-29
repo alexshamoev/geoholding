@@ -13,13 +13,16 @@
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/'.app() -> getLocale().'.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
 
-		
-		
-		<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
-		<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
+		<!-- Plugins -->
+			<!-- photoswipe -->
+				<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
+				<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
+
+				<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
+				<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
+			<!--  -->
+		<!--  -->
     </head>
 
     <body>
