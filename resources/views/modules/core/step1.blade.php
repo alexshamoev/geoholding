@@ -375,33 +375,22 @@
 		
 		@if($nextModuleStepData)
 			<div class="p-3"></div>
-			
-			@include('admin.includes.addButton', [
-				'text' => __('bsw.add').' '.$nextModuleStep -> title,
-				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
-			])
-			
 
+			@if(!$nextModuleStep -> images)
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$nextModuleStep -> title,
+					'url' => route('coreAddStep1', array($module -> alias, $data -> id))
+				])
+			
+			@else 
+				{{ Form :: open(array('route' => array('coreAddMultImagestep0', $module -> alias, $data -> id), 'files' => true, 'method' => 'post')) }}
+					{{ Form :: file('test[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+					{{ Form :: submit() }}
+				{{ Form :: close() }}
+			@endif
+				
 			<div class="row" id="rangBlocks" data-db_table="{{ $nextModuleStep -> db_table }}">
 				@if(!$nextModuleStep -> images)
-					@foreach($nextModuleStepData as $dataIn)
-						@if($sortBy === 'rang')
-							@include('admin.includes.horizontalEditDeleteBlock', [
-								'id' => $dataIn -> id,
-								'title' => $dataIn -> $use_for_tags,
-								'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
-								'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
-							])
-						@else 
-							@include('admin.includes.horizontalEditDelete', [
-									'id' => $dataIn -> id,
-									'title' => $dataIn -> $use_for_tags,
-									'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
-									'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
-							])
-						@endif
-					@endforeach
-				@else
 					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')
 							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
@@ -422,6 +411,8 @@
 										])
 						@endif
 					@endforeach
+				@else
+					{{-- Form :: file('test', ['multiple' => "multiple", 'class' => 'dropzone']) --}}
 				@endif
 			</div>
 		@endif

@@ -9,6 +9,10 @@ use App\Mail\WelcomeMail;
 
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
+
+Route :: get('/image', 'image@default');
+
+
 if(Schema :: hasTable('languages')) {
 	if(Language :: where('like_default_for_admin', '1') -> first()) {
 // A.
@@ -95,6 +99,7 @@ if(Schema :: hasTable('languages')) {
 			Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
 			Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
 			Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
+			Route :: post('/{moduleAlias}/{id}/addimages', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
 			Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
 
 			Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
