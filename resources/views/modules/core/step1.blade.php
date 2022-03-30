@@ -384,7 +384,7 @@
 			
 			@else 
 				{{ Form :: open(array('route' => array('coreAddMultImagestep0', $module -> alias, $data -> id), 'files' => true, 'method' => 'post')) }}
-					{{ Form :: file('test[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
 					{{ Form :: submit() }}
 				{{ Form :: close() }}
 			@endif
@@ -412,7 +412,26 @@
 						@endif
 					@endforeach
 				@else
-					{{-- Form :: file('test', ['multiple' => "multiple", 'class' => 'dropzone']) --}}
+					@foreach($nextModuleStepData as $dataIn)
+						@if($sortBy === 'rang')
+							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+										])
+						@else
+							@include('admin.includes.verticalEditDeleteBlock', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'moduleAlias' => $module -> alias,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+										])
+						@endif
+					@endforeach
 				@endif
 			</div>
 		@endif

@@ -92,13 +92,71 @@ class ACoreControllerStep0 extends AController {
 	public function addMultImages(Request $request, $moduleAlias, $id) {
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
-		
-		foreach($request -> file('test') as $data) {
-			$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
+		$moduleBlocks = ModuleBlock :: where([['top_level', $moduleStep -> id], ['type', 'image']]) -> orderBy('rang', 'desc') -> first();
 
-			$data -> storeAs('public/images/test/', $newRowId.'.jpg');	
+		$validated = $request->validate([
+            'images' => 'required',
+            'images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:10000',
+        ]);
+
+		foreach($request -> file('images') as $data) {
+			$highestRang = DB :: table($moduleStep -> db_table)->max('rang');
+
+			$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId([
+				'parent' => $id, 'rang' => $highestRang + 5 
+			]);
+
+			$prefix = '';
+
+			if($moduleBlocks -> prefix) {
+				$prefix = $moduleBlocks -> prefix.'_';
+			}
+
+			$data -> storeAs('public/images/modules/'.$module -> alias.'/step_1', $prefix.$newRowId.'.'.$moduleBlocks -> file_format);	
+			$imagePath = 'app/public/images/modules/'.$module -> alias.'/step_1/'.$prefix.$newRowId.'.'.$moduleBlocks -> file_format;
+
+			$image = ImageManagerStatic :: make(storage_path($imagePath));
+			$width = $image -> width();
+			$height = $image -> height();
+
+			if($moduleBlocks -> fit_type === 'fit') {
+				$image -> fit($moduleBlocks -> image_width,
+								$moduleBlocks -> image_height,
+								function() {},
+								$moduleBlocks -> fit_position);
+			}
+			
+			if($moduleBlocks -> fit_type === 'resize') {
+				$image -> resize($moduleBlocks -> image_width,
+									$moduleBlocks -> image_height,
+									function ($constraint) {
+									$constraint->aspectRatio();
+									});
+					
+				if($width < $moduleBlocks -> image_width && $height < $moduleBlocks -> image_height) {
+					$image = ImageManagerStatic :: make(storage_path($imagePath));																																			
+				}
+			}
+			
+			if($moduleBlocks -> fit_type === 'resize_with_bg') {
+				if($width > $moduleBlocks -> image_width || $height > $moduleBlocks -> image_height) {
+					$image -> resize($moduleBlocks -> image_width,
+										$moduleBlocks -> image_height,
+										function ($constraint) {
+										$constraint->aspectRatio();
+										});																																	
+				}
+
+				$image->resizeCanvas($moduleBlocks -> image_width, $moduleBlocks -> image_height, 'center', false, '#FFFFFF');
+			}
+
+			if($moduleBlocks -> fit_type === 'default') {
+				$image = ImageManagerStatic :: make(storage_path($imagePath));
+			}
+
+			$image -> save();
 		}
-		
+
 		return redirect() -> route('coreEditStep0', array($moduleAlias, $id));
 	}
 	
