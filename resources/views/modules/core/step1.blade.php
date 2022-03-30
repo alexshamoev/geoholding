@@ -381,7 +381,6 @@
 					'text' => __('bsw.add').' '.$nextModuleStep -> title,
 					'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 				])
-			
 			@else 
 				{{ Form :: open(array('route' => array('coreAddMultImagestep0', $module -> alias, $data -> id), 'files' => true, 'method' => 'post')) }}
 					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
