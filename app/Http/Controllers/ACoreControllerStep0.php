@@ -89,6 +89,19 @@ class ACoreControllerStep0 extends AController {
 		return redirect() -> route('coreEditStep0', array($module -> alias, $newRowId));
 	}
 
+	public function addMultImages(Request $request, $moduleAlias, $id) {
+		$module = Module :: where('alias', $moduleAlias) -> first();
+		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
+		
+		foreach($request -> file('test') as $data) {
+			$newRowId = DB :: table($moduleStep -> db_table) -> insertGetId(array());
+
+			$data -> storeAs('public/images/test/', $newRowId.'.jpg');	
+		}
+		
+		return redirect() -> route('coreEditStep0', array($moduleAlias, $id));
+	}
+	
 
 	public function edit($moduleAlias, $id) {
 		ACoreControllerStep1 :: deleteEmpty();
