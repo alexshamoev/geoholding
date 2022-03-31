@@ -9,6 +9,10 @@ use App\Mail\WelcomeMail;
 
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
+
+Route :: get('/image', 'image@default');
+
+
 if(Schema :: hasTable('languages')) {
 	if(Language :: where('like_default_for_admin', '1') -> first()) {
 // A.
@@ -95,16 +99,19 @@ if(Schema :: hasTable('languages')) {
 			Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
 			Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
 			Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
+			Route :: post('/{moduleAlias}/{id}/addimages', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
 			Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
 
 			Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
 			Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@edit') -> name('coreEditStep1');
 			Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@update') -> name('coreUpdateStep1');
+			Route :: post('/{moduleAlias}/{parent}/{id}/addimages', 'ACoreControllerStep1@addMultImages') -> name('coreAddMultImagestep1');
 			Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreControllerStep1@delete') -> name('coreDeleteStep1');
 
 			Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreControllerStep2@add') -> name('coreAddStep2');
 			Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@edit') -> name('coreEditStep2');
 			Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@update') -> name('coreUpdateStep2');
+			Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/addimages', 'ACoreControllerStep2@addMultImages') -> name('coreAddMultImagestep2');
 			Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreControllerStep2@delete') -> name('coreDeleteStep2');
 
 			Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreControllerStep3@add') -> name('coreAddStep3');

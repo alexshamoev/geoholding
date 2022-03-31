@@ -375,30 +375,39 @@
 		
 		@if($nextModuleStepData)
 			<div class="p-3"></div>
-			
-			@include('admin.includes.addButton', [
-				'text' => __('bsw.add').' '.$nextModuleStep -> title,
-				'url' => route('coreAddStep1', array($module -> alias, $data -> id))
-			])
-			
 
+			@if(!$nextModuleStep -> images)
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$nextModuleStep -> title,
+					'url' => route('coreAddStep1', array($module -> alias, $data -> id))
+				])
+			@else 
+				{{ Form :: open(array('route' => array('coreAddMultImagestep0', $module -> alias, $data -> id), 'files' => true, 'method' => 'post')) }}
+					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+					{{ Form :: submit() }}
+				{{ Form :: close() }}
+			@endif
+				
 			<div class="row" id="rangBlocks" data-db_table="{{ $nextModuleStep -> db_table }}">
 				@if(!$nextModuleStep -> images)
 					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')
-							@include('admin.includes.horizontalEditDeleteBlock', [
-								'id' => $dataIn -> id,
-								'title' => $dataIn -> $use_for_tags,
-								'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
-								'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
-							])
-						@else 
-							@include('admin.includes.horizontalEditDelete', [
-									'id' => $dataIn -> id,
-									'title' => $dataIn -> $use_for_tags,
-									'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
-									'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
-							])
+							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+										])
+						@else
+							@include('admin.includes.verticalEditDeleteBlock', [
+											'id' => $dataIn -> id,
+											'title' => $dataIn -> $use_for_tags,
+											'imageUrl' => 'storage/images/modules/'.$module -> alias.'/step_1/'.$dataIn -> id.'.'.$imageFormat,
+											'moduleAlias' => $module -> alias,
+											'editLink' => route('coreEditStep1', array($module -> alias, $data -> id, $dataIn -> id)),
+											'deleteLink' => route('coreDeleteStep1', array($module -> alias, $data -> id, $dataIn -> id))
+										])
 						@endif
 					@endforeach
 				@else

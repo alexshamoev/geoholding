@@ -238,15 +238,15 @@ class ACoreControllerStep3 extends AController {
 								$request -> file($data -> db_column) -> storeAs('public/images/modules/'.$module -> alias.'/step_3', $prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format );
 
 								if($data -> { 'fit_type_'.$i } === 'fit') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> fit($data -> image_width,
-																																															$data -> image_height,
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> fit($data -> { 'image_width_'.$i },
+																																															$data -> { 'image_height_'.$i },
 																																															function() {},
 																																															$data -> fit_position);
 								}
 								
 								if($data -> { 'fit_type_'.$i } === 'resize') {
-									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																															$data -> image_height,
+									$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> { 'image_width_'.$i },
+																																															$data -> { 'image_height_'.$i },
 																																															function ($constraint) {
 																																																$constraint->aspectRatio();
 																																															});
@@ -254,21 +254,21 @@ class ACoreControllerStep3 extends AController {
 									$width = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> width();
 									$height = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> height();
 
-									if($width < $data -> image_width && $height < $data -> image_height) {
+									if($width < $data -> { 'image_width_'.$i } && $height < $data -> { 'image_height_'.$i }) {
 										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format));																																			
 									}
 								}
 
 								if($data -> fit_type === 'resize_with_bg') {
-									if($width > $data -> image_width || $height > $data -> image_height) {
-										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> image_width,
-																																																									$data -> image_height,
+									if($width > $data -> { 'image_width_'.$i } || $height > $data -> { 'image_height_'.$i }) {
+										$image = ImageManagerStatic :: make(storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format)) -> resize($data -> { 'image_width_'.$i },
+																																																									$data -> { 'image_height_'.$i },
 																																																									function ($constraint) {
 																																																									$constraint->aspectRatio();
 																																																									});																																	
 									}
 									
-									$image-> resizeCanvas($data -> image_width, $data -> image_height, 'center', false, '#FFFFFF');
+									$image-> resizeCanvas($data -> { 'image_width_'.$i }, $data -> { 'image_height_'.$i }, 'center', false, '#FFFFFF');
 								}
 
 								if($data -> { 'fit_type_'.$i } === 'default') {
@@ -425,6 +425,14 @@ class ACoreControllerStep3 extends AController {
 			$filePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'.'.$data -> file_format);
 			
 			if(file_exists($filePath)) {
+				for($i = 1; $i < 4; $i++) {
+					$insideFilePath = storage_path('app/public/images/modules/'.$module -> alias.'/step_3/'.$prefix.$id.'_'.$data -> { 'prefix_'.$i }.'.'.$data -> file_format);
+
+					if(file_exists($insideFilePath)) {
+						unlink($insideFilePath);
+					}
+				}
+				
 				unlink($filePath);
 			}
 		}

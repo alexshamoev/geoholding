@@ -314,12 +314,17 @@
 		@if($moduleStep2)
 			<div class="p-3"></div>
 			
-			
-			@include('admin.includes.addButton', [
-				'text' => $bsw -> a_add.' '.$moduleStep2 -> title,
-				'url' => route('coreAddStep2', array($module -> alias, $data -> parent, $data -> id))
-			])
-	
+			@if(!$moduleStep2 -> images)
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$moduleStep2 -> title,
+					'url' => route('coreAddStep2', array($module -> alias, $data -> parent, $data -> id))
+				])
+			@else 
+				{{ Form :: open(array('route' => array('coreAddMultImagestep1', $module -> alias, $data -> parent, $data -> id), 'files' => true, 'method' => 'post')) }}
+					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+					{{ Form :: submit() }}
+				{{ Form :: close() }}
+			@endif
 
 			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep2 -> db_table }}">
 				@if(!$moduleStep2 -> images)
