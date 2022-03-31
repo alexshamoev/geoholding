@@ -139,6 +139,8 @@ class ACoreControllerStep1 extends AController {
 				}
 			}
 		}
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('coreEditStep1', array($module -> alias, $parent, $id));
 	}
