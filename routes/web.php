@@ -9,10 +9,6 @@ use App\Mail\WelcomeMail;
 
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
-
-Route :: get('/image', 'image@default');
-
-
 if(Schema :: hasTable('languages')) {
 	if(Language :: where('like_default_for_admin', '1') -> first()) {
 // A.
