@@ -304,32 +304,17 @@
 		@if($moduleStep3)
 			<div class="p-3"></div>
 			
-			
-			@include('admin.includes.addButton', [
-				'text' => $bsw -> a_add.' '.$moduleStep3 -> title,
-				'url' => route('coreAddStep3', array($module -> alias, $parentFirst, $parentSecond, $data -> id))
-			])
-
-			<!-- <div id="rangBlocks" data-db_table="{{ $moduleStep3 -> db_table }}">
-				@foreach($moduleStepTableData3 as $dataIn)
-					@if($sortBy === 'rang')
-						@include('admin.includes.horizontalEditDeleteBlock', [
-							'id' => $dataIn -> id,
-							'title' => $dataIn -> $use_for_tags,
-							'editLink' => route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id)),
-							'deleteLink' => route('coreDeleteStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id))
-						])
-					@else 
-						@include('admin.includes.horizontalEditDelete', [
-								'id' => $dataIn -> id,
-								'title' => $dataIn -> $use_for_tags,
-								'editLink' => route('coreEditStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id)),
-								'deleteLink' => route('coreDeleteStep3', array($module -> alias, $parentFirst, $parentSecond, $dataIn -> parent, $dataIn -> id))
-						])
-					@endif
-				@endforeach
-			</div> -->
-
+			@if(!$moduleStep3 -> images)
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$moduleStep3 -> title,
+					'url' => route('coreAddStep3', array($module -> alias, $parentFirst, $parentSecond, $data -> id))
+				])
+			@else 
+				{{ Form :: open(array('route' => array('coreAddMultImagestep2', $module -> alias, $parentFirst, $parentSecond, $data -> id), 'files' => true, 'method' => 'post')) }}
+					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+					{{ Form :: submit() }}
+				{{ Form :: close() }}
+			@endif
 
 			<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep3 -> db_table }}">
 				@if(!$moduleStep3 -> images)
