@@ -10,8 +10,11 @@ use App\Module;
 use App\Bsc;
 use App\Bsw;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -45,16 +48,56 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    // public function login(Request $request) {
+    //     // dd($request -> input('password'));
+
+    //     // Auth::login($user);
+    //     // dd($user);
+    //     // // return redirect(route('adminLogin')) -> withErrors(['email' => 'Bad data!']) -> withInput();
+    //     // dd('oh no!');
+    // }
+
+    // public function login(Request $request) {
+    //     // dd(22);
+
+    //     // $formFields = $request -> only(['email', 'password']);
+    //     // dd($formFields);
+    //     // $testy = Auth :: attempt($formFields);
+
+    //     // $password = Hash::make($request -> input('password'));
+    //     // dd(password_verify($request -> input('password'), '$2y$10$uIrokOcf/.o0XH6pmYtDzejNHWxlUD.9P9f5k39M2L9gUUyDQaVV2'));
+
+    //     // $formFields['password'] = $password;
+    //     // dd($formFields);
+
+    //     if(Auth :: attempt($formFields)) {
+    //         dd('yes');
+    //             // return redirect() -> intended(route('adminDefaultPage'));
+    //     }
+
+    //     // dd('no');
+    //  }
+
     
     public function showLoginForm()
     {
         $page = Page :: where('slug', 'registration') -> first();
         $language = Language :: where('title', 'ge') -> first();
 
-        Page :: setLang($language -> title);
-
 		// return view('auth.m-register');
 
-        return view('auth.login', PageController :: getDefaultData($language, $page));
+        return view('auth.login', FrontController :: getDefaultData($language, $page));
     }
+
+    public function logout()
+    {
+        $page = Page :: where('slug', 'registration') -> first();
+        $language = Language :: where('title', 'ge') -> first();
+
+		Auth :: logout();
+
+        return view('auth.login', FrontController :: getDefaultData($language, $page));
+    }
+
+    
 }

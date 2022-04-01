@@ -10,7 +10,7 @@
                     </div>
 
 
-                    @if(Auth :: check())
+                    @if(Auth :: check() && !Auth :: user() -> admin)
                         <div class="nav-item">
                             <div class="p-2">
                                 {{ Auth :: user() -> name }}

@@ -10,7 +10,7 @@ use App\Module;
 use App\Bsc;
 use App\Bsw;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\FrontController;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -58,7 +58,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:4', 'confirmed'],
         ]);
     }
 
@@ -70,48 +70,25 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        return User :: create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => $data['password']
         ]);
+
+        // $page = Page :: where('slug', 'registration') -> first();
+        // $language = Language :: where('title', 'ge') -> first();
+
+		// // return view('auth.m-register');
+
+        // return view('auth.login', FrontController :: getDefaultData($language, $page));
     }
 
 
 	public function showRegistrationForm() {
-        // $data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
-
-		// return view('modules.bsc.admin_panel.start_point', $data);
-
-        // dd(5555);
-
         $page = Page :: where('slug', 'registration') -> first();
         $language = Language :: where('title', 'ge') -> first();
 
-        Page :: setLang($language -> title);
-
-		return view('auth.m-register', PageController :: getDefaultData($language, $page));
-
-
-		$page = Page :: where('id', 5) -> first();
-		$language = Language :: where('like_default', 1) -> first();
-
-		if($language && $page) {
-			$page_template = 'static';
-			
-			$active_module = Module :: where('page', $page -> id) -> first();
-			
-			if($active_module) {
-				$page_template = $active_module -> alias;
-			}
-
-			// return view($page_template, ['page' => $page -> getFullData($language -> title),
-			// 								'menuButtons' => MenuButton :: getFullData($language -> title),
-			// 								'languages' => Language :: getFullData($language -> title, $page),
-			// 								'bsc' => Bsc :: getFullData(),
-			// 								'bsw' => Bsw :: getFullData($language -> title)]);
-		} else {
-			abort(404);
-		}
+		return view('auth.register', FrontController :: getDefaultData($language, $page));
 	}
 }

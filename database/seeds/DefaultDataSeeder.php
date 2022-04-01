@@ -34,7 +34,7 @@ class DefaultDataSeeder extends Seeder
             DefaultNewsStep3 :: class,
             DefaultPartnersStep0 :: class,
             DefaultPhotoGalleryStep0 :: class,
-            DefaultPhotoGalleryStep1 :: class,
+            DefaultPhotoGalleryStep1 :: class
         ]);
     }
 }
