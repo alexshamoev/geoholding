@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import ExampleReact from './ExampleReact';
+import SearchField from './SearchField';
 
 
 export default class ReactApp extends Component {
@@ -17,8 +18,10 @@ export default class ReactApp extends Component {
         return (
             <div className='p-2 main_react_component'>
                 <h1>
-                    React Component
+                    React Component - Search
                 </h1>
+                
+                <SearchField/>
 
 				<ExampleReact/>
 				<ExampleReact temp="temp first text"/>
@@ -27,7 +30,7 @@ export default class ReactApp extends Component {
         );
     }
 }
- 
+
 
 if(document.getElementById('examplereact')) {
 	ReactDOM.render(<ReactApp/>, document.getElementById('examplereact'));

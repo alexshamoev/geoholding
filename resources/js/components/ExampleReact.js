@@ -17,13 +17,13 @@ export default class ExampleReact extends Component {
             temp = <h4 className='p-2'>
                         { this.props.temp }
                     </h4>
-    }
+        }
 
         return (
             <div className='p-2'>
                 <div className="p-2">
                     <h3>
-                        Example React Component
+                        Search Answer
                     </h3>
                 </div>
 
