@@ -165,7 +165,7 @@ if(Schema :: hasTable('languages')) {
 		// Check if this page is attached with module.
 			foreach(Module :: where('page_id', '>', '0') -> get() as $module) {
 				$moduleTitleForControllerArray = explode('_', $module -> alias);
-
+				
 				$moduleTitleForController = '';
 
 				foreach($moduleTitleForControllerArray as $data) {

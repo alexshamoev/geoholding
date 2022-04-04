@@ -381,10 +381,23 @@
 					'text' => __('bsw.add').' '.$nextModuleStep -> title,
 					'url' => route('coreAddStep1', array($module -> alias, $data -> id))
 				])
-			@else 
+			@else
 				{{ Form :: open(array('route' => array('coreAddMultImagestep0', $module -> alias, $data -> id), 'files' => true, 'method' => 'post')) }}
-					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-					{{ Form :: submit() }}
+					<div class="p-2">
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								 {!! __('bsw.upload_images_label') !!}
+							</div>
+
+							<div class="p-2">
+								{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+							</div>
+
+							<div class="p-2 submit-button">
+								{{ Form :: submit(__('bsw.upload_images')) }}
+							</div>
+						</div>
+					</div>
 				{{ Form :: close() }}
 			@endif
 				
