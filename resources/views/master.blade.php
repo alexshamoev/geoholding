@@ -41,6 +41,9 @@
 		@include('modules.footer.basic')
 
 
+		<input type="hidden" value="{{ App :: getLocale() }}" class="js_lang">
+
+
 		<script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

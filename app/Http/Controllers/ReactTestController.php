@@ -29,9 +29,12 @@ class ReactTestController extends Controller {
         $result = false;
 
         if($searchWord) {
-            $result = Page :: where('title_'.App :: getLocale(), 'like', '%'.$searchWord.'%') -> get();
+            $result = Page :: where('title_ge', 'like', '%'.$searchWord.'%')
+                                -> orWhere('title_en', 'like', '%'.$searchWord.'%')
+                                -> orWhere('title_ru', 'like', '%'.$searchWord.'%')
+                                -> get();
         }
-
+        
         return response() -> json($result);
     }
 }

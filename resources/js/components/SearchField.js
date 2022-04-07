@@ -8,6 +8,7 @@ export default class SearchField extends Component {
         super(props);
         
         this.state = {
+            lang: $('.js_lang').val(),
             value: '',
             loading: false,
 			searchAnswers: [],
@@ -26,7 +27,7 @@ export default class SearchField extends Component {
 
             axios.post('/get-react', {
                 q: event.target.value,
-                lang: 'ge'
+                lang: this.state.lang
             })
             .then(function (response) {
                 self.setState({ searchAnswers: response.data });
@@ -56,7 +57,7 @@ export default class SearchField extends Component {
 										{ this.state.emptyMessage }
 									</div>
 		}
-	
+        
 
         return (
 			<div>
@@ -67,8 +68,8 @@ export default class SearchField extends Component {
 				{this.state.searchAnswers.map((answer, idx) => (
 					<SearchAnswer answer={ answer } />
 				))}
-
-
+                
+                
 				{ emptyMessageWithBlock }
 			</div>
         );
