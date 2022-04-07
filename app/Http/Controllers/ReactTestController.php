@@ -2,24 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PhotoGalleryStep0;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use DB;
+use App;
 
 
-class ReactTestController extends FrontController {
+class ReactTestController extends Controller {
     public function get(Request $request) {
-        // $rang = 0;
-        // $i = 0;
+        App :: setLocale($request -> input('lang'));
 
-        // foreach(array_reverse($request -> input('idsArray')) as $id) {
-        //     DB :: table($request -> input('db_table')) -> where('id', $id) -> update(['rang' => $rang]);
 
-        //     $rang = ($i + 1) * 5;
-        //     $i++;
-        // }
+        $searchWord = '';
+	
+        if($request -> input('q')) {
+            $searchWord = $request -> input('q');
+        }
+        
+        $searchWord = urldecode($searchWord);
+        
+        $searchWord = preg_replace("/[^A-ZА-ЯЁა-ჰ0-9 -]+/ui",
+                                    '',
+                                    $searchWord);
+        
 
-        // return response() -> json(['success' => 'Ajax request submitted successfully '.$request -> input('db_table').' '.print_r($request -> input('idsArray'))]);
-        return response() -> json(['success' => $request -> input('id')]);
+        $result = false;
+
+        if($searchWord) {
+            $result = Page :: where('title_'.App :: getLocale(), 'like', '%'.$searchWord.'%') -> get();
+        }
+
+        return response() -> json($result);
     }
 }

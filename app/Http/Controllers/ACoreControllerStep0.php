@@ -518,9 +518,6 @@ class ACoreControllerStep0 extends AController {
 		}
 
 
-		
-
-
 		$data = array_merge(self :: getDefaultData(), ['module' => $module,
 														'moduleStep' => $moduleStep,
 														'moduleStepData' => DB :: table($moduleStep -> db_table) -> orderBy($use_for_sort, $sort_by) -> get(),
@@ -665,6 +662,7 @@ class ACoreControllerStep0 extends AController {
 			}
 		// 
 
+
 		// File - uploading file without checking it passed validation or not
 			foreach($moduleBlocks as $data) {
 				if($data -> type === 'file') {
@@ -689,6 +687,7 @@ class ACoreControllerStep0 extends AController {
 				}
 			}
 		// 
+		
 		
 		// Validation
 			$validationArray = [];

@@ -18,4 +18,6 @@ return [
     'phone_number' => 'Номер Телефона',
     'meta_title' => 'meta_title',
     'meta_description' => 'meta_description',
+    'upload_images' => 'Upload images',
+    'upload_images_label' => '<span style="color: #cb2b2b;">Файлы должен быть в формате:</span> <span style="text-transform: uppercase; font-weight: bold;">JPG / PNG / GIF</span>',
 ];
