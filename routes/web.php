@@ -124,8 +124,9 @@ if(Schema :: hasTable('languages')) {
 		//
 
 
-		// react test
-			Route :: post('/get-react', 'ReactTestController@get');
+		// React axios queries
+			Route :: post('/get-translation-strings', 'ReactTranslationStringsController@get');
+			Route :: post('/get-react-search', 'ReactSearchController@get');
 		//  
 
 

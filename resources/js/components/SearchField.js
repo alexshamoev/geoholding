@@ -12,20 +12,35 @@ export default class SearchField extends Component {
             value: '',
             loading: false,
 			searchAnswers: [],
-			emptyMessage: ''
+			showEmptyMessage: false,
+            translationStrings: []
         };
 
+        
         this.handleChange = this.handleChange.bind(this);
+
+
+        let self = this;
+
+        axios.post('/get-translation-strings', {
+            lang: this.state.lang
+        })
+        .then(function (response) {
+            self.setState({ translationStrings: response.data });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
-    
+
 
     handleChange(event) {
-        this.setState({ value: event.target.value });
+       this.setState({ value: event.target.value });
 
         if(event.target.value) {
             let self = this;
 
-            axios.post('/get-react', {
+            axios.post('/get-react-search', {
                 q: event.target.value,
                 lang: this.state.lang
             })
@@ -34,9 +49,9 @@ export default class SearchField extends Component {
 
 
 				if(response.data.length === 0) {
-                    self.setState({ emptyMessage: 'no answers' });
+                    self.setState({ showEmptyMessage: true });
                 } else {
-                    self.setState({ emptyMessage: '' });
+                    self.setState({ showEmptyMessage: false });
                 }
             })
             .catch(function (error) {
@@ -44,7 +59,7 @@ export default class SearchField extends Component {
             });
         } else {
             this.setState({ searchAnswers: [] });
-			this.setState({ emptyMessage: '' });
+			this.setState({ showEmptyMessage: false });
         }
     }
 
@@ -52,16 +67,16 @@ export default class SearchField extends Component {
     render() {
 		let emptyMessageWithBlock = '';
 
-		if(this.state.emptyMessage) {
+		if(this.state.showEmptyMessage) {
 			emptyMessageWithBlock = <div className='p-2'>
-										{ this.state.emptyMessage }
+										{ this.state.translationStrings.no_search_answers }
 									</div>
 		}
         
 
         return (
 			<div>
-				<div className='p-2'>
+                <div className='p-2'>
 					<input type="text" onChange={this.handleChange} />
 				</div>
 

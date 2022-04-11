@@ -13,9 +13,17 @@ export default class SearchAnswer extends Component {
     render() {
         return (
             <div className='p-2'>
-                <a href={ '/' + this.state.lang + '/' + this.props.answer['alias_' + this.state.lang] }>
+                <a href={ this.props.answer.fullUrl }>
                     <div className='p-2'>
-                        { this.props.answer['title_' + this.state.lang] }
+                        <div className='p-2'>
+                            { this.props.answer.title }
+                        </div>
+
+                        <div className='p-2'>
+                            <div className='line_max_3'>
+                                { (this.props.answer.text).replace(/(<([^>]+)>)/gi, "") } {/* Removing html tags from answer text */}
+                            </div>
+                        </div>
                     </div>
                 </a>
             </div>

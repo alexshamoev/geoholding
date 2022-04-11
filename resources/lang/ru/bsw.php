@@ -20,4 +20,5 @@ return [
     'meta_description' => 'meta_description',
     'upload_images' => 'Upload images',
     'upload_images_label' => '<span style="color: #cb2b2b;">Файлы должен быть в формате:</span> <span style="text-transform: uppercase; font-weight: bold;">JPG / PNG / GIF</span>',
+    'no_search_answers' => 'Информации не найдено',
 ];
