@@ -82,7 +82,7 @@ class ACoreControllerStep3 extends AController {
 
 		foreach(ModuleBlock :: where('top_level', $moduleStep -> id) -> orderBy('rang', 'desc') -> get() as $data) {
 			if($data -> type === 'select') {
-				$selectData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+				$selectData[$data -> db_column][0] = '-- '.__('bsw.select').' --';
 
 				foreach(DB :: table($data -> select_table) -> orderBy($data -> select_sort_by, $data -> select_sort_by_text) -> get() as $dataInside) {
 					$selectData[$data -> db_column][$dataInside -> { $data -> select_search_column }] = $dataInside -> $data -> select_option_text;
@@ -90,7 +90,7 @@ class ACoreControllerStep3 extends AController {
 			}
 			
 			if($data -> type === 'select_with_optgroup') {
-				$selectOptgroudData[$data -> db_column][0] = '-- '.Bsw :: where('system_word', 'a_select') -> first() -> { 'word_'.$activeLang -> title }.' --';
+				$selectOptgroudData[$data -> db_column][0] = '-- '.__('bsw.select').' --';
 				
 				// $sort_by_this = $data -> select_sort_by_text;
 
