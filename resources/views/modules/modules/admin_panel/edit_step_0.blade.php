@@ -166,13 +166,6 @@
 				</div>
 			</div>
 	
-			
-<!-- sss
-			<div id="appwww">
-				<testwww></testwww>
-			</div>
-ddd -->
-
 
 			<div class="px-2">
 				<div class="d-flex flex-column standard-block">
@@ -275,20 +268,19 @@ ddd -->
 		{{ Form :: close() }}
 
 		
-		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
+		<div class="p-3"></div>
+		
+		@include('admin.includes.addButton', ['text' => 'Add Level', 'url' => route('moduleLevelAdd', $module -> id)])
 
-
-		<div>
-			<div id="rangBlocks" data-db_table="module_steps">
-				@foreach($module -> moduleStep as $data)
-					@include('admin.includes.horizontalEditDeleteBlock', [
-						'id' => $data -> id,
-						'title' => $data -> title,
-						'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-						'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-					])
-				@endforeach
-			</div>	
-		</div>
+		<div id="rangBlocks" data-db_table="module_levels">
+			@foreach($module -> moduleLevel as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'id' => $data -> id,
+					'title' => $data -> title,
+					'editLink' => route('moduleLevelEdit', array($module -> id, $data -> id)),
+					'deleteLink' => route('moduleLevelDelete', array($module -> id, $data -> id))
+				])
+			@endforeach
+		</div>	
 	</div>
 @endsection

@@ -27,8 +27,8 @@ class ModuleStep extends Model {
 	}
 
 
-    public function module() {
-        return $this -> hasOne(Module :: class, 'id', 'top_level');
+    public function moduleLevel() {
+        return $this -> hasOne(ModuleLevel :: class, 'id', 'top_level');
     }
 
 

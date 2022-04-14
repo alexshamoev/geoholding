@@ -34,7 +34,7 @@ class Module extends Model {
     }
 
 
-    public function moduleStep() {
-        return $this -> hasMany(ModuleStep :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
+    public function moduleLevel() {
+        return $this -> hasMany(ModuleLevel :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
 }

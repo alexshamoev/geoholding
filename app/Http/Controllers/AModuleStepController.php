@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
+use App\Models\ModuleLevel;
 use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Page;
@@ -16,21 +17,22 @@ use Session;
 
 
 class AModuleStepController extends AController {
-	public function add($moduleId) {
+	public function add($moduleId, $levelId) {
 		$module = Module :: find($moduleId);
+		$moduleLevel = ModuleLevel :: find($levelId);
 
 		$moduleStep = new ModuleStep();
 
-		$moduleStep -> top_level = $module -> id;
+		$moduleStep -> top_level = $moduleLevel -> id;
 
 		$moduleStep -> save();
 
 
-		return redirect() -> route('moduleStepEdit', array($module -> id, $moduleStep -> id));
+		return redirect() -> route('moduleStepEdit', array($module -> id, $moduleLevel -> id, $moduleStep -> id));
 	}
 
 
-	public function edit($moduleId, $id) {
+	public function edit($moduleId, $levelId, $id) {
 		ModuleBlock :: deleteEmpty();
 
 		$moduleStep = ModuleStep :: find($id);
@@ -42,9 +44,9 @@ class AModuleStepController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		// dd($moduleStep -> module -> moduleStep);
+		// dd($id);
 
-		foreach($moduleStep -> module -> moduleStep as $data) {
+		foreach($moduleStep -> moduleLevel -> moduleStep as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data -> id;
 			}

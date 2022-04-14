@@ -37,14 +37,20 @@ class AController extends Controller {
 		
 		$modulesForMenu = array();
 
-		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			if(count($data -> moduleStep) || \View :: exists('modules/'.$data -> alias.'/admin_panel/start_point')) {
-				if($activeUser -> super_administrator === 1) {
-					$modulesForMenu[] = $data;
-				} else if($data -> hide_for_admin === 0) {
-					$modulesForMenu[] = $data;
-				}
-			}
+		foreach(Module::all()->sortByDesc('rang') as $data) {
+			// dd(count($data->moduleLevel));
+
+			// foreach(Module::all()->sortByDesc('rang') as $data) {
+				// if(count($data->moduleLevel->moduleStep) || \View::exists('modules/'.$data -> alias.'/admin_panel/start_point')) {
+				// 	if($activeUser->super_administrator === 1) {
+				// 		$modulesForMenu[] = $data;
+				// 	} else if($data->hide_for_admin === 0) {
+				// 		$modulesForMenu[] = $data;
+				// 	}
+				// }
+			// }
+
+			$modulesForMenu[] = $data;
 		}
 
 		$data = [
@@ -56,7 +62,7 @@ class AController extends Controller {
 					'languages' => Language :: where('disable', 0) -> orderByDesc('rang') -> get(),
 					'activeUser' => Auth :: user()
 				];
-
+		
 		return $data;
 	}
 	
@@ -66,6 +72,7 @@ class AController extends Controller {
 		Bsw :: deleteEmpty();
 		Language :: deleteEmpty();
 		Module :: deleteEmpty();
+		// ModuleLevel :: deleteEmpty();
 		ModuleStep :: deleteEmpty();
 		ModuleBlock :: deleteEmpty();
 
