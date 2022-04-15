@@ -28,7 +28,11 @@ class ACoreControllerStep0 extends AController {
 		$moduleLevel = ModuleLevel::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
 		$moduleStep = ModuleStep::where('top_level', $moduleLevel->id)->orderBy('rang', 'desc')->get();
 
-		
+
+		// dd($moduleStep);
+		$collection = collect([]);
+		$collectionForTags = collect([]);
+
 		foreach($moduleStep as $moduleStepData) {
 			$use_for_tags = 'id';
 			
@@ -68,16 +72,28 @@ class ACoreControllerStep0 extends AController {
 			if($moduleBlockForImage) {
 				$imageFormat = $moduleBlockForImage->file_format;
 			}
+
+
+			$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
+			$collectionForTags->add($use_for_tags);
 		}
 
 
+
+
 		$data = array_merge(self::getDefaultData(), ['module' => $module,
-														'moduleStep' => $moduleStep,
-														'moduleSteps' => ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->get(),
-														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get(),
-														'imageFormat' => $imageFormat,
-														'sortBy' => $orderBy,
-														'use_for_tags' => $use_for_tags]);
+													'moduleStep' => $moduleStep,
+													'collection' => $collection,
+													'collectionForTags' => $collectionForTags]);
+
+
+		// $data = array_merge(self::getDefaultData(), ['module' => $module,
+		// 											'moduleStep' => $moduleStep,
+		// 											'moduleSteps' => ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->get(),
+		// 											'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get(),
+		// 											'imageFormat' => $imageFormat,
+		// 											'sortBy' => $orderBy,
+		// 											'use_for_tags' => $use_for_tags]);
 
 		return view('modules.core.step0', $data);
 	}

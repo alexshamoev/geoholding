@@ -22,6 +22,44 @@
 		@endif
 
 
+		
+		@php
+			$i = 0;
+		@endphp
+
+		@foreach($collection as $dataFromDb)
+			<!-- Add button -->
+				@if(!$moduleStep->values()->get($i)->images)
+					@include('admin.includes.addButton', [
+						'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
+						'url' => route('coreAddStep0', $module -> alias)
+					])
+				@else 
+					{{ Form :: open(array('route' => array('coreAddMultImageForstep0', $module -> alias, $moduleStep->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
+						{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+						{{ Form :: submit() }}
+					{{ Form :: close() }}
+				@endif
+			<!--  -->
+
+
+			@foreach($dataFromDb as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $data -> id,
+						'title' => $data -> {$collectionForTags->values()->get($i)},
+						'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
+						'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))
+					])
+			@endforeach
+
+			@php
+				$i++;
+			@endphp
+		@endforeach
+
+
+
+{{--
 		@if(!$moduleStep -> images)
 			@include('admin.includes.addButton', [
 				'text' => __('bsw.add').' '.$moduleStep -> title,
@@ -76,6 +114,6 @@
 					@endif
 				@endforeach
 			@endif
-		</div>
+		</div>--}}
 	</div>
 @endsection
