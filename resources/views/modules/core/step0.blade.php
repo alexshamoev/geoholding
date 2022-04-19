@@ -21,7 +21,6 @@
 			</div>
 		@endif
 
-
 		
 		@php
 			$i = 0;
@@ -32,7 +31,7 @@
 				@if(!$moduleStep->values()->get($i)->images)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
-						'url' => route('coreAddStep0', $module -> alias)
+						'url' => route('coreAddStep0', [$module -> alias, $moduleStep->values()->get($i)->id])
 					])
 				@else 
 					{{ Form :: open(array('route' => array('coreAddMultImageForstep0', $module -> alias, $moduleStep->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
@@ -47,7 +46,7 @@
 				@include('admin.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,
 						'title' => $data -> {$collectionForTags->values()->get($i)},
-						'editLink' => route('coreEditStep0', array($module -> alias, $data -> id)),
+						'editLink' => route('coreEditStep0', [$module -> alias, $moduleStep->values()->get($i)->id, $data -> id]),
 						'deleteLink' => route('coreDeleteStep0', array($module -> alias, $data -> id))
 					])
 			@endforeach

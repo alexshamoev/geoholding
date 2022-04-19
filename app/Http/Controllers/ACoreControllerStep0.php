@@ -99,7 +99,7 @@ class ACoreControllerStep0 extends AController {
 	}
 
 
-	public function add($moduleAlias) {
+	public function add($moduleAlias, $moduleStepId) {
 		$module = Module::where('alias', $moduleAlias)->first();
 		$moduleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
 

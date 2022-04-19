@@ -7,6 +7,11 @@ use App\Http\Controllers\PhotoGalleryController;
 
 use App\Mail\WelcomeMail;
 
+Route::get('/cache', function() {
+	$clear = Artisan::call('cache:clear');
+	return "Cache cleared";
+});
+
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
 if(Schema :: hasTable('languages')) {
@@ -97,30 +102,41 @@ if(Schema :: hasTable('languages')) {
 					Route :: post('/contacts', 'AContactsController@update') -> name('contactsUpdate');
 				//
 
+
 				Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
-				Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
-				Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
+				Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
+				Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
 				Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
 				Route :: post('/{moduleAlias}/{id}/addImageStep0', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
 				Route :: post('/{moduleAlias}/{id}/addImage', 'ACoreControllerStep0@addMultImagesStep0') -> name('coreAddMultImageForstep0');
 				Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
 
-				Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
-				Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@edit') -> name('coreEditStep1');
-				Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@update') -> name('coreUpdateStep1');
-				Route :: post('/{moduleAlias}/{parent}/{id}/addImage', 'ACoreControllerStep1@addMultImages') -> name('coreAddMultImagestep1');
-				Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreControllerStep1@delete') -> name('coreDeleteStep1');
 
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreControllerStep2@add') -> name('coreAddStep2');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@edit') -> name('coreEditStep2');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@update') -> name('coreUpdateStep2');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/addImage', 'ACoreControllerStep2@addMultImages') -> name('coreAddMultImagestep2');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreControllerStep2@delete') -> name('coreDeleteStep2');
 
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreControllerStep3@add') -> name('coreAddStep3');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@edit') -> name('coreEditStep3');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@update') -> name('coreUpdateStep3');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreControllerStep3@delete') -> name('coreDeleteStep3');
+				// Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
+				// Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
+				// Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
+				// Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
+				// Route :: post('/{moduleAlias}/{id}/addImageStep0', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
+				// Route :: post('/{moduleAlias}/{id}/addImage', 'ACoreControllerStep0@addMultImagesStep0') -> name('coreAddMultImageForstep0');
+				// Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
+
+				// Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
+				// Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@edit') -> name('coreEditStep1');
+				// Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@update') -> name('coreUpdateStep1');
+				// Route :: post('/{moduleAlias}/{parent}/{id}/addImage', 'ACoreControllerStep1@addMultImages') -> name('coreAddMultImagestep1');
+				// Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreControllerStep1@delete') -> name('coreDeleteStep1');
+
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreControllerStep2@add') -> name('coreAddStep2');
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@edit') -> name('coreEditStep2');
+				// Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@update') -> name('coreUpdateStep2');
+				// Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/addImage', 'ACoreControllerStep2@addMultImages') -> name('coreAddMultImagestep2');
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreControllerStep2@delete') -> name('coreDeleteStep2');
+
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreControllerStep3@add') -> name('coreAddStep3');
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@edit') -> name('coreEditStep3');
+				// Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@update') -> name('coreUpdateStep3');
+				// Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreControllerStep3@delete') -> name('coreDeleteStep3');
 
 
 				// Ajax
