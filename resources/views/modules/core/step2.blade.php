@@ -321,8 +321,21 @@
 				])
 			@else 
 				{{ Form :: open(array('route' => array('coreAddMultImagestep1', $module -> alias, $data -> parent, $data -> id), 'files' => true, 'method' => 'post')) }}
-					{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-					{{ Form :: submit() }}
+					<div class="p-2">
+						<div class="p-2 standard-block">
+							<div class="p-2">
+								{!! __('bsw.upload_images_label') !!}
+							</div>
+
+							<div class="p-2">
+							{{ Form :: file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+							</div>
+
+							<div class="p-2 submit-button">
+							{{ Form :: submit(__('bsw.upload_images')) }}
+							</div>
+						</div>
+					</div>
 				{{ Form :: close() }}
 			@endif
 
