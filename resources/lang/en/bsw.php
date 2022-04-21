@@ -14,6 +14,7 @@ return [
     'open_web_page' => 'Open web page',
     'copyright' => 'Ltd "Company Title". All rights reserved.',
     'add' => 'Add',
+    'adding' => 'Adding',
     'select' => 'Select',
     'phone_number' => 'Phone Number',
     'meta_title' => 'meta_title',

@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    BSC > {{ $activeBsc -> system_word }}
+    BSC > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,20 +10,8 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSC',
 		'tag0Url' => route('bscStartPoint'),
-		'tag1Text' => $activeBsc -> system_word
+		'tag1Text' => __('bsw.adding')
 	])
-
-
-	@include('admin.includes.bar', [
-		'addUrl' => route('bscAdd'),
-		'deleteUrl' => route('bscDelete', $activeBsc -> id),
-		'nextId' => $nextBscId,
-		'prevId' => $prevBscId,
-		'nextRoute' => route('bscEdit', $nextBscId),
-		'prevRoute' => route('bscEdit', $prevBscId),
-		'backRoute' => route('bscStartPoint')
-	])
-
 
 	<div class="p-2">
 		@if($errors -> any())
@@ -35,16 +23,16 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 		
 
-		{{ Form :: model($activeBsc, array('route' => array('bscUpdate', $activeBsc -> id))) }}
+		{{ Form::open(array('route' => 'bscInsert')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -52,7 +40,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('system_word') }}
+						{{ Form::text('system_word') }}
 					</div>
 				</div>
 
@@ -70,20 +58,20 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: text('configuration') }}
+						{{ Form::text('configuration') }}
 					</div>
 				</div>
 
 				@error('configuration')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror
 			</div>
 			
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{ Form::submit(__('bsw.adding')) }}
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 @endsection

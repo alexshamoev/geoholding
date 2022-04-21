@@ -59,6 +59,7 @@ if(Schema :: hasTable('languages')) {
 				Route :: prefix('bsc') -> group(function() {
 					Route :: get('', 'ABscController@getStartPoint') -> name('bscStartPoint');
 					Route :: get('/add', 'ABscController@add') -> name('bscAdd');
+					Route :: post('/add', 'ABscController@insert') -> name('bscInsert');
 					Route :: get('/{id}', 'ABscController@edit') -> name('bscEdit');
 					Route :: post('/{id}', 'ABscController@update') -> name('bscUpdate');
 					Route :: get('/{id}/delete', 'ABscController@delete') -> name('bscDelete');
@@ -68,6 +69,7 @@ if(Schema :: hasTable('languages')) {
 				Route :: prefix('bsw') -> group(function() {
 					Route :: get('', 'ABswController@getStartPoint') -> name('bswStartPoint');
 					Route :: get('/add', 'ABswController@add') -> name('bswAdd');
+					Route :: post('/add', 'ABswController@insert') -> name('bswInsert');
 					Route :: get('/{id}', 'ABswController@edit') -> name('bswEdit');
 					Route :: post('/{id}', 'ABswController@update') -> name('bswUpdate');
 					Route :: get('/{id}/delete', 'ABswController@delete') -> name('bswDelete');
@@ -78,6 +80,7 @@ if(Schema :: hasTable('languages')) {
 					Route :: get('', 'ALanguageController@getStartPoint') -> name('languageStartPoint');
 					Route :: post('', 'ALanguageController@updateStartPoint') -> name('languageStartPointPost');
 					Route :: get('/add', 'ALanguageController@add') -> name('languageAdd');
+					Route :: post('/add', 'ALanguageController@insert') -> name('languageInsert');
 					Route :: get('/{id}', 'ALanguageController@edit') -> name('languageEdit');
 					Route :: post('/{id}', 'ALanguageController@update') -> name('languageUpdate');
 					Route :: get('/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');

@@ -13,7 +13,7 @@ class ModuleStep extends Model {
 		);
 		
         // Validation
-            foreach(ModuleStep :: all() as $data) {
+            foreach(ModuleStep::get() as $data) {
                 $moduleStepData['title'] = $data -> title;
                 $moduleStepData['db_table'] = $data -> db_table;
 

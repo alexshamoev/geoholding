@@ -14,6 +14,7 @@ return [
     'open_web_page' => 'Перейти на сайт',
     'copyright' => 'ООО "Название Компании". Все права защищены.',
     'add' => 'Добавить',
+    'adding' => 'Добавление',
     'select' => 'Выберите',
     'phone_number' => 'Номер Телефона',
     'meta_title' => 'meta_title',

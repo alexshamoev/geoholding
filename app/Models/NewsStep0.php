@@ -40,13 +40,6 @@ class NewsStep0 extends Model {
         return $page -> fullUrl.'/'.$this -> alias;
     }
 
-    
-	public function getFullUrl($lang) {
-        $page = Page :: where('slug', self :: $pageSlug) -> first();
-
-        return $page -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
-    }
-
 
     public function getMetaTitleAttribute() {
         $bsw = Bsw :: getFullData();

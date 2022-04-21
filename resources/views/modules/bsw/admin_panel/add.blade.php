@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    BSW > {{ $activeBsw -> system_word }}
+    BSW > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,20 +10,8 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSW',
 		'tag0Url' => route('bswStartPoint'),
-		'tag1Text' => $activeBsw -> system_word
+		'tag1Text' => __('bsw.adding')
 	])
-
-
-	@include('admin.includes.bar', [
-		'addUrl' => route('bswAdd'),
-		'deleteUrl' => route('bswDelete', $activeBsw -> id),
-		'nextId' => $nextBswId,
-		'prevId' => $prevBswId,
-		'nextRoute' => route('bswEdit', $nextBswId),
-		'prevRoute' => route('bswEdit', $prevBswId),
-		'backRoute' => route('bswStartPoint')
-	])
-
 
 	<div class="p-2">
 		@if($errors -> any())
@@ -44,7 +32,7 @@
 		@endif
 
 
-		{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
+		{{ Form :: open(array('route' => 'bswInsert')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -81,7 +69,7 @@
 
 			<div class="p-2">
 				<div class="submit-button">
-					{{ Form :: submit('Submit') }}
+					{{ Form :: submit(__('bsw.adding')) }}
 				</div>
 			</div>
 		{{ Form :: close() }}

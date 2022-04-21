@@ -21,12 +21,30 @@ class ALanguageController extends AController {
 
 		return view('modules.languages.admin_panel.start_point', $data);
 	}
-	
-	
+
+
 	public function add() {
+		return view('modules.languages.admin_panel.add', self :: getDefaultData());
+	}
+
+
+	public function insert(ALanguageUpdateRequest $request) {
 		$language = new Language();
-		$language -> title = 'temp';
+
+		$language -> title = $request -> input('title');
+		$language -> full_title = $request -> input('full_title');
+
 		$language -> save();
+		
+
+		if($request -> file('svg_icon_languages')) {
+			$filePath = $request -> file('svg_icon_languages') -> storeAs('images/modules/languages',
+																			$language -> id.'.svg',
+																			'public');
+		}
+
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('languageEdit', $language -> id);
 	}

@@ -35,11 +35,6 @@ class NewsStep1 extends Model {
     public function getFullUrlAttribute() {
         return $this -> newsStep0 -> fullUrl.'/'.$this -> alias;
     }
-
-    
-	public function getFullUrl($lang) {
-        return $this -> newsStep0 -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
-    }
     
 
 	public function getMetaTitleAttribute() {

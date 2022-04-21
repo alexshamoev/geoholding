@@ -746,7 +746,7 @@ class ACoreControllerStep0 extends AController {
 				return redirect()->route('coreEditStep0', array($module->alias, $id))->withErrors($validator)->withInput();
 			}
 		//
-
+		
 		$updateQuery = [];
 		
 		foreach($moduleBlocks as $data) {
@@ -760,7 +760,7 @@ class ACoreControllerStep0 extends AController {
 				&& $data->type !== 'multiply_checkboxes_with_category') {
 				$updateQuery[$data->db_column] = (!is_null($request->input($data->db_column)) ? $request->input($data->db_column) : '');
 			}
-
+			
 			if($data->type === 'alias') {
 				foreach(Language::where('disable', 0)->get() as $langData) {
 					$value = $request->input($data->db_column.'_'.$langData->title);
@@ -862,50 +862,54 @@ class ACoreControllerStep0 extends AController {
 
 
 	public static function deleteEmpty() {
-		foreach(Module::get() as $module) {
-			foreach(ModuleStep::where('top_level', $module->id)->get() as $moduleStep) {
-				foreach(DB::table($moduleStep->db_table)->get() as $dbTableData) {
-					$data = [];
-					$validateRules = [];
+		$disabledLanguages = Language::where('disable', 0)->get();
 
-					foreach(ModuleBlock::where('top_level', $moduleStep->id)->get() as $moduleBlock) {
-						if($moduleBlock->validation) {
-							if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-								foreach(Language::where('disable', 0)->get() as $langData) {
-									$validateRules[$moduleBlock->db_column.'_'.$langData->title] = $moduleBlock->validation;
-									$data[$moduleBlock->db_column.'_'.$langData->title] = $dbTableData->{ $moduleBlock->db_column.'_'.$langData->title };
-								}
-							} else {
-								if($moduleBlock->type !== 'image' && $moduleBlock->type !== 'file') {
-									$validateRules[$moduleBlock->db_column] = $moduleBlock->validation;
-									$data[$moduleBlock->db_column] = $dbTableData->{ $moduleBlock->db_column };
+		foreach(Module::with(['moduleLevel', 'moduleLevel.moduleStep', 'moduleLevel.moduleStep.moduleBlock'])->get() as $module) {
+			foreach($module -> moduleLevel as $moduleLevel) {
+				foreach($moduleLevel -> moduleStep as $moduleStep) {
+					foreach(DB::table($moduleStep->db_table)->get() as $dbTableData) {
+						$data = [];
+						$validateRules = [];
+
+						foreach($moduleStep -> moduleBlock as $moduleBlock) {
+							if($moduleBlock->validation) {
+								if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
+									foreach($disabledLanguages as $langData) {
+										$validateRules[$moduleBlock->db_column.'_'.$langData->title] = $moduleBlock->validation;
+										$data[$moduleBlock->db_column.'_'.$langData->title] = $dbTableData->{ $moduleBlock->db_column.'_'.$langData->title };
+									}
+								} else {
+									if($moduleBlock->type !== 'image' && $moduleBlock->type !== 'file') {
+										$validateRules[$moduleBlock->db_column] = $moduleBlock->validation;
+										$data[$moduleBlock->db_column] = $dbTableData->{ $moduleBlock->db_column };
+									}
 								}
 							}
 						}
-					}
 
-					$validator = Validator::make($data, $validateRules);
+						$validator = Validator::make($data, $validateRules);
 
-					if($validator->fails()) {
-						DB::table($moduleStep->db_table)->delete($dbTableData->id);
+						if($validator->fails()) {
+							DB::table($moduleStep->db_table)->delete($dbTableData->id);
 
-						// Delete files.
-							foreach(ModuleBlock::where('top_level', $moduleStep->id)->get() as $moduleBlock) {
-								$prefix = '';
-				
-								if($moduleBlock->prefix) {
-									$prefix = $moduleBlock->prefix.'_';
+							// Delete files.
+								foreach($moduleStep -> moduleBlock as $moduleBlock) {
+									$prefix = '';
+					
+									if($moduleBlock->prefix) {
+										$prefix = $moduleBlock->prefix.'_';
+									}
+									
+									$filePath = storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$dbTableData->id.'.'.$moduleBlock->file_format);
+			
+									// dd($moduleBlock);
+									
+									if(file_exists($filePath)) {
+										unlink($filePath);
+									}
 								}
-								
-								$filePath = storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$dbTableData->id.'.'.$moduleBlock->file_format);
-		
-								// dd($moduleBlock);
-								
-								if(file_exists($filePath)) {
-									unlink($filePath);
-								}
-							}
-						// 
+							// 
+						}
 					}
 				}
 			}

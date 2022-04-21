@@ -19,15 +19,15 @@ use DB;
 
 class AController extends Controller {
 	public function getDefaultPage() {
-		$firstModule = Module :: orderBy('rang', 'desc') -> first();
+		$firstModule = Module::orderBy('rang', 'desc')->first();
 
-		return redirect('/admin/'.$firstModule -> alias);
+		return redirect('/admin/'.$firstModule->alias);
 	}
 
 
 	public static function getDefaultData() {
-		$bsc = Bsc :: getFullData();
-		$activeUser = Auth :: user();
+		$bsc = Bsc::getFullData();
+		$activeUser = Auth::user();
 		$copyrightDate = config('constants.year_of_site_creation');
 
 		if($copyrightDate < date('Y')) {
@@ -41,7 +41,7 @@ class AController extends Controller {
 			// dd(count($data->moduleLevel));
 
 			// foreach(Module::all()->sortByDesc('rang') as $data) {
-				// if(count($data->moduleLevel->moduleStep) || \View::exists('modules/'.$data -> alias.'/admin_panel/start_point')) {
+				// if(count($data->moduleLevel->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
 				// 	if($activeUser->super_administrator === 1) {
 				// 		$modulesForMenu[] = $data;
 				// 	} else if($data->hide_for_admin === 0) {
@@ -54,13 +54,13 @@ class AController extends Controller {
 		}
 
 		$data = [
-					'modules' => Module :: all() -> sortByDesc('rang'),
+					'modules' => Module::with(['moduleLevel', 'moduleLevel.moduleStep', 'moduleLevel.moduleStep.moduleBlock'])->get()->sortByDesc('rang'),
 					'modulesForMenu' => $modulesForMenu,
-					'bsc' => Bsc :: getFullData(),
-					'bsw' => Bsw :: getFullData(),
+					'bsc' => Bsc::getFullData(),
+					'bsw' => Bsw::getFullData(),
 					'copyrightDate' => $copyrightDate,
-					'languages' => Language :: where('disable', 0) -> orderByDesc('rang') -> get(),
-					'activeUser' => Auth :: user()
+					'languages' => Language::where('disable', 0)->orderByDesc('rang')->get(),
+					'activeUser' => Auth::user()
 				];
 		
 		return $data;
@@ -68,17 +68,17 @@ class AController extends Controller {
 	
 
 	public static function deleteEmptyBlocks() {
-		Bsc :: deleteEmpty();
-		Bsw :: deleteEmpty();
-		Language :: deleteEmpty();
-		Module :: deleteEmpty();
-		// ModuleLevel :: deleteEmpty();
-		ModuleStep :: deleteEmpty();
-		ModuleBlock :: deleteEmpty();
-
-		ACoreControllerStep0 :: deleteEmpty();
-		// ACoreControllerStep1 :: deleteEmpty();
-		// ACoreControllerStep2 :: deleteEmpty();
-		// ACoreControllerStep3 :: deleteEmpty();
+		// Bsc::deleteEmpty();
+		// Bsw::deleteEmpty();
+		// Language::deleteEmpty();
+		Module::deleteEmpty();
+		// // ModuleLevel::deleteEmpty();
+		ModuleStep::deleteEmpty();
+		ModuleBlock::deleteEmpty();
+		
+		ACoreControllerStep0::deleteEmpty();
+		// ACoreControllerStep1::deleteEmpty();
+		// ACoreControllerStep2::deleteEmpty();
+		// ACoreControllerStep3::deleteEmpty();
 	}
 }

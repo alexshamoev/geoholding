@@ -22,12 +22,20 @@ class ABscController extends AController {
 
 	
 	public function add() {
+		return view('modules.bsc.admin_panel.add', self :: getDefaultData());
+	}
+
+
+	public function insert(ABscUpdateRequest $request) {
 		$bsc = new Bsc();
 
-		$bsc -> system_word = '';
-		$bsc -> configuration = '';
+		$bsc -> system_word = $request -> input('system_word');
+		$bsc -> configuration = $request -> input('configuration');
 
 		$bsc -> save();
+
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus'));
 
 		return redirect() -> route('bscEdit', $bsc -> id);
 	}
