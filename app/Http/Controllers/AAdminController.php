@@ -73,16 +73,30 @@ class AAdminController extends AController {
     
     
     public function add() {
-        $user = new User();
+        $data = array_merge(self :: getDefaultData(), ['module' => Module :: firstWhere('alias', 'admins')]);
 
-        $user -> name = '';
-        $user -> password = '';
-        $user -> email = '';
-
-        $user -> save();
-
-        return redirect(route('adminEdit', $user -> id));
+		return view('modules.admins.admin_panel.add', $data);
     }
+
+
+    public function insert(AAdminUpdateRequest $request) {
+        $admin = new User();
+
+		$admin -> name = $request -> input('name');
+		$admin -> email = $request -> input('email');
+		$admin -> password = $request -> input('password');
+		$admin -> admin = 1;
+
+		$admin -> save();
+
+
+        // Mail :: to($admin -> email) -> send(new WelcomeMail($admin -> email, $request -> input('password')));
+
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
+
+		return redirect(route('adminEdit', $admin -> id));
+	}
 
 
     public function edit($id) {

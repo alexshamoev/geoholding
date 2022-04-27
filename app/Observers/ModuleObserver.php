@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Module;
-use App\Models\ModuleStep;
+use App\Models\ModuleLevel;
 use Illuminate\Support\Facades\Storage;
 
 class ModuleObserver
@@ -44,8 +44,8 @@ class ModuleObserver
             Storage :: delete($file);
         }
 
-        foreach($module -> moduleStep as $data) {
-            ModuleStep :: destroy($data -> id);
+        foreach($module -> moduleLevel as $data) {
+            ModuleLevel :: destroy($data -> id);
         }
     }
 

@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $module -> alias }}
+    Modules > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,18 +10,7 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $module -> alias
-	])
-
-
-	@include('admin.includes.bar', [
-		'addUrl' => route('moduleAdd'),
-		'deleteUrl' => route('moduleDelete', $module -> id),
-		'nextId' => $nextModuleId,
-		'prevId' => $prevModuleId,
-		'nextRoute' => route('moduleEdit', $nextModuleId),
-		'prevRoute' => route('moduleEdit', $prevModuleId),
-		'backRoute' => route('moduleStartPoint')
+		'tag1Text' => __('bsw.adding')
 	])
 	
 
@@ -53,7 +42,7 @@
 		@endif
 
 		
-		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
+		{{ Form :: open(array('route' => array('moduleInsert'), 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -155,7 +144,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '4', null, array('class' => 'include_type')) }}
+								{{ Form :: radio('include_type', '4', true, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -170,7 +159,7 @@
 			<div class="px-2">
 				<div class="d-flex flex-column standard-block">
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
-						{{ Form :: select('page_id', $pagesForSelect, $module -> page_id) }}
+						{{ Form :: select('page_id', $pagesForSelect) }}
 					</div>
 
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
@@ -263,24 +252,8 @@
 
 		
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{ Form :: submit(__('bsw.adding')) }}
 			</div>
-		{{ Form :: close() }}
-
-		
-		<div class="p-3"></div>
-		
-		@include('admin.includes.addButton', ['text' => 'Add Level', 'url' => route('moduleLevelAdd', $module -> id)])
-
-		<div id="rangBlocks" data-db_table="module_levels">
-			@foreach($module -> moduleLevel as $data)
-				@include('admin.includes.horizontalEditDeleteBlock', [
-					'id' => $data -> id,
-					'title' => $data -> title,
-					'editLink' => route('moduleLevelEdit', array($module -> id, $data -> id)),
-					'deleteLink' => route('moduleLevelDelete', array($module -> id, $data -> id))
-				])
-			@endforeach
-		</div>	
+		{{ Form :: close() }}	
 	</div>
 @endsection

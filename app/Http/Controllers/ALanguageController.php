@@ -14,9 +14,6 @@ use Session;
 
 class ALanguageController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmptyBlocks();
-
-
 		$data = array_merge(self :: getDefaultData(), []);
 
 		return view('modules.languages.admin_panel.start_point', $data);

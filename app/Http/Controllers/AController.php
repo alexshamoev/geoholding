@@ -65,20 +65,4 @@ class AController extends Controller {
 		
 		return $data;
 	}
-	
-
-	public static function deleteEmptyBlocks() {
-		// Bsc::deleteEmpty();
-		// Bsw::deleteEmpty();
-		// Language::deleteEmpty();
-		Module::deleteEmpty();
-		// // ModuleLevel::deleteEmpty();
-		ModuleStep::deleteEmpty();
-		ModuleBlock::deleteEmpty();
-		
-		ACoreControllerStep0::deleteEmpty();
-		// ACoreControllerStep1::deleteEmpty();
-		// ACoreControllerStep2::deleteEmpty();
-		// ACoreControllerStep3::deleteEmpty();
-	}
 }

@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $moduleStep -> moduleLevel -> module -> alias }} > {{ $moduleStep -> title }}
+    Modules > {{ $moduleLevel -> module -> alias }} > {{ $moduleLevel -> title }}
 @endsection
 
 
@@ -10,20 +10,20 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $moduleStep -> moduleLevel -> module -> alias,
-		'tag1Url' => route('moduleEdit', $moduleStep -> moduleLevel -> module -> id),
-		'tag2Text' => $moduleStep -> title
+		'tag1Text' => $moduleLevel -> module -> alias,
+		'tag1Url' => route('moduleEdit', $moduleLevel -> module -> id),
+		'tag2Text' => $moduleLevel -> title
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleStepAdd', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id]),
-		'deleteUrl' => route('moduleStepDelete', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id]),
+		'addUrl' => route('moduleLevelAdd', $moduleLevel -> module -> id),
+		'deleteUrl' => route('moduleLevelDelete', array($moduleLevel -> module -> id, $moduleLevel -> id)),
 		'nextId' => $next,
 		'prevId' => $prev,
-		'nextRoute' => route('moduleStepEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $next]),
-		'prevRoute' => route('moduleStepEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $prev]),
-		'backRoute' => route('moduleEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id])
+		'nextRoute' => route('moduleLevelEdit', [$moduleLevel -> module -> id, $next]),
+		'prevRoute' => route('moduleLevelEdit', [$moduleLevel -> module -> id, $prev]),
+		'backRoute' => route('moduleEdit', $moduleLevel -> module -> id)
 	])
 
 	<div class="p-2">
@@ -54,7 +54,7 @@
 		@endif
 
 
-		{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id))) }}
+		{{ Form :: model($moduleLevel, array('route' => array('moduleLevelUpdate', $moduleLevel -> module -> id, $moduleLevel -> id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -74,128 +74,26 @@
 				@enderror
 			</div>
 
-			<div class="p-2">
-				<div class="standard-block p-2">
-					<div class="p-2 d-flex flex-column">
-						<span>Title: *</span>
-						<span>(Example: news_step_0)</span>
-					</div>
-					
-					<div class="p-2">
-						{{ Form :: text('db_table') }}
-					</div>
-				</div>
-
-				@error('db_table')
-					<div class="alert alert-danger">
-						{{ $message }}
-					</div>
-				@enderror
-			</div>
-
-			<div class="p-2">
-				<div class="standard-block p-2">
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('images', '1') }}
-
-							images?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('possibility_to_add', '1') }}
-
-							possibility_to_add?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('possibility_to_delete', '1') }}
-
-							possibility_to_delete?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('possibility_to_rang', '1') }}
-
-							possibility_to_rang?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('possibility_to_edit', '1') }}
-
-							possibility_to_edit?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('use_existing_step', '1') }}
-
-							use_existing_step?
-						</label>
-					</div>
-				</div>
-			</div>
-
-			<div class="p-2">
-				<div class="standard-block">
-					<div class="col-4">
-						<label class="w-100">
-							<div class="d-flex flex-column p-2">
-								<div class="py-1">
-									<span>Blocks Max Number:</span>
-								</div>
-
-								<div class="py-1">
-									<span>(e.g. 5)</span>
-								</div>
-								
-								<div class="pt-1">
-									<span class="text-danger">0 means infinite amount</span>
-								</div>
-							</div>
-
-							<div class="p-2">
-								{{ Form :: number('blocks_max_number', null,  ['class' => 'w-100']) }}
-							</div>
-
-						</label>
-					</div>
-				</div>
-			</div>
-
 			<div class="p-2 submit-button">
 				{{ Form :: submit('Submit') }}
 			</div>
 		{{ Form :: close() }}
-	</div>
+	
 
+		<div class="p-3"></div>
 
-	<div class="px-2">
-		@include('admin.includes.addButton', ['text' => 'Add Block', 'url' => route('moduleBlockAdd', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id])])
-	</div>
+		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', array($moduleLevel -> module -> id, $moduleLevel -> id))])
 
-
-	<div class="px-2 pb-2">
-		<div id="rangBlocks" data-db_table="module_blocks">
-			@foreach($moduleStep -> moduleBlock as $data)
+		<div id="rangBlocks" data-db_table="module_steps">
+			@foreach($moduleLevel -> moduleStep as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
 					'id' => $data -> id,
-					'title' => $data -> db_column,
-					'text' => $data -> type,
-					'text1' => $data -> label,
-					'editLink' => route('moduleBlockEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id, $data -> id]),
-					'deleteLink' => route('moduleBlockDelete', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id, $data -> id])
+					'title' => $data -> db_table,
+					'text' => $data -> title,
+					'editLink' => route('moduleStepEdit', array($moduleLevel -> module -> id, $moduleLevel -> id, $data -> id)),
+					'deleteLink' => route('moduleStepDelete', array($moduleLevel -> module -> id, $moduleLevel -> id, $data -> id))
 				])
 			@endforeach
 		</div>
-    </div>
+	</div>
 @endsection

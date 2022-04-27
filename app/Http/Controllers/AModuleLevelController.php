@@ -20,21 +20,32 @@ class AModuleLevelController extends AController {
 	public function add($moduleId) {
 		$module = Module :: find($moduleId);
 
+		$data = array_merge(self::getDefaultData(), ['module' => $module]);
+
+		return view('modules.modules.admin_panel.add_step_1', $data);
+	}
+
+
+	public function insert(AModuleLevelUpdateRequest $request, $moduleId) {
 		$moduleLevel = new ModuleLevel();
 
-		$moduleLevel -> top_level = $module -> id;
+		$moduleLevel->top_level = $moduleId;
+		$moduleLevel->title = $request->input('title');
 
-		$moduleLevel -> save();
+		$moduleLevel->save();
 
+		
+		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect() -> route('moduleLevelEdit', array($module -> id, $moduleLevel -> id));
+		return redirect()->route('moduleLevelEdit', [
+														$moduleLevel->module->id,
+														$moduleLevel->id
+													]);
 	}
 
 
 	public function edit($moduleId, $id) {
-		// ModuleBlock :: deleteEmpty();
-
-		$moduleLevel = ModuleLevel :: find($id);
+		$moduleLevel = ModuleLevel::find($id);
 
 
 		$prevId = 0;
@@ -43,56 +54,52 @@ class AModuleLevelController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		// dd($moduleLevel -> module -> moduleLevel);
-
-		foreach($moduleLevel -> module -> moduleLevel as $data) {
+		foreach($moduleLevel->module->moduleLevel as $data) {
 			if($nextIdIsSaved && !$nextId) {
-				$nextId = $data -> id;
+				$nextId = $data->id;
 			}
 			
-			if($moduleLevel -> id === $data -> id) {
+			if($moduleLevel->id === $data->id) {
 				$prevIdIsSaved = true;
 				$nextIdIsSaved = true;
 			}
 			
 			if(!$prevIdIsSaved) {
-				$prevId = $data -> id;
+				$prevId = $data->id;
 			}
 		}
 
-		// dd(ModuleLevel :: find($prevId));
-
-		$data = array_merge(self :: getDefaultData(), [
-														'languages' => Language :: where('disable', 1) -> get(),
+		$data = array_merge(self::getDefaultData(), [
+														'languages' => Language::where('disable', 1)->get(),
 														'moduleLevel' => $moduleLevel,
 														'prev' => $prevId,
 														'next' => $nextId
 													]);
 
 
-		return view('modules.modules.admin_panel.edit_step_level', $data);
+		return view('modules.modules.admin_panel.edit_step_1', $data);
 	}
 
 
 	public function update(AModuleLevelUpdateRequest $request, $moduleId, $id) {
-		$moduleLevel = ModuleLevel :: find($id);
+		$moduleLevel = ModuleLevel::find($id);
 
-		$moduleLevel -> title = $request -> input('title');
+		$moduleLevel->title = $request->input('title');
 
-		$moduleLevel -> save();
+		$moduleLevel->save();
 
 		
-		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
+		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect() -> route('moduleLevelEdit', array($moduleLevel -> module -> id, $moduleLevel -> id));
+		return redirect()->route('moduleLevelEdit', array($moduleLevel->module->id, $moduleLevel->id));
 	}
 	
 
 	public function delete($moduleId, $id) {
-		ModuleLevel :: destroy($id);
+		ModuleLevel::destroy($id);
 
-		Session :: flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
-		return redirect() -> route('moduleEdit', $moduleId);
+		return redirect()->route('moduleEdit', $moduleId);
 	}
 }

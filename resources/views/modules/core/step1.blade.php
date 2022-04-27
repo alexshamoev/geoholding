@@ -9,19 +9,19 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => $module -> title,
-		'tag0Url' => route('coreGetStep0', $module -> alias),
+		'tag0Url' => route('coreGetStep0', [$module -> alias, $moduleStep -> id]),
 		'tag1Text' => $data -> $use_for_tags
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('coreAddStep0', $module -> alias),
+		'addUrl' => route('coreAddStep0', [$module -> alias, $moduleStep -> id]),
 		'deleteUrl' => route('coreDeleteStep0', array($module -> alias, $data -> id)),
 		'nextId' => $nextId,
 		'prevId' => $prevId,
-		'nextRoute' => route('coreEditStep0', [$module -> alias, $nextId]),
-		'prevRoute' => route('coreEditStep0', [$module -> alias, $prevId]),
-		'backRoute' => route('coreGetStep0', $module -> alias)
+		'nextRoute' => route('coreEditStep0', [$module -> alias, $moduleStep -> id, $nextId]),
+		'prevRoute' => route('coreEditStep0', [$module -> alias, $moduleStep -> id, $prevId]),
+		'backRoute' => route('coreGetStep0', [$module -> alias, $moduleStep -> id])
 	])
 
 	
@@ -53,7 +53,7 @@
 		@endif
 	
 		
-		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $data -> id), 'files' => true)) }}
+		{{ Form :: open(array('route' => array('coreUpdateStep0', $module -> alias, $moduleStep -> id, $data -> id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock -> db_column !== 'published' && $moduleBlock -> db_column !== 'rang')
 					<div class="p-2">

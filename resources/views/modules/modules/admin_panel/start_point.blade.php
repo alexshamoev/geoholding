@@ -21,7 +21,7 @@
 		@endif
 
 
-		@include('admin.includes.addButton', ['text' => 'Add Module', 'url' => route('moduleAdd')])
+		@include('admin.includes.addButton', ['text' => 'Add Module', 'url' => route('moduleInsert')])
 
 		<div id="rangBlocks" data-db_table="modules">
 			@foreach($modules as $data)

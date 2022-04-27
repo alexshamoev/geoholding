@@ -19,11 +19,6 @@ use App;
 
 class ACoreControllerStep0 extends AController {
     public function get($moduleAlias) {
-		// self::deleteEmpty();
-
-		self::deleteEmptyBlocks();
-
-
 		$module = Module::where('alias', $moduleAlias)->first();
 		$moduleLevel = ModuleLevel::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
 		$moduleStep = ModuleStep::where('top_level', $moduleLevel->id)->orderBy('rang', 'desc')->get();
@@ -351,25 +346,25 @@ class ACoreControllerStep0 extends AController {
 	}
 	
 
-	public function edit($moduleAlias, $id) {
-		ACoreControllerStep1::deleteEmpty();
+	public function edit($moduleAlias, $moduleStepId, $id) {
+		// dd($id);
 
 		$module = Module::where('alias', $moduleAlias)->first();
-		$moduleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
+		$moduleStep = ModuleStep::find($moduleStepId);
 		$moduleBlocks = ModuleBlock::where('top_level', $moduleStep->id)->orderBy('rang', 'desc')->get();
 		$pageData = DB::table($moduleStep->db_table)->find($id);
 
-		$moduleBlock = ModuleBlock::where('top_level', $moduleStep->id)->where('a_use_for_tags', 1)->first();
+		$moduleBlock = ModuleBlock::where('top_level', $moduleStep->id)->firstWhere('a_use_for_tags', 1);
 
 		$use_for_tags = 'id';
 
-		$activeSiteLang = Language::where('like_default', 1)->first();
+		$activeLangForFront = Language::where('like_default', 1)->first();
 
 		if($moduleBlock) {
 			$use_for_tags = $moduleBlock->db_column;
 
 			if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-				$use_for_tags .= '_'.$activeSiteLang->title;
+				$use_for_tags .= '_'.$activeLangForFront->title;
 			}
 		}
 
@@ -858,61 +853,5 @@ class ACoreControllerStep0 extends AController {
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect()->route('coreGetStep0', $module->alias);
-	}
-
-
-	public static function deleteEmpty() {
-		$disabledLanguages = Language::where('disable', 0)->get();
-
-		foreach(Module::with(['moduleLevel', 'moduleLevel.moduleStep', 'moduleLevel.moduleStep.moduleBlock'])->get() as $module) {
-			foreach($module -> moduleLevel as $moduleLevel) {
-				foreach($moduleLevel -> moduleStep as $moduleStep) {
-					foreach(DB::table($moduleStep->db_table)->get() as $dbTableData) {
-						$data = [];
-						$validateRules = [];
-
-						foreach($moduleStep -> moduleBlock as $moduleBlock) {
-							if($moduleBlock->validation) {
-								if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-									foreach($disabledLanguages as $langData) {
-										$validateRules[$moduleBlock->db_column.'_'.$langData->title] = $moduleBlock->validation;
-										$data[$moduleBlock->db_column.'_'.$langData->title] = $dbTableData->{ $moduleBlock->db_column.'_'.$langData->title };
-									}
-								} else {
-									if($moduleBlock->type !== 'image' && $moduleBlock->type !== 'file') {
-										$validateRules[$moduleBlock->db_column] = $moduleBlock->validation;
-										$data[$moduleBlock->db_column] = $dbTableData->{ $moduleBlock->db_column };
-									}
-								}
-							}
-						}
-
-						$validator = Validator::make($data, $validateRules);
-
-						if($validator->fails()) {
-							DB::table($moduleStep->db_table)->delete($dbTableData->id);
-
-							// Delete files.
-								foreach($moduleStep -> moduleBlock as $moduleBlock) {
-									$prefix = '';
-					
-									if($moduleBlock->prefix) {
-										$prefix = $moduleBlock->prefix.'_';
-									}
-									
-									$filePath = storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$dbTableData->id.'.'.$moduleBlock->file_format);
-			
-									// dd($moduleBlock);
-									
-									if(file_exists($filePath)) {
-										unlink($filePath);
-									}
-								}
-							// 
-						}
-					}
-				}
-			}
-		}
 	}
 }
