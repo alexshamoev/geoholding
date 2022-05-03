@@ -60,6 +60,24 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
+						<span>Parent Step:</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form::select('parent_step_id', [
+															'Without parent' => [0 => '-- Without parent --'],
+															'Cats' => [1 => 'Leopard', 3 => 'Lion'],
+															'Dogs' => [2 => 'Spaniel', 4 => 'Dog'],
+														]
+									)}}
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
 						<span>Title: *</span>
 						<span>(Example: Category)</span>
 					</div>

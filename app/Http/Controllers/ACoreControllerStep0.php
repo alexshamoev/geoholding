@@ -637,123 +637,22 @@ class ACoreControllerStep0 extends AController {
 		// Image - uploading image without checking it passed validation or not
 			foreach($moduleStep->moduleBlock as $data) {
 				if($data->type === 'image') {
-					// if($request->hasFile($data->db_column)) {
-						$prefix = '';
+					$prefix = '';
 
-						if($data->prefix) {
-							$prefix = $data->prefix.'_';
+					if($data->prefix) {
+						$prefix = $data->prefix.'_';
+					}
+
+					Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'.'.$data->file_format,
+									'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format);
+
+
+					for($i = 1; $i < 4; $i++) {
+						if($data->{'prefix_'.$i}) {
+							Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format,
+											'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
 						}
-						
-						// $validator = Validator::make($request->all(), array(
-						// 	$data->db_column => 'mimes:jpeg,jpg,png,gif|required|max:10000'
-						// ));
-						
-						// if($validator->fails()) {
-						// 	return redirect()->route('coreEditStep0', array($module->alias, $moduleStep->id, $id))->withErrors($validator)->withInput();
-						//}
-
-
-						Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'.'.$data->file_format,
-									  'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format);
-
-						// dd('rename');
-
-						// $request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/step_0', $prefix.$id.'.'.$data->file_format);	
-						
-						// $imagePath = 'app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format;
-
-						// $image = ImageManagerStatic::make(storage_path($imagePath));
-						// $width = $image->width();
-						// $height = $image->height();
-
-						// if($data->fit_type === 'fit') {
-						// 	$image->fit($data->image_width,
-						// 					$data->image_height,
-						// 					function() {},
-						// 					$data->fit_position);
-						//}
-						
-						// if($data->fit_type === 'resize') {
-						// 	$image->resize($data->image_width,
-						// 						$data->image_height,
-						// 						function ($constraint) {
-						// 						$constraint->aspectRatio();
-						// 						});
-								
-						// 	if($width < $data->image_width && $height < $data->image_height) {
-						// 		$image = ImageManagerStatic::make(storage_path($imagePath));																																			
-						// 	}
-						//}
-						
-						// if($data->fit_type === 'resize_with_bg') {
-						// 	if($width > $data->image_width || $height > $data->image_height) {
-						// 		$image->resize($data->image_width,
-						// 							$data->image_height,
-						// 							function ($constraint) {
-						// 							$constraint->aspectRatio();
-						// 							});																																	
-						// 	}
-
-						// 	$image->resizeCanvas($data->image_width, $data->image_height, 'center', false, '#FFFFFF');
-						//}
-
-						// if($data->fit_type === 'default') {
-						// 	$image = ImageManagerStatic::make(storage_path($imagePath));
-						//}
-
-						// $image->save();
-
-						for($i = 1; $i < 4; $i++) {
-							if($data->{'prefix_'.$i}) {
-								Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format,
-									  		  'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
-
-
-								// $request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/step_0', $prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format );
-
-								// if($data->{'fit_type_'.$i} === 'fit') {
-								// 	$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->fit($data->{'image_width_'.$i},
-								// 																																							$data->{'image_height_'.$i},
-								// 																																							function() {},
-								// 																																							$data->fit_position);
-								//}
-								
-								// if($data->{'fit_type_'.$i} === 'resize') {
-								// 	$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->resize($data->{'image_width_'.$i},
-								// 																																							$data->{'image_height_'.$i},
-								// 																																							function ($constraint) {
-								// 																																								$constraint->aspectRatio();
-								// 																																							});
-
-									
-								// 	$width = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->width();
-								// 	$height = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->height();
-
-								// 	if($width < $data->{'image_width_'.$i} && $height < $data->{'image_height_'.$i}) {
-								// 		$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format));																																			
-								// 	}
-								//}
-
-								// if($data->fit_type === 'resize_with_bg') {
-								// 	if($width > $data->{'image_width_'.$i} || $height > $data->{'image_height_'.$i}) {
-								// 		$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->resize($data->{'image_width_'.$i},
-								// 																																																	$data->{'image_height_'.$i},
-								// 																																																	function ($constraint) {
-								// 																																																	$constraint->aspectRatio();
-								// 																																																	});																																	
-								// 	}
-									
-								// 	$image-> resizeCanvas($data->{'image_width_'.$i}, $data->{'image_height_'.$i}, 'center', false, '#FFFFFF');
-								//}
-
-								// if($data->{'fit_type_'.$i} === 'default') {
-								// 	$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/step_0/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format));
-								//}
-
-								// $image->save();
-							}
-						}
-					// }
+					}
 				}
 			}
 		// 
@@ -762,28 +661,14 @@ class ACoreControllerStep0 extends AController {
 		// File - uploading file without checking it passed validation or not
 			foreach($moduleStep->moduleBlock as $data) {
 				if($data->type === 'file') {
-					// if($request->hasFile($data->db_column)) {
-						$prefix = '';
+					$prefix = '';
 
-						if($data->prefix) {
-							$prefix = $data->prefix.'_';
-						}
+					if($data->prefix) {
+						$prefix = $data->prefix.'_';
+					}
 
-						Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'.'.$data->file_format,
-									  'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format);
-
-
-						// $validator = Validator::make($request->all(), array(
-						// 	$data->db_column => "required|mimes:".$data->file_format."|max:10000"
-						// ));
-
-						// if($validator->fails()) {
-
-						// 	return redirect()->route('coreEditStep0', array($module->alias, $moduleStep->id, $id))->withErrors($validator)->withInput();
-						// }
-						
-						// $request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/step_0', $prefix.$id.'.'.$data->file_format);
-					// }
+					Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'.'.$data->file_format,
+									'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format);
 				}
 			}
 		// 
@@ -794,9 +679,8 @@ class ACoreControllerStep0 extends AController {
 		if(Session::has('file_id')) {
 			self::rename_temp_files($moduleStepId, Session::get('file_id'), $id);
 		
-			dd(Session::get('file_id'));
+			// dd(Session::get('file_id'));
 		}
-
 		
 
 		$module = Module::where('alias', $moduleAlias)->first();
@@ -982,6 +866,9 @@ class ACoreControllerStep0 extends AController {
 				$sort_by = 'ASC';
 			}
 		}
+
+
+		// $parentModuleStep = 
 
 
 		$data = array_merge(self::getDefaultData(), ['module' => $module,
