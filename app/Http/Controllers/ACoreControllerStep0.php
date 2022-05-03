@@ -656,7 +656,7 @@ class ACoreControllerStep0 extends AController {
 						Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$oldId.'.'.$data->file_format,
 									  'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.$id.'.'.$data->file_format);
 
-						dd('rename');
+						// dd('rename');
 
 						// $request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/step_0', $prefix.$id.'.'.$data->file_format);	
 						

@@ -12,7 +12,7 @@
 		'tag0Url' => route('coreGetStep0', [$module->alias]),
 		'tag1Text' => $data->$use_for_tags
 	])
-
+	123
 
 	@include('admin.includes.bar', [
 		'addUrl' => route('coreAddStep0', [$module->alias, $moduleStep->id]),
