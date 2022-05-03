@@ -2,26 +2,15 @@
 
 
 @section('pageMetaTitle')
-    {{ $module->title }} > {{ $data->$use_for_tags }}
+    {{ $moduleStep->moduleLevel->module->title }} > {{ __('bsw.adding') }}
 @endsection
 
 
 @section('content')
 	@include('admin.includes.tags', [
-		'tag0Text' => $module->title,
-		'tag0Url' => route('coreGetStep0', [$module->alias]),
-		'tag1Text' => $data->$use_for_tags
-	])
-
-
-	@include('admin.includes.bar', [
-		'addUrl' => route('coreAddStep0', [$module->alias, $moduleStep->id]),
-		'deleteUrl' => route('coreDeleteStep0', array($module->alias, $moduleStep->id, $data->id)),
-		'nextId' => $nextId,
-		'prevId' => $prevId,
-		'nextRoute' => route('coreEditStep0', [$module->alias, $moduleStep->id, $nextId]),
-		'prevRoute' => route('coreEditStep0', [$module->alias, $moduleStep->id, $prevId]),
-		'backRoute' => route('coreGetStep0', [$module->alias])
+		'tag0Text' => $moduleStep->moduleLevel->module->title,
+		'tag0Url' => route('coreGetStep0', [$moduleStep->moduleLevel->module->alias]),
+		'tag1Text' => __('bsw.adding')
 	])
 
 	
@@ -33,28 +22,10 @@
 				</div>
 			</div>
 		@endif
+	
 		
-		
-		@if(Session::has('successStatus'))
-			<div class="p-2">
-				<div class="alert alert-success m-0" role="alert">
-					{{ Session::get('successStatus') }}
-				</div>
-			</div>
-		@endif
-
-
-		@if(Session::has('successDeleteStatus'))
-			<div class="p-2">
-				<div class="alert alert-success m-0" role="alert">
-					{{ Session::get('successDeleteStatus') }}
-				</div>
-			</div>
-		@endif
-		
-		
-		{{ Form::open(array('route' => array('coreUpdateStep0', $moduleStep->moduleLevel->module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
-			@foreach($moduleBlocks as $moduleBlock)
+		{{ Form::open(array('route' => array('coreInsertStep0', $moduleStep->moduleLevel->module->alias, $moduleStep->id), 'files' => true)) }}
+			@foreach($moduleStep->moduleBlock as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">
 						@switch($moduleBlock->type)
@@ -71,7 +42,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::text($moduleBlock->db_column, $data->{ $moduleBlock->db_column }) }}
+										{{ Form::text($moduleBlock->db_column) }}
 									</div>
 								</div>
 
@@ -98,10 +69,14 @@
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
 
-									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/step_0/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
-										<div class="p-2">
-											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/step_0/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
-										</div>
+									@if(Session::has('file_id'))
+										{{ Session::get('file_id') }}
+
+										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
+											<div class="p-2">
+												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
+											</div>
+										@endif
 									@endif
 								</div>
 
@@ -143,7 +118,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::select($moduleBlock->db_column, $selectData[$moduleBlock->db_column], $data->{ $moduleBlock->db_column }) }}
+										{{ Form::select($moduleBlock->db_column, $selectData[$moduleBlock->db_column]) }}
 									</div>
 								</div>
 
@@ -161,7 +136,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::select($moduleBlock->db_column, $selectOptgroudData[$moduleBlock->db_column], $data->{ $moduleBlock->db_column }) }}
+										{{ Form::select($moduleBlock->db_column, $selectOptgroudData[$moduleBlock->db_column]) }}
 									</div>
 								</div>
 								
@@ -180,7 +155,7 @@
 
 									<div class="p-2">
 										{{ Form::textarea($moduleBlock->db_column,
-															$data->{ $moduleBlock->db_column },
+															'',
 															[
 																'id' => $moduleBlock->db_column
 															]) }}
@@ -212,7 +187,7 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form::text($moduleBlock->db_column.'_'.$langData->title,  $data->{ $moduleBlock->db_column.'_'.$langData->title }) }}
+											{{ Form::text($moduleBlock->db_column.'_'.$langData->title) }}
 										</div>
 									</div>
 
@@ -240,7 +215,7 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form::text($moduleBlock->db_column.'_'.$langData->title,  $data->{ $moduleBlock->db_column.'_'.$langData->title }) }}
+											{{ Form::text($moduleBlock->db_column.'_'.$langData->title) }}
 										</div>
 									</div>
 
@@ -269,7 +244,7 @@
 
 										<div class="p-2">
 											{{ Form::textarea($moduleBlock->db_column.'_'.$langData->title, 
-																$data->{ $moduleBlock->db_column.'_'.$langData->title },
+																'',
 																[
 																	'id' => $moduleBlock->db_column.'_'.$langData->title
 																]) }}
@@ -296,7 +271,7 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										<label>
-											{{ Form::checkbox($moduleBlock->db_column, 1, $data->{ $moduleBlock->db_column }) }}
+											{{ Form::checkbox($moduleBlock->db_column, 1) }}
 											
 											{{ $moduleBlock->label }}
 										</label>
@@ -350,7 +325,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::text($moduleBlock->db_column, $data->{ $moduleBlock->db_column }) }}
+										{{ Form::text($moduleBlock->db_column) }}
 									</div>
 								</div>
 						@endswitch
@@ -368,84 +343,8 @@
 			@endforeach
 
 			<div class="p-2 submit-button">
-				{{ Form::submit(__('bsw.submit')) }}
+				{{ Form::submit(__('bsw.adding')) }}
 			</div>
 		{{ Form::close() }}
-		
-		
-		@if($nextModuleStepData)
-			<div class="p-3"></div>
-
-			@if(!$nextModuleStep->images)
-				@include('admin.includes.addButton', [
-					'text' => __('bsw.add').' '.$nextModuleStep->title,
-					'url' => route('coreAddStep1', array($module->alias, $data->id))
-				])
-			@else
-				{{ Form::open(array('route' => array('coreAddMultImagestep0', $module->alias, $data->id), 'files' => true, 'method' => 'post')) }}
-					<div class="p-2">
-						<div class="p-2 standard-block">
-							<div class="p-2">
-								 {!! __('bsw.upload_images_label') !!}
-							</div>
-
-							<div class="p-2">
-								{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-							</div>
-
-							<div class="p-2 submit-button">
-								{{ Form::submit(__('bsw.upload_images')) }}
-							</div>
-						</div>
-					</div>
-				{{ Form::close() }}
-			@endif
-				
-			<div class="row" id="rangBlocks" data-db_table="{{ $nextModuleStep->db_table }}">
-				@if(!$nextModuleStep->images)
-					@foreach($nextModuleStepData as $dataIn)
-						@if($sortBy === 'rang')
-							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
-											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
-											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
-											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
-										])
-						@else
-							@include('admin.includes.verticalEditDeleteBlock', [
-											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
-											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'moduleAlias' => $module->alias,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
-											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
-										])
-						@endif
-					@endforeach
-				@else
-					@foreach($nextModuleStepData as $dataIn)
-						@if($sortBy === 'rang')
-							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
-											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
-											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
-											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
-										])
-						@else
-							@include('admin.includes.verticalEditDeleteBlock', [
-											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
-											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'moduleAlias' => $module->alias,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
-											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
-										])
-						@endif
-					@endforeach
-				@endif
-			</div>
-		@endif
 	</div>
 @endsection
