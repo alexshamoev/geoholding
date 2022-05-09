@@ -7,11 +7,21 @@
 
 
 @section('content')
-	@include('admin.includes.tags', [
-		'tag0Text' => $module->title,
-		'tag0Url' => route('coreGetStep0', [$module->alias]),
-		'tag1Text' => $data->$use_for_tags
-	])
+	@if(!$moduleStep->moduleParentStep)
+		@include('admin.includes.tags', [
+			'tag0Text' => $module->title,
+			'tag0Url' => route('coreGetStep0', [$module->alias]),
+			'tag1Text' => $data->$use_for_tags
+		])
+	@else
+		@include('admin.includes.tags', [
+			'tag0Text' => $module->title,
+			'tag0Url' => route('coreGetStep0', [$module->alias]),
+			'tag1Text' => $parentModuleStepData->title_ge,
+			'tag1Url' => route('coreEditStep0', [$module->alias, $moduleStep->moduleParentStep->id, $parentModuleStepData->id]),
+			'tag2Text' => $data->$use_for_tags
+		])
+	@endif
 
 	@include('admin.includes.bar', [
 		'addUrl' => route('coreAddStep0', [$module->alias, $moduleStep->id]),
@@ -23,8 +33,6 @@
 		'backRoute' => route('coreGetStep0', [$module->alias])
 	])
 
-	{{$moduleStep->id}}
-	{{$moduleStep->moduleLevel->id}}
 	
 	<div class="p-2">
 		@if($errors->any())
@@ -374,7 +382,44 @@
 		{{ Form::close() }}
 		
 		
-		@if($nextModuleStepData)
+
+		@php
+			$i = 0;
+		@endphp
+		
+		@foreach($collection as $dataFromDb)
+			<!-- Add button -->
+				@if(!$childSteps->values()->get($i)->images)
+					@include('admin.includes.addButton', [
+						'text' => __('bsw.add').' '.$childSteps->values()->get($i)->title,
+						'url' => route('coreAddStep0', [$module->alias, $childSteps->values()->get($i)->id])
+					])
+				@else 
+					{{ Form::open(array('route' => array('coreAddMultImageForstep0', $module->alias, $childSteps->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
+						{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+						{{ Form::submit() }}
+					{{ Form::close() }}
+				@endif
+			<!--  -->
+
+
+			@foreach($dataFromDb as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+						'id' => $data->id,
+						'title' => $data->{$collectionForTags->values()->get($i)},
+						'editLink' => route('coreEditStep0', [$module->alias, $childSteps->values()->get($i)->id, $data->id]),
+						'deleteLink' => route('coreDeleteStep0', array($module->alias, $childSteps->values()->get($i)->id, $data->id))
+					])
+			@endforeach
+
+			@php
+				$i++;
+			@endphp
+		@endforeach
+
+
+
+		{{--@if($nextModuleStepData)
 			<div class="p-3"></div>
 
 			@if(!$nextModuleStep->images)
@@ -447,6 +492,6 @@
 					@endforeach
 				@endif
 			</div>
-		@endif
+		@endif--}}
 	</div>
 @endsection

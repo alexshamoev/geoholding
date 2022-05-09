@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $moduleStep -> moduleLevel -> module -> alias }} > {{ $moduleStep -> title }}
+    Modules > {{$moduleStep -> moduleLevel -> module -> alias}} > {{$moduleStep -> title}}
 @endsection
 
 
@@ -32,7 +32,7 @@
 		@if($errors -> any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
-					{{ __('bsw.warningStatus') }}
+					{{__('bsw.warningStatus')}}
 				</div>
 			</div>
 		@endif
@@ -41,7 +41,7 @@
 		@if(Session :: has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{Session :: get('successStatus')}}
 				</div>
 			</div>
 		@endif
@@ -50,46 +50,40 @@
 		@if(Session :: has('successDeleteStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successDeleteStatus') }}
+					{{Session :: get('successDeleteStatus')}}
 				</div>
 			</div>
 		@endif
 
 
-		{{ Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id))) }}
+		{{Form :: model($moduleStep, array('route' => array('moduleStepUpdate', $moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id)))}}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Parent Step:</span>
+						<span>parent_step_id:</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form::select('parent_step_id', [
-															'Without parent' => [0 => '-- Without parent --'],
-															'Cats' => [1 => 'Leopard', 3 => 'Lion'],
-															'Dogs' => [2 => 'Spaniel', 4 => 'Dog'],
-														]
-									)}}
+						{{Form::select('parent_step_id', $topLevelSelectValues)}}
 					</div>
 				</div>
 			</div>
-
 			
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Title: *</span>
+						<span>title: *</span>
 						<span>(Example: Category)</span>
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('title') }}
+						{{Form :: text('title')}}
 					</div>
 				</div>
 
 				@error('title')
 					<div class="alert alert-danger">
-						{{ $message }}
+						{{$message}}
 					</div>
 				@enderror
 			</div>
@@ -97,18 +91,56 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Title: *</span>
+						<span>db_table: *</span>
 						<span>(Example: news_step_0)</span>
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('db_table') }}
+						{{Form :: text('db_table')}}
 					</div>
 				</div>
 
 				@error('db_table')
 					<div class="alert alert-danger">
-						{{ $message }}
+						{{$message}}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>main_column: *</span>
+						<span>(Example: title_ge)</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form :: text('main_column')}}
+					</div>
+				</div>
+
+				@error('main_column')
+					<div class="alert alert-danger">
+						{{$message}}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>sort_by: *</span>
+						<span>(Example: rang DESC)</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form :: text('sort_by')}}
+					</div>
+				</div>
+
+				@error('sort_by')
+					<div class="alert alert-danger">
+						{{$message}}
 					</div>
 				@enderror
 			</div>
@@ -117,7 +149,7 @@
 				<div class="standard-block p-2">
 					<div class="p-2">
 						<label>
-							{{ Form :: checkbox('images', '1') }}
+							{{Form :: checkbox('images', '1')}}
 
 							images?
 						</label>
@@ -125,7 +157,7 @@
 
 					<div class="p-2">
 						<label>
-							{{ Form :: checkbox('possibility_to_add', '1') }}
+							{{Form :: checkbox('possibility_to_add', '1')}}
 
 							possibility_to_add?
 						</label>
@@ -133,7 +165,7 @@
 
 					<div class="p-2">
 						<label>
-							{{ Form :: checkbox('possibility_to_delete', '1') }}
+							{{Form :: checkbox('possibility_to_delete', '1')}}
 
 							possibility_to_delete?
 						</label>
@@ -141,7 +173,7 @@
 
 					<div class="p-2">
 						<label>
-							{{ Form :: checkbox('possibility_to_rang', '1') }}
+							{{Form :: checkbox('possibility_to_rang', '1')}}
 
 							possibility_to_rang?
 						</label>
@@ -149,17 +181,9 @@
 
 					<div class="p-2">
 						<label>
-							{{ Form :: checkbox('possibility_to_edit', '1') }}
+							{{Form :: checkbox('possibility_to_edit', '1')}}
 
 							possibility_to_edit?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('use_existing_step', '1') }}
-
-							use_existing_step?
 						</label>
 					</div>
 				</div>
@@ -184,7 +208,7 @@
 							</div>
 
 							<div class="p-2">
-								{{ Form :: number('blocks_max_number', null,  ['class' => 'w-100']) }}
+								{{Form :: number('blocks_max_number', null,  ['class' => 'w-100'])}}
 							</div>
 
 						</label>
@@ -193,9 +217,9 @@
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{Form :: submit('Submit')}}
 			</div>
-		{{ Form :: close() }}
+		{{Form :: close()}}
 	</div>
 
 

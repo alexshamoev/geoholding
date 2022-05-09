@@ -20,7 +20,20 @@ class AModuleStepController extends AController {
 	public function add($moduleId, $levelId) {
 		$moduleLevel = ModuleLevel::find($levelId);
 
-		$data = array_merge(self::getDefaultData(), ['moduleLevel' => $moduleLevel]);
+		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
+
+		foreach($moduleLevel->module->moduleLevel as $levelData) {
+			$topLevelSelectValues[$levelData->title] = [];
+
+			foreach($levelData->moduleStep as $stepData) {
+				$topLevelSelectValues[$levelData->title][$stepData->id] = $stepData->db_table;
+			}
+		}
+
+		$data = array_merge(self::getDefaultData(), [
+														'moduleLevel' => $moduleLevel,
+														'topLevelSelectValues' => $topLevelSelectValues
+													]);
 
 		return view('modules.modules.admin_panel.add_step_2', $data);
 	}
@@ -33,14 +46,16 @@ class AModuleStepController extends AController {
 		$moduleStep = new ModuleStep();
 
 		$moduleStep->top_level = $moduleLevelId;
+		$moduleStep->parent_step_id = $request->input('parent_step_id');
 		$moduleStep->title = $request->input('title');
 		$moduleStep->db_table = $request->input('db_table');
+		$moduleStep->main_column = $request->input('main_column');
+		$moduleStep->sort_by = $request->input('sort_by');
 		$moduleStep->images = $request->has('images');
 		$moduleStep->possibility_to_add = $request->has('possibility_to_add');
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
-		$moduleStep->use_existing_step = $request->has('use_existing_step');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 
 		$moduleStep->save();
@@ -59,8 +74,6 @@ class AModuleStepController extends AController {
 
 
 	public function edit($moduleId, $levelId, $id) {
-		ModuleBlock::deleteEmpty();
-
 		$moduleStep = ModuleStep::find($id);
 
 
@@ -69,8 +82,6 @@ class AModuleStepController extends AController {
 
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
-
-		// dd($id);
 
 		foreach($moduleStep->moduleLevel->moduleStep as $data) {
 			if($nextIdIsSaved && !$nextId) {
@@ -87,14 +98,23 @@ class AModuleStepController extends AController {
 			}
 		}
 
-		// dd(ModuleStep::find($prevId));
+		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
+
+		foreach($moduleStep->moduleLevel->module->moduleLevel as $levelData) {
+			$topLevelSelectValues[$levelData->title] = [];
+
+			foreach($levelData->moduleStep as $stepData) {
+				$topLevelSelectValues[$levelData->title][$stepData->id] = $stepData->db_table;
+			}
+		}
 
 		$data = array_merge(self::getDefaultData(), [
 														'pages' => Page::all(),
 														'languages' => Language::where('disable', 1)->get(),
 														'moduleStep' => $moduleStep,
 														'prev' => $prevId,
-														'next' => $nextId
+														'next' => $nextId,
+														'topLevelSelectValues' => $topLevelSelectValues
 													]);
 
 
@@ -102,17 +122,19 @@ class AModuleStepController extends AController {
 	}
 
 
-	public function update(AModuleStepUpdateRequest $request, $moduleId, $id) {
+	public function update(AModuleStepUpdateRequest $request, $moduleId, $moduleLevelId, $id) {
 		$moduleStep = ModuleStep::find($id);
-
+		
+		$moduleStep->parent_step_id = $request->input('parent_step_id');
 		$moduleStep->title = $request->input('title');
 		$moduleStep->db_table = $request->input('db_table');
+		$moduleStep->main_column = $request->input('main_column');
+		$moduleStep->sort_by = $request->input('sort_by');
 		$moduleStep->images = $request->has('images');
 		$moduleStep->possibility_to_add = $request->has('possibility_to_add');
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
-		$moduleStep->use_existing_step = $request->has('use_existing_step');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 
 		$moduleStep->save();
@@ -120,7 +142,7 @@ class AModuleStepController extends AController {
 		
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect()->route('moduleStepEdit', array($moduleStep->module->id, $moduleStep->id));
+		return redirect()->route('moduleStepEdit', array($moduleStep->moduleLevel->module->id, $moduleStep->moduleLevel->id, $moduleStep->id));
 	}
 	
 

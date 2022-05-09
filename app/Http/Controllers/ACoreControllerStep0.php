@@ -98,10 +98,98 @@ class ACoreControllerStep0 extends AController {
 	public function add($moduleAlias, $moduleStepId) {
 		$moduleStep = ModuleStep::find($moduleStepId);
 
-		$data = array_merge(self::getDefaultData(), [
-														'moduleStep' => $moduleStep
-													]);
 
+		$selectData = [];
+		$selectOptgroudData = [];
+		$multCheckboxCatTable = '';
+
+		foreach($moduleStep->moduleBlock as $data) {
+			// Select
+				if($data->type === 'select') {
+					$selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
+
+					foreach(DB::table($data->select_table)->orderBy($data->select_sort_by, $data->select_sort_by_text)->get() as $dataInside) {
+						$selectData[$data->db_column][$dataInside->{$data->select_search_column}] = $dataInside->{$data->select_option_text};
+					}
+				}
+			// 
+			
+			// Select with optgroups
+				if($data->type === 'select_with_optgroup') {
+					$selectOptgroudData[$data->db_column][0] = '-- '.__('bsw.select').' --';
+					$alex = array('-- '.__('bsw.select').' --');
+
+					foreach(DB::table($data->select_optgroup_table)->orderBy($data->select_optgroup_sort_by, 'desc')->get() as $dataInside) {
+						foreach(DB::table($data->select_optgroup_2_table)->where('parent', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
+							$alex[$dataInside->{$data->select_optgroup_text}][$dataInsideTwice->id] = $dataInsideTwice->{$data->select_optgroup_2_text};
+						}
+					}
+
+					$selectOptgroudData[$data->db_column] = $alex;
+				}
+			// 
+			
+
+			// Multiply Checkbox With Category
+				$multiplyCheckboxCategory = [];
+
+				if($data->type === 'multiply_checkboxes_with_category') {
+					$checkboxTableText = $data->sql_select_with_checkboxes_option_text;														
+					$checkboxArray = array();
+
+					foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
+						$checkboxTableTextInside = $data->sql_select_with_checkboxes_option_text_inside;
+						$tempDbColumn = $data->db_column;
+						$tempArray = explode(',', $pageData->$tempDbColumn);
+
+						foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('parent', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
+							$active = 0;
+							foreach($tempArray as $tempData) {
+								if($tempData == $dataInsideTwice->id) {
+									$active = 1;
+								}
+							}
+
+							$checkboxArray[$dataInside->$checkboxTableText][$dataInsideTwice->id] = array('title' => $dataInsideTwice->$checkboxTableTextInside, 'active' => $active);
+						}
+					}
+
+					$multiplyCheckboxCategory[$data->db_column] = $checkboxArray;
+				}
+			//
+
+
+			// Multiply Checkbox
+				$multiplyCheckbox = [];
+				
+				if($data->type === 'multiply_checkboxes') {
+					$checkboxText = $data->sql_select_with_checkboxes_option_text;														
+					$checkboxArray = array();
+					$active = 0;
+
+					foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
+						$tempDbColumn = $data->db_column;
+						$tempArray = explode(',', $pageData->$tempDbColumn);
+
+						foreach($tempArray as $tempData) {
+							if($tempData == $dataInside->id) {
+								$active = 1;
+							}
+						}
+
+						$checkboxArray[$dataInside->id] = array('title' => $dataInside->$checkboxText, 'active' => $active);
+					}
+					
+					$multiplyCheckbox[$data->db_column] = $checkboxArray;
+				}
+			//
+		}
+
+
+		$data = array_merge(self::getDefaultData(), [
+														'moduleStep' => $moduleStep,
+														'selectData' => $selectData
+													]);
 
 		Session::keep('file_id');
 														
@@ -868,10 +956,71 @@ class ACoreControllerStep0 extends AController {
 		}
 
 
-		// $parentModuleStep = 
+		// Child steps
+			$collection = collect([]);
+			$collectionForTags = collect([]);
+
+			$childSteps = ModuleStep::where('parent_step_id', $moduleStep->id)->get();
+
+			// dd($childSteps);
+
+			foreach($childSteps as $moduleStepData) {
+				$use_for_tags = 'id';
+				
+				$moduleBlock = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_tags', 1)->first();
+
+				if($moduleBlock) {
+					$use_for_tags = $moduleBlock->db_column;
+					
+					if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
+						$use_for_tags .= '_'.App::getLocale();
+					}
+				}
+				
+				
+				$moduleBlockForSort = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_sort', 1)->first();
+				
+				$orderBy = 'id';
+				$sortBy = 'asc';
+
+				if($moduleBlockForSort) {
+					$orderBy = $moduleBlockForSort->db_column;
+
+					if($moduleBlockForSort->type === 'alias' || $moduleBlockForSort->type === 'input_with_languages' || $moduleBlockForSort->type === 'editor_with_languages') {
+						$orderBy .= '_'.App::getLocale();
+					}
+
+					if($moduleBlockForSort->sort_by_desc) {
+						$sortBy = 'desc';
+					}
+				}
 
 
-		$data = array_merge(self::getDefaultData(), ['module' => $module,
+				$imageFormat = 'jpg';
+
+				$moduleBlockForImage = ModuleBlock::where('top_level', $moduleStepData->id)->where('type', 'image')->first();
+
+				if($moduleBlockForImage) {
+					$imageFormat = $moduleBlockForImage->file_format;
+				}
+
+
+				$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
+				$collectionForTags->add($use_for_tags);
+			}
+		// 
+
+
+		$parentModuleStepData = false;
+
+		if($moduleStep->moduleParentStep) {
+			$parentModuleStepData = DB::table($moduleStep->moduleParentStep->db_table)->where('id', $pageData->top_level)->first();
+		}
+		
+		// dd($moduleStep->moduleParentStep);
+
+		$data = array_merge(self::getDefaultData(), [
+														'module' => $module,
 														'moduleStep' => $moduleStep,
 														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($use_for_sort, $sort_by)->get(),
 														'moduleBlocks' => $moduleBlocks,
@@ -890,7 +1039,12 @@ class ACoreControllerStep0 extends AController {
 														'use_for_tags' => $use_for_tags,
 														'multiplyCheckbox' => $multiplyCheckbox,
 														'multiplyCheckbox' => $multiplyCheckbox,
-														'multiplyCheckboxCategory' => $multiplyCheckboxCategory]);
+														'multiplyCheckboxCategory' => $multiplyCheckboxCategory,
+														'collection' => $collection,
+														'collectionForTags' => $collectionForTags,
+														'childSteps' => $childSteps,
+														'parentModuleStepData' => $parentModuleStepData
+													]);
 
 		return view('modules.core.step1', $data);
 	}

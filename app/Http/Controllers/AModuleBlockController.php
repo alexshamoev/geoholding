@@ -55,32 +55,11 @@ class AModuleBlockController extends AController {
 		$moduleBlock->label = $request->input('label');
 		$moduleBlock->example = $request->input('example');
 
-		if($request->input('a_use_for_sort')) {
-			$moduleBlock->a_use_for_sort = $request->input('a_use_for_sort');
-		} else {
-			$moduleBlock->a_use_for_sort = 0;
-		}
-
-		if($request->input('sort_by_desc')) {
-			$moduleBlock->sort_by_desc = $request->input('sort_by_desc');
-		} else {
-			$moduleBlock->sort_by_desc = 0;
-		}
-
-		if($request->input('a_use_for_tags')) {
-			$moduleBlock->a_use_for_tags = $request->input('a_use_for_tags');
-		} else {
-			$moduleBlock->a_use_for_tags = 0;
-		}
-
 		if($request->input('file_possibility_to_delete')) {
 			$moduleBlock->file_possibility_to_delete = $request->input('file_possibility_to_delete');
 		} else {
 			$moduleBlock->file_possibility_to_delete = 0;
 		}
-		
-
-		// dd($request->input('image_width'));
 
 
 		$moduleBlock->image_width = $request->input('image_width');
@@ -243,24 +222,6 @@ class AModuleBlockController extends AController {
 		$moduleBlock->db_column = $request->input('db_column');
 		$moduleBlock->label = $request->input('label');
 		$moduleBlock->example = $request->input('example');
-
-		if($request->input('a_use_for_sort')) {
-			$moduleBlock->a_use_for_sort = $request->input('a_use_for_sort');
-		} else {
-			$moduleBlock->a_use_for_sort = 0;
-		}
-
-		if($request->input('sort_by_desc')) {
-			$moduleBlock->sort_by_desc = $request->input('sort_by_desc');
-		} else {
-			$moduleBlock->sort_by_desc = 0;
-		}
-
-		if($request->input('a_use_for_tags')) {
-			$moduleBlock->a_use_for_tags = $request->input('a_use_for_tags');
-		} else {
-			$moduleBlock->a_use_for_tags = 0;
-		}
 
 		if($request->input('file_possibility_to_delete')) {
 			$moduleBlock->file_possibility_to_delete = $request->input('file_possibility_to_delete');

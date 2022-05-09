@@ -114,45 +114,6 @@
 				</div>
 			</div>
 
-			<div class="p-2 dataBlock forInput forInputWithLanguages forAlias forRang forColorPicker forCalendar forEditor forEditorWithLanguages forRang">
-				<div class="standard-block p-2">
-					<!-- <div class="p-2">
-						<label>
-							{{ Form :: checkbox('check_in_delete_empty', '1') }}
-
-							check_in_delete_empty?
-						</label>
-					</div> -->
-
-					
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('a_use_for_sort', '1') }}
-
-							a_use_for_sort?
-						</label>
-					</div>
-
-							
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('sort_by_desc', '1') }}
-
-							sort_by_desc?
-						</label>
-					</div>
-
-							
-					<div class="p-2">
-						<label>
-							{{ Form :: checkbox('a_use_for_tags', '1') }}
-
-							a_use_for_tags?
-						</label>
-					</div>
-				</div>
-			</div>
-
 			<div class="p-2 dataBlock forImage">
 				<div class="standard-block row p-2">
 					<div class="col-4 p-2">

@@ -35,4 +35,9 @@ class ModuleStep extends Model {
     public function moduleBlock() {
         return $this -> hasMany(ModuleBlock :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
+
+
+    public function moduleParentStep() {
+        return $this -> hasOne(ModuleStep :: class, 'id', 'parent_step_id');
+    }
 }

@@ -49,7 +49,19 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Title: *</span>
+						<span>parent_step_id:</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form::select('parent_step_id', $topLevelSelectValues)}}
+					</div>
+				</div>
+			</div>
+			
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>title: *</span>
 						<span>(Example: Category)</span>
 					</div>
 					
@@ -68,7 +80,7 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>Title: *</span>
+						<span>db_table: *</span>
 						<span>(Example: news_step_0)</span>
 					</div>
 					
@@ -80,6 +92,44 @@
 				@error('db_table')
 					<div class="alert alert-danger">
 						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>main_column: *</span>
+						<span>(Example: title_ge)</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form :: text('main_column', 'title_ge')}}
+					</div>
+				</div>
+
+				@error('main_column')
+					<div class="alert alert-danger">
+						{{$message}}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>sort_by: *</span>
+						<span>(Example: rang DESC)</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form :: text('sort_by', 'rang DESC')}}
+					</div>
+				</div>
+
+				@error('sort_by')
+					<div class="alert alert-danger">
+						{{$message}}
 					</div>
 				@enderror
 			</div>
@@ -123,14 +173,6 @@
 							{{ Form::checkbox('possibility_to_edit', '1') }}
 
 							possibility_to_edit?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form::checkbox('use_existing_step', '1') }}
-
-							use_existing_step?
 						</label>
 					</div>
 				</div>
