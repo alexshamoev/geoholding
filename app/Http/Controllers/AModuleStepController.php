@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\ModuleLevel;
 use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Page;
@@ -17,21 +16,21 @@ use Session;
 
 
 class AModuleStepController extends AController {
-	public function add($moduleId, $levelId) {
-		$moduleLevel = ModuleLevel::find($levelId);
+	public function add($moduleId) {
+		$module = Module::find($moduleId);
 
 		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
 
-		foreach($moduleLevel->module->moduleLevel as $levelData) {
-			$topLevelSelectValues[$levelData->title] = [];
+		foreach(Module::orderBy('rang', 'DESC')->get() as $moduleData) {
+			$topLevelSelectValues[$moduleData->title] = [];
 
-			foreach($levelData->moduleStep as $stepData) {
-				$topLevelSelectValues[$levelData->title][$stepData->id] = $stepData->db_table;
+			foreach($moduleData->moduleStep as $stepData) {
+				$topLevelSelectValues[$moduleData->title][$stepData->id] = $stepData->db_table;
 			}
 		}
 
 		$data = array_merge(self::getDefaultData(), [
-														'moduleLevel' => $moduleLevel,
+														'module' => $module,
 														'topLevelSelectValues' => $topLevelSelectValues
 													]);
 
@@ -39,13 +38,10 @@ class AModuleStepController extends AController {
 	}
 
 
-	public function insert(AModuleStepUpdateRequest $request, $moduleId, $moduleLevelId) {
-		// $modulheLevel = ModuleLevel::find($moduleLevelId);
-
-
+	public function insert(AModuleStepUpdateRequest $request, $moduleId) {
 		$moduleStep = new ModuleStep();
 
-		$moduleStep->top_level = $moduleLevelId;
+		$moduleStep->top_level = $moduleId;
 		$moduleStep->parent_step_id = $request->input('parent_step_id');
 		$moduleStep->title = $request->input('title');
 		$moduleStep->db_table = $request->input('db_table');
@@ -66,14 +62,13 @@ class AModuleStepController extends AController {
 		// dd($moduleStep);
 
 		return redirect()->route('moduleStepEdit', [
-														$moduleStep->moduleLevel->module->id,
-														$moduleStep->moduleLevel->id,
+														$moduleStep->module->id,
 														$moduleStep->id
 													]);
 	}
 
 
-	public function edit($moduleId, $levelId, $id) {
+	public function edit($moduleId, $id) {
 		$moduleStep = ModuleStep::find($id);
 
 
@@ -83,7 +78,7 @@ class AModuleStepController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach($moduleStep->moduleLevel->moduleStep as $data) {
+		foreach($moduleStep->module->moduleStep as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data->id;
 			}
@@ -100,11 +95,11 @@ class AModuleStepController extends AController {
 
 		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
 
-		foreach($moduleStep->moduleLevel->module->moduleLevel as $levelData) {
-			$topLevelSelectValues[$levelData->title] = [];
+		foreach(Module::orderBy('rang', 'DESC')->get() as $moduleData) {
+			$topLevelSelectValues[$moduleData->title] = [];
 
-			foreach($levelData->moduleStep as $stepData) {
-				$topLevelSelectValues[$levelData->title][$stepData->id] = $stepData->db_table;
+			foreach($moduleData->moduleStep as $stepData) {
+				$topLevelSelectValues[$moduleData->title][$stepData->id] = $stepData->db_table;
 			}
 		}
 
@@ -122,7 +117,7 @@ class AModuleStepController extends AController {
 	}
 
 
-	public function update(AModuleStepUpdateRequest $request, $moduleId, $moduleLevelId, $id) {
+	public function update(AModuleStepUpdateRequest $request, $moduleId, $id) {
 		$moduleStep = ModuleStep::find($id);
 		
 		$moduleStep->parent_step_id = $request->input('parent_step_id');
@@ -142,18 +137,17 @@ class AModuleStepController extends AController {
 		
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect()->route('moduleStepEdit', array($moduleStep->moduleLevel->module->id, $moduleStep->moduleLevel->id, $moduleStep->id));
+		return redirect()->route('moduleStepEdit', array($moduleStep->module->id, $moduleStep->id));
 	}
 	
 
-	public function delete($moduleId, $moduleLevelId, $id) {
+	public function delete($moduleId, $id) {
 		ModuleStep::destroy($id);
 
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
-		return redirect()->route('moduleLevelEdit', [
-														$moduleId,
-														$moduleLevelId
-													]);
+		return redirect()->route('moduleEdit', [
+													$moduleId
+												]);
 	}
 }

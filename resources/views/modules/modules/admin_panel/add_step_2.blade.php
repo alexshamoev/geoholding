@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $moduleLevel->module->alias }} > {{ __('bsw.adding') }}
+    Modules > {{ $module->alias }} > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,10 +10,8 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $moduleLevel->module->alias,
-		'tag1Url' => route('moduleEdit', $moduleLevel->module->id),
-		'tag2Text' => $moduleLevel->title,
-		'tag2Url' => route('moduleLevelEdit', [$moduleLevel->module->id, $moduleLevel->id]),
+		'tag1Text' => $module->alias,
+		'tag1Url' => route('moduleEdit', $module->id),
 		'tag3Text' => __('bsw.adding')
 	])
 
@@ -45,7 +43,7 @@
 		@endif
 
 
-		{{ Form::open(array('route' => array('moduleStepInsert', $moduleLevel->module->id, $moduleLevel->id))) }}
+		{{ Form::open(array('route' => array('moduleStepInsert', $module->id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

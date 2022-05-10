@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $moduleStep -> moduleLevel ->  module -> alias }} > {{ $moduleStep -> moduleLevel -> title }} > {{ $moduleStep -> title }} > {{ __('bsw.adding') }}
+    Modules > {{ $moduleStep ->  module -> alias }} > {{ $moduleStep -> title }} > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,12 +10,10 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $moduleStep -> moduleLevel -> module -> alias,
-		'tag1Url' => route('moduleEdit', $moduleStep -> moduleLevel -> module -> id),
-		'tag2Text' => $moduleStep -> moduleLevel -> title,
-		'tag2Url' => route('moduleLevelEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id]),
+		'tag1Text' => $moduleStep -> module -> alias,
+		'tag1Url' => route('moduleEdit', $moduleStep -> module -> id),
 		'tag3Text' => $moduleStep -> title,
-		'tag3Url' => route('moduleStepEdit', [$moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id]),
+		'tag3Url' => route('moduleStepEdit', [$moduleStep -> module -> id, $moduleStep -> id]),
 		'tag4Text' => __('bsw.adding')
 	])
 	
@@ -39,7 +37,7 @@
 		@endif
 
 
-		{{ Form :: open(array('route' => ['moduleBlockInsert', $moduleStep -> moduleLevel -> module -> id, $moduleStep -> moduleLevel -> id, $moduleStep -> id])) }}
+		{{ Form :: open(array('route' => ['moduleBlockInsert', $moduleStep -> module -> id, $moduleStep -> id])) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

@@ -37,26 +37,20 @@ if(Schema :: hasTable('languages')) {
 					Route :: get('/{id}', 'AModuleController@edit') -> name('moduleEdit');
 					Route :: post('/{id}', 'AModuleController@update') -> name('moduleUpdate');
 					Route :: get('/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
-					
-					Route :: get('/{moduleId}/add', 'AModuleLevelController@add') -> name('moduleLevelAdd');
-					Route :: post('/{moduleId}/add', 'AModuleLevelController@insert') -> name('moduleLevelInsert');
-					Route :: get('/{moduleId}/{id}', 'AModuleLevelController@edit') -> name('moduleLevelEdit');
-					Route :: post('/{moduleId}/{id}', 'AModuleLevelController@update') -> name('moduleLevelUpdate');
-					Route :: get('/{moduleId}/{id}/delete', 'AModuleLevelController@delete') -> name('moduleLevelDelete');
 
 
-					Route :: get('/{moduleId}/{levelId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
-					Route :: post('/{moduleId}/{levelId}/add', 'AModuleStepController@insert') -> name('moduleStepInsert');
-					Route :: get('/{moduleId}/{levelId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
-					Route :: post('/{moduleId}/{levelId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
-					Route :: get('/{moduleId}/{levelId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
+					Route :: get('/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
+					Route :: post('/{moduleId}/add', 'AModuleStepController@insert') -> name('moduleStepInsert');
+					Route :: get('/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
+					Route :: post('/{moduleId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
+					Route :: get('/{moduleId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
 					
 					
-					Route :: get('/{moduleId}/{levelId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
-					Route :: post('/{moduleId}/{levelId}/{stepId}/add', 'AModuleBlockController@insert') -> name('moduleBlockInsert');
-					Route :: get('/{moduleId}/{levelId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
-					Route :: post('/{moduleId}/{levelId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
-					Route :: get('/{moduleId}/{levelId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
+					Route :: get('/{moduleId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
+					Route :: post('/{moduleId}/{stepId}/add', 'AModuleBlockController@insert') -> name('moduleBlockInsert');
+					Route :: get('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
+					Route :: post('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
+					Route :: get('/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
 				});
 
 

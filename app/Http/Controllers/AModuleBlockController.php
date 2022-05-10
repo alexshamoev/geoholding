@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\ModuleLevel;
 use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Page;
@@ -16,7 +15,7 @@ use Session;
 
 
 class AModuleBlockController extends AController {
-	public function add($moduleId, $moduleLevelId, $moduleStepId) {
+	public function add($moduleId, $moduleStepId) {
 		$moduleStep = ModuleStep::find($moduleStepId);
 
 		$blockTypes = array('alias' => 'alias',
@@ -46,7 +45,7 @@ class AModuleBlockController extends AController {
 	}
 
 
-	public function insert(Request $request, $moduleId, $moduleLevelId, $moduleStepId) {
+	public function insert(Request $request, $moduleId, $moduleStepId) {
 		$moduleBlock = new ModuleBlock();
 
 		$moduleBlock->top_level = $moduleStepId;
@@ -148,15 +147,14 @@ class AModuleBlockController extends AController {
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect()->route('moduleBlockEdit', [
-														$moduleBlock->moduleStep->moduleLevel->module->id,
-														$moduleBlock->moduleStep->moduleLevel->id,
+														$moduleBlock->moduleStep->module->id,
 														$moduleBlock->moduleStep->id,
 														$moduleBlock->id
 													]);
 	}
 
 
-	public function edit($moduleId, $moduleLevelId, $moduleStepId, $id) {
+	public function edit($moduleId, $moduleStepId, $id) {
 		$moduleBlock = ModuleBlock::find($id);
 
 
@@ -212,10 +210,9 @@ class AModuleBlockController extends AController {
 	}
 
 
-	public function update(Request $request, $moduleId, $moduleLevelId, $moduleStepId, $id) {
+	public function update(Request $request, $moduleId, $moduleStepId, $id) {
 		$module = Module::find($moduleId);
 		$moduleStep = ModuleStep::find($moduleStepId);
-		$moduleLevel = ModuleLevel::find($moduleLevelId);
 		$moduleBlock = ModuleBlock::find($id);
 
 		$moduleBlock->type = $request->input('type');
@@ -316,21 +313,19 @@ class AModuleBlockController extends AController {
 
 		return redirect()->route('moduleBlockEdit', [
 														$module->id,
-														$moduleLevel->id,
 														$moduleStep->id,
 														$moduleBlock->id
 													]);
 	}
 	
 
-	public function delete($moduleId, $moduleLevelId, $moduleStepId, $id) {
+	public function delete($moduleId, $moduleStepId, $id) {
 		ModuleBlock::destroy($id);
 		
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect()->route('moduleStepEdit', [
 														$moduleId,
-														$moduleLevelId,
 														$moduleStepId
 													]);
 	}

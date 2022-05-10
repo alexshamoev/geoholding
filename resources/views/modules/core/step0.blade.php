@@ -10,8 +10,8 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => $module->title
 	])
-
-
+	
+	
 	<div class="p-2">
 		@if(Session::has('successDeleteStatus'))
 			<div class="p-2">
@@ -20,7 +20,7 @@
 				</div>
 			</div>
 		@endif
-
+		
 		
 		@php
 			$i = 0;
@@ -40,8 +40,8 @@
 					{{ Form::close() }}
 				@endif
 			<!--  -->
-
-
+			
+			
 			@foreach($dataFromDb as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
 						'id' => $data->id,

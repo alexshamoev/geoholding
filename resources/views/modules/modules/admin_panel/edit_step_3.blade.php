@@ -3,8 +3,7 @@
 
 @section('pageMetaTitle')
     Modules >
-	{{ $moduleBlock -> moduleStep -> moduleLevel -> module -> alias }} >
-	{{ $moduleBlock -> moduleStep -> moduleLevel -> title }} > 
+	{{ $moduleBlock -> moduleStep -> module -> alias }} >
 	{{ $moduleBlock -> moduleStep -> title }} > 
 	{{ $moduleBlock -> db_column }}
 @endsection
@@ -14,24 +13,22 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $moduleBlock -> moduleStep -> moduleLevel -> module -> alias,
-		'tag1Url' => route('moduleEdit', $moduleBlock -> moduleStep -> moduleLevel -> module -> id),
-		'tag2Text' => $moduleBlock -> moduleStep -> moduleLevel -> title,
-		'tag2Url' => route('moduleLevelEdit', [$moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id]),
+		'tag1Text' => $moduleBlock -> moduleStep -> module -> alias,
+		'tag1Url' => route('moduleEdit', $moduleBlock -> moduleStep -> module -> id),
 		'tag3Text' => $moduleBlock -> moduleStep -> title,
-		'tag3Url' => route('moduleStepEdit', [$moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id]),
+		'tag3Url' => route('moduleStepEdit', [$moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id]),
 		'tag4Text' => $moduleBlock -> db_column
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('moduleBlockAdd', [$moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id]),
-		'deleteUrl' => route('moduleBlockDelete', [$moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id, $moduleBlock -> id]),
+		'addUrl' => route('moduleBlockAdd', [$moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id]),
+		'deleteUrl' => route('moduleBlockDelete', [$moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $moduleBlock -> id]),
 		'nextId' => $next,
 		'prevId' => $prev,
-		'nextRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id, $next)),
-		'prevRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id, $prev)),
-		'backRoute' => route('moduleStepEdit', array($moduleBlock -> moduleStep -> moduleLevel -> module -> id, $moduleBlock -> moduleStep -> moduleLevel -> id, $moduleBlock -> moduleStep -> id))
+		'nextRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $next)),
+		'prevRoute' => route('moduleBlockEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id, $prev)),
+		'backRoute' => route('moduleStepEdit', array($moduleBlock -> moduleStep -> module -> id, $moduleBlock -> moduleStep -> id))
 	])
 	
 
@@ -56,8 +53,7 @@
 
 		{{ Form :: model($moduleBlock, array('route' => [
 															'moduleBlockUpdate',
-															$moduleBlock -> moduleStep -> moduleLevel -> module -> id,
-															$moduleBlock -> moduleStep -> moduleLevel -> id,
+															$moduleBlock -> moduleStep -> module -> id,
 															$moduleBlock -> moduleStep -> id,
 															$moduleBlock -> id
 														])) }}

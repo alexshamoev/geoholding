@@ -24,7 +24,7 @@ class AController extends Controller {
 		return redirect('/admin/'.$firstModule->alias);
 	}
 
-
+	
 	public static function getDefaultData() {
 		$bsc = Bsc::getFullData();
 		$activeUser = Auth::user();
@@ -54,7 +54,7 @@ class AController extends Controller {
 		}
 
 		$data = [
-					'modules' => Module::with(['moduleLevel', 'moduleLevel.moduleStep', 'moduleLevel.moduleStep.moduleBlock'])->get()->sortByDesc('rang'),
+					'modules' => Module::with(['moduleStep', 'moduleStep.moduleBlock'])->get()->sortByDesc('rang'),
 					'modulesForMenu' => $modulesForMenu,
 					'bsc' => Bsc::getFullData(),
 					'bsw' => Bsw::getFullData(),
