@@ -13,8 +13,6 @@ use Session;
 
 class ABscController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmptyBlocks();
-
 		$data = array_merge(self :: getDefaultData(), ['bscs' => Bsc :: all() -> sortBy('system_word')]);
 
 		return view('modules.bsc.admin_panel.start_point', $data);

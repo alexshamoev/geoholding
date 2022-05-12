@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\ModuleLevel;
 use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Language;
@@ -21,8 +20,7 @@ use Storage;
 class ACoreControllerStep0 extends AController {
     public function get($moduleAlias) {
 		$module = Module::where('alias', $moduleAlias)->first();
-		$moduleLevel = ModuleLevel::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
-		$moduleStep = ModuleStep::where('top_level', $moduleLevel->id)->orderBy('rang', 'desc')->get();
+		$moduleStep = ModuleStep::where('top_level', $module->id)->where('parent_step_id', '0')->orderBy('rang', 'desc')->get();
 
 
 		// dd($moduleStep);
@@ -30,37 +28,6 @@ class ACoreControllerStep0 extends AController {
 		$collectionForTags = collect([]);
 
 		foreach($moduleStep as $moduleStepData) {
-			$use_for_tags = 'id';
-			
-			$moduleBlock = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_tags', 1)->first();
-
-			if($moduleBlock) {
-				$use_for_tags = $moduleBlock->db_column;
-				
-				if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-					$use_for_tags .= '_'.App::getLocale();
-				}
-			}
-			
-			
-			$moduleBlockForSort = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_sort', 1)->first();
-			
-			$orderBy = 'id';
-			$sortBy = 'asc';
-
-			if($moduleBlockForSort) {
-				$orderBy = $moduleBlockForSort->db_column;
-
-				if($moduleBlockForSort->type === 'alias' || $moduleBlockForSort->type === 'input_with_languages' || $moduleBlockForSort->type === 'editor_with_languages') {
-					$orderBy .= '_'.App::getLocale();
-				}
-
-				if($moduleBlockForSort->sort_by_desc) {
-					$sortBy = 'desc';
-				}
-			}
-
-
 			$imageFormat = 'jpg';
 
 			$moduleBlockForImage = ModuleBlock::where('top_level', $moduleStepData->id)->where('type', 'image')->first();
@@ -69,9 +36,22 @@ class ACoreControllerStep0 extends AController {
 				$imageFormat = $moduleBlockForImage->file_format;
 			}
 
+			
+			$orderBy = 'id';
+			$sortBy = 'DESC';
+
+			$orderByArray = explode(' ', $moduleStepData->sort_by);
+
+			if(array_key_exists(0, $orderByArray)) {
+				$orderBy = $orderByArray['0'];
+			}
+
+			if(array_key_exists(1, $orderByArray)) {
+				$sortBy = $orderByArray['1'];
+			}
 
 			$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
-			$collectionForTags->add($use_for_tags);
+			$collectionForTags->add($moduleStepData->main_column);
 		}
 
 
@@ -95,7 +75,9 @@ class ACoreControllerStep0 extends AController {
 	}
 
 
-	public function add($moduleAlias, $moduleStepId) {
+	public function add($moduleAlias, $moduleStepId, $topLevelDataId = 0) {
+		dd($topLevelDataId);
+
 		$moduleStep = ModuleStep::find($moduleStepId);
 
 
@@ -106,7 +88,7 @@ class ACoreControllerStep0 extends AController {
 		foreach($moduleStep->moduleBlock as $data) {
 			// Select
 				if($data->type === 'select') {
-					$selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
+					// $selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
 
 					foreach(DB::table($data->select_table)->orderBy($data->select_sort_by, $data->select_sort_by_text)->get() as $dataInside) {
 						$selectData[$data->db_column][$dataInside->{$data->select_search_column}] = $dataInside->{$data->select_option_text};
@@ -129,7 +111,7 @@ class ACoreControllerStep0 extends AController {
 				}
 			// 
 			
-
+			
 			// Multiply Checkbox With Category
 				$multiplyCheckboxCategory = [];
 
@@ -188,7 +170,8 @@ class ACoreControllerStep0 extends AController {
 
 		$data = array_merge(self::getDefaultData(), [
 														'moduleStep' => $moduleStep,
-														'selectData' => $selectData
+														'selectData' => $selectData,
+														'topLevelDataId' => $topLevelDataId
 													]);
 
 		Session::keep('file_id');
@@ -764,185 +747,174 @@ class ACoreControllerStep0 extends AController {
 
 
 	public function edit($moduleAlias, $moduleStepId, $id) {
-		if(Session::has('file_id')) {
-			self::rename_temp_files($moduleStepId, Session::get('file_id'), $id);
-		
-			// dd(Session::get('file_id'));
-		}
-		
-
-		$module = Module::where('alias', $moduleAlias)->first();
-		$moduleStep = ModuleStep::find($moduleStepId);
-		$moduleBlocks = ModuleBlock::where('top_level', $moduleStep->id)->orderBy('rang', 'desc')->get();
-		$pageData = DB::table($moduleStep->db_table)->find($id);
-
-		$moduleBlock = ModuleBlock::where('top_level', $moduleStep->id)->firstWhere('a_use_for_tags', 1);
-
-		$use_for_tags = 'id';
-
-		$activeLangForFront = Language::where('like_default', 1)->first();
-
-		if($moduleBlock) {
-			$use_for_tags = $moduleBlock->db_column;
-
-			if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-				$use_for_tags .= '_'.$activeLangForFront->title;
-			}
-		}
-
-		$activeLang = Language::where('like_default_for_admin', 1)->first();
-
-
-		$prevId = 0;
-		$nextId = 0;
-
-		$prevIdIsSaved = false;
-		$nextIdIsSaved = false;
-
-
-		// Data for bar arrows.
-			$orderBy = 'id';
-			$sortBy = 'asc';
+		// Edit active block part.
+			if(Session::has('file_id')) {
+				self::rename_temp_files($moduleStepId, Session::get('file_id'), $id);
 			
-			$moduleBlocksForSort = ModuleBlock::where('top_level', $moduleStep->id)->where('a_use_for_sort', 1)->first();
-
-			if($moduleBlocksForSort) {
-				$orderBy = $moduleBlocksForSort->db_column;
-
-				if($moduleBlocksForSort->type === 'alias' || $moduleBlocksForSort->type === 'input_with_languages' || $moduleBlocksForSort->type === 'editor_with_languages') {
-					$orderBy .= '_'.$activeLang->title;
-				}
-
-				if($moduleBlocksForSort->sort_by_desc) {
-					$sortBy = 'desc';
-				}
+				// dd(Session::get('file_id'));
 			}
+			
+
+			$module = Module::where('alias', $moduleAlias)->first();
+			$moduleStep = ModuleStep::find($moduleStepId);
+			$pageData = DB::table($moduleStep->db_table)->find($id);
 
 
-			foreach(DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get() as $data) {
-				if($nextIdIsSaved && !$nextId) {
-					$nextId = $data->id;
+			$activeLang = Language::where('like_default_for_admin', 1)->first();
+
+
+			$prevId = 0;
+			$nextId = 0;
+
+			$prevIdIsSaved = false;
+			$nextIdIsSaved = false;
+
+
+			// Data for bar arrows.
+				$orderBy = 'id';
+				$sortBy = 'DESC';
+
+				$orderByArray = explode(' ', $moduleStep->main_column);
+
+				if(array_key_exists(0, $orderByArray)) {
+					$orderBy = $orderByArray['0'];
 				}
-				
-				if($pageData->id === $data->id) {
-					$prevIdIsSaved = true;
-					$nextIdIsSaved = true;
+
+				if(array_key_exists(1, $orderByArray)) {
+					$sortBy = $orderByArray['1'];
 				}
-				
-				if(!$prevIdIsSaved) {
-					$prevId = $data->id;
-				}
-			}
-		//
 
-		
-		$selectData = [];
-		$selectOptgroudData = [];
-		$multCheckboxCatTable = '';
 
-		foreach(ModuleBlock::where('top_level', $moduleStep->id)->orderBy('rang', 'desc')->get() as $data) {
-			// Select
-				if($data->type === 'select') {
-					$selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
-
-					foreach(DB::table($data->select_table)->orderBy($data->select_sort_by, $data->select_sort_by_text)->get() as $dataInside) {
-						$selectData[$data->db_column][$dataInside->{$data->select_search_column}] = $dataInside->{$data->select_option_text};
+				foreach(DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get() as $data) {
+					if($nextIdIsSaved && !$nextId) {
+						$nextId = $data->id;
+					}
+					
+					if($pageData->id === $data->id) {
+						$prevIdIsSaved = true;
+						$nextIdIsSaved = true;
+					}
+					
+					if(!$prevIdIsSaved) {
+						$prevId = $data->id;
 					}
 				}
-			// 
-			
-			// Select with optgroups
-				if($data->type === 'select_with_optgroup') {
-					$selectOptgroudData[$data->db_column][0] = '-- '.__('bsw.select').' --';
-					$alex = array('-- '.__('bsw.select').' --');
+			//
 
-					foreach(DB::table($data->select_optgroup_table)->orderBy($data->select_optgroup_sort_by, 'desc')->get() as $dataInside) {
-						foreach(DB::table($data->select_optgroup_2_table)->where('parent', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
-							$alex[$dataInside->{$data->select_optgroup_text}][$dataInsideTwice->id] = $dataInsideTwice->{$data->select_optgroup_2_text};
+			
+			$selectData = [];
+			$selectOptgroudData = [];
+			$multCheckboxCatTable = '';
+
+			foreach($moduleStep->moduleBlock as $data) {
+				// Select
+					if($data->type === 'select') {
+						$selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
+
+						foreach(DB::table($data->select_table)->orderBy($data->select_sort_by, $data->select_sort_by_text)->get() as $dataInside) {
+							$selectData[$data->db_column][$dataInside->{$data->select_search_column}] = $dataInside->{$data->select_option_text};
 						}
 					}
+				// 
+				
+				// Select with optgroups
+					if($data->type === 'select_with_optgroup') {
+						$selectOptgroudData[$data->db_column][0] = '-- '.__('bsw.select').' --';
+						$alex = array('-- '.__('bsw.select').' --');
 
-					$selectOptgroudData[$data->db_column] = $alex;
-				}
-			// 
-			
+						foreach(DB::table($data->select_optgroup_table)->orderBy($data->select_optgroup_sort_by, 'desc')->get() as $dataInside) {
+							foreach(DB::table($data->select_optgroup_2_table)->where('parent', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
+								$alex[$dataInside->{$data->select_optgroup_text}][$dataInsideTwice->id] = $dataInsideTwice->{$data->select_optgroup_2_text};
+							}
+						}
 
-			// Multiply Checkbox With Category
-				$multiplyCheckboxCategory = [];
+						$selectOptgroudData[$data->db_column] = $alex;
+					}
+				// 
+				
 
-				if($data->type === 'multiply_checkboxes_with_category') {
-					$checkboxTableText = $data->sql_select_with_checkboxes_option_text;														
-					$checkboxArray = array();
+				// Multiply Checkbox With Category
+					$multiplyCheckboxCategory = [];
 
-					foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
-						$checkboxTableTextInside = $data->sql_select_with_checkboxes_option_text_inside;
-						$tempDbColumn = $data->db_column;
-						$tempArray = explode(',', $pageData->$tempDbColumn);
+					if($data->type === 'multiply_checkboxes_with_category') {
+						$checkboxTableText = $data->sql_select_with_checkboxes_option_text;														
+						$checkboxArray = array();
 
-						foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('parent', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
-							$active = 0;
+						foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
+							$checkboxTableTextInside = $data->sql_select_with_checkboxes_option_text_inside;
+							$tempDbColumn = $data->db_column;
+							$tempArray = explode(',', $pageData->$tempDbColumn);
+
+							foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('parent', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
+								$active = 0;
+								foreach($tempArray as $tempData) {
+									if($tempData == $dataInsideTwice->id) {
+										$active = 1;
+									}
+								}
+
+								$checkboxArray[$dataInside->$checkboxTableText][$dataInsideTwice->id] = array('title' => $dataInsideTwice->$checkboxTableTextInside, 'active' => $active);
+							}
+						}
+
+						$multiplyCheckboxCategory[$data->db_column] = $checkboxArray;
+					}
+				//
+
+
+				// Multiply Checkbox
+					$multiplyCheckbox = [];
+					
+					if($data->type === 'multiply_checkboxes') {
+						$checkboxText = $data->sql_select_with_checkboxes_option_text;														
+						$checkboxArray = array();
+						$active = 0;
+
+						foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
+							$tempDbColumn = $data->db_column;
+							$tempArray = explode(',', $pageData->$tempDbColumn);
+
 							foreach($tempArray as $tempData) {
-								if($tempData == $dataInsideTwice->id) {
+								if($tempData == $dataInside->id) {
 									$active = 1;
 								}
 							}
 
-							$checkboxArray[$dataInside->$checkboxTableText][$dataInsideTwice->id] = array('title' => $dataInsideTwice->$checkboxTableTextInside, 'active' => $active);
+							$checkboxArray[$dataInside->id] = array('title' => $dataInside->$checkboxText, 'active' => $active);
 						}
+						
+						$multiplyCheckbox[$data->db_column] = $checkboxArray;
 					}
+				//
+			}
+		// 
 
-					$multiplyCheckboxCategory[$data->db_column] = $checkboxArray;
-				}
-			//
 
-
-			// Multiply Checkbox
-				$multiplyCheckbox = [];
-				
-				if($data->type === 'multiply_checkboxes') {
-					$checkboxText = $data->sql_select_with_checkboxes_option_text;														
-					$checkboxArray = array();
-					$active = 0;
-
-					foreach(DB::table($data->sql_select_with_checkboxes_table)->orderBy($data->sql_select_with_checkboxes_sort_by, 'desc')->get() as $dataInside) {
-						$tempDbColumn = $data->db_column;
-						$tempArray = explode(',', $pageData->$tempDbColumn);
-
-						foreach($tempArray as $tempData) {
-							if($tempData == $dataInside->id) {
-								$active = 1;
-							}
-						}
-
-						$checkboxArray[$dataInside->id] = array('title' => $dataInside->$checkboxText, 'active' => $active);
-					}
-					
-					$multiplyCheckbox[$data->db_column] = $checkboxArray;
-				}
-			//
-		}
-
-		
+		/*
 		$use_for_sort = 'rang';
 
 
 		$imageFormat = 'jpg';
+*/
 
-		$nextModuleStepData = false;
-
-		$nextModuleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->skip(1)->take(1)->first();
+		$nextModuleStep = ModuleStep::where('top_level', $module->id)->where('parent_step_id', $moduleStep->id)->orderBy('rang', 'desc')->get();
+		// $nextModuleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->skip(1)->take(1)->first();
 		
-		if($nextModuleStep) {
-			$nextModuleStepData = DB::table($nextModuleStep->db_table)->where('parent', $id)->orderBy($use_for_sort, 'desc')->get();
+		// dd($nextModuleStep);
 
-			$moduleBlockForImage = ModuleBlock::where('top_level', $nextModuleStep->id)->where('type', 'image')->first();
+		$nextModuleStepData = collect([]);
 
-			if($moduleBlockForImage) {
-				$imageFormat = $moduleBlockForImage->file_format;
-			}
+		foreach($nextModuleStep as $data) {
+			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy('id', 'desc')->get());
+
+			// $moduleBlockForImage = ModuleBlock::where('top_level', $nextModuleStep->id)->where('type', 'image')->first();
+
+			// if($moduleBlockForImage) {
+			// 	$imageFormat = $moduleBlockForImage->file_format;
+			// }
 		}
 
-		$moduleBlockForSort = ModuleBlock::where('top_level', $module->id)->where('a_use_for_sort', 1)->first();
+		/*$moduleBlockForSort = ModuleBlock::where('top_level', $module->id)->where('a_use_for_sort', 1)->first();
 
 		$use_for_sort = 'id';
 		$sort_by = 'DESC';
@@ -965,17 +937,17 @@ class ACoreControllerStep0 extends AController {
 			// dd($childSteps);
 
 			foreach($childSteps as $moduleStepData) {
-				$use_for_tags = 'id';
+				$use_for_tags = $moduleStep->main_column;
 				
-				$moduleBlock = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_tags', 1)->first();
+				// $moduleBlock = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_tags', 1)->first();
 
-				if($moduleBlock) {
-					$use_for_tags = $moduleBlock->db_column;
+				// if($moduleBlock) {
+				// 	$use_for_tags = $moduleBlock->db_column;
 					
-					if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-						$use_for_tags .= '_'.App::getLocale();
-					}
-				}
+				// 	if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
+				// 		$use_for_tags .= '_'.App::getLocale();
+				// 	}
+				// }
 				
 				
 				$moduleBlockForSort = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_sort', 1)->first();
@@ -1009,7 +981,7 @@ class ACoreControllerStep0 extends AController {
 				$collectionForTags->add($use_for_tags);
 			}
 		// 
-
+*/
 
 		$parentModuleStepData = false;
 
@@ -1018,31 +990,49 @@ class ACoreControllerStep0 extends AController {
 		}
 		
 		// dd($moduleStep->moduleParentStep);
+		// dd($use_for_tags.'6666');
+
+		$orderBy = 'id';
+		$sortBy = 'DESC';
+
+		$orderByArray = explode(' ', $moduleStep->main_column);
+
+		if(array_key_exists(0, $orderByArray)) {
+			$orderBy = $orderByArray['0'];
+		}
+
+		if(array_key_exists(1, $orderByArray)) {
+			$sortBy = $orderByArray['1'];
+		}
+
+
+		$imageFormat = 'jpg'; // Temp solution.
+
 
 		$data = array_merge(self::getDefaultData(), [
 														'module' => $module,
 														'moduleStep' => $moduleStep,
-														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($use_for_sort, $sort_by)->get(),
-														'moduleBlocks' => $moduleBlocks,
+														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get(),
+														'moduleBlocks' => $moduleStep->moduleBlock,
 														'selectData' => $selectData,
 														'selectOptgroudData' => $selectOptgroudData,
 														'languages' => Language::where('disable', 0)->orderBy('rang', 'desc')->get(),
 														'sortBy' => $orderBy,
 														'id' => $id,
 														'imageFormat' => $imageFormat,
-														'nextModuleStepData' => $nextModuleStepData,
 														'nextModuleStep' => $nextModuleStep,
-														'moduleStep1Data' => $nextModuleStep,
+														'nextModuleStepData' => $nextModuleStepData,
+														// 'moduleStep1Data' => $nextModuleStep,
 														'data' => $pageData,
 														'prevId' => $prevId,
 														'nextId' => $nextId,
-														'use_for_tags' => $use_for_tags,
+														'use_for_tags' => $moduleStep->main_column,
 														'multiplyCheckbox' => $multiplyCheckbox,
 														'multiplyCheckbox' => $multiplyCheckbox,
 														'multiplyCheckboxCategory' => $multiplyCheckboxCategory,
-														'collection' => $collection,
-														'collectionForTags' => $collectionForTags,
-														'childSteps' => $childSteps,
+														// 'collection' => $collection,
+														// 'collectionForTags' => $collectionForTags,
+														// 'childSteps' => $childSteps,
 														'parentModuleStepData' => $parentModuleStepData
 													]);
 
@@ -1341,10 +1331,26 @@ class ACoreControllerStep0 extends AController {
 			}
 		}
 		
-		DB::table($moduleStep->db_table)->delete($id);
 
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
-		return redirect()->route('coreGetStep0', $module->alias);
+		if($moduleStep->parent_step_id == 0) {
+			DB::table($moduleStep->db_table)->delete($id);
+
+			// dd('top level delete');
+
+			return redirect()->route('coreGetStep0', $module->alias);
+		} else {
+			$activeBlockData = DB::table($moduleStep->db_table)->find($id);
+
+			DB::table($moduleStep->db_table)->delete($id);
+
+			return redirect()->route('coreEditStep0',
+									[
+										$module->alias,
+										$moduleStep->parent_step_id,
+										$activeBlockData->top_level
+									]);
+		}
 	}
 }

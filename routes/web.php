@@ -107,6 +107,7 @@ if(Schema :: hasTable('languages')) {
 
 				Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
 				Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
+				Route :: get('/{moduleAlias}/{moduleStepId}/{topLevelDataId}/add', 'ACoreControllerStep0@add') -> name('coreAddStep1');
 				Route :: post('/{moduleAlias}/{moduleStepId}/add', 'ACoreControllerStep0@insert') -> name('coreInsertStep0');
 				Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
 				Route :: post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');

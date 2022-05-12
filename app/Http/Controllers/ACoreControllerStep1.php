@@ -147,8 +147,6 @@ class ACoreControllerStep1 extends AController {
 
 
 	public function edit($moduleAlias, $parent, $id) {
-		ACoreControllerStep2 :: deleteEmpty();
-
 		$module = Module :: where('alias', $moduleAlias) -> first();
 		$moduleParentStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> first();
 		$moduleStep = ModuleStep :: where('top_level', $module -> id) -> orderBy('rang', 'desc') -> skip(1) -> take(1) -> first();
@@ -550,7 +548,7 @@ class ACoreControllerStep1 extends AController {
 	}
 
 	
-	public static function deleteEmpty() {
+	/*public static function deleteEmpty() {
 		foreach(Module :: get() as $module) {
 			foreach(ModuleStep :: where('top_level', $module -> id) -> skip(1) -> take(10) -> get() as $moduleStep) {
 				foreach(DB :: table($moduleStep -> db_table) -> get() as $dbTableData) {
@@ -599,5 +597,5 @@ class ACoreControllerStep1 extends AController {
 				}
 			}
 		}
-	}
+	}*/
 }

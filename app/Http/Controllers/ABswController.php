@@ -13,9 +13,6 @@ use Session;
 
 class ABswController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmptyBlocks();
-
-
 		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 1) -> get(),
 														'bsws' => Bsw :: all() -> sortBy('system_word')]);
 		

@@ -2,14 +2,14 @@
 
 
 @section('pageMetaTitle')
-    {{ $moduleStep->moduleLevel->module->title }} > {{ __('bsw.adding') }}
+    {{ $moduleStep->module->title }} > {{ __('bsw.adding') }}
 @endsection
 
 
 @section('content')
 	@include('admin.includes.tags', [
-		'tag0Text' => $moduleStep->moduleLevel->module->title,
-		'tag0Url' => route('coreGetStep0', [$moduleStep->moduleLevel->module->alias]),
+		'tag0Text' => $moduleStep->module->title,
+		'tag0Url' => route('coreGetStep0', [$moduleStep->module->alias]),
 		'tag1Text' => __('bsw.adding')
 	])
 
@@ -22,9 +22,9 @@
 				</div>
 			</div>
 		@endif
-	
 		
-		{{ Form::open(array('route' => array('coreInsertStep0', $moduleStep->moduleLevel->module->alias, $moduleStep->id), 'files' => true)) }}
+		
+		{{ Form::open(array('route' => array('coreInsertStep0', $moduleStep->module->alias, $moduleStep->id), 'files' => true)) }}
 			@foreach($moduleStep->moduleBlock as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">
@@ -72,9 +72,9 @@
 									@if(Session::has('file_id'))
 										{{ Session::get('file_id') }}
 
-										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
+										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
 											<div class="p-2">
-												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->moduleLevel->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
+												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
 											</div>
 										@endif
 									@endif
@@ -341,6 +341,9 @@
 					</div>
 				@endif
 			@endforeach
+
+
+			{{ Form::hidden('topLevelDataId', $topLevelDataId) }}
 
 			<div class="p-2 submit-button">
 				{{ Form::submit(__('bsw.adding')) }}

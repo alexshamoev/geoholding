@@ -41,15 +41,25 @@
 				@endif
 			<!--  -->
 			
-			
-			@foreach($dataFromDb as $data)
-				@include('admin.includes.horizontalEditDeleteBlock', [
-						'id' => $data->id,
-						'title' => $data->{$collectionForTags->values()->get($i)},
-						'editLink' => route('coreEditStep0', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
-						'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
-					])
-			@endforeach
+			<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
+				@foreach($dataFromDb as $data)
+					@if($moduleStep->values()->get($i)->sort_by === 'rang DESC')
+						@include('admin.includes.horizontalEditDeleteBlock', [
+									'id' => $data->id,
+									'title' => $data->{$collectionForTags->values()->get($i)},
+									'editLink' => route('coreEditStep0', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
+									'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+								])
+					@else 
+						@include('admin.includes.horizontalEditDelete', [
+								'id' => $data->id,
+								'title' => $data->{$collectionForTags->values()->get($i)},
+								'editLink' => route('coreEditStep0', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
+								'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+						])
+					@endif
+				@endforeach
+			</div>
 
 			@php
 				$i++;

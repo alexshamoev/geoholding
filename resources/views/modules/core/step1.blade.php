@@ -62,7 +62,7 @@
 		@endif
 		
 		
-		{{ Form::open(array('route' => array('coreUpdateStep0', $moduleStep->moduleLevel->module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
+		{{ Form::open(array('route' => array('coreUpdateStep0', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">
@@ -383,6 +383,37 @@
 		
 		
 
+		{{-- @dd($nextModuleStepData) --}}
+		
+		@php
+			$i = 0;
+		@endphp
+
+		@foreach($nextModuleStep as $moduleStepData)
+			<!-- Add button -->
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$moduleStepData->title,
+					'url' => route('coreAddStep1', [$module->alias, $moduleStepData->id, $data->id])
+				])
+			<!--  -->
+			
+			@foreach($nextModuleStepData->values()->get($i) as $dataIn)
+				@include('admin.includes.horizontalEditDeleteBlock',
+						[
+							'id' => $dataIn->id,
+							'title' => $dataIn->{ $moduleStepData->main_column },
+							'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
+							'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+						])
+			@endforeach
+
+			@php
+				$i++;
+			@endphp
+		@endforeach
+
+
+		{{--
 		@php
 			$i = 0;
 		@endphp
@@ -417,6 +448,8 @@
 			@endphp
 		@endforeach
 
+		--}}
+
 
 
 		{{--@if($nextModuleStepData)
@@ -447,7 +480,7 @@
 				{{ Form::close() }}
 			@endif
 				
-			<div class="row" id="rangBlocks" data-db_table="{{ $nextModuleStep->db_table }}">
+			<div class="row rangBlocks" data-db_table="{{ $nextModuleStep->db_table }}">
 				@if(!$nextModuleStep->images)
 					@foreach($nextModuleStepData as $dataIn)
 						@if($sortBy === 'rang')

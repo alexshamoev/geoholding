@@ -272,7 +272,7 @@
 
 		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', array($module->id))])
 
-		<div id="rangBlocks" data-db_table="module_steps">
+		<div class="rangBlocks" data-db_table="module_steps">
 			@foreach($module->moduleStep as $data)
 				@include('admin.includes.horizontalEditDeleteBlock', [
 					'id' => $data->id,
