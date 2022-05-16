@@ -38,9 +38,12 @@ class ACoreControllerStep0 extends AController {
 			$collectionForTags->add($moduleStepData->main_column);
 		}
 
+		$imageFormat = 'jpg'; // Temp solution.
+		
 		$data = array_merge(self::getDefaultData(), ['module' => $module,
 													'moduleStep' => $moduleStep,
 													'collection' => $collection,
+													'imageFormat' => $imageFormat,
 													'collectionForTags' => $collectionForTags]);
 
 
