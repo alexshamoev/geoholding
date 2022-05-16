@@ -22,8 +22,6 @@ class ACoreControllerStep0 extends AController {
 		$module = Module::where('alias', $moduleAlias)->first();
 		$moduleStep = ModuleStep::where('top_level', $module->id)->where('parent_step_id', '0')->orderBy('rang', 'desc')->get();
 
-
-		// dd($moduleStep);
 		$collection = collect([]);
 		$collectionForTags = collect([]);
 
@@ -36,26 +34,9 @@ class ACoreControllerStep0 extends AController {
 				$imageFormat = $moduleBlockForImage->file_format;
 			}
 
-			
-			$orderBy = 'id';
-			$sortBy = 'DESC';
-
-			$orderByArray = explode(' ', $moduleStepData->sort_by);
-
-			if(array_key_exists(0, $orderByArray)) {
-				$orderBy = $orderByArray['0'];
-			}
-
-			if(array_key_exists(1, $orderByArray)) {
-				$sortBy = $orderByArray['1'];
-			}
-
-			$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
+			$collection->add(DB::table($moduleStepData->db_table)->orderBy($moduleStepData->order_by_column, $moduleStepData->order_by_sequence)->get());
 			$collectionForTags->add($moduleStepData->main_column);
 		}
-
-
-
 
 		$data = array_merge(self::getDefaultData(), ['module' => $module,
 													'moduleStep' => $moduleStep,
@@ -771,20 +752,20 @@ class ACoreControllerStep0 extends AController {
 
 
 			// Data for bar arrows.
-				$orderBy = 'id';
-				$sortBy = 'DESC';
+				// $orderBy = 'id';
+				// $sortBy = 'DESC';
 
-				$orderByArray = explode(' ', $moduleStep->sort_by);
+				// $orderByArray = explode(' ', $moduleStep->sort_by);
 
-				if(array_key_exists(0, $orderByArray)) {
-					$orderBy = $orderByArray['0'];
-				}
+				// if(array_key_exists(0, $orderByArray)) {
+				// 	$orderBy = $orderByArray['0'];
+				// }
 
-				if(array_key_exists(1, $orderByArray)) {
-					$sortBy = $orderByArray['1'];
-				}
+				// if(array_key_exists(1, $orderByArray)) {
+				// 	$sortBy = $orderByArray['1'];
+				// }
 
-				foreach(DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get() as $data) {
+				foreach(DB::table($moduleStep->db_table)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get() as $data) {
 					if($nextIdIsSaved && !$nextId) {
 						$nextId = $data->id;
 					}
@@ -904,18 +885,7 @@ class ACoreControllerStep0 extends AController {
 		$nextModuleStepData = collect([]);
 
 		foreach($nextModuleStep as $data) {
-			$orderByArray = explode(' ', $data->sort_by);
-
-			if(array_key_exists(0, $orderByArray)) {
-				$orderBy = $orderByArray['0'];
-			}
-
-			if(array_key_exists(1, $orderByArray)) {
-				$sortBy = $orderByArray['1'];
-			}
-
-
-			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy($orderBy, $sortBy)->get());
+			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy($data->order_by_column, $data->order_by_sequence)->get());
 			
 			
 			// $moduleBlockForImage = ModuleBlock::where('top_level', $nextModuleStep->id)->where('type', 'image')->first();
@@ -1006,18 +976,18 @@ class ACoreControllerStep0 extends AController {
 		// dd($moduleStep->moduleParentStep);
 		// dd($use_for_tags.'6666');
 
-		$orderBy = 'id';
-		$sortBy = 'DESC';
+		// $orderBy = 'id';
+		// $sortBy = 'DESC';
 
-		$orderByArray = explode(' ', $moduleStep->sort_by);
+		// $orderByArray = explode(' ', $moduleStep->sort_by);
 
-		if(array_key_exists(0, $orderByArray)) {
-			$orderBy = $orderByArray['0'];
-		}
+		// if(array_key_exists(0, $orderByArray)) {
+		// 	$orderBy = $orderByArray['0'];
+		// }
 
-		if(array_key_exists(1, $orderByArray)) {
-			$sortBy = $orderByArray['1'];
-		}
+		// if(array_key_exists(1, $orderByArray)) {
+		// 	$sortBy = $orderByArray['1'];
+		// }
 
 
 		$imageFormat = 'jpg'; // Temp solution.
@@ -1026,12 +996,12 @@ class ACoreControllerStep0 extends AController {
 		$data = array_merge(self::getDefaultData(), [
 														'module' => $module,
 														'moduleStep' => $moduleStep,
-														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get(),
+														'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get(),
 														'moduleBlocks' => $moduleStep->moduleBlock,
 														'selectData' => $selectData,
 														'selectOptgroudData' => $selectOptgroudData,
 														'languages' => Language::where('disable', 0)->orderBy('rang', 'desc')->get(),
-														'sortBy' => $orderBy,
+														'sortBy' => $moduleStep->order_by_column,
 														'id' => $id,
 														'imageFormat' => $imageFormat,
 														'nextModuleStep' => $nextModuleStep,
