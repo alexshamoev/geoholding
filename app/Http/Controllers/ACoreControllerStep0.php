@@ -774,7 +774,7 @@ class ACoreControllerStep0 extends AController {
 				$orderBy = 'id';
 				$sortBy = 'DESC';
 
-				$orderByArray = explode(' ', $moduleStep->main_column);
+				$orderByArray = explode(' ', $moduleStep->sort_by);
 
 				if(array_key_exists(0, $orderByArray)) {
 					$orderBy = $orderByArray['0'];
@@ -783,7 +783,6 @@ class ACoreControllerStep0 extends AController {
 				if(array_key_exists(1, $orderByArray)) {
 					$sortBy = $orderByArray['1'];
 				}
-
 
 				foreach(DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get() as $data) {
 					if($nextIdIsSaved && !$nextId) {
@@ -905,14 +904,29 @@ class ACoreControllerStep0 extends AController {
 		$nextModuleStepData = collect([]);
 
 		foreach($nextModuleStep as $data) {
-			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy('id', 'desc')->get());
+			$orderByArray = explode(' ', $data->sort_by);
 
+			if(array_key_exists(0, $orderByArray)) {
+				$orderBy = $orderByArray['0'];
+			}
+
+			if(array_key_exists(1, $orderByArray)) {
+				$sortBy = $orderByArray['1'];
+			}
+
+
+			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy($orderBy, $sortBy)->get());
+			
+			
 			// $moduleBlockForImage = ModuleBlock::where('top_level', $nextModuleStep->id)->where('type', 'image')->first();
 
 			// if($moduleBlockForImage) {
 			// 	$imageFormat = $moduleBlockForImage->file_format;
 			// }
 		}
+
+		// dd($nextModuleStepData);
+
 
 		/*$moduleBlockForSort = ModuleBlock::where('top_level', $module->id)->where('a_use_for_sort', 1)->first();
 
@@ -995,7 +1009,7 @@ class ACoreControllerStep0 extends AController {
 		$orderBy = 'id';
 		$sortBy = 'DESC';
 
-		$orderByArray = explode(' ', $moduleStep->main_column);
+		$orderByArray = explode(' ', $moduleStep->sort_by);
 
 		if(array_key_exists(0, $orderByArray)) {
 			$orderBy = $orderByArray['0'];

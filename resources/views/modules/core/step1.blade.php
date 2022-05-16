@@ -397,16 +397,18 @@
 				])
 			<!--  -->
 			
-			@foreach($nextModuleStepData->values()->get($i) as $dataIn)
-				@include('admin.includes.horizontalEditDeleteBlock',
-						[
-							'id' => $dataIn->id,
-							'title' => $dataIn->{ $moduleStepData->main_column },
-							'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
-							'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
-						])
-			@endforeach
-
+			<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
+				@foreach($nextModuleStepData->values()->get($i) as $dataIn)
+					@include('admin.includes.horizontalEditDeleteBlock',
+							[
+								'id' => $dataIn->id,
+								'title' => $dataIn->{ $moduleStepData->main_column },
+								'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
+								'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+							])
+				@endforeach
+			</div>
+			
 			@php
 				$i++;
 			@endphp
