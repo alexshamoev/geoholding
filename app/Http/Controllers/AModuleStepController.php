@@ -46,20 +46,18 @@ class AModuleStepController extends AController {
 		$moduleStep->title = $request->input('title');
 		$moduleStep->db_table = $request->input('db_table');
 		$moduleStep->main_column = $request->input('main_column');
-		$moduleStep->sort_by = $request->input('sort_by');
 		$moduleStep->images = $request->has('images');
 		$moduleStep->possibility_to_add = $request->has('possibility_to_add');
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
+		$moduleStep->order_by_column = $request->input('order_by_column');
+		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
 
 		$moduleStep->save();
-
 		
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
-
-		// dd($moduleStep);
 
 		return redirect()->route('moduleStepEdit', [
 														$moduleStep->module->id,
@@ -134,7 +132,6 @@ class AModuleStepController extends AController {
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
 
 		$moduleStep->save();
-
 		
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
