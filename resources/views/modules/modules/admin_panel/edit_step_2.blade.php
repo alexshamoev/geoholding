@@ -136,7 +136,7 @@
 					</div>
 				</div>
 
-				@error('sort_by')
+				@error('order_by_column')
 					<div class="alert alert-danger">
 						{{$message}}
 					</div>
@@ -155,12 +155,6 @@
 						ASC {{Form :: radio('order_by_sequence', 'ASC')}}
 					</div>
 				</div>
-
-				@error('sort_by')
-					<div class="alert alert-danger">
-						{{$message}}
-					</div>
-				@enderror
 			</div>
 
 			<div class="p-2">

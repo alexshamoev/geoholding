@@ -124,7 +124,6 @@ class AModuleStepController extends AController {
 		$moduleStep->title = $request->input('title');
 		$moduleStep->db_table = $request->input('db_table');
 		$moduleStep->main_column = $request->input('main_column');
-		$moduleStep->sort_by = $request->input('sort_by');
 		$moduleStep->images = $request->has('images');
 		$moduleStep->possibility_to_add = $request->has('possibility_to_add');
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
