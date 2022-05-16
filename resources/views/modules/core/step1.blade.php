@@ -388,7 +388,7 @@
 		@php
 			$i = 0;
 		@endphp
-
+										
 		@foreach($nextModuleStep as $moduleStepData)
 			<!-- Add button -->
 				@include('admin.includes.addButton', [
@@ -399,13 +399,22 @@
 			
 			<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
 				@foreach($nextModuleStepData->values()->get($i) as $dataIn)
-					@include('admin.includes.horizontalEditDeleteBlock',
-							[
-								'id' => $dataIn->id,
-								'title' => $dataIn->{ $moduleStepData->main_column },
-								'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
-								'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
-							])
+					@if($moduleStepData->order_by_column === 'rang')
+						@include('admin.includes.horizontalEditDeleteBlock',
+								[
+									'id' => $dataIn->id,
+									'title' => $dataIn->{ $moduleStepData->main_column },
+									'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+								])
+					@else
+						@include('admin.includes.horizontalEditDelete', [
+									'id' => $dataIn->id,
+									'title' => $dataIn->{ $moduleStepData->main_column },
+									'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+								])
+					@endif
 				@endforeach
 			</div>
 			
@@ -485,6 +494,7 @@
 			<div class="row rangBlocks" data-db_table="{{ $nextModuleStep->db_table }}">
 				@if(!$nextModuleStep->images)
 					@foreach($nextModuleStepData as $dataIn)
+						@dd($sortBy)
 						@if($sortBy === 'rang')
 							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
 											'id' => $dataIn->id,
