@@ -10,27 +10,27 @@
 	@if(!$moduleStep->moduleParentStep)
 		@include('admin.includes.tags', [
 			'tag0Text' => $module->title,
-			'tag0Url' => route('coreGetStep0', [$module->alias]),
+			'tag0Url' => route('coreGetStartPoint', [$module->alias]),
 			'tag1Text' => $data->$use_for_tags
 		])
 	@else
 		@include('admin.includes.tags', [
 			'tag0Text' => $module->title,
-			'tag0Url' => route('coreGetStep0', [$module->alias]),
+			'tag0Url' => route('coreGetStartPoint', [$module->alias]),
 			'tag1Text' => $parentModuleStepData->title_ge,
-			'tag1Url' => route('coreEditStep0', [$module->alias, $moduleStep->moduleParentStep->id, $parentModuleStepData->id]),
+			'tag1Url' => route('coreEdit', [$module->alias, $moduleStep->moduleParentStep->id, $parentModuleStepData->id]),
 			'tag2Text' => $data->$use_for_tags
 		])
 	@endif
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('coreAddStep0', [$module->alias, $moduleStep->id]),
-		'deleteUrl' => route('coreDeleteStep0', array($module->alias, $moduleStep->id, $data->id)),
+		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id]),
+		'deleteUrl' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id)),
 		'nextId' => $nextId,
 		'prevId' => $prevId,
-		'nextRoute' => route('coreEditStep0', [$module->alias, $moduleStep->id, $nextId]),
-		'prevRoute' => route('coreEditStep0', [$module->alias, $moduleStep->id, $prevId]),
-		'backRoute' => route('coreGetStep0', [$module->alias])
+		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
+		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
+		'backRoute' => route('coreGetStartPoint', [$module->alias])
 	])
 
 	
@@ -62,7 +62,7 @@
 		@endif
 		
 		
-		{{ Form::open(array('route' => array('coreUpdateStep0', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
+		{{ Form::open(array('route' => array('coreUpdate', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">
@@ -107,9 +107,9 @@
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
 
-									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/step_0/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
+									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
 										<div class="p-2">
-											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/step_0/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
+											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
 										</div>
 									@endif
 								</div>
@@ -393,7 +393,7 @@
 			<!-- Add button -->
 				@include('admin.includes.addButton', [
 					'text' => __('bsw.add').' '.$moduleStepData->title,
-					'url' => route('coreAddStep1', [$module->alias, $moduleStepData->id, $data->id])
+					'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
 				])
 			<!--  -->
 			
@@ -404,15 +404,15 @@
 								[
 									'id' => $dataIn->id,
 									'title' => $dataIn->{ $moduleStepData->main_column },
-									'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
-									'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+									'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
 								])
 					@else
 						@include('admin.includes.horizontalEditDelete', [
 									'id' => $dataIn->id,
 									'title' => $dataIn->{ $moduleStepData->main_column },
-									'editLink' => route('coreEditStep0', [$module->alias, $moduleStepData->id, $dataIn->id]),
-									'deleteLink' => route('coreDeleteStep0', array($module->alias, $moduleStepData->id, $dataIn->id))
+									'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
 								])
 					@endif
 				@endforeach
@@ -434,12 +434,21 @@
 				@if(!$childSteps->values()->get($i)->images)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$childSteps->values()->get($i)->title,
-						'url' => route('coreAddStep0', [$module->alias, $childSteps->values()->get($i)->id])
+						'url' => route('coreAdd', [$module->alias, $childSteps->values()->get($i)->id])
 					])
 				@else 
-					{{ Form::open(array('route' => array('coreAddMultImageForstep0', $module->alias, $childSteps->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
-						{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-						{{ Form::submit() }}
+					{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $childSteps->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
+						<div class="p-2">
+							{{ __('bsw.add').' '.$moduleStep->values()->get($i)->title }}
+						</div>
+
+						<div class="p-2">
+							{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+						</div>
+
+						<div class="p-2 submit-button">
+							{{ Form::submit(__('bsw.adding')) }}
+						</div>
 					{{ Form::close() }}
 				@endif
 			<!--  -->
@@ -449,8 +458,8 @@
 				@include('admin.includes.horizontalEditDeleteBlock', [
 						'id' => $data->id,
 						'title' => $data->{$collectionForTags->values()->get($i)},
-						'editLink' => route('coreEditStep0', [$module->alias, $childSteps->values()->get($i)->id, $data->id]),
-						'deleteLink' => route('coreDeleteStep0', array($module->alias, $childSteps->values()->get($i)->id, $data->id))
+						'editLink' => route('coreEdit', [$module->alias, $childSteps->values()->get($i)->id, $data->id]),
+						'deleteLink' => route('coreDelete', array($module->alias, $childSteps->values()->get($i)->id, $data->id))
 					])
 			@endforeach
 
@@ -469,10 +478,10 @@
 			@if(!$nextModuleStep->images)
 				@include('admin.includes.addButton', [
 					'text' => __('bsw.add').' '.$nextModuleStep->title,
-					'url' => route('coreAddStep1', array($module->alias, $data->id))
+					'url' => route('coreAdd', array($module->alias, $data->id))
 				])
 			@else
-				{{ Form::open(array('route' => array('coreAddMultImagestep0', $module->alias, $data->id), 'files' => true, 'method' => 'post')) }}
+				{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $data->id), 'files' => true, 'method' => 'post')) }}
 					<div class="p-2">
 						<div class="p-2 standard-block">
 							<div class="p-2">
@@ -500,7 +509,7 @@
 											'id' => $dataIn->id,
 											'title' => $dataIn->$use_for_tags,
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
+											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
 										])
 						@else
@@ -509,7 +518,7 @@
 											'title' => $dataIn->$use_for_tags,
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'moduleAlias' => $module->alias,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
+											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
 										])
 						@endif
@@ -521,7 +530,7 @@
 											'id' => $dataIn->id,
 											'title' => $dataIn->$use_for_tags,
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
+											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
 										])
 						@else
@@ -530,7 +539,7 @@
 											'title' => $dataIn->$use_for_tags,
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'moduleAlias' => $module->alias,
-											'editLink' => route('coreEditStep1', array($module->alias, $data->id, $dataIn->id)),
+											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
 										])
 						@endif

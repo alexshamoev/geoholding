@@ -105,15 +105,15 @@ if(Schema :: hasTable('languages')) {
 				//
 
 
-				Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
-				Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
-				Route :: get('/{moduleAlias}/{moduleStepId}/{topLevelDataId}/add', 'ACoreControllerStep0@add') -> name('coreAddStep1');
-				Route :: post('/{moduleAlias}/{moduleStepId}/add', 'ACoreControllerStep0@insert') -> name('coreInsertStep0');
-				Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
-				Route :: post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
-				Route :: post('/{moduleAlias}/{id}/addImageStep0', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
-				Route :: post('/{moduleAlias}/{id}/addImage', 'ACoreControllerStep0@addMultImagesStep0') -> name('coreAddMultImageForstep0');
-				Route :: get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
+				// Core
+					Route :: get('/{moduleAlias}', 'ACoreController@get') -> name('coreGetStartPoint');
+					Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@add') -> name('coreAdd');
+					Route :: post('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@insert') -> name('coreInsert');
+					Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@edit') -> name('coreEdit');
+					Route :: post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update') -> name('coreUpdate');
+					Route :: post('/{moduleAlias}/{id}/addImage', 'ACoreController@addMultImages') -> name('coreAddMultImage');
+					Route :: get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete') -> name('coreDelete');
+				// 
 
 
 				// Ajax

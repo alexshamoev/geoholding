@@ -9,7 +9,7 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => $moduleStep->module->title,
-		'tag0Url' => route('coreGetStep0', [$moduleStep->module->alias]),
+		'tag0Url' => route('coreGetStartPoint', [$moduleStep->module->alias]),
 		'tag1Text' => __('bsw.adding')
 	])
 
@@ -24,7 +24,7 @@
 		@endif
 		
 		
-		{{ Form::open(array('route' => array('coreInsertStep0', $moduleStep->module->alias, $moduleStep->id), 'files' => true)) }}
+		{{ Form::open(array('route' => array('coreInsert', $moduleStep->module->alias, $moduleStep->id), 'files' => true)) }}
 			@foreach($moduleStep->moduleBlock as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">
