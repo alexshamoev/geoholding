@@ -127,12 +127,32 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>sort_by: *</span>
-						<span>(Example: rang DESC)</span>
+						<span>order_by_column: *</span>
+						<span>(Example: rang)</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form :: text('sort_by')}}
+						{{Form :: text('order_by_column')}}
+					</div>
+				</div>
+
+				@error('sort_by')
+					<div class="alert alert-danger">
+						{{$message}}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>order_by_sequence: *</span>
+						<span>(Example: DESC)</span>
+					</div>
+					
+					<div class="p-2">
+						DESC {{Form :: radio('order_by_sequence', 'DESC')}}
+						ASC {{Form :: radio('order_by_sequence', 'ASC')}}
 					</div>
 				</div>
 

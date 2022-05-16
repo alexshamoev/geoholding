@@ -131,6 +131,8 @@ class AModuleStepController extends AController {
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
+		$moduleStep->order_by_column = $request->input('order_by_column');
+		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
 
 		$moduleStep->save();
 
