@@ -37,18 +37,18 @@ class ACoreControllerStep0 extends AController {
 			}
 
 			
-			$orderBy = 'id';
-			$sortBy = 'DESC';
+			$orderBy = $moduleStepData->order_by_column;
+			$sortBy = $moduleStepData->order_by_sequence;
 
-			$orderByArray = explode(' ', $moduleStepData->sort_by);
+			// $orderByArray = explode(' ', $moduleStepData->sort_by);
 
-			if(array_key_exists(0, $orderByArray)) {
-				$orderBy = $orderByArray['0'];
-			}
+			// if(array_key_exists(0, $orderByArray)) {
+			// 	$orderBy = $orderByArray['0'];
+			// }
 
-			if(array_key_exists(1, $orderByArray)) {
-				$sortBy = $orderByArray['1'];
-			}
+			// if(array_key_exists(1, $orderByArray)) {
+			// 	$sortBy = $orderByArray['1'];
+			// }
 
 			$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
 			$collectionForTags->add($moduleStepData->main_column);

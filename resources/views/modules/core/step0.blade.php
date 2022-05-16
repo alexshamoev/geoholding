@@ -43,7 +43,7 @@
 			
 			<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
 				@foreach($dataFromDb as $data)
-					@if($moduleStep->values()->get($i)->sort_by === 'rang DESC')
+					@if($moduleStep->values()->get($i)->order_by_column === 'rang')
 						@include('admin.includes.horizontalEditDeleteBlock', [
 									'id' => $data->id,
 									'title' => $data->{$collectionForTags->values()->get($i)},
