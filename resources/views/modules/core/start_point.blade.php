@@ -36,7 +36,7 @@
 				@else 
 					<div class="p-2">
 						<div class="p-2 standard-block">
-							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id), 'files' => true, 'method' => 'post')) }}
+							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
 								<div class="p-2">
 									{{ __('bsw.add').' '.$moduleStep->values()->get($i)->title }}
 								</div>

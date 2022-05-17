@@ -110,7 +110,7 @@ if(Schema :: hasTable('languages')) {
 					Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@add') -> name('coreAdd');
 					Route :: post('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@insert') -> name('coreInsert');
 					Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@edit') -> name('coreEdit');
-					Route :: post('/{moduleAlias}/{moduleStepId}/addImage', 'ACoreController@addMultImages') -> name('coreAddMultImage');
+					Route :: post('/{moduleAlias}/{moduleStepId}/{id}/addImage', 'ACoreController@addMultImages') -> name('coreAddMultImage');
 					Route :: post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update') -> name('coreUpdate');
 					Route :: get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete') -> name('coreDelete');
 				// 

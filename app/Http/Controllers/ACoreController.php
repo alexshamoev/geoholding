@@ -15,6 +15,7 @@ use DB;
 use Session;
 use App;
 use Storage;
+use Schema;
 
 
 class ACoreController extends AController {
@@ -447,20 +448,25 @@ class ACoreController extends AController {
 	}
 
 
-	public function addMultImages(Request $request, $moduleAlias, $moduleStepId) {
+	public function addMultImages(Request $request, $moduleAlias, $moduleStepId, $id) {
 		$module = Module::where('alias', $moduleAlias)->first();
 		$moduleStep = ModuleStep::where('id', $moduleStepId)->orderBy('rang', 'desc')->first();
 		$moduleBlocks = ModuleBlock::where([['top_level', $moduleStep->id], ['type', 'image']])->orderBy('rang', 'desc')->first();
-		
+		$dataInsertArray = [];
+
 		$validated = $request->validate([
             'images' => 'required',
             'images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:10000',
         ]);
 
+		if($moduleStep->parent_step_id) {
+			$dataInsertArray['top_level'] = $id;
+		}
+
 		foreach($request->file('images') as $data) {
 			// $highestRang = DB::table($moduleStep->db_table)->max('rang');
-
-			$newRowId = DB::table($moduleStep->db_table)->insertGetId([]);
+			
+			$newRowId = DB::table($moduleStep->db_table)->insertGetId($dataInsertArray);
 
 			$prefix = '';
 
@@ -561,6 +567,10 @@ class ACoreController extends AController {
 		}
 
 		$request->session()->flash('successStatus', __('bsw.successStatus'));
+
+		if($moduleStep->parent_step_id) {
+			return redirect()->route('coreEdit', array($moduleAlias, $moduleStep->parent_step_id, $id));
+		}
 
 		return redirect()->route('coreGetStartPoint', array($moduleAlias));
 	}
