@@ -566,7 +566,7 @@ class ACoreController extends AController {
 			}
 		}
 
-		$request->session()->flash('successStatus', __('bsw.successStatus'));
+		$request->session()->flash('successStatus', __('bsw.successAdd'));
 
 		if($moduleStep->parent_step_id) {
 			return redirect()->route('coreEdit', array($moduleAlias, $moduleStep->parent_step_id, $id));

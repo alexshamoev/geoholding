@@ -4,6 +4,7 @@ return [
     'badLoginData' => 'Incorrect login data',
     'submit' => 'Save Data',
     'successStatus' => 'Data is saved!',
+    'successAdd' => 'Data is Added!',
     'email' => 'E-mail',
     'password' => 'Password',
     'login' => 'Login',
