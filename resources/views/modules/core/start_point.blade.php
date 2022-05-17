@@ -29,12 +29,12 @@
 				</div>
 			</div>
 		@endif
-		
-		@if($errors->any())
+
+		@error('images')
 			<div class="alert alert-danger">
 				{{ __('bsw.fileValidation') }}
 			</div>
-		@endif
+		@enderror
 		
 		@php
 			$i = 0;
