@@ -53,7 +53,6 @@
 					</div>
 				@endif
 			<!--  -->
-			
 			<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
 				@foreach($dataFromDb as $data)
 					@if(!$moduleStep->values()->get($i)->images)

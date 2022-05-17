@@ -447,22 +447,20 @@ class ACoreController extends AController {
 	}
 
 
-	public function addMultImages(Request $request, $moduleAlias, $id) {
+	public function addMultImages(Request $request, $moduleAlias, $moduleStepId) {
 		$module = Module::where('alias', $moduleAlias)->first();
-		$moduleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->first();
+		$moduleStep = ModuleStep::where('id', $moduleStepId)->orderBy('rang', 'desc')->first();
 		$moduleBlocks = ModuleBlock::where([['top_level', $moduleStep->id], ['type', 'image']])->orderBy('rang', 'desc')->first();
-
+		// dd($moduleStep->id);
 		$validated = $request->validate([
             'images' => 'required',
             'images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:10000',
         ]);
 
 		foreach($request->file('images') as $data) {
-			$highestRang = DB::table($moduleStep->db_table)->max('rang');
+			// $highestRang = DB::table($moduleStep->db_table)->max('rang');
 
-			$newRowId = DB::table($moduleStep->db_table)->insertGetId([
-				'rang' => $highestRang + 5 
-			]);
+			$newRowId = DB::table($moduleStep->db_table)->insertGetId([]);
 
 			$prefix = '';
 
@@ -516,7 +514,7 @@ class ACoreController extends AController {
 
 			for($i = 1; $i < 4; $i++) {
 				if($moduleBlocks->{'prefix_'.$i}) {
-					$data->storeAs('public/images/modules/'.$module->alias.'/step_1', $prefix.$newRowId.'_'.$moduleBlocks->{'prefix_'.$i}.'.'.$moduleBlocks->file_format );
+					$data->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$newRowId.'_'.$moduleBlocks->{'prefix_'.$i}.'.'.$moduleBlocks->file_format );
 
 					if($moduleBlocks->{'fit_type_'.$i} === 'fit') {
 						$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$newRowId.'_'.$moduleBlocks->{'prefix_'.$i}.'.'.$moduleBlocks->file_format))->fit($moduleBlocks->{'image_width_'.$i},
@@ -563,7 +561,6 @@ class ACoreController extends AController {
 		}
 
 		$request->session()->flash('successStatus', __('bsw.successStatus'));
-
 
 		return redirect()->route('coreGetStartPoint', array($moduleAlias));
 	}
@@ -761,7 +758,7 @@ class ACoreController extends AController {
 
 
 		$imageFormat = 'jpg';
-*/
+		*/
 
 		$nextModuleStep = ModuleStep::where('top_level', $module->id)->where('parent_step_id', $moduleStep->id)->orderBy('rang', 'desc')->get();
 		// $nextModuleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->skip(1)->take(1)->first();
