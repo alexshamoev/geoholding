@@ -391,10 +391,30 @@
 										
 		@foreach($nextModuleStep as $moduleStepData)
 			<!-- Add button -->
-				@include('admin.includes.addButton', [
-					'text' => __('bsw.add').' '.$moduleStepData->title,
-					'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
-				])
+				@if(!$moduleStepData->images)
+					@include('admin.includes.addButton', [
+						'text' => __('bsw.add').' '.$moduleStepData->title,
+						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
+					])
+				@else 
+					<div class="p-2">
+						<div class="p-2 standard-block">
+							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id), 'files' => true, 'method' => 'post')) }}
+								<div class="p-2">
+									{{ __('bsw.add').' '.$moduleStepData->title }}
+								</div>
+
+								<div class="p-2">
+									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+								</div>
+
+								<div class="p-2 submit-button">
+									{{ Form::submit(__('bsw.adding')) }}
+								</div>
+							{{ Form::close() }}
+						</div>
+					</div>
+				@endif
 			<!--  -->
 			
 			<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">

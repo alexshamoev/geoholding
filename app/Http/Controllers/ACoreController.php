@@ -451,7 +451,7 @@ class ACoreController extends AController {
 		$module = Module::where('alias', $moduleAlias)->first();
 		$moduleStep = ModuleStep::where('id', $moduleStepId)->orderBy('rang', 'desc')->first();
 		$moduleBlocks = ModuleBlock::where([['top_level', $moduleStep->id], ['type', 'image']])->orderBy('rang', 'desc')->first();
-		// dd($moduleStep->id);
+		
 		$validated = $request->validate([
             'images' => 'required',
             'images.*' => 'required|image|mimes:jpg,jpeg,png,gif|max:10000',
