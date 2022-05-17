@@ -1206,6 +1206,20 @@ class ACoreController extends AController {
 			if(file_exists($filePath)) {
 				unlink($filePath);
 			}
+
+			for($i = 1; $i < 4; $i++) {
+				if($data->{'prefix_'.$i}) {
+					if($data->prefix) {
+						$prefix = $data->prefix.'_';
+					}
+					
+					$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
+					
+					if(file_exists($filePath)) {
+						unlink($filePath);
+					}
+				}
+			}
 		}
 		
 
