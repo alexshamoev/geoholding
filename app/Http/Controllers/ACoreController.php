@@ -464,7 +464,11 @@ class ACoreController extends AController {
 		}
 
 		foreach($request->file('images') as $data) {
-			// $highestRang = DB::table($moduleStep->db_table)->max('rang');
+			if(Schema::hasColumn($moduleStep->db_table, 'rang')) {
+				$highestRang = DB::table($moduleStep->db_table)->max('rang');
+				$highestRang += 5; 
+				$dataInsertArray['rang'] = $highestRang;
+			}
 			
 			$newRowId = DB::table($moduleStep->db_table)->insertGetId($dataInsertArray);
 
