@@ -47,7 +47,7 @@
 			<div class="alert alert-danger">
 				{{ __('bsw.fileValidation') }}
 			</div>
-		@else 
+		@elseif($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
