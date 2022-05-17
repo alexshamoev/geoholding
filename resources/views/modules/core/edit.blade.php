@@ -35,14 +35,25 @@
 
 	
 	<div class="p-2">
-		@if($errors->any())
+		{{-- @if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
 				</div>
 			</div>
-		@endif
-		
+		@endif --}} 
+
+		@error('images')
+			<div class="alert alert-danger">
+				{{ __('bsw.fileValidation') }}
+			</div>
+		@else 
+			<div class="p-2">
+				<div class="alert alert-danger m-0">
+					{{ __('bsw.warningStatus') }}
+				</div>
+			</div>
+		@enderror
 		
 		@if(Session::has('successStatus'))
 			<div class="p-2">
@@ -60,7 +71,7 @@
 				</div>
 			</div>
 		@endif
-		
+
 		
 		{{ Form::open(array('route' => array('coreUpdate', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)

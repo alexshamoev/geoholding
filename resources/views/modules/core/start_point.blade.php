@@ -30,7 +30,11 @@
 			</div>
 		@endif
 		
-		
+		@if($errors->any())
+			<div class="alert alert-danger">
+				{{ __('bsw.fileValidation') }}
+			</div>
+		@endif
 		
 		@php
 			$i = 0;

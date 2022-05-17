@@ -5,6 +5,7 @@ return [
     'submit' => 'Сохранить Данные',
     'successStatus' => 'Данные сохранены!',
     'successAdd' => 'Данные добавлены!',
+    'fileValidation' => 'Выберите файлы для загрузки!',
     'email' => 'Эл. почта',
     'password' => 'Пароль',
     'login' => 'Войти',

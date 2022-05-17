@@ -5,6 +5,7 @@ return [
     'submit' => 'Save Data',
     'successStatus' => 'Data is saved!',
     'successAdd' => 'Data is Added!',
+    'fileValidation' => 'Select files to upload!',
     'email' => 'E-mail',
     'password' => 'Password',
     'login' => 'Login',
