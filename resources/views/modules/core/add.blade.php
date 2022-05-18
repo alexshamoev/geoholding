@@ -70,8 +70,6 @@
 									</div>
 
 									@if(Session::has('file_id'))
-										{{ Session::get('file_id') }}
-
 										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
 											<div class="p-2">
 												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">

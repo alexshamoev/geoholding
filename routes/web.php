@@ -84,7 +84,7 @@ if(Schema :: hasTable('languages')) {
 					Route :: get('/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
 				});
 
-				// Modulis without core
+				// Modules without core
 					Route :: prefix('admins') -> group(function() {
 						Route :: get('', 'AAdminController@getStartPoint') -> name('adminStartPoint');
 						Route :: get('/add', 'AAdminController@add') -> name('adminAdd');

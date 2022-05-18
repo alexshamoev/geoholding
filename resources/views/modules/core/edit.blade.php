@@ -2,27 +2,11 @@
 
 
 @section('pageMetaTitle')
-    {{ $module->title }} > {{ $data->$use_for_tags }}
+    {{ $module->title }} > {{ $data->{ $moduleStep->main_column } }}
 @endsection
 
 
-@section('content')
-	{{-- @if(!$moduleStep->moduleParentStep)
-		@include('admin.includes.tags', [
-			'tag0Text' => $module->title,
-			'tag0Url' => route('coreGetStartPoint', [$module->alias]),
-			'tag1Text' => $data->$use_for_tags
-		])
-	@else
-		@include('admin.includes.tags', [
-			'tag0Text' => $module->title,
-			'tag0Url' => route('coreGetStartPoint', [$module->alias]),
-			'tag1Text' => $parentModuleStepData->title_ge,
-			'tag1Url' => route('coreEdit', [$module->alias, $moduleStep->moduleParentStep->id, $parentModuleStepData->id]),
-			'tag2Text' => $data->$use_for_tags
-		])
-	@endif --}} 
-	
+@section('content')	
 	@include('admin.includes.coreTags', [
 		'tagsData' => $tagsData
 	])
@@ -35,10 +19,8 @@
 		'prevId' => $prevId,
 		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
 		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
-		'backRoute' => route('coreGetStartPoint', [$module->alias])
+		'backRoute' => $backRoute
 	])
-
-	
 
 	
 	<div class="p-2">
@@ -566,7 +548,7 @@
 						@if($sortBy === 'rang')
 							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
 											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
+											'title' => $dataIn->{ $moduleStep->main_column },
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
@@ -574,7 +556,7 @@
 						@else
 							@include('admin.includes.verticalEditDeleteBlock', [
 											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
+											'title' => $dataIn->{ $moduleStep->main_column },
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'moduleAlias' => $module->alias,
 											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
@@ -587,7 +569,7 @@
 						@if($sortBy === 'rang')
 							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
 											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
+											'title' => $dataIn->{ $moduleStep->main_column },
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),
 											'deleteLink' => route('coreDeleteStep1', array($module->alias, $data->id, $dataIn->id))
@@ -595,7 +577,7 @@
 						@else
 							@include('admin.includes.verticalEditDeleteBlock', [
 											'id' => $dataIn->id,
-											'title' => $dataIn->$use_for_tags,
+											'title' => $dataIn->{ $moduleStep->main_column },
 											'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_1/'.$dataIn->id.'.'.$imageFormat,
 											'moduleAlias' => $module->alias,
 											'editLink' => route('coreEdit', array($module->alias, $data->id, $dataIn->id)),

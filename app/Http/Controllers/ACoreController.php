@@ -47,15 +47,6 @@ class ACoreController extends AController {
 													'imageFormat' => $imageFormat,
 													'collectionForTags' => $collectionForTags]);
 
-
-		// $data = array_merge(self::getDefaultData(), ['module' => $module,
-		// 											'moduleStep' => $moduleStep,
-		// 											'moduleSteps' => ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->get(),
-		// 											'moduleStepData' => DB::table($moduleStep->db_table)->orderBy($orderBy, $sortBy)->get(),
-		// 											'imageFormat' => $imageFormat,
-		// 											'sortBy' => $orderBy,
-		// 											'use_for_tags' => $use_for_tags]);
-
 		return view('modules.core.start_point', $data);
 	}
 
@@ -658,21 +649,26 @@ class ACoreController extends AController {
 			$nextIdIsSaved = false;
 
 
-			// Data for bar arrows.
-				// $orderBy = 'id';
-				// $sortBy = 'DESC';
+			// Data for bar.
+				
 
-				// $orderByArray = explode(' ', $moduleStep->sort_by);
+				if($moduleStep->parent_step_id == 0) {
+					$pageDataForTagArrows = DB::table($moduleStep->db_table)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get();
 
-				// if(array_key_exists(0, $orderByArray)) {
-				// 	$orderBy = $orderByArray['0'];
-				// }
+					$backRoute = route('coreGetStartPoint', [
+						$module->alias
+					]);
+				} else {
+					$pageDataForTagArrows = DB::table($moduleStep->db_table)->where('top_level', $pageData->top_level)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get();
 
-				// if(array_key_exists(1, $orderByArray)) {
-				// 	$sortBy = $orderByArray['1'];
-				// }
+					$backRoute = route('coreEdit', [
+						$module->alias,
+						$moduleStep->parent_step_id,
+						$pageData->top_level
+					]);
+				}
 
-				foreach(DB::table($moduleStep->db_table)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get() as $data) {
+				foreach($pageDataForTagArrows as $data) {
 					if($nextIdIsSaved && !$nextId) {
 						$nextId = $data->id;
 					}
@@ -972,44 +968,6 @@ class ACoreController extends AController {
 			$tagsData = array_reverse($tagsData);
 
 			// dd($tagsData);
-		// 
-
-
-
-
-
-		//Tags 
-			// $moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'ASC')->get();
-
-			// foreach($moduleSteps as $key => $data) {
-			// 	$numKey = $key + 1;
-			// 	if($data->parent_step_id == 0) {
-			// 		$tagsData['tag'.$key.'Text'] = $module->title;
-			// 		$tagsData['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
-			// 		$step1Table = DB::table($moduleSteps[$numKey]->db_table)->where('id', $id)->first();
-			// 		$dataTable = DB::table($data->db_table)->where('id', $step1Table->top_level)->first();
-			// 		// dd($dataTable->title_ge);
-			// 		$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
-
-			// 		if($moduleStepId != $data->id) {
-			// 			$tagsData['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
-			// 		}
-			// 	} else {
-			// 		if($moduleStepId >= $data->id) {
-			// 			if(ModuleStep::firstWhere('parent_step_id', $data->id)) {
-			// 				$dataTable = DB::table($data->db_table)->where('top_level', $id)->first();
-			// 				$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
-
-			// 				if($moduleStepId != $data->id) {
-			// 					$tagsData['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
-			// 				}
-			// 			} else {
-			// 				$dataTable = DB::table($data->db_table)->where('id', $id)->first();
-			// 				$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
-			// 			}
-			// 		}
-			// 	}
-			// }
 		//
 		
 
@@ -1026,19 +984,14 @@ class ACoreController extends AController {
 														'imageFormat' => $imageFormat,
 														'nextModuleStep' => $nextModuleStep,
 														'nextModuleStepData' => $nextModuleStepData,
-														// 'moduleStep1Data' => $nextModuleStep,
 														'data' => $pageData,
 														'prevId' => $prevId,
 														'nextId' => $nextId,
-														'use_for_tags' => $moduleStep->main_column,
 														'multiplyCheckbox' => $multiplyCheckbox,
 														'multiplyCheckbox' => $multiplyCheckbox,
 														'multiplyCheckboxCategory' => $multiplyCheckboxCategory,
-														// 'collection' => $collection,
-														// 'collectionForTags' => $collectionForTags,
-														// 'childSteps' => $childSteps,
-														// 'parentModuleStepData' => $parentModuleStepData0,
 														'tagsData' => $tagsData,
+														'backRoute' => $backRoute,
 													]);
 
 		return view('modules.core.edit', $data);
