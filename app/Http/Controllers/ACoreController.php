@@ -879,25 +879,43 @@ class ACoreController extends AController {
 		if($moduleStep->moduleParentStep) {
 			$parentModuleStepData = DB::table($moduleStep->moduleParentStep->db_table)->where('id', $pageData->top_level)->first();
 		}
-		
-		// dd($moduleStep->moduleParentStep);
-		// dd($use_for_tags.'6666');
-
-		// $orderBy = 'id';
-		// $sortBy = 'DESC';
-
-		// $orderByArray = explode(' ', $moduleStep->sort_by);
-
-		// if(array_key_exists(0, $orderByArray)) {
-		// 	$orderBy = $orderByArray['0'];
-		// }
-
-		// if(array_key_exists(1, $orderByArray)) {
-		// 	$sortBy = $orderByArray['1'];
-		// }
 
 
 		$imageFormat = 'jpg'; // Temp solution.
+
+
+
+
+
+		// $arr = []
+
+
+
+		// if($moduleStep->parent_step_id != 0) {
+		// 	$test = ModuleStep::find($moduleStep->parent_step_id);
+
+			
+
+		// 	if($test->parent_step_id != 0) {
+		// 		$test2 = ModuleStep::find($test->parent_step_id);
+		// 	}
+		// }
+		
+
+
+		// $moduleSteps = ModuleStep::where('top_level', $module->id)->get();
+		
+		// foreach($moduleSteps as $data) {
+		// 	if($data->parent_step_id == 0) {
+		// 		break;
+		// 	}
+
+		// 	$tagCollection->add($data->id);
+		// }
+
+		// 29
+
+
 
 
 		$data = array_merge(self::getDefaultData(), [
@@ -924,7 +942,8 @@ class ACoreController extends AController {
 														// 'collection' => $collection,
 														// 'collectionForTags' => $collectionForTags,
 														// 'childSteps' => $childSteps,
-														'parentModuleStepData' => $parentModuleStepData
+														'parentModuleStepData' => $parentModuleStepData,
+														'tagCollection' => $tagCollection,
 													]);
 
 		return view('modules.core.edit', $data);
