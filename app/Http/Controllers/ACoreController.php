@@ -585,7 +585,7 @@ class ACoreController extends AController {
 	}
 	
 
-	private function rename_temp_files($moduleStepId, $oldId, $id) {
+	private function renameTempFiles($moduleStepId, $oldId, $id) {
 		$moduleStep = ModuleStep::find($moduleStepId);
 
 		// Image - uploading image without checking it passed validation or not
@@ -632,7 +632,7 @@ class ACoreController extends AController {
 	public function edit($moduleAlias, $moduleStepId, $id) {
 		// Edit active block part.
 			if(Session::has('file_id')) {
-				self::rename_temp_files($moduleStepId, Session::get('file_id'), $id);
+				self::renameTempFiles($moduleStepId, Session::get('file_id'), $id);
 			
 				// dd(Session::get('file_id'));
 			}
