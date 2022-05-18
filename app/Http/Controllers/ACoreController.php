@@ -882,58 +882,56 @@ class ACoreController extends AController {
 
 
 		$imageFormat = 'jpg'; // Temp solution.
-
+			
+		
 		$arr = [];
-		$moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'ASC')->get();
 
-		foreach($moduleSteps as $key => $data) {
-			$numKey = $key + 1;
-			if($data->parent_step_id == 0) {
-				$arr['tag'.$key.'Text'] = $module->title;
-				$arr['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
-				$dataTable = DB::table($data->db_table)->where('id', $id)->first();
-				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
+		$moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'DESC')->get();
 
-				if($moduleStepId != $data->id) {
-					$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
-				}
-			} else {
-				if($moduleStepId >= $data->id) {
-					if(ModuleStep::firstWhere('parent_step_id', $data->id)) {
-						$dataTable = DB::table($data->db_table)->where('top_level', $id)->first();
-						$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
-
-						if($moduleStepId != $data->id) {
-							$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
-						}
-					} else {
-						$dataTable = DB::table($data->db_table)->where('id', $id)->first();
-						$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
-					}
+		foreach($moduleSteps as $data) {
+			if($data->parent_step_id != 0) {
+				$test = ModuleStep::find($data->parent_step_id);
+	
+				if($test->parent_step_id != 0) {
+					$test2 = ModuleStep::find($test->parent_step_id);
 				}
 			}
-
-			// if($data->parent_step_id == 0) {
-			// 	$arr['tag'.$key.'Text'] = $module->title;
-			// 	$arr['tag1Text'] = $pageData->title_ge;
-			// } else {
-			// 	$test = ModuleStep::find($data->parent_step_id);
-
-				// if()
-				// $arr['tag'.$key.'Text'] = DB::table($test->db_table)->where('id', $id)->first();
-			// }
-
-			// $tagCollection->add($data->id);
-
-			// if($data->parent_step_id != 0) {
-			// 	$arr['tag'.$key.'Text'] = 
-			// }
 		}
 
-		// 29
+		//Tags 
+			// $moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'ASC')->get();
 
+			// foreach($moduleSteps as $key => $data) {
+			// 	$numKey = $key + 1;
+			// 	if($data->parent_step_id == 0) {
+			// 		$arr['tag'.$key.'Text'] = $module->title;
+			// 		$arr['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
+			// 		$step1Table = DB::table($moduleSteps[$numKey]->db_table)->where('id', $id)->first();
+			// 		$dataTable = DB::table($data->db_table)->where('id', $step1Table->top_level)->first();
+			// 		// dd($dataTable->title_ge);
+			// 		$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
+			// 		if($moduleStepId != $data->id) {
+			// 			$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
+			// 		}
+			// 	} else {
+			// 		if($moduleStepId >= $data->id) {
+			// 			if(ModuleStep::firstWhere('parent_step_id', $data->id)) {
+			// 				$dataTable = DB::table($data->db_table)->where('top_level', $id)->first();
+			// 				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
+			// 				if($moduleStepId != $data->id) {
+			// 					$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
+			// 				}
+			// 			} else {
+			// 				$dataTable = DB::table($data->db_table)->where('id', $id)->first();
+			// 				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
+			// 			}
+			// 		}
+			// 	}
+			// }
+		//
+		
 
 		$data = array_merge(self::getDefaultData(), [
 														'module' => $module,
