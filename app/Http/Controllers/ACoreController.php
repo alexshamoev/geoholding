@@ -596,15 +596,20 @@ class ACoreController extends AController {
 					if($data->prefix) {
 						$prefix = $data->prefix.'_';
 					}
-
-					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
-									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
-
+					
+					$imagePath = 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format;
+					
+					if(file_exists(storage_path('app/'.$imagePath))) {
+						Storage::move($imagePath, 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
+					}
 
 					for($i = 1; $i < 4; $i++) {
+						$imagePathPrev = 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format;
+
 						if($data->{'prefix_'.$i}) {
-							Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format,
-											'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
+							if(file_exists(storage_path('app/'.$imagePathPrev))) {
+								Storage::move($imagePathPrev, 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
+							}
 						}
 					}
 				}
