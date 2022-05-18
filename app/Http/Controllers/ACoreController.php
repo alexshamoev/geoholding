@@ -15,7 +15,6 @@ use DB;
 use Session;
 use App;
 use Storage;
-use Schema;
 
 
 class ACoreController extends AController {
@@ -436,6 +435,14 @@ class ACoreController extends AController {
 				$insertQuery[$data->db_column] = $multiplyCheckboxString;
 			}
 		}
+			
+		//If table is sorted by rang, insert new row with 5+ more than highest rang
+			if($moduleStep->order_by_column === 'rang') {
+				$highestRang = DB::table($moduleStep->db_table)->max('rang');
+				$highestRang += 5; 
+				$insertQuery['rang'] = $highestRang;
+			}
+		//
 
 		$id = DB::table($moduleStep->db_table)->insertGetId($insertQuery);
 
