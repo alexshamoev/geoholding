@@ -874,29 +874,109 @@ class ACoreController extends AController {
 		// 
 */
 
-		$parentModuleStepData = false;
+		// $parentModuleStepData0 = false;
 
-		if($moduleStep->moduleParentStep) {
-			$parentModuleStepData = DB::table($moduleStep->moduleParentStep->db_table)->where('id', $pageData->top_level)->first();
-		}
+		// if($moduleStep->moduleParentStep) {
+		// 	$parentModuleStepData0 = DB::table($moduleStep->moduleParentStep->db_table)->where('id', $pageData->top_level)->first();
+		// }
 
 
 		$imageFormat = 'jpg'; // Temp solution.
 			
 		
-		$arr = [];
 
-		$moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'DESC')->get();
 
-		foreach($moduleSteps as $data) {
-			if($data->parent_step_id != 0) {
-				$test = ModuleStep::find($data->parent_step_id);
-	
-				if($test->parent_step_id != 0) {
-					$test2 = ModuleStep::find($test->parent_step_id);
+
+
+		
+
+		// Tags.
+			$tagsData = [];
+
+			$i = 0;
+
+			if($pageData->{ $moduleStep->main_column }) {
+				$tagsData[$i]['tagText'] = $pageData->{ $moduleStep->main_column };
+			} else {
+				$tagsData[$i]['tagText'] = '-- Empty --';
+			}
+			
+			if($moduleStep->parent_step_id != 0) {
+				$i++;
+
+				$moduleStepParent0 = ModuleStep::find($moduleStep->parent_step_id);
+				$parentModuleStepData0 = DB::table($moduleStepParent0->db_table)->where('id', $pageData->top_level)->first();
+
+				if($parentModuleStepData0->{ $moduleStepParent0->main_column }) {
+					$tagsData[$i]['tagText'] = $parentModuleStepData0->{ $moduleStepParent0->main_column };
+				} else {
+					$tagsData[$i]['tagText'] = '-- Empty --';
+				}
+				
+				$tagsData[$i]['tagUrl'] = route('coreEdit', [$module->alias, $moduleStepParent0->id, $parentModuleStepData0->id]);
+
+				
+				if($moduleStepParent0->parent_step_id != 0) {
+					$i++;
+
+					$moduleStepParent1 = ModuleStep::find($moduleStepParent0->parent_step_id);
+					$parentModuleStepData1 = DB::table($moduleStepParent1->db_table)->where('id', $parentModuleStepData0->top_level)->first();
+
+					if($parentModuleStepData1->{ $moduleStepParent1->main_column }) {
+						$tagsData[$i]['tagText'] = $parentModuleStepData1->{ $moduleStepParent1->main_column };
+					} else {
+						$tagsData[$i]['tagText'] = '-- Empty --';
+					}
+
+					$tagsData[$i]['tagUrl'] = route('coreEdit', [$module->alias, $moduleStepParent1->id, $parentModuleStepData1->id]);
+
+					
+					if($moduleStepParent1->parent_step_id != 0) {
+						$i++;
+		
+						$moduleStepParent2 = ModuleStep::find($moduleStepParent1->parent_step_id);
+						$parentModuleStepData2 = DB::table($moduleStepParent2->db_table)->where('id', $parentModuleStepData1->top_level)->first();
+		
+						if($parentModuleStepData2->{ $moduleStepParent2->main_column }) {
+							$tagsData[$i]['tagText'] = $parentModuleStepData2->{ $moduleStepParent2->main_column };
+						} else {
+							$tagsData[$i]['tagText'] = '-- Empty --';
+						}
+						
+						$tagsData[$i]['tagUrl'] = route('coreEdit', [$module->alias, $moduleStepParent2->id, $parentModuleStepData2->id]);
+
+
+						if($moduleStepParent2->parent_step_id != 0) {
+							$i++;
+			
+							$moduleStepParent3 = ModuleStep::find($moduleStepParent3->parent_step_id);
+							$parentModuleStepData3 = DB::table($moduleStepParent3->db_table)->where('id', $parentModuleStepData2->top_level)->first();
+			
+							if($parentModuleStepData3->{ $moduleStepParent3->main_column }) {
+								$tagsData[$i]['tagText'] = $parentModuleStepData3->{ $moduleStepParent3->main_column };
+							} else {
+								$tagsData[$i]['tagText'] = '-- Empty --';
+							}
+							
+							$tagsData[$i]['tagUrl'] = route('coreEdit', [$module->alias, $moduleStepParent3->id, $parentModuleStepData3->id]);
+						}
+					}
 				}
 			}
-		}
+
+			$i++;
+
+			$tagsData[$i]['tagText'] = $module->title;
+			$tagsData[$i]['tagUrl'] = route('coreGetStartPoint', [$module->alias]);
+
+			$tagsData = array_reverse($tagsData);
+
+			// dd($tagsData);
+		// 
+
+
+
+
 
 		//Tags 
 			// $moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'ASC')->get();
@@ -904,28 +984,28 @@ class ACoreController extends AController {
 			// foreach($moduleSteps as $key => $data) {
 			// 	$numKey = $key + 1;
 			// 	if($data->parent_step_id == 0) {
-			// 		$arr['tag'.$key.'Text'] = $module->title;
-			// 		$arr['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
+			// 		$tagsData['tag'.$key.'Text'] = $module->title;
+			// 		$tagsData['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
 			// 		$step1Table = DB::table($moduleSteps[$numKey]->db_table)->where('id', $id)->first();
 			// 		$dataTable = DB::table($data->db_table)->where('id', $step1Table->top_level)->first();
 			// 		// dd($dataTable->title_ge);
-			// 		$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
+			// 		$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
 			// 		if($moduleStepId != $data->id) {
-			// 			$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
+			// 			$tagsData['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
 			// 		}
 			// 	} else {
 			// 		if($moduleStepId >= $data->id) {
 			// 			if(ModuleStep::firstWhere('parent_step_id', $data->id)) {
 			// 				$dataTable = DB::table($data->db_table)->where('top_level', $id)->first();
-			// 				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
+			// 				$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
 			// 				if($moduleStepId != $data->id) {
-			// 					$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
+			// 					$tagsData['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
 			// 				}
 			// 			} else {
 			// 				$dataTable = DB::table($data->db_table)->where('id', $id)->first();
-			// 				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
+			// 				$tagsData['tag'.$numKey.'Text'] = $dataTable->title_ge;
 			// 			}
 			// 		}
 			// 	}
@@ -957,8 +1037,8 @@ class ACoreController extends AController {
 														// 'collection' => $collection,
 														// 'collectionForTags' => $collectionForTags,
 														// 'childSteps' => $childSteps,
-														'parentModuleStepData' => $parentModuleStepData,
-														'tagCollection' => $arr,
+														// 'parentModuleStepData' => $parentModuleStepData0,
+														'tagsData' => $tagsData,
 													]);
 
 		return view('modules.core.edit', $data);

@@ -23,7 +23,9 @@
 		])
 	@endif --}} 
 	
-	@include('admin.includes.tags', $tagCollection)
+	@include('admin.includes.coreTags', [
+		'tagsData' => $tagsData
+	])
 
 	
 	@include('admin.includes.bar', [
