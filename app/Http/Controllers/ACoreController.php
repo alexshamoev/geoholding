@@ -41,8 +41,6 @@ class ACoreController extends AController {
 			$collection->add(DB::table($moduleStepData->db_table)->orderBy($moduleStepData->order_by_column, $moduleStepData->order_by_sequence)->get());
 			$collectionForTags->add($moduleStepData->main_column);
 		}
-
-		$imageFormat = 'jpg'; // Temp solution.
 		
 		$data = array_merge(self::getDefaultData(), ['module' => $module,
 													'moduleStep' => $moduleStep,
@@ -64,7 +62,7 @@ class ACoreController extends AController {
 
 
 	public function add($moduleAlias, $moduleStepId, $topLevelDataId = 0) {
-		dd($topLevelDataId);
+		// dd($topLevelDataId);
 
 		$moduleStep = ModuleStep::find($moduleStepId);
 
@@ -592,14 +590,14 @@ class ACoreController extends AController {
 						$prefix = $data->prefix.'_';
 					}
 
-					Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
-									'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
+					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
+									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
 
 
 					for($i = 1; $i < 4; $i++) {
 						if($data->{'prefix_'.$i}) {
-							Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format,
-											'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
+							Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format,
+											'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
 						}
 					}
 				}
@@ -616,8 +614,8 @@ class ACoreController extends AController {
 						$prefix = $data->prefix.'_';
 					}
 
-					Storage::move('public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
-									'public/images/modules/'.$moduleStep->moduleLevel->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
+					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
+									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
 				}
 			}
 		// 
