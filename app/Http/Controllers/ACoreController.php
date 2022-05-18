@@ -883,25 +883,7 @@ class ACoreController extends AController {
 
 		$imageFormat = 'jpg'; // Temp solution.
 
-
-
-
-
 		$arr = [];
-
-
-
-		// if($moduleStep->parent_step_id != 0) {
-		// 	$test = ModuleStep::find($moduleStep->parent_step_id);
-
-		
-		// 	if($test->parent_step_id != 0) {
-		// 		$test2 = ModuleStep::find($test->parent_step_id);
-		// 	}
-		// }
-		
-
-
 		$moduleSteps = ModuleStep::where('top_level', $module->id)->orderBy('parent_step_id', 'ASC')->get();
 
 		foreach($moduleSteps as $key => $data) {
@@ -909,26 +891,24 @@ class ACoreController extends AController {
 			if($data->parent_step_id == 0) {
 				$arr['tag'.$key.'Text'] = $module->title;
 				$arr['tag'.$key.'Url'] = route('coreGetStartPoint', [$module->alias]);
-
-				$test4 = DB::table($data->db_table)->where('id', $id)->first();
-				$arr['tag'.$numKey.'Text'] = $test4->title_ge;
+				$dataTable = DB::table($data->db_table)->where('id', $id)->first();
+				$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
 				if($moduleStepId != $data->id) {
-					$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $test4->id]);
+					$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
 				}
 			} else {
 				if($moduleStepId >= $data->id) {
 					if(ModuleStep::firstWhere('parent_step_id', $data->id)) {
-						$test4 = DB::table($data->db_table)->where('top_level', $id)->first();
+						$dataTable = DB::table($data->db_table)->where('top_level', $id)->first();
+						$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
 
-						$arr['tag'.$numKey.'Text'] = $test4->title_ge;
 						if($moduleStepId != $data->id) {
-							$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $test4->id]);
+							$arr['tag'.$numKey.'Url'] = route('coreEdit', [$module->alias, $moduleSteps[$numKey]->parent_step_id, $dataTable->id]);
 						}
-						
 					} else {
-						$test5 = DB::table($data->db_table)->where('id', $id)->first();
-						$arr['tag'.$numKey.'Text'] = $test5->title_ge;
+						$dataTable = DB::table($data->db_table)->where('id', $id)->first();
+						$arr['tag'.$numKey.'Text'] = $dataTable->title_ge;
 					}
 				}
 			}
