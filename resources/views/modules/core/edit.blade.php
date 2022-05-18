@@ -7,7 +7,7 @@
 
 
 @section('content')
-	@if(!$moduleStep->moduleParentStep)
+	{{-- @if(!$moduleStep->moduleParentStep)
 		@include('admin.includes.tags', [
 			'tag0Text' => $module->title,
 			'tag0Url' => route('coreGetStartPoint', [$module->alias]),
@@ -21,8 +21,11 @@
 			'tag1Url' => route('coreEdit', [$module->alias, $moduleStep->moduleParentStep->id, $parentModuleStepData->id]),
 			'tag2Text' => $data->$use_for_tags
 		])
-	@endif
+	@endif --}} 
+	
+	@include('admin.includes.tags', $tagCollection)
 
+	
 	@include('admin.includes.bar', [
 		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id]),
 		'deleteUrl' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id)),
