@@ -45,7 +45,11 @@
 				@if(!$moduleStep->values()->get($i)->images)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
-						'url' => route('coreAdd', [$module->alias, $moduleStep->values()->get($i)->id])
+						'url' => route('coreAdd', [
+							$module->alias,
+							$moduleStep->values()->get($i)->id,
+							0,
+						])
 					])
 				@else 
 					<div class="p-2">
@@ -67,6 +71,7 @@
 					</div>
 				@endif
 			<!--  -->
+
 			<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
 				@foreach($dataFromDb as $data)
 					@if(!$moduleStep->values()->get($i)->images)
@@ -112,64 +117,5 @@
 				$i++;
 			@endphp
 		@endforeach
-
-
-
-{{--
-		@if(!$moduleStep->images)
-			@include('admin.includes.addButton', [
-				'text' => __('bsw.add').' '.$moduleStep->title,
-				'url' => route('coreAdd', $module->alias)
-			])
-		@else 
-			{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->id), 'files' => true, 'method' => 'post')) }}
-				{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-				{{ Form::submit() }}
-			{{ Form::close() }}
-		@endif
-
-
-		<div class="row" id="rangBlocks" data-db_table="{{ $moduleStep->db_table }}">
-			@if(!$moduleStep->images)
-				@foreach($moduleStepData as $data)
-					@if($sortBy === 'rang')
-						@include('admin.includes.horizontalEditDeleteBlock', [
-							'id' => $data->id,
-							'title' => $data->$use_for_tags,
-							'editLink' => route('coreEdit', array($module->alias, $data->id)),
-							'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id))
-						])
-					@else 
-						@include('admin.includes.horizontalEditDelete', [
-								'id' => $data->id,
-								'title' => $data->$use_for_tags,
-								'editLink' => route('coreEdit', array($module->alias, $data->id)),
-								'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id))
-						])
-					@endif
-				@endforeach
-			@else
-				@foreach($moduleStepData as $data)
-					@if($sortBy === 'rang')
-						@include('admin.includes.verticalEditDeleteBlockWithRangs', [
-										'id' => $data->id,
-										'title' => $data->$use_for_tags,
-										'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_0/'.$data->id.'.'.$imageFormat,
-										'editLink' => route('coreEdit', array($module->alias, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id))
-									])
-					@else
-						@include('admin.includes.verticalEditDeleteBlock', [
-										'id' => $data->id,
-										'title' => $data->$use_for_tags,
-										'imageUrl' => 'storage/images/modules/'.$module->alias.'/step_0/'.$data->id.'.'.$imageFormat,
-										'moduleAlias' => $module->alias,
-										'editLink' => route('coreEdit', array($module->alias, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id))
-									])
-					@endif
-				@endforeach
-			@endif
-		</div>--}}
 	</div>
 @endsection

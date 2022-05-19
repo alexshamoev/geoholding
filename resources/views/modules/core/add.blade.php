@@ -24,7 +24,7 @@
 		@endif
 		
 		
-		{{ Form::open(array('route' => array('coreInsert', $moduleStep->module->alias, $moduleStep->id), 'files' => true)) }}
+		{{ Form::open(array('route' => array('coreInsert', $moduleStep->module->alias, $moduleStep->id, $topLevelDataId), 'files' => true)) }}
 			@foreach($moduleStep->moduleBlock as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
 					<div class="p-2">

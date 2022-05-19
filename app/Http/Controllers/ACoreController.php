@@ -156,7 +156,7 @@ class ACoreController extends AController {
 	}
 
 
-	public function insert(Request $request, $moduleAlias, $moduleStepId) {
+	public function insert(Request $request, $moduleAlias, $moduleStepId, $topLevelDataId) {
 		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
 
@@ -435,6 +435,10 @@ class ACoreController extends AController {
 			}
 		//
 
+		if($topLevelDataId) {
+			$insertQuery['top_level'] = $topLevelDataId;
+		}
+
 		$id = DB::table($moduleStep->db_table)->insertGetId($insertQuery);
 
 
@@ -650,7 +654,7 @@ class ACoreController extends AController {
 
 
 			// Data for bar.
-				
+				$parentDataId = 0;
 
 				if($moduleStep->parent_step_id == 0) {
 					$pageDataForTagArrows = DB::table($moduleStep->db_table)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get();
@@ -659,6 +663,8 @@ class ACoreController extends AController {
 						$module->alias
 					]);
 				} else {
+					$parentDataId = $pageData->top_level;
+
 					$pageDataForTagArrows = DB::table($moduleStep->db_table)->where('top_level', $pageData->top_level)->orderBy($moduleStep->order_by_column, $moduleStep->order_by_sequence)->get();
 
 					$backRoute = route('coreEdit', [
@@ -773,13 +779,6 @@ class ACoreController extends AController {
 		// 
 
 
-		/*
-		$use_for_sort = 'rang';
-
-
-		$imageFormat = 'jpg';
-		*/
-
 		$nextModuleStep = ModuleStep::where('top_level', $module->id)->where('parent_step_id', $moduleStep->id)->orderBy('rang', 'desc')->get();
 		// $nextModuleStep = ModuleStep::where('top_level', $module->id)->orderBy('rang', 'desc')->skip(1)->take(1)->first();
 		
@@ -879,12 +878,6 @@ class ACoreController extends AController {
 
 		$imageFormat = 'jpg'; // Temp solution.
 			
-		
-
-
-
-
-		
 
 		// Tags.
 			$tagsData = [];
@@ -992,6 +985,7 @@ class ACoreController extends AController {
 														'multiplyCheckboxCategory' => $multiplyCheckboxCategory,
 														'tagsData' => $tagsData,
 														'backRoute' => $backRoute,
+														'parentDataId' => $parentDataId,
 													]);
 
 		return view('modules.core.edit', $data);

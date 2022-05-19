@@ -11,10 +11,9 @@
 		'tagsData' => $tagsData
 	])
 
-	
 	@include('admin.includes.bar', [
-		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id]),
-		'deleteUrl' => route('coreDelete', array($module->alias, $moduleStep->id, $data->id)),
+		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]),
+		'deleteUrl' => route('coreDelete', [$module->alias, $moduleStep->id, $data->id]),
 		'nextId' => $nextId,
 		'prevId' => $prevId,
 		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
@@ -383,7 +382,7 @@
 				@if(!$moduleStepData->images)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$moduleStepData->title,
-						'url' => route('coreAdd', [$module->alias, $moduleStepData->id])
+						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
 					])
 				@else 
 					<div class="p-2">
