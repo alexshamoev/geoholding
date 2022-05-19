@@ -119,6 +119,10 @@ class AModuleController extends AController {
 		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);
 		$module -> include_type = (!is_null($request -> input('include_type')) ? $request -> input('include_type') : 0);
 
+		if($module -> include_type != 0) {
+			$module -> page_id = 0;
+		}
+
 		$module -> save();
 
 
