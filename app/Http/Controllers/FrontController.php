@@ -30,6 +30,7 @@ class FrontController extends Controller {
     public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
 		\App :: setLocale($lang -> title);
 
+
 		if($activeInfoBlockModel) {
 			Language :: setActiveInfoBlock($activeInfoBlockModel);
 		} else {
