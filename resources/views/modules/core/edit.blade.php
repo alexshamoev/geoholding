@@ -24,14 +24,6 @@
 
 	
 	<div class="p-2">
-		{{-- @if($errors->any())
-			<div class="p-2">
-				<div class="alert alert-danger m-0">
-					{{ __('bsw.warningStatus') }}
-				</div>
-			</div>
-		@endif --}} 
-
 		@error('images')
 			<div class="alert alert-danger">
 				{{ __('bsw.fileValidation') }}
@@ -382,9 +374,6 @@
 		{{ Form::close() }}
 		
 		
-
-		{{-- @dd($nextModuleStepData) --}}
-		
 		@php
 			$i = 0;
 		@endphp
@@ -394,7 +383,7 @@
 				@if(!$moduleStepData->images)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$moduleStepData->title,
-						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
+						'url' => route('coreAdd', [$module->alias, $moduleStepData->id])
 					])
 				@else 
 					<div class="p-2">
