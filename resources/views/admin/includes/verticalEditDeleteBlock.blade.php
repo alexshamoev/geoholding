@@ -28,7 +28,7 @@
 		</div>
 		
 		<div class="col-2">
-			<div class=" d-flex justify-content-end">
+			<div class="d-flex justify-content-end">
 				<div class="text-right edit-block__edit-delete-block">
 					<a href="{{ $editLink }}">
 						<div class="p-3">

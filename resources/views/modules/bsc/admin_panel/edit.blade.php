@@ -57,7 +57,7 @@
 				</div>
 
 				@error('system_word')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror

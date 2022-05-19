@@ -10,11 +10,14 @@ class ARangController extends AController {
         $rang = 0;
         $i = 0;
 
+        // dd($request -> input('idsArray'));
+
         foreach(array_reverse($request -> input('idsArray')) as $id) {
             DB :: table($request -> input('db_table')) -> where('id', $id) -> update(['rang' => $rang]);
 
-            $rang = ($i + 1) * 5;
             $i++;
+
+            $rang = $i * 5;
         }
 
         return response() -> json(['success' => 'Ajax request submitted successfully '.$request -> input('db_table').' '.print_r($request -> input('idsArray'))]);

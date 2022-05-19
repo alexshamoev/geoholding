@@ -19,16 +19,80 @@ use Session;
 
 class AModuleController extends AController {
     public function getStartPoint() {
-		self :: deleteEmptyBlocks();
-
 		return view('modules.modules.admin_panel.start_point', self :: getDefaultData());
 	}
 	
 
 	public function add() {
+		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
+
+		$pagesForSelect[0] = '-- '.__('bsw.select').' --';
+
+		$pagesForIncludeInPages = array();
+		$pagesNotIncludeInPages = array();
+
+		foreach(Page :: all() as $data) {
+			$pagesForSelect[$data['id']] = $data['alias_'.$activeLang -> title];
+			
+			$pagesForIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
+			$pagesNotIncludeInPages[$data['id']]['alias'] = $data['alias_'.$activeLang -> title];
+
+			$pagesForIncludeInPages[$data['id']]['checked'] = '';
+			$pagesNotIncludeInPages[$data['id']]['checked'] = '';
+		}
+
+
+		$data = array_merge(self :: getDefaultData(), ['pagesForSelect' => $pagesForSelect,
+														'pagesForIncludeInPages' => $pagesForIncludeInPages,
+														'pagesNotIncludeInPages' => $pagesNotIncludeInPages,
+														'pages' => Page :: all(),
+														'languages' => Language :: where('disable', 1) -> get()]);
+
+		return view('modules.modules.admin_panel.add_step_0', $data);
+	}
+
+
+	public function insert(AModuleUpdateRequest $request) {
 		$module = new Module();
+
+		$module -> alias = $request -> input('alias');
+		$module -> title = $request -> input('title');
+		$module -> page_id = $request -> input('page_id');
+		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
+		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);
+		$module -> include_type = (!is_null($request -> input('include_type')) ? $request -> input('include_type') : 0);
+
 		$module -> save();
 
+
+		ModulesIncludesValue :: where('module', $module -> id) -> delete();
+		ModulesNotIncludesValue :: where('module', $module -> id) -> delete();
+
+
+		foreach(Page :: all() as $data) {
+			if(!is_null($request -> input('page_include_'.$data -> id))) {
+				$modulesIncludesValue = new ModulesIncludesValue;
+				$modulesIncludesValue -> module = $module -> id;
+				$modulesIncludesValue -> include_in = $data -> id;
+				$modulesIncludesValue -> save();
+			}
+
+			if(!is_null($request -> input('page_not_include_'.$data -> id))) {
+				$modulesNotIncludesValue = new ModulesNotIncludesValue;
+				$modulesNotIncludesValue -> module = $module -> id;
+				$modulesNotIncludesValue -> include_in = $data -> id;
+				$modulesNotIncludesValue -> save();
+			}
+		}
+
+		if($request -> file('svg_icon')) {
+			$filePath = $request -> file('svg_icon') -> storeAs('images/modules/modules',
+																$module -> id.'_icon.svg',
+																'public');
+		}
+		
+
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('moduleEdit', $module -> id);
 	}

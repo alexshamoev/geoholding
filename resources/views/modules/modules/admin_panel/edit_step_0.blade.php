@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $module -> alias }}
+    Modules > {{ $module->alias }}
 @endsection
 
 
@@ -10,13 +10,13 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $module -> alias
+		'tag1Text' => $module->alias
 	])
 
 
 	@include('admin.includes.bar', [
 		'addUrl' => route('moduleAdd'),
-		'deleteUrl' => route('moduleDelete', $module -> id),
+		'deleteUrl' => route('moduleDelete', $module->id),
 		'nextId' => $nextModuleId,
 		'prevId' => $prevModuleId,
 		'nextRoute' => route('moduleEdit', $nextModuleId),
@@ -26,7 +26,7 @@
 	
 
 	<div class="p-2 modulesStep0">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -35,25 +35,25 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		@if(Session :: has('successDeleteStatus'))
+		@if(Session::has('successDeleteStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successDeleteStatus') }}
+					{{ Session::get('successDeleteStatus') }}
 				</div>
 			</div>
 		@endif
 
 		
-		{{ Form :: model($module, array('route' => array('moduleUpdate', $module -> id), 'class' => 'm-0', 'files' => 'true')) }}
+		{{ Form::model($module, array('route' => array('moduleUpdate', $module->id), 'class' => 'm-0', 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -62,7 +62,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('alias') }}
+						{{ Form::text('alias') }}
 					</div>
 				</div>
 
@@ -80,7 +80,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('title') }}
+						{{ Form::text('title') }}
 					</div>
 				</div>
 
@@ -96,7 +96,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '0', null, array('class' => 'include_type')) }}
+								{{ Form::radio('include_type', '0', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -111,7 +111,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '1', null, array('class' => 'include_type')) }}
+								{{ Form::radio('include_type', '1', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -126,7 +126,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '2', null, array('class' => 'include_type')) }}
+								{{ Form::radio('include_type', '2', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -141,7 +141,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '3', null, array('class' => 'include_type')) }}
+								{{ Form::radio('include_type', '3', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -155,7 +155,7 @@
 					<label class="w-100">
 						<div class="d-flex flex-column align-items-center text-center p-2">
 							<div class="p-1">
-								{{ Form :: radio('include_type', '4', null, array('class' => 'include_type')) }}
+								{{ Form::radio('include_type', '4', null, array('class' => 'include_type')) }}
 							</div>
 
 							<div class="p-1">
@@ -166,18 +166,11 @@
 				</div>
 			</div>
 	
-			
-<!-- sss
-			<div id="appwww">
-				<testwww></testwww>
-			</div>
-ddd -->
-
 
 			<div class="px-2">
 				<div class="d-flex flex-column standard-block">
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type0Box">
-						{{ Form :: select('page_id', $pagesForSelect, $module -> page_id) }}
+						{{ Form::select('page_id', $pagesForSelect, $module->page_id) }}
 					</div>
 
 					<div class="p-2 modulesStep0__typeBox modulesStep0__type2Box">
@@ -217,17 +210,17 @@ ddd -->
 			<div class="px-2 pt-3 pb-2">
 				<div class="standard-block p-2">
 					<div class="row">
-						<div class="col-5">
+						<div class="col-5 p-2">
 							<label>
-								{{ Form :: radio('hide_for_admin', '0') }}
+								{{ Form::radio('hide_for_admin', '0') }}
 
 								Show for admin?
 							</label>
 						</div>
 
-						<div class="col-7">
+						<div class="col-7 p-2">
 							<label>
-								{{ Form :: radio('hide_for_admin', '1') }}
+								{{ Form::radio('hide_for_admin', '1') }}
 
 								Hide for admin?
 							</label>
@@ -244,7 +237,7 @@ ddd -->
 					</div>
 
 					<div class="p-1">
-						{{ Form :: input('color', 'icon_bg_color') }}
+						{{ Form::input('color', 'icon_bg_color') }}
 					</div>
 				</div>
 
@@ -263,32 +256,32 @@ ddd -->
 					</div>
 
 					<div class="p-1">
-						{{ Form :: file('svg_icon') }}
+						{{ Form::file('svg_icon') }}
 					</div>
 				</div>
 			</div>
 
 		
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{ Form::submit('Submit') }}
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 
 		
-		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', $module -> id)])
+		<div class="p-3"></div>
 
+		@include('admin.includes.addButton', ['text' => 'Add Step', 'url' => route('moduleStepAdd', array($module->id))])
 
-		<div>
-			<div id="rangBlocks" data-db_table="module_steps">
-				@foreach($module -> moduleStep as $data)
-					@include('admin.includes.horizontalEditDeleteBlock', [
-						'id' => $data -> id,
-						'title' => $data -> title,
-						'editLink' => route('moduleStepEdit', array($module -> id, $data -> id)),
-						'deleteLink' => route('moduleStepDelete', array($module -> id, $data -> id))
-					])
-				@endforeach
-			</div>	
-		</div>
+		<div class="rangBlocks" data-db_table="module_steps">
+			@foreach($module->moduleStep as $data)
+				@include('admin.includes.horizontalEditDeleteBlock', [
+					'id' => $data->id,
+					'title' => $data->db_table,
+					'text' => $data->title,
+					'editLink' => route('moduleStepEdit', array($module->id, $data->id)),
+					'deleteLink' => route('moduleStepDelete', array($module->id, $data->id))
+				])
+			@endforeach
+		</div>	
 	</div>
 @endsection

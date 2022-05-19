@@ -7,6 +7,11 @@ use App\Http\Controllers\PhotoGalleryController;
 
 use App\Mail\WelcomeMail;
 
+Route::get('/cache', function() {
+	$clear = Artisan::call('cache:clear');
+	return "Cache cleared";
+});
+
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
 if(Schema :: hasTable('languages')) {
@@ -28,17 +33,21 @@ if(Schema :: hasTable('languages')) {
 				Route :: prefix('modules') -> group(function() {
 					Route :: get('', 'AModuleController@getStartPoint') -> name('moduleStartPoint');
 					Route :: get('/add', 'AModuleController@add') -> name('moduleAdd');
+					Route :: post('/add', 'AModuleController@insert') -> name('moduleInsert');
 					Route :: get('/{id}', 'AModuleController@edit') -> name('moduleEdit');
 					Route :: post('/{id}', 'AModuleController@update') -> name('moduleUpdate');
 					Route :: get('/{id}/delete', 'AModuleController@delete') -> name('moduleDelete');
-					
+
+
 					Route :: get('/{moduleId}/add', 'AModuleStepController@add') -> name('moduleStepAdd');
+					Route :: post('/{moduleId}/add', 'AModuleStepController@insert') -> name('moduleStepInsert');
 					Route :: get('/{moduleId}/{id}', 'AModuleStepController@edit') -> name('moduleStepEdit');
 					Route :: post('/{moduleId}/{id}', 'AModuleStepController@update') -> name('moduleStepUpdate');
 					Route :: get('/{moduleId}/{id}/delete', 'AModuleStepController@delete') -> name('moduleStepDelete');
 					
 					
 					Route :: get('/{moduleId}/{stepId}/add', 'AModuleBlockController@add') -> name('moduleBlockAdd');
+					Route :: post('/{moduleId}/{stepId}/add', 'AModuleBlockController@insert') -> name('moduleBlockInsert');
 					Route :: get('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit') -> name('moduleBlockEdit');
 					Route :: post('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update') -> name('moduleBlockUpdate');
 					Route :: get('/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete') -> name('moduleBlockDelete');
@@ -48,6 +57,7 @@ if(Schema :: hasTable('languages')) {
 				Route :: prefix('bsc') -> group(function() {
 					Route :: get('', 'ABscController@getStartPoint') -> name('bscStartPoint');
 					Route :: get('/add', 'ABscController@add') -> name('bscAdd');
+					Route :: post('/add', 'ABscController@insert') -> name('bscInsert');
 					Route :: get('/{id}', 'ABscController@edit') -> name('bscEdit');
 					Route :: post('/{id}', 'ABscController@update') -> name('bscUpdate');
 					Route :: get('/{id}/delete', 'ABscController@delete') -> name('bscDelete');
@@ -57,6 +67,7 @@ if(Schema :: hasTable('languages')) {
 				Route :: prefix('bsw') -> group(function() {
 					Route :: get('', 'ABswController@getStartPoint') -> name('bswStartPoint');
 					Route :: get('/add', 'ABswController@add') -> name('bswAdd');
+					Route :: post('/add', 'ABswController@insert') -> name('bswInsert');
 					Route :: get('/{id}', 'ABswController@edit') -> name('bswEdit');
 					Route :: post('/{id}', 'ABswController@update') -> name('bswUpdate');
 					Route :: get('/{id}/delete', 'ABswController@delete') -> name('bswDelete');
@@ -67,15 +78,17 @@ if(Schema :: hasTable('languages')) {
 					Route :: get('', 'ALanguageController@getStartPoint') -> name('languageStartPoint');
 					Route :: post('', 'ALanguageController@updateStartPoint') -> name('languageStartPointPost');
 					Route :: get('/add', 'ALanguageController@add') -> name('languageAdd');
+					Route :: post('/add', 'ALanguageController@insert') -> name('languageInsert');
 					Route :: get('/{id}', 'ALanguageController@edit') -> name('languageEdit');
 					Route :: post('/{id}', 'ALanguageController@update') -> name('languageUpdate');
 					Route :: get('/{id}/delete', 'ALanguageController@delete') -> name('languageDelete');
 				});
 
-				// Modulis without core
+				// Modules without core
 					Route :: prefix('admins') -> group(function() {
 						Route :: get('', 'AAdminController@getStartPoint') -> name('adminStartPoint');
 						Route :: get('/add', 'AAdminController@add') -> name('adminAdd');
+						Route :: post('/add', 'AAdminController@insert') -> name('adminInsert');
 						Route :: get('/{id}', 'AAdminController@edit') -> name('adminEdit');
 						Route :: post('/{id}', 'AAdminController@update') -> name('adminUpdate');
 						Route :: get('/{id}/delete', 'AAdminController@delete') -> name('adminDelete');
@@ -91,30 +104,16 @@ if(Schema :: hasTable('languages')) {
 					Route :: post('/contacts', 'AContactsController@update') -> name('contactsUpdate');
 				//
 
-				Route :: get('/{moduleAlias}', 'ACoreControllerStep0@get') -> name('coreGetStep0');
-				Route :: get('/{moduleAlias}/add', 'ACoreControllerStep0@add') -> name('coreAddStep0');
-				Route :: get('/{moduleAlias}/{id}', 'ACoreControllerStep0@edit') -> name('coreEditStep0');
-				Route :: post('/{moduleAlias}/{id}', 'ACoreControllerStep0@update') -> name('coreUpdateStep0');
-				Route :: post('/{moduleAlias}/{id}/addImageStep0', 'ACoreControllerStep0@addMultImages') -> name('coreAddMultImagestep0');
-				Route :: post('/{moduleAlias}/{id}/addImage', 'ACoreControllerStep0@addMultImagesStep0') -> name('coreAddMultImageForstep0');
-				Route :: get('/{moduleAlias}/{id}/delete', 'ACoreControllerStep0@delete') -> name('coreDeleteStep0');
 
-				Route :: get('/{moduleAlias}/{parent}/add', 'ACoreControllerStep1@add') -> name('coreAddStep1');
-				Route :: get('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@edit') -> name('coreEditStep1');
-				Route :: post('/{moduleAlias}/{parent}/{id}', 'ACoreControllerStep1@update') -> name('coreUpdateStep1');
-				Route :: post('/{moduleAlias}/{parent}/{id}/addImage', 'ACoreControllerStep1@addMultImages') -> name('coreAddMultImagestep1');
-				Route :: get('/{moduleAlias}/{parent}/{id}/delete', 'ACoreControllerStep1@delete') -> name('coreDeleteStep1');
-
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/add', 'ACoreControllerStep2@add') -> name('coreAddStep2');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@edit') -> name('coreEditStep2');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}', 'ACoreControllerStep2@update') -> name('coreUpdateStep2');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/addImage', 'ACoreControllerStep2@addMultImages') -> name('coreAddMultImagestep2');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{id}/delete', 'ACoreControllerStep2@delete') -> name('coreDeleteStep2');
-
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/add', 'ACoreControllerStep3@add') -> name('coreAddStep3');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@edit') -> name('coreEditStep3');
-				Route :: post('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}', 'ACoreControllerStep3@update') -> name('coreUpdateStep3');
-				Route :: get('/{moduleAlias}/{parentFirst}/{parentSecond}/{parentThird}/{id}/delete', 'ACoreControllerStep3@delete') -> name('coreDeleteStep3');
+				// Core
+					Route :: get('/{moduleAlias}', 'ACoreController@get') -> name('coreGetStartPoint');
+					Route :: get('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@add') -> name('coreAdd');
+					Route :: post('/{moduleAlias}/{moduleStepId}/add', 'ACoreController@insert') -> name('coreInsert');
+					Route :: get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@edit') -> name('coreEdit');
+					Route :: post('/{moduleAlias}/{moduleStepId}/{id}/addImage', 'ACoreController@addMultImages') -> name('coreAddMultImage');
+					Route :: post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update') -> name('coreUpdate');
+					Route :: get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete') -> name('coreDelete');
+				// 
 
 
 				// Ajax

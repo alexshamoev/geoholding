@@ -12,7 +12,7 @@ class ModuleBlock extends Model {
 		);
 		
         // Validation
-            foreach(ModuleBlock :: all() as $data) {
+            foreach(ModuleBlock::get() as $data) {
                 $moduleBlockData['db_column'] = $data -> db_column;
 
                 $validator = Validator :: make($moduleBlockData, $validateRules);
