@@ -32,6 +32,6 @@ class PhotoGalleryStep1 extends Model {
 
 
     public function photoGalleryStep0() {
-        return $this -> hasOne(PhotoGalleryStep0 :: class, 'id', 'parent');
+        return $this -> hasOne(PhotoGalleryStep0 :: class, 'id', 'top_level');
     }
 }

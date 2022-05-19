@@ -57,7 +57,7 @@
 				</div>
 
                 @error('name')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror
@@ -75,7 +75,7 @@
 				</div>
 
                 @error('email')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror
@@ -93,7 +93,7 @@
 				</div>
 
                 @error('password')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror
@@ -111,7 +111,7 @@
 				</div>
 
                 @error('password_confirmation')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror

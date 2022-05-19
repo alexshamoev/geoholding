@@ -33,7 +33,7 @@
 		{{ Form :: open(array('url' => route('languageStartPoint'))) }}
 			@include('admin.includes.addButton', ['text' => 'Add Language', 'url' => route('languageAdd')])
 			
-			<div id="rangBlocks" data-db_table="languages">
+			<div class="rangBlocks" data-db_table="languages">
 				@foreach($languages as $data)
 					@include('modules.languages.admin_panel.includes.horizontalEditDeleteBlock', [
 						'id' => $data -> id,

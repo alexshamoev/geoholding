@@ -25,7 +25,9 @@ class AModuleStepUpdateRequest extends FormRequest
     {
         return [
             'title' => 'required|min:2|max:100',
-			'db_table' => 'required|min:2|max:100'
+			'db_table' => 'required|min:2|max:100',
+			'order_by_column' => 'required',
+			'main_column' => 'required',
         ];
     }
 }

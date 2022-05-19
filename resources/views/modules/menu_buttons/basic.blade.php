@@ -40,7 +40,7 @@
 							</a>
 						@endif
 
-						@if(count($data -> MenuButtonStep1))
+						@if(count($data -> menuButtonStep1))
 							<div class="js_arrow_div
 										d-inline-block
 										menu_buttons__arrow_block">
@@ -49,9 +49,9 @@
 						@endif
 					</div>
 					
-					@if(count($data -> MenuButtonStep1))
+					@if(count($data -> menuButtonStep1))
 						<div class="menu_buttons__slide_down_block mt-3">
-							@foreach($data -> MenuButtonStep1 as $dataInside)
+							@foreach($data -> menuButtonStep1 as $dataInside)
 								@php
 									$activeCssClass = '';
 
@@ -78,7 +78,7 @@
 
 
 						<div class="menu_buttons__slide_down_block_in_burger mt-1">
-							@foreach($data -> MenuButtonStep1 as $dataInside)
+							@foreach($data -> menuButtonStep1 as $dataInside)
 								@php
 									$activeCssClass = '';
 

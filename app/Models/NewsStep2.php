@@ -36,11 +36,6 @@ class NewsStep2 extends Model {
         return $this -> newsStep1 -> fullUrl.'/'.$this -> alias;
     }
 
-    
-	public function getFullUrl($lang) {
-        return $this -> newsStep1 -> getFullUrl($lang).'/'.$this -> { 'alias_'.$lang };
-    }
-
 
 	public function getMetaTitleAttribute() {
         $bsw = Bsw :: getFullData();
@@ -84,11 +79,15 @@ class NewsStep2 extends Model {
 
 
 	public function newsStep3() {
-        return $this -> hasMany(NewsStep3 :: class, 'parent', 'id');
+        return $this -> hasMany(NewsStep3 :: class, 'top_level', 'id');
     }
 
 
 	public function newsStep1() {
-        return $this -> hasOne(NewsStep1 :: class, 'id', 'parent') -> orderBy('rang', 'desc');
+        return $this -> hasOne(NewsStep1 :: class, 'id', 'top_level') -> orderBy('rang', 'desc');
+    }
+
+    public function getFullUrl($lang) {
+        return $this->newsStep1->getFullUrl($lang).'/'.$this->{ 'alias_'.$lang };
     }
 }

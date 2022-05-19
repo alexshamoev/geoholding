@@ -27,6 +27,7 @@ class DefaultDataSeeder extends Seeder
             DefaultModulesIncludesValues :: class,
             DefaultModuleBlocks :: class,
             DefaultModuleSteps :: class,
+            DefaultModuleLevels :: class,
             DefaultUsers :: class,
             DefaultNewsStep0 :: class,
             DefaultNewsStep1 :: class,

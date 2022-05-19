@@ -13,14 +13,14 @@ class ModuleStep extends Model {
 		);
 		
         // Validation
-            foreach(ModuleStep :: all() as $data) {
-                $moduleStepData['title'] = $data -> title;
-                $moduleStepData['db_table'] = $data -> db_table;
+            foreach(ModuleStep::get() as $data) {
+                $moduleStepData['title'] = $data->title;
+                $moduleStepData['db_table'] = $data->db_table;
 
-                $validator = Validator :: make($moduleStepData, $validateRules);
+                $validator = Validator::make($moduleStepData, $validateRules);
 
-                if($validator -> fails()) {
-                    ModuleStep :: destroy($data -> id);
+                if($validator->fails()) {
+                    ModuleStep::destroy($data->id);
                 }
             }
         //
@@ -28,11 +28,16 @@ class ModuleStep extends Model {
 
 
     public function module() {
-        return $this -> hasOne(Module :: class, 'id', 'top_level');
+        return $this->hasOne(Module::class, 'id', 'top_level');
     }
 
 
     public function moduleBlock() {
-        return $this -> hasMany(ModuleBlock :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
+        return $this->hasMany(ModuleBlock::class, 'top_level', 'id')->orderBy('rang', 'desc');
+    }
+
+
+    public function moduleParentStep() {
+        return $this->hasOne(ModuleStep::class, 'id', 'parent_step_id');
     }
 }

@@ -15,14 +15,14 @@ class Module extends Model {
 		);
 		
         // Validation
-            foreach(Module :: all() as $data) {
-                $moduleData['alias'] = $data -> alias;
-                $moduleData['title'] = $data -> title;
+            foreach(Module::all() as $data) {
+                $moduleData['alias'] = $data->alias;
+                $moduleData['title'] = $data->title;
 
-                $validator = Validator :: make($moduleData, $validateRules);
+                $validator = Validator::make($moduleData, $validateRules);
 
-                if($validator -> fails()) {
-                    Module :: destroy($data -> id);
+                if($validator->fails()) {
+                    Module::destroy($data->id);
                 }
             }
         //
@@ -30,11 +30,11 @@ class Module extends Model {
 
 
     public function page() {
-        return $this -> hasOne(Page :: class, 'id', 'page_id');
+        return $this->hasOne(Page::class, 'id', 'page_id');
     }
 
 
     public function moduleStep() {
-        return $this -> hasMany(ModuleStep :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
+        return $this->hasMany(ModuleStep::class, 'top_level', 'id')->orderBy('rang', 'desc');
     }
 }

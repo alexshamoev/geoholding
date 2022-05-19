@@ -57,7 +57,7 @@
 				</div>
 
 				@error('system_word')
-					<div class="alert alert-danger">
+					<div class="alert alert-danger m-0">
 						{{ $message }}
 					</div>
 				@enderror
@@ -76,12 +76,6 @@
 							{{ Form :: text('word_'.$langData -> title) }}
 						</div>
 					</div>
-
-					@error('word_'.$langData -> title)
-						<div class="alert alert-danger">
-							{{ $message }}
-						</div>
-					@enderror
 				@endforeach
 			</div>
 

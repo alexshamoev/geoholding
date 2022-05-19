@@ -13,9 +13,6 @@ use Session;
 
 class ABswController extends AController {
 	public function getStartPoint() {
-		self :: deleteEmptyBlocks();
-
-
 		$data = array_merge(self :: getDefaultData(), ['languages' => Language :: where('disable', 1) -> get(),
 														'bsws' => Bsw :: all() -> sortBy('system_word')]);
 		
@@ -24,9 +21,23 @@ class ABswController extends AController {
 
 	
 	public function add() {
+		return view('modules.bsw.admin_panel.add', self :: getDefaultData());
+	}
+
+
+	public function insert(ABswUpdateRequest $request) {
 		$bsw = new Bsw();
 
+		$bsw -> system_word = $request -> input('system_word');
+
+		foreach(Language :: where('disable', 0) -> get() as $data) {
+			$bsw -> { 'word_'.$data -> title } = $request -> input('word_'.$data -> title);
+		}
+
 		$bsw -> save();
+
+		
+		$request -> session() -> flash('successStatus', __('bsw.successStatus')); // Status for success.
 
 		return redirect() -> route('bswEdit', $bsw -> id);
 	}

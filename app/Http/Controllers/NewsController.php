@@ -27,9 +27,9 @@ class NewsController extends FrontController {
 
         $data = array_merge(self :: getDefaultData($language,
                                                     $page),
-                                                    [
-                                                        'newsStep0' => NewsStep0 :: orderByDesc('rang') -> get()
-                                                    ]);
+                            [
+                                'newsStep0' => NewsStep0 :: orderByDesc('rang') -> get()
+                            ]);
 
         return view('modules.news.step0', $data);
     }

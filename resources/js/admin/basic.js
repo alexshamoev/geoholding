@@ -116,54 +116,58 @@ function check_file_exists(url) {
 
 jQuery(function () {
 	// Dragable blocks.
-		$('#rangBlocks').sortable({
-			// Only make the .rangButton child elements support dragging.
-			// Omit this to make then entire <li>...</li> draggable.
-			handle: '.rangButton', 
-			update: function() {
-				let idsArray = [];
+		$('.rangBlocks').each(function() {
+			let activeRangBlock = $(this);
 
-				$('.blockWithRang', $('#rangBlocks')).each(function(index, elem) {
-					console.log($(elem).data('id'));
-
-					idsArray[index] = $(elem).data('id');
-
-					// Persist the new indices.
-				});
-
-				// alert(1);
-
-				// event.preventDefault();
-
-				// let name = $("input[name=name]").val();
-				// let email = $("input[name=email]").val();
-				// let mobile_number = $("input[name=mobile_number]").val();
-				// let message = $("input[name=message]").val();
-				// let _token   = $('meta[name="csrf-token"]').attr('content');
-
-				let _token = $('meta[name="csrf-token"]').attr('content');
-
-				$.ajax({
-					url: "/admin/set-rangs",
-					type: "POST",
-					data: {
-						db_table: $('#rangBlocks').data('db_table'),
-						idsArray: idsArray,
-						_token: _token
-					},
-					success: function(response) {
-						console.log(response);
-						
-						if(response) {
-
-						}
-					},
-				});
-
-				
-
-				// alert(555);
-			}
+			activeRangBlock.sortable({
+				// Only make the .rangButton child elements support dragging.
+				// Omit this to make then entire <li>...</li> draggable.
+				handle: '.rangButton', 
+				update: function() {
+					let idsArray = [];
+	
+					$('.blockWithRang', activeRangBlock).each(function(index, elem) {
+						console.log($(elem).data('id'));
+	
+						idsArray[index] = $(elem).data('id');
+	
+						// Persist the new indices.
+					});
+	
+					// alert(1);
+	
+					// event.preventDefault();
+	
+					// let name = $("input[name=name]").val();
+					// let email = $("input[name=email]").val();
+					// let mobile_number = $("input[name=mobile_number]").val();
+					// let message = $("input[name=message]").val();
+					// let _token   = $('meta[name="csrf-token"]').attr('content');
+	
+					let _token = $('meta[name="csrf-token"]').attr('content');
+	
+					$.ajax({
+						url: "/admin/set-rangs",
+						type: "POST",
+						data: {
+							db_table: activeRangBlock.data('db_table'),
+							idsArray: idsArray,
+							_token: _token
+						},
+						success: function(response) {
+							console.log(response);
+							
+							if(response) {
+	
+							}
+						},
+					});
+	
+					
+	
+					// alert(555);
+				}
+			});
 		});
 	//
 
