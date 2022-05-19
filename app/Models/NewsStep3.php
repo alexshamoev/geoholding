@@ -81,4 +81,9 @@ class NewsStep3 extends Model {
 	public function newsStep2() {
         return $this -> hasOne(NewsStep2 :: class, 'id', 'top_level');
     }
+
+
+    public function getFullUrl($lang) {
+        return $this->newsStep2->getFullUrl($lang).'/'.$this->{ 'alias_'.$lang };
+    }
 }
