@@ -88,6 +88,6 @@ class PhotoGalleryStep0 extends Model {
 
 
 	public function photoGalleryStep1() {
-        return $this -> hasMany(PhotoGalleryStep1 :: class, 'parent', 'id') -> orderBy('rang', 'desc');
+        return $this -> hasMany(PhotoGalleryStep1 :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
 }
