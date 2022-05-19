@@ -79,7 +79,7 @@ class NewsStep3 extends Model {
 
 
 	public function newsStep2() {
-        return $this -> hasOne(NewsStep2 :: class, 'id', 'top_level');
+        return $this -> hasOne(NewsStep2 :: class, 'id', 'topt_level');
     }
 
 
