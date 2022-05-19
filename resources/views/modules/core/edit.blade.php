@@ -471,7 +471,6 @@
 		@endphp
 		
 		@foreach($collection as $dataFromDb)
-			@dd($childSteps->values()->get($i)->id)
 			<!-- Add button -->
 				@if(!$childSteps->values()->get($i)->images)
 					@include('admin.includes.addButton', [
