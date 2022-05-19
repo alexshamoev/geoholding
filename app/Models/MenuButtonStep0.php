@@ -67,6 +67,6 @@ class MenuButtonStep0 extends Model {
 
 
 	public function menuButtonStep1() {
-        return $this -> hasMany(MenuButtonStep1 :: class, 'parent', 'id') -> orderBy('rang', 'desc');
+        return $this -> hasMany(MenuButtonStep1 :: class, 'top_level', 'id') -> orderBy('rang', 'desc');
     }
 }
