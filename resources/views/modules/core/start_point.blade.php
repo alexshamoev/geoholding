@@ -21,7 +21,6 @@
 			</div>
 		@endif
 
-
 		@if(Session::has('successDeleteStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
@@ -35,6 +34,7 @@
 				{{ __('bsw.fileValidation') }}
 			</div>
 		@enderror
+
 		
 		@php
 			$i = 0;
@@ -112,6 +112,8 @@
 					@endif
 				@endforeach
 			</div>
+
+			<div class="my-5"></div>
 
 			@php
 				$i++;

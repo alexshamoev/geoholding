@@ -372,6 +372,7 @@
 			</div>
 		{{ Form::close() }}
 		
+		<div class="my-5"></div>
 		
 		@php
 			$i = 0;
@@ -447,6 +448,8 @@
 				@endforeach
 			</div>
 			
+			<div class="my-5"></div>
+
 			@php
 				$i++;
 			@endphp
