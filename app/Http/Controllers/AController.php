@@ -35,22 +35,14 @@ class AController extends Controller {
 		}
 
 		
-		$modulesForMenu = array();
+		$modulesForMenu = collect([]);
 
 		foreach(Module::all()->sortByDesc('rang') as $data) {
-			// dd(count($data->moduleLevel));
-
-			// foreach(Module::all()->sortByDesc('rang') as $data) {
-				// if(count($data->moduleLevel->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
-				// 	if($activeUser->super_administrator === 1) {
-				// 		$modulesForMenu[] = $data;
-				// 	} else if($data->hide_for_admin === 0) {
-				// 		$modulesForMenu[] = $data;
-				// 	}
-				// }
-			// }
-
-			$modulesForMenu[] = $data;
+			if(count($data->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
+				if($activeUser->super_administrator === 1 || $data->hide_for_admin === 0) {
+					$modulesForMenu->add($data);
+				}
+			}
 		}
 
 		$data = [
