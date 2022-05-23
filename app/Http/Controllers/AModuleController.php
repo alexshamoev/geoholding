@@ -57,11 +57,16 @@ class AModuleController extends AController {
 
 		$module -> alias = $request -> input('alias');
 		$module -> title = $request -> input('title');
-		$module -> page_id = $request -> input('page_id');
 		$module -> icon_bg_color = (!is_null($request -> input('icon_bg_color')) ? $request -> input('icon_bg_color') : '');
 		$module -> hide_for_admin = (!is_null($request -> input('hide_for_admin')) ? $request -> input('hide_for_admin') : 0);
 		$module -> include_type = (!is_null($request -> input('include_type')) ? $request -> input('include_type') : 0);
 
+		if($module -> include_type != 0) {
+			$module -> page_id = 0;
+		} else {
+			$module -> page_id = $request -> input('page_id');
+		}
+		
 		$module -> save();
 
 
