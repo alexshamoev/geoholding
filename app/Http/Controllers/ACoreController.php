@@ -797,84 +797,6 @@ class ACoreController extends AController {
 			// }
 		}
 
-		// dd($nextModuleStepData);
-
-
-		/*$moduleBlockForSort = ModuleBlock::where('top_level', $module->id)->where('a_use_for_sort', 1)->first();
-
-		$use_for_sort = 'id';
-		$sort_by = 'DESC';
-
-		if($moduleBlockForSort) {
-			$use_for_sort = $moduleBlockForSort->db_column;
-
-			if(!$moduleBlockForSort->sort_by_desc) {
-				$sort_by = 'ASC';
-			}
-		}
-
-
-		// Child steps
-			$collection = collect([]);
-			$collectionForTags = collect([]);
-
-			$childSteps = ModuleStep::where('parent_step_id', $moduleStep->id)->get();
-
-			// dd($childSteps);
-
-			foreach($childSteps as $moduleStepData) {
-				$use_for_tags = $moduleStep->main_column;
-				
-				// $moduleBlock = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_tags', 1)->first();
-
-				// if($moduleBlock) {
-				// 	$use_for_tags = $moduleBlock->db_column;
-					
-				// 	if($moduleBlock->type === 'alias' || $moduleBlock->type === 'input_with_languages' || $moduleBlock->type === 'editor_with_languages') {
-				// 		$use_for_tags .= '_'.App::getLocale();
-				// 	}
-				// }
-				
-				
-				$moduleBlockForSort = ModuleBlock::where('top_level', $moduleStepData->id)->where('a_use_for_sort', 1)->first();
-				
-				$orderBy = 'id';
-				$sortBy = 'asc';
-
-				if($moduleBlockForSort) {
-					$orderBy = $moduleBlockForSort->db_column;
-
-					if($moduleBlockForSort->type === 'alias' || $moduleBlockForSort->type === 'input_with_languages' || $moduleBlockForSort->type === 'editor_with_languages') {
-						$orderBy .= '_'.App::getLocale();
-					}
-
-					if($moduleBlockForSort->sort_by_desc) {
-						$sortBy = 'desc';
-					}
-				}
-
-
-				$imageFormat = 'jpg';
-
-				$moduleBlockForImage = ModuleBlock::where('top_level', $moduleStepData->id)->where('type', 'image')->first();
-
-				if($moduleBlockForImage) {
-					$imageFormat = $moduleBlockForImage->file_format;
-				}
-
-
-				$collection->add(DB::table($moduleStepData->db_table)->orderBy($orderBy, $sortBy)->get());
-				$collectionForTags->add($use_for_tags);
-			}
-		// 
-*/
-
-		// $parentModuleStepData0 = false;
-
-		// if($moduleStep->moduleParentStep) {
-		// 	$parentModuleStepData0 = DB::table($moduleStep->moduleParentStep->db_table)->where('id', $pageData->top_level)->first();
-		// }
-
 
 		$imageFormat = 'jpg'; // Temp solution.
 			
@@ -993,7 +915,7 @@ class ACoreController extends AController {
 
 
 	public function update(Request $request, $moduleAlias, $moduleStepId, $id) {
-		// dd($moduleStepId);
+		// dd($request);
 
 		$moduleStep = ModuleStep::find($moduleStepId);
 
