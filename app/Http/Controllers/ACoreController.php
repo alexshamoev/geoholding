@@ -633,8 +633,6 @@ class ACoreController extends AController {
 		// Edit active block part.
 			if(Session::has('file_id')) {
 				self::renameTempFiles($moduleStepId, Session::get('file_id'), $id);
-			
-				// dd(Session::get('file_id'));
 			}
 			
 
