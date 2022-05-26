@@ -42,7 +42,7 @@
 		
 		@foreach($collection as $dataFromDb)
 			<!-- Add button -->
-				@if(!$moduleStep->values()->get($i)->images)
+				@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
 					@include('admin.includes.addButton', [
 						'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
 						'url' => route('coreAdd', [
@@ -51,7 +51,7 @@
 							0,
 						])
 					])
-				@else 
+				@elseif($moduleStep->values()->get($i)->images) 
 					<div class="p-2">
 						<div class="p-2 standard-block">
 							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
