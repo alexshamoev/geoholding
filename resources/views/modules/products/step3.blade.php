@@ -68,15 +68,20 @@
 			@endforeach
 		</div>
 
-		<div class="row">
+		<div class="row my-gallery col-lg-6 col-12 p-0" itemscope itemtype="http://schema.org/ImageGallery">
 			@foreach($activeProductStep2 -> productStep3 as $data)
-				<div class="col-3">
-                    <div class="p-2">
-                        <div class="p-2">
-                            <img src="{{ asset('/storage/images/modules/products/70/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
-                        </div>
-                    </div>
-				</div>
+				<figure itemprop="associatedMedia" class="col-4">
+
+					<a href="{{ asset('/storage/images/modules/products/70/'.$data -> id.'.jpg') }}"
+						itemprop="contentUrl"
+						data-size="2000x1200">
+						<img src="{{ asset('/storage/images/modules/products/70/'.$data -> id.'_preview.jpg') }}"
+							itemprop="thumbnail"
+							alt="Image description" />
+					</a>
+
+					<figcaption class="d-none" itemprop="caption description">{{ $data -> title }}</figcaption>
+				</figure>
 			@endforeach
 		</div>
 	</div>

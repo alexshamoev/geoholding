@@ -41,7 +41,7 @@
 
 		<div class="float-right img_wrapper">
 			<div class="p-2">
-				<img src="{{ asset('/storage/images/modules/news/step_2/'.$activeNewsStep2 -> id.'.jpg') }}" alt="{{ $activeNewsStep2 -> title }}">
+				<img src="{{ asset('/storage/images/modules/news/30/'.$activeNewsStep2 -> id.'.jpg') }}" alt="{{ $activeNewsStep2 -> title }}">
 			</div>
 		</div>
 
@@ -58,7 +58,7 @@
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">
 							<div class="p-2">
-								<img src="{{ asset('/storage/images/modules/news/step_3/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+								<img src="{{ asset('/storage/images/modules/news/33/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
 							</div>
 
 							<div class="p-2">
