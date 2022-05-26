@@ -10,7 +10,17 @@
 	@include('admin.includes.coreTags', [
 		'tagsData' => $tagsData
 	])
-
+{{-- {{dd($moduleStep)}} --}}
+@if($moduleStep->possibility_to_add == 0)
+	@include('admin.includes.bar', [
+		'deleteUrl' => route('coreDelete', [$module->alias, $moduleStep->id, $data->id]),
+		'nextId' => $nextId,
+		'prevId' => $prevId,
+		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
+		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
+		'backRoute' => $backRoute
+	])
+@else
 	@include('admin.includes.bar', [
 		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]),
 		'deleteUrl' => route('coreDelete', [$module->alias, $moduleStep->id, $data->id]),
@@ -20,7 +30,7 @@
 		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
 		'backRoute' => $backRoute
 	])
-
+@endif
 	
 	<div class="p-2">
 		@error('images')
@@ -380,29 +390,31 @@
 										
 		@foreach($nextModuleStep as $moduleStepData)
 			<!-- Add button -->
-				@if(!$moduleStepData->images)
-					@include('admin.includes.addButton', [
-						'text' => __('bsw.add').' '.$moduleStepData->title,
-						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
-					])
-				@else 
-					<div class="p-2">
-						<div class="p-2 standard-block">
-							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id, $data->id), 'files' => true, 'method' => 'post')) }}
-								<div class="p-2">
-									{{ __('bsw.add').' '.$moduleStepData->title }}
-								</div>
+				@if($moduleStepData->possibility_to_add !== 0)
+					@if(!$moduleStepData->images )
+						@include('admin.includes.addButton', [
+							'text' => __('bsw.add').' '.$moduleStepData->title,
+							'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
+						])
+					@else 
+						<div class="p-2">
+							<div class="p-2 standard-block">
+								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id, $data->id), 'files' => true, 'method' => 'post')) }}
+									<div class="p-2">
+										{{ __('bsw.add').' '.$moduleStepData->title }}
+									</div>
 
-								<div class="p-2">
-									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-								</div>
+									<div class="p-2">
+										{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+									</div>
 
-								<div class="p-2 submit-button">
-									{{ Form::submit(__('bsw.adding')) }}
-								</div>
-							{{ Form::close() }}
+									<div class="p-2 submit-button">
+										{{ Form::submit(__('bsw.adding')) }}
+									</div>
+								{{ Form::close() }}
+							</div>
 						</div>
-					</div>
+					@endif
 				@endif
 			<!--  -->
 			
