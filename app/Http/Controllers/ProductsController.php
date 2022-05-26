@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Models\ProductStep0;
 use App\Models\ProductStep1;
+use App\Models\ProductStep2;
 
 class ProductsController extends FrontController
 {
@@ -46,10 +47,10 @@ class ProductsController extends FrontController
 
     
     public static function getStep2($lang, $step0Alias, $step1Alias) {
-        $language = Language::where('title', $lang)->first();
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
 
-        $activeProductStep1 = ProductStep1::where('alias_'.$language->title, $step1Alias)->first();
+        $activeProductStep1 = ProductStep1::firstWhere('alias_'.$language->title, $step1Alias);
 
         $data = array_merge(self::getDefaultData($language,
                                                     $page,
@@ -63,23 +64,23 @@ class ProductsController extends FrontController
     }
 
     
-    // public static function getStep3($lang, $step0Alias, $step1Alias, $step2Alias) {
-    //     $language = Language::where('title', $lang)->first();
-    //     $page = Page::where('slug', self::PAGE_SLUG)->first();
+    public static function getStep3($lang, $step0Alias, $step1Alias, $step2Alias) {
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
 
-    //     $activeNewsStep2 = NewsStep2::where('alias_'.$language->title, $step2Alias)->first();
+        $activeProductStep2 = ProductStep2::firstWhere('alias_'.$language->title, $step2Alias);
 
 
-    //     $data = array_merge(self::getDefaultData($language,
-    //                                                 $page,
-    //                                                 $activeNewsStep2),
-    //                                                 [
-    //                                                     'activeNewsStep2' => $activeNewsStep2
-    //                                                 ]
-    //                         );
+        $data = array_merge(self::getDefaultData($language,
+                                                    $page,
+                                                    $activeProductStep2),
+                                                    [
+                                                        'activeProductStep2' => $activeProductStep2
+                                                    ]
+                            );
 
-    //     return view('modules.news.step3', $data);
-    // }
+        return view('modules.products.step3', $data);
+    }
 
     
     // public static function getStep4($lang, $step0Alias, $step1Alias, $step2Alias, $step3Alias) {

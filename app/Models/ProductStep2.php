@@ -36,6 +36,11 @@ class ProductStep2 extends Model
 	public function productStep3() {
         return $this->hasMany(ProductStep3::class, 'top_level', 'id');
     }
+    
+
+    public function productStep4() {
+        return $this->hasMany(ProductStep4::class, 'top_level', 'id');
+    }
 
 
 	public function productStep1() {
