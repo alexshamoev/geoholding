@@ -49,7 +49,7 @@
 
 		<div class="float-right img_wrapper">
 			<div class="p-2">
-				<img src="{{ asset('/storage/images/modules/news/step_3/'.$activeNewsStep3 -> id.'.jpg') }}" alt="{{ $activeNewsStep3 -> title }}">
+				<img src="{{ asset('/storage/images/modules/news/33/'.$activeNewsStep3 -> id.'.jpg') }}" alt="{{ $activeNewsStep3 -> title }}">
 			</div>
 		</div>
 
