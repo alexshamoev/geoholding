@@ -43,13 +43,15 @@
 						</div>
 					</a>
 				</div>
-
-				<div class="edit-block__edit-delete-block p-2 delete-block" data-delete-link="{{ $deleteLink }}">
-					<div class="p-2">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
-					</div>
-				</div>
-
+				@if(isset($possibilityToDelete))
+					@if($possibilityToDelete !== 0)
+						<div class="edit-block__edit-delete-block p-2 delete-block" data-delete-link="{{ $deleteLink }}">
+							<div class="p-2">
+								<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
+							</div>
+						</div>
+					@endif
+				@endif
 				<div class="edit-block__edit-delete-block p-2 edit-block__edit-delete-block--move rangButton">
 					<div class="p-2">
 						<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">

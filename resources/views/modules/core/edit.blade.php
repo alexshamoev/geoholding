@@ -10,28 +10,31 @@
 	@include('admin.includes.coreTags', [
 		'tagsData' => $tagsData
 	])
-{{-- {{dd($moduleStep)}} --}}
-@if($moduleStep->possibility_to_add == 0)
-	@include('admin.includes.bar', [
-		'deleteUrl' => route('coreDelete', [$module->alias, $moduleStep->id, $data->id]),
-		'nextId' => $nextId,
-		'prevId' => $prevId,
-		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
-		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
-		'backRoute' => $backRoute
-	])
-@else
-	@include('admin.includes.bar', [
-		'addUrl' => route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]),
-		'deleteUrl' => route('coreDelete', [$module->alias, $moduleStep->id, $data->id]),
-		'nextId' => $nextId,
-		'prevId' => $prevId,
-		'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
-		'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
-		'backRoute' => $backRoute
-	])
-@endif
-	
+
+	@php	
+		$barData = [
+						'nextId' => $nextId,
+						'prevId' => $prevId,
+						'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
+						'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
+						'backRoute' => $backRoute
+					]	
+	@endphp
+
+	@if($moduleStep->possibility_to_add === 1)
+		@php
+			$barData['addUrl'] = route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]);
+		@endphp
+	@endif
+
+	@if($moduleStep->possibility_to_delete === 1)
+		@php
+			$barData['deleteUrl'] = route('coreDelete', [$module->alias, $moduleStep->id, $data->id]);
+		@endphp
+	@endif
+
+	@include('admin.includes.bar', $barData)
+
 	<div class="p-2">
 		@error('images')
 			<div class="alert alert-danger">
@@ -427,7 +430,8 @@
 										'id' => $dataIn->id,
 										'title' => $dataIn->{ $moduleStepData->main_column },
 										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 									])
 						@else
 							@include('admin.includes.horizontalEditDelete', [

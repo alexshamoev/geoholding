@@ -80,14 +80,15 @@
 										'id' => $data->id,
 										'title' => $data->{$collectionForTags->values()->get($i)},
 										'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
 									])
 						@else 
 							@include('admin.includes.horizontalEditDelete', [
 									'id' => $data->id,
 									'title' => $data->{$collectionForTags->values()->get($i)},
 									'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
-									'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
 							])
 						@endif
 					@else

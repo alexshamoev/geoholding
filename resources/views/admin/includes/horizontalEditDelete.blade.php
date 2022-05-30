@@ -31,7 +31,6 @@
 						</div>
 					</a>
 				</div>
-
 				<div class="edit-block__edit-delete-block delete-block p-2" data-delete-link="{{ $deleteLink }}">
 					<div class="p-2">
 						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="Close" class="bar-tag-bigger-img">
