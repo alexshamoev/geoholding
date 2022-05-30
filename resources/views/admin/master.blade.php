@@ -13,7 +13,23 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/main.css') }}">
 
 		<script src="{{ asset('js/admin/main.js') }}"></script> <!-- must be first because it loads jquery -->
-		<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
+		
+
+		<!-- Plugins -->
+			<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
+
+			<!-- photoswipe -->
+				<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">
+				<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/default-skin.css') }}">
+
+				<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
+				<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
+			<!--  -->
+
+			<!-- sweetalert2 -->
+				<script src="{{ asset('js/plugins/sweetalert2.all.min.js') }}"></script>
+			<!--  -->
+		<!--  -->
 	</head>
 
 	<body>
