@@ -22,8 +22,8 @@ class NewsController extends FrontController {
 
 
     public static function getStep0($lang) {
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
-        $language = Language::where('title', $lang)->first();
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $language = Language::firstWhere('title', $lang);
 
         $data = array_merge(self::getDefaultData($language,
                                                     $page),
@@ -36,10 +36,9 @@ class NewsController extends FrontController {
 
 
     public static function getStep1($lang, $step0Alias) {
-        $language = Language::where('title', $lang)->first();
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
-
-        $activeNews = NewsStep0::where('alias_'.$language->title, $step0Alias)->first();
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $activeNews = NewsStep0::firstWhere('alias_'.$language->title, $step0Alias);
 
         $data = array_merge(self::getDefaultData($language,
                                                     $page,
@@ -54,10 +53,9 @@ class NewsController extends FrontController {
 
     
     public static function getStep2($lang, $step0Alias, $step1Alias) {
-        $language = Language::where('title', $lang)->first();
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
-
-        $activeNewsStep1 = NewsStep1::where('alias_'.$language->title, $step1Alias)->first();
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $activeNewsStep1 = NewsStep1::firstWhere('alias_'.$language->title, $step1Alias);
 
         $data = array_merge(self::getDefaultData($language,
                                                     $page,
@@ -72,10 +70,9 @@ class NewsController extends FrontController {
 
     
     public static function getStep3($lang, $step0Alias, $step1Alias, $step2Alias) {
-        $language = Language::where('title', $lang)->first();
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
-
-        $activeNewsStep2 = NewsStep2::where('alias_'.$language->title, $step2Alias)->first();
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $activeNewsStep2 = NewsStep2::firstWhere('alias_'.$language->title, $step2Alias);
 
 
         $data = array_merge(self::getDefaultData($language,
@@ -91,10 +88,9 @@ class NewsController extends FrontController {
 
     
     public static function getStep4($lang, $step0Alias, $step1Alias, $step2Alias, $step3Alias) {
-        $language = Language::where('title', $lang)->first();
-        $page = Page::where('slug', self::PAGE_SLUG)->first();
-
-        $activeNewsStep3 = NewsStep3::where('alias_'.$language->title, $step3Alias)->first();
+        $language = Language::firstWhere('title', $lang);
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $activeNewsStep3 = NewsStep3::firstWhere('alias_'.$language->title, $step3Alias);
 
         $data = array_merge(self::getDefaultData($language,
                                                     $page,

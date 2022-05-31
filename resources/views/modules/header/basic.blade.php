@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="nav-item">
-                            <a href="{{ route('login') }}">
+                            <a href="{{ $loginPageUrl }}">
                                 <div class="p-2">
                                     Authorization
                                 </div>

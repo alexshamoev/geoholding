@@ -15,10 +15,10 @@ class RegistrationController extends FrontController
 
     public static function registration(Request $request, $lang) {
         $validated = $request->validate([
-            'name' => 'required|max:2',
+            'name' => 'required',
             'last_name' => 'required|max:255',
             'email' => 'required|max:255',
-            'phone' => 'required|max:12|min:3|numeric',
+            'phone' => 'required|max:15|min:3',
             'address' => 'required|max:255',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|min:8|same:password',

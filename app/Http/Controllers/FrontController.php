@@ -55,6 +55,7 @@ class FrontController extends Controller {
 				'bsw' => Bsw::getFullData(),
 				'basketPage' => Page::firstWhere('slug', 'basket'),
 				'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
+				'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
 				'partners' => Partner::orderByDesc('rang')->get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];

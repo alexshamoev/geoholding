@@ -134,9 +134,10 @@ if(Schema::hasTable('languages')) {
 		// Auth routes
 			// Registration Routes...
 			Route::post('/{lang}/{registerAlias}/register', 'RegistrationController@registration')->name('register');
+			Route::post('/{lang}/{loginAlias}/login', 'LoginController@login')->name('login');
 			// Route::post('/ge/register', 'Auth\RegisterController@register');
 
-			Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+			// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 			Route::post('login', 'Auth\LoginController@login');
 			Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 		// 
