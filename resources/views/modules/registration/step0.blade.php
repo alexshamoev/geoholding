@@ -13,6 +13,16 @@
 		</div>
 	</div>
 
+	{{-- @if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif --}}
+
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
@@ -25,7 +35,7 @@
 								<label for="name" class="col-md-4 col-form-label text-md-right">{{ __('auth.name') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('name', null, array('placeholder' => __('auth.placeholderName'))) }}
+									<input id="name" type="text" name="name" placeholder="{{ __('auth.placeholderName') }}" class="@error('name') is-invalid @enderror">
 
 									@error('name')
 										<span class="invalid-feedback" role="alert">
@@ -39,7 +49,7 @@
 								<label for="last_name" class="col-md-4 col-form-label text-md-right">{{ __('auth.lastName') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('last_name', null, array('placeholder' => __('auth.placeholderLastName'))) }}
+									<input id="last_name" type="text" name="last_name" placeholder="{{ __('auth.placeholderLastName') }}" class="@error('last_name') is-invalid @enderror">
 
 									@error('last_name')
 										<span class="invalid-feedback" role="alert">
@@ -53,7 +63,7 @@
 								<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('auth.email') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('email', null, array('placeholder' => __('auth.placeholderEmail'))) }}
+									<input id="email" type="email" name="email" placeholder="{{ __('auth.placeholderEmail') }}" class="@error('email') is-invalid @enderror">
 
 									@error('email')
 										<span class="invalid-feedback" role="alert">
@@ -67,7 +77,7 @@
 								<label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('auth.phone') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('phone', null, array('placeholder' => __('auth.placeholderPhone'))) }}
+									<input id="phone" type="text" name="phone" placeholder="{{ __('auth.placeholderPhone') }}" class="@error('phone') is-invalid @enderror">
 
 									@error('phone')
 										<span class="invalid-feedback" role="alert">
@@ -81,7 +91,7 @@
 								<label for="address" class="col-md-4 col-form-label text-md-right">{{ __('auth.address') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('address', null, array('placeholder' => __('auth.placeholderAddress'))) }}
+									<input id="address" type="text" name="address" placeholder="{{ __('auth.placeholderAddress') }}" class="@error('address') is-invalid @enderror">
 
 									@error('address')
 										<span class="invalid-feedback" role="alert">
@@ -95,7 +105,7 @@
 								<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('auth.password') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('password') }}
+									<input id="password" type="text" name="password" class="@error('password') is-invalid @enderror">
 
 									@error('password')
 										<span class="invalid-feedback" role="alert">
@@ -109,7 +119,13 @@
 								<label for="confirmPassword" class="col-md-4 col-form-label text-md-right">{{ __('auth.confirmPassword') }}:</label>
 
 								<div class="col-md-6">
-									{{ Form :: text('confirmPassword') }}
+									<input id="confirmPassword" type="text" name="confirmPassword" class="@error('confirmPassword') is-invalid @enderror">
+
+									@error('confirmPassword')
+										<span class="invalid-feedback" role="alert">
+											<strong>{{ $message }}</strong>
+										</span>
+									@enderror
 								</div>
 							</div>
 
