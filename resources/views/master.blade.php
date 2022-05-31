@@ -22,6 +22,10 @@
 				<script src="{{ asset('js/plugins/photoswipe-ui-default.min.js') }}"></script>
 				<script src="{{ asset('js/plugins/photoswipe.min.js') }}"></script>
 			<!--  -->
+
+			<!-- sweetalert2 -->
+				<script src="{{ asset('js/plugins/sweetalert2.all.min.js') }}"></script>
+			<!--  -->
 		<!--  -->
     </head>
 

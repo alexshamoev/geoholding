@@ -87,7 +87,7 @@ return [
     'min' => [
         'numeric' => ':attribute უნდა იყოს მინიმუმ :min.',
         'file' => ':attribute უნდა იყოს მინიმუმ :min კილობაიტი.',
-        'string' => ':attribute mუნდა იყოს მინიმუმ :min სიმბოლო.',
+        'string' => ':attribute უნდა იყოს მინიმუმ :min სიმბოლო.',
         'array' => ':attribute უნდა შეიცავდეს მინიმუმ :min ელემენტს.',
     ],
     'not_in' => 'მონიშნული :attribute არასწორია.',

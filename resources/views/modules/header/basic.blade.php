@@ -26,7 +26,7 @@
                         </div>
                     @else
                         <div class="nav-item">
-                            <a href="{{ route('register') }}">
+                            <a href="{{ $registrationPageUrl }}">
                                 <div class="p-2">
                                     Registration
                                 </div>
@@ -52,6 +52,12 @@
                                     <input type="text" id="search" placeholder="ძიება">
                                 </form>
                             </div>
+                        </div>
+                        
+                        <div class="p-2">
+                            <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
+                                Basket Icon
+                            </a>
                         </div>
 
                         <div>

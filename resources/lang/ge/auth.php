@@ -15,5 +15,17 @@ return [
 
     'failed' => 'მონაცემები არ ემთხვევა ჩვენს ჩანაწერებს.',
     'throttle' => 'დაშვებულზე მეტი შესვლის მცდელობა. გთხოვთ სცადოთ ხელახლა :seconds წამში.',
-
+    'name' => 'სახელი',
+    'placeholderName' => 'ლაშა',
+    'lastName' => 'გვარი',
+    'placeholderLastName' => 'კუბლაშვილი',
+    'email' => 'ელ.ფოსტა',
+    'placeholderEmail' => 'test@gmail.com',
+    'phone' => 'ტელეფონი',
+    'placeholderPhone' => '599112233',
+    'address' => 'მისამართი',
+    'placeholderAddress' => 'ალ. ყაზბეგის გამზ. 70',
+    'password' => 'პაროლი',
+    'confirmPassword' => 'გაიმეორეთ პაროლი',
+    'register' => 'რეგისტრაცია',
 ];

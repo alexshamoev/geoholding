@@ -15,5 +15,17 @@ return [
 
     'failed' => 'Эти учетные данные не соответствуют нашим записям.',
     'throttle' => 'Слишком много попыток входа в систему. Повторите попытку через :seconds секунд.',
-
+    'name' => 'Имя',
+    'placeholderName' => 'Лаша',
+    'lastName' => 'Фамилия',
+    'placeholderLastName' => 'Кублашвили',
+    'email' => 'Эл. адрес',
+    'placeholderEmail' => 'test@gmail.com',
+    'phone' => 'Телефон',
+    'placeholderPhone' => '599112233',
+    'address' => 'Адрес',
+    'placeholderAddress' => 'пр. А.Казбеги 70',
+    'password' => 'Пароль',
+    'confirmPassword' => 'Подтвердить Пароль',
+    'register' => 'регистр',
 ];
