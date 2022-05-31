@@ -303,7 +303,21 @@
 										
 									<script>
 										ClassicEditor
-											.create( document.querySelector( '#{{$moduleBlock->db_column.'_'.$langData->title}}' ) )
+											.create( document.querySelector( '#{{$moduleBlock->db_column.'_'.$langData->title}}' ),{
+												link: {
+													defaultProtocol: 'http://',
+													decorators: {
+														openInNewTab: {
+															mode: 'manual',
+															label: 'Open in a new tab',
+															attributes: {
+																target: '_blank',
+																rel: 'noopener noreferrer'
+															}
+														}
+													}
+												}
+											} )
 											.catch( error => {
 												console.error( error );
 											} );					
