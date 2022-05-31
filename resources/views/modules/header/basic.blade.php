@@ -53,6 +53,12 @@
                                 </form>
                             </div>
                         </div>
+                        
+                        <div class="p-2">
+                            <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
+                                Basket Icon
+                            </a>
+                        </div>
 
                         <div>
                             <div class="p-2
