@@ -26,7 +26,7 @@
                         </div>
                     @else
                         <div class="nav-item">
-                            <a href="{{ route('register') }}">
+                            <a href="{{ $registrationPageUrl }}">
                                 <div class="p-2">
                                     Registration
                                 </div>
