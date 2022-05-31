@@ -31,23 +31,12 @@ class LoginController extends FrontController
 
         if(Auth::check()) {
             return redirect()->intended(route($page->alias, [$language->title]));
-            // dd('loged in 333');
         }
 
         $loginFields = $request->only(['email', 'password']);
 
         if(Auth::attempt($loginFields)) {
-            // return redirect()->intended(route('adminDefaultPage'));
+            return redirect()->intended(route($page->alias, [$language->title]));
         }
-
-        // $page = Page::firstWhere('slug', self::PAGE_SLUG);
-        // $language = Language::firstWhere('title', $lang);
-
-        // $data = array_merge(self::getDefaultData($language,
-        //                                             $page),
-        //                     [
-        //                     ]);
-
-        // return view('modules.login.step0', $data);
     }
 }

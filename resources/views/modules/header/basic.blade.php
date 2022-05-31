@@ -9,6 +9,7 @@
                         <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
+                    @dd( Auth :: user() -> name )
 
                     @if(Auth :: check() && !Auth :: user() -> admin)
                         <div class="nav-item">
