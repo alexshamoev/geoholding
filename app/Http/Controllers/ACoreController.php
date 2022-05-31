@@ -913,12 +913,8 @@ class ACoreController extends AController {
 
 
 	public function update(Request $request, $moduleAlias, $moduleStepId, $id) {
-		// dd($request);
-
 		$moduleStep = ModuleStep::find($moduleStepId);
-
 		$module = Module::where('alias', $moduleAlias)->first();
-		// $moduleStep->moduleBlock = ModuleBlock::where('top_level', $moduleStep->id)->orderBy('rang', 'desc')->get();
 
 		// Image - uploading image without checking it passed validation or not
 			foreach($moduleStep->moduleBlock as $data) {

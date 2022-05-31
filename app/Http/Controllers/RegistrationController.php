@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\User;
+use Session;
 
 class RegistrationController extends FrontController
 {
@@ -17,6 +18,8 @@ class RegistrationController extends FrontController
 
         $page = Page::firstWhere('slug', self::PAGE_SLUG);
         $language = Language::firstWhere('title', $lang);
+
+		Session::flash('successDeleteStatus', __('auth.registerSuccessStatus'));
         
         return redirect()->route($page->alias, [$language->title]);
     }
