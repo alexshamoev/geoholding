@@ -22,7 +22,7 @@
                         </div>
                 
                         <div class="nav-item">
-                            <a href="{{ route('logout') }}">
+                            <a href="{{ route('logout', $language->title) }}">
                                 <div class="p-2">
                                     Logout
                                 </div>
@@ -30,7 +30,7 @@
                         </div>
                     @else
                         <div class="nav-item">
-                            <a href="{{ $registrationPageUrl }}">
+                            <a href="{{ route('getRegister', $language->title) }}">
                                 <div class="p-2">
                                     Registration
                                 </div>
@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="nav-item">
-                            <a href="{{ $loginPageUrl }}">
+                            <a href="{{ route('getLogin', $language->title) }}">
                                 <div class="p-2">
                                     Authorization
                                 </div>

@@ -25,12 +25,9 @@ if(Schema::hasTable('languages')) {
 					App::setLocale(Language::where('like_default_for_admin', '1')->first()->title);
 
 					Route::get('/', 'AController@getDefaultPage')->name('adminDefaultPage');
-
 					Route::get('/logout', 'AAdminController@logout')->name('aLogout');
-					
 					Route::get('/{moduleAlias}/{moduleStepId}/{id}/{moduleBlockId}/deleteImage', 'AController@filePossibilityToDelete')->name('filePossibilityToDelete');
 
-					
 					Route::prefix('modules')->group(function() {
 						Route::get('', 'AModuleController@getStartPoint')->name('moduleStartPoint');
 						Route::get('/add', 'AModuleController@add')->name('moduleAdd');
@@ -133,14 +130,21 @@ if(Schema::hasTable('languages')) {
 
 
 		// Auth routes
-			// Registration Routes...
-			Route::post('/{lang}/{registerAlias}/register', 'RegistrationController@registration')->name('register');
-			Route::post('/{lang}/{loginAlias}/login', 'LoginController@login')->name('login');
-			// Route::post('/ge/register', 'Auth\RegisterController@register');
+			// Login-Logout!
+				Route::get('/{lang}/login', 'AuthController@getLogin')->name('getLogin');
+				Route::post('/{lang}/login', 'AuthController@login')->name('login');
+				Route::get('/{lang}/logout', 'AuthController@logout')->name('logout');
+			//
 
-			// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-			Route::post('login', 'Auth\LoginController@login');
-			Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+			// Register
+				Route::get('/{lang}/register', 'AuthController@getRegistration')->name('getRegister');
+				Route::post('/{lang}/register', 'AuthController@registration')->name('register');
+			//
+
+			// Recover
+				Route::get('/{lang}/recover', 'AuthController@getRecover')->name('getRecover');
+				Route::post('/{lang}/recover', 'AuthController@recover')->name('recover');
+			//
 		// 
 
 

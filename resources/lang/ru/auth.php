@@ -28,4 +28,5 @@ return [
     'password' => 'Пароль',
     'confirmPassword' => 'Подтвердить Пароль',
     'register' => 'регистр',
+    'recover' => 'Восстанавливаться',
 ];

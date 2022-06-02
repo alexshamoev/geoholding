@@ -29,4 +29,5 @@ return [
     'confirmPassword' => 'Confirm Password',
     'register' => 'Register',
     'registerSuccessStatus' => 'You were registered successfully',
+    'recover' => 'Recover',
 ];

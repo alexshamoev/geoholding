@@ -18,7 +18,7 @@ use Session;
 
 class AAdminController extends AController {
     public function logout() {
-        if(Auth::check()) {
+        if(Auth::guard('admin')->check()) {
             Auth::guard('admin')->logout();
         }
 
@@ -70,13 +70,7 @@ class AAdminController extends AController {
 		$admin->name = $request->input('name');
 		$admin->email = $request->input('email');
 		$admin->password = $request->input('password');
-		$admin->admin = 1;
-
 		$admin->save();
-
-
-        // Mail::to($admin->email)->send(new WelcomeMail($admin->email, $request->input('password')));
-
 
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
@@ -125,12 +119,7 @@ class AAdminController extends AController {
 		$admin->email = $request->input('email');
 		$admin->password = $request->input('password');
 		$admin->admin = 1;
-
 		$admin->save();
-
-
-        // Mail::to($admin->email)->send(new WelcomeMail($admin->email, $request->input('password')));
-
 
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 

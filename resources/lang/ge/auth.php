@@ -28,4 +28,5 @@ return [
     'password' => 'პაროლი',
     'confirmPassword' => 'გაიმეორეთ პაროლი',
     'register' => 'რეგისტრაცია',
+    'recover' => 'აღდგენა',
 ];
