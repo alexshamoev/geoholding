@@ -1,6 +1,11 @@
 @if($widgetGetVisibility['header'])
     <header class="header position-relative">
         <div class="container p-2">
+
+            <!-- React -->
+			<div id="examplereact" temp="eeee"></div>
+            <!--  -->
+
             <div class="row">
                 <div class="d-flex
                             align-items-center

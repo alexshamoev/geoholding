@@ -12,9 +12,9 @@
 			</div>
 		<!--  -->
 
-		<!-- React -->
+		{{-- <!-- React -->
 			<div id="examplereact" temp="eeee"></div>
-		<!--  -->
+		<!--  --> --}}
 
 		<h1 class="p-2">
 			{{ $page -> title }}
