@@ -48,9 +48,30 @@
 		<div class="p-2">
 			{!! $activeProductStep2 -> text !!}
 		</div>
-
-		<div class="clear_both"></div>
 		
+		<div class="row">
+			<div class="col-4">
+				<div class="row">
+					<div class="col-2">
+						-
+					</div>
+
+					<div class="col-8">
+						<input class="quantity_input" type="text">
+					</div>
+
+					<div class="col-2">
+						+
+					</div>
+				</div>
+			</div>
+
+			<div class="col-4">
+				<div class="single_product__add_to_basket_button btn btn-primary">
+					{{ __('bsw.add_product_in_basket') }}
+				</div>
+			</div>
+		</div>
 
         <div class="row">
             <div class="p-2">
@@ -85,4 +106,10 @@
 			@endforeach
 		</div>
 	</div>
+
+	
+	<div class="d-none
+				js_data"
+		 data-product_added_in_basket="{{ __('bsw.product_added_in_basket') }}"
+		 data-active_product_id="{{ $activeProductStep2 -> id }}"></div>
 @endsection

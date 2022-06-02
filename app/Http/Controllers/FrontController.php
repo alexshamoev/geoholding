@@ -54,7 +54,7 @@ class FrontController extends Controller {
 				'bsc' => $bsc,
 				'bsw' => Bsw :: getFullData(),
 				'registrationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'registration') -> alias,
-				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'authorization') -> alias,
+				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'login') -> alias,
 				'partners' => Partner :: orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
