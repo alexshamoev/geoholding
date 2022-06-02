@@ -52,10 +52,11 @@ class FrontController extends Controller {
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::with(['page'])->orderByDesc('rang')->get(),
 				'bsc' => $bsc,
-				'bsw' => Bsw :: getFullData(),
-				'registrationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'registration') -> alias,
-				'authorizationUrl' => '/'.$lang -> title.'/'.Page :: firstWhere('slug', 'login') -> alias,
-				'partners' => Partner :: orderByDesc('rang') -> get(),
+				'bsw' => Bsw::getFullData(),
+				'registrationPageUrl' => '/'.$lang -> title.'/'.Page::firstWhere('slug', 'registration') -> alias,
+				'loginPageUrl' => '/'.$lang -> title.'/'.Page::firstWhere('slug', 'login') -> alias,
+				'basketPage' => Page::firstWhere('slug', 'basket'),
+				'partners' => Partner::orderByDesc('rang') -> get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
 		
