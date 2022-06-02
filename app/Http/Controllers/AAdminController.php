@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Admin;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
@@ -19,7 +19,7 @@ use Session;
 class AAdminController extends AController {
     public function logout() {
         if(Auth::check()) {
-            Auth::logout();
+            Auth::guard('admin')->logout();
         }
 
         return redirect(route('adminLogin'));
@@ -27,29 +27,15 @@ class AAdminController extends AController {
 
 
     public function getLogin() {
-        if(Auth::check()) {
-            if(Auth::user()->admin) {
-                return redirect()->intended(route('adminDefaultPage'));
-            }
-        }
-        
         return view('admin.login');
     }
 
 
     public function login(Request $request) {
-        if(Auth::check()) {
-            if(Auth::user()->admin) {
-                return redirect()->intended(route('adminDefaultPage'));
-            }
-        }
-
         $formFields = $request->only(['email', 'password']);
 
-        if(Auth::attempt($formFields)) {
-            if(Auth::user()->admin) {
-                return redirect()->intended(route('adminDefaultPage'));
-            }
+        if(Auth::guard('admin')->attempt($formFields)) {
+            return redirect()->intended(route('adminDefaultPage'));
         }
 
         return redirect(route('adminLogin'))->withErrors(['email' => 'Bad data!'])->withInput();
@@ -57,14 +43,14 @@ class AAdminController extends AController {
 
 
     public function getStartPoint() {
-        $activeUser = Auth::user();
+        $activeAdmin = Auth::guard('admin')->user();
 
-        if($activeUser->super_administrator) {
+        if($activeAdmin->super_administrator) {
             $data = array_merge(self::getDefaultData(), ['module' => Module::where('alias', 'admins')->first(),
-                                                            'admins' => User::all()->where('admin', '1')->sortBy('email')]);
+                                                            'admins' => Admin::all()->sortByDesc('id')]);
         } else {
             $data = array_merge(self::getDefaultData(), ['module' => Module::where('alias', 'admins')->first(),
-                                                            'admins' => User::all()->where('admin', '1')->where('super_administrator', '0')->sortBy('email')]);
+                                                            'admins' => Admin::all()->where('super_administrator', '0')->sortByDesc('id')]);
         }
 
 		return view('modules.admins.admin_panel.start_point', $data);
@@ -79,7 +65,7 @@ class AAdminController extends AController {
 
 
     public function insert(AAdminUpdateRequest $request) {
-        $admin = new User();
+        $admin = new Admin();
 
 		$admin->name = $request->input('name');
 		$admin->email = $request->input('email');
@@ -99,7 +85,7 @@ class AAdminController extends AController {
 
 
     public function edit($id) {
-		$admin = User::find($id);
+		$admin = Admin::find($id);
 
 		$prevId = 0;
 		$nextId = 0;
@@ -107,7 +93,7 @@ class AAdminController extends AController {
 		$prevIdIsSaved = false;
 		$nextIdIsSaved = false;
 
-		foreach(User::all()->sortBy('email') as $data) {
+		foreach(Admin::all()->sortByDesc('id') as $data) {
 			if($nextIdIsSaved && !$nextId) {
 				$nextId = $data->id;
 			}
@@ -122,9 +108,9 @@ class AAdminController extends AController {
 			}
 		}
 
-		$data = array_merge(self::getDefaultData(), ['module' => Module::where('alias', 'admins')->first(),
-                                                        'admins' => User::all()->sortBy('email'),
-                                                        'activeAdmin' => User::find($id),
+		$data = array_merge(self::getDefaultData(), ['module' => Module::firstWhere('alias', 'admins'),
+                                                        'admins' => Admin::all()->sortByDesc('id'),
+                                                        'activeAdmin' => Admin::find($id),
                                                         'prevAdminId' => $prevId,
                                                         'nextAdminId' => $nextId]);
 
@@ -133,7 +119,7 @@ class AAdminController extends AController {
 
 
     public function update(AAdminUpdateRequest $request, $id) {
-        $admin = User::find($id);
+        $admin = Admin::find($id);
 
 		$admin->name = $request->input('name');
 		$admin->email = $request->input('email');
@@ -153,7 +139,7 @@ class AAdminController extends AController {
 
 
     public function delete($id) {
-        User::destroy($id);
+        Admin::destroy($id);
 
 		Session::flash('successStatus', __('bsw.deleteSuccessStatus'));
 

@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Auth;
 
 class Admin
 {
@@ -14,16 +15,10 @@ class Admin
      * @return mixed
      */
     public function handle($request, Closure $next) {
-		if(\Auth :: check() && \Auth :: user() -> isAdmin() == true) {
-			echo 'Admin Auth Middleware';
-
-     	 	echo \Auth :: check();
-		} else {
-			echo 'Unauthorization';
+      	if(!Auth::guard('admin')->check()) {
+			return redirect()->route('login_from')->with('error', 'Plz Login First');   
 		}
 
 		return $next($request);
-		
-		// return redirect('/');
     }
 }
