@@ -9,7 +9,6 @@
                         <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
-
                     @if(Auth :: check() && !Auth :: user() -> admin)
                         <div class="nav-item">
                             <div class="p-2">
@@ -26,7 +25,7 @@
                         </div>
                     @else
                         <div class="nav-item">
-                            <a href="{{ route('register') }}">
+                            <a href="{{ $registrationPageUrl }}">
                                 <div class="p-2">
                                     Registration
                                 </div>
@@ -34,7 +33,7 @@
                         </div>
 
                         <div class="nav-item">
-                            <a href="{{ route('login') }}">
+                            <a href="{{ $loginPageUrl }}">
                                 <div class="p-2">
                                     Authorization
                                 </div>
@@ -52,6 +51,12 @@
                                     <input type="text" id="search" placeholder="ძიება">
                                 </form>
                             </div>
+                        </div>
+                        
+                        <div class="p-2">
+                            <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
+                                Basket Icon
+                            </a>
                         </div>
 
                         <div>

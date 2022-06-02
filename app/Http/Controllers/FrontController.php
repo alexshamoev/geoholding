@@ -17,7 +17,7 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller {
 	public function __construct() {
-		$requesPath = urldecode(\Request :: path());
+		$requesPath = urldecode(\Request::path());
 
 		$activePageArray = explode('/', $requesPath);
 
@@ -28,19 +28,19 @@ class FrontController extends Controller {
 	
 
     public static function getDefaultData($lang, $page, $activeInfoBlockModel = false) {
-		\App :: setLocale($lang -> title);
+		\App::setLocale($lang->title);
 
 
 		if($activeInfoBlockModel) {
-			Language :: setActiveInfoBlock($activeInfoBlockModel);
+			Language::setActiveInfoBlock($activeInfoBlockModel);
 		} else {
-			Language :: setActiveInfoBlock($page);
+			Language::setActiveInfoBlock($page);
 		}
 		
 
-		$widgetGetVisibility = Widget :: getVisibility($page);
+		$widgetGetVisibility = Widget::getVisibility($page);
 
-		$bsc = Bsc :: getFullData();
+		$bsc = Bsc::getFullData();
 		$copyrightDate = config('constants.year_of_site_creation');
 
 		if($copyrightDate < date('Y')) {
@@ -49,7 +49,7 @@ class FrontController extends Controller {
 
 		$data = ['page' => $page,
 				'language' => $lang,
-				'languages' => Language :: where('disable', '0') -> orderByDesc('rang') -> get(),
+				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::with(['page'])->orderByDesc('rang')->get(),
 				'bsc' => $bsc,
 				'bsw' => Bsw :: getFullData(),
@@ -64,13 +64,13 @@ class FrontController extends Controller {
 
 
     public static function getPage($lang, $pageAlias) {
-		$language = Language :: firstWhere('title', $lang);
+		$language = Language::firstWhere('title', $lang);
 
 		if($language) {
-			$page = Page :: firstWhere('alias_'.$language -> title, $pageAlias);
+			$page = Page::firstWhere('alias_'.$language->title, $pageAlias);
 
 			if($page) {
-				return view('static', self :: getDefaultData($language, $page, $page));
+				return view('static', self::getDefaultData($language, $page, $page));
 			} else {
 				abort(404);
 			}

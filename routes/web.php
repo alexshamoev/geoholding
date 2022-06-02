@@ -132,13 +132,12 @@ if(Schema::hasTable('languages')) {
 
 
 		// Auth routes
-			// Route::get('/ge/registration', 'auth/RegisterController@create')->name('register');
-
 			// Registration Routes...
-			Route::get('/ge/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-			Route::post('/ge/register', 'Auth\RegisterController@register');
+			Route::post('/{lang}/{registerAlias}/register', 'RegistrationController@registration')->name('register');
+			Route::post('/{lang}/{loginAlias}/login', 'LoginController@login')->name('login');
+			// Route::post('/ge/register', 'Auth\RegisterController@register');
 
-			Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+			// Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 			Route::post('login', 'Auth\LoginController@login');
 			Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 		// 
@@ -176,7 +175,7 @@ if(Schema::hasTable('languages')) {
 				}
 
 				foreach(Language::where('disable', '0')->get() as $language) {
-					Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }, $moduleTitleForController.'Controller@getStep0')->where(['lang' => '[a-z]+']);
+					Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }, $moduleTitleForController.'Controller@getStep0')->where(['lang' => '[a-z]+'])->name($module->page->{ 'alias_'.$language -> title });
 					Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
 					Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
 					Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}', $moduleTitleForController.'Controller@getStep3')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+']);

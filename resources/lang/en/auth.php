@@ -15,5 +15,18 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-
+    'name' => 'Name',
+    'placeholderName' => 'Lasha',
+    'lastName' => 'Last Name',
+    'placeholderLastName' => 'Kublashvili',
+    'email' => 'Email',
+    'placeholderEmail' => 'test@gmail.com',
+    'phone' => 'Phone',
+    'placeholderPhone' => '599112233',
+    'address' => 'Address',
+    'placeholderAddress' => 'A. Kazbegi Ave. 70',
+    'password' => 'Password',
+    'confirmPassword' => 'Confirm Password',
+    'register' => 'Register',
+    'registerSuccessStatus' => 'You were registered successfully',
 ];
