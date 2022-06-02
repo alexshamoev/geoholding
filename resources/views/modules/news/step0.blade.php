@@ -16,7 +16,6 @@
 
 		<div class="row">
 			@foreach($newsStep0 as $data)
-				{{ dd($data->id) }}
 				<div class="col-lg-4 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
 						<div class="p-2">
