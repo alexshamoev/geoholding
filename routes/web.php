@@ -186,7 +186,7 @@ if(Schema::hasTable('languages')) {
 			Route::get('/{lang}/{pageAlias}', 'FrontController@getPage')->where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
 		//
 
-
+		Route :: post('/basket/get-data', 'BasketController@getProducts');
 
 		// Auth::routes();
 

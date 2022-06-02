@@ -36,7 +36,7 @@ function showProductFromLocalStorage() {
                         $('.basket__product_template').last().find('.basket__product_price').html(response['price']);
                         $('.basket__product_template').last().find('.basket__product_price_sum').html(parseFloat(response['price'] * localStorage.getItem(key)).toFixed(2));
                         
-                        $('.basket__product_template').last().find('.basket__product_image').attr('src', '/storage/images/modules/products/step_1/' + productId + '.jpg');
+                        $('.basket__product_template').last().find('.basket__product_image').attr('src', '/storage/images/modules/products/step_2/' + productId + '.jpg');
                     }
 
                     if(i == localStorage.length - 1) {
@@ -54,6 +54,8 @@ function showProductFromLocalStorage() {
 
 
                         $('.basket__product_delete_button').on('click', function() {
+                            alert(5233);
+
                             removeProductFromBasket($(this));
                         });
                     }
@@ -156,16 +158,16 @@ function deleteProductFromLocalStorage() {
 }
 
 
-$(document).ready(function() {
+$(function() {
     showProductFromLocalStorage();
 
     checkBasketEmptiness();
 
     $('.single_product__add_to_basket_button').on('click', function() {
-        localStorage.setItem('product_' + $('#active_product_step1_id').val(), $('#tentacles').val());
+        localStorage.setItem('product_' + $('.js_data').data('active_product_id'), $('.quantity_input').val());
 
 		Swal.fire({
-			title: $('.js_product_added_in_basket').val(),
+			title: $('.js_data').data('product_added_in_basket'),
 			icon: 'success'
 		})
     });

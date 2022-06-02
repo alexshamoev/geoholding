@@ -1,7 +1,6 @@
 require('../bootstrap');
 require('./basic');
 require('./rangs');
-require('../modules/modules/admin/basic');
 
 
 
@@ -12,4 +11,4 @@ require('../modules/modules/admin/basic');
 
 // app.component('testwww', Test);
 
-// app.mount('#appwww'); 
+// app.mount('#appwww');  
