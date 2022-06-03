@@ -12,38 +12,30 @@
 			</h1>
 		</div>
 	</div>
-
+    
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card">
 					<div class="card-body">
-						{{ Form :: open(array('route' => array('reset', $language->title, $email), 'method' => 'POST')) }}
+						{{ Form :: open(array('route' => array('recover', $language->title), 'method' => 'POST')) }}
 							<div class="form-group row">
-								<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('auth.password') }}:</label>
+								<label for="email" class="col-md-4 col-form-label text-md-right">{{ __('auth.email') }}:</label>
 
 								<div class="col-md-6">
-									<input id="password" type="password" name="password" class="@error('password') is-invalid @enderror">
+									<input id="email" type="email" name="email" class="@error('email') is-invalid @enderror">
 
-									@error('password')
+									@error('email')
 										<span class="invalid-feedback" role="alert">
 											<strong>{{ $message }}</strong>
 										</span>
 									@enderror
-								</div>
-							</div>
 
-							<div class="form-group row">
-								<label for="confirmPassword" class="col-md-4 col-form-label text-md-right">{{ __('auth.confirmPassword') }}:</label>
-
-								<div class="col-md-6">
-									<input id="confirmPassword" type="password" name="confirmPassword" class="@error('confirmPassword') is-invalid @enderror">
-
-									@error('confirmPassword')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
+                                    @if(Session::has('error'))
+                                        <span class="d-flex flex-wrap" role="alert">
+											<strong>{{ Session::get('error') }}</strong>
 										</span>
-									@enderror
+                                    @endif
 								</div>
 							</div>
 

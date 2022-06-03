@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Models\User;
 use App\Models\Language;
 use Auth;
+use Hash;
 use Session;
 
 class AuthController extends FrontController
@@ -20,6 +21,19 @@ class AuthController extends FrontController
         $data = array_merge(self::getDefaultData($language, $page));
 
         return view('auth.login', $data);
+    }
+
+
+    public static function login(Request $request, $lang) {
+        $page = Page::firstWhere('slug', 'cabinet');
+        $language = Language::firstWhere('title', $lang);
+        $loginFields = $request->only(['email', 'password']);
+        
+        if(Auth::attempt($loginFields)) {
+            return redirect()->intended(route($page->alias, [$language->title]));
+        }
+
+        return back()->with('alert', __('auth.email_or_pass_incorrect'));
     }
 
 
@@ -53,21 +67,6 @@ class AuthController extends FrontController
     }
 
 
-    public static function login(Request $request, $lang) {
-        $page = Page::firstWhere('slug', 'cabinet');
-        $language = Language::firstWhere('title', $lang);
-
-        if(Auth::check()) {
-            return redirect()->intended(route($page->alias, [$language->title]));
-        }
-
-        $loginFields = $request->only(['email', 'password']);
-
-        if(Auth::attempt($loginFields)) {
-            return redirect()->intended(route($page->alias, [$language->title]));
-        }
-    }
-
     public static function logout(Request $request, $lang) {
         Auth::logout();
 
@@ -80,15 +79,51 @@ class AuthController extends FrontController
         $language = Language::firstWhere('title', $lang);
         $data = array_merge(self::getDefaultData($language, $page));
 
-        return view('auth.recover.password', $data);
+        return view('auth.recover.recover', $data);
     }
 
 
     public static function recover(Request $request, $lang) {
+        $validated = $request->validate([
+            'email' => 'required|max:255',
+        ]);
+
+        if(User::firstWhere('email', $request->input('email'))) {
+            $page = Page::firstWhere('slug', 'passRecover');
+            $language = Language::firstWhere('title', $lang);
+            $email = $request->input('email');
+
+            return redirect()->route('getReset', [$language->title, $email]);
+        }
+
+        return back()->with('error', __('auth.email_not_exists'));
+    }
+
+
+    public static function getReset(Request $request, $lang, $email) {
         $page = Page::firstWhere('slug', 'passRecover');
         $language = Language::firstWhere('title', $lang);
-        $data = array_merge(self::getDefaultData($language, $page));
+        $data = array_merge(self::getDefaultData($language, $page), 
+                            [   
+                                'email' => $email
+                            ]);
 
-        return view('auth.password_recover', $data);
+        return view('auth.recover.password', $data);
+    }
+
+
+    public static function reset(Request $request, $lang, $email) {
+        $validated = $request->validate([
+            'password' => 'required|min:8',
+            'confirmPassword' => 'required|min:8|same:password',
+        ]);
+
+        $language = Language::firstWhere('title', $lang);
+
+        $user = User::firstWhere('email', $email);
+        $user->password = $request->input('password');
+        $user->save();
+
+        return redirect()->route('getLogin', $language->title)->with('alert', 'Password was changed successfully!');
     }
 }

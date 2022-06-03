@@ -30,4 +30,7 @@ return [
     'register' => 'Register',
     'registerSuccessStatus' => 'You were registered successfully',
     'recover' => 'Recover',
+    'email_not_exists' => 'Email Doesn\'t exists',
+    'email_or_pass_incorrect' => 'Email or Password is incorrect',
+    'login' => 'Login',
 ];

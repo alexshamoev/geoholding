@@ -29,4 +29,7 @@ return [
     'confirmPassword' => 'გაიმეორეთ პაროლი',
     'register' => 'რეგისტრაცია',
     'recover' => 'აღდგენა',
+    'email_not_exists' => 'ელ.ფოსტა არ არსებობს!',
+    'email_or_pass_incorrect' => 'ელ.ფოსტა ან პაროლი არასწორია',
+    'login' => 'შესვლა',
 ];

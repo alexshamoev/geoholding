@@ -14,7 +14,7 @@
                         <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
-                    @if(Auth :: check() && !Auth :: user() -> admin)
+                    @if(Auth :: check())
                         <div class="nav-item">
                             <div class="p-2">
                                 {{ Auth :: user() -> name }}

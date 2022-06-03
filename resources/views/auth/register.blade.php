@@ -95,7 +95,7 @@
 								<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('auth.password') }}:</label>
 
 								<div class="col-md-6">
-									<input id="password" type="text" name="password" class="@error('password') is-invalid @enderror">
+									<input id="password" type="password" name="password" class="@error('password') is-invalid @enderror">
 
 									@error('password')
 										<span class="invalid-feedback" role="alert">
@@ -109,7 +109,7 @@
 								<label for="confirmPassword" class="col-md-4 col-form-label text-md-right">{{ __('auth.confirmPassword') }}:</label>
 
 								<div class="col-md-6">
-									<input id="confirmPassword" type="text" name="confirmPassword" class="@error('confirmPassword') is-invalid @enderror">
+									<input id="confirmPassword" type="password" name="confirmPassword" class="@error('confirmPassword') is-invalid @enderror">
 
 									@error('confirmPassword')
 										<span class="invalid-feedback" role="alert">

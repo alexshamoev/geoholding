@@ -13,6 +13,12 @@
 		</div>
 	</div>
 
+	@if(Session::has('alert'))
+		<span class="d-flex flex-wrap" role="alert">
+			<strong>{{ Session::get('alert') }}</strong>
+		</span>
+	@endif
+
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-md-8">
@@ -39,7 +45,7 @@
 								<label for="password" class="col-md-4 col-form-label text-md-right">{{ __('auth.password') }}:</label>
 
 								<div class="col-md-6">
-									<input id="password" type="text" name="password" class="@error('password') is-invalid @enderror">
+									<input id="password" type="password" name="password" class="@error('password') is-invalid @enderror">
 
 									@error('password')
 										<span class="invalid-feedback" role="alert">

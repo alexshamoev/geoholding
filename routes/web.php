@@ -144,6 +144,8 @@ if(Schema::hasTable('languages')) {
 			// Recover
 				Route::get('/{lang}/recover', 'AuthController@getRecover')->name('getRecover');
 				Route::post('/{lang}/recover', 'AuthController@recover')->name('recover');
+				Route::get('/{lang}/reset/{email}', 'AuthController@getReset')->name('getReset');
+				Route::post('/{lang}/reset/{email}', 'AuthController@reset')->name('reset');
 			//
 		// 
 
