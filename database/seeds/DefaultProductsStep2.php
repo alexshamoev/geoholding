@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class DefaultPhotoGalleryStep0 extends Seeder
+class DefaultProductsStep2 extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +15,10 @@ class DefaultPhotoGalleryStep0 extends Seeder
      */
     public function run()
     {
-        DB::table('photo_gallery_step_0')->insert([
+        DB::table('products_step_2')->insert([
 
             [
+                'top_level' => 1,
                 'alias_ge' => strtolower(Str::random(10)),
                 'alias_en' => strtolower(Str::random(10)),
                 'alias_ru' => strtolower(Str::random(10)),
@@ -30,8 +31,10 @@ class DefaultPhotoGalleryStep0 extends Seeder
                 'rang' => 5,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+                'price' => 25.23,
             ],
             [
+                'top_level' => 2,
                 'alias_ge' => strtolower(Str::random(10)),
                 'alias_en' => strtolower(Str::random(10)),
                 'alias_ru' => strtolower(Str::random(10)),
@@ -44,8 +47,11 @@ class DefaultPhotoGalleryStep0 extends Seeder
                 'rang' => 10,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+                'price' => 12.23,
+
             ],
             [
+                'top_level' => 3,
                 'alias_ge' => strtolower(Str::random(10)),
                 'alias_en' => strtolower(Str::random(10)),
                 'alias_ru' => strtolower(Str::random(10)),
@@ -58,6 +64,8 @@ class DefaultPhotoGalleryStep0 extends Seeder
                 'rang' => 15,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
+                'price' => 19.02,
+
             ]
 
         ]);    

@@ -14,9 +14,9 @@ class ChangeTextTypeInCreateNewsStep0 extends Migration
     public function up()
     {
         Schema::table('news_step_0', function (Blueprint $table) {
-            $table -> text('text_ge') -> nullable() -> change();
-			$table -> text('text_en') -> nullable() -> change();
-			$table -> text('text_ru') -> nullable() -> change();
+            $table->text('text_ge')->nullable()->change();
+			$table->text('text_en')->nullable()->change();
+			$table->text('text_ru')->nullable()->change();
         });
     }
 
@@ -28,9 +28,9 @@ class ChangeTextTypeInCreateNewsStep0 extends Migration
     public function down()
     {
         Schema::table('news_step_0', function (Blueprint $table) {
-            $table -> string('text_ge') -> default('');
-			$table -> string('text_en') -> default('');
-			$table -> string('text_ru') -> default('');
+            $table->string('text_ge')->default('')->change();
+			$table->string('text_en')->default('')->change();
+			$table->string('text_ru')->default('')->change();
         });
     }
 }

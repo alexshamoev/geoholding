@@ -18,9 +18,9 @@ class DefaultNewsStep0 extends Seeder
         DB::table('news_step_0')->insert([
 
             [
-                'alias_ge' => Str::random(10),
-                'alias_en' => Str::random(10),
-                'alias_ru' => Str::random(10),
+                'alias_ge' => strtolower(Str::random(10)),
+                'alias_en' => strtolower(Str::random(10)),
+                'alias_ru' => strtolower(Str::random(10)),
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
@@ -32,9 +32,9 @@ class DefaultNewsStep0 extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'alias_ge' => Str::random(10),
-                'alias_en' => Str::random(10),
-                'alias_ru' => Str::random(10),
+                'alias_ge' => strtolower(Str::random(10)),
+                'alias_en' => strtolower(Str::random(10)),
+                'alias_ru' => strtolower(Str::random(10)),
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
@@ -46,9 +46,9 @@ class DefaultNewsStep0 extends Seeder
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'alias_ge' => Str::random(10),
-                'alias_en' => Str::random(10),
-                'alias_ru' => Str::random(10),
+                'alias_ge' => strtolower(Str::random(10)),
+                'alias_en' => strtolower(Str::random(10)),
+                'alias_ru' => strtolower(Str::random(10)),
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
