@@ -1,14 +1,14 @@
 @component('mail::message')
-<h1 style="font-weight:normal">Hello {{ $data['name'] }}</h1> 
+<h1 style="font-weight:normal">{{ __('auth.hello').' '.$data['name'] }}</h1> 
 
-<b>A Request has been received to change the password for you {{ config('app.name') }} account.</b>
+<b>{{ __('auth.password_rec_text') }}</b>
 
 @component('mail::button', ['url' => url('/').'/'.$data['language'].'/reset/'.$data['email'], 'color' => 'blue'])
-    Reset Password
+    {{ __('auth.reset_password') }}
 @endcomponent
 
-<p>If you did not initiate this request, please contact us immediately.</p>
+<p>{{ __('auth.pass_rec_contact') }}.</p>
 
-Thanks,<br>
+{{ __('auth.thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent

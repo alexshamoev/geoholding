@@ -102,9 +102,10 @@ class AuthController extends FrontController
 
             MailController::passwordRecovery($emailData);
             // return redirect()->route('getReset', [$language->title, $email]);
+            return back()->with('alert', __('auth.email_was_sent'));
         }
 
-        return back()->with('error', __('auth.email_not_exists'));
+        return back()->with('alert', __('auth.email_not_exists'));
     }
 
 

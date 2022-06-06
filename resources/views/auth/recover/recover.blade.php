@@ -31,9 +31,9 @@
 										</span>
 									@enderror
 
-                                    @if(Session::has('error'))
+                                    @if(Session::has('alert'))
                                         <span class="d-flex flex-wrap" role="alert">
-											<strong>{{ Session::get('error') }}</strong>
+											<strong>{{ Session::get('alert') }}</strong>
 										</span>
                                     @endif
 								</div>

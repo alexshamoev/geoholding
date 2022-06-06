@@ -34,4 +34,10 @@ return [
     'email_or_pass_incorrect' => 'Email or Password is incorrect',
     'login' => 'Login',
     'forgot_password' => 'Forgot Password?',
+    'email_was_sent' => 'Password recovery link was sent, Please Check your email inbox',
+    'hello' => 'Hello',
+    'password_rec_text' => 'A Request has been received to change the password for you account',
+    'reset_password' => 'Reset Password',
+    'pass_rec_contact' => 'If you did not initiate this request, please contact us immediately',
+    'thanks' => 'Thanks',
 ];
