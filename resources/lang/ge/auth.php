@@ -32,4 +32,5 @@ return [
     'email_not_exists' => 'ელ.ფოსტა არ არსებობს!',
     'email_or_pass_incorrect' => 'ელ.ფოსტა ან პაროლი არასწორია',
     'login' => 'შესვლა',
+    'forgot_password' => 'დაგავიწყდა პაროლი?',
 ];

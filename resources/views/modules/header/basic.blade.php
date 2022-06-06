@@ -28,11 +28,17 @@
                                 </div>
                             </a>
                         </div>
+
+                        <div class="p-2">
+                            <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
+                                Basket Icon
+                            </a>
+                        </div>
                     @else
                         <div class="nav-item">
                             <a href="{{ route('getRegister', $language->title) }}">
                                 <div class="p-2">
-                                    Registration
+                                    {{ __('auth.register') }}
                                 </div>
                             </a>
                         </div>
@@ -40,7 +46,7 @@
                         <div class="nav-item">
                             <a href="{{ route('getLogin', $language->title) }}">
                                 <div class="p-2">
-                                    Authorization
+                                    {{ __('auth.login') }}
                                 </div>
                             </a>
                         </div>
@@ -56,12 +62,6 @@
                                     <input type="text" id="search" placeholder="ძიება">
                                 </form>
                             </div>
-                        </div>
-                        
-                        <div class="p-2">
-                            <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
-                                Basket Icon
-                            </a>
                         </div>
 
                         <div>

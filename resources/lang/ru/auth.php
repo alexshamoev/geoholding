@@ -32,4 +32,5 @@ return [
     'email_not_exists' => 'Электронной почты нет!',
     'email_or_pass_incorrect' => 'Email или пароль указан неверно',
     'login' => 'Авторизоваться',
+    'forgot_password' => 'Забыл пароль?',
 ];

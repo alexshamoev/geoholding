@@ -57,13 +57,13 @@
 
 							<div class="form-group row">
 								<a href="{{ route('recover', $language->title) }}">
-									პაროლის აღდგენა
+									{{ __('auth.forgot_password') }}
 								</a>	
 							</div>
 
 							<div class="form-group row mb-0">
 								<div class="col-md-6 offset-md-4">
-									{{ Form :: submit(__('auth.register')) }}
+									{{ Form :: submit(__('auth.login')) }}
 								</div>
 							</div>
 						{{ Form :: close() }}

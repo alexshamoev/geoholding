@@ -38,7 +38,7 @@ class AuthController extends FrontController
 
 
     public static function getRegistration($lang) {
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $page = Page::firstWhere('slug', 'registration');
         $language = Language::firstWhere('title', $lang);
         $data = array_merge(self::getDefaultData($language, $page));
 
@@ -93,7 +93,15 @@ class AuthController extends FrontController
             $language = Language::firstWhere('title', $lang);
             $email = $request->input('email');
 
-            return redirect()->route('getReset', [$language->title, $email]);
+            $user = User::firstWhere('email', $email);
+
+            $emailData = [];
+            $emailData['email'] = $email;
+            $emailData['language'] = $language->title;
+            $emailData['name'] = $user->name;
+
+            MailController::passwordRecovery($emailData);
+            // return redirect()->route('getReset', [$language->title, $email]);
         }
 
         return back()->with('error', __('auth.email_not_exists'));

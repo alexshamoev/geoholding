@@ -33,4 +33,5 @@ return [
     'email_not_exists' => 'Email Doesn\'t exists',
     'email_or_pass_incorrect' => 'Email or Password is incorrect',
     'login' => 'Login',
+    'forgot_password' => 'Forgot Password?',
 ];
