@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 
-class DefaultPhotoGalleryStep0 extends Seeder
+class DefaultProductsStep0 extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,7 @@ class DefaultPhotoGalleryStep0 extends Seeder
      */
     public function run()
     {
-        DB::table('photo_gallery_step_0')->insert([
+        DB::table('products_step_0')->insert([
 
             [
                 'alias_ge' => strtolower(Str::random(10)),

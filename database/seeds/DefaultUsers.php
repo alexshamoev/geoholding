@@ -20,7 +20,7 @@ class DefaultUsers extends Seeder
         $password = Hash::make('1234');
 
         DB :: insert("INSERT INTO `users` (`name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `super_administrator`, `admin`) VALUES
-                    ('ალექსი', 'alexshamoev@gmail.com', NULL, '$password', NULL, '2021-06-16 10:21:55', '2022-03-17 08:02:24', 1, 1),
-                    ('sandra', 'sandratbilisi@gmail.com', NULL, '$password', NULL, '2022-01-24 10:05:00', '2022-01-24 10:05:00', 0, 0)");
+                    ('testuser', '  ', NULL, '$password', NULL, '2021-06-16 10:21:55', '2022-03-17 08:02:24', 1, 1),
+                    ('randomuser', 'randomuser@gmail.com', NULL, '$password', NULL, '2022-01-24 10:05:00', '2022-01-24 10:05:00', 0, 0)");
     }
 }

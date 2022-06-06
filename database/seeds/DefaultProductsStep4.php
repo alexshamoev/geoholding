@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class DefaultPhotoGalleryStep0 extends Seeder
+class DefaultProductsStep4 extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,46 +15,31 @@ class DefaultPhotoGalleryStep0 extends Seeder
      */
     public function run()
     {
-        DB::table('photo_gallery_step_0')->insert([
+        DB::table('products_step_4')->insert([
 
             [
-                'alias_ge' => strtolower(Str::random(10)),
-                'alias_en' => strtolower(Str::random(10)),
-                'alias_ru' => strtolower(Str::random(10)),
+                'top_level' => 1,
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
-                'text_ge' => Str::random(50),
-                'text_en' => Str::random(50),
-                'text_ru' => Str::random(50),
                 'rang' => 5,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'alias_ge' => strtolower(Str::random(10)),
-                'alias_en' => strtolower(Str::random(10)),
-                'alias_ru' => strtolower(Str::random(10)),
+                'top_level' => 1,
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
-                'text_ge' => Str::random(50),
-                'text_en' => Str::random(50),
-                'text_ru' => Str::random(50),
                 'rang' => 10,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
-                'alias_ge' => strtolower(Str::random(10)),
-                'alias_en' => strtolower(Str::random(10)),
-                'alias_ru' => strtolower(Str::random(10)),
+                'top_level' => 1,
                 'title_ge' => Str::random(10),
                 'title_en' => Str::random(10),
                 'title_ru' => Str::random(10),
-                'text_ge' => Str::random(50),
-                'text_en' => Str::random(50),
-                'text_ru' => Str::random(50),
                 'rang' => 15,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
