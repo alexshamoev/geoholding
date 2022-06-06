@@ -30,7 +30,11 @@ class AuthController extends FrontController
         $loginFields = $request->only(['email', 'password']);
         
         if(Auth::attempt($loginFields)) {
-            return redirect()->intended(route($page->alias, [$language->title]));
+            if(Auth::user()->email_verified_at) {
+                return redirect()->intended(route($page->alias, [$language->title]));
+            }
+
+            return back()->with('alert', __('auth.email_needs_verifying'));
         }
 
         return back()->with('alert', __('auth.email_or_pass_incorrect'));
@@ -61,9 +65,23 @@ class AuthController extends FrontController
 
         $language = Language::firstWhere('title', $lang);
 
-		Session::flash('successDeleteStatus', __('auth.registerSuccessStatus'));
+        $emailData = [];
+        $emailData['email'] = $request->input('email');
+        $emailData['language'] = $language->title;
+        $emailData['name'] = $request->input('name');
+
+        MailController::emailVerification($emailData);
         
-        return redirect()->route('getLogin', [$language->title]);
+        return redirect()->route('getLogin', [$language->title])->with('alert', __('auth.registerSuccessStatus'));
+    }
+
+
+    public static function emailVerification($lang, $email) {
+        $user = User::firstWhere('email', $email);
+        $user->email_verified_at = date("Y-m-d H:i:s", strtotime('+4 hours'));
+        $user->save();
+
+        return redirect()->route('getLogin', $lang)->with('alert', 'Email was verified successfully');
     }
 
 
@@ -101,7 +119,7 @@ class AuthController extends FrontController
             $emailData['name'] = $user->name;
 
             MailController::passwordRecovery($emailData);
-            // return redirect()->route('getReset', [$language->title, $email]);
+
             return back()->with('alert', __('auth.email_was_sent'));
         }
 

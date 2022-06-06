@@ -141,6 +141,10 @@ if(Schema::hasTable('languages')) {
 				Route::post('/{lang}/register', 'AuthController@registration')->name('register');
 			//
 
+			// Email Verification
+				Route::get('/{lang}/verify/{email}', 'AuthController@emailVerification')->name('verifyEmail');
+			//
+
 			// Recover
 				Route::get('/{lang}/recover', 'AuthController@getRecover')->name('getRecover');
 				Route::post('/{lang}/recover', 'AuthController@recover')->name('recover');

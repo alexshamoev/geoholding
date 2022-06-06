@@ -28,7 +28,6 @@ return [
     'password' => 'Password',
     'confirmPassword' => 'Confirm Password',
     'register' => 'Register',
-    'registerSuccessStatus' => 'You were registered successfully',
     'recover' => 'Recover',
     'email_not_exists' => 'Email Doesn\'t exists',
     'email_or_pass_incorrect' => 'Email or Password is incorrect',
@@ -40,4 +39,6 @@ return [
     'reset_password' => 'Reset Password',
     'pass_rec_contact' => 'If you did not initiate this request, please contact us immediately',
     'thanks' => 'Thanks',
+    'registerSuccessStatus' => 'You were registered successfully, In order to login, please confirm your email address',
+    'email_needs_verifying' => 'In order to login you email needs to be confirmed, please check your inbox.',
 ];
