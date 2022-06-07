@@ -57,7 +57,7 @@ class AuthController extends FrontController
             'name' => 'required',
             'last_name' => 'required|max:255',
             'email' => 'required|max:255',
-            'phone' => 'required|max:15|min:3',
+            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:5',
             'address' => 'required|max:255',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|min:8|same:password',
