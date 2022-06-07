@@ -28,7 +28,7 @@ class AController extends Controller {
 	
 	public static function getDefaultData() {
 		$bsc = Bsc::getFullData();
-		$activeUser = Auth::user();
+		$activeUser = Auth::guard('admin')->user();
 		$copyrightDate = config('constants.year_of_site_creation');
 
 		if($copyrightDate < date('Y')) {
@@ -53,7 +53,7 @@ class AController extends Controller {
 					'bsw' => Bsw::getFullData(),
 					'copyrightDate' => $copyrightDate,
 					'languages' => Language::where('disable', 0)->orderByDesc('rang')->get(),
-					'activeUser' => Auth::user()
+					'activeUser' => Auth::guard('admin')->user()
 				];
 		
 		return $data;
