@@ -249,7 +249,10 @@
 					'text' => $data -> type,
 					'text1' => $data -> label,
 					'editLink' => route('moduleBlockEdit', [$moduleStep -> module -> id, $moduleStep -> id, $data -> id]),
-					'deleteLink' => route('moduleBlockDelete', [$moduleStep -> module -> id, $moduleStep -> id, $data -> id])
+					'deleteLink' => route('moduleBlockDelete', [$moduleStep -> module -> id, $moduleStep -> id, $data -> id]),
+					'possibilityToDelete' => true,
+					'possibilityToRang' => true,
+					'possibilityToEdit' => true,
 				])
 			@endforeach
 		</div>

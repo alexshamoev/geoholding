@@ -4,11 +4,15 @@
 			<div class="row">
 				<div class="col-6 p-2">
 					<div class="d-flex align-items-center">
-						<a href="{{ $editLink }}">
-							<span class="line_max_1">
-								{{ $title }}
-							</span>
-						</a>
+						@if(isset($possibilityToEdit))
+							@if($possibilityToEdit !== 0)
+								<a href="{{ $editLink }}">
+									<span class="line_max_1">
+										{{ $title }}
+									</span>
+								</a>
+							@endif
+						@endif
 					</div>
 				</div>
 
@@ -24,18 +28,28 @@
 		
 		<div class="col-2">
 			<div class="d-flex justify-content-end">
-				<div class="edit-block__edit-delete-block p-2">
-					<a href="{{ $editLink }}">
-						<div class="p-2">
-							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="Edit" class="bar-tag-bigger-img">
+
+				@if(isset($possibilityToEdit))
+					@if($possibilityToEdit !== 0)
+						<div class="edit-block__edit-delete-block p-2">
+							<a href="{{ $editLink }}">
+								<div class="p-2">
+									<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="Edit" class="bar-tag-bigger-img">
+								</div>
+							</a>
 						</div>
-					</a>
-				</div>
-				<div class="edit-block__edit-delete-block delete-block p-2" data-delete-link="{{ $deleteLink }}">
-					<div class="p-2">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="Close" class="bar-tag-bigger-img">
-					</div>
-				</div>
+					@endif
+				@endif
+
+				@if(isset($possibilityToDelete))
+					@if($possibilityToDelete !== 0)
+						<div class="edit-block__edit-delete-block delete-block p-2" data-delete-link="{{ $deleteLink }}">
+							<div class="p-2">
+								<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="Close" class="bar-tag-bigger-img">
+							</div>
+						</div>
+					@endif
+				@endif
 			</div>
 		</div>
 	</div>

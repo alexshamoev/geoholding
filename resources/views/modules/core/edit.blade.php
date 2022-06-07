@@ -13,12 +13,12 @@
 
 	@php	
 		$barData = [
-						'nextId' => $nextId,
-						'prevId' => $prevId,
-						'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
-						'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
-						'backRoute' => $backRoute
-					]	
+					'nextId' => $nextId,
+					'prevId' => $prevId,
+					'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
+					'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
+					'backRoute' => $backRoute
+				]	
 	@endphp
 
 	@if($moduleStep->possibility_to_add === 1)
@@ -35,6 +35,7 @@
 
 	@include('admin.includes.bar', $barData)
 
+	
 	<div class="p-2">
 		@error('images')
 			<div class="alert alert-danger">
@@ -115,12 +116,6 @@
 										<div class="p-2">
 											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
 										</div>
-
-										@if($moduleBlock->file_possibility_to_delete)
-											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-												X
-											</a>
-										@endif
 									@endif
 								</div>
 
@@ -413,31 +408,29 @@
 										
 		@foreach($nextModuleStep as $moduleStepData)
 			<!-- Add button -->
-				@if($moduleStepData->possibility_to_add !== 0)
-					@if(!$moduleStepData->images )
-						@include('admin.includes.addButton', [
-							'text' => __('bsw.add').' '.$moduleStepData->title,
-							'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
-						])
-					@else 
-						<div class="p-2">
-							<div class="p-2 standard-block">
-								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id, $data->id), 'files' => true, 'method' => 'post')) }}
-									<div class="p-2">
-										{{ __('bsw.add').' '.$moduleStepData->title }}
-									</div>
+				@if(!$moduleStepData->images && $moduleStepData->possibility_to_add !== 0)
+					@include('admin.includes.addButton', [
+						'text' => __('bsw.add').' '.$moduleStepData->title,
+						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
+					])
+				@elseif($moduleStepData->images && $moduleStepData->possibility_to_add !== 0) 
+					<div class="p-2">
+						<div class="p-2 standard-block">
+							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id, $data->id), 'files' => true, 'method' => 'post')) }}
+								<div class="p-2">
+									{{ __('bsw.add').' '.$moduleStepData->title }}
+								</div>
 
-									<div class="p-2">
-										{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-									</div>
+								<div class="p-2">
+									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+								</div>
 
-									<div class="p-2 submit-button">
-										{{ Form::submit(__('bsw.adding')) }}
-									</div>
-								{{ Form::close() }}
-							</div>
+								<div class="p-2 submit-button">
+									{{ Form::submit(__('bsw.adding')) }}
+								</div>
+							{{ Form::close() }}
 						</div>
-					@endif
+					</div>
 				@endif
 			<!--  -->
 			
@@ -452,13 +445,18 @@
 										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
 										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
 										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+										'possibilityToRang' => $moduleStepData->possibility_to_rang,
+										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
 									])
 						@else
 							@include('admin.includes.horizontalEditDelete', [
 										'id' => $dataIn->id,
 										'title' => $dataIn->{ $moduleStepData->main_column },
 										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+										'possibilityToRang' =>  $moduleStepData->possibility_to_rang,
+										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
 									])
 						@endif
 					@else 
@@ -468,7 +466,10 @@
 								'title' => $dataIn->{ $moduleStepData->main_column },
 								'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
 								'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-								'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
+								'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+								'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+								'possibilityToRang' => $moduleStepData->possibility_to_rang,
+								'possibilityToEdit' => $moduleStepData->possibility_to_edit,
 							])
 						@else
 							@include('admin.includes.verticalEditDeleteBlock', [
@@ -477,7 +478,10 @@
 										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
 										'moduleAlias' => $module->alias,
 										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+										'possibilityToRang' => $moduleStepData->possibility_to_rang,
+										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
 									])
 						@endif
 					@endif

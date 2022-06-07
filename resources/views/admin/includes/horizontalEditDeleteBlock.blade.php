@@ -4,11 +4,19 @@
 			<div class="row">
 				<div class="col-4 p-2">
 					<div class="p-2 d-flex align-items-center">
-						<a href="{{ $editLink }}">
+						@if(isset($possibilityToEdit))
+							@if($possibilityToEdit !== 0)
+								<a href="{{ $editLink }}">
+							@endif
+						@endif
 							<span class="line_max_1">
 								{{ $title }}
 							</span>
-						</a>
+						@if(isset($possibilityToEdit))
+							@if($possibilityToEdit !== 0)
+								</a>
+							@endif
+						@endif
 					</div>
 				</div>
 
@@ -36,13 +44,19 @@
 		
 		<div class="col-2">
 			<div class="d-flex justify-content-end">
-				<div class="edit-block__edit-delete-block p-2">
-					<a href="{{ $editLink }}">
-						<div class="p-2">
-							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+			
+				@if(isset($possibilityToEdit))
+					@if($possibilityToEdit !== 0)
+						<div class="edit-block__edit-delete-block p-2">
+							<a href="{{ $editLink }}">
+								<div class="p-2">
+									<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+								</div>
+							</a>
 						</div>
-					</a>
-				</div>
+					@endif
+				@endif
+
 				@if(isset($possibilityToDelete))
 					@if($possibilityToDelete !== 0)
 						<div class="edit-block__edit-delete-block p-2 delete-block" data-delete-link="{{ $deleteLink }}">
@@ -52,11 +66,17 @@
 						</div>
 					@endif
 				@endif
-				<div class="edit-block__edit-delete-block p-2 edit-block__edit-delete-block--move rangButton">
-					<div class="p-2">
-						<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
-					</div>
-				</div>
+
+				@if(isset($possibilityToRang))
+					@if($possibilityToRang !== 0)
+						<div class="edit-block__edit-delete-block p-2 edit-block__edit-delete-block--move rangButton">
+							<div class="p-2">
+								<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
+							</div>
+						</div>
+					@endif
+				@endif
+
 			</div>
 		</div>
 	</div>

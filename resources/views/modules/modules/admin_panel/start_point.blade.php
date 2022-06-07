@@ -29,7 +29,10 @@
 					'id' => $data -> id,
 					'title' => $data -> alias,
 					'editLink' => route('moduleEdit', $data -> id),
-					'deleteLink' => route('moduleDelete', $data -> id)
+					'deleteLink' => route('moduleDelete', $data -> id),
+					'possibilityToDelete' => true,
+					'possibilityToEdit' => true,
+					'possibilityToRang' => true,
 				])
 			@endforeach
 		</div>

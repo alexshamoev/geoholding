@@ -279,7 +279,10 @@
 					'title' => $data->db_table,
 					'text' => $data->title,
 					'editLink' => route('moduleStepEdit', array($module->id, $data->id)),
-					'deleteLink' => route('moduleStepDelete', array($module->id, $data->id))
+					'deleteLink' => route('moduleStepDelete', array($module->id, $data->id)),
+					'possibilityToDelete' => true,
+					'possibilityToRang' => true,
+					'possibilityToEdit' => true,
 				])
 			@endforeach
 		</div>	

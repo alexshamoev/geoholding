@@ -9,11 +9,19 @@
 			<div class="row h-100">
 				<div class="col-6 p-2 d-flex align-items-center">
 					<div class="p-2 d-flex align-items-center">
-						<a href="{{ $editLink }}">
+						@if(isset($possibilityToEdit))
+							@if($possibilityToEdit !== 0)
+								<a href="{{ $editLink }}">
+							@endif
+						@endif
 							<span class="line_max_1">
 								{{ $title }}
 							</span>
-						</a>
+						@if(isset($possibilityToEdit))
+							@if($possibilityToEdit !== 0)
+								</a>
+							@endif
+						@endif
 					</div>
 				</div>
 
@@ -29,25 +37,38 @@
 		
 		<div class="col-3">
 			<div class="row h-100 d-flex justify-content-end">
-				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block">
-					<a href="{{ $editLink }}">
-						<div class="p-3">
-							<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+
+				@if(isset($possibilityToEdit))
+					@if($possibilityToEdit !== 0)
+						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block">
+							<a href="{{ $editLink }}">
+								<div class="p-3">
+									<img src="{{ asset('/storage/images/admin/edit.svg') }}" alt="edit" class="bar-tag-bigger-img">
+								</div>
+							</a>
 						</div>
-					</a>
-				</div>
+					@endif
+				@endif
 
-				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
-					<div class="p-3">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
-					</div>
-				</div>
+				@if(isset($possibilityToDelete))
+					@if($possibilityToDelete !== 0)
+						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
+							<div class="p-3">
+								<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
+							</div>
+						</div>
+					@endif
+				@endif
 
-				<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
-					<div class="p-3">
-						<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
-					</div>
-				</div>
+				@if(isset($possibilityToRang))
+					@if($possibilityToRang !== 0)
+						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block edit-block__edit-delete-block--move rangButton">
+							<div class="p-3">
+								<img src="{{ asset('/storage/images/admin/bars.svg') }}" alt="Move" class="bar-tag-bigger-img">
+							</div>
+						</div>
+					@endif
+				@endif
 			</div>
 		</div>
 	</div>

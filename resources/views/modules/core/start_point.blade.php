@@ -51,7 +51,7 @@
 							0,
 						])
 					])
-				@elseif($moduleStep->values()->get($i)->images) 
+				@elseif($moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)  
 					<div class="p-2">
 						<div class="p-2 standard-block">
 							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
@@ -82,6 +82,8 @@
 										'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
 										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
 										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
+										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
+										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
 									])
 						@else 
 							@include('admin.includes.horizontalEditDelete', [
@@ -89,6 +91,9 @@
 									'title' => $data->{$collectionForTags->values()->get($i)},
 									'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
 									'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+									'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
+									'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
+									'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
 							])
 						@endif
 					@else
@@ -98,7 +103,10 @@
 										'title' => $data->{$collectionForTags->values()->get($i)},
 										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStep->values()->get($i)->id.'/'.$data->id.'.'.$imageFormat,
 										'editLink' => route('coreEdit', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
+										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
+										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
 									])
 						@else 
 							@include('admin.includes.verticalEditDeleteBlock', [
@@ -107,7 +115,10 @@
 										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStep->values()->get($i)->id.'/'.$data->id.'.'.$imageFormat,
 										'moduleAlias' => $module->alias,
 										'editLink' => route('coreEdit', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id))
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
+										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
+										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
 								])
 						@endif
 					@endif
