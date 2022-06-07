@@ -142,7 +142,7 @@ if(Schema::hasTable('languages')) {
 			//
 
 			// Email Verification
-				Route::get('/{lang}/verify/{email}', 'AuthController@emailVerification')->name('verifyEmail');
+				Route::get('/{lang}/verify/{id}', 'AuthController@emailVerification')->name('verifyEmail');
 			//
 
 			// Recover

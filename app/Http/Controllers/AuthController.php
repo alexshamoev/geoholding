@@ -63,7 +63,7 @@ class AuthController extends FrontController
             'confirmPassword' => 'required|min:8|same:password',
         ]);
 
-        User::create($request->all());
+        $user = User::create($request->all());
 
         $language = Language::firstWhere('title', $lang);
 
@@ -71,6 +71,7 @@ class AuthController extends FrontController
         $emailData['email'] = $request->input('email');
         $emailData['language'] = $language->title;
         $emailData['name'] = $request->input('name');
+        $emailData['id'] = $user->id;
 
         MailController::emailVerification($emailData);
         
@@ -78,8 +79,8 @@ class AuthController extends FrontController
     }
 
 
-    public static function emailVerification($lang, $email) {
-        $user = User::firstWhere('email', $email);
+    public static function emailVerification($lang, $id) {
+        $user = User::firstWhere('id', $id);
         $user->email_verified_at = date("Y-m-d H:i:s", strtotime('+4 hours'));
         $user->save();
 

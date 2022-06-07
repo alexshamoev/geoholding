@@ -3,7 +3,7 @@
 
 <p>In order to start using your account, you need to confirm your email address.</p>
 
-@component('mail::button', ['url' => url('/').'/'.$data['language'].'/verify/'.$data['email'], 'color' => 'blue'])
+@component('mail::button', ['url' => url('/').'/'.$data['language'].'/verify/'.$data['id'], 'color' => 'blue'])
     Verify Email Address
 @endcomponent
 
