@@ -30,10 +30,12 @@ class AuthController extends FrontController
         $loginFields = $request->only(['email', 'password']);
         
         if(Auth::attempt($loginFields)) {
-            if(Auth::user()->email_verified_at) {
+            if(Auth::user()->hasVerifiedEmail()) {
                 return redirect()->intended(route($page->alias, [$language->title]));
             }
 
+            Auth::logout();
+            
             return back()->with('alert', __('auth.email_needs_verifying'));
         }
 
