@@ -153,6 +153,12 @@ if(Schema::hasTable('languages')) {
 			//
 		// 
 
+		// Cabinet
+			$cabinetPage = Page::firstWhere('slug', 'cabinet');
+			Route::get('/{lang}/'.$cabinetPage->alias.'/edit', 'CabinetController@edit')->name('editCabinet');
+			Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
+		//
+
 
 		// Default routes.
 			Route::get('/', function() {
