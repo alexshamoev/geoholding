@@ -1,14 +1,14 @@
 @component('mail::message')
-# Verify your email address
+# {{ __('email.verify_email') }}
 
-<p>In order to start using your account, you need to confirm your email address.</p>
+<p>{{ __('email.verify_email_text_0') }}</p>
 
 @component('mail::button', ['url' => url('/').'/'.$data['language'].'/verify/'.$data['id'], 'color' => 'blue'])
-    Verify Email Address
+{{ __('email.verify_email_button') }}
 @endcomponent
 
-<span>if you did not sign up for this account you can ignore this email.</span>
+<span>{{ __('email.verify_email_text_1') }}</span>
 
-{{ __('auth.thanks') }},<br>
+{{ __('email.thanks') }},<br>
 {{ config('app.name') }}
 @endcomponent

@@ -21,6 +21,7 @@ class EmailVerification extends Mailable
     public function __construct($data)
     {
         $this->data = $data;
+        App::setLocale($data['language']);
     }
 
     /**
