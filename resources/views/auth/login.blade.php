@@ -66,6 +66,16 @@
 							</div>
 						{{ Form :: close() }}
 					</div>
+
+					<a href="{{ url('auth/google') }}" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
+					<strong>Google Login</strong>
+					</a> 
+
+					<div class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;">
+						<a href="{{ url('auth/google') }}">
+							<i class="fab fa-google me-2"></i> Sign in with google
+						</a>	
+					</div>
 				</div>
 			</div>
 		</div>
