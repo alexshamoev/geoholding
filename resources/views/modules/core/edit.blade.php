@@ -437,53 +437,27 @@
 			<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
 				@foreach($nextModuleStepData->values()->get($i) as $dataIn)
 					@if(!$moduleStepData->images)
-						@if($moduleStepData->order_by_column === 'rang')
-							@include('admin.includes.horizontalEditDeleteBlock',
-									[
-										'id' => $dataIn->id,
-										'title' => $dataIn->{ $moduleStepData->main_column },
-										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-										'possibilityToRang' => $moduleStepData->possibility_to_rang,
-										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-									])
-						@else
-							@include('admin.includes.horizontalEditDelete', [
-										'id' => $dataIn->id,
-										'title' => $dataIn->{ $moduleStepData->main_column },
-										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-										'possibilityToRang' =>  $moduleStepData->possibility_to_rang,
-										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-									])
-						@endif
-					@else 
-						@if($moduleStepData->order_by_column === 'rang')
-							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
-								'id' => $dataIn->id,
-								'title' => $dataIn->{ $moduleStepData->main_column },
-								'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
-								'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-								'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-								'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-								'possibilityToRang' => $moduleStepData->possibility_to_rang,
-								'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-							])
-						@else
-							@include('admin.includes.verticalEditDeleteBlock', [
-										'id' => $dataIn->id,
-										'title' => $dataIn->{ $moduleStepData->main_column },
-										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
-										'moduleAlias' => $module->alias,
-										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-										'possibilityToRang' => $moduleStepData->possibility_to_rang,
-										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-									])
-						@endif
+						@include('admin.includes.infoBlockWithoutImage',
+								[
+									'id' => $dataIn->id,
+									'title' => $dataIn->{ $moduleStepData->main_column },
+									'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+									'possibilityToRang' => $moduleStepData->possibility_to_rang,
+									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+								])
+					@else
+						@include('admin.includes.infoBlockWithImage', [
+							'id' => $dataIn->id,
+							'title' => $dataIn->{ $moduleStepData->main_column },
+							'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
+							'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+							'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+							'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+							'possibilityToRang' => $moduleStepData->possibility_to_rang,
+							'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+						])
 					@endif
 				@endforeach
 			</div>

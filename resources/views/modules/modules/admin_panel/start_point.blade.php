@@ -25,7 +25,7 @@
 
 		<div class="rangBlocks" data-db_table="modules">
 			@foreach($modules as $data)
-				@include('admin.includes.horizontalEditDeleteBlock', [
+				@include('admin.includes.infoBlockWithoutImage', [
 					'id' => $data -> id,
 					'title' => $data -> alias,
 					'editLink' => route('moduleEdit', $data -> id),

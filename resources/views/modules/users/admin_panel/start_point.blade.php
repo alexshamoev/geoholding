@@ -22,7 +22,7 @@
 
 
         @foreach($users as $data)
-            @include('admin.includes.horizontalEditDelete', [
+            @include('admin.includes.infoBlockWithoutImage', [
                     'id' => $data -> id,
                     'title' => $data -> email,
                     'editLink' => route('userEdit', $data -> id),
