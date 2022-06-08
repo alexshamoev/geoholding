@@ -17,11 +17,17 @@ class AuthController extends FrontController
 
 
     public static function getLogin($lang) {
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
-        $language = Language::firstWhere('title', $lang);
-        $data = array_merge(self::getDefaultData($language, $page));
+        $cabinetPage = Page::firstWhere('slug', 'cabinet');
 
-        return view('auth.login', $data);
+        if(!Auth::check()) {
+            $page = Page::firstWhere('slug', self::PAGE_SLUG);
+            $language = Language::firstWhere('title', $lang);
+            $data = array_merge(self::getDefaultData($language, $page));
+
+            return view('auth.login', $data);
+        }
+
+        return redirect()->route($cabinetPage->{ 'alias_'.$lang }, $lang);
     }
 
 
@@ -52,11 +58,17 @@ class AuthController extends FrontController
 
 
     public static function getRegistration($lang) {
-        $page = Page::firstWhere('slug', 'registration');
-        $language = Language::firstWhere('title', $lang);
-        $data = array_merge(self::getDefaultData($language, $page));
+        $cabinetPage = Page::firstWhere('slug', 'cabinet');
 
-        return view('auth.register', $data);
+        if(!Auth::check()) {
+            $page = Page::firstWhere('slug', 'registration');
+            $language = Language::firstWhere('title', $lang);
+            $data = array_merge(self::getDefaultData($language, $page));
+
+            return view('auth.register', $data);
+        }
+
+        return redirect()->route($cabinetPage->{ 'alias_'.$lang }, $lang);
     }
 
 
