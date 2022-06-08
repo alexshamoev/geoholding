@@ -9,6 +9,7 @@ use App\Models\Language;
 use Auth;
 use Hash;
 use Session;
+use App;
 
 class AuthController extends FrontController
 {
@@ -16,15 +17,28 @@ class AuthController extends FrontController
 
 
     public static function getLogin($lang) {
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
-        $language = Language::firstWhere('title', $lang);
-        $data = array_merge(self::getDefaultData($language, $page));
+        $cabinetPage = Page::firstWhere('slug', 'cabinet');
 
-        return view('auth.login', $data);
+        if(!Auth::check()) {
+            $page = Page::firstWhere('slug', self::PAGE_SLUG);
+            $language = Language::firstWhere('title', $lang);
+            $data = array_merge(self::getDefaultData($language, $page));
+
+            return view('auth.login', $data);
+        }
+
+        return redirect()->route($cabinetPage->{ 'alias_'.$lang }, $lang);
     }
 
 
     public static function login(Request $request, $lang) {
+        App::setLocale($lang);
+
+        $validated = $request->validate([
+            'email' => 'required|max:255',
+            'password' => 'required|min:8',
+        ]);
+
         $page = Page::firstWhere('slug', 'cabinet');
         $language = Language::firstWhere('title', $lang);
         $loginFields = $request->only(['email', 'password']);
@@ -44,15 +58,23 @@ class AuthController extends FrontController
 
 
     public static function getRegistration($lang) {
-        $page = Page::firstWhere('slug', 'registration');
-        $language = Language::firstWhere('title', $lang);
-        $data = array_merge(self::getDefaultData($language, $page));
+        $cabinetPage = Page::firstWhere('slug', 'cabinet');
 
-        return view('auth.register', $data);
+        if(!Auth::check()) {
+            $page = Page::firstWhere('slug', 'registration');
+            $language = Language::firstWhere('title', $lang);
+            $data = array_merge(self::getDefaultData($language, $page));
+
+            return view('auth.register', $data);
+        }
+
+        return redirect()->route($cabinetPage->{ 'alias_'.$lang }, $lang);
     }
 
 
     public static function registration(Request $request, $lang) {
+        App::setLocale($lang);
+
         $validated = $request->validate([
             'name' => 'required',
             'last_name' => 'required|max:255',
@@ -105,6 +127,8 @@ class AuthController extends FrontController
 
 
     public static function recover(Request $request, $lang) {
+        App::setLocale($lang);
+
         $validated = $request->validate([
             'email' => 'required|max:255',
         ]);
@@ -143,6 +167,8 @@ class AuthController extends FrontController
 
 
     public static function reset(Request $request, $lang, $email) {
+        App::setLocale($lang);
+
         $validated = $request->validate([
             'password' => 'required|min:8',
             'confirmPassword' => 'required|min:8|same:password',

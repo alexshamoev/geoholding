@@ -23,8 +23,6 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card">
-					<div class="card-header">{{ __('Register') }}</div>
-
 					<div class="card-body">
 						{{ Form :: open(array('route' => array('login', $language->title), 'method' => 'POST')) }}
 							<div class="form-group row">
@@ -67,6 +65,12 @@
 								</div>
 							</div>
 						{{ Form :: close() }}
+					</div>
+
+					<div class="btn btn-lg btn-block btn-primary" style="background-color: #dd4b39;">
+						<a href="{{ url('auth/google') }}">
+							<i class="fab fa-google me-2"></i> Sign in with google
+						</a>	
 					</div>
 				</div>
 			</div>
