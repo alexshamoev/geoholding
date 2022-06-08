@@ -85,10 +85,10 @@ return [
     'mimes' => ':attribute უნდა იყოს შემდეგი ფაილის ტიპის: :values.',
     'mimetypes' => ':attribute უნდა იყოს შემდეგი ფაილის ტიპის: :values.',
     'min' => [
-        'numeric' => ':attribute უნდა იყოს მინიმუმ :min.',
-        'file' => ':attribute უნდა იყოს მინიმუმ :min კილობაიტი.',
-        'string' => ':attribute უნდა იყოს მინიმუმ :min სიმბოლო.',
-        'array' => ':attribute უნდა შეიცავდეს მინიმუმ :min ელემენტს.',
+        'numeric' => ':attribute ველი უნდა იყოს მინიმუმ :min.',
+        'file' => ':attribute ველი უნდა იყოს მინიმუმ :min კილობაიტი.',
+        'string' => ':attribute ველი უნდა იყოს მინიმუმ :min სიმბოლო.',
+        'array' => ':attribute ველი უნდა შეიცავდეს მინიმუმ :min ელემენტს.',
     ],
     'not_in' => 'მონიშნული :attribute არასწორია.',
     'not_regex' => ':attribute ფორმატი არ არის ვალიდური.',
@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'სახელის',
+        'last_name' => 'გვარის',
+        'email' => 'ელ.ფოსტის',
+        'phone' => 'ტელეფონის',
+        'address' => 'მისამართის',
+        'password' => 'პაროლის',
+        'confirmPassword' => 'დაადასტურეთ პაროლის',
+    ],
 
 ];

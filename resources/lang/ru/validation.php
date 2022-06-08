@@ -145,6 +145,14 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name' => 'Имя',
+        'last_name' => 'Фамилия',
+        'email' => 'Эл. адрес',
+        'phone' => 'Телефон',
+        'address' => 'Адрес',
+        'password' => 'Пароль',
+        'confirmPassword' => 'Подтвердить Пароль',
+    ],
 
 ];
