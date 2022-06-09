@@ -59,7 +59,11 @@ function showProductFromLocalStorage() {
                         parentTemplate.find('.basket__plus_btn').on('click', function() {
                             let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
 
-                            amountValue++;
+                            if(amountValue) {
+                                amountValue++;
+                            } else {
+                                amountValue = 1;
+                            }
 
                             $(parentTemplate).find('.basket__product_amount').val(amountValue);
 
