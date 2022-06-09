@@ -124,8 +124,9 @@
 								<div class="p-2 standard-block">
 									<div class="p-2">
 										{{ $moduleBlock->label }}: <br>
-										{!! __('bsw.show_format', ['format' => $moduleBlock->file_format]) !!}
-
+										<div class="d-flex align-items-center">
+											{!! __('bsw.show_format', ['format' => $moduleBlock->file_format]) !!}
+										</div>
 										@php
 											if($moduleBlock->validation) {
 												echo '*';

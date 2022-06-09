@@ -82,7 +82,10 @@
 							@case('file')
 								<div class="p-2 standard-block">
 									<div class="p-2">
-										{{ $moduleBlock->label }}:
+										{{ $moduleBlock->label }}: <br>
+										<div class="d-flex align-items-center">
+											{!! __('bsw.show_format', ['format' => $moduleBlock->file_format]) !!}
+										</div>
 
 										@php
 											if($moduleBlock->validation) {

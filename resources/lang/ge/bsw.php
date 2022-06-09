@@ -72,7 +72,5 @@ return [
     'basket_empty' => 'კალათა ცარიელია',
     'product_added_in_basket' => 'პროდუქტი დამატებულია კალათაში',
     'add_product_in_basket' => 'კალათაში დამატება',
-    'show_format' => '<div class="d-flex align-items-center">
-                        (აუცილებელია ფაილის ატვირთვა ფორმატში) <div class="fw-bold px-2">:format</div>
-                      </div>',
+    'show_format' => '(აუცილებელია ფაილის ატვირთვა ფორმატში) <div class="fw-bold px-2">:format</div>',
 ];
