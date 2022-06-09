@@ -344,7 +344,7 @@ class ACoreController extends AController {
 			$validator = Validator::make($request->all(), $validationArray);
 
 			if($validator->fails()) {
-				return redirect()->route('coreAdd', array($module->alias, $moduleStep->id))->withErrors($validator)->withInput();
+				return redirect()->route('coreAdd', array($module->alias, $moduleStep->id, $topLevelDataId))->withErrors($validator)->withInput();
 			}
 		//
 
