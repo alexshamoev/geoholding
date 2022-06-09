@@ -71,4 +71,5 @@ return [
     'basket_empty' => 'Basket is empty',
     'product_added_in_basket' => 'Product added in basket',
     'add_product_in_basket' => 'Add in Basket',
+    'show_format' => '(It is necessary to upload the file in the format)) <div class="fw-bold px-2">:format</div>',
 ];
