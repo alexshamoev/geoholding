@@ -72,4 +72,5 @@ return [
     'basket_empty' => 'კალათა ცარიელია',
     'product_added_in_basket' => 'პროდუქტი დამატებულია კალათაში',
     'add_product_in_basket' => 'კალათაში დამატება',
+    'address' => 'მისმართი',
 ];

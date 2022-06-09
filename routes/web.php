@@ -172,8 +172,10 @@ if(Schema::hasTable('languages')) {
 			Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
 		//
 
+		// Order 
+			Route::post('/{lang}/order/order', 'OrderController@order')->name('order');
 		
-
+		//
 
 		// Default routes.
 			Route::get('/', function() {

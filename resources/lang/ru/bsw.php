@@ -70,4 +70,5 @@ return [
     'basket_empty' => 'Корзина пуста',
     'product_added_in_basket' => 'Продукт добавлен в корзину',
     'add_product_in_basket' => 'Добавить в Корзину',
+    'address' => 'Адрес',
 ];
