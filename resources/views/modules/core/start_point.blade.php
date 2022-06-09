@@ -75,18 +75,7 @@
 			<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
 				@foreach($dataFromDb as $data)
 					@if(!$moduleStep->values()->get($i)->images)
-						@if($moduleStep->values()->get($i)->order_by_column === 'rang')
-							@include('admin.includes.horizontalEditDeleteBlock', [
-										'id' => $data->id,
-										'title' => $data->{$collectionForTags->values()->get($i)},
-										'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
-										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
-										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-									])
-						@else 
-							@include('admin.includes.horizontalEditDelete', [
+						@include('admin.includes.infoBlockWithoutImage', [
 									'id' => $data->id,
 									'title' => $data->{$collectionForTags->values()->get($i)},
 									'editLink' => route('coreEdit', [$module->alias, $moduleStep->values()->get($i)->id, $data->id]),
@@ -94,33 +83,18 @@
 									'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
 									'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
 									'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-							])
-						@endif
-					@else
-						@if($moduleStep->values()->get($i)->order_by_column === 'rang')
-							@include('admin.includes.verticalEditDeleteBlockWithRangs', [
-										'id' => $data->id,
-										'title' => $data->{$collectionForTags->values()->get($i)},
-										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStep->values()->get($i)->id.'/'.$data->id.'.'.$imageFormat,
-										'editLink' => route('coreEdit', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
-										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
-										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-									])
-						@else 
-							@include('admin.includes.verticalEditDeleteBlock', [
-										'id' => $data->id,
-										'title' => $data->{$collectionForTags->values()->get($i)},
-										'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStep->values()->get($i)->id.'/'.$data->id.'.'.$imageFormat,
-										'moduleAlias' => $module->alias,
-										'editLink' => route('coreEdit', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
-										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
-										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
-										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
 								])
-						@endif
+					@else
+						@include('admin.includes.infoBlockWithImage', [
+									'id' => $data->id,
+									'title' => $data->{$collectionForTags->values()->get($i)},
+									'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStep->values()->get($i)->id.'/'.$data->id.'.'.$imageFormat,
+									'editLink' => route('coreEdit', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStep->values()->get($i)->id, $data->id)),
+									'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
+									'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
+									'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
+								])
 					@endif
 				@endforeach
 			</div>
