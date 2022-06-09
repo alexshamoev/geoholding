@@ -175,7 +175,7 @@ if(Schema::hasTable('languages')) {
 		//
 
 		// Order 
-			Route::post('/{lang}/order/order', 'OrderController@order')->name('orderProducts');
+			Route::post('/{lang}/order/order', 'OrdersController@order')->name('orderProducts');
 		
 		//
 

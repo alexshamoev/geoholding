@@ -15,27 +15,40 @@
 		</div>
 
 		<div class="row">
-			{{-- @foreach($newsStep0 as $data)
-				<div class="col-lg-4 col-md-6 col-12">
-					<a href="{{ $data -> fullUrl }}">
-						<div class="p-2">
-							<img src="{{ asset('/storage/images/modules/news/28/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
-						</div>
+			@foreach($orders as $data)
+				<div class="standard-block p-2">
+                    <div class="p-2">
+                        სახელი: {{ $data -> user -> name}}
+                    </div>
+                    <div class="p-2">
+                        გვარი: {{ $data -> user -> last_name}}
+                    </div>
+                    <div class="p-2">
+                        ელ.ფოსტა: {{ $data -> user -> email}}
+                    </div>
+                    <div class="p-2">
+                        ტელეფონი: {{ $data -> user -> phone}}
+                    </div>
+                    <div class="p-2">
+                        მისამართი: {{ $data -> user -> address}}
+                    </div>
+                    <div class="p-2">
+                        შეკვეთის თარიღი: {{ $data -> created_at}}
+                    </div>
+                    <div class="p-2">
+                        სრული თანხა: {{ $data -> full_price}} ₾
+                    </div>
 
-						<div class="p-2">
-							<h3 class="line_2">
-								{{ $data -> title }}
-							</h3>
-						</div>
-						
-						<div class="p-2">
-							<div class="line_5">
-								{!! $data -> text !!}
-							</div>
-						</div>
-					</a>
-				</div>
-			@endforeach --}}
+                    @foreach($data -> orderProducts as $dataInside)
+                        <div class="p-2">
+                            <span>პროდუქტი: {{ $dataInside -> products -> title }}</span> <br>
+                            <span>ფასი: {{ $dataInside -> products -> price }} ₾</span> <br>
+                            <span>რაოდენობა: {{ $dataInside -> quantity }} ცალი</span> <br>
+                        </div>
+                    @endforeach
+
+                </div>
+			@endforeach
 		</div>
 	</div>
 @endsection

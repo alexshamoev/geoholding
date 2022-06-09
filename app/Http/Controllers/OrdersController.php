@@ -10,7 +10,7 @@ use App\Models\Page;
 use App\Models\language;
 use Auth;
 
-class OrderController extends FrontController
+class OrdersController extends FrontController
 {
     private const PAGE_SLUG = 'orders';
 
@@ -22,7 +22,7 @@ class OrderController extends FrontController
         $data = array_merge(self::getDefaultData($language,
                                                     $page),
                             [
-                                
+                                'orders' => Order::where('user_id', Auth::user()->id)->get(), 
                             ]);
 
         return view('modules.orders.step0', $data);
@@ -83,6 +83,6 @@ class OrderController extends FrontController
                                 'orderPage' => Page::firstWhere('slug', 'order'),
                             ]);
 
-        return view('modules.basket.step0', $data);
+        return redirect()->route('order', $lang);
     }
 }
