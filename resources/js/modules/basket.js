@@ -15,7 +15,7 @@ function showProductFromLocalStorage() {
         }
     }
 
-    console.log('numberOfProductsInLocalStorage', numberOfProductsInLocalStorage);
+    // console.log('numberOfProductsInLocalStorage', numberOfProductsInLocalStorage);
 
     let k = 0;
 
@@ -26,7 +26,7 @@ function showProductFromLocalStorage() {
         if(splitKey[0] === 'product') {
             let productId = splitKey[1];
 
-            console.log(localStorage.getItem(key) + ' ' + productId);
+            // console.log(localStorage.getItem(key) + ' ' + productId);
 
             let _token = $('meta[name="csrf-token"]').attr('content');
 
@@ -39,7 +39,7 @@ function showProductFromLocalStorage() {
                     _token: _token
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.log('response', response);
                     
                     if(response) {
                         $('.basket__product_template').first().clone().appendTo('.basket__products_list');
@@ -56,39 +56,41 @@ function showProductFromLocalStorage() {
 
                         let parentTemplate = $('.basket__product_template').last();
 
-                        parentTemplate.find('.basket__plus_btn').on('click', function() {
-                            let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
+                        // +- clicks
+                            parentTemplate.find('.basket__plus_btn').on('click', function() {
+                                let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
 
-                            if(amountValue) {
-                                amountValue++;
-                            } else {
-                                amountValue = 1;
-                            }
+                                if(amountValue) {
+                                    amountValue++;
+                                } else {
+                                    amountValue = 1;
+                                }
 
-                            $(parentTemplate).find('.basket__product_amount').val(amountValue);
+                                $(parentTemplate).find('.basket__product_amount').val(amountValue);
 
-                            setProductSum();
-                        });
+                                setProductSum();
+                            });
 
 
-                        parentTemplate.find('.basket__minus_btn').on('click', function() {
-                            let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
+                            parentTemplate.find('.basket__minus_btn').on('click', function() {
+                                let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
 
-                            if(amountValue > 1) {
-                                amountValue--;
-                            }
+                                if(amountValue > 1) {
+                                    amountValue--;
+                                }
 
-                            $(parentTemplate).find('.basket__product_amount').val(amountValue);
+                                $(parentTemplate).find('.basket__product_amount').val(amountValue);
 
-                            setProductSum();
-                        });
+                                setProductSum();
+                            });
+                        // 
                     }
 
 
-                    console.log('success', k, numberOfProductsInLocalStorage - 1);
+                    // console.log('success', k, numberOfProductsInLocalStorage - 1);
 
                     if(k == numberOfProductsInLocalStorage - 1) {
-                        console.log('delete template');
+                        // console.log('delete template');
                         
 
                         $('.basket__product_template').first().remove();
@@ -178,7 +180,7 @@ function setProductSum() {
             amount = 0;
         }
         
-        console.log(price, amount);
+        // console.log(price, amount);
 
         $(this).text(parseFloat(price * amount).toFixed(2));
     });
