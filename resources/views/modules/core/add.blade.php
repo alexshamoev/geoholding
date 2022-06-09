@@ -70,9 +70,9 @@
 									</div>
 
 									@if(Session::has('file_id'))
-										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
+										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
 											<div class="p-2">
-												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/step_0/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
+												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
 											</div>
 										@endif
 									@endif
@@ -103,6 +103,22 @@
 									<div class="p-2">
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
+									
+									@if(Session::has('file_id'))
+										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
+											@if($moduleBlock->file_format == 'svg')
+												<div class="p-2">
+													<img src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="" style="width: 60px">
+												</div>
+											@else
+												<a href="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" target="blank" style="width: 60px">
+													<div class="p-2">
+														ნახეთ ფაილი
+													</div>
+												</a>
+											@endif
+										@endif
+									@endif
 								</div>
 
 								@break
