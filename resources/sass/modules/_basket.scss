@@ -1,0 +1,107 @@
+@media only screen and (max-width: $xs_size) {}
+
+
+@media only screen and (min-width: $sm_size) {}
+
+
+@media only screen and (min-width: $md_size) {}
+
+
+@media only screen and (min-width: $lg_size) {}
+
+
+@media only screen and (min-width: $xl_size) {}
+
+
+@media only screen and (min-width: $xxl_size) {}
+
+.basket {
+    &__products_list {
+        font-family: $font_family_2;
+    }
+
+    &__product_template {
+        border-top: 1px solid rgba(44, 96, 156, 0.2);
+        border-bottom: 1px solid rgba(44, 96, 156, 0.2);
+    }
+
+    &__sum_container {
+        background: $color_7;
+    }
+
+    &__submit {
+        background: #2C609C;
+        border-radius: 7px !important;
+        border: none;
+        width: 100%;
+        padding: 14px;
+        color: white !important;
+        font-family: $font_family_2;
+    }
+
+    &__product_delete_button {
+        cursor: pointer;
+
+        img {
+            width: 42px;
+        }
+    }
+
+    &__details {
+        border-bottom: 2px solid #F4F2F2;
+
+        h3 {
+            color: #2C609C;
+            font-family: $font_family_2;
+        }
+    }
+
+    &__total {
+        background: #F4F2F2;
+        font-size: 16px;
+        line-height: 21px;
+        color: #FE982C;
+
+        p {
+            color: #FE982C;
+        }
+    }
+
+    &__price {
+        color: #2C609C;
+        font-family: $font_family_2;
+    }
+
+    &__product_amount {
+        width: 50px !important;
+        border: none !important;
+        text-align: center;
+        color: #000000;
+        border-left: 1px solid #2C609C !important;
+        border-right: 1px solid #2C609C !important;
+    }
+
+    &__amount {
+        border: 1px solid #2C609C;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    &__minus_btn {
+        &:hover {
+            background-color: $color_1;
+            color: $color_4;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+    }
+
+    &__plus_btn {
+        &:hover {
+            background-color: $color_1;
+            color: $color_4;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+    }
+}

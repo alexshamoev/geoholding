@@ -56,10 +56,12 @@
 									<div class="px-1"> ₾ </div>
 								</div>
 
-								<div class="col-xxl-2 col-xl-3 col-lg-2 col-md-3 col-5 basket__product_amount d-flex align-items-center justify-content-center">
+								<div class="col-xxl-2 col-xl-3 col-lg-2 col-md-3 col-5 d-flex align-items-center justify-content-center">
 									<div class="basket__amount d-flex">					
 										<div class="d-flex justify-content-center align-items-center decrease">
-											<span class="px-3 py-2 basket__minus_btn">-</span>
+											<span class="px-3 py-2 basket__minus_btn">
+												-
+											</span>
 										</div>
 
 										<input type="text"
