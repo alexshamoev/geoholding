@@ -15,7 +15,7 @@
 				{!! $page -> text !!}
 			</div>
 
-			{{ Form::open(array('url' => $orderPage->fullUrl, 'method' => 'post')) }}
+			{{ Form::open(array('route' => array('orderProducts', $language -> title), 'method' => 'post')) }}
 				<!-- Products from local storage -->
 					<div class="row align-items-center">
 						<div class="col-xxl-9 col-xl-8 col-12 basket__products_list">
@@ -116,6 +116,15 @@
 										</p>
 										<p class="px-2 basket__price text-uppercase"> 
 											{!! __('bsw.by_agreement') !!}
+										</p>
+									</div>
+
+									<div class="p-2 d-flex align-items-center">
+										<p class="text-uppercase"> 
+											{!! __('bsw.address') !!}:									
+										</p>
+										<p class="px-2 basket__price text-uppercase"> 
+											{{ Auth :: user() -> address }}
 										</p>
 									</div>
 								</div>

@@ -113,6 +113,8 @@ if(Schema::hasTable('languages')) {
 
 						Route::get('/contacts', 'AContactsController@edit')->name('contactsEdit');
 						Route::post('/contacts', 'AContactsController@update')->name('contactsUpdate');
+
+						Route::get('/orders', 'AOrdersController@get')->name('getOrders');
 					//
 
 
@@ -172,8 +174,10 @@ if(Schema::hasTable('languages')) {
 			Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
 		//
 
+		// Order 
+			Route::post('/{lang}/order/order', 'OrderController@order')->name('orderProducts');
 		
-
+		//
 
 		// Default routes.
 			Route::get('/', function() {
