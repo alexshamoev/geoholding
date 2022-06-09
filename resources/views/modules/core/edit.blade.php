@@ -123,8 +123,10 @@
 							@case('file')
 								<div class="p-2 standard-block">
 									<div class="p-2">
-										{{ $moduleBlock->label }}:
-
+										{{ $moduleBlock->label }}: <br>
+										<div class="d-flex align-items-center">
+											{!! __('bsw.show_format', ['format' => $moduleBlock->file_format]) !!}
+										</div>
 										@php
 											if($moduleBlock->validation) {
 												echo '*';
@@ -141,6 +143,21 @@
 									<div class="p-2">
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
+
+									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
+										@if($moduleBlock->file_format == 'svg')
+											<div class="p-2">
+												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="" style="width: 50px">
+											</div>
+										@else
+											<a href="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" target="blank">
+												<div class="p-2">
+													ნახეთ ფაილი
+												</div>
+											</a>
+										@endif
+									@endif
+
 								</div>
 
 								@break
