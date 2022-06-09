@@ -2,7 +2,22 @@
 
 
 function showProductFromLocalStorage() {
-    console.log('showProductFromLocalStorage', localStorage.length);
+    // console.log('showProductFromLocalStorage', localStorage.length);
+
+    let numberOfProductsInLocalStorage = 0;
+
+    for(let i = 0; i < localStorage.length; i++) {
+        let key = localStorage.key(i) || '';
+        let splitKey = key.split('_');
+        
+        if(splitKey[0] === 'product') {
+            numberOfProductsInLocalStorage++;
+        }
+    }
+
+    console.log('numberOfProductsInLocalStorage', numberOfProductsInLocalStorage);
+
+    let k = 0;
 
     for(let i = 0; i < localStorage.length; i++) {
         let key = localStorage.key(i) || '';
@@ -37,12 +52,39 @@ function showProductFromLocalStorage() {
                         $('.basket__product_template').last().find('.basket__product_price_sum').html(parseFloat(response['price'] * localStorage.getItem(key)).toFixed(2));
                         
                         $('.basket__product_template').last().find('.basket__product_image').attr('src', '/storage/images/modules/products/69/' + productId + '.jpg');
+
+
+                        let parentTemplate = $('.basket__product_template').last();
+
+                        parentTemplate.find('.basket__plus_btn').on('click', function() {
+                            let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
+
+                            amountValue++;
+
+                            $(parentTemplate).find('.basket__product_amount').val(amountValue);
+
+                            setProductSum();
+                        });
+
+
+                        parentTemplate.find('.basket__minus_btn').on('click', function() {
+                            let amountValue = parseInt($(parentTemplate).find('.basket__product_amount').val());
+
+                            if(amountValue > 1) {
+                                amountValue--;
+                            }
+
+                            $(parentTemplate).find('.basket__product_amount').val(amountValue);
+
+                            setProductSum();
+                        });
                     }
 
-                    console.log('ddddddd', i, localStorage.length - 1);
 
-                    if(i == localStorage.length - 1) {
-                        console.log('vvvvv', i);
+                    console.log('success', k, numberOfProductsInLocalStorage - 1);
+
+                    if(k == numberOfProductsInLocalStorage - 1) {
+                        console.log('delete template');
                         
 
                         $('.basket__product_template').first().remove();
@@ -62,6 +104,8 @@ function showProductFromLocalStorage() {
                             removeProductFromBasket($(this));
                         });
                     }
+
+                    k++;
                 },
             });
         }
@@ -165,43 +209,4 @@ $(function() {
     showProductFromLocalStorage();
 
     checkBasketEmptiness();
-
-    $('.single_product__add_to_basket_button').on('click', function() {
-        localStorage.setItem('product_' + $('.js_data').data('active_product_id'), $('.quantity_input').val());
-
-		Swal.fire({
-			title: $('.js_data').data('product_added_in_basket'),
-			icon: 'success'
-		})
-    });
 });
-
-
-// Restricts input for the set of matched elements to the given inputFilter function.
-    (function($) {
-        $.fn.inputFilter = function(callback, errMsg) {
-        return this.on("input keydown keyup mousedown mouseup select contextmenu drop focusout", function(e) {
-            if (callback(this.value)) {
-            // Accepted value
-            if (["keydown","mousedown","focusout"].indexOf(e.type) >= 0){
-                $(this).removeClass("input-error");
-                this.setCustomValidity("");
-            }
-            this.oldValue = this.value;
-            this.oldSelectionStart = this.selectionStart;
-            this.oldSelectionEnd = this.selectionEnd;
-            } else if (this.hasOwnProperty("oldValue")) {
-            // Rejected value - restore the previous one
-            $(this).addClass("input-error");
-            this.setCustomValidity(errMsg);
-            this.reportValidity();
-            this.value = this.oldValue;
-            this.setSelectionRange(this.oldSelectionStart, this.oldSelectionEnd);
-            } else {
-            // Rejected value - nothing to restore
-            this.value = "";
-            }
-        });
-        };
-    }(jQuery));
-// 

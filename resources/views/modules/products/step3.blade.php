@@ -53,15 +53,19 @@
 			<div class="col-4">
 				<div class="row">
 					<div class="col-2">
-						-
+						<div class="single_product__minus">
+							-
+						</div>
 					</div>
 
 					<div class="col-8">
-						<input class="quantity_input" type="text">
+						<input class="single_product__quantity_input" type="text" value="1">
 					</div>
 
 					<div class="col-2">
-						+
+						<div class="single_product__plus">
+							+
+						</div>
 					</div>
 				</div>
 			</div>

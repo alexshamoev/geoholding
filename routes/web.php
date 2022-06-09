@@ -5,6 +5,7 @@ use App\Models\Module;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
+use App\Http\Controllers\FacebookController;
 
 use App\Mail\WelcomeMail;
 
@@ -16,9 +17,14 @@ Route::get('/cache', function() {
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
 
-// Google URL
+// Google Login URL
 	Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 	Route::get('callback/google', [GoogleController::class, 'handleCallback']);
+//
+
+// Facebook Login URL
+	Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+	Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
 //
 
 if(Schema::hasTable('languages')) {

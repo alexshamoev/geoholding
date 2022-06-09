@@ -72,6 +72,10 @@
 							<i class="fab fa-google me-2"></i> Sign in with google
 						</a>	
 					</div>
+
+					<a href="{{ url('auth/facebook') }}" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
+						<strong>Facebook Login</strong>
+					</a> 
 				</div>
 			</div>
 		</div>
