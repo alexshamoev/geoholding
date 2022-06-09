@@ -22,4 +22,14 @@ class Order extends Model
         'created_at',
         'updated_at'
     ];
+
+
+    public function orderProducts() {
+        return $this->hasMany(OrderProducts::class, 'orders_id', 'id');
+    }
+
+
+    public function user() {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }

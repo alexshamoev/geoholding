@@ -5,10 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ProductStep2;
 use App\Models\Order;
+use App\Models\OrderProducts;
+use App\Models\Page;
+use App\Models\language;
 use Auth;
 
-class OrderController extends Controller
+class OrderController extends FrontController
 {
+    private const PAGE_SLUG = 'orders';
+
+
+    public static function getStep0($lang) {
+        $page = Page::firstWhere('slug', self::PAGE_SLUG);
+        $language = Language::firstWhere('title', $lang);
+
+        $data = array_merge(self::getDefaultData($language,
+                                                    $page),
+                            [
+                                
+                            ]);
+
+        return view('modules.orders.step0', $data);
+    }
+
+
     public function order(Request $request, $lang) {
         $orderCode = random_int(100000000, 999999999);
         $fullPrice = 0;
@@ -30,6 +50,16 @@ class OrderController extends Controller
             'updated_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
         ]);
 
+        foreach($request->input('productId') as $key => $data) {
+            $orderProducts = OrderProducts::create([
+                'orders_id' => $order->id,
+                'product_id' => $data,
+                'quantity' => $quantityArray[$key],
+                'created_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
+                'updated_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
+            ]);
+        }
+
         return $this->orderSendEmail($lang, $productsArray, $quantityArray, $order);
     }
 
@@ -43,5 +73,16 @@ class OrderController extends Controller
         $emailData['language'] = $lang;
 
         MailController::orderEmail($emailData);
+
+        $page = Page :: where('slug', 'basket') -> first();
+        $language = Language :: where('title', $lang) -> first();
+
+        $data = array_merge(self :: getDefaultData($language,
+                                                    $page), 
+                            [
+                                'orderPage' => Page::firstWhere('slug', 'order'),
+                            ]);
+
+        return view('modules.basket.step0', $data);
     }
 }

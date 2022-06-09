@@ -15,7 +15,7 @@
 				{!! $page -> text !!}
 			</div>
 
-			{{ Form::open(array('route' => array('order', $language -> title), 'method' => 'post')) }}
+			{{ Form::open(array('route' => array('orderProducts', $language -> title), 'method' => 'post')) }}
 				<!-- Products from local storage -->
 					<div class="row align-items-center">
 						<div class="col-xxl-9 col-xl-8 col-12 basket__products_list">
