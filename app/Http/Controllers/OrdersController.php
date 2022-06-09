@@ -16,16 +16,20 @@ class OrdersController extends FrontController
 
 
     public static function getStep0($lang) {
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
-        $language = Language::firstWhere('title', $lang);
+        if(Auth::check()) {
+            $page = Page::firstWhere('slug', self::PAGE_SLUG);
+            $language = Language::firstWhere('title', $lang);
 
-        $data = array_merge(self::getDefaultData($language,
-                                                    $page),
-                            [
-                                'orders' => Order::where('user_id', Auth::user()->id)->get(), 
-                            ]);
+            $data = array_merge(self::getDefaultData($language,
+                                                        $page),
+                                [
+                                    'orders' => Order::where('user_id', Auth::user()->id)->get(), 
+                                ]);
 
-        return view('modules.orders.step0', $data);
+            return view('modules.orders.step0', $data);
+        }
+
+        return redirect()->route('getLogin', $lang);
     }
 
 
