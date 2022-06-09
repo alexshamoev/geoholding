@@ -24,7 +24,7 @@
 		@include('admin.includes.addButton', ['text' => 'Add Admin', 'url' => route('adminAdd')])
 
         @foreach($admins as $data)
-            @include('admin.includes.horizontalEditDelete', [
+            @include('admin.includes.infoBlockWithoutImage', [
                     'id' => $data -> id,
                     'title' => $data -> email,
                     'editLink' => route('adminEdit', $data -> id),

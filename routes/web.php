@@ -2,8 +2,10 @@
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PhotoGalleryController;
+use App\Http\Controllers\FacebookController;
 
 use App\Mail\WelcomeMail;
 
@@ -14,6 +16,17 @@ Route::get('/cache', function() {
 
 // Line 12-13 makes sure that migrations run without error 
 // [error is when running migration and table doesn't exists]
+
+// Google Login URL
+	Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+	Route::get('callback/google', [GoogleController::class, 'handleCallback']);
+//
+
+// Facebook Login URL
+	Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+	Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+//
+
 if(Schema::hasTable('languages')) {
 	if(Language::where('like_default_for_admin', '1')->first()) {
 		// A.
@@ -158,6 +171,8 @@ if(Schema::hasTable('languages')) {
 			Route::get('/{lang}/'.$cabinetPage->alias.'/edit', 'CabinetController@edit')->name('editCabinet');
 			Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
 		//
+
+		
 
 
 		// Default routes.
