@@ -108,6 +108,7 @@ if(Schema::hasTable('languages')) {
 						Route::prefix('users')->group(function() {
 							Route::get('', 'AUsersController@getStartPoint')->name('userStartPoint');
 							Route::get('/{id}', 'AUsersController@edit')->name('userEdit');
+							Route::post('/{id}', 'AUsersController@update')->name('userUpdate');
 							Route::get('/{id}/delete', 'AUsersController@delete')->name('userDelete');
 						});
 
