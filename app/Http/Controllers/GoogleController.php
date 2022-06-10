@@ -38,7 +38,8 @@ class GoogleController extends Controller
                 return redirect('/ge/cabinet');
             }else{
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'name' => $user->offsetGet('given_name'),
+                    'last_name' => $user->offsetGet('family_name'),
                     'email' => $user->email,
                     'social_id'=> $user->id,
                     'social_type'=> 'google',
