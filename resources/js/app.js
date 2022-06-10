@@ -11,7 +11,6 @@ require('./bootstrap_size_getter'); // Comment this, after project finish.
 require('./plugins/photo_swipe');
 
 require('./modules/menu_buttons');
-require('./modules/search');
 require('./modules/basket');
 require('./modules/products');
 

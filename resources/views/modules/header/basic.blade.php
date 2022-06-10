@@ -56,27 +56,17 @@
                     <div class="d-flex
                                 align-items-center
                                 justify-content-end">
-                        <div class="header__search-input js_search">
-                            <div class="p-2">
-                                <form action="#" id="search_form">
-                                    <input type="text" id="search" placeholder="ძიება">
-                                </form>
-                            </div>
+                        <div class="p-2
+                                    js_open_search
+                                    header__open-search">
+                            <span class="ba_search"></span>
                         </div>
 
-                        <div>
-                            <div class="p-2
-                                        js_open_search
-                                        header__open-search">
-                                <span class="ba_search"></span>
-                            </div>
-
-                            <div class="p-2
-                                        d-none
-                                        js_close_search
-                                        header__close-search">
-                                <span class="ba_close"></span>
-                            </div>
+                        <div class="p-2
+                                    d-none
+                                    js_close_search
+                                    header__close-search">
+                            <span class="ba_close"></span>
                         </div>
                     </div>
                 </div>
