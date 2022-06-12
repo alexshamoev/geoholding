@@ -13,7 +13,9 @@ export default class SearchField extends Component {
             loading: false,
 			searchAnswers: [],
 			showEmptyMessage: false,
-            translationStrings: []
+            translationStrings: [],
+            timeout: false,
+            keyUpDelay: 300
         };
 
         
@@ -35,32 +37,44 @@ export default class SearchField extends Component {
 
 
     handleChange(event) {
-       this.setState({ value: event.target.value });
+        let newValue = event.target.value;
+        let self = this;
 
-        if(event.target.value) {
-            let self = this;
-
-            axios.post('/get-react-search', {
-                q: event.target.value,
-                lang: this.state.lang
-            })
-            .then(function (response) {
-                self.setState({ searchAnswers: response.data });
-
-
-				if(response.data.length === 0) {
-                    self.setState({ showEmptyMessage: true });
-                } else {
-                    self.setState({ showEmptyMessage: false });
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        } else {
-            this.setState({ searchAnswers: [] });
-			this.setState({ showEmptyMessage: false });
+        if(self.state.timeout) {
+            clearTimeout(this.state.timeout);
         }
+
+        self.state.timeout = setTimeout(function() {
+            // console.log('update answer', newValue);
+
+
+            self.setState({ value: newValue });
+
+            if(newValue) {
+                axios.post('/get-react-search', {
+                    q: newValue,
+                    lang: self.state.lang
+                })
+                .then(function (response) {
+                    self.setState({ searchAnswers: response.data });
+    
+    
+                    if(response.data.length === 0) {
+                        self.setState({ showEmptyMessage: true });
+                    } else {
+                        self.setState({ showEmptyMessage: false });
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+            } else {
+                // console.log('remove empty block');
+
+                self.setState({ searchAnswers: [] });
+                self.setState({ showEmptyMessage: false });
+            }
+        }, self.state.keyUpDelay);
     }
 
 	
