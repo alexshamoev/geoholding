@@ -57,9 +57,15 @@
 							<img class="w-25" src="{{ asset('storage/images/modules/users/'.$user -> id.'.jpg') }}" alt="">
 						</div>
 					@else 
-						<div class="p-2">
-							<img class="w-25" src="{{ asset('storage/images/modules/users/default.png') }}" alt="Default Text">
-						</div>
+						@if($user->social_type === 'google')
+							<div class="p-2">
+								<img class="w-25" src="{{ $user -> avatar_url }}" alt="Default Text">
+							</div>
+						@else
+							<div class="p-2">
+								<img class="w-25" src="{{ asset('storage/images/modules/users/default.png') }}" alt="Default Text">
+							</div>
+						@endif
 					@endif
 				</div>
 

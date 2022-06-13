@@ -33,9 +33,21 @@
                                 <tbody>
                                     <tr class="candidates-list">
                                         <td class="title">
-                                            <div class="thumb">
-                                                <img class="img-fluid" src="{{ asset('storage/images/modules/users/'.$data -> id.'.jpg') }}" alt="">
-                                            </div>
+                                            @if(file_exists(public_path('storage/images/modules/users/'.$data -> id.'.jpg')))
+                                                <div class="thumb">
+                                                    <img class="img-fluid" src="{{ asset('storage/images/modules/users/'.$data -> id.'.jpg') }}" alt="">
+                                                </div>
+                                            @else 
+                                                @if($data -> social_type === 'google')
+                                                    <div class="thumb">
+                                                        <img class="img-fluid" src="{{ $data -> avatar_url }}" alt="Default Text">
+                                                    </div>
+                                                @else
+                                                    <div class="thumb">
+                                                        <img class="img-fluid" src="{{ asset('storage/images/modules/users/default.png') }}" alt="Default Text">
+                                                    </div>
+                                                @endif
+                                            @endif
 
                                             <div class="candidate-list-details">
                                                 <div class="candidate-list-info">
