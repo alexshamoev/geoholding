@@ -33,17 +33,21 @@ class BasketController extends FrontController
     public function getProducts(Request $request) {
         $product = ProductStep2::find((int)$request -> input('productId'));
 
-        $lang = $request -> input('lang');
+        if($product) {
+            $lang = $request -> input('lang');
 
-        $lang = preg_replace("/[^A-Z]+/ui",
-                            '',
-                            $lang);
+            $lang = preg_replace("/[^A-Z]+/ui",
+                                '',
+                                $lang);
 
-        \App::setLocale($lang);
+            \App::setLocale($lang);
 
-        return response() -> json([
-            'title' => $product->{ 'title_'.\App::getLocale() },
-            'price' => $product->price,
-        ]);
+            return response() -> json([
+                'title' => $product->{ 'title_'.\App::getLocale() },
+                'price' => $product->price,
+            ]);
+        } else {
+            return  response() -> json(false);
+        }
     }
 }

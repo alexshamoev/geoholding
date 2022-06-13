@@ -1,84 +1,48 @@
 @if($widgetGetVisibility['header'])
     <header class="header position-relative">
         <div class="container p-2">
-
-            <!-- React -->
-			<div id="examplereact" temp="eeee"></div>
+            <!-- React search -->
+			    <div id="examplereact"></div>
             <!--  -->
 
             <div class="row">
                 <div class="d-flex
                             align-items-center
-                            justify-content-between">
-                    <div class="p-2">
+                            justify-content-between
+                            row">
+                    <div class="col-6">
                         <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
                     </div>
 
                     @if(Auth :: check())
-                        <div class="nav-item">
-                            <div class="p-2">
-                                {{ Auth :: user() -> name }}
-                            </div>
+                        <div class="col-2">
+                            {{ Auth :: user() -> name }}
                         </div>
                 
-                        <div class="nav-item">
+                        <div class="col-2">
                             <a href="{{ route('logout', $language->title) }}">
-                                <div class="p-2">
-                                    Logout
-                                </div>
+                                Logout
                             </a>
                         </div>
 
-                        <div class="p-2">
+                        <div class="col-2">
                             <a href="{{ '/'.$language -> title.'/'.$basketPage -> alias }}">
                                 Basket Icon
                             </a>
                         </div>
                     @else
-                        <div class="nav-item">
+                        <div class="col-3">
                             <a href="{{ route('getRegister', $language->title) }}">
-                                <div class="p-2">
-                                    {{ __('auth.register') }}
-                                </div>
+                                {{ __('auth.register') }}
                             </a>
                         </div>
 
-                        <div class="nav-item">
+                        <div class="col-3">
                             <a href="{{ route('getLogin', $language->title) }}">
-                                <div class="p-2">
-                                    {{ __('auth.login') }}
-                                </div>
+                                {{ __('auth.login') }}
                             </a>
                         </div>
                     @endif
-
-
-                    <div class="d-flex
-                                align-items-center
-                                justify-content-end">
-                        <div class="header__search-input js_search">
-                            <div class="p-2">
-                                <form action="#" id="search_form">
-                                    <input type="text" id="search" placeholder="ძიება">
-                                </form>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div class="p-2
-                                        js_open_search
-                                        header__open-search">
-                                <span class="ba_search"></span>
-                            </div>
-
-                            <div class="p-2
-                                        d-none
-                                        js_close_search
-                                        header__close-search">
-                                <span class="ba_close"></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <nav class="navbar

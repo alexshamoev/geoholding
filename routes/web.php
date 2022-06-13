@@ -108,11 +108,14 @@ if(Schema::hasTable('languages')) {
 						Route::prefix('users')->group(function() {
 							Route::get('', 'AUsersController@getStartPoint')->name('userStartPoint');
 							Route::get('/{id}', 'AUsersController@edit')->name('userEdit');
+							Route::post('/{id}', 'AUsersController@update')->name('userUpdate');
 							Route::get('/{id}/delete', 'AUsersController@delete')->name('userDelete');
 						});
 
 						Route::get('/contacts', 'AContactsController@edit')->name('contactsEdit');
 						Route::post('/contacts', 'AContactsController@update')->name('contactsUpdate');
+
+						Route::get('/orders', 'AOrdersController@get')->name('getOrders');
 					//
 
 
@@ -173,7 +176,7 @@ if(Schema::hasTable('languages')) {
 		//
 
 		// Order 
-			Route::post('/{lang}/order/order', 'OrderController@order')->name('order');
+			Route::post('/{lang}/order/order', 'OrdersController@order')->name('orderProducts');
 		
 		//
 

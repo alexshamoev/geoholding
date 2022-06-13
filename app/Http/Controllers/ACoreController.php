@@ -78,7 +78,7 @@ class ACoreController extends AController {
 					$alex = array('-- '.__('bsw.select').' --');
 
 					foreach(DB::table($data->select_optgroup_table)->orderBy($data->select_optgroup_sort_by, 'desc')->get() as $dataInside) {
-						foreach(DB::table($data->select_optgroup_2_table)->where('parent', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
+						foreach(DB::table($data->select_optgroup_2_table)->where('top_level', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
 							$alex[$dataInside->{$data->select_optgroup_text}][$dataInsideTwice->id] = $dataInsideTwice->{$data->select_optgroup_2_text};
 						}
 					}
@@ -100,7 +100,7 @@ class ACoreController extends AController {
 						$tempDbColumn = $data->db_column;
 						$tempArray = explode(',', $pageData->$tempDbColumn);
 
-						foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('parent', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
+						foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('top_level', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
 							$active = 0;
 							foreach($tempArray as $tempData) {
 								if($tempData == $dataInsideTwice->id) {
@@ -710,7 +710,7 @@ class ACoreController extends AController {
 						$alex = array('-- '.__('bsw.select').' --');
 
 						foreach(DB::table($data->select_optgroup_table)->orderBy($data->select_optgroup_sort_by, 'desc')->get() as $dataInside) {
-							foreach(DB::table($data->select_optgroup_2_table)->where('parent', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
+							foreach(DB::table($data->select_optgroup_2_table)->where('top_level', $dataInside->id)->orderBy($data->select_optgroup_2_sort_by, 'desc')->get() as $dataInsideTwice) {
 								$alex[$dataInside->{$data->select_optgroup_text}][$dataInsideTwice->id] = $dataInsideTwice->{$data->select_optgroup_2_text};
 							}
 						}
@@ -732,7 +732,7 @@ class ACoreController extends AController {
 							$tempDbColumn = $data->db_column;
 							$tempArray = explode(',', $pageData->$tempDbColumn);
 
-							foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('parent', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
+							foreach(DB::table($data->sql_select_with_checkboxes_table_inside)->where('top_level', $dataInside->id)->orderBy($data->sql_select_with_checkboxes_sort_by_inside, 'desc')->get() as $dataInsideTwice) {
 								$active = 0;
 								foreach($tempArray as $tempData) {
 									if($tempData == $dataInsideTwice->id) {

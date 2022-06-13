@@ -37,19 +37,6 @@
         cursor: pointer;
     }
 
-    &__search-input {
-        width: 0px;
-        transition: 0.2s all ease-in-out;
-        overflow: hidden;
-        &.expanded {
-            width: 200px;
-        }
-
-        input {
-            width: 100%;
-        }
-    }
-
 	&__mobNav {
         .navbar-toggler {
             outline: none;
