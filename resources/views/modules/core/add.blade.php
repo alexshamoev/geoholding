@@ -68,12 +68,18 @@
 									<div class="p-2">
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
-
+									
 									@if(Session::has('file_id'))
 										@if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format)))
 											<div class="p-2">
 												<img class="w-25" src="{{ asset('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.Session::get('file_id').'.'.$moduleBlock->file_format) }}" alt="">
 											</div>
+										@endif
+
+										@if($moduleBlock->file_possibility_to_delete)
+											<a href="{{ route('filePossibilityToDelete', [$moduleStep->module->alias, $moduleStep->id, Session::get('file_id'), $moduleBlock->id]) }}">
+												X
+											</a>
 										@endif
 									@endif
 								</div>
@@ -115,6 +121,12 @@
 													<div class="p-2">
 														ნახეთ ფაილი
 													</div>
+												</a>
+											@endif
+
+											@if($moduleBlock->file_possibility_to_delete)
+												<a href="{{ route('filePossibilityToDelete', [$moduleStep->module->alias, $moduleStep->id, Session::get('file_id'), $moduleBlock->id]) }}">
+													X
 												</a>
 											@endif
 										@endif

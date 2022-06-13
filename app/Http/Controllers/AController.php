@@ -62,7 +62,7 @@ class AController extends Controller {
 	public function filePossibilityToDelete($moduleAlias, $moduleStepId, $id, $moduleBlockId) {
 		$moduleBlock = ModuleBlock::firstWhere('id', $moduleBlockId);
 		$prefix = '';
-
+		
 		if($moduleBlock->prefix) {
 			$prefix = $moduleBlock->prefix.'_';
 		}
@@ -89,6 +89,8 @@ class AController extends Controller {
 		
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
-		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
+		// return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
+		return back()->with([$moduleAlias, $moduleStepId, $id]);
+
 	}
 }
