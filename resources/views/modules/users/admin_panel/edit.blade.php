@@ -23,31 +23,146 @@
 		'backRoute' => route('userStartPoint')
 	])
 
-	{{ Form :: open(array('route' => array('userUpdate', $user -> id), 'files' => true)) }}
-		<div class="container-xl px-4 mt-4">
-			<div class="row">
-				<div class="col-xl-4">
-					<!-- Profile picture card-->
-					<div class="card mb-4 mb-xl-0">
-						<div class="card-header">
-							Profile Picture
-						</div>
-
-						<div class="card-body text-center">
-							<!-- Profile picture image-->
-							<img class="img-account-profile rounded-circle mb-2" src="{{ asset('storage/images/modules/users/'.$user -> id.'.jpg') }}" alt="">
-							<!-- Profile picture help block-->
-							<div class="small font-italic text-muted mb-4">
-								JPG or PNG no larger than 5 MB
-							</div>
-							<!-- Profile picture upload button-->
-							<input type="file" name="profile_image" id="">
-						</div>
-					</div>
-
-					
+	<div class="p-2">
+		@if($errors -> any())
+			<div class="p-2">
+				<div class="alert alert-danger m-0">
+					{{ __('bsw.warningStatus') }}
 				</div>
 			</div>
-		</div>
-	{{ Form :: close() }}
+		@endif
+		
+		
+		@if(Session :: has('successStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('successStatus') }}
+				</div>
+			</div>
+		@endif
+
+		{{ Form :: open(array('route' => array('userEdit', $user -> id))) }}
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>ფოტო: *</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: file('profile_image') }}
+					</div>
+
+					@if(file_exists(public_path('storage/images/modules/users/'.$user -> id.'.jpg')))
+						<div class="p-2">
+							<img class="w-25" src="{{ asset('storage/images/modules/users/'.$user -> id.'.jpg') }}" alt="">
+						</div>
+					@else 
+						<div class="p-2">
+							<img class="w-25" src="{{ asset('storage/images/modules/users/default.png') }}" alt="Default Text">
+						</div>
+					@endif
+				</div>
+
+                @error('profile_image')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>სახელი: *</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('name', $user -> name) }}
+					</div>
+				</div>
+
+                @error('name')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>გვარი: *</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('last_name', $user -> last_name) }}
+					</div>
+				</div>
+
+                @error('last_name')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>ელ. ფოსტა: *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: email('email', $user -> email) }}
+					</div>
+				</div>
+
+                @error('email')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>{{ __('auth.phone') }}: *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: text('phone', $user -> phone) }}
+					</div>
+				</div>
+
+                @error('phone')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>{{ __('auth.address') }}: *</span>
+					</div>
+
+					<div class="p-2">
+						{{ Form :: text('address', $user -> address) }}
+					</div>
+				</div>
+
+                @error('address')
+					<div class="alert alert-danger m-0">
+						{{ $message }}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2 submit-button">
+				{{ Form :: submit('მონაცემების შეცვლა') }}
+			</div>
+		{{ Form :: close() }}
+	</div>
 @endsection

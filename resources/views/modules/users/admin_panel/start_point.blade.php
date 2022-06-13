@@ -100,7 +100,7 @@
                                                 </li>
 
                                                 <li>
-                                                    <a href="#">
+                                                    <a href="{{ route('userDelete', $data -> id) }}">
                                                         <i class="fa-solid fa-trash text-danger fa-lg"></i>
                                                     </a>
                                                 </li>
