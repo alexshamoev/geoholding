@@ -639,7 +639,7 @@ class ACoreController extends AController {
 			$module = Module::where('alias', $moduleAlias)->first();
 			$moduleStep = ModuleStep::find($moduleStepId);
 			$pageData = DB::table($moduleStep->db_table)->find($id);
-
+			
 
 			$activeLang = Language::where('like_default_for_admin', 1)->first();
 

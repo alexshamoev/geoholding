@@ -116,6 +116,12 @@
 										<div class="p-2">
 											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
 										</div>
+
+										@if($moduleBlock->file_possibility_to_delete)
+											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+												X
+											</a>
+										@endif
 									@endif
 								</div>
 
@@ -154,6 +160,12 @@
 												<div class="p-2">
 													ნახეთ ფაილი
 												</div>
+											</a>
+										@endif
+										
+										@if($moduleBlock->file_possibility_to_delete)
+											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+												X
 											</a>
 										@endif
 									@endif
