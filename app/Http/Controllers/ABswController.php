@@ -1,12 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Bsc;
 use App\Models\Bsw;
-use App\Models\Module;
 use App\Models\Language;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\ABswUpdateRequest;
 use Session;
 
