@@ -10,13 +10,9 @@ class ARangController extends AController {
         $rang = 0;
         $i = 0;
 
-        // dd($request -> input('idsArray'));
-
         foreach(array_reverse($request -> input('idsArray')) as $id) {
             DB :: table($request -> input('db_table')) -> where('id', $id) -> update(['rang' => $rang]);
-
             $i++;
-
             $rang = $i * 5;
         }
 

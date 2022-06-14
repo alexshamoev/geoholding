@@ -7,12 +7,9 @@ use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Page;
 use App\Models\Language;
-use App\Models\Bsc;
-use App\Models\Bsw;
 use App\Models\ModulesIncludesValue;
 use App\Models\ModulesNotIncludesValue;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AModuleUpdateRequest;
 use Session;
 
@@ -104,9 +101,6 @@ class AModuleController extends AController {
 
 
 	public function edit($id) {
-		ModuleStep :: deleteEmpty();
-
-		
 		$module = Module :: find($id);
 
 		$activeLang = Language :: where('like_default_for_admin', 1) -> first();
@@ -146,24 +140,19 @@ class AModuleController extends AController {
 		$nextIdIsSaved = false;
 
 		foreach(Module :: all() -> sortByDesc('rang') as $data) {
-			// if($data -> moduleSteps) {
-				if($nextIdIsSaved && !$nextId) {
-					$nextId = $data -> id;
-				}
-				
-				if($module -> id === $data -> id) {
-					$prevIdIsSaved = true;
-					$nextIdIsSaved = true;
-				}
-				
-				if(!$prevIdIsSaved) {
-					$prevId = $data -> id;
-				}
-			// }
+			if($nextIdIsSaved && !$nextId) {
+				$nextId = $data -> id;
+			}
+			
+			if($module -> id === $data -> id) {
+				$prevIdIsSaved = true;
+				$nextIdIsSaved = true;
+			}
+			
+			if(!$prevIdIsSaved) {
+				$prevId = $data -> id;
+			}
 		}
-
-		ModuleBlock :: deleteEmpty();
-		ModuleStep :: deleteEmpty();
 
 		$data = array_merge(self :: getDefaultData(), ['pagesForSelect' => $pagesForSelect,
 														'pagesForIncludeInPages' => $pagesForIncludeInPages,

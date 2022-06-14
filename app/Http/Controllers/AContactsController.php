@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Module;
-use App\Models\Language;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\AContactsUpdateRequest;
 
 class AContactsController extends AController {

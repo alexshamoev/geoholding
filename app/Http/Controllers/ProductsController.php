@@ -81,22 +81,4 @@ class ProductsController extends FrontController
 
         return view('modules.products.step3', $data);
     }
-
-    
-    // public static function getStep4($lang, $step0Alias, $step1Alias, $step2Alias, $step3Alias) {
-    //     $language = Language::where('title', $lang)->first();
-    //     $page = Page::where('slug', self::PAGE_SLUG)->first();
-
-    //     $activeNewsStep3 = NewsStep3::where('alias_'.$language->title, $step3Alias)->first();
-
-    //     $data = array_merge(self::getDefaultData($language,
-    //                                                 $page,
-    //                                                 $activeNewsStep3),
-    //                                                 [
-    //                                                     'activeNewsStep3' => $activeNewsStep3
-    //                                                 ]
-    //                         );
-
-    //     return view('modules.news.step4', $data);
-    // }
 }

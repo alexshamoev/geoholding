@@ -3,18 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
-use App\Models\ModulesIncludesValue;
-use App\Models\ModulesNotIncludesValue;
 use App\Models\Language;
-use App\Models\Page;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
 use Session;
 
 
@@ -89,8 +82,7 @@ class AController extends Controller {
 		
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
-		// return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
-		return back()->with([$moduleAlias, $moduleStepId, $id]);
+		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
 
 	}
 }

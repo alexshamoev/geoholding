@@ -9,12 +9,12 @@ use App\Models\Module;
 class AOrdersController extends AController
 {
     public function get() {
-		$data = array_merge(self::getDefaultData(),
-                                [
-                                    'module' => Module::firstWhere('alias', 'orders'),
-                                    'orders' => Order::All(),
-                                ]);
+      $data = array_merge(self::getDefaultData(),
+                                  [
+                                      'module' => Module::firstWhere('alias', 'orders'),
+                                      'orders' => Order::All(),
+                                  ]);
 
-		return view('modules.orders.admin_panel.start_point', $data);
+      return view('modules.orders.admin_panel.start_point', $data);
     }
 }
