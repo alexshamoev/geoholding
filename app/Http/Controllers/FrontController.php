@@ -49,7 +49,7 @@ class FrontController extends Controller {
 		$data = ['page' => $page,
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
-				'menuButtons' => MenuButtonStep0::with(['page'])->orderByDesc('rang')->get(),
+				'menuButtons' => MenuButtonStep0::with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
 				'bsc' => $bsc,
 				'bsw' => Bsw::getFullData(),
 				'registrationPageUrl' => '/'.$lang -> title.'/'.Page::firstWhere('slug', 'registration') -> alias,

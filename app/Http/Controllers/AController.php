@@ -31,7 +31,7 @@ class AController extends Controller {
 		
 		$modulesForMenu = collect([]);
 
-		foreach(Module::all()->sortByDesc('rang') as $data) {
+		foreach(Module::with(['moduleStep'])->get()->sortByDesc('rang') as $data) {
 			if(count($data->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
 				if($activeUser->super_administrator === 1 || $data->hide_for_admin === 0) {
 					$modulesForMenu->add($data);
@@ -40,7 +40,7 @@ class AController extends Controller {
 		}
 
 		$data = [
-					'modules' => Module::with(['moduleStep', 'moduleStep.moduleBlock'])->get()->sortByDesc('rang'),
+					'modules' => Module::with(['moduleStep'])->get()->sortByDesc('rang'),
 					'modulesForMenu' => $modulesForMenu,
 					'bsc' => Bsc::getFullData(),
 					'bsw' => Bsw::getFullData(),
@@ -51,6 +51,7 @@ class AController extends Controller {
 		
 		return $data;
 	}
+
 
 	public function filePossibilityToDelete($moduleAlias, $moduleStepId, $id, $moduleBlockId) {
 		$moduleBlock = ModuleBlock::firstWhere('id', $moduleBlockId);
@@ -83,6 +84,5 @@ class AController extends Controller {
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
-
 	}
 }
