@@ -70,47 +70,47 @@ class ReactSearchController extends Controller {
 				$i++;
 			}
 
-			// foreach(NewsStep1::where('title_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_ru', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ru', 'like', '%'.$searchWord.'%')
-			// 				->get() as $data) {
-			// 	$result[$i]['title'] = $data -> title;
-			// 	$result[$i]['fullUrl'] = $data -> fullUrl;
-			// 	$result[$i]['text'] = $data -> text;
+			foreach(NewsStep1::where('title_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('title_en', 'like', '%'.$searchWord.'%')
+							->orWhere('title_ru', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('text_en', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
+							->get() as $data) {
+				$result[$i]['title'] = $data -> title;
+				$result[$i]['fullUrl'] = $data -> fullUrl;
+				$result[$i]['text'] = $data -> text;
 				
-			// 	$i++;
-			// }
+				$i++;
+			}
 
-			// foreach(NewsStep2::where('title_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_ru', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ru', 'like', '%'.$searchWord.'%')
-			// 				->get() as $data) {
-			// 	$result[$i]['title'] = $data -> title;
-			// 	$result[$i]['fullUrl'] = $data -> fullUrl;
-			// 	$result[$i]['text'] = $data -> text;
+			foreach(NewsStep2::where('title_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('title_en', 'like', '%'.$searchWord.'%')
+							->orWhere('title_ru', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('text_en', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
+							->get() as $data) {
+				$result[$i]['title'] = $data -> title;
+				$result[$i]['fullUrl'] = $data -> fullUrl;
+				$result[$i]['text'] = $data -> text;
 				
-			// 	$i++;
-			// }
+				$i++;
+			}
 
-			// foreach(NewsStep3::where('title_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('title_ru', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ge', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_en', 'like', '%'.$searchWord.'%')
-			// 				->orWhere('text_ru', 'like', '%'.$searchWord.'%')
-			// 				->get() as $data) {
-			// 	$result[$i]['title'] = $data -> title;
-			// 	$result[$i]['fullUrl'] = $data -> fullUrl;
-			// 	$result[$i]['text'] = $data -> text;
+			foreach(NewsStep3::where('title_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('title_en', 'like', '%'.$searchWord.'%')
+							->orWhere('title_ru', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ge', 'like', '%'.$searchWord.'%')
+							->orWhere('text_en', 'like', '%'.$searchWord.'%')
+							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
+							->get() as $data) {
+				$result[$i]['title'] = $data -> title;
+				$result[$i]['fullUrl'] = $data -> fullUrl;
+				$result[$i]['text'] = $data -> text;
 				
-			// 	$i++;
-			// }
+				$i++;
+			}
 
 			// foreach(PhotoGalleryStep0::where('title_ge', 'like', '%'.$searchWord.'%')
 			// 				->orWhere('title_en', 'like', '%'.$searchWord.'%')
