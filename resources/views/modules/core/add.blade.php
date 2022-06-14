@@ -221,7 +221,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -281,7 +281,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -362,7 +362,7 @@
 
 						@if($moduleBlock->type !== 'alias' && $moduleBlock->type !== 'input_with_languages' && $moduleBlock->type !== 'editor_with_languages')
 							@error($moduleBlock->db_column)
-								<div class="alert alert-danger">
+								<div class="alert alert-danger m-0">
 									{{ $message }}
 								</div>
 							@enderror	

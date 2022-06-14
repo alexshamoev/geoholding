@@ -74,4 +74,5 @@ return [
     'add_product_in_basket' => 'კალათაში დამატება',
     'address' => 'მისმართი',
     'show_format' => '(აუცილებელია ფაილის ატვირთვა ფორმატში) <div class="fw-bold px-2">:format</div>',
+    'delete_file' => 'ფაილის წაშლა',
 ];

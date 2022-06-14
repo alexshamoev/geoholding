@@ -113,15 +113,22 @@
 									</div>
 
 									@if(file_exists(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
-										<div class="p-2">
-											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
-										</div>
+										<div class="row p-1">
+											<div class="col-3 p-1">
+												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}"
+													 class="w-100">
+											</div>
 
-										@if($moduleBlock->file_possibility_to_delete)
-											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-												X
-											</a>
-										@endif
+											@if($moduleBlock->file_possibility_to_delete)
+												<div class="col-3 p-1">
+													<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+														<img src="http://localhost:8001/storage/images/admin/close.svg"
+																alt="__('bsw.delete_file')"
+																class="bar-tag-bigger-img">
+													</a>
+												</div>
+											@endif
+										</div>
 									@endif
 								</div>
 
@@ -260,7 +267,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -320,7 +327,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -415,7 +422,7 @@
 
 						@if($moduleBlock->type !== 'alias' && $moduleBlock->type !== 'input_with_languages' && $moduleBlock->type !== 'editor_with_languages')
 							@error($moduleBlock->db_column)
-								<div class="alert alert-danger">
+								<div class="alert alert-danger m-0">
 									{{ $message }}
 								</div>
 							@enderror	
