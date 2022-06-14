@@ -1179,7 +1179,7 @@ class ACoreController extends AController {
 
 
 	public function delete($moduleAlias, $moduleStepId, $id) {
-		$module = Module::where('alias', $moduleAlias)->first();
+		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
 		
 		foreach($moduleStep->moduleBlock as $data) {
@@ -1230,6 +1230,44 @@ class ACoreController extends AController {
 										$moduleStep->parent_step_id,
 										$activeBlockData->top_level
 									]);
+		}
+	}
+
+
+	public function multiDelete(Request $request, $moduleAlias, $moduleStepId) {
+		$module = Module::firstWhere('alias', $moduleAlias);
+		$moduleStep = ModuleStep::find($moduleStepId);
+
+		foreach($request->input('checkbox') as $data) {
+			foreach($moduleStep->moduleBlock as $data) {
+				$prefix = '';
+	
+				if($data->prefix) {
+					$prefix = $data->prefix.'_';
+				}
+				
+				$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
+				
+				if(file_exists($filePath)) {
+					unlink($filePath);
+				}
+	
+				for($i = 1; $i < 4; $i++) {
+					if($data->{'prefix_'.$i}) {
+						if($data->prefix) {
+							$prefix = $data->prefix.'_';
+						}
+						
+						$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
+						
+						if(file_exists($filePath)) {
+							unlink($filePath);
+						}
+					}
+				}
+			}
+
+			DB::table($moduleStep->db_table)->delete($data);
 		}
 	}
 }
