@@ -51,6 +51,7 @@ class AModuleStepController extends AController {
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 		$moduleStep->order_by_column = $request->input('order_by_column');
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
+		$moduleStep->model_name = $request->input('model_name');
 
 		$moduleStep->save();
 		
@@ -127,6 +128,7 @@ class AModuleStepController extends AController {
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 		$moduleStep->order_by_column = $request->input('order_by_column');
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
+		$moduleStep->model_name = $request->input('model_name');
 
 		$moduleStep->save();
 		

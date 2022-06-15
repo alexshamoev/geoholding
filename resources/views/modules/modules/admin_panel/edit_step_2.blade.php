@@ -108,6 +108,25 @@
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
+						<span>model_name: *</span>
+						<span>(Example: NewsStep0)</span>
+					</div>
+					
+					<div class="p-2">
+						{{Form :: text('model_name')}}
+					</div>
+				</div>
+
+				@error('model_name')
+					<div class="alert alert-danger">
+						{{$message}}
+					</div>
+				@enderror
+			</div>
+
+			<div class="p-2">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
 						<span>main_column: *</span>
 						<span>(Example: title_ge)</span>
 					</div>
