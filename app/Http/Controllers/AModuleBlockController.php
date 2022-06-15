@@ -59,11 +59,25 @@ class AModuleBlockController extends AController {
 			$moduleBlock->file_possibility_to_delete = 0;
 		}
 
-
 		$moduleBlock->image_width = $request->input('image_width');
 		$moduleBlock->image_height = $request->input('image_height');
-		$moduleBlock->fit_position = $request->input('fit_position');
 
+		if($request->input('fit_position')) {
+			$moduleBlock->fit_position = $request->input('fit_position');
+		}
+
+		if($request->input('fit_position_1')) {
+			$moduleBlock->fit_position_1 = $request->input('fit_position_1');
+		}
+
+		if($request->input('fit_position_2')) {
+			$moduleBlock->fit_position_2 = $request->input('fit_position_2');
+		}
+
+		if($request->input('fit_position_3')) {
+			$moduleBlock->fit_position_3 = $request->input('fit_position_3');
+		}
+		
 		if($request->input('fit_type')) {
 			$moduleBlock->fit_type = $request->input('fit_type');
 		} 
@@ -226,7 +240,22 @@ class AModuleBlockController extends AController {
 		
 		$moduleBlock->image_width = $request->input('image_width');
 		$moduleBlock->image_height = $request->input('image_height');
-		$moduleBlock->fit_position = $request->input('fit_position');
+	
+		if($request->input('fit_position')) {
+			$moduleBlock->fit_position = $request->input('fit_position');
+		}
+
+		if($request->input('fit_position_1')) {
+			$moduleBlock->fit_position_1 = $request->input('fit_position_1');
+		}
+
+		if($request->input('fit_position_2')) {
+			$moduleBlock->fit_position_2 = $request->input('fit_position_2');
+		}
+
+		if($request->input('fit_position_3')) {
+			$moduleBlock->fit_position_3 = $request->input('fit_position_3');
+		}
 
 		if($request->input('fit_type')) {
 			$moduleBlock->fit_type = $request->input('fit_type');

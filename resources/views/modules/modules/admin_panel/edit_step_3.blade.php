@@ -219,7 +219,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_1',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
@@ -231,7 +231,7 @@
 													'bottom' => 'bottom',
 													'bottom-right' => 'bottom-right'
 												],
-												$moduleBlock -> fit_position) }}
+												$moduleBlock -> fit_position_1) }}
 						</div>
 					</div>
 				</div>
@@ -274,7 +274,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_2',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
@@ -286,7 +286,7 @@
 													'bottom' => 'bottom',
 													'bottom-right' => 'bottom-right'
 												],
-												$moduleBlock -> fit_position) }}
+												$moduleBlock -> fit_position_2) }}
 						</div>
 					</div>
 				</div>
@@ -328,7 +328,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_3',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
@@ -340,7 +340,7 @@
 													'bottom' => 'bottom',
 													'bottom-right' => 'bottom-right'
 												],
-												$moduleBlock -> fit_position) }}
+												$moduleBlock -> fit_position_3) }}
 						</div>
 					</div>
 				</div>

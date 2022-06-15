@@ -198,7 +198,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_1',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
@@ -252,7 +252,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_2',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
@@ -305,7 +305,7 @@
 						</div>
 
 						<div>
-							{{ Form :: select('fit_position',
+							{{ Form :: select('fit_position_3',
 												[
 													'top-left' => 'top-left',
 													'top' => 'top',
