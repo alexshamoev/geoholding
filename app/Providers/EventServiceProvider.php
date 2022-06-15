@@ -10,9 +10,13 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use App\Models\Module;
 use App\Models\ModuleStep;
 use App\Models\Language;
+use App\Models\PhotoGalleryStep0;
+use App\Models\PhotoGalleryStep1;
 use App\Observers\ModuleObserver;
 use App\Observers\ModuleStepObserver;
 use App\Observers\LanguageObserver;
+use App\Observers\PhotoGalleryStep0Observer;
+use App\Observers\PhotoGalleryStep1Observer;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -36,8 +40,10 @@ class EventServiceProvider extends ServiceProvider
     {
         parent::boot();
 
-        Module :: observe(ModuleObserver :: class);
-        ModuleStep :: observe(ModuleStepObserver :: class);
-        Language :: observe(LanguageObserver :: class);
+        Module::observe(ModuleObserver::class);
+        ModuleStep::observe(ModuleStepObserver::class);
+        Language::observe(LanguageObserver::class);
+        PhotoGalleryStep0::observe(PhotoGalleryStep0Observer::class);
+        PhotoGalleryStep1::observe(PhotoGalleryStep1Observer::class);
     }
 }

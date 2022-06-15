@@ -1190,48 +1190,17 @@ class ACoreController extends AController {
 	public function delete($moduleAlias, $moduleStepId, $id) {
 		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
-		
-		foreach($moduleStep->moduleBlock as $data) {
-			$prefix = '';
 
-			if($data->prefix) {
-				$prefix = $data->prefix.'_';
-			}
-			
-			$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
-			
-			if(file_exists($filePath)) {
-				unlink($filePath);
-			}
-
-			for($i = 1; $i < 4; $i++) {
-				if($data->{'prefix_'.$i}) {
-					if($data->prefix) {
-						$prefix = $data->prefix.'_';
-					}
-					
-					$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
-					
-					if(file_exists($filePath)) {
-						unlink($filePath);
-					}
-				}
-			}
-		}
+		$modelClass = 'App\Models\PhotoGalleryStep0';
+		$modelClass::destroy($id);
 		
 
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		if($moduleStep->parent_step_id == 0) {
-			DB::table($moduleStep->db_table)->delete($id);
-
-			// dd('top level delete');
-
 			return redirect()->route('coreGetStartPoint', $module->alias);
 		} else {
 			$activeBlockData = DB::table($moduleStep->db_table)->find($id);
-
-			DB::table($moduleStep->db_table)->delete($id);
 
 			return redirect()->route('coreEdit',
 									[
