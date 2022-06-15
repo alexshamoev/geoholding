@@ -197,7 +197,10 @@ class ACoreController extends AController {
 							$image->fit($data->image_width,
 											$data->image_height,
 											function() {},
-											$data->fit_position);
+											$data->fit_position,
+											$data->fit_position_1,
+											$data->fit_position_2,
+											$data->fit_position_3);
 						}
 						
 						if($data->fit_type === 'resize') {
@@ -238,7 +241,7 @@ class ACoreController extends AController {
 									$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->fit($data->{'image_width_'.$i},
 																																															$data->{'image_height_'.$i},
 																																															function() {},
-																																															$data->fit_position);
+																																															$data->{'fit_position_'.$i});
 								}
 								
 								if($data->{'fit_type_'.$i} === 'resize') {
@@ -486,7 +489,10 @@ class ACoreController extends AController {
 				$image->fit($moduleBlocks->image_width,
 								$moduleBlocks->image_height,
 								function() {},
-								$moduleBlocks->fit_position);
+								$moduleBlocks->fit_position,
+								$moduleBlocks->fit_position_1,
+								$moduleBlocks->fit_position_2,
+								$moduleBlocks->fit_position_3);
 			}
 			
 			if($moduleBlocks->fit_type === 'resize') {
@@ -527,7 +533,7 @@ class ACoreController extends AController {
 						$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$newRowId.'_'.$moduleBlocks->{'prefix_'.$i}.'.'.$moduleBlocks->file_format))->fit($moduleBlocks->{'image_width_'.$i},
 																																												$moduleBlocks->{'image_height_'.$i},
 																																												function() {},
-																																												$moduleBlocks->fit_position);
+																																												$moduleBlocks->{'fit_position_'.$i});
 					}
 					
 					if($moduleBlocks->{'fit_type_'.$i} === 'resize') {
@@ -943,7 +949,10 @@ class ACoreController extends AController {
 							$image->fit($data->image_width,
 											$data->image_height,
 											function() {},
-											$data->fit_position);
+											$data->fit_position,
+											$data->fit_position_1,
+											$data->fit_position_2,
+											$data->fit_position_3);
 						}
 						
 						if($data->fit_type === 'resize') {
@@ -984,7 +993,7 @@ class ACoreController extends AController {
 									$image = ImageManagerStatic::make(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format))->fit($data->{'image_width_'.$i},
 																																															$data->{'image_height_'.$i},
 																																															function() {},
-																																															$data->fit_position);
+																																															$data->{'fit_position_'.$i});
 								}
 								
 								if($data->{'fit_type_'.$i} === 'resize') {

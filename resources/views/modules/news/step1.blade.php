@@ -26,6 +26,19 @@
 			<div class="p-2">
 				<img src="{{ asset('/storage/images/modules/news/28/'.$activeNewsStep0 -> id.'.jpg') }}" alt="{{ $activeNewsStep0 -> title }}">
 			</div>
+
+			<div class="p-2">
+				<img src="{{ asset('/storage/images/modules/news/28/'.$activeNewsStep0 -> id.'_test1.jpg') }}" alt="{{ $activeNewsStep0 -> title }}">
+			</div>
+
+			<div class="p-2">
+				<img src="{{ asset('/storage/images/modules/news/28/'.$activeNewsStep0 -> id.'_test2.jpg') }}" alt="{{ $activeNewsStep0 -> title }}">
+			</div>
+
+			<div class="p-2">
+				<img src="{{ asset('/storage/images/modules/news/28/'.$activeNewsStep0 -> id.'_test3.jpg') }}" alt="{{ $activeNewsStep0 -> title }}">
+			</div>
+			
 		</div>
 
 		<div class="p-2">
