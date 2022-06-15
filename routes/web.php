@@ -3,11 +3,8 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Models\Module;
 use App\Http\Controllers\GoogleController;
-use App\Http\Controllers\NewsController;
-use App\Http\Controllers\PhotoGalleryController;
 use App\Http\Controllers\FacebookController;
 
-use App\Mail\WelcomeMail;
 
 Route::get('/cache', function() {
 	$clear = Artisan::call('cache:clear');
@@ -127,6 +124,7 @@ if(Schema::hasTable('languages')) {
 						Route::post('/{moduleAlias}/{moduleStepId}/{id}/addImage', 'ACoreController@addMultImages')->name('coreAddMultImage');
 						Route::post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update')->name('coreUpdate');
 						Route::get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete')->name('coreDelete');
+						Route::post('/{moduleAlias}/{moduleStepId}/{id}/{parentModuleStepId}/multiDelete', 'ACoreController@multiDelete')->name('coreMultiDelete');
 					// 
 
 
@@ -233,14 +231,5 @@ if(Schema::hasTable('languages')) {
 		//
 
 		Route :: post('/basket/get-data', 'BasketController@getProducts');
-
-		// Auth::routes();
-
-
-		// Route::get('/email', function() {
-		// 	Mail::to('email@email.com')->send(new WelcomeMail());
-
-		// 	return new WelcomeMail();
-		// });f
 	}
 }

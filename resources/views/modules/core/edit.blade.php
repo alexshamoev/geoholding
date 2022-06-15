@@ -113,15 +113,22 @@
 									</div>
 
 									@if(file_exists(storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
-										<div class="p-2">
-											<img class="w-25" src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="">
-										</div>
+										<div class="row p-1">
+											<div class="col-3 p-1">
+												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}"
+													 class="w-100">
+											</div>
 
-										@if($moduleBlock->file_possibility_to_delete)
-											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-												X
-											</a>
-										@endif
+											@if($moduleBlock->file_possibility_to_delete)
+												<div class="col-3 p-1">
+													<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+														<img src="http://localhost:8001/storage/images/admin/close.svg"
+																alt="__('bsw.delete_file')"
+																class="bar-tag-bigger-img">
+													</a>
+												</div>
+											@endif
+										</div>
 									@endif
 								</div>
 
@@ -260,7 +267,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -320,7 +327,7 @@
 									</div>
 
 									@error($moduleBlock->db_column.'_'.$langData->title)
-										<div class="alert alert-danger">
+										<div class="alert alert-danger m-0">
 											{{ $message }}
 										</div>
 									@enderror
@@ -415,7 +422,7 @@
 
 						@if($moduleBlock->type !== 'alias' && $moduleBlock->type !== 'input_with_languages' && $moduleBlock->type !== 'editor_with_languages')
 							@error($moduleBlock->db_column)
-								<div class="alert alert-danger">
+								<div class="alert alert-danger m-0">
 									{{ $message }}
 								</div>
 							@enderror	
@@ -434,68 +441,75 @@
 		@php
 			$i = 0;
 		@endphp
+					
 										
-		@foreach($nextModuleStep as $moduleStepData)
-			<!-- Add button -->
-				@if(!$moduleStepData->images && $moduleStepData->possibility_to_add !== 0)
-					@include('admin.includes.addButton', [
-						'text' => __('bsw.add').' '.$moduleStepData->title,
-						'url' => route('coreAdd', [$module->alias, $moduleStepData->id, $data->id])
-					])
-				@elseif($moduleStepData->images && $moduleStepData->possibility_to_add !== 0) 
-					<div class="p-2">
-						<div class="p-2 standard-block">
-							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStepData->id, $data->id), 'files' => true, 'method' => 'post')) }}
-								<div class="p-2">
-									{{ __('bsw.add').' '.$moduleStepData->title }}
-								</div>
+		<!-- Add button -->
+			@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
+				@include('admin.includes.addButton', [
+					'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
+					'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
+				])
+			@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
+				<div class="p-2">
+					<div class="p-2 standard-block">
+						{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
+							<div class="p-2">
+								{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
+							</div>
 
-								<div class="p-2">
-									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-								</div>
+							<div class="p-2">
+								{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+							</div>
 
-								<div class="p-2 submit-button">
-									{{ Form::submit(__('bsw.adding')) }}
-								</div>
-							{{ Form::close() }}
-						</div>
+							<div class="p-2 submit-button">
+								{{ Form::submit(__('bsw.adding')) }}
+							</div>
+						{{ Form::close() }}
 					</div>
-				@endif
-			<!--  -->
-			
-			<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
-				@foreach($nextModuleStepData->values()->get($i) as $dataIn)
-					@if(!$moduleStepData->images)
-						@include('admin.includes.infoBlockWithoutImage',
-								[
-									'id' => $dataIn->id,
-									'title' => $dataIn->{ $moduleStepData->main_column },
-									'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-									'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-									'possibilityToRang' => $moduleStepData->possibility_to_rang,
-									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-								])
-					@else
-						@include('admin.includes.infoBlockWithImage', [
-							'id' => $dataIn->id,
-							'title' => $dataIn->{ $moduleStepData->main_column },
-							'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
-							'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-							'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-							'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-							'possibilityToRang' => $moduleStepData->possibility_to_rang,
-							'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-						])
-					@endif
-				@endforeach
-			</div>
-			
-			<div class="my-5"></div>
+				</div>
+			@endif
+		<!--  -->
 
-			@php
-				$i++;
-			@endphp
-		@endforeach
+		{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
+			@foreach($nextModuleStep as $moduleStepData)
+				<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
+					@foreach($nextModuleStepData->values()->get($i) as $dataIn)
+						@if(!$moduleStepData->images)
+							@include('admin.includes.infoBlockWithoutImage',
+									[
+										'id' => $dataIn->id,
+										'title' => $dataIn->{ $moduleStepData->main_column },
+										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+										'possibilityToRang' => $moduleStepData->possibility_to_rang,
+										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+									])
+						@else
+							@include('admin.includes.infoBlockWithImage', [
+								'id' => $dataIn->id,
+								'title' => $dataIn->{ $moduleStepData->main_column },
+								'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
+								'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+								'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+								'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+								'possibilityToRang' => $moduleStepData->possibility_to_rang,
+								'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+							])
+						@endif
+					@endforeach
+
+					<div class="p-3">
+						{{ form :: submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+					</div>
+				</div>
+				
+				<div class="my-5"></div>
+
+				@php
+					$i++;
+				@endphp
+			@endforeach
+		{{ Form :: close() }}
 	</div>
 @endsection

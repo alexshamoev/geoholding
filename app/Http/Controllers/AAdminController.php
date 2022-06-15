@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
-use App\Models\Bsc;
-use App\Models\Bsw;
 use App\Models\Module;
-use App\Models\Language;
-use App\Mail\WelcomeMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AAdminUpdateRequest;
 use Session;
 

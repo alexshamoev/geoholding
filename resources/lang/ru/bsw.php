@@ -72,4 +72,5 @@ return [
     'add_product_in_basket' => 'Добавить в Корзину',
     'address' => 'Адрес',
     'show_format' => '(Необходимо загрузить файл в формате) <div class="fw-bold px-2">:format</div>',
+    'delete_file' => 'Удалить файл',
 ];

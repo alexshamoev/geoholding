@@ -4,10 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use App\Models\ModuleStep;
-use App\Models\ModuleBlock;
 use App\Models\Page;
-use App\Models\Bsc;
-use App\Models\Bsw;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -93,7 +90,7 @@ class AModuleStepController extends AController {
 
 		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
 
-		foreach(Module::orderBy('rang', 'DESC')->get() as $moduleData) {
+		foreach(Module::with(['moduleStep:id,db_table'])->get()->sortByDesc('rang') as $moduleData) {
 			$topLevelSelectValues[$moduleData->title] = [];
 
 			foreach($moduleData->moduleStep as $stepData) {

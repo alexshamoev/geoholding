@@ -4,14 +4,20 @@
 			<div class="row">
 				<div class="col-4 p-2">
 					<div class="p-2 d-flex align-items-center">
+						<div class="">
+							<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+						</div>
+
 						@if(isset($possibilityToEdit))
 							@if($possibilityToEdit !== 0)
 								<a href="{{ $editLink }}">
 							@endif
 						@endif
-							<span class="line_max_1">
-								{{ $title }}
-							</span>
+							<div class="m-1">
+								<span class="line_max_1">
+									{{ $title }}
+								</span>
+							</div>
 						@if(isset($possibilityToEdit))
 							@if($possibilityToEdit !== 0)
 								</a>

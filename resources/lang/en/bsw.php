@@ -73,4 +73,5 @@ return [
     'add_product_in_basket' => 'Add in Basket',
     'address' => 'Address',
     'show_format' => '(It is necessary to upload the file in the format)) <div class="fw-bold px-2">:format</div>',
+    'delete_file' => 'Delete file',
 ];

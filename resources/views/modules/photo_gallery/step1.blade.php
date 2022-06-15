@@ -28,7 +28,7 @@
 		<div class="mb-3">
 			<div class="float-right img_wrapper">
 				<div class="p-2">
-					<img src="{{ asset('/storage/images/modules/photo_gallery/step_0/'.$activeCategory -> id.'.jpg') }}" alt="{{ $activeCategory -> title }}">
+					<img src="{{ asset('/storage/images/modules/photo_gallery/2/'.$activeCategory -> id.'.jpg') }}" alt="{{ $activeCategory -> title }}">
 				</div>
 			</div>
 	
@@ -42,15 +42,15 @@
 		<div class="row my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 			@foreach($activeCategory -> photoGalleryStep1 as $data)
 				<figure itemprop="associatedMedia" class="col-3">
-					<a href="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'.jpg') }}"
+					<a href="{{ asset('/storage/images/modules/photo_gallery/34/'.$data -> id.'.jpg') }}"
 						itemprop="contentUrl"
 						data-size="2000x1200">
-						<img src="{{ asset('/storage/images/modules/photo_gallery/step_1/'.$data -> id.'_preview.jpg') }}"
+						<img src="{{ asset('/storage/images/modules/photo_gallery/34/'.$data -> id.'_preview.jpg') }}"
 							 itemprop="thumbnail"
 							 alt="Image description" />
 					</a>
 
-					<figcaption class="d-none" itemprop="caption description">{{ $data -> title }}</figcaption>
+					<figcaption class="d-none" itemprop="{{ $data -> title }}">{{ $data -> title }}</figcaption>
 				</figure>
 			@endforeach
 		</div>

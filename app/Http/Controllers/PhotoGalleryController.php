@@ -3,17 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Page;
-use App\Models\MenuButton;
 use App\Models\Language;
-use App\Models\Module;
-use App\Models\Bsc;
-use App\Models\Bsw;
 use App\Models\PhotoGalleryStep0;
 use App\Models\PhotoGalleryStep1;
-use App\Widget;
-use Illuminate\Http\Request;
-use App;
-
 
 class PhotoGalleryController extends FrontController {
     private const PAGE_SLUG = 'photo-gallery';

@@ -3,18 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Module;
-use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
-use App\Models\ModulesIncludesValue;
-use App\Models\ModulesNotIncludesValue;
 use App\Models\Language;
-use App\Models\Page;
 use App\Models\Bsc;
 use App\Models\Bsw;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use DB;
 use Session;
 
 
@@ -38,7 +31,7 @@ class AController extends Controller {
 		
 		$modulesForMenu = collect([]);
 
-		foreach(Module::all()->sortByDesc('rang') as $data) {
+		foreach(Module::with(['moduleStep'])->get()->sortByDesc('rang') as $data) {
 			if(count($data->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
 				if($activeUser->super_administrator === 1 || $data->hide_for_admin === 0) {
 					$modulesForMenu->add($data);
@@ -47,7 +40,7 @@ class AController extends Controller {
 		}
 
 		$data = [
-					'modules' => Module::with(['moduleStep', 'moduleStep.moduleBlock'])->get()->sortByDesc('rang'),
+					'modules' => Module::with(['moduleStep'])->get()->sortByDesc('rang'),
 					'modulesForMenu' => $modulesForMenu,
 					'bsc' => Bsc::getFullData(),
 					'bsw' => Bsw::getFullData(),
@@ -58,6 +51,7 @@ class AController extends Controller {
 		
 		return $data;
 	}
+
 
 	public function filePossibilityToDelete($moduleAlias, $moduleStepId, $id, $moduleBlockId) {
 		$moduleBlock = ModuleBlock::firstWhere('id', $moduleBlockId);
@@ -90,6 +84,5 @@ class AController extends Controller {
 		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
 
 		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
-
 	}
 }

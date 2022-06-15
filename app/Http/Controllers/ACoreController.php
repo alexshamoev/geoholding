@@ -5,10 +5,7 @@ use App\Models\Module;
 use App\Models\ModuleStep;
 use App\Models\ModuleBlock;
 use App\Models\Language;
-use App\Models\Bsc;
-use App\Models\Bsw;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\ImageManagerStatic;
 use DB;
@@ -1191,7 +1188,7 @@ class ACoreController extends AController {
 
 
 	public function delete($moduleAlias, $moduleStepId, $id) {
-		$module = Module::where('alias', $moduleAlias)->first();
+		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
 		
 		foreach($moduleStep->moduleBlock as $data) {
@@ -1243,5 +1240,49 @@ class ACoreController extends AController {
 										$activeBlockData->top_level
 									]);
 		}
+	}
+
+
+	public function multiDelete(Request $request, $moduleAlias, $moduleStepId, $id, $parentModuleStepId) {
+		$module = Module::firstWhere('alias', $moduleAlias);
+		$moduleStep = ModuleStep::find($moduleStepId);
+		
+		foreach($request->input('checkbox') as $data) {
+			foreach($moduleStep->moduleBlock as $dataInside) {
+				$prefix = '';
+	
+				if($dataInside->prefix) {
+					$prefix = $dataInside->prefix.'_';
+				}
+				
+				$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data.'.'.$dataInside->file_format);
+				
+				if(file_exists($filePath)) {
+					unlink($filePath);
+				}
+	
+				for($i = 1; $i < 4; $i++) {
+					if($dataInside->{'prefix_'.$i}) {
+						if($dataInside->prefix) {
+							$prefix = $dataInside->prefix.'_';
+						}
+						
+						$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data.'_'.$dataInside->{'prefix_'.$i}.'.'.$dataInside->file_format);
+						
+						if(file_exists($filePath)) {
+							unlink($filePath);
+						}
+					}
+				}
+			}
+
+			DB::table($moduleStep->db_table)->delete($data);
+		}
+
+		if($id) {
+			return redirect()->route('coreEdit', [$moduleAlias, $parentModuleStepId, $id]);
+		}
+
+		return redirect()->route('coreGetStartPoint', $moduleAlias);
 	}
 }

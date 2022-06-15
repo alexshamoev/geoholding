@@ -283,6 +283,7 @@
 					'possibilityToDelete' => true,
 					'possibilityToRang' => true,
 					'possibilityToEdit' => true,
+					'checkboxId' =>  $data->id
 				])
 			@endforeach
 		</div>	
