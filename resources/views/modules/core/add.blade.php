@@ -76,11 +76,11 @@
 											</div>
 										@endif
 
-										@if($moduleBlock->file_possibility_to_delete)
+										{{-- @if($moduleBlock->file_possibility_to_delete)
 											<a href="{{ route('filePossibilityToDelete', [$moduleStep->module->alias, $moduleStep->id, Session::get('file_id'), $moduleBlock->id]) }}">
 												X
 											</a>
-										@endif
+										@endif --}}
 									@endif
 								</div>
 
@@ -124,11 +124,11 @@
 												</a>
 											@endif
 
-											@if($moduleBlock->file_possibility_to_delete)
+											{{-- @if($moduleBlock->file_possibility_to_delete)
 												<a href="{{ route('filePossibilityToDelete', [$moduleStep->module->alias, $moduleStep->id, Session::get('file_id'), $moduleBlock->id]) }}">
 													X
 												</a>
-											@endif
+											@endif --}}
 										@endif
 									@endif
 								</div>

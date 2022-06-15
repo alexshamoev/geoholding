@@ -1215,8 +1215,45 @@ class ACoreController extends AController {
 	public function multiDelete(Request $request, $moduleAlias, $moduleStepId, $id, $parentModuleStepId) {
 		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
-		
+		$childModuleSteps = ModuleStep::where('parent_step_id', $moduleStepId)->get();
+
 		foreach($request->input('checkbox') as $data) {
+			foreach($childModuleSteps as $dataSteps) {	
+				$childData = DB::table($dataSteps->db_table)->where('top_level', $data)->get();
+
+				foreach($childData as $dataChild) {
+					foreach($dataSteps->moduleBlock as $dataInside) {
+						$prefix = '';
+			
+						if($dataInside->prefix) {
+							$prefix = $dataInside->prefix.'_';
+						}
+						
+						$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$dataSteps->id.'/'.$prefix.$dataChild->id.'.'.$dataInside->file_format);
+						
+						if(file_exists($filePath)) {
+							unlink($filePath);
+						}
+			
+						for($i = 1; $i < 4; $i++) {
+							if($dataInside->{'prefix_'.$i}) {
+								if($dataInside->prefix) {
+									$prefix = $dataInside->prefix.'_';
+								}
+								
+								$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$dataSteps->id.'/'.$prefix.$dataChild->id.'_'.$dataInside->{'prefix_'.$i}.'.'.$dataInside->file_format);
+								
+								if(file_exists($filePath)) {
+									unlink($filePath);
+								}
+							}
+						}
+					}
+
+					DB::table($dataSteps->db_table)->delete($dataChild->id);
+				}
+			}
+
 			foreach($moduleStep->moduleBlock as $dataInside) {
 				$prefix = '';
 	
@@ -1253,5 +1290,79 @@ class ACoreController extends AController {
 		}
 
 		return redirect()->route('coreGetStartPoint', $moduleAlias);
+	}
+
+
+	public function defaultDelete($moduleAlias, $moduleStepId, $id) {
+		$module = Module::firstWhere('alias', $moduleAlias);
+		$moduleStep = ModuleStep::find($moduleStepId);
+		$childModuleSteps = ModuleStep::where('parent_step_id', $moduleStepId)->get();
+
+		foreach($childModuleSteps as $dataSteps) {	
+			$childData = DB::table($dataSteps->db_table)->where('top_level', $data)->get();
+
+			foreach($childData as $dataChild) {
+				foreach($dataSteps->moduleBlock as $dataInside) {
+					$prefix = '';
+		
+					if($dataInside->prefix) {
+						$prefix = $dataInside->prefix.'_';
+					}
+					
+					$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$dataSteps->id.'/'.$prefix.$dataChild->id.'.'.$dataInside->file_format);
+					
+					if(file_exists($filePath)) {
+						unlink($filePath);
+					}
+		
+					for($i = 1; $i < 4; $i++) {
+						if($dataInside->{'prefix_'.$i}) {
+							if($dataInside->prefix) {
+								$prefix = $dataInside->prefix.'_';
+							}
+							
+							$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$dataSteps->id.'/'.$prefix.$dataChild->id.'_'.$dataInside->{'prefix_'.$i}.'.'.$dataInside->file_format);
+							
+							if(file_exists($filePath)) {
+								unlink($filePath);
+							}
+						}
+					}
+				}
+
+				DB::table($dataSteps->db_table)->delete($dataChild->id);
+			}
+		}
+
+		foreach($moduleStep->moduleBlock as $dataInside) {
+			$prefix = '';
+
+			if($dataInside->prefix) {
+				$prefix = $dataInside->prefix.'_';
+			}
+			
+			$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data.'.'.$dataInside->file_format);
+			
+			if(file_exists($filePath)) {
+				unlink($filePath);
+			}
+
+			for($i = 1; $i < 4; $i++) {
+				if($dataInside->{'prefix_'.$i}) {
+					if($dataInside->prefix) {
+						$prefix = $dataInside->prefix.'_';
+					}
+					
+					$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data.'_'.$dataInside->{'prefix_'.$i}.'.'.$dataInside->file_format);
+					
+					if(file_exists($filePath)) {
+						unlink($filePath);
+					}
+				}
+			}
+		}
+
+		DB::table($moduleStep->db_table)->delete($data);
+		
 	}
 }
