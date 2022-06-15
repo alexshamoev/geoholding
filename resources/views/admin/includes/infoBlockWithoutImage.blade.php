@@ -5,7 +5,7 @@
 				<div class="col-4 p-2">
 					<div class="p-2 d-flex align-items-center">
 						<div class="">
-							<input type="checkbox" name="checkbox[]" value="{{ $checkboxId }}" id="">
+							<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
 						</div>
 
 						@if(isset($possibilityToEdit))

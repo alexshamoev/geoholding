@@ -40,8 +40,7 @@
 			$i = 0;
 		@endphp
 
-		{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, 55))) }}
-		
+		{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $moduleStep->values()->get($i)->id, 0, 0))) }}
 			@foreach($collection as $dataFromDb)
 				<!-- Add button -->
 					@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
@@ -85,7 +84,6 @@
 										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
 										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
 										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-										'checkboxId' =>  $data->id
 									])
 						@else
 							@include('admin.includes.infoBlockWithImage', [
