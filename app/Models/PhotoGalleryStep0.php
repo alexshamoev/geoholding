@@ -75,8 +75,8 @@ class PhotoGalleryStep0 extends Model {
             return __('bsw.meta_description');
         }
     }
-    
 
+    
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/photo_gallery/step_0/meta_'.$this->{ 'id' }.'.jpg'))) {
             return '/storage/images/modules/photo_gallery/step_0/meta_'.$this->{ 'id' }.'.jpg';
