@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Page;
+use Illuminate\Support\Facades\Storage;
 
 class PageObserver
 {
@@ -36,21 +37,17 @@ class PageObserver
      */
     public function deleted(Page $page)
     {
-        // $file = 'public/images/modules/photo_gallery/2/'.$photoGalleryStep0->id.'.jpg';
+        $file = 'public/images/modules/pages/55/'.$page->id.'.jpg';
 
-        // if(Storage::exists($file)) {
-        //     Storage::delete($file);
-        // }
+        if(Storage::exists($file)) {
+            Storage::delete($file);
+        }
 
-        // $file = 'public/images/modules/photo_gallery/2/meta_'.$photoGalleryStep0->id.'.jpg';
+        $file = 'public/images/modules/pages/55/meta_'.$page->id.'.jpg';
 
-        // if(Storage::exists($file)) {
-        //     Storage::delete($file);
-        // }
-
-        // foreach($photoGalleryStep0->photoGalleryStep1 as $data) {
-        //     PhotoGalleryStep1::destroy($data -> id);
-        // }
+        if(Storage::exists($file)) {
+            Storage::delete($file);
+        }
     }
 
     /**

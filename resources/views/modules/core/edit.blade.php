@@ -443,73 +443,76 @@
 		@endphp
 					
 										
-		<!-- Add button -->
-			@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
-				@include('admin.includes.addButton', [
-					'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
-					'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
-				])
-			@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
-				<div class="p-2">
-					<div class="p-2 standard-block">
-						{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
-							<div class="p-2">
-								{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
-							</div>
+		
+		@if(!$nextModuleStep->isEmpty())
+			<!-- Add button -->
+				@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
+					@include('admin.includes.addButton', [
+						'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
+						'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
+					])
+				@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
+					<div class="p-2">
+						<div class="p-2 standard-block">
+							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
+								<div class="p-2">
+									{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
+								</div>
 
-							<div class="p-2">
-								{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-							</div>
+								<div class="p-2">
+									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+								</div>
 
-							<div class="p-2 submit-button">
-								{{ Form::submit(__('bsw.adding')) }}
-							</div>
-						{{ Form::close() }}
+								<div class="p-2 submit-button">
+									{{ Form::submit(__('bsw.adding')) }}
+								</div>
+							{{ Form::close() }}
+						</div>
 					</div>
-				</div>
-			@endif
-		<!--  -->
+				@endif
+			<!--  -->
 
-		{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
-			@foreach($nextModuleStep as $moduleStepData)
-				<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
-					@foreach($nextModuleStepData->values()->get($i) as $dataIn)
-						@if(!$moduleStepData->images)
-							@include('admin.includes.infoBlockWithoutImage',
-									[
-										'id' => $dataIn->id,
-										'title' => $dataIn->{ $moduleStepData->main_column },
-										'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-										'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-										'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-										'possibilityToRang' => $moduleStepData->possibility_to_rang,
-										'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-									])
-						@else
-							@include('admin.includes.infoBlockWithImage', [
-								'id' => $dataIn->id,
-								'title' => $dataIn->{ $moduleStepData->main_column },
-								'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
-								'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
-								'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
-								'possibilityToDelete' => $moduleStepData->possibility_to_delete,
-								'possibilityToRang' => $moduleStepData->possibility_to_rang,
-								'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-							])
-						@endif
-					@endforeach
+			{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
+				@foreach($nextModuleStep as $moduleStepData)
+					<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
+						@foreach($nextModuleStepData->values()->get($i) as $dataIn)
+							@if(!$moduleStepData->images)
+								@include('admin.includes.infoBlockWithoutImage',
+										[
+											'id' => $dataIn->id,
+											'title' => $dataIn->{ $moduleStepData->main_column },
+											'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+											'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+											'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+											'possibilityToRang' => $moduleStepData->possibility_to_rang,
+											'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+										])
+							@else
+								@include('admin.includes.infoBlockWithImage', [
+									'id' => $dataIn->id,
+									'title' => $dataIn->{ $moduleStepData->main_column },
+									'imageUrl' => 'storage/images/modules/'.$module->alias.'/'.$moduleStepData->id.'/'.$dataIn->id.'.'.$imageFormat,
+									'editLink' => route('coreEdit', [$module->alias, $moduleStepData->id, $dataIn->id]),
+									'deleteLink' => route('coreDelete', array($module->alias, $moduleStepData->id, $dataIn->id)),
+									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
+									'possibilityToRang' => $moduleStepData->possibility_to_rang,
+									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+								])
+							@endif
+						@endforeach
 
-					<div class="p-3">
-						{{ form :: submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+						<div class="p-3">
+							{{ form :: submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+						</div>
 					</div>
-				</div>
-				
-				<div class="my-5"></div>
+					
+					<div class="my-5"></div>
 
-				@php
-					$i++;
-				@endphp
-			@endforeach
-		{{ Form :: close() }}
+					@php
+						$i++;
+					@endphp
+				@endforeach
+			{{ Form :: close() }}
+		@endif
 	</div>
 @endsection
