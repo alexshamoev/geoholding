@@ -49,10 +49,7 @@ class ACoreController extends AController {
 
 
 	public function add($moduleAlias, $moduleStepId, $topLevelDataId = 0) {
-		// dd($topLevelDataId);
-
 		$moduleStep = ModuleStep::find($moduleStepId);
-
 
 		$selectData = [];
 		$selectOptgroudData = [];
@@ -61,8 +58,6 @@ class ACoreController extends AController {
 		foreach($moduleStep->moduleBlock as $data) {
 			// Select
 				if($data->type === 'select') {
-					// $selectData[$data->db_column][0] = '-- '.__('bsw.select').' --';
-
 					foreach(DB::table($data->select_table)->orderBy($data->select_sort_by, $data->select_sort_by_text)->get() as $dataInside) {
 						$selectData[$data->db_column][$dataInside->{$data->select_search_column}] = $dataInside->{$data->select_option_text};
 					}
@@ -156,21 +151,20 @@ class ACoreController extends AController {
 	public function insert(Request $request, $moduleAlias, $moduleStepId, $topLevelDataId) {
 		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
-
-
-		if(!Session::has('file_id')) {
-			Session::flash('file_id', rand(1000000,9999999));
-		} else {
-			Session::reflash();
-		}
-
-		$id = Session::get('file_id');
-
+		$id = 0;
 
 		// Image - uploading image without checking it passed validation or not
 			foreach($moduleStep->moduleBlock as $data) {
 				if($data->type === 'image') {
 					if($request->hasFile($data->db_column)) {
+						if(!Session::has('file_id')) {
+							Session::flash('file_id', rand(1000000,9999999));
+						} else {
+							Session::reflash();
+						}
+				
+						$id = Session::get('file_id');
+
 						$prefix = '';
 
 						if($data->prefix) {
@@ -289,6 +283,14 @@ class ACoreController extends AController {
 			foreach($moduleStep->moduleBlock as $data) {
 				if($data->type === 'file') {
 					if($request->hasFile($data->db_column)) {
+						if(!Session::has('file_id')) {
+							Session::flash('file_id', rand(1000000,9999999));
+						} else {
+							Session::reflash();
+						}
+				
+						$id = Session::get('file_id');
+						
 						$prefix = '';
 
 						if($data->prefix) {
@@ -301,7 +303,7 @@ class ACoreController extends AController {
 
 						if($validator->fails()) {
 
-							return redirect()->route('coreEdit', array($module->alias, $id))->withErrors($validator)->withInput();
+							return redirect()->route('coreAdd', array($module->alias, $moduleStep->id, 0))->withErrors($validator)->withInput();
 						}
 						
 						$request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$data->file_format);
@@ -438,6 +440,9 @@ class ACoreController extends AController {
 		if($topLevelDataId) {
 			$insertQuery['top_level'] = $topLevelDataId;
 		}
+
+		$insertQuery['created_at'] = date("Y-m-d H:i:s", strtotime('+4 hours'));
+		$insertQuery['updated_at'] = date("Y-m-d H:i:s", strtotime('+4 hours'));
 
 		$id = DB::table($moduleStep->db_table)->insertGetId($insertQuery);
 
@@ -1177,6 +1182,8 @@ class ACoreController extends AController {
 				$updateQuery[$data->db_column] = $multiplyCheckboxString;
 			}
 		}
+
+		$updateQuery['updated_at'] = date("Y-m-d H:i:s", strtotime('+4 hours'));
 
 		DB::table($moduleStep->db_table)->where('id', $id)->update($updateQuery);
 
