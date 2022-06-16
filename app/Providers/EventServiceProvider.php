@@ -8,15 +8,17 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 use App\Models\Module;
-use App\Models\ModuleStep;
-use App\Models\Language;
-use App\Models\PhotoGalleryStep0;
-use App\Models\PhotoGalleryStep1;
 use App\Observers\ModuleObserver;
+use App\Models\ModuleStep;
 use App\Observers\ModuleStepObserver;
+use App\Models\Language;
 use App\Observers\LanguageObserver;
+use App\Models\PhotoGalleryStep0;
 use App\Observers\PhotoGalleryStep0Observer;
+use App\Models\PhotoGalleryStep1;
 use App\Observers\PhotoGalleryStep1Observer;
+use App\Models\Page;
+use App\Observers\PageObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -43,6 +45,7 @@ class EventServiceProvider extends ServiceProvider
         Module::observe(ModuleObserver::class);
         ModuleStep::observe(ModuleStepObserver::class);
         Language::observe(LanguageObserver::class);
+        Page::observe(PageObserver::class);
         PhotoGalleryStep0::observe(PhotoGalleryStep0Observer::class);
         PhotoGalleryStep1::observe(PhotoGalleryStep1Observer::class);
     }
