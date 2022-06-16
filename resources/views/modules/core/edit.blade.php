@@ -486,6 +486,7 @@
 											'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 											'possibilityToRang' => $moduleStepData->possibility_to_rang,
 											'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+											'multiDeleteCheckbox' => 0,
 										])
 							@else
 								@include('admin.includes.infoBlockWithImage', [
@@ -497,6 +498,7 @@
 									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 									'possibilityToRang' => $moduleStepData->possibility_to_rang,
 									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+									'multiDeleteCheckbox' => 0,
 								])
 							@endif
 						@endforeach

@@ -1,7 +1,11 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
 	<div class="row align-items-stretch edit-block">
 		<div class="col-2">
-			<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+			@if(isset($multiDeleteCheckbox))
+				@if($multiDeleteCheckbox !== 0)
+					<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+				@endif
+			@endif
 
 			<div style="background-image: url('{{ asset($imageUrl) }}');"
 				 class="edit-block__image_div"></div>
