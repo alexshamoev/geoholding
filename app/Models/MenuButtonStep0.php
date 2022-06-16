@@ -37,7 +37,11 @@ class MenuButtonStep0 extends Model {
 	public function getUrlAttribute() {
 		switch($this -> link_type) {
 			case 'page':
-				return '/'.App :: getLocale().'/'.$this -> page -> alias;
+				if($this -> page) {
+					return '/'.App :: getLocale().'/'.$this -> page -> alias;
+				} else {
+					return false;
+				}
 
 				break;
 			case 'free_link':
@@ -53,8 +57,12 @@ class MenuButtonStep0 extends Model {
 
 	
 	public function getActiveAttribute() {
-		if($this -> page -> alias === config('activePageAlias')) {
-        	return 1;
+		if($this -> page) {
+			if($this -> page -> alias === config('activePageAlias')) {
+				return 1;
+			} else {
+				return 0;
+			}
 		} else {
 			return 0;
 		}
