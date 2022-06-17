@@ -647,6 +647,7 @@ class ACoreController extends AController {
 			$module = Module::where('alias', $moduleAlias)->first();
 			$moduleStep = ModuleStep::find($moduleStepId);
 			$pageData = DB::table($moduleStep->db_table)->find($id);
+			$allModuleData = DB::table($moduleStep->db_table)->get();
 			
 
 			$activeLang = Language::where('like_default_for_admin', 1)->first();
@@ -914,6 +915,7 @@ class ACoreController extends AController {
 														'tagsData' => $tagsData,
 														'backRoute' => $backRoute,
 														'parentDataId' => $parentDataId,
+														'allModuleData' => $allModuleData,
 													]);
 
 		return view('modules.core.edit', $data);

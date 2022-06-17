@@ -62,7 +62,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{Form::select('parent_step_id', $topLevelSelectValues)}}
+						{{ Form::select('parent_step_id', $topLevelSelectValues) }}
 					</div>
 				</div>
 			</div>

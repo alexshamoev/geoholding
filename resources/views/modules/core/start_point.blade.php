@@ -42,36 +42,38 @@
 
 		{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $moduleStep->values()->get($i)->id, 0, 0))) }}
 			@foreach($collection as $dataFromDb)
-				<!-- Add button -->
-					@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
-						@include('admin.includes.addButton', [
-							'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
-							'url' => route('coreAdd', [
-								$module->alias,
-								$moduleStep->values()->get($i)->id,
-								0,
+				@if($moduleStep->values()->get($i)->blocks_max_number === 0 || $moduleStep->values()->get($i)->blocks_max_number > count($dataFromDb))
+					<!-- Add button -->
+						@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
+							@include('admin.includes.addButton', [
+								'text' => __('bsw.add').' '.$moduleStep->values()->get($i)->title,
+								'url' => route('coreAdd', [
+									$module->alias,
+									$moduleStep->values()->get($i)->id,
+									0,
+								])
 							])
-						])
-					@elseif($moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)  
-						<div class="p-2">
-							<div class="p-2 standard-block">
-								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
-									<div class="p-2">
-										{{ __('bsw.add').' '.$moduleStep->values()->get($i)->title }}
-									</div>
+						@elseif($moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)  
+							<div class="p-2">
+								<div class="p-2 standard-block">
+									{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
+										<div class="p-2">
+											{{ __('bsw.add').' '.$moduleStep->values()->get($i)->title }}
+										</div>
 
-									<div class="p-2">
-										{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-									</div>
+										<div class="p-2">
+											{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+										</div>
 
-									<div class="p-2 submit-button">
-										{{ Form::submit(__('bsw.adding')) }}
-									</div>
-								{{ Form::close() }}
+										<div class="p-2 submit-button">
+											{{ Form::submit(__('bsw.adding')) }}
+										</div>
+									{{ Form::close() }}
+								</div>
 							</div>
-						</div>
-					@endif
-				<!--  -->
+						@endif
+					<!--  -->
+				@endif
 
 				<div class="row rangBlocks" data-db_table="{{ $moduleStep->values()->get($i)->db_table }}">
 					@foreach($dataFromDb as $data)
