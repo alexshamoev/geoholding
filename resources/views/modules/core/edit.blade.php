@@ -22,9 +22,11 @@
 	@endphp
 
 	@if($moduleStep->possibility_to_add === 1)
-		@php
-			$barData['addUrl'] = route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]);
-		@endphp
+		@if($moduleStep->blocks_max_number === 0 || $moduleStep->blocks_max_number > count($allModuleData))
+			@php
+				$barData['addUrl'] = route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]);
+			@endphp
+		@endif
 	@endif
 
 	@if($moduleStep->possibility_to_delete === 1)
@@ -445,32 +447,34 @@
 										
 		
 		@if(!$nextModuleStep->isEmpty())
-			<!-- Add button -->
-				@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
-					@include('admin.includes.addButton', [
-						'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
-						'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
-					])
-				@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
-					<div class="p-2">
-						<div class="p-2 standard-block">
-							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
-								<div class="p-2">
-									{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
-								</div>
+			@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
+				<!-- Add button -->
+					@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
+						@include('admin.includes.addButton', [
+							'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
+							'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
+						])
+					@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
+						<div class="p-2">
+							<div class="p-2 standard-block">
+								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
+									<div class="p-2">
+										{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
+									</div>
 
-								<div class="p-2">
-									{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-								</div>
+									<div class="p-2">
+										{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+									</div>
 
-								<div class="p-2 submit-button">
-									{{ Form::submit(__('bsw.adding')) }}
-								</div>
-							{{ Form::close() }}
+									<div class="p-2 submit-button">
+										{{ Form::submit(__('bsw.adding')) }}
+									</div>
+								{{ Form::close() }}
+							</div>
 						</div>
-					</div>
-				@endif
-			<!--  -->
+					@endif
+				<!--  -->
+			@endif
 
 			{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
 				@foreach($nextModuleStep as $moduleStepData)
@@ -486,6 +490,7 @@
 											'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 											'possibilityToRang' => $moduleStepData->possibility_to_rang,
 											'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+											'multiDeleteCheckbox' => 1,
 										])
 							@else
 								@include('admin.includes.infoBlockWithImage', [
@@ -497,6 +502,7 @@
 									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 									'possibilityToRang' => $moduleStepData->possibility_to_rang,
 									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
+									'multiDeleteCheckbox' => 1,
 								])
 							@endif
 						@endforeach

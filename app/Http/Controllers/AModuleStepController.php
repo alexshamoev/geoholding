@@ -129,6 +129,7 @@ class AModuleStepController extends AController {
 		$moduleStep->order_by_column = $request->input('order_by_column');
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
 		$moduleStep->model_name = $request->input('model_name');
+		$moduleStep->blocks_max_number = $request->input('blocks_max_number');
 
 		$moduleStep->save();
 		

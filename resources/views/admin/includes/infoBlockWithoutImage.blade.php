@@ -4,9 +4,13 @@
 			<div class="row">
 				<div class="col-4 p-2">
 					<div class="p-2 d-flex align-items-center">
-						<div class="">
-							<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
-						</div>
+						@if(isset($multiDeleteCheckbox))
+							@if($multiDeleteCheckbox !== 0)
+								<div class="">
+									<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+								</div>
+							@endif
+						@endif
 
 						@if(isset($possibilityToEdit))
 							@if($possibilityToEdit !== 0)

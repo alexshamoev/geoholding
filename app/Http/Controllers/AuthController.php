@@ -78,7 +78,7 @@ class AuthController extends FrontController
         $validated = $request->validate([
             'name' => 'required',
             'last_name' => 'required|max:255',
-            'email' => 'required|max:255',
+            'email' => 'required|unique:users,email|max:255',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:5',
             'address' => 'required|max:255',
             'password' => 'required|min:8',
