@@ -1,8 +1,8 @@
 <div class="p-2 blockWithRang" data-id="{{ $id }}">
 	<div class="row align-items-stretch edit-block">
 		<div class="col-2">
-			@if(isset($multiDeleteCheckbox))
-				@if($multiDeleteCheckbox !== 0)
+			@if(isset($possibilityToMultyDelete))
+				@if($possibilityToMultyDelete !== 0)
 					<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
 				@endif
 			@endif

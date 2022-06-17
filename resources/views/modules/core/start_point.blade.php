@@ -86,7 +86,7 @@
 										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
 										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
 										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-										'multiDeleteCheckbox' => 1,
+										'possibilityToMultyDelete' => $moduleStep->values()->get($i)->possibility_to_multy_delete,
 									])
 						@else
 							@include('admin.includes.infoBlockWithImage', [
@@ -98,14 +98,16 @@
 										'possibilityToDelete' => $moduleStep->values()->get($i)->possibility_to_delete,
 										'possibilityToRang' => $moduleStep->values()->get($i)->possibility_to_rang,
 										'possibilityToEdit' => $moduleStep->values()->get($i)->possibility_to_edit,
-										'multiDeleteCheckbox' => 1,
+										'possibilityToMultyDelete' => $moduleStep->values()->get($i)->possibility_to_multy_delete,
 									])
 						@endif
 					@endforeach
 
-					<div class="p-3">
-						{{ form :: submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
-					</div>
+					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0)
+						<div class="p-3">
+							{{ Form::submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+						</div>
+					@endif
 				</div>
 
 				<div class="my-5"></div>

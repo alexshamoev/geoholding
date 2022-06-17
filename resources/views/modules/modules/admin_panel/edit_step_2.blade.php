@@ -217,6 +217,14 @@
 							possibility_to_edit?
 						</label>
 					</div>
+
+					<div class="p-2">
+						<label>
+							{{Form :: checkbox('possibility_to_multy_delete', '1')}}
+
+							possibility_to_multy_delete?
+						</label>
+					</div>
 				</div>
 			</div>
 
