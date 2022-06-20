@@ -1226,7 +1226,7 @@ class ACoreController extends AController {
 		$moduleStep = ModuleStep::find($moduleStepId);
 
 		$modelClass = 'App\Models\\'.$moduleStep->model_name;
-
+		
 		foreach($request->input('checkbox') as $dataId) {
 			$modelClass::destroy($dataId);
 		}

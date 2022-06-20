@@ -19,6 +19,8 @@ use App\Models\PhotoGalleryStep1;
 use App\Observers\PhotoGalleryStep1Observer;
 use App\Models\Page;
 use App\Observers\PageObserver;
+use App\Models\Partner;
+use App\Observers\PartnerObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -46,6 +48,7 @@ class EventServiceProvider extends ServiceProvider
         ModuleStep::observe(ModuleStepObserver::class);
         Language::observe(LanguageObserver::class);
         Page::observe(PageObserver::class);
+        Partner::observe(PartnerObserver::class);
         PhotoGalleryStep0::observe(PhotoGalleryStep0Observer::class);
         PhotoGalleryStep1::observe(PhotoGalleryStep1Observer::class);
     }
