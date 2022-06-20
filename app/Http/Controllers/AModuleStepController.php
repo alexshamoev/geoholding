@@ -31,7 +31,7 @@ class AModuleStepController extends AController {
 														'topLevelSelectValues' => $topLevelSelectValues
 													]);
 
-		return view('modules.modules.admin_panel.add_step_2', $data);
+		return view('modules.modules.admin_panel.add_step_1', $data);
 	}
 
 
@@ -110,7 +110,7 @@ class AModuleStepController extends AController {
 													]);
 
 
-		return view('modules.modules.admin_panel.edit_step_2', $data);
+		return view('modules.modules.admin_panel.edit_step_1', $data);
 	}
 
 

@@ -37,7 +37,7 @@ class AModuleBlockController extends AController {
 														'blockTypes' => $blockTypes
 													]);
 
-		return view('modules.modules.admin_panel.add_step_3', $data);
+		return view('modules.modules.admin_panel.add_step_2', $data);
 	}
 
 
@@ -215,7 +215,7 @@ class AModuleBlockController extends AController {
 														'prev' => $prevId,
 														'next' => $nextId]);
 
-		return view('modules.modules.admin_panel.edit_step_3', $data);
+		return view('modules.modules.admin_panel.edit_step_2', $data);
 	}
 
 
