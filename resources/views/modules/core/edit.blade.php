@@ -490,7 +490,7 @@
 											'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 											'possibilityToRang' => $moduleStepData->possibility_to_rang,
 											'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-											'multiDeleteCheckbox' => 1,
+											'possibilityToMultyDelete' => $moduleStepData->possibility_to_multy_delete,
 										])
 							@else
 								@include('admin.includes.infoBlockWithImage', [
@@ -502,14 +502,16 @@
 									'possibilityToDelete' => $moduleStepData->possibility_to_delete,
 									'possibilityToRang' => $moduleStepData->possibility_to_rang,
 									'possibilityToEdit' => $moduleStepData->possibility_to_edit,
-									'multiDeleteCheckbox' => 1,
+									'possibilityToMultyDelete' => $moduleStepData->possibility_to_multy_delete,
 								])
 							@endif
 						@endforeach
 
-						<div class="p-3">
-							{{ form :: submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
-						</div>
+						@if($moduleStepData->possibility_to_multy_delete !== 0)
+							<div class="p-3">
+								{{ Form::submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+							</div>
+						@endif
 					</div>
 					
 					<div class="my-5"></div>

@@ -31,7 +31,7 @@ class AModuleStepController extends AController {
 														'topLevelSelectValues' => $topLevelSelectValues
 													]);
 
-		return view('modules.modules.admin_panel.add_step_2', $data);
+		return view('modules.modules.admin_panel.add_step_1', $data);
 	}
 
 
@@ -48,6 +48,7 @@ class AModuleStepController extends AController {
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
+		$moduleStep->possibility_to_multy_delete = $request->has('possibility_to_multy_delete');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 		$moduleStep->order_by_column = $request->input('order_by_column');
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');
@@ -109,7 +110,7 @@ class AModuleStepController extends AController {
 													]);
 
 
-		return view('modules.modules.admin_panel.edit_step_2', $data);
+		return view('modules.modules.admin_panel.edit_step_1', $data);
 	}
 
 
@@ -125,6 +126,7 @@ class AModuleStepController extends AController {
 		$moduleStep->possibility_to_delete = $request->has('possibility_to_delete');
 		$moduleStep->possibility_to_rang = $request->has('possibility_to_rang');
 		$moduleStep->possibility_to_edit = $request->has('possibility_to_edit');
+		$moduleStep->possibility_to_multy_delete = $request->has('possibility_to_multy_delete');
 		$moduleStep->blocks_max_number = $request->has('blocks_max_number');
 		$moduleStep->order_by_column = $request->input('order_by_column');
 		$moduleStep->order_by_sequence = $request->input('order_by_sequence');

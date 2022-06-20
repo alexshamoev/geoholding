@@ -2,7 +2,7 @@
 
 
 @section('pageMetaTitle')
-    Modules > {{ $module->alias }} > {{ __('bsw.adding') }}
+    Modules > {{ $moduleStep ->  module -> alias }} > {{ $moduleStep -> title }} > {{ __('bsw.adding') }}
 @endsection
 
 
@@ -10,13 +10,16 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Modules',
 		'tag0Url' => route('moduleStartPoint'),
-		'tag1Text' => $module->alias,
-		'tag1Url' => route('moduleEdit', $module->id),
-		'tag3Text' => __('bsw.adding')
+		'tag1Text' => $moduleStep -> module -> alias,
+		'tag1Url' => route('moduleEdit', $moduleStep -> module -> id),
+		'tag3Text' => $moduleStep -> title,
+		'tag3Url' => route('moduleStepEdit', [$moduleStep -> module -> id, $moduleStep -> id]),
+		'tag4Text' => __('bsw.adding')
 	])
+	
 
-	<div class="p-2">
-		@if($errors->any())
+	<div class="step2 p-2">
+		@if($errors -> any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -25,220 +28,716 @@
 		@endif
 		
 		
-		@if(Session::has('successStatus'))
+		@if(Session :: has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session::get('successStatus') }}
+					{{ Session :: get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		@if(Session::has('successDeleteStatus'))
-			<div class="p-2">
-				<div class="alert alert-success m-0" role="alert">
-					{{ Session::get('successDeleteStatus') }}
-				</div>
-			</div>
-		@endif
-
-
-		{{ Form::open(array('route' => array('moduleStepInsert', $module->id))) }}
+		{{ Form :: open(array('route' => ['moduleBlockInsert', $moduleStep -> module -> id, $moduleStep -> id])) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>parent_step_id:</span>
+						<span>type</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form::select('parent_step_id', $topLevelSelectValues)}}
+						{{ Form :: select('type', $blockTypes, null, ['id' => 'type_select']) }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages forColorPicker forRang forFile forCalendar forImage forSelect forCheckbox">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>label</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('label') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forInput forImage forFile forInputWithLanguages forAlias forColorPicker forMultiplyCheckboxesWithCategory forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>db_column:</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('db_column') }}
+					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="p-2 dataBlock forImage forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>prefix:</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('prefix') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forFile forImage">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_format</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_format') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forInput forInputWithLanguages forEditor forEditorWithLanguages">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>example</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('example') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forImage">
+				<div class="standard-block row p-2">
+					<div class="col-4 p-2">
+						image_width {{ Form :: number('image_width', 0) }}
+					</div>
+					
+					<div class="col-4 p-2">
+						image_height {{ Form :: number('image_height', 0) }}
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type', 'fit') }} fit
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type', 'resize') }} resize
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type', 'resize_with_bg') }} resize_with_bg
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type', 'default') }} default
+					</div>
+
+					<div class="col-4 p-2">
+						<div>
+							fit_position
+						</div>
+
+						<div>
+							{{ Form :: select('fit_position',
+												[
+													'top-left' => 'top-left',
+													'top' => 'top',
+													'top-right' => 'top-right',
+													'left' => 'left',
+													'center' => 'center',
+													'right' => 'right',
+													'bottom-left' => 'bottom-left',
+													'bottom' => 'bottom',
+													'bottom-right' => 'bottom-right'
+												]) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="p-2 dataBlock forImage">
+				<div class="standard-block row p-2">
+					<div class="col-4 p-2">
+						image_width_1 {{ Form :: number('image_width_1', 0) }}
+					</div>
+					
+					<div class="col-4 p-2">
+						image_height_1 {{ Form :: number('image_height_1', 0) }}
+					</div>
+
+					<div class="">
+						{{ Form :: text('prefix_1') }}
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_1', 'fit') }} fit_1
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_1', 'resize') }} resize_1
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_1', 'resize_with_bg') }} resize_with_bg_1
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_1', 'default') }} default_1
+					</div>
+
+					<div class="col-4 p-2">
+						<div>
+							fit_position
+						</div>
+
+						<div>
+							{{ Form :: select('fit_position_1',
+												[
+													'top-left' => 'top-left',
+													'top' => 'top',
+													'top-right' => 'top-right',
+													'left' => 'left',
+													'center' => 'center',
+													'right' => 'right',
+													'bottom-left' => 'bottom-left',
+													'bottom' => 'bottom',
+													'bottom-right' => 'bottom-right'
+												]) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="p-2 dataBlock forImage">
+				<div class="standard-block row p-2">
+					<div class="col-4 p-2">
+						image_width_2 {{ Form :: number('image_width_2', 0) }}
+					</div>
+					
+					<div class="col-4 p-2">
+						image_height_2 {{ Form :: number('image_height_2', 0) }}
+					</div>
+					
+					<div class="">
+						{{ Form :: text('prefix_2') }}
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_2', 'fit') }} fit_2
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_2', 'resize') }} resize_2
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_2', 'resize_with_bg') }} resize_with_bg_2
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_2', 'default') }} default_2
+					</div>
+
+					<div class="col-4 p-2">
+						<div>
+							fit_position
+						</div>
+
+						<div>
+							{{ Form :: select('fit_position_2',
+												[
+													'top-left' => 'top-left',
+													'top' => 'top',
+													'top-right' => 'top-right',
+													'left' => 'left',
+													'center' => 'center',
+													'right' => 'right',
+													'bottom-left' => 'bottom-left',
+													'bottom' => 'bottom',
+													'bottom-right' => 'bottom-right'
+												]) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forImage">
+				<div class="standard-block row p-2">
+					<div class="col-4 p-2">
+						image_width_3 {{ Form :: number('image_width_3', 0) }}
+					</div>
+					
+					<div class="col-4 p-2">
+						image_height_3 {{ Form :: number('image_height_3', 0) }}
+					</div>
+
+					<div class="">
+						{{ Form :: text('prefix_3') }}
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_3', 'fit') }} fit_3
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_3', 'resize') }} resize_3
+					</div>
+					
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_3', 'resize_with_bg') }} resize_with_bg_3
+					</div>
+
+					<div class="col-2 p-2">
+						{{ Form :: radio('fit_type_3', 'default') }} default_3
+					</div>
+
+					<div class="col-4 p-2">
+						<div>
+							fit_position
+						</div>
+
+						<div>
+							{{ Form :: select('fit_position_3',
+												[
+													'top-left' => 'top-left',
+													'top' => 'top',
+													'top-right' => 'top-right',
+													'left' => 'left',
+													'center' => 'center',
+													'right' => 'right',
+													'bottom-left' => 'bottom-left',
+													'bottom' => 'bottom',
+													'bottom-right' => 'bottom-right'
+												]) }}
+						</div>
+					</div>
+				</div>
+			</div>
+
+						
+			<div class="p-2 dataBlock forFile forImage">
+				<div class="standard-block p-2">
+					<label>
+						{{ Form :: checkbox('file_possibility_to_delete', '1') }}
+
+						file_possibility_to_delete?
+					</label>
+				</div>
+			</div>
+			
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">						
+					<div class="p-2">
+						<label>
+							{{ Form :: checkbox('hide', '1') }}
+
+							hide?
+						</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>min_range</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: number('min_range', 0) }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>max_range</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: number('max_range', 0) }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>range_step</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: number('range_step', 0) }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>range_value</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: number('range_value', 0) }}
+					</div>
+				</div>
+			</div>
+
+
+			<div class="p-2 dataBlock forSelect">
+				<div class="standard-block p-2 row">
+					<div class="p-2 col-4">
+						select_table {{ Form :: text('select_table', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_condition {{ Form :: text('select_condition', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_sort_by {{ Form :: text('select_sort_by', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_search_column {{ Form :: text('select_search_column', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_option_text {{ Form :: text('select_option_text', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_sort_by_text {{ Form :: text('select_sort_by_text', null, ['class' => 'w-50']) }}
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 col-4">
+						select_optgroup_table {{ Form :: text('select_optgroup_table', null, ['class' => 'w-50']) }}
+					</div>
+
+					<div class="p-2 col-4">
+						select_optgroup_sort_by {{ Form :: text('select_optgroup_sort_by', null, ['class' => 'w-50']) }}
+					</div>
+				</div>
+
+
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_optgroup_text</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_optgroup_text') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_option_2_text</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_option_2_text') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_optgroup_2_table</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_optgroup_2_table') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_optgroup_2_sort_by</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_optgroup_2_sort_by') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_optgroup_2_text</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_optgroup_2_text') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_active_option</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_active_option') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithOptgroup">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_first_option_value</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_first_option_value') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>select_first_option_text</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('select_first_option_text') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forSelectWithAjax">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>label_for_ajax_select</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('label_for_ajax_select') }}
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="p-2 dataBlock forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_folder</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_folder') }}
+					</div>
+				</div>
+			</div> -->
+
+			<!-- <div class="p-2 dataBlock forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_title</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_title') }}
+					</div>
+				</div>
+			</div> -->
+
+			<!-- <div class="p-2 dataBlock forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_name_index_1</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_name_index_1') }}
+					</div>
+				</div>
+			</div> -->
+
+			<!-- <div class="p-2 dataBlock forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_name_index_2</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_name_index_2') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forFile">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>file_name_index_3</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('file_name_index_3') }}
+					</div>
+				</div>
+			</div> -->
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>radio_value</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('radio_value') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>radio_class</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('radio_class') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>sql_select_with_checkboxes_table</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('sql_select_with_checkboxes_table') }}
+					</div>
+				</div>
+			</div>
+
+			<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>sql_select_with_checkboxes_sort_by</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('sql_select_with_checkboxes_sort_by') }}
 					</div>
 				</div>
 			</div>
 			
-			<div class="p-2">
+			<div class="p-2 dataBlock forMultiplyCheckboxes forMultiplyCheckboxesWithCategory">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>title: *</span>
-						<span>(Example: Category)</span>
+						<span>sql_select_with_checkboxes_option_text</span>
 					</div>
 					
 					<div class="p-2">
-						{{ Form::text('title') }}
+						{{ Form :: text('sql_select_with_checkboxes_option_text') }}
 					</div>
 				</div>
-
-				@error('title')
-					<div class="alert alert-danger">
-						{{ $message }}
-					</div>
-				@enderror
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>db_table: *</span>
-						<span>(Example: news_step_0)</span>
+						<span>sql_select_with_checkboxes_table_inside</span>
 					</div>
 					
 					<div class="p-2">
-						{{ Form::text('db_table') }}
+						{{ Form :: text('sql_select_with_checkboxes_table_inside') }}
 					</div>
 				</div>
-
-				@error('db_table')
-					<div class="alert alert-danger">
-						{{ $message }}
-					</div>
-				@enderror
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>model_name: *</span>
-						<span>(Example: NewsStep0)</span>
+						<span>sql_select_with_checkboxes_sort_by_inside</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form :: text('model_name')}}
+						{{ Form :: text('sql_select_with_checkboxes_sort_by_inside') }}
 					</div>
 				</div>
-
-				@error('model_name')
-					<div class="alert alert-danger">
-						{{$message}}
-					</div>
-				@enderror
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forMultiplyCheckboxesWithCategory">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>main_column: *</span>
-						<span>(Example: title_ge)</span>
+						<span>sql_select_with_checkboxes_option_text_inside</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form :: text('main_column', 'title_ge')}}
+						{{ Form :: text('sql_select_with_checkboxes_option_text_inside') }}
 					</div>
 				</div>
-
-				@error('main_column')
-					<div class="alert alert-danger">
-						{{$message}}
-					</div>
-				@enderror
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forMultiplyInputParams">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>order_by_column: *</span>
-						<span>(Example: rang)</span>
+						<span>params_values_table</span>
 					</div>
 					
 					<div class="p-2">
-						{{Form :: text('order_by_column')}}
+						{{ Form :: text('params_values_table') }}
 					</div>
 				</div>
-
-				@error('order_by_column')
-					<div class="alert alert-danger">
-						{{$message}}
-					</div>
-				@enderror
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forInput forInputWithLanguages forMultiplyCheckboxes forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forEditorWithLanguages forSelect forCheckbox">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
-						<span>order_by_sequence: *</span>
-						<span>(Example: DESC)</span>
+						<span>div_id</span>
 					</div>
 					
 					<div class="p-2">
-						DESC {{Form :: radio('order_by_sequence', 'DESC')}}
-						ASC {{Form :: radio('order_by_sequence', 'ASC')}}
+						{{ Form :: text('div_id') }}
 					</div>
 				</div>
 			</div>
 
-			<div class="p-2">
+			<div class="p-2 dataBlock forInput forInputWithLanguages forImage forFile forAlias forColorPicker forMultiplyCheckboxesWithCategory forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 				<div class="standard-block p-2">
-					<div class="p-2">
-						<label>
-							{{ Form::checkbox('images', '1') }}
-
-							images?
-						</label>
+					<div class="p-2 d-flex flex-column">
+						validation
 					</div>
 
 					<div class="p-2">
-						<label>
-							{{ Form::checkbox('possibility_to_add', '1') }}
-
-							possibility_to_add?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form::checkbox('possibility_to_delete', '1') }}
-
-							possibility_to_delete?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form::checkbox('possibility_to_rang', '1') }}
-
-							possibility_to_rang?
-						</label>
-					</div>
-
-					<div class="p-2">
-						<label>
-							{{ Form::checkbox('possibility_to_edit', '1') }}
-
-							possibility_to_edit?
-						</label>
-					</div>
-				</div>
-			</div>
-
-			<div class="p-2">
-				<div class="standard-block">
-					<div class="col-4">
-						<label class="w-100">
-							<div class="d-flex flex-column p-2">
-								<div class="py-1">
-									<span>Blocks Max Number:</span>
-								</div>
-
-								<div class="py-1">
-									<span>(e.g. 5)</span>
-								</div>
-								
-								<div class="pt-1">
-									<span class="text-danger">0 means infinite amount</span>
-								</div>
-							</div>
-
-							<div class="p-2">
-								{{ Form::number('blocks_max_number', null,  ['class' => 'w-100']) }}
-							</div>
-
-						</label>
+						{{ Form :: text('validation') }}
 					</div>
 				</div>
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form::submit(__('bsw.adding')) }}
+				{{ Form :: submit('Submit') }}
 			</div>
-		{{ Form::close() }}
+		{{ Form :: close() }}
 	</div>
 @endsection
