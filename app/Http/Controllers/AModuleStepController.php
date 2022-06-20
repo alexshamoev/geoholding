@@ -18,7 +18,7 @@ class AModuleStepController extends AController {
 
 		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
 
-		foreach(Module::orderBy('rang', 'DESC')->get() as $moduleData) {
+		foreach(Module::with(['moduleStep'])->get()->sortByDesc('rang') as $moduleData) {
 			$topLevelSelectValues[$moduleData->title] = [];
 
 			foreach($moduleData->moduleStep as $stepData) {
@@ -91,7 +91,7 @@ class AModuleStepController extends AController {
 
 		$topLevelSelectValues['Without parent'] = [0 => '-- Without parent --'];
 
-		foreach(Module::with(['moduleStep:id,db_table'])->get()->sortByDesc('rang') as $moduleData) {
+		foreach(Module::with(['moduleStep'])->get()->sortByDesc('rang') as $moduleData) {
 			$topLevelSelectValues[$moduleData->title] = [];
 
 			foreach($moduleData->moduleStep as $stepData) {
