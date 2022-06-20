@@ -28,7 +28,9 @@
                     'id' => $data -> id,
                     'title' => $data -> email,
                     'editLink' => route('adminEdit', $data -> id),
-                    'deleteLink' => route('adminDelete', $data -> id)
+                    'deleteLink' => route('adminDelete', $data -> id),
+                    'possibilityToDelete' => true,
+					'possibilityToEdit' => true,
             ])
         @endforeach
     </div>
