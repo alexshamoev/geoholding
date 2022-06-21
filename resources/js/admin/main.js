@@ -1,6 +1,7 @@
 require('../bootstrap');
 require('./basic');
 require('./rangs');
+require('./menu_buttons');
 
 
 

@@ -72,7 +72,7 @@
 		{{ Form::open(array('route' => array('coreUpdate', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
-					<div class="p-2">
+					<div class="p-2" id="{{ $moduleBlock->parent_div_id }}">
 						@switch($moduleBlock->type)
 							@case('input')
 								<div class="p-2 standard-block">
@@ -195,7 +195,7 @@
 									</div>
 
 									<div class="p-2">
-										{{ Form::select($moduleBlock->db_column, $selectData[$moduleBlock->db_column], $data->{ $moduleBlock->db_column }) }}
+										{{ Form::select($moduleBlock->db_column, $selectData[$moduleBlock->db_column], $data->{ $moduleBlock->db_column }, ['id' => $moduleBlock->div_id]) }}
 									</div>
 								</div>
 

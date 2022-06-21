@@ -747,6 +747,18 @@
 				</div>
 			</div>
 
+			<div class="p-2 dataBlock forInput forInputWithLanguages forMultiplyCheckboxes forFile forMultiplyCheckboxesWithCategory forCalendar forColorPicker forImage forEditor forEditorWithLanguages forSelect forCheckbox">
+				<div class="standard-block p-2">
+					<div class="p-2 d-flex flex-column">
+						<span>parent_div_id</span>
+					</div>
+					
+					<div class="p-2">
+						{{ Form :: text('parent_div_id') }}
+					</div>
+				</div>
+			</div>
+
 			<div class="p-2 dataBlock forInput forInputWithLanguages forImage forFile forAlias forColorPicker forMultiplyCheckboxesWithCategory forRang forCalendar forEditor forEditorWithLanguages forSelect forCheckbox">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

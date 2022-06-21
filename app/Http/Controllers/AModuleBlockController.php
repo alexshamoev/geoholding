@@ -149,6 +149,7 @@ class AModuleBlockController extends AController {
 		$moduleBlock->sql_select_with_checkboxes_option_text_inside = $request->input('sql_select_with_checkboxes_option_text_inside');
 		$moduleBlock->params_values_table = $request->input('params_values_table');
 		$moduleBlock->div_id = $request->input('div_id');
+		$moduleBlock->parent_div_id = $request->input('parent_div_id');
 		$moduleBlock->validation = $request->input('validation');
 
 		$moduleBlock->save();
@@ -328,6 +329,7 @@ class AModuleBlockController extends AController {
 		$moduleBlock->sql_select_with_checkboxes_option_text_inside = $request->input('sql_select_with_checkboxes_option_text_inside');
 		$moduleBlock->params_values_table = $request->input('params_values_table');
 		$moduleBlock->div_id = $request->input('div_id');
+		$moduleBlock->parent_div_id = $request->input('parent_div_id');
 		$moduleBlock->validation = $request->input('validation');
 
 		$moduleBlock->save();
