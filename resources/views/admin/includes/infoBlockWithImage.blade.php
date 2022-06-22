@@ -3,12 +3,31 @@
 		<div class="col-2">
 			@if(isset($possibilityToMultyDelete))
 				@if($possibilityToMultyDelete !== 0)
-					<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+					<div class="row">
+						<div class="col-3
+									d-flex
+									align-items-center
+									justify-content-center">
+							<label>
+								<div class="p-2">
+									<input type="checkbox"
+											name="checkbox[]"
+											value="{{ $id }}"
+											class="m-0">
+								</div>
+							</label>
+						</div>
+
+						<div class="col-9">
+							<div style="background-image: url('{{ asset($imageUrl) }}');"
+				 				 class="edit-block__image_div"></div>
+						</div>
+					</div>
+				@else
+					<div style="background-image: url('{{ asset($imageUrl) }}');"
+				 		 class="edit-block__image_div"></div>
 				@endif
 			@endif
-
-			<div style="background-image: url('{{ asset($imageUrl) }}');"
-				 class="edit-block__image_div"></div>
 		</div>
 
 		<div class="col-7">
@@ -43,7 +62,6 @@
 		
 		<div class="col-3">
 			<div class="row h-100 d-flex justify-content-end">
-
 				@if(isset($possibilityToEdit))
 					@if($possibilityToEdit !== 0)
 						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block">

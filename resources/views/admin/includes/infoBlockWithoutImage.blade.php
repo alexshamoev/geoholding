@@ -2,26 +2,29 @@
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-10">
 			<div class="row">
-				<div class="col-4 p-2">
-					<div class="p-2 d-flex align-items-center">
-						@if(isset($possibilityToMultyDelete))
-							@if($possibilityToMultyDelete !== 0)
-								<div class="">
-									<input type="checkbox" name="checkbox[]" value="{{ $id }}" id="">
+				<div class="col-4 p-2 d-flex align-items-center"">
+					@if(isset($possibilityToMultyDelete))
+						@if($possibilityToMultyDelete !== 0)
+							<label>
+								<div class="py-2 ps-2 pe-1 d-inline-block">
+									<input type="checkbox"
+											name="checkbox[]"
+											value="{{ $id }}"
+											class="m-0">
 								</div>
-							@endif
+							</label>
 						@endif
+					@endif
 
+					<div class="p-2 d-inline-block">
 						@if(isset($possibilityToEdit))
 							@if($possibilityToEdit !== 0)
 								<a href="{{ $editLink }}">
 							@endif
 						@endif
-							<div class="m-1">
-								<span class="line_max_1">
-									{{ $title }}
-								</span>
-							</div>
+							<span class="line_max_1">
+								{{ $title }}
+							</span>
 						@if(isset($possibilityToEdit))
 							@if($possibilityToEdit !== 0)
 								</a>
