@@ -76,12 +76,26 @@
 .submit-button input[type="submit"] {
 	background-color: #a2d5fb; 
 	padding: 10px 16px;
-	// transition: 0.2s all ease-in-out;
 	border: 1px solid #666;
-	font-size: 14px;
+	font-size: 15px;
 	outline: none !important;
+
 	&:hover {
 		background-color: #2092f4;
+		color: #fff;
+	}
+}
+
+.delete-button button,
+.delete-button input[type="submit"] {
+	background-color: #ff3939; 
+	padding: 10px 16px;
+	border: 1px solid #666;
+	font-size: 15px;
+	outline: none !important;
+
+	&:hover {
+		background-color: #dc0404;
 		color: #fff;
 	}
 }
