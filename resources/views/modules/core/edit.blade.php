@@ -517,7 +517,7 @@
 						@endforeach
 
 						@if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
-							<div class="p-3">
+							<div class="p-2 delete-button">
 								{{ Form::submit('წაშლა') }}  
 							</div>
 						@endif
