@@ -68,6 +68,15 @@
 			</div>
 		@endif
 
+
+		@if(Session::has('alert'))
+			<div class="p-2">
+				<div class="alert alert-danger m-0" role="alert">
+					{{ Session::get('alert') }}
+				</div>
+			</div>
+		@endif
+
 		
 		{{ Form::open(array('route' => array('coreUpdate', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
@@ -507,9 +516,9 @@
 							@endif
 						@endforeach
 
-						@if($moduleStepData->possibility_to_multy_delete !== 0)
+						@if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
 							<div class="p-3">
-								{{ Form::submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+								{{ Form::submit('წაშლა') }}  
 							</div>
 						@endif
 					</div>

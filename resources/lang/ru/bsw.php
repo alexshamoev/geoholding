@@ -74,4 +74,5 @@ return [
     'show_format' => '(Необходимо загрузить файл в формате) <div class="fw-bold px-2">:format</div>',
     'delete_file' => 'Удалить файл',
     'delete_button_text' => 'Удалить',
+    'select_block_delete' => 'Выберите блок, для удаления',
 ];

@@ -35,6 +35,15 @@
 			</div>
 		@enderror
 
+
+		@if(Session::has('alert'))
+			<div class="p-2">
+				<div class="alert alert-danger m-0" role="alert">
+					{{ Session::get('alert') }}
+				</div>
+			</div>
+		@endif
+
 		
 		@php
 			$i = 0;
@@ -103,7 +112,7 @@
 						@endif
 					@endforeach
 
-					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0)
+					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0 && count($dataFromDb) !== 0)
 						<div class="p-2 delete-button">
 							{{ Form::submit(__('bsw.delete_button_text')) }}
 						</div>

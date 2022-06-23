@@ -76,4 +76,5 @@ return [
     'show_format' => '(აუცილებელია ფაილის ატვირთვა ფორმატში) <div class="fw-bold px-2">:format</div>',
     'delete_file' => 'ფაილის წაშლა',
     'delete_button_text' => 'წაშლა',
+    'select_block_delete' => 'აირჩიეთ ბლოკი, წასაშლელად',
 ];

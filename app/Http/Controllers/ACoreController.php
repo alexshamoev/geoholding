@@ -1222,21 +1222,24 @@ class ACoreController extends AController {
 
 
 	public function multiDelete(Request $request, $moduleAlias, $moduleStepId, $id, $parentModuleStepId) {
-		$module = Module::firstWhere('alias', $moduleAlias);
-		$moduleStep = ModuleStep::find($moduleStepId);
-
-		$modelClass = 'App\Models\\'.$moduleStep->model_name;
-		
-		foreach($request->input('checkbox') as $dataId) {
-			$modelClass::destroy($dataId);
+		if($request->input('checkbox')) {
+			$module = Module::firstWhere('alias', $moduleAlias);
+			$moduleStep = ModuleStep::find($moduleStepId);
+			$modelClass = 'App\Models\\'.$moduleStep->model_name;
+			
+			foreach($request->input('checkbox') as $dataId) {
+				$modelClass::destroy($dataId);
+			}
+	
+			Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+	
+			if($id) {
+				return redirect()->route('coreEdit', [$moduleAlias, $parentModuleStepId, $id]);
+			}
+	
+			return redirect()->route('coreGetStartPoint', $moduleAlias);
 		}
 
-		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
-
-		if($id) {
-			return redirect()->route('coreEdit', [$moduleAlias, $parentModuleStepId, $id]);
-		}
-
-		return redirect()->route('coreGetStartPoint', $moduleAlias);
+		return back()->with('alert', __('bsw.select_block_delete'));
 	}
 }
