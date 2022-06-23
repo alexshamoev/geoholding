@@ -508,8 +508,8 @@
 						@endforeach
 
 						@if($moduleStepData->possibility_to_multy_delete !== 0)
-							<div class="p-3">
-								{{ Form::submit('წაშლა') }} <i class="fa-solid fa-trash text-danger fa-lg"></i>
+							<div class="p-2 delete-button">
+								{{ Form::submit('წაშლა') }}
 							</div>
 						@endif
 					</div>
