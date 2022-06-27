@@ -41,13 +41,13 @@
 
 		<div class="row my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
 			@foreach($activeCategory -> photoGalleryStep1 as $data)
-				<figure itemprop="associatedMedia" class="col-3">
+				<figure itemprop="associatedMedia" class="col-2">
 					<a href="{{ asset('/storage/images/modules/photo_gallery/34/'.$data -> id.'.jpg') }}"
 						itemprop="contentUrl"
 						data-size="2000x1200">
 						<img src="{{ asset('/storage/images/modules/photo_gallery/34/'.$data -> id.'_preview.jpg') }}"
 							 itemprop="thumbnail"
-							 alt="Image description" />
+							 alt="{{ $data -> title }}"/>
 					</a>
 
 					<figcaption class="d-none" itemprop="{{ $data -> title }}">{{ $data -> title }}</figcaption>
