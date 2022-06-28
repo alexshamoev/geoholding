@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Models\Language;
 use App\Models\PhotoGalleryStep0;
-use App\Models\PhotoGalleryStep1;
 
 class PhotoGalleryController extends FrontController {
     private const PAGE_SLUG = 'photo-gallery';
+    private static $page;
+
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+        
+        PhotoGalleryStep0::setPage(self::$page);
+    }
 
     
     public static function getStep0($lang) {
-        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
         $data = array_merge(self :: getDefaultData($language,
-                                                    $page),
+                                                    self::$page),
                             [
                                 'photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get()
                             ]);
@@ -27,12 +33,11 @@ class PhotoGalleryController extends FrontController {
     
     public static function getStep1($lang, $step0Alias) {
         $language = Language :: where('title', $lang) -> first();
-        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
 
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
         $data = array_merge(self :: getDefaultData($language,
-                                                    $page,
+                                                    self::$page,
                                                     $activeCategory),
                             [
                                 'activeCategory' => $activeCategory

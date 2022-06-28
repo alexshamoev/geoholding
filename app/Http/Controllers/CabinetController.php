@@ -8,18 +8,22 @@ use App\Models\Language;
 use App\Models\User;
 use Auth;
 
-class CabinetController extends FrontController
-{
+class CabinetController extends FrontController {
     private const PAGE_SLUG = 'cabinet';
+    private static $page;
+
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
 
 
     public static function getStep0($lang) {
         if(Auth::check()) {
-            $page = Page::firstWhere('slug', self::PAGE_SLUG);
             $language = Language::firstWhere('title', $lang);
     
             $data = array_merge(self::getDefaultData($language,
-                                                        $page),
+                                                        self::$page),
                                 [
                                     'user' => Auth::user(),
                                 ]);
@@ -32,11 +36,10 @@ class CabinetController extends FrontController
 
 
     public static function edit($lang) {
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
         $language = Language::firstWhere('title', $lang);
 
         $data = array_merge(self::getDefaultData($language,
-                                                    $page),
+                                                    self::$page),
                             [
                                 'user' => Auth::user(),
                             ]);
@@ -62,15 +65,14 @@ class CabinetController extends FrontController
         $user->address = $request->input('address');
         $user->save();
 
-        $page = Page::firstWhere('slug', self::PAGE_SLUG);
         $language = Language::firstWhere('title', $lang);
 
         $data = array_merge(self::getDefaultData($language,
-                                                    $page),
+                                                    self::$page),
                             [
                                 'user' => Auth::user(),
                             ]);
 
-        return redirect()->route($page->alias, $language->title);
+        return redirect()->route(self::$page->alias, $language->title);
     }
 }

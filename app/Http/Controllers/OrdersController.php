@@ -10,18 +10,22 @@ use App\Models\Page;
 use App\Models\language;
 use Auth;
 
-class OrdersController extends FrontController
-{
+class OrdersController extends FrontController {
     private const PAGE_SLUG = 'orders';
+    private static $page;
+
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
 
 
     public static function getStep0($lang) {
         if(Auth::check()) {
-            $page = Page::firstWhere('slug', self::PAGE_SLUG);
             $language = Language::firstWhere('title', $lang);
 
             $data = array_merge(self::getDefaultData($language,
-                                                        $page),
+                                                        self::$page),
                                 [
                                     'orders' => Order::where('user_id', Auth::user()->id)->get(), 
                                 ]);
@@ -78,10 +82,10 @@ class OrdersController extends FrontController
 
         MailController::orderEmail($emailData);
 
-        $page = Page :: where('slug', 'basket') -> first();
-        $language = Language :: where('title', $lang) -> first();
+        $page = Page::where('slug', 'basket')->first();
+        $language = Language::where('title', $lang)->first();
 
-        $data = array_merge(self :: getDefaultData($language,
+        $data = array_merge(self::getDefaultData($language,
                                                     $page), 
                             [
                                 'orderPage' => Page::firstWhere('slug', 'order'),

@@ -8,13 +8,22 @@ use App\Models\Page;
 use App\Models\ProductStep1;
 use app;
 
-class ProductStep0 extends Model
-{
+class ProductStep0 extends Model {
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'products_step_0';
 
-    protected static $pageSlug = 'products';
+    private static $page;
+
+
+    public static function setPage($page) {
+        self::$page = $page;
+    }
 
 
 	public function getAliasAttribute() {
@@ -33,10 +42,9 @@ class ProductStep0 extends Model
 
     
 	public function getFullUrlAttribute() {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return $page->fullUrl.'/'.$this->alias;
+        return self::$page->fullUrl.'/'.$this->alias;
     }
+
 
 	public function productStep1() {
         return $this->hasMany(ProductStep1::class, 'top_level', 'id')->orderBy('rang', 'desc');
@@ -44,8 +52,6 @@ class ProductStep0 extends Model
 
 
     public function getFullUrl($lang) {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return '/'.$lang.'/'.$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
+        return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
 }

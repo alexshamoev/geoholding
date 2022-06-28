@@ -11,18 +11,21 @@ use Hash;
 use Session;
 use App;
 
-class AuthController extends FrontController
-{
+class AuthController extends FrontController {
     private const PAGE_SLUG = 'login';
+    private static $page;
 
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
 
     public static function getLogin($lang) {
         $cabinetPage = Page::firstWhere('slug', 'cabinet');
 
         if(!Auth::check()) {
-            $page = Page::firstWhere('slug', self::PAGE_SLUG);
             $language = Language::firstWhere('title', $lang);
-            $data = array_merge(self::getDefaultData($language, $page));
+            $data = array_merge(self::getDefaultData($language, self::$page));
 
             return view('auth.login', $data);
         }

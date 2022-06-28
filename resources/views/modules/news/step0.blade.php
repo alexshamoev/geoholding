@@ -18,8 +18,12 @@
 			@foreach($newsStep0 as $data)
 				<div class="col-lg-4 col-md-6 col-12">
 					<a href="{{ $data -> fullUrl }}">
-						<div class="p-2">
+						<div class="p-2 d-sm-block d-none">
 							<img src="{{ asset('/storage/images/modules/news/28/'.$data -> id.'.jpg') }}" alt="{{ $data -> title }}">
+						</div>
+
+						<div class="p-2 d-sm-none">
+							<img src="{{ asset('/storage/images/modules/news/28/'.$data -> id.'_mobile.jpg') }}" alt="{{ $data -> title }}">
 						</div>
 
 						<div class="p-2">

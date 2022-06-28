@@ -6,12 +6,17 @@ use App\Models\Language;
 
 class ContactsController extends FrontController {
     private const PAGE_SLUG = 'contact';
+    private static $page;
 
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
+    
     
     public static function getStep0($lang) {
-        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
         
-        return view('modules.contacts.step0', self :: getDefaultData($language, $page));
+        return view('modules.contacts.step0', self :: getDefaultData($language, self::$page));
     }
 }

@@ -8,17 +8,22 @@ use App\Models\Language;
 use App\Models\ProductStep2;
 use Auth;
 
-class BasketController extends FrontController
-{
+class BasketController extends FrontController {
     private const PAGE_SLUG = 'basket';
+    private static $page;
+
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
+
 
     public static function getStep0(Request $request, $lang) {
         if(Auth::check()) {
-            $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
             $language = Language :: where('title', $lang) -> first();
 
             $data = array_merge(self :: getDefaultData($language,
-                                                        $page), 
+                                                        self::$page), 
                                 [
                                     'orderPage' => Page::firstWhere('slug', 'order'),
                                 ]);

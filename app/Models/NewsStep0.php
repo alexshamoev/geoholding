@@ -16,7 +16,12 @@ class NewsStep0 extends Model {
      */
     protected $table = 'news_step_0';
 
-    protected static $pageSlug = 'news';
+    private static $page;
+
+
+    public static function setPage($page) {
+        self::$page = $page;
+    }
 
 
 	public function getAliasAttribute() {
@@ -35,9 +40,7 @@ class NewsStep0 extends Model {
 
     
 	public function getFullUrlAttribute() {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return $page->fullUrl.'/'.$this->alias;
+        return self::$page->fullUrl.'/'.$this->alias;
     }
 
 
@@ -88,8 +91,6 @@ class NewsStep0 extends Model {
 
 
     public function getFullUrl($lang) {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return '/'.$lang.'/'.$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
+        return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
 }

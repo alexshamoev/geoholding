@@ -6,13 +6,18 @@ use App\Models\Language;
 
 class HomeController extends FrontController {
     private const PAGE_SLUG = 'home';
+    private static $page;
 
+
+    public function __construct() {
+        self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
+    }
+    
     
     public static function getStep0($lang) {
-        $page = Page :: where('slug', self :: PAGE_SLUG) -> first();
         $language = Language :: where('title', $lang) -> first();
 
-        $data = array_merge(self :: getDefaultData($language, $page));
+        $data = array_merge(self :: getDefaultData($language, self::$page));
         
         return view('modules.home.step0', $data);
     }

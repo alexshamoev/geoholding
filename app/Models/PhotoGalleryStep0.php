@@ -15,8 +15,13 @@ class PhotoGalleryStep0 extends Model {
      * @var string
      */
     protected $table = 'photo_gallery_step_0';
-    protected static $pageSlug = 'photo-gallery';
+    
+    private static $page;
 
+
+    public static function setPage($page) {
+        self::$page = $page;
+    }
 
 	public function getAliasAttribute() {
         return $this->{ 'alias_'.App::getLocale() };
@@ -34,16 +39,12 @@ class PhotoGalleryStep0 extends Model {
 
     
 	public function getFullUrlAttribute() {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return $page->fullUrl.'/'.$this->alias;
+        return self::$page->fullUrl.'/'.$this->alias;
     }
 
     
 	public function getFullUrl($lang) {
-        $page = Page::where('slug', self::$pageSlug)->first();
-
-        return $page->getFullUrl($lang).'/'.$this->{ 'alias_'.$lang };
+        return self::$page->getFullUrl($lang).'/'.$this->{ 'alias_'.$lang };
     }
 
 
