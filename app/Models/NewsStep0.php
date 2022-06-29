@@ -15,7 +15,6 @@ class NewsStep0 extends Model {
      * @var string
      */
     protected $table = 'news_step_0';
-
     private static $page;
 
 

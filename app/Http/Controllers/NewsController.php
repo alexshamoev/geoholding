@@ -13,13 +13,11 @@ class NewsController extends FrontController {
     private const PAGE_SLUG = 'news';
     private static $page;
 
-
-    public function __construct() {
+    function __construct() {
         self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
-        
+
         NewsStep0::setPage(self::$page);
     }
-
 
     public static function getStep0($lang) {
         $language = Language::firstWhere('title', $lang);
