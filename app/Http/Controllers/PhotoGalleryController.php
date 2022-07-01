@@ -36,13 +36,17 @@ class PhotoGalleryController extends FrontController {
 
         $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
 
-        $data = array_merge(self :: getDefaultData($language,
-                                                    self::$page,
-                                                    $activeCategory),
-                            [
-                                'activeCategory' => $activeCategory
-                            ]);
+        if($activeCategory) {
+            $data = array_merge(self :: getDefaultData($language,
+                                                        self::$page,
+                                                        $activeCategory),
+                                [
+                                    'activeCategory' => $activeCategory
+                                ]);
 
-        return view('modules.photo_gallery.step1', $data);
+            return view('modules.photo_gallery.step1', $data);
+        }else {
+            return redirect()->route('photo-gallery', $lang);
+        }
     }
 }
