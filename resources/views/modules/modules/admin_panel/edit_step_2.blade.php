@@ -215,7 +215,7 @@
 
 					<div class="col-4 p-2">
 						<div>
-							fit_position
+							fit_position_1
 						</div>
 
 						<div>
@@ -270,7 +270,7 @@
 
 					<div class="col-4 p-2">
 						<div>
-							fit_position
+							fit_position_2
 						</div>
 
 						<div>
@@ -324,7 +324,7 @@
 
 					<div class="col-4 p-2">
 						<div>
-							fit_position
+							fit_position_3
 						</div>
 
 						<div>
