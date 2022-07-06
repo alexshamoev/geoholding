@@ -35,9 +35,9 @@ class ReactTranslationStringsController extends Controller {
 		// 					->orWhere('title_en', 'like', '%'.$searchWord.'%')
 		// 					->orWhere('title_ru', 'like', '%'.$searchWord.'%')
 		// 					->get() as $data) {
-		// 		$result[$i]['title'] = $data -> title;
-		// 		$result[$i]['fullUrl'] = $data -> fullUrl;
-		// 		$result[$i]['text'] = $data -> text;
+		// 		$result[$i]['title'] = $data->title;
+		// 		$result[$i]['fullUrl'] = $data->fullUrl;
+		// 		$result[$i]['text'] = $data->text;
 
 		// 		$i++;
 		// 	}

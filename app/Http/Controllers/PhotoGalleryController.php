@@ -19,12 +19,12 @@ class PhotoGalleryController extends FrontController {
 
     
     public static function getStep0($lang) {
-        $language = Language :: where('title', $lang) -> first();
+        $language = Language::where('title', $lang)->first();
 
-        $data = array_merge(self :: getDefaultData($language,
+        $data = array_merge(self::getDefaultData($language,
                                                     self::$page),
                             [
-                                'photoGalleryStep0' => PhotoGalleryStep0 :: orderByDesc('rang') -> get()
+                                'photoGalleryStep0' => PhotoGalleryStep0::orderByDesc('rang')->get()
                             ]);
 
         return view('modules.photo_gallery.step0', $data);
@@ -32,12 +32,12 @@ class PhotoGalleryController extends FrontController {
 
     
     public static function getStep1($lang, $step0Alias) {
-        $language = Language :: where('title', $lang) -> first();
+        $language = Language::where('title', $lang)->first();
 
-        $activeCategory = PhotoGalleryStep0 :: where('alias_'.$language -> title, $step0Alias) -> first();
+        $activeCategory = PhotoGalleryStep0::where('alias_'.$language->title, $step0Alias)->first();
 
         if($activeCategory) {
-            $data = array_merge(self :: getDefaultData($language,
+            $data = array_merge(self::getDefaultData($language,
                                                         self::$page,
                                                         $activeCategory),
                                 [

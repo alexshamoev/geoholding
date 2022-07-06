@@ -20,9 +20,9 @@ class BasketController extends FrontController {
 
     public static function getStep0(Request $request, $lang) {
         if(Auth::check()) {
-            $language = Language :: where('title', $lang) -> first();
+            $language = Language::where('title', $lang)->first();
 
-            $data = array_merge(self :: getDefaultData($language,
+            $data = array_merge(self::getDefaultData($language,
                                                         self::$page), 
                                 [
                                     'orderPage' => Page::firstWhere('slug', 'order'),
@@ -36,10 +36,10 @@ class BasketController extends FrontController {
 
 
     public function getProducts(Request $request) {
-        $product = ProductStep2::find((int)$request -> input('productId'));
+        $product = ProductStep2::find((int)$request->input('productId'));
 
         if($product) {
-            $lang = $request -> input('lang');
+            $lang = $request->input('lang');
 
             $lang = preg_replace("/[^A-Z]+/ui",
                                 '',
@@ -47,12 +47,12 @@ class BasketController extends FrontController {
 
             \App::setLocale($lang);
 
-            return response() -> json([
+            return response()->json([
                 'title' => $product->{ 'title_'.\App::getLocale() },
                 'price' => $product->price,
             ]);
         } else {
-            return  response() -> json(false);
+            return  response()->json(false);
         }
     }
 }

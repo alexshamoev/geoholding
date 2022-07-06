@@ -15,9 +15,9 @@ class HomeController extends FrontController {
     
     
     public static function getStep0($lang) {
-        $language = Language :: where('title', $lang) -> first();
+        $language = Language::where('title', $lang)->first();
 
-        $data = array_merge(self :: getDefaultData($language, self::$page));
+        $data = array_merge(self::getDefaultData($language, self::$page));
         
         return view('modules.home.step0', $data);
     }

@@ -52,10 +52,10 @@ class FrontController extends Controller {
 				'menuButtons' => MenuButtonStep0::with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
 				'bsc' => $bsc,
 				'bsw' => Bsw::getFullData(),
-				'registrationPageUrl' => '/'.$lang -> title.'/'.Page::firstWhere('slug', 'registration') -> alias,
-				'loginPageUrl' => '/'.$lang -> title.'/'.Page::firstWhere('slug', 'login') -> alias,
+				'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
+				'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
 				'basketPage' => Page::firstWhere('slug', 'basket'),
-				'partners' => Partner::orderByDesc('rang') -> get(),
+				'partners' => Partner::orderByDesc('rang')->get(),
 				'widgetGetVisibility' => $widgetGetVisibility,
 				'copyrightDate' => $copyrightDate];
 		

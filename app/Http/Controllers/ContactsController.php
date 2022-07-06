@@ -15,8 +15,8 @@ class ContactsController extends FrontController {
     
     
     public static function getStep0($lang) {
-        $language = Language :: where('title', $lang) -> first();
+        $language = Language::where('title', $lang)->first();
         
-        return view('modules.contacts.step0', self :: getDefaultData($language, self::$page));
+        return view('modules.contacts.step0', self::getDefaultData($language, self::$page));
     }
 }

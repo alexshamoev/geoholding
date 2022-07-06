@@ -49,9 +49,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 
 				$i++;
 			}
@@ -63,9 +63,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -77,9 +77,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -91,9 +91,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -105,9 +105,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -119,9 +119,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -133,9 +133,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -147,9 +147,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
@@ -161,9 +161,9 @@ class ReactSearchController extends Controller {
 							->orWhere('text_en', 'like', '%'.$searchWord.'%')
 							->orWhere('text_ru', 'like', '%'.$searchWord.'%')
 							->get() as $data) {
-				$result[$i]['title'] = $data -> title;
-				$result[$i]['fullUrl'] = $data -> fullUrl;
-				$result[$i]['text'] = $data -> text;
+				$result[$i]['title'] = $data->title;
+				$result[$i]['fullUrl'] = $data->fullUrl;
+				$result[$i]['text'] = $data->text;
 				
 				$i++;
 			}
