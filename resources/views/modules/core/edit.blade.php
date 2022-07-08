@@ -133,7 +133,7 @@
 											@if($moduleBlock->file_possibility_to_delete)
 												<div class="col-3 p-1">
 													<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-														<img src="http://localhost:8001/storage/images/admin/close.svg"
+														<img src="{{ asset('storage/images/admin/close.svg') }}"
 																alt="__('bsw.delete_file')"
 																class="bar-tag-bigger-img">
 													</a>
