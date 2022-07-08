@@ -236,7 +236,7 @@
 							</div>
 
 							<div class="p-2">
-								{{ Form::number('blocks_max_number', null,  ['class' => 'w-100']) }}
+								{{ Form::number('blocks_max_number', 0,  ['class' => 'w-100']) }}
 							</div>
 
 						</label>
