@@ -21,7 +21,7 @@ function checkBlockType(blockType) {
 	if(blockType === 'input') {
 		$('.step2 .forInput').fadeIn(0);
 	}
-	
+
 	if(blockType === 'input_with_languages') {
 		$('.step2 .forInputWithLanguages').fadeIn(0);
 	}
@@ -107,9 +107,9 @@ function check_file_exists(url) {
 
 // function show_type_blocks(id, speed_delay) {
 // 	let block_id = $('#block_id_input').val();
-	
+
 // 	hide_type_blocks(speed_delay);
-	
+
 // 	$('.type_' + id).fadeIn(animation_speed);
 // }
 
@@ -118,34 +118,33 @@ jQuery(function () {
 	// Dragable blocks.
 		$('.rangBlocks').each(function() {
 			let activeRangBlock = $(this);
-
 			activeRangBlock.sortable({
 				// Only make the .rangButton child elements support dragging.
 				// Omit this to make then entire <li>...</li> draggable.
-				handle: '.rangButton', 
+				handle: '.rangButton',
 				update: function() {
 					let idsArray = [];
-	
+
 					$('.blockWithRang', activeRangBlock).each(function(index, elem) {
 						console.log($(elem).data('id'));
-	
+
 						idsArray[index] = $(elem).data('id');
-	
+
 						// Persist the new indices.
 					});
-	
+
 					// alert(1);
-	
+
 					// event.preventDefault();
-	
+
 					// let name = $("input[name=name]").val();
 					// let email = $("input[name=email]").val();
 					// let mobile_number = $("input[name=mobile_number]").val();
 					// let message = $("input[name=message]").val();
 					// let _token   = $('meta[name="csrf-token"]').attr('content');
-	
+
 					let _token = $('meta[name="csrf-token"]').attr('content');
-	
+
 					$.ajax({
 						url: "/admin/set-rangs",
 						type: "POST",
@@ -156,15 +155,12 @@ jQuery(function () {
 						},
 						success: function(response) {
 							console.log(response);
-							
+
 							if(response) {
-	
+
 							}
 						},
 					});
-	
-					
-	
 					// alert(555);
 				}
 			});
@@ -205,7 +201,7 @@ jQuery(function () {
         }, 'xml');
     });
 
-   
+
     $('.delete-block').on('click', function() {
         let conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
 
@@ -226,12 +222,12 @@ jQuery(function () {
 
 	// Modules.
 		$('.modulesStep0__typeBox').fadeOut(0);
-		
+
 
 		console.log($('.include_type:checked').val());
 
 		$('.modulesStep0__type' + $('.include_type:checked').val() + 'Box').fadeIn(0);
-		
+
 		$('.include_type').on('change', function() {
 			$('.modulesStep0__typeBox').fadeOut(0);
 

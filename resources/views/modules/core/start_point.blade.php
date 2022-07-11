@@ -10,8 +10,8 @@
 	@include('admin.includes.tags', [
 		'tag0Text' => $module->title
 	])
-	
-	
+
+
 	<div class="p-2">
 		@if(Session::has('successStatus'))
 			<div class="p-2">
@@ -44,11 +44,11 @@
 			</div>
 		@endif
 
-		
+
 		@php
 			$i = 0;
 		@endphp
-		
+
 		@if($moduleStep->values()->get($i)->blocks_max_number === 0 || $moduleStep->values()->get($i)->blocks_max_number > count($collection->values()->get(0)))
 			<!-- Add button -->
 				@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
@@ -60,7 +60,7 @@
 							0,
 						])
 					])
-				@elseif($moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)  
+				@elseif($moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
 					<div class="p-2">
 						<div class="p-2 standard-block">
 							{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $moduleStep->values()->get($i)->id, 0), 'files' => true, 'method' => 'post')) }}
@@ -113,6 +113,11 @@
 					@endforeach
 
 					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0 && count($dataFromDb) !== 0)
+                    <div>
+                        <p>
+                            ↑ <span class="check__all">მოვნიშნოთ ყველა</span> / <span class="remove__all">მოვხსნათ მონიშვნა</span>
+                        </p>
+                    </div>
 						<div class="p-2 delete-button">
 							{{ Form::submit(__('bsw.delete_button_text')) }}
 						</div>
