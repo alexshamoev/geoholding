@@ -329,12 +329,14 @@ class ACoreController extends AController {
 					if(!file_exists($imagePath)){
 						$validationArray[$data->db_column] = $data->validation;
 					}
+				} elseif($data->type === 'alias') {
+					foreach(Language::where('disable', 0)->get() as $langData) {
+						$validationArray[$data->db_column.'_'.$langData->title] = $data->validation.'|unique:'.$moduleStep->db_table;
+					}
 				} else {
-					if($data->type !== 'alias' && $data->type !== 'input_with_languages' && $data->type !== 'editor_with_languages') {
+					if($data->type !== 'input_with_languages' && $data->type !== 'editor_with_languages') {
 						$validationArray[$data->db_column] = $data->validation;
 					} else {
-						$validationData = [];
-
 						foreach(Language::where('disable', 0)->get() as $langData) {
 							$validationArray[$data->db_column.'_'.$langData->title] = $data->validation;
 						}
@@ -1086,12 +1088,14 @@ class ACoreController extends AController {
 					if(!file_exists($imagePath)){
 						$validationArray[$data->db_column] = $data->validation;
 					}
+				} elseif($data->type === 'alias') {
+					foreach(Language::where('disable', 0)->get() as $langData) {
+						$validationArray[$data->db_column.'_'.$langData->title] = $data->validation.'|unique:'.$moduleStep->db_table.','.$data->db_column.'_'.$langData->title.','.$id;
+					}
 				} else {
-					if($data->type !== 'alias' && $data->type !== 'input_with_languages' && $data->type !== 'editor_with_languages') {
+					if($data->type !== 'input_with_languages' && $data->type !== 'editor_with_languages') {
 						$validationArray[$data->db_column] = $data->validation;
 					} else {
-						$validationData = [];
-	
 						foreach(Language::where('disable', 0)->get() as $langData) {
 							$validationArray[$data->db_column.'_'.$langData->title] = $data->validation;
 						}
