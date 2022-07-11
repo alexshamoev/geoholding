@@ -59,7 +59,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col-3">
 			<div class="row h-100 d-flex justify-content-end">
 				@if(isset($possibilityToEdit))

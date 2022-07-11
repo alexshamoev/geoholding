@@ -6,19 +6,19 @@
 @endsection
 
 
-@section('content')	
+@section('content')
 	@include('admin.includes.coreTags', [
 		'tagsData' => $tagsData
 	])
 
-	@php	
+	@php
 		$barData = [
 					'nextId' => $nextId,
 					'prevId' => $prevId,
 					'nextRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $nextId]),
 					'prevRoute' => route('coreEdit', [$module->alias, $moduleStep->id, $prevId]),
 					'backRoute' => $backRoute
-				]	
+				]
 	@endphp
 
 	@if($moduleStep->possibility_to_add === 1)
@@ -37,7 +37,7 @@
 
 	@include('admin.includes.bar', $barData)
 
-	
+
 	<div class="p-2">
 		@error('images')
 			<div class="alert alert-danger">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		@enderror
-		
+
 		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
@@ -77,7 +77,7 @@
 			</div>
 		@endif
 
-		
+
 		{{ Form::open(array('route' => array('coreUpdate', $module->alias, $moduleStep->id, $data->id), 'files' => true)) }}
 			@foreach($moduleBlocks as $moduleBlock)
 				@if($moduleBlock->db_column !== 'rang')
@@ -180,7 +180,7 @@
 												</div>
 											</a>
 										@endif
-										
+
 										@if($moduleBlock->file_possibility_to_delete)
 											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
 												X
@@ -225,7 +225,7 @@
 										{{ Form::select($moduleBlock->db_column, $selectOptgroudData[$moduleBlock->db_column], $data->{ $moduleBlock->db_column }) }}
 									</div>
 								</div>
-								
+
 								@break
 							@case('editor')
 								<div class="p-2 standard-block">
@@ -253,7 +253,7 @@
 										.create( document.querySelector( '#{{ $moduleBlock->db_column }}' ) )
 										.catch( error => {
 											console.error( error );
-										} );					
+										} );
 								</script>
 
 								@break
@@ -329,7 +329,7 @@
 										</div>
 
 										<div class="p-2">
-											{{ Form::textarea($moduleBlock->db_column.'_'.$langData->title, 
+											{{ Form::textarea($moduleBlock->db_column.'_'.$langData->title,
 																$data->{ $moduleBlock->db_column.'_'.$langData->title },
 																[
 																	'id' => $moduleBlock->db_column.'_'.$langData->title
@@ -342,7 +342,7 @@
 											{{ $message }}
 										</div>
 									@enderror
-										
+
 									<script>
 										ClassicEditor
 											.create( document.querySelector( '#{{$moduleBlock->db_column.'_'.$langData->title}}' ),{
@@ -362,7 +362,7 @@
 											} )
 											.catch( error => {
 												console.error( error );
-											} );					
+											} );
 									</script>
 								@endforeach
 
@@ -372,7 +372,7 @@
 									<div class="p-2">
 										<label>
 											{{ Form::checkbox($moduleBlock->db_column, 1, $data->{ $moduleBlock->db_column }) }}
-											
+
 											{{ $moduleBlock->label }}
 										</label>
 									</div>
@@ -436,7 +436,7 @@
 								<div class="alert alert-danger m-0">
 									{{ $message }}
 								</div>
-							@enderror	
+							@enderror
 						@endif
 					</div>
 				@endif
@@ -446,15 +446,15 @@
 				{{ Form::submit(__('bsw.submit')) }}
 			</div>
 		{{ Form::close() }}
-		
+
 		<div class="my-5"></div>
-		
+
 		@php
 			$i = 0;
 		@endphp
-					
-										
-		
+
+
+
 		@if(!$nextModuleStep->isEmpty())
 			@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
 				<!-- Add button -->
@@ -463,7 +463,7 @@
 							'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
 							'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
 						])
-					@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0) 
+					@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
 						<div class="p-2">
 							<div class="p-2 standard-block">
 								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
@@ -518,11 +518,20 @@
 
 						@if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
 							<div class="p-2 delete-button">
-								{{ Form::submit('წაშლა') }}  
+								{{ Form::submit('წაშლა') }}
 							</div>
 						@endif
 					</div>
-					
+                    <div class="col-12">
+                        <p class="p-2">
+                            <label>
+                                <input type="checkbox" name="sample" class="selectall" style="display: none"/>
+                                    <span style="font: 21px Verdana, Geneva, sans-serif">↑</span>
+                                    <span style="color: #09F;cursor: pointer;">მოვნიშნოთ ყველა</span> /
+                                    <span style="color: #F66;cursor: pointer;">მოვხსნათ მონიშვნა</span>
+                            </label>
+                        </p>
+                    </div>
 					<div class="my-5"></div>
 
 					@php

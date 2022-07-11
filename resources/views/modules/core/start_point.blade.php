@@ -113,15 +113,14 @@
 					@endforeach
 
 					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0 && count($dataFromDb) !== 0)
-                    <div>
-                        <p>
+                    <div class="col-12">
+                        <p class="p-2">
                             <label>
                                 <input type="checkbox" name="sample" class="selectall" style="display: none"/>
                                     <span style="font: 21px Verdana, Geneva, sans-serif">↑</span>
                                     <span style="color: #09F;cursor: pointer;">მოვნიშნოთ ყველა</span> /
                                     <span style="color: #F66;cursor: pointer;">მოვხსნათ მონიშვნა</span>
-                                </label>
-
+                            </label>
                         </p>
                         <script>
 
