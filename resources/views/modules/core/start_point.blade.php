@@ -115,7 +115,12 @@
 					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0 && count($dataFromDb) !== 0)
                     <div>
                         <p>
-                            <label><input type="checkbox" name="sample" class="selectall"/>  <span style="font: 21px Verdana, Geneva, sans-serif">↑</span> მოვნიშნოთ ყველა / მოვხსნათ მონი</label>
+                            <label>
+                                <input type="checkbox" name="sample" class="selectall" style="display: none"/>
+                                    <span style="font: 21px Verdana, Geneva, sans-serif">↑</span>
+                                    <span style="color: #09F;cursor: pointer;">მოვნიშნოთ ყველა</span> /
+                                    <span style="color: #F66;cursor: pointer;">მოვხსნათ მონიშვნა</span>
+                                </label>
 
                         </p>
                         <script>

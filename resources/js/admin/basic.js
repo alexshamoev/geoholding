@@ -115,14 +115,17 @@ function check_file_exists(url) {
 // }
 
 
-jQuery(function () {
-    $('.selectall').on('click',(function() {
-        if ($(this).is(':checked')) {
-            $('input:checkbox').attr('checked', true);
-        } else {
-            $('input:checkbox').attr('checked', false);
-        }
-    }));
+$( document ).ready(function() {
+    // Select all checkboxes and toogle between checked
+        $('.selectall').on('click',(function() {
+            if ($(this).is(':checked')) {
+                $('input:checkbox').attr('checked', true);
+            } else {
+                $('input:checkbox').attr('checked', false);
+            }
+        }));
+    //
+
 	// Dragable blocks.
 		$('.rangBlocks').each(function() {
 			let activeRangBlock = $(this);
