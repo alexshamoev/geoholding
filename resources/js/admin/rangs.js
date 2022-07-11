@@ -1,6 +1,6 @@
 /*
 
-	available events: 
+	available events:
 
 		"handle" - click down
 		"start" - start of dragging - you can add a class here
@@ -30,6 +30,6 @@
 // 		}
 // 	});
 
-	
+
 // 	console.log('modules 111');
 // });

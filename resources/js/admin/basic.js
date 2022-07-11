@@ -1,3 +1,5 @@
+
+
 'use strict';
 
 
@@ -7,12 +9,33 @@ import  'jquery-ui/ui/widgets/sortable';
 // import  'jquery-ui/ui/widgets/droppable';
 
 
+// alert('ola')
+
+
+
+function check_all_chechboxes() {
+	$('input[type=checkbox]').prop('checked', true);
+}
+
+
+function uncheck_all_chechboxes() {
+	$('input[type=checkbox]').prop('checked', false);
+}
+
+
+$('.selectall').on('click',(function() {
+    alert('ola')
+    if ($(this).is(':checked')) {
+        $('input:checkbox').attr('checked', true);
+    } else {
+        $('input:checkbox').attr('checked', false);
+    }
+}));
 var animation_speed = 50;
 
 
 function checkBlockType(blockType) {
 	$('.step2 .dataBlock').fadeOut(0);
-
 
 	if(blockType === 'alias') {
 		$('.step2 .forAlias').fadeIn(0);
@@ -115,6 +138,13 @@ function check_file_exists(url) {
 
 
 jQuery(function () {
+    $('.selectall').on('click',(function() {
+        if ($(this).is(':checked')) {
+            $('input:checkbox').attr('checked', true);
+        } else {
+            $('input:checkbox').attr('checked', false);
+        }
+    }));
 	// Dragable blocks.
 		$('.rangBlocks').each(function() {
 			let activeRangBlock = $(this);
@@ -240,3 +270,4 @@ jQuery(function () {
 		// $('.modulesStep0__type' + $(this).val() + 'Box').fadeIn(0);
 	//
 });
+

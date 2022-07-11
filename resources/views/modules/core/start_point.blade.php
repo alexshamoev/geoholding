@@ -115,8 +115,12 @@
 					@if($moduleStep->values()->get($i)->possibility_to_multy_delete !== 0 && count($dataFromDb) !== 0)
                     <div>
                         <p>
-                            ↑ <span class="check__all">მოვნიშნოთ ყველა</span> / <span class="remove__all">მოვხსნათ მონიშვნა</span>
+                            <label><input type="checkbox" name="sample" class="selectall"/>  <span style="font: 21px Verdana, Geneva, sans-serif">↑</span> მოვნიშნოთ ყველა / მოვხსნათ მონი</label>
+
                         </p>
+                        <script>
+
+                        </script>
                     </div>
 						<div class="p-2 delete-button">
 							{{ Form::submit(__('bsw.delete_button_text')) }}

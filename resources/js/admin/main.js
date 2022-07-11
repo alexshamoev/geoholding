@@ -4,7 +4,6 @@ require('./rangs');
 require('./menu_buttons');
 
 
-
 // import { createApp } from 'vue';
 // import Test from '../components/modules/modules/admin/Test';
 
@@ -12,4 +11,4 @@ require('./menu_buttons');
 
 // app.component('testwww', Test);
 
-// app.mount('#appwww');  
+// app.mount('#appwww');
