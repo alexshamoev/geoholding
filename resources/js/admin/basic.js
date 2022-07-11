@@ -9,28 +9,6 @@ import  'jquery-ui/ui/widgets/sortable';
 // import  'jquery-ui/ui/widgets/droppable';
 
 
-// alert('ola')
-
-
-
-function check_all_chechboxes() {
-	$('input[type=checkbox]').prop('checked', true);
-}
-
-
-function uncheck_all_chechboxes() {
-	$('input[type=checkbox]').prop('checked', false);
-}
-
-
-$('.selectall').on('click',(function() {
-    alert('ola')
-    if ($(this).is(':checked')) {
-        $('input:checkbox').attr('checked', true);
-    } else {
-        $('input:checkbox').attr('checked', false);
-    }
-}));
 var animation_speed = 50;
 
 
