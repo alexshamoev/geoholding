@@ -13,7 +13,7 @@
 									<input type="checkbox"
 											name="checkbox[]"
 											value="{{ $id }}"
-											class="m-0">
+											class="m-0 checkbox_child">
 								</div>
 							</label>
 						</div>

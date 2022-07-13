@@ -74,7 +74,7 @@
 
 .submit-button button,
 .submit-button input[type="submit"] {
-	background-color: #a2d5fb; 
+	background-color: #a2d5fb;
 	padding: 10px 16px;
 	border: 1px solid #666;
 	font-size: 15px;
@@ -88,10 +88,11 @@
 
 .delete-button button,
 .delete-button input[type="submit"] {
-	background-color: #ff3939; 
+	background-color: #ff3939;
 	padding: 10px 16px;
-	border: 1px solid #666;
+    border: none;
 	font-size: 15px;
+    color: white;
 	outline: none !important;
 
 	&:hover {
@@ -126,7 +127,7 @@
 	}
 
 	&__block_inside_preview {
-		
+
 	}
 
 	&__image_div {
@@ -134,7 +135,7 @@
 		background-repeat: no-repeat;
 		background-size: cover;;
 	}
-} 
+}
 
 .line_max_1 {
 	display: block;
@@ -162,7 +163,7 @@
 }
 
 .menu {
-	
+
 }
 
 .content {
@@ -183,15 +184,27 @@
 
 
 .languages {
-	
-}
 
+}
+.check__remove_block{
+    & .check_all{
+        color: #09F;
+        cursor: pointer;
+    }
+    & .remove_check {
+        color: #F66;
+        cursor: pointer;
+    }
+    & .check_arrow{
+        font: 21px Verdana, Geneva, sans-serif
+    }
+}
 // CK Editor
 	.ck-editor__editable {
 		min-height: 150px;
 		max-height: 500px;
 	}
-// 
+//
 
 .tags_wrapper {
 	line-height: 30px;
@@ -204,7 +217,7 @@
 	border: 1px solid #ccc;
 
 	&__header {
-		
+
 	}
 
 	&__header_image {

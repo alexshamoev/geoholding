@@ -516,22 +516,23 @@
 							@endif
 						@endforeach
 
-						@if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
+                        @if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
+                            <div class="col-12">
+                                <div class="col_padding check__remove_block p-2">
+                                    <span class="check_arrow">↑</span>
+
+                                    <span class="check_all">მოვნიშნოთ ყველა &nbsp</span>
+                                    /
+                                    <span class="remove_check" >&nbsp მოვხსნათ მონიშვნა</span>
+                                </div>
+                            </div>
+
 							<div class="p-2 delete-button">
-								{{ Form::submit('წაშლა') }}
+								{{ Form::submit('მონაცემების წაშლა') }}
 							</div>
 						@endif
 					</div>
-                    <div class="col-12">
-                        <p class="p-2">
-                            <label>
-                                <input type="checkbox" name="sample" class="selectall" style="display: none"/>
-                                    <span style="font: 21px Verdana, Geneva, sans-serif">↑</span>
-                                    <span style="color: #09F;cursor: pointer;">მოვნიშნოთ ყველა</span> /
-                                    <span style="color: #F66;cursor: pointer;">მოვხსნათ მონიშვნა</span>
-                            </label>
-                        </p>
-                    </div>
+
 					<div class="my-5"></div>
 
 					@php

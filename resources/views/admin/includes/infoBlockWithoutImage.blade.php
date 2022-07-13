@@ -2,7 +2,7 @@
 	<div class="d-flex align-items-center edit-block">
 		<div class="col-10">
 			<div class="row">
-				<div class="col-4 p-2 d-flex align-items-center"">
+				<div class="col-4 p-2 d-flex align-items-center">
 					@if(isset($possibilityToMultyDelete))
 						@if($possibilityToMultyDelete !== 0)
 							<label>
@@ -10,7 +10,7 @@
 									<input type="checkbox"
 											name="checkbox[]"
 											value="{{ $id }}"
-											class="m-0">
+											class="m-0 checkbox_child">
 								</div>
 							</label>
 						@endif
@@ -54,10 +54,10 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="col-2">
 			<div class="d-flex justify-content-end">
-			
+
 				@if(isset($possibilityToEdit))
 					@if($possibilityToEdit !== 0)
 						<div class="edit-block__edit-delete-block p-2">

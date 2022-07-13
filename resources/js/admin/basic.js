@@ -5,6 +5,7 @@
 
 window.$ = window.jQuery = require('jquery');
 import  'jquery-ui/ui/widgets/sortable';
+import { defineCustomElement } from 'vue';
 // import  'jquery-ui/ui/widgets/draggable';
 // import  'jquery-ui/ui/widgets/droppable';
 
@@ -115,21 +116,24 @@ function check_file_exists(url) {
 // }
 
 
-$( document ).ready(function() {
+$(document).ready(function() {
     // Select all checkboxes and toogle between checked
-        $('.selectall').on('click',(function() {
-            if ($(this).is(':checked')) {
-                $('input:checkbox').attr('checked', true);
-            } else {
-                $('input:checkbox').attr('checked', false);
-            }
-        }));
+        $('.blockWithRang').children('.checkbox_child') {
+            $('.check_all').on('click',(() => {
+                $('.checkbox_child').prop('checked', true);
+            }))
+
+            $('.remove_check').on('click',(() => {
+                $('.checkbox_child').prop('checked', false);
+            }))
+        };
     //
 
 	// Dragable blocks.
 		$('.rangBlocks').each(function() {
 			let activeRangBlock = $(this);
 			activeRangBlock.sortable({
+
 				// Only make the .rangButton child elements support dragging.
 				// Omit this to make then entire <li>...</li> draggable.
 				handle: '.rangButton',
@@ -143,6 +147,7 @@ $( document ).ready(function() {
 
 						// Persist the new indices.
 					});
+
 
 					// alert(1);
 
