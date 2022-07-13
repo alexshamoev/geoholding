@@ -118,15 +118,13 @@ function check_file_exists(url) {
 
 $(function() {
     // Select all checkboxes and toogle between checked
-        $('.blockWithRang').children('.checkbox_child') {
-            $('.check_all').on('click',(() => {
-                $('.checkbox_child').prop('checked', true);
-            }))
+		$('.check_all').on('click',(() => {
+			$('.checkbox_child').prop('checked', true);
+		}))
 
-            $('.remove_check').on('click',(() => {
-                $('.checkbox_child').prop('checked', false);
-            }))
-        };
+		$('.remove_check').on('click',(() => {
+			$('.checkbox_child').prop('checked', false);
+		}))
     //
 
 	// Dragable blocks.
