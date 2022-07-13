@@ -116,7 +116,7 @@ function check_file_exists(url) {
 // }
 
 
-$(document).ready(function() {
+$(function() {
     // Select all checkboxes and toogle between checked
         $('.blockWithRang').children('.checkbox_child') {
             $('.check_all').on('click',(() => {
