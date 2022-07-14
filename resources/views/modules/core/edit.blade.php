@@ -168,23 +168,48 @@
 										{{ Form::file($moduleBlock->db_column) }}
 									</div>
 
-									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format)))
-										@if($moduleBlock->file_format == 'svg')
-											<div class="p-2">
-												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" alt="" style="width: 50px">
-											</div>
-										@else
-											<a href="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$moduleBlock->file_format) }}" target="blank">
-												<div class="p-2">
-													ნახეთ ფაილი
-												</div>
-											</a>
-										@endif
+									@php
+										$existingFileFormat = 'file';
 
-										@if($moduleBlock->file_possibility_to_delete)
-											<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-												X
+										foreach(explode(',', $moduleBlock->file_format) as $formatData) {
+											if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$formatData))) {
+												$existingFileFormat = $formatData;
+											}
+										}
+									@endphp
+
+
+
+
+									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat)))
+										@if($existingFileFormat == 'svg')
+											<div class="p-2">
+												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" alt="" style="width: 50px">
+											</div>
+
+											@if($moduleBlock->show_file_url === 1)
+												<div class="p-2">
+													ფაილის მისამართი: 
+													<span class="text-primary">
+														{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
+													</span>
+												</div>
+											@endif
+										@else
+											<a href="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" target="blank">
+												<span class="p-2">
+													ნახეთ ფაილი
+												</span>
 											</a>
+
+											@if($moduleBlock->show_file_url === 1)
+												<div class="p-2">
+													ფაილის მისამართი: 
+													<span class="text-primary">
+														{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
+													</span>
+												</div>
+											@endif
 										@endif
 									@endif
 

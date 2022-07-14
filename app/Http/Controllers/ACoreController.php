@@ -176,7 +176,7 @@ class ACoreController extends AController {
 						));
 						
 						if($validator->fails()) {
-							return redirect()->route('coreAdd', [$module->alias, $moduleStep->id])->withErrors($validator)->withInput();
+							return redirect()->route('coreAdd', [$module->alias, $moduleStep->id, 0])->withErrors($validator)->withInput();
 						}
 
 						$request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$data->file_format);	
@@ -305,8 +305,11 @@ class ACoreController extends AController {
 
 							return redirect()->route('coreAdd', array($module->alias, $moduleStep->id, 0))->withErrors($validator)->withInput();
 						}
-						
-						$request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$data->file_format);
+					
+						// Check file format and delete other files.
+						$extension = $request->file($data->db_column)->extension();
+
+						$request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$extension);
 					}
 				}
 			}
@@ -630,9 +633,17 @@ class ACoreController extends AController {
 					if($data->prefix) {
 						$prefix = $data->prefix.'_';
 					}
+					$existingFileFormat = 'file';
 
-					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$data->file_format,
-									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
+					foreach(explode(',', $data->file_format) as $formatData) {
+						if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$formatData))) {
+							$existingFileFormat = $formatData;
+						}
+					}
+
+					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$existingFileFormat,
+									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$existingFileFormat);
+
 				}
 			}
 		// 
@@ -1065,7 +1076,23 @@ class ACoreController extends AController {
 							return redirect()->route('coreEdit', array($module->alias, $moduleStep->id, $id))->withErrors($validator)->withInput();
 						}
 						
-						$request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$data->file_format);
+						// Check file format and delete other files.
+							$extension = $request->file($data->db_column)->extension();
+
+							$storeResult = $request->file($data->db_column)->storeAs('public/images/modules/'.$module->alias.'/'.$moduleStep->id, $prefix.$id.'.'.$extension);
+
+							if($storeResult) {
+								foreach(explode(',', $data->file_format) as $formatData) {
+									if($extension !== $formatData) {
+										$filePath = storage_path('app/public/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$formatData);
+
+										if(file_exists($filePath)) {
+											unlink($filePath);
+										}
+									}
+								}
+							}
+						// 	
 					}
 				}
 			}

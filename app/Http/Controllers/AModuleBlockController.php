@@ -56,6 +56,12 @@ class AModuleBlockController extends AController {
 			$moduleBlock->file_possibility_to_delete = 0;
 		}
 
+		if($request->input('show_file_url')) {
+			$moduleBlock->show_file_url = $request->input('show_file_url');
+		} else {
+			$moduleBlock->show_file_url = 0;
+		}
+
 		$moduleBlock->image_width = $request->input('image_width');
 		$moduleBlock->image_height = $request->input('image_height');
 
@@ -234,6 +240,12 @@ class AModuleBlockController extends AController {
 			$moduleBlock->file_possibility_to_delete = $request->input('file_possibility_to_delete');
 		} else {
 			$moduleBlock->file_possibility_to_delete = 0;
+		}
+
+		if($request->input('show_file_url')) {
+			$moduleBlock->show_file_url = $request->input('show_file_url');
+		} else {
+			$moduleBlock->show_file_url = 0;
 		}
 		
 		$moduleBlock->image_width = $request->input('image_width');

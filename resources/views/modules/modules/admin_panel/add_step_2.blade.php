@@ -333,6 +333,15 @@
 				</div>
 			</div>
 			
+			<div class="p-2 dataBlock forFile ">
+				<div class="standard-block p-2">
+					<label>
+						{{ Form :: checkbox('show_file_url', '1') }}
+
+						show_file_url?
+					</label>
+				</div>
+			</div>
 
 			<div class="p-2 dataBlock">
 				<div class="standard-block p-2">						
