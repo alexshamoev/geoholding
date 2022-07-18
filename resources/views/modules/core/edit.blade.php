@@ -187,6 +187,12 @@
 												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" alt="" style="width: 50px">
 											</div>
 
+											{{-- @if($moduleBlock->file_possibility_to_delete)
+												<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+													X
+												</a>
+											@endif --}}
+
 											@if($moduleBlock->show_file_url === 1)
 												<div class="p-2">
 													ფაილის მისამართი: 
@@ -201,6 +207,12 @@
 													ნახეთ ფაილი
 												</span>
 											</a>
+											
+											{{-- @if($moduleBlock->file_possibility_to_delete)
+												<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+													X
+												</a>
+											@endif --}}
 
 											@if($moduleBlock->show_file_url === 1)
 												<div class="p-2">
