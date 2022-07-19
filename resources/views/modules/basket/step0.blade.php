@@ -120,12 +120,15 @@
 									</div>
 
 									<div class="p-2 d-flex align-items-center">
-										<p class="text-uppercase"> 
+										<div class="text-uppercase"> 
 											{!! __('bsw.address') !!}:									
-										</p>
-										<p class="px-2 basket__price text-uppercase"> 
-											{{ Auth :: user() -> address }}
-										</p>
+										</div>
+
+										<div class="px-2 basket__price text-uppercase">
+											{{--
+												{{ Auth :: user() -> address }}
+											--}}
+										</div>
 									</div>
 								</div>
 

@@ -19,7 +19,7 @@ class BasketController extends FrontController {
 
 
     public static function getStep0(Request $request, $lang) {
-        if(Auth::check()) {
+        // if(Auth::check()) {
             $language = Language::where('title', $lang)->first();
 
             $data = array_merge(self::getDefaultData($language,
@@ -29,7 +29,7 @@ class BasketController extends FrontController {
                                 ]);
 
             return view('modules.basket.step0', $data);
-        }
+        // }
 
         return redirect()->route('getLogin', $lang);
     }
