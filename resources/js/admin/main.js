@@ -2,6 +2,7 @@ require('../bootstrap');
 require('./basic');
 require('./rangs');
 require('./menu_buttons');
+require('./core');
 
 
 // import { createApp } from 'vue';

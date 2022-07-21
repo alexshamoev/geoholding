@@ -51,38 +51,4 @@ class AController extends Controller {
 		
 		return $data;
 	}
-
-
-	public function filePossibilityToDelete($moduleAlias, $moduleStepId, $id, $moduleBlockId) {
-		$moduleBlock = ModuleBlock::firstWhere('id', $moduleBlockId);
-		$prefix = '';
-		
-		if($moduleBlock->prefix) {
-			$prefix = $moduleBlock->prefix.'_';
-		}
-
-		$filePath = storage_path('app/public/images/modules/'.$moduleAlias.'/'.$moduleStepId.'/'.$prefix.$id.'.'.$moduleBlock->file_format);
-
-		if(file_exists($filePath)) {
-			unlink($filePath);
-		}
-
-		for($i = 1; $i < 4; $i++) {
-			if($moduleBlock->{'prefix_'.$i}) {
-				if($moduleBlock->prefix) {
-					$prefix = $moduleBlock->prefix.'_';
-				}
-				
-				$filePathMulti = storage_path('app/public/images/modules/'.$moduleAlias.'/'.$moduleStepId.'/'.$prefix.$id.'_'.$moduleBlock->{'prefix_'.$i}.'.'.$moduleBlock->file_format);
-				
-				if(file_exists($filePathMulti)) {
-					unlink($filePathMulti);
-				}
-			}
-		}
-		
-		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
-
-		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
-	}
 }

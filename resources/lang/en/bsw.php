@@ -76,4 +76,11 @@ return [
     'delete_file' => 'Delete file',
     'delete_button_text' => 'Delete',
     'select_block_delete' => 'Select a block to delete',
+    'view_file' => 'View file',
+    'file_url' => 'File URL:',
+    'check_all' => 'Check all',
+    'remove_check' => 'Uncheck all',
+    'sure_want_delete_file' => 'Are you sure you want to delete the file?',
+    'delete' => 'Delete',
+    'cancel' => 'Cancel',
 ];

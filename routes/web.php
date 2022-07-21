@@ -31,7 +31,8 @@ if(Schema::hasTable('languages')) {
 
 					Route::get('/', 'AController@getDefaultPage')->name('adminDefaultPage');
 					Route::get('/logout', 'AAdminController@logout')->name('aLogout');
-					Route::get('/{moduleAlias}/{moduleStepId}/{id}/{moduleBlockId}/deleteImage', 'AController@filePossibilityToDelete')->name('filePossibilityToDelete');
+
+					Route::get('/{moduleAlias}/{moduleStepId}/{id}/{moduleBlockId}/deleteImage', 'ACoreController@deleteFile')->name('deleteFile');
 
 					Route::prefix('modules')->group(function() {
 						Route::get('', 'AModuleController@getStartPoint')->name('moduleStartPoint');

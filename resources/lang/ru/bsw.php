@@ -75,4 +75,11 @@ return [
     'delete_file' => 'Удалить файл',
     'delete_button_text' => 'Удалить',
     'select_block_delete' => 'Выберите блок, для удаления',
+    'view_file' => 'Посмотреть файл',
+    'file_url' => 'Путь к файлу:',
+    'check_all' => 'Отметить все',
+    'remove_check' => 'Снять отметку',
+    'sure_want_delete_file' => 'Уверены что хотите удалить файл?',
+    'delete' => 'Удалить',
+    'cancel' => 'Отменить',
 ];

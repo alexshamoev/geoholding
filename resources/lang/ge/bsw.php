@@ -77,4 +77,11 @@ return [
     'delete_file' => 'ფაილის წაშლა',
     'delete_button_text' => 'მონაცემების წაშლა',
     'select_block_delete' => 'აირჩიეთ ბლოკი, წასაშლელად',
+    'view_file' => 'იხილეთ ფაილი',
+    'file_url' => 'ფაილის მისამართი:',
+    'check_all' => 'მოვნიშნოთ ყველა',
+    'remove_check' => 'მოვხსნათ მონიშვნა',
+    'sure_want_delete_file' => 'ნამდვილად გსურთ ფაილის წაშლა?',
+    'delete' => 'წაშლა',
+    'cancel' => 'გაუქმება',
 ];

@@ -132,11 +132,12 @@
 
 											@if($moduleBlock->file_possibility_to_delete)
 												<div class="col-3 p-1">
-													<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+													<div class="js_delete_file_button delete_file_button"
+														 data-delete-url="{{ route('deleteFile', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
 														<img src="{{ asset('storage/images/admin/close.svg') }}"
 																alt="__('bsw.delete_file')"
 																class="bar-tag-bigger-img">
-													</a>
+													</div>
 												</div>
 											@endif
 										</div>
@@ -179,23 +180,28 @@
 									@endphp
 
 
-
-
 									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat)))
 										@if($existingFileFormat == 'svg')
-											<div class="p-2">
-												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" alt="" style="width: 50px">
+										<div class="row p-1">
+											<div class="col-3 p-1">
+												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}">
 											</div>
 
-											{{-- @if($moduleBlock->file_possibility_to_delete)
-												<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-													X
-												</a>
-											@endif --}}
+											@if($moduleBlock->file_possibility_to_delete)
+												<div class="col-3 p-1">
+													<div class="js_delete_file_button delete_file_button"
+														data-delete-url="{{ route('deleteFile', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+														<img src="{{ asset('storage/images/admin/close.svg') }}"
+																alt="__('bsw.delete_file')"
+																class="bar-tag-bigger-img">
+													</div>
+												</div>
+											@endif
 
 											@if($moduleBlock->show_file_url === 1)
 												<div class="p-2">
-													ფაილის მისამართი: 
+													{{ __('bsw.file_url') }}
+
 													<span class="text-primary">
 														{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
 													</span>
@@ -204,19 +210,23 @@
 										@else
 											<a href="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" target="blank">
 												<span class="p-2">
-													ნახეთ ფაილი
+													{{ __('bsw.view_file') }}
 												</span>
 											</a>
 											
-											{{-- @if($moduleBlock->file_possibility_to_delete)
-												<a href="{{ route('filePossibilityToDelete', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-													X
-												</a>
-											@endif --}}
+											@if($moduleBlock->file_possibility_to_delete)
+												<span class="js_delete_file_button delete_file_button"
+													 data-delete-url="{{ route('deleteFile', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+													<img src="{{ asset('storage/images/admin/close.svg') }}"
+															alt="__('bsw.delete_file')"
+															class="bar-tag-bigger-img">
+												</span>
+											@endif
 
 											@if($moduleBlock->show_file_url === 1)
 												<div class="p-2">
-													ფაილის მისამართი: 
+													{{ __('bsw.file_url') }}
+
 													<span class="text-primary">
 														{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
 													</span>
@@ -224,7 +234,6 @@
 											@endif
 										@endif
 									@endif
-
 								</div>
 
 								@break
@@ -382,7 +391,7 @@
 
 									<script>
 										ClassicEditor
-											.create( document.querySelector( '#{{$moduleBlock->db_column.'_'.$langData->title}}' ),{
+											.create( document.querySelector( '#{{ $moduleBlock->db_column.'_'.$langData->title }}' ),{
 												link: {
 													defaultProtocol: 'http://',
 													decorators: {
@@ -490,8 +499,6 @@
 			$i = 0;
 		@endphp
 
-
-
 		@if(!$nextModuleStep->isEmpty())
 			@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
 				<!-- Add button -->
@@ -558,14 +565,14 @@
                                 <div class="col_padding check__remove_block p-2">
                                     <span class="check_arrow">↑</span>
 
-                                    <span class="check_all">მოვნიშნოთ ყველა &nbsp</span>
-                                    /
-                                    <span class="remove_check" >&nbsp მოვხსნათ მონიშვნა</span>
+                                    <span class="check_all me-2">{{ __('bsw.check_all') }}</span>
+									/
+									<span class="remove_check ms-2">{{ __('bsw.check_all') }}</span>
                                 </div>
                             </div>
 
 							<div class="p-2 delete-button">
-								{{ Form::submit('მონაცემების წაშლა') }}
+								{{ Form::submit(__('bsw.delete_button_text')) }}
 							</div>
 						@endif
 					</div>
@@ -579,4 +586,10 @@
 			{{ Form :: close() }}
 		@endif
 	</div>
+
+
+	<div class="d-none js_bsws"
+		 data-delete_file_title="{{ __('bsw.sure_want_delete_file') }}"
+		 data-delete="{{ __('bsw.delete') }}"
+		 data-cancel="{{ __('bsw.cancel') }}"></div>
 @endsection

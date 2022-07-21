@@ -1273,4 +1273,41 @@ class ACoreController extends AController {
 
 		return back()->with('alert', __('bsw.select_block_delete'));
 	}
+
+	
+	public function deleteFile($moduleAlias, $moduleStepId, $id, $moduleBlockId) {
+		$moduleBlock = ModuleBlock::firstWhere('id', $moduleBlockId);
+		$prefix = '';
+		
+		if($moduleBlock->prefix) {
+			$prefix = $moduleBlock->prefix.'_';
+		}
+
+		foreach(explode(',', $moduleBlock->file_format) as $extension) {
+			$filePath = storage_path('app/public/images/modules/'.$moduleAlias.'/'.$moduleStepId.'/'.$prefix.$id.'.'.$extension);
+
+			if(file_exists($filePath)) {
+				unlink($filePath);
+			}
+	
+			for($i = 1; $i < 4; $i++) {
+				if($moduleBlock->{'prefix_'.$i}) {
+					if($moduleBlock->prefix) {
+						$prefix = $moduleBlock->prefix.'_';
+					}
+					
+					$filePathMulti = storage_path('app/public/images/modules/'.$moduleAlias.'/'.$moduleStepId.'/'.$prefix.$id.'_'.$moduleBlock->{'prefix_'.$i}.'.'.$extension);
+					
+					if(file_exists($filePathMulti)) {
+						unlink($filePathMulti);
+					}
+				}
+			}
+		}
+		
+		
+		Session::flash('successDeleteStatus', __('bsw.deleteSuccessStatus'));
+
+		return redirect()->route('coreEdit', [$moduleAlias, $moduleStepId, $id]);
+	}
 }

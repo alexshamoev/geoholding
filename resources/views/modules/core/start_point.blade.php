@@ -117,9 +117,9 @@
                             <div class="col_padding check__remove_block p-2">
                                 <span class="check_arrow">↑</span>
 
-                                <span class="check_all">მოვნიშნოთ ყველა &nbsp</span>
+                                <span class="check_all me-2">{{ __('bsw.check_all') }}</span>
                                 /
-                                <span class="remove_check" >&nbsp მოვხსნათ მონიშვნა</span>
+                                <span class="remove_check ms-2">{{ __('bsw.check_all') }}</span>
                             </div>
                         </div>
 
