@@ -39,7 +39,7 @@ class AuthController extends FrontController {
 
         $validated = $request->validate([
             'email' => 'required|max:255',
-            'password' => 'required|min:8',
+            'password' => 'required|min:4',
         ]);
 
         $page = Page::firstWhere('slug', 'cabinet');

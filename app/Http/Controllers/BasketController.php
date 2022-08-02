@@ -25,7 +25,7 @@ class BasketController extends FrontController {
             $data = array_merge(self::getDefaultData($language,
                                                         self::$page), 
                                 [
-                                    'orderPage' => Page::firstWhere('slug', 'order'),
+                                    'orderPage' => Page::firstWhere('slug', 'orders'),
                                 ]);
 
             return view('modules.basket.step0', $data);

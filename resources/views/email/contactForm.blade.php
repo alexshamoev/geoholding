@@ -1,5 +1,5 @@
 @component('mail::message')
-# კონტაქტი
+    # კონტაქტი
 
     სახელი,გვარი: {{ $name }} {{ $lastName }} 
     ელ.ფოსტა {{ $email }} 

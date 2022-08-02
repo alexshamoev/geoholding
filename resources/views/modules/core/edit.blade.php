@@ -182,31 +182,32 @@
 
 									@if(file_exists(public_path('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat)))
 										@if($existingFileFormat == 'svg')
-										<div class="row p-1">
-											<div class="col-3 p-1">
-												<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}">
-											</div>
-
-											@if($moduleBlock->file_possibility_to_delete)
+											<div class="row p-1">
 												<div class="col-3 p-1">
-													<div class="js_delete_file_button delete_file_button"
-														data-delete-url="{{ route('deleteFile', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
-														<img src="{{ asset('storage/images/admin/close.svg') }}"
-																alt="__('bsw.delete_file')"
-																class="bar-tag-bigger-img">
+													<img src="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}">
+												</div>
+
+												@if($moduleBlock->file_possibility_to_delete)
+													<div class="col-3 p-1">
+														<div class="js_delete_file_button delete_file_button"
+															data-delete-url="{{ route('deleteFile', [$module->alias, $moduleStep->id, $data->id, $moduleBlock->id]) }}">
+															<img src="{{ asset('storage/images/admin/close.svg') }}"
+																	alt="__('bsw.delete_file')"
+																	class="bar-tag-bigger-img">
+														</div>
 													</div>
-												</div>
-											@endif
+												@endif
 
-											@if($moduleBlock->show_file_url === 1)
-												<div class="p-2">
-													{{ __('bsw.file_url') }}
+												@if($moduleBlock->show_file_url === 1)
+													<div class="p-2">
+														{{ __('bsw.file_url') }}
 
-													<span class="text-primary">
-														{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
-													</span>
-												</div>
-											@endif
+														<span class="text-primary">
+															{{ ('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}
+														</span>
+													</div>
+												@endif
+											</div>
 										@else
 											<a href="{{ asset('/storage/images/modules/'.$module->alias.'/'.$moduleStep->id.'/'.$prefix.$data->id.'.'.$existingFileFormat) }}" target="blank">
 												<span class="p-2">
