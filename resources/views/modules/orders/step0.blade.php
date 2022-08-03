@@ -1,15 +1,15 @@
 @extends('master')
 
-@section('pageMetaTitle'){{ $page -> metaTitle }}@endsection
-@section('pageMetaDescription'){{ $page -> metaDescription }}@endsection
-@section('pageMetaUrl'){{ $page -> metaUrl }}@endsection
+@section('pageMetaTitle'){{ $page->metaTitle }}@endsection
+@section('pageMetaDescription'){{ $page->metaDescription }}@endsection
+@section('pageMetaUrl'){{ $page->metaUrl }}@endsection
 
 @section('content')
     <div class="container
 				p-2
 				main_content--height
 				order">
-    @if($errors -> any())
+    @if($errors->any())
         <div class="p-2">
             <div class="alert alert-danger">
                 {{ __('bsw.warningStatus') }}
@@ -19,15 +19,15 @@
 
 
     <h1 class="p-2">
-        {{ $page -> title }}
+        {{ $page->title }}
     </h1>
 
     <div class="p-2">
-        {!! $page -> text !!}
+        {!! $page->text !!}
     </div>
 
 
-    {{ Form :: open(['action' => ['OrdersController@order', $language]]) }}
+    {{ Form::open(['route' => ['makeOrder', app()->getLocale()]]) }}
         <div class="row">
             <div class="col-md-6 p-1 mb-3">
                 <label class="w-100">
@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: text('name', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('name', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
 
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: text('lastName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('lastName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
             </div>
@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: text('companyName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('companyName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
             </div>
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: text('fullAddress', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('fullAddress', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
             </div>
@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: email('email', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::email('email', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
             </div>
@@ -106,7 +106,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: text('phone', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('phone', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
                     </div>
                 </label>
 
@@ -126,7 +126,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form :: textarea('details', null, array('class' => 'form-control')) }}
+                        {{ Form::textarea('details', null, array('class' => 'form-control')) }}
                     </div>
                 </label>
             </div>
@@ -139,9 +139,9 @@
         <div class="row justify-content-center">
             <div class="form-button col-lg-5 col-md-7 col-12">
                 <div>
-                    {{ Form :: submit(__('bsw.orderPlacement'), array('class' => 'order__btn')) }}
+                    {{ Form::submit(__('bsw.orderPlacement'), array('class' => 'order__btn')) }}
                 </div>
             </div>
         </div>
-    {{ Form :: close() }}
+    {{ Form::close() }}
 @endsection

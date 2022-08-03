@@ -171,7 +171,7 @@ if(Schema::hasTable('languages')) {
 
 
 		// Order 
-			Route::post('/{lang}/order/order', 'OrdersController@order')->name('orderProducts');
+			// Route::post('/{lang}/order/order', 'OrdersController@order')->name('orderProducts');
 		
 		//
 
@@ -228,6 +228,9 @@ if(Schema::hasTable('languages')) {
 			Route::get('/{lang}/{pageAlias}', 'FrontController@getPage')->where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
 		//
 
-		Route :: post('/basket/get-data', 'BasketController@getProducts');
+		Route::post('/basket/get-data', 'BasketController@getProducts');
+
+
+		Route::post('/{lang}/make-order', 'OrdersController@order')->name('makeOrder');
 	}
 }

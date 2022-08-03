@@ -16,6 +16,14 @@
 			<div id="examplereact" temp="eeee"></div>
 		<!--  --> --}}
 
+		@if(Session :: has('orderSuccessStatus'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session :: get('orderSuccessStatus') }}
+				</div>
+			</div>
+		@endif
+
 		<h1 class="p-2">
 			{{ $page -> title }}
 		</h1>

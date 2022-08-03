@@ -82,4 +82,5 @@ return [
     'sure_want_delete_file' => 'Уверены что хотите удалить файл?',
     'delete' => 'Удалить',
     'cancel' => 'Отменить',
+    'orderSuccessStatus' => 'Order is accepted! Our administrator will contact you soon.',
 ];

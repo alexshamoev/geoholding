@@ -38,15 +38,14 @@ class OrdersController extends FrontController {
         $orderCode = random_int(100000000, 999999999);
         $fullPrice = 0;
         $productsArray = [];
-        $quantityArray = [];
         $quantityArray = $request->input('quantity');
 
-        dd('order');
-
-        foreach($request->input('productId') as $key => $data) {
+        foreach($request->input('productIds') as $key => $data) {
             $productsArray[$key] = ProductStep2::firstWhere('id', $data);
             $fullPrice += $productsArray[$key]->price * $quantityArray[$key];
         }
+
+        // dd($orderCode, $fullPrice, $productsArray, $quantityArray);
 
         $order = Order::create([
             'order_code' => $orderCode,
@@ -57,7 +56,7 @@ class OrdersController extends FrontController {
             'updated_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
         ]);
 
-        foreach($request->input('productId') as $key => $data) {
+        foreach($request->input('productIds') as $key => $data) {
             $orderProducts = OrderProducts::create([
                 'orders_id' => $order->id,
                 'product_id' => $data,
@@ -67,14 +66,10 @@ class OrdersController extends FrontController {
             ]);
         }
 
-        return $this->orderSendEmail($lang, $productsArray, $quantityArray, $order);
-    }
 
-
-    public function orderSendEmail($lang, $products, $quantity, $order) {
         $emailData = [];
-        $emailData['products'] = $products;
-        $emailData['quantity'] = $quantity;
+        $emailData['products'] = $productsArray;
+        $emailData['quantity'] = $quantityArray;
         $emailData['order'] = $order;
         $emailData['user'] = Auth::user();
         $emailData['language'] = $lang;
@@ -90,6 +85,11 @@ class OrdersController extends FrontController {
                                 'orderPage' => Page::firstWhere('slug', 'order'),
                             ]);
 
-        return redirect()->route('order', $lang);
+        
+        $homePage = Page::firstWhere('slug', 'home');
+
+        $request->session()->flash('orderSuccessStatus', __('bsw.orderSuccessStatus'));
+
+        return redirect($homePage->fullUrl);
     }
 }
