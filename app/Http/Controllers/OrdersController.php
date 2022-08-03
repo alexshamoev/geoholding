@@ -24,11 +24,8 @@ class OrdersController extends FrontController {
         if(Auth::check()) {
             $language = Language::firstWhere('title', $lang);
 
-            $data = array_merge(self::getDefaultData($language,
-                                                        self::$page),
-                                [
-                                    'orders' => Order::where('user_id', Auth::user()->id)->get(), 
-                                ]);
+            $data = self::getDefaultData($language,
+                                         self::$page);
 
             return view('modules.orders.step0', $data);
         }
@@ -43,6 +40,8 @@ class OrdersController extends FrontController {
         $productsArray = [];
         $quantityArray = [];
         $quantityArray = $request->input('quantity');
+
+        dd('order');
 
         foreach($request->input('productId') as $key => $data) {
             $productsArray[$key] = ProductStep2::firstWhere('id', $data);

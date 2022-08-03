@@ -13,6 +13,7 @@ require('./plugins/photo_swipe');
 require('./modules/menu_buttons');
 require('./modules/basket');
 require('./modules/products');
+require('./modules/orders');
 
 
 // Vue.

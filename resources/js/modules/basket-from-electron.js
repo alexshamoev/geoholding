@@ -44,14 +44,14 @@ function showProductFromLocalStorage() {
                     if(response) {
                         $('.basket__product_template').first().clone().appendTo('.basket__products_list');
 
-                        $('.basket__product_template').data('id', productId);
+                        $('.basket__product_template').last().find('.basket__product_id').val(productId);
                         $('.basket__product_template').last().find('.basket__product_amount').val(localStorage.getItem(key));
 
                         $('.basket__product_template').last().find('.basket__product_title').html(response['title']);
                         $('.basket__product_template').last().find('.basket__product_price').html(response['price']);
                         $('.basket__product_template').last().find('.basket__product_price_sum').html(parseFloat(response['price'] * localStorage.getItem(key)).toFixed(2));
                         
-                        $('.basket__product_template').last().find('.basket__product_image').attr('src', '/storage/images/modules/products/69/' + productId + '.jpg');
+                        $('.basket__product_template').last().find('.basket__product_image').attr('src', '/storage/images/modules/products/68/' + productId + '.jpg');
 
 
                         let parentTemplate = $('.basket__product_template').last();
@@ -124,7 +124,7 @@ function showProductFromLocalStorage() {
 
 
 function removeProductFromBasket(element) {
-    let id = element.parents('.basket__product_template').data('id');
+    let id = element.parents('.basket__product_template').find('.basket__product_id').val();
 
     element.parents('.basket__product_template').remove();
 
@@ -162,12 +162,12 @@ function checkBasketEmptiness() {
     // alert(productsInBasket);
 
     if(productsInBasket > 0) {
-        $('.js_basket_empty').addClass('d-none');
+        $('.empty_basket').addClass('d-none');
         $('.basket').removeClass('d-none');
 
         // alert(1);
     } else {
-        $('.js_basket_empty').removeClass('d-none');
+        $('.empty_basket').removeClass('d-none');
         $('.basket').addClass('d-none');
 
         // alert(0);
@@ -216,7 +216,11 @@ function deleteProductFromLocalStorage() {
 
 
 $(function() {
+    console.log('basket js');
+
     if($('.js_order_success').length && $('.js_order_success').val() == 1) {
+        alert('order success');
+
         deleteProductFromLocalStorage()
     }
 

@@ -1,14 +1,14 @@
 @component('mail::message')
-# {{ __('email.verify_email') }}
+    # {{ __('email.verify_email') }}
 
-<p>{{ __('email.verify_email_text_0') }}</p>
+    <p>{{ __('email.verify_email_text_0') }}</p>
 
-@component('mail::button', ['url' => url('/').'/'.$data['language'].'/verify/'.$data['id'], 'color' => 'blue'])
-{{ __('email.verify_email_button') }}
-@endcomponent
+    @component('mail::button', ['url' => url('/').'/'.$data['language'].'/verify/'.$data['id'], 'color' => 'blue'])
+        {{ __('email.verify_email_button') }}
+    @endcomponent
 
-<span>{{ __('email.verify_email_text_1') }}</span>
+    <span>{{ __('email.verify_email_text_1') }}</span>
 
-{{ __('email.thanks') }},<br>
-{{ config('app.name') }}
+    {{ __('email.thanks') }},<br>
+    {{ config('app.name') }}
 @endcomponent
