@@ -1230,6 +1230,8 @@ class ACoreController extends AController {
 	public function delete($moduleAlias, $moduleStepId, $id) {
 		$module = Module::firstWhere('alias', $moduleAlias);
 		$moduleStep = ModuleStep::find($moduleStepId);
+
+		$activeBlockData = DB::table($moduleStep->db_table)->find($id);
 		
 		$modelClass = 'App\Models\\'.$moduleStep->model_name;
 		$modelClass::destroy($id);
@@ -1240,7 +1242,6 @@ class ACoreController extends AController {
 		if($moduleStep->parent_step_id == 0) {
 			return redirect()->route('coreGetStartPoint', $module->alias);
 		} else {
-			$activeBlockData = DB::table($moduleStep->db_table)->find($id);
 
 			return redirect()->route('coreEdit',
 									[
