@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\OrderProducts;
 use App\Models\Page;
 use App\Models\language;
+use App\Http\Requests\OrderRequest;
 use Auth;
 
 class OrdersController extends FrontController {
@@ -34,7 +35,7 @@ class OrdersController extends FrontController {
     }
 
 
-    public function order(Request $request, $lang) {
+    public function order(OrderRequest $request, $lang) {
         $orderCode = random_int(100000000, 999999999);
         $fullPrice = 0;
         $productsArray = [];

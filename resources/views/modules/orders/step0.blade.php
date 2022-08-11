@@ -11,7 +11,7 @@
 				order">
     @if($errors->any())
         <div class="p-2">
-            <div class="alert alert-danger">
+            <div class="alert alert-danger m-0">
                 {{ __('bsw.warningStatus') }}
             </div>
         </div>
@@ -29,96 +29,126 @@
 
     {{ Form::open(['route' => ['makeOrder', app()->getLocale()]]) }}
         <div class="row">
-            <div class="col-md-6 p-1 mb-3">
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.name')}}
+                        {{ __('bsw.name') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('name', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('name') }}
                     </div>
                 </label>
 
                 @error('name')
-                    <div class="alert alert-danger m-2 p-2">
-                        {{ $message }}
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
                     </div>
                 @enderror
             </div>
 
-            <div class="col-md-6 p-1 mb-3">
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.lastName')}}
+                        {{ __('bsw.lastName') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('lastName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('last_name') }}
                     </div>
                 </label>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6 p-1 mb-3">
+                @error('last_name')
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
+                    </div>
+                @enderror
+            </div>
+
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.companyName')}}
+                        {{ __('bsw.companyName') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('companyName', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('company_name') }}
                     </div>
                 </label>
+
+                @error('company_name')
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
+                    </div>
+                @enderror
             </div>
 
-            <div class="col-md-6 p-1 mb-3">
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.fullAddress')}}
+                        {{ __('bsw.fullAddress') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('fullAddress', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('full_address') }}
                     </div>
                 </label>
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6 p-1 mb-3">
+                @error('full_address')
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
+                    </div>
+                @enderror
+            </div>
+
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.email')}}
+                        {{ __('bsw.email') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::email('email', null, array('placeholder' => __('&nbsp;').' '.__('bsw.notRequired'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::email('email') }}
                     </div>
                 </label>
+
+                @error('email')
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
+                    </div>
+                @enderror
             </div>
 
-            <div class="col-md-6 p-1 mb-3">
+            <div class="col-md-6 p-1">
                 <label class="w-100">
                     <div class="p-1">
-                        {{ __('bsw.phone')}}
+                        {{ __('bsw.phone') }} *
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('phone', null, array('placeholder' => __('&nbsp;'), 'class' => 'form-control custom__input')) }}
+                        {{ Form::text('phone') }}
                     </div>
                 </label>
 
                 @error('phone')
-                    <div class="alert alert-danger p-2">
-                        {{ $message }}
+                    <div class="p-1">
+                        <div class="alert alert-danger m-0 p-2">
+                            {{ $message }}
+                        </div>
                     </div>
                 @enderror
             </div>
-        </div>
-
-        <div class="row">
+            
             <div class="col-12 p-1">
                 <label class="w-100">
                     <div class="p-1">
@@ -136,12 +166,8 @@
             <div class="js_products_data"></div>
         <!--  -->
 
-        <div class="row justify-content-center">
-            <div class="form-button col-lg-5 col-md-7 col-12">
-                <div>
-                    {{ Form::submit(__('bsw.orderPlacement'), array('class' => 'order__btn')) }}
-                </div>
-            </div>
+        <div class="d-flex justify-content-center p-2">
+            {{ Form::submit(__('bsw.orderPlacement'), ['class' => 'order__btn d-block']) }}
         </div>
     {{ Form::close() }}
 @endsection

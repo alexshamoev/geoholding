@@ -83,5 +83,5 @@ return [
     'sure_want_delete_file' => 'Are you sure you want to delete the file?',
     'delete' => 'Delete',
     'cancel' => 'Cancel',
-    'orderSuccessStatus' => 'შეკვეთა მიღებულია! ჩვენი ადმინისტრატორი მალე დაგიკავშირდებათ.',
+    'orderSuccessStatus' => 'Order is accepted! Our administrator will contact you soon.',
 ];
