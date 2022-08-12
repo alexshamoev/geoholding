@@ -18,7 +18,13 @@ class Order extends Model
         'order_code',
         'user_id',
         'delivery_type',
-        'full_price',
+        'name',
+        'last_name',
+        'company_name',
+        'full_address',
+        'email',
+        'telephone',
+        'details',
         'created_at',
         'updated_at'
     ];

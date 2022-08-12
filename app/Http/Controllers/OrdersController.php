@@ -40,11 +40,11 @@ class OrdersController extends FrontController {
         $fullPrice = 0;
         $productsArray = [];
         $quantityArray = $request->input('quantity');
-
-        foreach($request->input('productIds') as $key => $data) {
-            $productsArray[$key] = ProductStep2::firstWhere('id', $data);
-            $fullPrice += $productsArray[$key]->price * $quantityArray[$key];
-        }
+        // dd($request->input());
+        // foreach($request->input('productIds') as $key => $data) {
+        //     $productsArray[$key] = ProductStep2::firstWhere('id', $data);
+        //     $fullPrice += $productsArray[$key]->price * $quantityArray[$key];
+        // }
 
         // dd($orderCode, $fullPrice, $productsArray, $quantityArray);
 
@@ -52,7 +52,13 @@ class OrdersController extends FrontController {
             'order_code' => $orderCode,
             'user_id' => Auth::user()->id,
             'delivery_type' => 'default',
-            'full_price' => $fullPrice,
+            'name' => $request->input('name'),
+            'last_name' => $request->input('last_name'),
+            'company_name' => $request->input('company_name'),
+            'full_address' => $request->input('full_address'),
+            'email' => $request->input('email'),
+            'telephone' => $request->input('phone'),
+            'details' => $request->input('details'),
             'created_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
             'updated_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
         ]);
