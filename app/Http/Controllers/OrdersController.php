@@ -40,7 +40,7 @@ class OrdersController extends FrontController {
         $fullPrice = 0;
         $productsArray = [];
         $quantityArray = $request->input('quantity');
-        // dd($request->input());
+
         foreach($request->input('productIds') as $key => $data) {
             $productsArray[$key] = ProductStep2::firstWhere('id', $data);
             $fullPrice += $productsArray[$key]->price * $quantityArray[$key];
@@ -67,6 +67,10 @@ class OrdersController extends FrontController {
             $orderProducts = OrderProducts::create([
                 'orders_id' => $order->id,
                 'product_id' => $data,
+                'product_ge' => $productsArray[$key]->title_ge,
+                'product_en' => $productsArray[$key]->title_en,
+                'product_ru' => $productsArray[$key]->title_ru,
+                'price' => $productsArray[$key]->price,
                 'quantity' => $quantityArray[$key],
                 'created_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
                 'updated_at' => date("Y-m-d H:i:s", strtotime('+4 hours')),
