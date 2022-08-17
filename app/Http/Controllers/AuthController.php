@@ -39,8 +39,14 @@ class AuthController extends FrontController {
 
         $validated = $request->validate([
             'email' => 'required|max:255',
-            'password' => 'required|min:4',
+            'password' => 'required|min:8',
         ]);
+
+        $userAlready = User::firstWhere('email', $request->email);
+
+        if($userAlready->social_type == 'google') {
+            return back()->with('alert', 'For this user Google registration was used. Please Sign in with Google');
+        }
 
         $page = Page::firstWhere('slug', 'cabinet');
         $language = Language::firstWhere('title', $lang);
@@ -78,15 +84,20 @@ class AuthController extends FrontController {
     public static function registration(Request $request, $lang) {
         App::setLocale($lang);
 
+
         $validated = $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255',
             'last_name' => 'required|max:255',
-            'email' => 'required|unique:users,email|max:255',
-            'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:5',
-            'address' => 'required|max:255',
+            'email' => 'required|max:255',
             'password' => 'required|min:8',
             'confirmPassword' => 'required|min:8|same:password',
         ]);
+
+        $userAlready = User::firstWhere('email', $request->email);
+
+        if($userAlready->social_type == 'google') {
+            return back()->with('alert', 'This email was already used for Google registration. Please Sign in with Google');
+        }
 
         $user = User::create($request->all());
 
@@ -95,12 +106,11 @@ class AuthController extends FrontController {
         $emailData = [];
         $emailData['email'] = $request->input('email');
         $emailData['language'] = $language->title;
-        $emailData['name'] = $request->input('name');
         $emailData['id'] = $user->id;
 
         MailController::emailVerification($emailData);
         
-        return redirect()->route('getLogin', [$language->title])->with('alert', __('auth.registerSuccessStatus'));
+        return redirect()->route('getVerify', [$language->title])->with('alert', __('auth.registerSuccessStatus'));
     }
 
 
