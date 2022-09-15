@@ -123,24 +123,24 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-3 p-2">
-                            <a href="#"
+                        <div class="col-4 p-2">
+                            <a href="{{ $bsc->facebook_link }}"
                                 target="_blank"
                                 class="ba_fb
                                         footer__media_icon
                                         footer__media_icon--fb"></a>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <a href="#"
+                        <div class="col-4 p-2">
+                            <a href="{{ $bsc->instagram_link }}"
                                 target="_blank"
                                 class="ba_inst
                                         footer__media_icon
                                         footer__media_icon--instagram"></a>
                         </div>
                         
-                        <div class="col-3 p-2">
-                            <a href="#"
+                        <div class="col-4 p-2">
+                            <a href="{{ $bsc->twitter_link }}"
                                 target="_blank"
                                 class="ba_tw
                                         footer__media_icon
