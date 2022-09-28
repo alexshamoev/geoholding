@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Models\Admin;
 use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AAdminUpdateRequest;
-use Session;
 
 
 class AAdminController extends AController {
