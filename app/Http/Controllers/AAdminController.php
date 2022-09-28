@@ -113,7 +113,6 @@ class AAdminController extends AController {
 		$admin->name = $request->input('name');
 		$admin->email = $request->input('email');
 		$admin->password = Hash::make($request->input('password'));
-		$admin->super_administrator = 0;
 		$admin->save();
 
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
