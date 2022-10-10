@@ -36,7 +36,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('name') }}
+                        {{ Form::text('name', Auth::user()->name) }}
                     </div>
                 </label>
 
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('last_name') }}
+                        {{ Form::text('last_name', Auth::user()->last_name) }}
                     </div>
                 </label>
 
@@ -96,7 +96,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('full_address') }}
+                        {{ Form::text('full_address', Auth::user()->address) }}
                     </div>
                 </label>
 
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form::email('email') }}
+                        {{ Form::email('email', Auth::user()->email) }}
                     </div>
                 </label>
 
@@ -136,7 +136,7 @@
                     </div>
 
                     <div class="p-1">
-                        {{ Form::text('phone') }}
+                        {{ Form::text('phone', Auth::user()->phone) }}
                     </div>
                 </label>
 

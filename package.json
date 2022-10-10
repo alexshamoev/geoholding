@@ -12,15 +12,13 @@
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.16.7",
         "@babel/preset-react": "^7.16.7",
-        "@popperjs/core": "^2.11.4",
         "axios": "^0.21.4",
         "bootstrap": "^5.1.3",
         "cross-env": "^5.2.1",
         "jquery": "^3.2",
-        "jquery-ui": "^1.13.1",
+        "jquery-ui": "^1.13.2",
         "laravel-mix": "^6.0.43",
         "lodash": "^4.17.21",
-        "popper.js": "^1.12",
         "react": "^16.2.0",
         "react-dom": "^16.2.0",
         "resolve-url-loader": "^4.0.0",
@@ -32,9 +30,11 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^31.1.0",
+        "@popperjs/core": "^2.11.6",
         "@vue/compiler-sfc": "^3.2.31",
         "dropzone": "^6.0.0-beta.2",
         "photoswipe": "^4.1.3",
+        "owl.carousel": "^2.3.4",
         "sweetalert2": "^11.4.17",
         "vue": "^3.2.31"
     }

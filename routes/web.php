@@ -202,7 +202,7 @@ if(Schema::hasTable('languages')) {
 				$moduleTitleForControllerArray = explode('_', $module->alias);
 				
 				$moduleTitleForController = '';
-
+				
 				foreach($moduleTitleForControllerArray as $data) {
 					$moduleTitleForController .= ucfirst($data);
 				}

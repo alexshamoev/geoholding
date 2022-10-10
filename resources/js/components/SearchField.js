@@ -44,6 +44,8 @@ export default class SearchField extends Component {
             clearTimeout(this.state.timeout);
         }
 
+        console.log('test', self.state.timeout);
+
         self.state.timeout = setTimeout(function() {
             // console.log('update answer', newValue);
 

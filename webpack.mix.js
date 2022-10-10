@@ -20,13 +20,18 @@ const mix = require('laravel-mix');
 //  ]);
 
 
-mix.js('resources/js/app.js', 'public/js').vue().react()
+// sourceMaps added for popper console bug fix.
+
+mix.js('resources/js/app.js', 'public/js').sourceMaps().vue().react()
   .js('resources/js/admin/main.js', 'public/js/admin').vue()
   .copy('node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js', 'public/js/admin')
   .copy('node_modules/photoswipe/dist/photoswipe.min.js', 'public/js/plugins')
   .copy('node_modules/photoswipe/dist/photoswipe-ui-default.min.js', 'public/js/plugins')
   .copy('node_modules/photoswipe/dist/photoswipe.css', 'public/css/plugins')
   .copy('node_modules/photoswipe/dist/default-skin/default-skin.css', 'public/css/plugins')
+  .copy('node_modules/owl.carousel/dist/assets/owl.carousel.min.css', 'public/css/plugins')
+  .copy('node_modules/owl.carousel/dist/assets/owl.theme.default.min.css', 'public/css/plugins')
+  .copy('node_modules/owl.carousel/dist/owl.carousel.min.js', 'public/js/plugins')
   .copy('node_modules/sweetalert2/dist/sweetalert2.all.min.js', 'public/js/plugins')
   .sass('resources/sass/admin/main.scss', 'public/css/admin')
   .sass('resources/sass/main.scss', 'public/css')

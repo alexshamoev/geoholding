@@ -1,6 +1,6 @@
 window._ = require('lodash');
 import "bootstrap";
-
+import 'bootstrap/dist/js/bootstrap.bundle';
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -8,7 +8,6 @@ import "bootstrap";
  */
 
 try {
-    window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
