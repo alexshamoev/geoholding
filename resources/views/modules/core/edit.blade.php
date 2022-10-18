@@ -501,37 +501,38 @@
 		@endphp
 
 		@if(!$nextModuleStep->isEmpty())
-			@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
-				<!-- Add button -->
-					@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
-						@include('admin.includes.addButton', [
-							'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
-							'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
-						])
-					@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
-						<div class="p-2">
-							<div class="p-2 standard-block">
-								{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
-									<div class="p-2">
-										{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
-									</div>
+			@foreach($nextModuleStep as $moduleStepData)
+				@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
+					<!-- Add button -->
+						@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
+							@include('admin.includes.addButton', [
+								'text' => __('bsw.add').' '.$nextModuleStep->values()->get($i)->title,
+								'url' => route('coreAdd', [$module->alias, $nextModuleStep->values()->get($i)->id, $data->id])
+							])
+						@elseif($nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
+							<div class="p-2">
+								<div class="p-2 standard-block">
+									{{ Form::open(array('route' => array('coreAddMultImage', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id), 'files' => true, 'method' => 'post')) }}
+										<div class="p-2">
+											{{ __('bsw.add').' '.$nextModuleStep->values()->get($i)->title }}
+										</div>
 
-									<div class="p-2">
-										{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
-									</div>
+										<div class="p-2">
+											{{ Form::file('images[]', ['multiple' => "multiple", 'class' => "form-control", 'accept' => "image/*"]) }}
+										</div>
 
-									<div class="p-2 submit-button">
-										{{ Form::submit(__('bsw.adding')) }}
-									</div>
-								{{ Form::close() }}
+										<div class="p-2 submit-button">
+											{{ Form::submit(__('bsw.adding')) }}
+										</div>
+									{{ Form::close() }}
+								</div>
 							</div>
-						</div>
-					@endif
-				<!--  -->
-			@endif
+						@endif
+					<!--  -->
+				@endif
 
-			{{ Form :: open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
-				@foreach($nextModuleStep as $moduleStepData)
+
+				{{ Form::open(array('route' => array('coreMultiDelete', $module->alias, $nextModuleStep->values()->get($i)->id, $data->id, $moduleStep->id))) }}
 					<div class="row rangBlocks" data-db_table="{{ $moduleStepData->db_table }}">
 						@foreach($nextModuleStepData->values()->get($i) as $dataIn)
 							@if(!$moduleStepData->images)
@@ -561,30 +562,30 @@
 							@endif
 						@endforeach
 
-                        @if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
-                            <div class="col-12">
-                                <div class="col_padding check__remove_block p-2">
-                                    <span class="check_arrow">↑</span>
+						@if($moduleStepData->possibility_to_multy_delete !== 0 && count($nextModuleStepData->values()->get($i)) !== 0)
+							<div class="col-12">
+								<div class="col_padding check__remove_block p-2">
+									<span class="check_arrow">↑</span>
 
-                                    <span class="check_all me-2">{{ __('bsw.check_all') }}</span>
+									<span class="check_all me-2">{{ __('bsw.check_all') }}</span>
 									/
 									<span class="remove_check ms-2">{{ __('bsw.check_all') }}</span>
-                                </div>
-                            </div>
+								</div>
+							</div>
 
 							<div class="p-2 delete-button">
 								{{ Form::submit(__('bsw.delete_button_text')) }}
 							</div>
 						@endif
 					</div>
+				{{ Form::close() }}
 
-					<div class="my-5"></div>
+				<div class="my-5"></div>
 
-					@php
-						$i++;
-					@endphp
-				@endforeach
-			{{ Form :: close() }}
+				@php
+					$i++;
+				@endphp
+			@endforeach
 		@endif
 	</div>
 
