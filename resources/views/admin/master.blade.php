@@ -16,7 +16,10 @@
 		
 
 		<!-- Plugins -->
-			<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
+			<!-- <script src="{{ asset('js/admin/ckeditor.js') }}"></script> -->
+
+			<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/decoupled-document/ckeditor.js"></script>
+
 
 			<!-- photoswipe -->
 				<link rel="stylesheet" type="text/css" href="{{ asset('css/plugins/photoswipe.css') }}">

@@ -290,14 +290,43 @@
 										{{ Form::textarea($moduleBlock->db_column,
 															$data->{ $moduleBlock->db_column },
 															[
-																'id' => $moduleBlock->db_column
+																'id' => 'editor_'.$moduleBlock->db_column,
+																'class' => 'd-none'
 															]) }}
+										
+										<!-- The toolbar will be rendered in this container. -->
+											<div id="toolbar-container-{{ $moduleBlock->db_column }}"></div>
+										<!--  -->
+
+										<!-- This container will become the editable. -->
+											<div id="{{ $moduleBlock->db_column }}"
+												 class="ckeditor_block">
+												 {!! old($moduleBlock->db_column, $data->{ $moduleBlock->db_column }) !!}
+											</div>
+										<!--  -->
 									</div>
 								</div>
 
+								@error($moduleBlock->db_column)
+									<div class="alert alert-danger m-0">
+										{{ $message }}
+									</div>
+								@enderror
+
 								<script>
-									ClassicEditor
+									DecoupledEditor
 										.create( document.querySelector( '#{{ $moduleBlock->db_column }}' ) )
+										.then( editor => {
+											const toolbarContainer = document.querySelector( '#toolbar-container-{{ $moduleBlock->db_column }}' );
+
+											toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+
+											editor.model.document.on( 'change:data', () => {
+												$('#editor_{{ $moduleBlock->db_column }}').text(editor.getData());
+
+												// console.log( 'The data has changed! ' + editor.getData() );
+											} );
+										} )
 										.catch( error => {
 											console.error( error );
 										} );
@@ -379,8 +408,20 @@
 											{{ Form::textarea($moduleBlock->db_column.'_'.$langData->title,
 																$data->{ $moduleBlock->db_column.'_'.$langData->title },
 																[
-																	'id' => $moduleBlock->db_column.'_'.$langData->title
+																	'id' => 'editor_'.$moduleBlock->db_column.'_'.$langData->title,
+																	'class' => 'd-none'
 																]) }}
+
+											<!-- The toolbar will be rendered in this container. -->
+												<div id="toolbar-container-{{ $moduleBlock->db_column.'_'.$langData->title }}"></div>
+											<!--  -->
+
+											<!-- This container will become the editable. -->
+												<div id="{{ $moduleBlock->db_column.'_'.$langData->title }}"
+													 class="ckeditor_block">
+													{!! old($moduleBlock->db_column.'_'.$langData->title, $data->{ $moduleBlock->db_column.'_'.$langData->title }) !!}
+												</div>
+											<!--  -->
 										</div>
 									</div>
 
@@ -391,21 +432,18 @@
 									@enderror
 
 									<script>
-										ClassicEditor
-											.create( document.querySelector( '#{{ $moduleBlock->db_column.'_'.$langData->title }}' ),{
-												link: {
-													defaultProtocol: 'http://',
-													decorators: {
-														openInNewTab: {
-															mode: 'manual',
-															label: 'Open in a new tab',
-															attributes: {
-																target: '_blank',
-																rel: 'noopener noreferrer'
-															}
-														}
-													}
-												}
+										DecoupledEditor
+											.create( document.querySelector( '#{{ $moduleBlock->db_column.'_'.$langData->title }}' ) )
+											.then( editor => {
+												const toolbarContainer = document.querySelector( '#toolbar-container-{{ $moduleBlock->db_column.'_'.$langData->title }}' );
+
+												toolbarContainer.appendChild( editor.ui.view.toolbar.element );
+
+												editor.model.document.on( 'change:data', () => {
+													$('#editor_{{ $moduleBlock->db_column.'_'.$langData->title }}').text(editor.getData());
+
+													// console.log( 'The data has changed! ' + editor.getData() );
+												} );
 											} )
 											.catch( error => {
 												console.error( error );
