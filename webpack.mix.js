@@ -24,7 +24,6 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js').sourceMaps().vue().react()
   .js('resources/js/admin/main.js', 'public/js/admin').vue()
-  .copy('node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js', 'public/js/admin')
   .copy('node_modules/photoswipe/dist/photoswipe.min.js', 'public/js/plugins')
   .copy('node_modules/photoswipe/dist/photoswipe-ui-default.min.js', 'public/js/plugins')
   .copy('node_modules/photoswipe/dist/photoswipe.css', 'public/css/plugins')

@@ -13,7 +13,6 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/admin/main.css') }}">
 
         <script src="{{ asset('js/admin/main.js') }}"></script> <!-- must be first because it loads jquery -->
-		<script src="{{ asset('js/admin/ckeditor.js') }}"></script>
 	</head>
 
 	<body>

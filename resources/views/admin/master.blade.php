@@ -16,8 +16,6 @@
 		
 
 		<!-- Plugins -->
-			<!-- <script src="{{ asset('js/admin/ckeditor.js') }}"></script> -->
-
 			<script src="https://cdn.ckeditor.com/ckeditor5/35.2.1/decoupled-document/ckeditor.js"></script>
 
 
