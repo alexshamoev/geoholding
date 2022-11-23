@@ -600,7 +600,7 @@ class ACoreController extends AController {
 			foreach($moduleStep->moduleBlock as $data) {
 				if($data->type === 'image') {
 					$prefix = '';
-
+					
 					if($data->prefix) {
 						$prefix = $data->prefix.'_';
 					}
@@ -610,10 +610,10 @@ class ACoreController extends AController {
 					if(file_exists(storage_path('app/'.$imagePath))) {
 						Storage::move($imagePath, 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$data->file_format);
 					}
-
+					
 					for($i = 1; $i < 4; $i++) {
 						$imagePathPrev = 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format;
-
+						
 						if($data->{'prefix_'.$i}) {
 							if(file_exists(storage_path('app/'.$imagePathPrev))) {
 								Storage::move($imagePathPrev, 'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'_'.$data->{'prefix_'.$i}.'.'.$data->file_format);
@@ -634,15 +634,17 @@ class ACoreController extends AController {
 						$prefix = $data->prefix.'_';
 					}
 					$existingFileFormat = 'file';
-
+					
 					foreach(explode(',', $data->file_format) as $formatData) {
 						if(file_exists(public_path('/storage/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$formatData))) {
 							$existingFileFormat = $formatData;
+							
+							Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$existingFileFormat,
+											'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$existingFileFormat);
+
 						}
 					}
 
-					Storage::move('public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$oldId.'.'.$existingFileFormat,
-									'public/images/modules/'.$moduleStep->module->alias.'/'.$moduleStep->id.'/'.$prefix.$id.'.'.$existingFileFormat);
 
 				}
 			}
