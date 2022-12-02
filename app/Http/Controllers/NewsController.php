@@ -14,6 +14,8 @@ class NewsController extends FrontController {
     private static $page;
 
     function __construct() {
+        parent::__construct();
+        
         self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
 
         NewsStep0::setPage(self::$page);

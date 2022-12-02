@@ -17,6 +17,8 @@ class OrdersController extends FrontController {
 
 
     public function __construct() {
+        parent::__construct();
+        
         self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
     }
 

@@ -12,6 +12,8 @@ class PhotoGalleryController extends FrontController {
 
 
     public function __construct() {
+        parent::__construct();
+        
         self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
         
         PhotoGalleryStep0::setPage(self::$page);

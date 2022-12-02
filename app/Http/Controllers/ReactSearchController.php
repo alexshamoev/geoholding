@@ -51,7 +51,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 
 				$i++;
 			}
@@ -65,7 +69,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -79,7 +87,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -93,7 +105,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -107,7 +123,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -121,7 +141,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -135,7 +159,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -149,7 +177,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
@@ -163,7 +195,11 @@ class ReactSearchController extends Controller {
 							->get() as $data) {
 				$result[$i]['title'] = $data->title;
 				$result[$i]['fullUrl'] = $data->fullUrl;
-				$result[$i]['text'] = $data->text;
+				$result[$i]['text'] = '';
+
+				if(!is_null($data->text)) {
+					$result[$i]['text'] = $data->text;
+				}
 				
 				$i++;
 			}
