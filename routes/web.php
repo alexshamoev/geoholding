@@ -160,6 +160,14 @@ if(Schema::hasTable('languages')) {
 				Route::get('/{lang}/reset/{email}', 'AuthController@getReset')->name('getReset');
 				Route::post('/{lang}/reset/{email}', 'AuthController@reset')->name('reset');
 			//
+
+			//getVerify
+				Route::get('/{lang}/get-verify/{id}', 'AuthController@getVerify')->name('getVerify');
+			//
+
+			// // Resend
+			// 	Route::post('/resend', 'MailController@emailVerification')->name('resendEmail');
+			// //
 		// 
 
 

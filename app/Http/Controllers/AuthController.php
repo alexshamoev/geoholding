@@ -95,7 +95,7 @@ class AuthController extends FrontController {
 
         $userAlready = User::firstWhere('email', $request->email);
 
-        if($userAlready->social_type == 'google') {
+        if($userAlready && $userAlready->social_type == 'google') {
             return back()->with('alert', 'This email was already used for Google registration. Please Sign in with Google');
         }
 
@@ -110,7 +110,19 @@ class AuthController extends FrontController {
 
         MailController::emailVerification($emailData);
         
-        return redirect()->route('getVerify', [$language->title])->with('alert', __('auth.registerSuccessStatus'));
+        return redirect()->route('getVerify', [$language->title, $user->id])->with('alert', __('auth.registerSuccessStatus'));
+    }
+
+    public static function getVerify($lang, $id) {
+        $page = Page::firstWhere('slug', 'getVerify');
+        $language = Language::firstWhere('title', $lang);
+        
+        $data = array_merge(self::getDefaultData($language, $page), 
+                            [   
+                                
+                            ]);
+        // return redirect()->route('getLogin', $lang)->with('alert', 'Email was verified successfully');
+        return view('auth.verify', $data);
     }
 
 
