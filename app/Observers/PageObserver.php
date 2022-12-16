@@ -2,6 +2,9 @@
 
 namespace App\Observers;
 
+use App\Models\Module;
+use App\Models\ModulesIncludesValue;
+use App\Models\ModulesNotIncludesValue;
 use App\Models\Page;
 use Illuminate\Support\Facades\Storage;
 
@@ -48,6 +51,16 @@ class PageObserver
         if(Storage::exists($file)) {
             Storage::delete($file);
         }
+
+        // Update page_id field in modules table
+            $modules = Module::where('page_id', $page->id)->get();
+
+            foreach($modules as $module) {
+                $module->page_id = 0;
+                $module->include_type = 4;
+                $module->save();
+            }
+        //
     }
 
     /**
