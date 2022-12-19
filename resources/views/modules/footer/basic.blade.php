@@ -111,20 +111,20 @@
                             flex-column
                             align-items-end">
                     <div class="p-2">
-                        {{ $bsw -> address }}
+                        {{ config('bsw.address') }}
                     </div>
                     
                     <div class="p-2">
-                        {{ __('bsw.phone_number') }}: <a href="tel:{{ $bsc -> phone_number }}">{{ $bsc -> phone_number }}</a>
+                        {{ __('bsw.phone_number') }}: <a href="tel:{{ config('bsc.phone_number') }}">{{ config('bsc.phone_number') }}</a>
                     </div>
                     
                     <div class="p-2">
-                        <a href="mailto:{{ $bsc -> admin_email }}">{{ $bsc -> admin_email }}</a>
+                        <a href="mailto:{{ config('bsc.admin_email') }}">{{ config('bsc.admin_email') }}</a>
                     </div>
 
                     <div class="row">
                         <div class="col-4 p-2">
-                            <a href="{{ $bsc->facebook_link }}"
+                            <a href="{{ config('bsc.facebook_link') }}"
                                 target="_blank"
                                 class="ba_fb
                                         footer__media_icon
@@ -132,7 +132,7 @@
                         </div>
                         
                         <div class="col-4 p-2">
-                            <a href="{{ $bsc->instagram_link }}"
+                            <a href="{{ config('bsc.instagram_link') }}"
                                 target="_blank"
                                 class="ba_inst
                                         footer__media_icon
@@ -140,7 +140,7 @@
                         </div>
                         
                         <div class="col-4 p-2">
-                            <a href="{{ $bsc->twitter_link }}"
+                            <a href="{{ config('bsc.twitter_link') }}"
                                 target="_blank"
                                 class="ba_tw
                                         footer__media_icon
@@ -168,7 +168,7 @@
                             p-2
                             text-lg-start
                             text-center">
-                    © {{ $copyrightDate }} {{ __('bsw.copyright') }} 
+                    © {{ config('constants.year_of_site_creation') }} {{ __('bsw.copyright') }} 
                 </div>
 
                 <div class="col-lg-4

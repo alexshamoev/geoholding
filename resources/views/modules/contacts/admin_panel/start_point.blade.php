@@ -2,18 +2,18 @@
 
 
 @section('pageMetaTitle')
-	{{ $module -> title }}
+	{{ $module->title }}
 @endsection
 
 
 @section('content')
     @include('admin.includes.tags', [
-		'tag0Text' => $module -> title
+		'tag0Text' => $module->title
 	])
 
 
 	<div class="p-2">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -22,16 +22,16 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		{{ Form :: open(array('route' => 'contactsUpdate')) }}
+		{{ Form::open(array('route' => 'contactsUpdate')) }}
             <div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2">
@@ -39,7 +39,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('admin_email', $bsc -> admin_email) }}
+                        {{ Form::text('admin_email', config('bsc.admin_email')) }}
 					</div>
 				</div>
 
@@ -58,7 +58,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('facebook_link', $bsc -> facebook_link) }}
+                        {{ Form::text('facebook_link', config('bsc.facebook_link')) }}
 					</div>
 				</div>
 
@@ -77,7 +77,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('instagram_link', $bsc -> instagram_link) }}
+                        {{ Form::text('instagram_link', config('bsc.instagram_link')) }}
 					</div>
 				</div>
 
@@ -96,7 +96,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('twitter_link', $bsc -> twitter_link) }}
+                        {{ Form::text('twitter_link', config('bsc.twitter_link')) }}
 					</div>
 				</div>
 
@@ -115,7 +115,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('phone_number', $bsc -> phone_number) }}
+                        {{ Form::text('phone_number', config('bsc.phone_number')) }}
 					</div>
 				</div>
 
@@ -134,15 +134,15 @@
                             <div class="p-2">
                                 მისამართი: *
                                 
-                                <img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+                                <img src="{{ asset('/storage/images/modules/languages/'.$langData->id.'.svg') }}" width="30" height="30">
                             </div>			
 
                             <div class="p-2">
-                                {{ Form :: text('address_'.$langData -> title, ${ 'address_'.$langData -> title }) }}
+                                {{ Form::text('address_'.$langData->title, ${ 'address_'.$langData->title }) }}
                             </div>
                         </div>
 
-                        @error('address_'.$langData -> title)
+                        @error('address_'.$langData->title)
                             <div class="alert alert-danger">
                                 {{ $message }}
                             </div>
@@ -159,7 +159,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('cordinate_x', $bsc -> cordinate_x) }}
+                        {{ Form::text('cordinate_x', config('bsc.cordinate_x')) }}
 					</div>
 				</div>
 
@@ -178,7 +178,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: text('cordinate_y', $bsc -> cordinate_y) }}
+                        {{ Form::text('cordinate_y', config('bsc.cordinate_y')) }}
 					</div>
 				</div>
 
@@ -197,7 +197,7 @@
 					</div>
 					
 					<div class="p-2">
-                        {{ Form :: selectRange('map_number', 21, 10, $bsc -> map_number) }}
+                        {{ Form::selectRange('map_number', 21, 10, config('bsc.map_number')) }}
 					</div>
 				</div>
 
@@ -210,8 +210,8 @@
 
             
             <div class="p-2 submit-button">
-                {{ Form :: submit(__('bsw.submit')) }}
+                {{ Form::submit(__('bsw.submit')) }}
             </div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 @endsection

@@ -7,13 +7,9 @@ use Illuminate\Support\Facades\Validator;
 use App;
 
 class Bsc extends Model {
-    public static function getFullData() {
-		$bscs = (object)[];
-
+    public static function initConfigs() {
 		foreach(Bsc::all() as $data) {
-			$bscs->{ $data->system_word } = $data->configuration;
+			config(['bsc.'.$data->system_word => $data->configuration]);
 		}
-
-		return $bscs;
 	}
 }

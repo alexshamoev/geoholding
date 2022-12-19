@@ -96,9 +96,9 @@ export default class SearchField extends Component {
 					<input type="text" onChange={this.handleChange} />
 				</div>
 
-				{this.state.searchAnswers.map((answer, idx) => (
-					<SearchAnswer answer={ answer } />
-				))}
+				{this.state.searchAnswers.map((answer, index) => (
+                    <SearchAnswer key={ index } answer={ answer } />
+                ))}
                 
                 
 				{ emptyMessageWithBlock }

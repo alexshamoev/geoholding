@@ -11,7 +11,7 @@
                             justify-content-between
                             row">
                     <div class="col-6">
-                        <span>{{ __('bsw.phone_number') }}: {{ $bsc -> phone_number }}</span>
+                        <span>{{ __('bsw.phone_number') }}: {{ config('bsc.phone_number') }}</span>
                     </div>
 
                     @if(Auth :: check())

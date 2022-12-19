@@ -4,7 +4,6 @@ namespace App\Models;
 
 use App\Models\Page;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Bsw;
 use App;
 
 
@@ -44,21 +43,17 @@ class NewsStep0 extends Model {
 
 
     public function getMetaTitleAttribute() {
-        $bsw = Bsw::getFullData();
-
         if($this->{ 'meta_title_'.App::getLocale() }) {
             return $this->{ 'meta_title_'.App::getLocale() };
         } else if($this->{ 'title_'.App::getLocale() }) {
             return $this->{ 'title_'.App::getLocale() };
         } else {
-            return __('bsw.meta_title');
+            return config('bsw.meta_title');
         }
     }
 
 
 	public function getMetaDescriptionAttribute() {
-        $bsw = Bsw::getFullData();
-
         if($this->{ 'meta_description_'.App::getLocale() }) {
             $textAsDesc = strip_tags($this->{ 'meta_description_'.App::getLocale() });
             
@@ -68,7 +63,7 @@ class NewsStep0 extends Model {
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
-            return __('bsw.meta_description');
+            return config('bsw.meta_description');
         }
     }
 

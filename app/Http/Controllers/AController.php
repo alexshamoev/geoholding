@@ -12,6 +12,12 @@ use Session;
 
 
 class AController extends Controller {
+	public function __construct() {
+		Bsc::initConfigs();
+		Bsw::initConfigs();
+    }
+
+
 	public function getDefaultPage() {
 		$firstModule = Module::orderBy('rang', 'desc')->first();
 
@@ -20,7 +26,6 @@ class AController extends Controller {
 
 	
 	public static function getDefaultData() {
-		$bsc = Bsc::getFullData();
 		$activeUser = Auth::guard('admin')->user();
 		$copyrightDate = config('constants.year_of_site_creation');
 
@@ -42,8 +47,6 @@ class AController extends Controller {
 		$data = [
 					'modules' => Module::with(['moduleStep'])->get()->sortByDesc('rang'),
 					'modulesForMenu' => $modulesForMenu,
-					'bsc' => Bsc::getFullData(),
-					'bsw' => Bsw::getFullData(),
 					'copyrightDate' => $copyrightDate,
 					'languages' => Language::where('disable', 0)->orderByDesc('rang')->get(),
 					'activeUser' => Auth::guard('admin')->user()

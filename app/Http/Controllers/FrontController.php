@@ -23,6 +23,10 @@ class FrontController extends Controller {
 		$activePage = $activePageArray[1];
 
 		config(['activePageAlias' => $activePage]);
+
+
+		Bsc::initConfigs();
+		Bsw::initConfigs();
     }
 	
 
@@ -39,25 +43,19 @@ class FrontController extends Controller {
 
 		$widgetGetVisibility = Widget::getVisibility($page);
 
-		$bsc = Bsc::getFullData();
-		$copyrightDate = config('constants.year_of_site_creation');
-
-		if($copyrightDate < date('Y')) {
-			$copyrightDate .= ' - '.date('Y');
+		if(config('constants.year_of_site_creation') < date('Y')) {
+			config(['constants.year_of_site_creation' => config('constants.year_of_site_creation').' - '.date('Y')]);
 		}
 
 		$data = ['page' => $page,
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
-				'bsc' => $bsc,
-				'bsw' => Bsw::getFullData(),
 				'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
 				'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
 				'basketPage' => Page::firstWhere('slug', 'basket'),
 				'partners' => Partner::orderByDesc('rang')->get(),
-				'widgetGetVisibility' => $widgetGetVisibility,
-				'copyrightDate' => $copyrightDate];
+				'widgetGetVisibility' => $widgetGetVisibility];
 		
 		return $data;
 	}
