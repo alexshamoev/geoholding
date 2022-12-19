@@ -31,15 +31,13 @@ class NewsStep2 extends Model {
         return $this -> { 'text_'.App :: getLocale() };
     }
 
-	
+
 	public function getFullUrlAttribute() {
         return $this -> newsStep1 -> fullUrl.'/'.$this -> alias;
     }
 
 
 	public function getMetaTitleAttribute() {
-        $bsw = Bsw :: getFullData();
-
         if($this -> { 'meta_title_'.App :: getLocale() }) {
             return $this -> { 'meta_title_'.App :: getLocale() };
         } else if($this -> { 'title_'.App :: getLocale() }) {
@@ -51,8 +49,6 @@ class NewsStep2 extends Model {
 
 
 	public function getMetaDescriptionAttribute() {
-        $bsw = Bsw :: getFullData();
-
         if($this -> { 'meta_description_'.App :: getLocale() }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.App :: getLocale() });
 
@@ -65,8 +61,8 @@ class NewsStep2 extends Model {
             return __('bsw.meta_description');
         }
     }
-    
-    
+
+
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/news/step_2/meta_'.$this -> { 'id' }.'.jpg'))) {
             return '/storage/images/modules/photo_gallery/step_2/meta_'.$this -> { 'id' }.'.jpg';

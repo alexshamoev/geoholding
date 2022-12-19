@@ -31,15 +31,13 @@ class NewsStep3 extends Model {
         return $this -> { 'text_'.App :: getLocale() };
     }
 
-	
+
 	public function getFullUrlAttribute() {
         return $this -> newsStep2 -> fullUrl.'/'.$this -> alias;
     }
 
 
 	public function getMetaTitleAttribute() {
-        $bsw = Bsw :: getFullData();
-
         if($this -> { 'meta_title_'.App :: getLocale() }) {
             return $this -> { 'meta_title_'.App :: getLocale() };
         } else if($this -> { 'title_'.App :: getLocale() }) {
@@ -51,8 +49,6 @@ class NewsStep3 extends Model {
 
 
 	public function getMetaDescriptionAttribute() {
-        $bsw = Bsw :: getFullData();
-
         if($this -> { 'meta_description_'.App :: getLocale() }) {
             $textAsDesc = strip_tags($this -> { 'meta_description_'.App :: getLocale() });
 

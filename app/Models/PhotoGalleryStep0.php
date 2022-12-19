@@ -15,7 +15,7 @@ class PhotoGalleryStep0 extends Model {
      * @var string
      */
     protected $table = 'photo_gallery_step_0';
-    
+
     private static $page;
 
 
@@ -37,20 +37,18 @@ class PhotoGalleryStep0 extends Model {
         return $this->{ 'text_'.App::getLocale() };
     }
 
-    
+
 	public function getFullUrlAttribute() {
         return self::$page->fullUrl.'/'.$this->alias;
     }
 
-    
+
 	public function getFullUrl($lang) {
         return self::$page->getFullUrl($lang).'/'.$this->{ 'alias_'.$lang };
     }
 
 
     public function getMetaTitleAttribute() {
-        $bsw = Bsw::getFullData();
-
         if($this->{ 'meta_title_'.App::getLocale() }) {
             return $this->{ 'meta_title_'.App::getLocale() };
         } else if($this->{ 'title_'.App::getLocale() }) {
@@ -62,8 +60,6 @@ class PhotoGalleryStep0 extends Model {
 
 
 	public function getMetaDescriptionAttribute() {
-        $bsw = Bsw::getFullData();
-
         if($this->{ 'meta_description_'.App::getLocale() }) {
             $textAsDesc = strip_tags($this->{ 'meta_description_'.App::getLocale() });
 
@@ -77,7 +73,7 @@ class PhotoGalleryStep0 extends Model {
         }
     }
 
-    
+
     public function getMetaUrlAttribute() {
         if(file_exists(public_path('/storage/images/modules/photo_gallery/step_0/meta_'.$this->{ 'id' }.'.jpg'))) {
             return '/storage/images/modules/photo_gallery/step_0/meta_'.$this->{ 'id' }.'.jpg';

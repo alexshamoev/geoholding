@@ -15,11 +15,12 @@
 		</div>
 
 		<div class="p-2">
-			<a href="tel:{{ $bsc -> phone_number }}">{{ $bsc -> phone_number }}</a>
+			<a href="tel:{{ config('bsc.phone_number') }}">{{ config('bsc.phone_number')  }}</a>
 		</div>
 
 		<div class="p-2">
-			<a href="mailto:{{ $bsc -> admin_email }}">{{ $bsc -> admin_email }}</a>
+
+			<a href="mailto:{{ config('bsc.admin_email') }}">{{ config('bsc.admin_email') }}</a>
 		</div>
 	</div>
 @endsection
