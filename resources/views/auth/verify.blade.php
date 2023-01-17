@@ -5,6 +5,19 @@
 @section('pageMetaUrl'){{ $page -> metaUrl }}@endsection
 
 @section('content')
+    @if (\Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @elseif(\Session::has('error'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('error') !!}</li>
+            </ul>
+        </div>
+    @endif
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -19,7 +32,11 @@
                         @endif
 
                         {{ __('Before proceeding, please check your email for a verification link.') }}
-                        {{-- {{ __('If you did not receive the email') }}, <a href="{{ route('resendEmail') }}">{{ __('click here to request another') }}</a>. --}}
+                        {{ __('If you did not receive the email') }}, 
+                        <a href="{{ route('resendEmail', [$language->title, $userId]) }}">
+                            {{ __('click here to request another') }}
+                        </a>
+                        {{-- <a href="{{ route('resendEmail', $language->title) }}">{{ __('click here to request another') }}</a>. --}}
                     </div>
                 </div>
             </div>

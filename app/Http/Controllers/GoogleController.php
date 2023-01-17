@@ -28,10 +28,16 @@ class GoogleController extends Controller
     public function handleCallback()
     {
         try {
-     
+            
             $user = Socialite::driver('google')->user();
-            $finduser = User::where('social_id', $user->id)->first();
-      
+            $dataUser = User::firstWhere('email', $user->email);
+            
+            if($dataUser && $dataUser->social_id === NULL ) {
+                return redirect('/ge/login')->with('alert', 'This Email is already Registered! Please try to log in without google Authorization!');
+            }else{
+                $finduser = User::where('social_id', $user->id)->first();
+            }
+
             if($finduser){
                 Auth::login($finduser);
      
@@ -54,7 +60,7 @@ class GoogleController extends Controller
             }
      
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return back()->withErrors(['Error' => $e->getMessage()]);
         }
     }
 }

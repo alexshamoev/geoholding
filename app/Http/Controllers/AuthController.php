@@ -44,7 +44,7 @@ class AuthController extends FrontController {
 
         $userAlready = User::firstWhere('email', $request->email);
 
-        if($userAlready->social_type == 'google') {
+        if($userAlready && $userAlready->social_type === 'google') {
             return back()->with('alert', 'For this user Google registration was used. Please Sign in with Google');
         }
 
@@ -58,8 +58,11 @@ class AuthController extends FrontController {
             }
 
             Auth::logout();
+            $user = User::firstWhere('email', $request->email);
+            static::emailReVerification($language->title, $user['id']);
             
-            return back()->with('alert', __('auth.email_needs_verifying'));
+            // return back()->with('alert', __('auth.email_needs_verifying'));
+            return redirect()->route('getVerify', [$lang, $user['id']]);
         }
 
         return back()->with('alert', __('auth.email_or_pass_incorrect'));
@@ -116,10 +119,12 @@ class AuthController extends FrontController {
     public static function getVerify($lang, $id) {
         $page = Page::firstWhere('slug', 'getVerify');
         $language = Language::firstWhere('title', $lang);
-        
+        $userId = $id;
+
         $data = array_merge(self::getDefaultData($language, $page), 
                             [   
-                                
+                                'resendVerificationPage' => Page::firstWhere('slug', 'resendVerification'),
+                                'userId' => $id,
                             ]);
         // return redirect()->route('getLogin', $lang)->with('alert', 'Email was verified successfully');
         return view('auth.verify', $data);
@@ -127,11 +132,37 @@ class AuthController extends FrontController {
 
 
     public static function emailVerification($lang, $id) {
+        $page = Page::firstWhere('slug', 'getVerify');
+        $language = Language::firstWhere('title', $lang);
+
         $user = User::firstWhere('id', $id);
         $user->email_verified_at = date("Y-m-d H:i:s", strtotime('+4 hours'));
         $user->save();
 
         return redirect()->route('getLogin', $lang)->with('alert', 'Email was verified successfully');
+    }
+
+    public static function emailReVerification($lang, $id) {
+        $page = Page::firstWhere('slug', 'getVerify');
+        $language = Language::firstWhere('title', $lang);
+
+        $user = User::firstWhere('id', $id);
+
+        if(isset($user) && is_null($user['email_verified_at'])) {
+            $emailData = [];
+            $emailData['email'] = $user['email'];
+            $emailData['language'] = $language->title;
+            $emailData['id'] = $user['id'];
+            MailController::emailVerification($emailData);
+            // $user->email_verified_at = date("Y-m-d H:i:s", strtotime('+4 hours'));
+            // $user->save();
+
+            return back()->with('success', 'Verification was resend, please check Email');
+        } elseif(!isset($user)) {
+            return redirect()->route('getLogin', $lang)->with('alert', 'This Email not exists in DataBase!');
+        } else {
+            return redirect()->route('getLogin', $lang)->with('alert', 'Email already registered or already confirmed');
+        }
     }
 
 

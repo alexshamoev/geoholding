@@ -165,9 +165,9 @@ if(Schema::hasTable('languages')) {
 				Route::get('/{lang}/get-verify/{id}', 'AuthController@getVerify')->name('getVerify');
 			//
 
-			// // Resend
-			// 	Route::post('/resend', 'MailController@emailVerification')->name('resendEmail');
-			// //
+			// Resend
+				Route::get('/{lang}/resend_verification/{id}', 'AuthController@emailReVerification')->name('resendEmail');
+			//
 		// 
 
 

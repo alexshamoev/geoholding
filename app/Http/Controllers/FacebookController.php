@@ -54,7 +54,7 @@ class FacebookController extends Controller
             }
      
         } catch (Exception $e) {
-            dd($e->getMessage());
+            return back()->withErrors(['Error' => $e->getMessage()]);
         }
     }
 }
