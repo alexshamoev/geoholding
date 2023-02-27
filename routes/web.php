@@ -32,7 +32,7 @@ if(Schema::hasTable('languages')) {
 					Route::get('/', 'AController@getDefaultPage')->name('adminDefaultPage');
 					Route::get('/logout', 'AAdminController@logout')->name('aLogout');
 
-					Route::get('/{moduleAlias}/{moduleStepId}/{id}/{moduleBlockId}/deleteImage', 'ACoreController@deleteFile')->name('deleteFile');
+					Route::get('/{moduleAlias}/{moduleStepId}/{id}/{moduleBlockId}/delete-image', 'ACoreController@deleteFile')->name('deleteFile');
 
 					Route::prefix('modules')->group(function() {
 						Route::get('', 'AModuleController@getStartPoint')->name('moduleStartPoint');
@@ -120,7 +120,7 @@ if(Schema::hasTable('languages')) {
 						Route::post('/{moduleAlias}/{moduleStepId}/{id}/addImage', 'ACoreController@addMultImages')->name('coreAddMultImage');
 						Route::post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update')->name('coreUpdate');
 						Route::get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete')->name('coreDelete');
-						Route::post('/{moduleAlias}/{moduleStepId}/{id}/{parentModuleStepId}/multiDelete', 'ACoreController@multiDelete')->name('coreMultiDelete');
+						Route::post('/{moduleAlias}/{moduleStepId}/{id}/{parentModuleStepId}/multi-delete', 'ACoreController@multiDelete')->name('coreMultiDelete');
 					// 
 
 
