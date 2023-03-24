@@ -139,7 +139,8 @@ class ACoreController extends AController {
 		$data = array_merge(self::getDefaultData(), [
 														'moduleStep' => $moduleStep,
 														'selectData' => $selectData,
-														'topLevelDataId' => $topLevelDataId
+														'topLevelDataId' => $topLevelDataId,
+														'selectOptgroudData' => $selectOptgroudData,
 													]);
 
 		Session::keep('file_id');
