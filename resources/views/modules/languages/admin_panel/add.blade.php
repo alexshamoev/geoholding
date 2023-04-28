@@ -9,13 +9,13 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Language',
-		'tag0Url' => route('languageStartPoint'),
+		'tag0Url' => route('languages.index'),
 		'tag1Text' => __('bsw.adding')
 	])
 	
 	
 	<div class="p-2">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -24,16 +24,16 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		{{ Form :: open(array('route' => 'languageInsert', 'files' => 'true')) }}
+		{{ Form::open(array('route' => 'languages.store', 'files' => 'true')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -42,7 +42,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('title') }}
+						{{ Form::text('title') }}
 					</div>
 				</div>
 
@@ -61,7 +61,7 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: text('full_title') }}
+						{{ Form::text('full_title') }}
 					</div>
 				</div>
 
@@ -79,14 +79,14 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: file('svg_icon_languages') }}
+						{{ Form::file('svg_icon_languages') }}
 					</div>
 				</div>
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit(__('bsw.adding')) }}
+				{{ Form::submit(__('bsw.adding')) }}
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 @endsection

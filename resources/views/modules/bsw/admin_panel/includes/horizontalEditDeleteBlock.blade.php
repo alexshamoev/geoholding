@@ -32,9 +32,12 @@
 					</a>
 				</div>
 
-				<div class="edit-block__edit-delete-block p-2 delete-block" data-delete-link="{{ $deleteLink }}">
+				<div class="edit-block__edit-delete-block p-2 delete-block">
+					{{ Form::open(array('url' => $deleteLink, 'method' => 'delete')) }}
+					{{ Form::close() }}
+
 					<div class="p-2">
-						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
+						<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="Delete" class="bar-tag-bigger-img">
 					</div>
 				</div>
 			</div>

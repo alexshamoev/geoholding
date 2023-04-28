@@ -76,7 +76,10 @@
 
 				@if(isset($possibilityToDelete))
 					@if($possibilityToDelete !== 0)
-						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block delete-block" data-delete-link="{{ $deleteLink }}">
+						<div class="col-4 d-flex align-items-center justify-content-center text-right edit-block__edit-delete-block delete-block">
+							{{ Form::open(array('url' => $deleteLink, 'method' => 'delete')) }}
+							{{ Form::close() }}
+
 							<div class="p-3">
 								<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-bigger-img">
 							</div>

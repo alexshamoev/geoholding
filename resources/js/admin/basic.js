@@ -220,7 +220,16 @@ $(function() {
         let conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
 
         if(conf) {
-            window.location.href = $(this).data('delete-link');
+            $(this).find('form').submit();
+        }
+    });
+
+
+	$('.bar__delete_button').on('click', function() {
+        let conf = confirm('ნამდვილად გსურთ მონაცემების წაშლა?');
+
+        if(conf) {
+            $(this).find('form').submit();
         }
     });
 

@@ -9,19 +9,19 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSC',
-		'tag0Url' => route('bscStartPoint'),
+		'tag0Url' => route('bsc.index'),
 		'tag1Text' => $activeBsc -> system_word
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('bscAdd'),
-		'deleteUrl' => route('bscDelete', $activeBsc -> id),
+		'addUrl' => route('bsc.create'),
+		'deleteUrl' => route('bsc.destroy', $activeBsc -> id),
 		'nextId' => $nextBscId,
 		'prevId' => $prevBscId,
-		'nextRoute' => route('bscEdit', $nextBscId),
-		'prevRoute' => route('bscEdit', $prevBscId),
-		'backRoute' => route('bscStartPoint')
+		'nextRoute' => route('bsc.edit', $nextBscId),
+		'prevRoute' => route('bsc.edit', $prevBscId),
+		'backRoute' => route('bsc.index')
 	])
 
 
@@ -44,7 +44,7 @@
 		@endif
 		
 
-		{{ Form :: model($activeBsc, array('route' => array('bscUpdate', $activeBsc -> id))) }}
+		{{ Form :: model($activeBsc, array('route' => array('bsc.update', $activeBsc -> id))) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

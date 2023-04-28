@@ -2,31 +2,31 @@
 
 
 @section('pageMetaTitle')
-	{{ $module -> title }} > {{ $activeAdmin -> email }}
+	{{ $module->title }} > {{ $activeAdmin->email }}
 @endsection
 
 
 @section('content')
     @include('admin.includes.tags', [
-		'tag0Text' => $module -> title,
-		'tag0Url' => route('adminStartPoint'),
-		'tag1Text' => $activeAdmin -> email
+		'tag0Text' => $module->title,
+		'tag0Url' => route('admins.index'),
+		'tag1Text' => $activeAdmin->email
 	])
 
 
     @include('admin.includes.bar', [
-		'addUrl' => route('adminAdd'),
-		'deleteUrl' => route('adminDelete', $activeAdmin -> id),
+		'addUrl' => route('admins.create'),
+		'deleteUrl' => route('admins.destroy', $activeAdmin->id),
 		'nextId' => $nextAdminId,
 		'prevId' => $prevAdminId,
-		'nextRoute' => route('adminEdit', $nextAdminId),
-		'prevRoute' => route('adminEdit', $prevAdminId),
-		'backRoute' => route('adminStartPoint')
+		'nextRoute' => route('admins.edit', $nextAdminId),
+		'prevRoute' => route('admins.edit', $prevAdminId),
+		'backRoute' => route('admins.index')
 	])
 	
 
 	<div class="p-2">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -35,16 +35,16 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-    	{{ Form :: model($activeAdmin, array('route' => array('adminUpdate', $activeAdmin -> id))) }}
+    	{{ Form::model($activeAdmin, array('route' => array('admins.update', $activeAdmin->id), 'method' => 'put')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -52,7 +52,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('name') }}
+						{{ Form::text('name') }}
 					</div>
 				</div>
 
@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: text('email') }}
+						{{ Form::text('email') }}
 					</div>
 				</div>
 
@@ -88,7 +88,7 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: password('password') }}
+						{{ Form::password('password') }}
 					</div>
 				</div>
 
@@ -106,7 +106,7 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: password('password_confirmation') }}
+						{{ Form::password('password_confirmation') }}
 					</div>
 				</div>
 
@@ -118,9 +118,9 @@
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('მონაცემების შეცვლა') }}
+				{{ Form::submit('მონაცემების შეცვლა') }}
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 
 
@@ -130,14 +130,14 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('adminAdd') }}">
+                    <form method="POST" action="{{ route('admins.create') }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $activeAdmin -> name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ $activeAdmin->name }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -151,7 +151,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $activeAdmin -> email }}" required autocomplete="email">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $activeAdmin->email }}" required autocomplete="email">
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">

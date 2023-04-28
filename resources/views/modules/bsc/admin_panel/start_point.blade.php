@@ -21,14 +21,14 @@
 		@endif
 		
 
-		@include('admin.includes.addButton', ['text' => 'Add Bsc', 'url' => route('bscAdd')])
+		@include('admin.includes.addButton', ['text' => 'Add Bsc', 'url' => route('bsc.create')])
 
 		@foreach($bscs as $data)
 			@include('modules.bsc.admin_panel.includes.horizontalEditDeleteBlock', [
 				'title' => $data -> system_word,
 				'text' => $data -> configuration,
-				'editLink' => route('bscEdit', $data -> id),
-				'deleteLink' => route('bscDelete', $data -> id)
+				'editLink' => route('bsc.edit', $data -> id),
+				'deleteLink' => route('bsc.destroy', $data -> id)
 			])
 		@endforeach
 	</div>

@@ -1,16 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use App\Models\Module;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Language;
+use App\Models\Module;
+use App\Models\User;
+use App\Http\Requests\ALanguageUpdateRequest;
 use Session;
+use App\Http\Controllers\AController;
 
-
-class AUsersController extends AController {
-    public function getStartPoint() {
+class UsersController extends AController
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $data = array_merge(self::getDefaultData(),
 									[
 										'module' => Module::firstWhere('alias', 'users'),
@@ -20,9 +31,15 @@ class AUsersController extends AController {
 		return view('modules.users.admin_panel.start_point', $data);
     }
 
-
-    public function edit($id) {
-		$admin = User::find($id);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $admin = User::find($id);
 
 		$prevId = 0;
 		$nextId = 0;
@@ -51,11 +68,18 @@ class AUsersController extends AController {
                                                         'nextUsersId' => $nextId]);
 
 		return view('modules.users.admin_panel.edit', $data);
-	}
+    }
 
-
-	public function update(Request $request, $id) {
-		$validated = $request->validate([
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
             'name' => 'required',
             'last_name' => 'required|max:255',
             'email' => 'required|max:255',
@@ -75,15 +99,21 @@ class AUsersController extends AController {
 		$user->address = $request->input('address');
 		$user->save();
 
-		return redirect()->route('userEdit', $id);
-	}
+		return redirect()->route('users.edit', $id);
+    }
 
-	
-    public function delete($id) {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         User::destroy($id);
 
 		Session::flash('successStatus', __('bsw.deleteSuccessStatus'));
 
-        return redirect()->route('userStartPoint');
+        return redirect()->route('users.index');
     }
 }

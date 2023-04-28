@@ -26,7 +26,7 @@
 		<div class="p-2">
 			{{  __('bsw.welcome') }}
 
-			<a href="{{ route('adminEdit', $activeUser -> id) }}">
+			<a href="{{ route('admins.edit', $activeUser -> id) }}">
 				{{ $activeUser -> name }}
 			</a>
 		</div>

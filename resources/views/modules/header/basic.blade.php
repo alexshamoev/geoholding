@@ -32,15 +32,12 @@
                         </div>
                     @else
                         <div class="col-3">
-                            <a href="{{ route('getRegister', $language->title) }}">
+                            
                                 {{ __('auth.register') }}
-                            </a>
                         </div>
 
                         <div class="col-3">
-                            <a href="{{ route('getLogin', $language->title) }}">
                                 {{ __('auth.login') }}
-                            </a>
                         </div>
                     @endif
                 </div>

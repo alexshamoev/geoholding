@@ -59,7 +59,10 @@
 
 
 			@if(isset($deleteUrl))
-				<div class="p-3 bar__button delete-block" data-delete-link="{{ $deleteUrl }}">
+				<div class="p-3 bar__button bar__delete_button">
+					{{ Form::open(array('url' => $deleteUrl, 'method' => 'delete')) }}
+					{{ Form::close() }}
+
 					<img src="{{ asset('/storage/images/admin/close.svg') }}" alt="close" class="bar-tag-big-img">
 				</div>
 			@endif

@@ -9,7 +9,7 @@
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSC',
-		'tag0Url' => route('bscStartPoint'),
+		'tag0Url' => route('bsc.index'),
 		'tag1Text' => __('bsw.adding')
 	])
 
@@ -32,7 +32,7 @@
 		@endif
 		
 
-		{{ Form::open(array('route' => 'bscInsert')) }}
+		{{ Form::open(array('route' => 'bsc.store')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">

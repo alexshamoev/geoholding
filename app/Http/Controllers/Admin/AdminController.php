@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Session;
 use App\Models\Admin;
@@ -8,10 +8,12 @@ use App\Models\Module;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\AController;
 use App\Http\Requests\AAdminUpdateRequest;
 
 
-class AAdminController extends AController {
+class AdminController extends AController
+{
     public function logout() {
         if(Auth::guard('admin')->check()) {
             Auth::guard('admin')->logout();
@@ -37,7 +39,13 @@ class AAdminController extends AController {
     }
 
 
-    public function getStartPoint() {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
         $activeAdmin = Auth::guard('admin')->user();
 
         if($activeAdmin->super_administrator) {
@@ -50,16 +58,27 @@ class AAdminController extends AController {
 
 		return view('modules.admins.admin_panel.start_point', $data);
     }
-    
-    
-    public function add() {
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
         $data = array_merge(self::getDefaultData(), ['module' => Module::firstWhere('alias', 'admins')]);
 
 		return view('modules.admins.admin_panel.add', $data);
     }
 
-
-    public function insert(AAdminUpdateRequest $request) {
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         $admin = new Admin();
 
 		$admin->name = $request->input('name');
@@ -69,12 +88,29 @@ class AAdminController extends AController {
 
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect(route('adminEdit', $admin->id));
-	}
+		return redirect(route('admins.edit', $admin->id));
+    }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
-    public function edit($id) {
-		$admin = Admin::find($id);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $admin = Admin::find($id);
 
 		$prevId = 0;
 		$nextId = 0;
@@ -104,10 +140,17 @@ class AAdminController extends AController {
                                                         'nextAdminId' => $nextId]);
 
 		return view('modules.admins.admin_panel.edit', $data);
-	}
+    }
 
-
-    public function update(AAdminUpdateRequest $request, $id) {
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
         $admin = Admin::find($id);
 
 		$admin->name = $request->input('name');
@@ -117,15 +160,21 @@ class AAdminController extends AController {
 
 		$request->session()->flash('successStatus', __('bsw.successStatus')); // Status for success.
 
-		return redirect(route('adminEdit', $admin->id));
-	}
+		return redirect(route('admins.edit', $admin->id));
+    }
 
-
-    public function delete($id) {
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
         Admin::destroy($id);
 
 		Session::flash('successStatus', __('bsw.deleteSuccessStatus'));
 
-        return redirect()->route('adminStartPoint');
+        return redirect()->route('admins.index');
     }
 }

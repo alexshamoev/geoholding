@@ -21,14 +21,14 @@
 		@endif
 
 
-		@include('admin.includes.addButton', ['text' => 'Add Admin', 'url' => route('adminAdd')])
+		@include('admin.includes.addButton', ['text' => 'Add Admin', 'url' => route('admins.create')])
 
         @foreach($admins as $data)
             @include('admin.includes.infoBlockWithoutImage', [
                     'id' => $data -> id,
                     'title' => $data -> email,
-                    'editLink' => route('adminEdit', $data -> id),
-                    'deleteLink' => route('adminDelete', $data -> id),
+                    'editLink' => route('admins.edit', $data -> id),
+                    'deleteLink' => route('admins.destroy', $data -> id),
                     'possibilityToDelete' => true,
 					'possibilityToEdit' => true,
             ])

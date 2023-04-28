@@ -2,31 +2,31 @@
 
 
 @section('pageMetaTitle')
-	Languages > {{ $language -> title }}
+	Languages > {{ $language->title }}
 @endsection
 
 
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => 'Language',
-		'tag0Url' => route('languageStartPoint'),
-		'tag1Text' => $language -> title
+		'tag0Url' => route('languages.index'),
+		'tag1Text' => $language->title
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('languageAdd'),
-		'deleteUrl' => route('languageDelete', $language -> id),
+		'addUrl' => route('languages.create'),
+		'deleteUrl' => route('languages.destroy', $language->id),
 		'nextId' => $nextLanguageId,
 		'prevId' => $prevLanguageId,
-		'nextRoute' => route('languageEdit', $nextLanguageId),
-		'prevRoute' => route('languageEdit', $prevLanguageId),
-		'backRoute' => route('languageStartPoint')
+		'nextRoute' => route('languages.edit', $nextLanguageId),
+		'prevRoute' => route('languages.edit', $prevLanguageId),
+		'backRoute' => route('languages.index')
 	])
 	
 	
 	<div class="p-2">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -35,16 +35,16 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		{{ Form :: model($language, array('route' => array('languageUpdate', $language -> id), 'files' => 'true')) }}
+		{{ Form::model($language, array('route' => array('languages.update', $language->id), 'files' => 'true', 'method' => 'put')) }}
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -53,7 +53,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('title') }}
+						{{ Form::text('title') }}
 					</div>
 				</div>
 
@@ -72,7 +72,7 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: text('full_title') }}
+						{{ Form::text('full_title') }}
 					</div>
 				</div>
 
@@ -90,20 +90,20 @@
 					</div>
 
 					<div class="p-2">
-						{{ Form :: file('svg_icon_languages') }}
+						{{ Form::file('svg_icon_languages') }}
 					</div>
 
-					@if(null !== "/storage/images/modules/languages/$language -> id.svg")
+					@if(null !== "/storage/images/modules/languages/$language->id.svg")
 						<div class="p-2">
-							<img src="{{ asset('/storage/images/modules/languages/'.$language -> id.'.svg') }}" alt="close" style="width: 50px;">
+							<img src="{{ asset('/storage/images/modules/languages/'.$language->id.'.svg') }}" alt="close" style="width: 50px;">
 						</div>
 					@endif
 				</div>
 			</div>
 
 			<div class="p-2 submit-button">
-				{{ Form :: submit('Submit') }}
+				{{ Form::submit('Submit') }}
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 @endsection

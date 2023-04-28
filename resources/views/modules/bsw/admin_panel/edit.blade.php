@@ -2,31 +2,31 @@
 
 
 @section('pageMetaTitle')
-    BSW > {{ $activeBsw -> system_word }}
+    BSW > {{ $activeBsw->system_word }}
 @endsection
 
 
 @section('content')
 	@include('admin.includes.tags', [
 		'tag0Text' => 'BSW',
-		'tag0Url' => route('bswStartPoint'),
-		'tag1Text' => $activeBsw -> system_word
+		'tag0Url' => route('bsw.index'),
+		'tag1Text' => $activeBsw->system_word
 	])
 
 
 	@include('admin.includes.bar', [
-		'addUrl' => route('bswAdd'),
-		'deleteUrl' => route('bswDelete', $activeBsw -> id),
+		'addUrl' => route('bsw.create'),
+		'deleteUrl' => route('bsw.destroy', $activeBsw->id),
 		'nextId' => $nextBswId,
 		'prevId' => $prevBswId,
-		'nextRoute' => route('bswEdit', $nextBswId),
-		'prevRoute' => route('bswEdit', $prevBswId),
-		'backRoute' => route('bswStartPoint')
+		'nextRoute' => route('bsw.edit', $nextBswId),
+		'prevRoute' => route('bsw.edit', $prevBswId),
+		'backRoute' => route('bsw.index')
 	])
 
 
 	<div class="p-2">
-		@if($errors -> any())
+		@if($errors->any())
 			<div class="p-2">
 				<div class="alert alert-danger m-0">
 					{{ __('bsw.warningStatus') }}
@@ -35,16 +35,18 @@
 		@endif
 		
 		
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		{{ Form :: model($activeBsw, array('route' => array('bswUpdate', $activeBsw -> id))) }}
+		{{ Form::model($activeBsw, array('route' => array('bsw.update', $activeBsw->id))) }}
+			@method('PUT')
+
 			<div class="p-2">
 				<div class="standard-block p-2">
 					<div class="p-2 d-flex flex-column">
@@ -52,7 +54,7 @@
 					</div>
 					
 					<div class="p-2">
-						{{ Form :: text('system_word') }}
+						{{ Form::text('system_word') }}
 					</div>
 				</div>
 
@@ -69,11 +71,11 @@
 						<div class="p-2">
 							Description:
 							
-							<img src="{{ asset('/storage/images/modules/languages/'.$langData -> id.'.svg') }}" width="30" height="30">
+							<img src="{{ asset('/storage/images/modules/languages/'.$langData->id.'.svg') }}" width="30" height="30">
 						</div>			
 
 						<div class="p-2">
-							{{ Form :: text('word_'.$langData -> title) }}
+							{{ Form::text('word_'.$langData->title) }}
 						</div>
 					</div>
 				@endforeach
@@ -81,9 +83,9 @@
 
 			<div class="p-2">
 				<div class="submit-button">
-					{{ Form :: submit('Submit') }}
+					{{ Form::submit('Submit') }}
 				</div>
 			</div>
-		{{ Form :: close() }}
+		{{ Form::close() }}
 	</div>
 @endsection

@@ -12,16 +12,16 @@
 	])
 
 	<div class="p-2">
-		@if(Session :: has('successStatus'))
+		@if(Session::has('successStatus'))
 			<div class="p-2">
 				<div class="alert alert-success m-0" role="alert">
-					{{ Session :: get('successStatus') }}
+					{{ Session::get('successStatus') }}
 				</div>
 			</div>
 		@endif
 
 
-		@include('admin.includes.addButton', ['text' => 'Add BSW', 'url' => route('bswAdd')])
+		@include('admin.includes.addButton', ['text' => 'Add BSW', 'url' => route('bsw.create')])
 
 
 		@foreach($bsws as $data)
@@ -29,17 +29,17 @@
 				$text = '';
 
 				foreach($languages as $langData) {
-						$text .= $data -> { 'word_'.$langData -> title };
+						$text .= $data->{ 'word_'.$langData->title };
 						$text .= ' | ';
 				}
 			@endphp
 
 
 			@include('modules.bsw.admin_panel.includes.horizontalEditDeleteBlock', [
-				'title' => $data -> system_word,
+				'title' => $data->system_word,
 				'text' => $text,
-				'editLink' => route('bswEdit', $data -> id),
-				'deleteLink' => route('bswDelete', $data -> id)
+				'editLink' => route('bsw.edit', $data->id),
+				'deleteLink' => route('bsw.destroy', $data->id)
 			])
 		@endforeach
 	</div>
