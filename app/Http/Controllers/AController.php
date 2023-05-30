@@ -38,7 +38,7 @@ class AController extends Controller {
 
 		foreach(Module::with(['moduleStep'])->get()->sortByDesc('rang') as $data) {
 			if(count($data->moduleStep) || \View::exists('modules/'.$data->alias.'/admin_panel/start_point')) {
-				if($activeUser->super_administrator === 1 || $data->hide_for_admin === 0) {
+				if($activeUser->super_administrator == 1 || $data->hide_for_admin == 0) {
 					$modulesForMenu->add($data);
 				}
 			}
