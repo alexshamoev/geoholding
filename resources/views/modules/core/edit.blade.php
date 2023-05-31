@@ -22,7 +22,7 @@
 	@endphp
 
 	@if($moduleStep->possibility_to_add === 1)
-		@if($moduleStep->blocks_max_number === 0 || $moduleStep->blocks_max_number > count($allModuleData))
+		@if($moduleStep->blocks_max_number == 0 || $moduleStep->blocks_max_number > count($allModuleData))
 			@php
 				$barData['addUrl'] = route('coreAdd', [$module->alias, $moduleStep->id, $parentDataId]);
 			@endphp
@@ -540,7 +540,7 @@
 
 		@if(!$nextModuleStep->isEmpty())
 			@foreach($nextModuleStep as $moduleStepData)
-				@if($nextModuleStep->values()->get($i)->blocks_max_number === 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
+				@if($nextModuleStep->values()->get($i)->blocks_max_number == 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
 					<!-- Add button -->
 						@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
 							@include('admin.includes.addButton', [

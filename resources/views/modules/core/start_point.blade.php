@@ -49,7 +49,7 @@
 			$i = 0;
 		@endphp
 
-		@if($moduleStep->values()->get($i)->blocks_max_number === 0 || $moduleStep->values()->get($i)->blocks_max_number > count($collection->values()->get(0)))
+		@if($moduleStep->values()->get($i)->blocks_max_number == 0 || $moduleStep->values()->get($i)->blocks_max_number > count($collection->values()->get(0)))
 			<!-- Add button -->
 				@if(!$moduleStep->values()->get($i)->images && $moduleStep->values()->get($i)->possibility_to_add !== 0)
 					@include('admin.includes.addButton', [
