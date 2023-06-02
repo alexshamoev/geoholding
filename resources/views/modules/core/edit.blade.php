@@ -89,7 +89,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 										@endphp
@@ -107,7 +107,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 
@@ -153,7 +153,7 @@
 											{!! __('bsw.show_format', ['format' => $moduleBlock->file_format]) !!}
 										</div>
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 
@@ -244,7 +244,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 										@endphp
@@ -262,7 +262,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 										@endphp
@@ -280,7 +280,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 										@endphp
@@ -340,7 +340,7 @@
 											URL Alias:
 
 											@php
-												if($moduleBlock->validation) {
+												if(str_contains($moduleBlock->validation, 'required')) {
 													echo '*';
 												}
 											@endphp
@@ -368,7 +368,7 @@
 											{{ $moduleBlock->label }}:
 
 											@php
-												if($moduleBlock->validation) {
+												if(str_contains($moduleBlock->validation, 'required')) {
 													echo '*';
 												}
 											@endphp
@@ -396,7 +396,7 @@
 											{{ $moduleBlock->label }}:
 
 											@php
-												if($moduleBlock->validation) {
+												if(str_contains($moduleBlock->validation, 'required')) {
 													echo '*';
 												}
 											@endphp
@@ -503,7 +503,7 @@
 										{{ $moduleBlock->label }}:
 
 										@php
-											if($moduleBlock->validation) {
+											if(str_contains($moduleBlock->validation, 'required')) {
 												echo '*';
 											}
 										@endphp
