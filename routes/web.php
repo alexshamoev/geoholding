@@ -209,11 +209,27 @@ use App\Http\Controllers\Admin\LanguageController;
 							&& $module->page->{ 'alias_'.$language->title } !== $registrationAlias->alias
 							&& $module->page->{ 'alias_'.$language->title } !== $recoverAlias->alias) {
 
-							Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }, $moduleTitleForController.'Controller@getStep0')->where(['lang' => '[a-z]+'])->name($module->page->{ 'alias_'.$language -> title });
-							Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
-							Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
-							Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}', $moduleTitleForController.'Controller@getStep3')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+']);
-							Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}/{step3Alias}', $moduleTitleForController.'Controller@getStep4')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+', 'step3Alias' => '[a-zა-ჰа-яё0-9-]+']);
+							$controllerName = 'App\Http\Controllers\\'.$moduleTitleForController.'Controller';
+
+							if(method_exists($controllerName, 'getStep0')){
+								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }, $moduleTitleForController.'Controller@getStep0')->where(['lang' => '[a-z]+'])->name($module->page->{ 'alias_'.$language -> title });
+							}
+
+							if(method_exists($controllerName, 'getStep1')){
+								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}', $moduleTitleForController.'Controller@getStep1')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+']);
+							}
+							
+							if(method_exists($controllerName, 'getStep2')){
+								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}', $moduleTitleForController.'Controller@getStep2')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+']);
+							}
+							
+							if(method_exists($controllerName, 'getStep3')){
+								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}', $moduleTitleForController.'Controller@getStep3')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+']);
+							}
+							
+							if(method_exists($controllerName, 'getStep4')){
+								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}/{step3Alias}', $moduleTitleForController.'Controller@getStep4')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+', 'step3Alias' => '[a-zა-ჰа-яё0-9-]+']);
+							}
 						}
 					}
 				}
