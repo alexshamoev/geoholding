@@ -13,9 +13,8 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LanguageController;
-
-
-
+use App\Http\Controllers\CompanyController;
+use App\Models\CompanyStep0;
 
 // Google Login URL
 	Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
@@ -158,9 +157,9 @@ use App\Http\Controllers\Admin\LanguageController;
 
 
 			// Cabinet
-				$cabinetPage = Page::firstWhere('slug', 'cabinet');
-				Route::get('/{lang}/'.$cabinetPage->alias.'/edit', 'CabinetController@edit')->name('editCabinet');
-				Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
+				// $cabinetPage = Page::firstWhere('slug', 'cabinet');
+				// Route::get('/{lang}/'.$cabinetPage->alias.'/edit', 'CabinetController@edit')->name('editCabinet');
+				// Route::post('/{lang}/'.$cabinetPage->alias.'/update', 'CabinetController@update')->name('updateCabinet');
 			//
 
 
@@ -170,19 +169,21 @@ use App\Http\Controllers\Admin\LanguageController;
 
 
 			// Default routes.
-				Route::get('/', function() {
-					$language = Language::firstWhere('like_default', 1);
+				// Route::get('/', function() {
+				// 	$language = Language::firstWhere('like_default', 1);
+				// 	$companies = CompanyStep0::get();
+				// 	App::setLocale($language->title);
 
-					App::setLocale($language->title);
+				// 	$page = Page::firstWhere('slug', 'home');
 
-					$page = Page::firstWhere('slug', 'home');
+				// 	return redirect('/'.$language->title.'/'.$page->alias);
+				// })->name('main');
 
-					return redirect('/'.$language->title.'/'.$page->alias);
-				})->name('main');
+				Route::get('/', [CompanyController::class, 'getStep0'])->name('main2');
 
 				Route::get('/{lang}', function($lang) {
 					App::setLocale($lang);
-
+					dd(2);
 					$page = Page::firstWhere('slug', 'home');
 
 					return redirect('/'.$lang.'/'.$page->alias);

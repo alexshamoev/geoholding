@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCompanyStep0Table extends Migration
+class CreateCompaniesStep0Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCompanyStep0Table extends Migration
      */
     public function up()
     {
-        Schema::create('company_step_0', function (Blueprint $table) {
+        Schema::create('companies_step_0', function (Blueprint $table) {
             $table->id();
             $table->string('alias_ge')->default('');
 			$table->string('alias_en')->default('');

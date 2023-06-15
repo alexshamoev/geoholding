@@ -8,7 +8,7 @@ use App\Models\CompanyStep0;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FrontController;
 
-class CompanyController extends FrontController
+class CompaniesController extends FrontController
 {
     private const PAGE_SLUG = 'company';
     
@@ -19,7 +19,7 @@ class CompanyController extends FrontController
         
         self::$page = Page::firstWhere('slug', self::PAGE_SLUG);
 
-        CompanyStep0::setPage(self::$page);
+        CompaniesStep0::setPage(self::$page);
     }
 #
     public static function getStep0($lang = 'ge') {
@@ -28,7 +28,7 @@ class CompanyController extends FrontController
         $data = array_merge(self::getDefaultData($language,
                                                     self::$page),
                             [
-                                'company' => CompanyStep0::orderByDesc('rang')->get()
+                                'companies' => CompaniesStep0::orderByDesc('rang')->get()
                             ]);
 
         return view('modules.home.step0', $data);

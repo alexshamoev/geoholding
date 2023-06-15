@@ -6,11 +6,11 @@ use App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class CompanyStep0 extends Model
+class CompaniesStep0 extends Model
 {
     use HasFactory;
 
-    protected $table = 'company_step_0';
+    protected $table = 'companies_step_0';
     
     private static $page;
 

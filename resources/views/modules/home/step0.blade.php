@@ -26,6 +26,12 @@
 			<!--  -->
 		@endif
 
+		<div class="">
+			@foreach ($companies as $item)
+				<h1>{{ $item->title }}</h1>
+			@endforeach
+		</div>
+
 		<h1 class="p-2">
 			{{ $page -> title }}
 		</h1>
