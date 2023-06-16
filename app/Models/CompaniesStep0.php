@@ -15,18 +15,32 @@ class CompaniesStep0 extends Model
     private static $page;
 
 
-    public static function setPage($page) {
+    public static function setPage($page) 
+    {
         self::$page = $page;
     }
 
 
-	public function getAliasAttribute() {
+	public function getAliasAttribute() 
+    {
         return $this->{ 'alias_'.App::getLocale() };
     }
 
 
-	public function getTitleAttribute() {
+	public function getTitleAttribute() 
+    {
         return $this->{ 'title_'.App::getLocale() };
     }
 
+
+    public function getFullUrlAttribute() 
+    {
+        return self::$page->fullUrl.'/'.$this->alias;
+    }
+
+    
+    public function getFullUrl($lang) 
+    {
+        return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
+    }
 }

@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Page;
-use App\Models\MenuButtonStep0;
-use App\Models\Language;
-use App\Models\Module;
+use App\Widget;
 use App\Models\Bsc;
 use App\Models\Bsw;
+use App\Models\Page;
+use App\Models\Module;
 use App\Models\Partner;
-use App\Widget;
-
+use App\Models\Language;
 use Illuminate\Http\Request;
+use App\Models\CompaniesStep0;
+
+use App\Models\MenuButtonStep0;
+use App;
 
 
 class FrontController extends Controller {
+
+    private const PAGE_SLUG = 'company';
+    
+    private static $page;
+
 	public function __construct() {
 		$requesPath = urldecode(\Request::path());
 
@@ -24,9 +31,20 @@ class FrontController extends Controller {
 
 		config(['activePageAlias' => $activePage]);
 
-
 		Bsc::initConfigs();
 		Bsw::initConfigs();
+    }
+
+	public static function main() 
+    {
+        $language = Language::firstWhere('title', App::getLocale());
+		CompaniesStep0::setPage(Page::firstWhere('slug', self::PAGE_SLUG));
+
+        $data = [
+                    'companies' => CompaniesStep0::orderByDesc('rang')->get()
+                ];
+
+        return view('modules.main.all', $data);
     }
 	
 

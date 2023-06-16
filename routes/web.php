@@ -13,7 +13,7 @@ use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\FacebookController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\LanguageController;
-use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\FrontController;
 use App\Models\CompanyStep0;
 
 // Google Login URL
@@ -179,15 +179,15 @@ use App\Models\CompanyStep0;
 				// 	return redirect('/'.$language->title.'/'.$page->alias);
 				// })->name('main');
 
-				Route::get('/', [CompanyController::class, 'getStep0'])->name('main2');
+				Route::get('/', [FrontController::class, 'main'])->name('main');
 
-				Route::get('/{lang}', function($lang) {
-					App::setLocale($lang);
-					dd(2);
-					$page = Page::firstWhere('slug', 'home');
+				// Route::get('/{lang}/{company}', function($lang, $company) {
+				// 	App::setLocale($lang);
+					
+				// 	$page = Page::firstWhere('slug', 'home');
 
-					return redirect('/'.$lang.'/'.$page->alias);
-				})->where('lang', '[a-z]+');
+				// 	return redirect('/'.$lang.'/'.$company.'/'.$page->alias);
+				// })->where('lang', '[a-z]+');
 			// 
 
 
