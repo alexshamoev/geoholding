@@ -7,7 +7,7 @@
 		</h1>
 
 		<div class="row">
-			@foreach($partners as $data)
+			{{-- @foreach($partners as $data)
 				<div class="col-xxl-3
 							col-lg-4
 							col-md-6
@@ -28,7 +28,7 @@
 						</a>
 					</div>
 				</div>
-			@endforeach
+			@endforeach --}}
 		</div>
 	</div>
 @endif
