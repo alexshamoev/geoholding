@@ -40,7 +40,9 @@ class AboutUsStep0 extends Model
 
     public function getFullUrl($lang) 
     {
-        return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
+        $mainAlias = Page::firstWhere('slug', 'company')->{'alias_'.App :: getLocale()};
+        
+        return '/'.$lang.'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
 
 
