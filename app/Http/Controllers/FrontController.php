@@ -40,9 +40,7 @@ class FrontController extends Controller {
         $language = Language::firstWhere('title', App::getLocale());
 		CompaniesStep0::setPage(Page::firstWhere('slug', self::PAGE_SLUG));
 
-        $data = [
-                    'companies' => CompaniesStep0::orderByDesc('rang')->get()
-                ];
+        $data = ['companies' => CompaniesStep0::orderByDesc('rang')->get()];
 
         return view('modules.main.all', $data);
     }
@@ -65,14 +63,16 @@ class FrontController extends Controller {
 			config(['constants.year_of_site_creation' => config('constants.year_of_site_creation').' - '.date('Y')]);
 		}
 
+		$activeCompanyId = config('activeCompany')->id;
+		
 		$data = ['page' => $page,
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
-				'menuButtons' => MenuButtonStep0::with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
-				'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
-				'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
-				'basketPage' => Page::firstWhere('slug', 'basket'),
-				'partners' => Partner::orderByDesc('rang')->get(),
+				'menuButtons' => MenuButtonStep0::where('top_level', $activeCompanyId)->with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
+				// 'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
+				// 'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
+				// 'basketPage' => Page::firstWhere('slug', 'basket'),
+				// 'partners' => Partner::orderByDesc('rang')->get(),
 				'widgetGetVisibility' => $widgetGetVisibility];
 		
 		return $data;

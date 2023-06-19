@@ -35,10 +35,13 @@ class MenuButtonStep0 extends Model {
 
 
 	public function getUrlAttribute() {
+		
+		$mainAlias = Page::firstWhere('slug', 'company')->{'alias_'.App :: getLocale()};
+
 		switch($this -> link_type) {
 			case 'page':
-				if($this -> page) {
-					return '/'.App :: getLocale().'/'.$this -> page -> alias;
+				if($this -> page && config('activeCompany')) {
+					return '/'.App :: getLocale().'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.$this -> page -> alias;
 				} else {
 					return false;
 				}
