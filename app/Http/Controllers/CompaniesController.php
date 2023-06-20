@@ -11,6 +11,7 @@ use App\Models\CompaniesStep0;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\FrontController;
+use App\Models\HomeStep0;
 
 class CompaniesController extends FrontController
 {
@@ -28,6 +29,7 @@ class CompaniesController extends FrontController
 
         CompaniesStep0::setPage(self::$page);
         AboutUsStep0::setPage(Page::firstWhere('slug', 'about-us'));
+        HomeStep0::setPage(Page::firstWhere('slug', 'home'));
     }
 
     // public static function getStep0() 
@@ -48,7 +50,7 @@ class CompaniesController extends FrontController
         $language = Language::firstWhere('title', $lang);
         $activeCompany = CompaniesStep0::firstWhere('alias_'.$language->title, $step0Alias);
         
-        //temporary save active company
+        # temporary save active company
         config(['activeCompany' => $activeCompany]);
 
         $data = array_merge(self::getDefaultData($language,
@@ -64,31 +66,42 @@ class CompaniesController extends FrontController
 
     public static function getStep2($lang, $step0Alias, $step1Alias) 
     {
-        $bladeFile = null;
-
-        $language = Language::firstWhere('title', $lang);
-        $activeCompany = CompaniesStep0::firstWhere('alias_'.$language->title, $step0Alias);
+        $activePageSlug = Page::where('alias_'.$lang, $step1Alias)->value('slug');
+        $activeCompany = CompaniesStep0::firstWhere('alias_'.$lang, $step0Alias);
         
+        # for FrontController -> MunuButtons
         config(['activeCompany' => $activeCompany]);
         
-        $activeAbout = AboutUsStep0::firstWhere('top_level', $activeCompany->id);
+        switch ($activePageSlug) {
 
-        switch ($step1Alias) {
+            case 'home':
+                $activeHome = HomeStep0::firstWhere('top_level', $activeCompany->id);
+
+                $activeBlock = $activeHome;
+                $data = array('activeHome' => $activeHome);
+                $bladeFile = 'home';
+                break;
+            
             case 'about-us':
-            case 'ჩვენს-შესახებ':
+                $activeAbout = AboutUsStep0::firstWhere('top_level', $activeCompany->id);
+
+                $activeBlock = $activeAbout;
                 $data = array('activeAbout' => $activeAbout);
                 $bladeFile = 'about-us';
                 break;
             
             default:
+                $activeBlock = $activeCompany;
                 $data = array('activeCompany' => $activeCompany);
                 $bladeFile = 'step0';
                 break;
         }
         
+        $language = Language::firstWhere('title', $lang);
+
         $data = array_merge(self::getDefaultData($language, 
                                                 self::$page,
-                                                $activeAbout),
+                                                $activeBlock),
                                             $data);
 
         return view("modules.companies.$bladeFile", $data);

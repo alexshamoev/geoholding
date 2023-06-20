@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App;
+use App\Models\Page;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class AboutUsStep0 extends Model
+class HomeStep0 extends Model
 {
     use HasFactory;
 
-    protected $table = 'about_us_step_0';
+    protected $table = 'home_step_0';
     
     private static $page;
     
@@ -40,14 +41,8 @@ class AboutUsStep0 extends Model
 
     public function getFullUrl($lang) 
     {
-        $mainAlias = Page::firstWhere('slug', 'company')->{'alias_'.App :: getLocale()};
+        $mainAlias = Page::firstWhere('slug', 'company')->{'alias_'.$lang};
         
         return '/'.$lang.'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
-
-
-    // public function company()
-    // {
-    //     return $this->belongsTo(CompaniesStep0::class, 'top_level', 'id');
-    // }
 }
