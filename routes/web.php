@@ -48,14 +48,14 @@ use App\Models\CompanyStep0;
 							Route::post('/add', 'AModuleController@insert')->name('moduleInsert');
 							Route::get('/{id}', 'AModuleController@edit')->name('moduleEdit');
 							Route::post('/{id}', 'AModuleController@update')->name('moduleUpdate');
-							Route::get('/{id}/delete', 'AModuleController@delete')->name('moduleDelete');
+							Route::delete('/{id}/delete', 'AModuleController@delete')->name('moduleDelete');
 
 
 							Route::get('/{moduleId}/add', 'AModuleStepController@add')->name('moduleStepAdd');
 							Route::post('/{moduleId}/add', 'AModuleStepController@insert')->name('moduleStepInsert');
 							Route::get('/{moduleId}/{id}', 'AModuleStepController@edit')->name('moduleStepEdit');
 							Route::post('/{moduleId}/{id}', 'AModuleStepController@update')->name('moduleStepUpdate');
-							Route::get('/{moduleId}/{id}/delete', 'AModuleStepController@delete')->name('moduleStepDelete');
+							Route::delete('/{moduleId}/{id}/delete', 'AModuleStepController@delete')->name('moduleStepDelete');
 							
 							
 							Route::get('/{moduleId}/{stepId}/add', 'AModuleBlockController@add')->name('moduleBlockAdd');
