@@ -66,6 +66,7 @@ class FrontController extends Controller {
 		$activeCompanyId = config('activeCompany')->id;
 		
 		$data = ['page' => $page,
+				'activeCompany' => config('activeCompany'),
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::where('top_level', $activeCompanyId)->with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),

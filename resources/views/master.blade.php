@@ -9,7 +9,7 @@
         <title>@yield('pageMetaTitle')</title>
 
 		<meta name="description" content="@yield('pageMetaDescription')">
-		<meta property="og:image" content="https://laravel.hobbystudio.ge/@yield('pageMetaUrl')">
+		<meta property="og:image" content="{{ url('/') }}@yield('pageMetaUrl')">
 
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/'.app() -> getLocale().'.css') }}">

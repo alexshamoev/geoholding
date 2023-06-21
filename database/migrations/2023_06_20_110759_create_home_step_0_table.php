@@ -20,6 +20,10 @@ class CreateHomeStep0Table extends Migration
             $table->string('title_en')->default('');
             $table->text('text_ge')->nullable();
             $table->text('text_en')->nullable();
+			$table -> string('meta_title_ge') -> default('');
+			$table -> string('meta_title_en') -> default('');
+			$table -> string('meta_description_ge') -> default('');
+			$table -> string('meta_description_en') -> default('');
             $table->timestamps();
         });
     }

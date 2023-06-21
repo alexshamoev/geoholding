@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App;
 use App\Models\Page;
 use App\Models\Language;
-use App\Models\AboutUsStep0;
-// use Illuminate\Http\Request;
-use App\Models\CompaniesStep0;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\FrontController;
+use App\Models\AboutUsStep0;
+use App\Models\CompaniesStep0;
 use App\Models\HomeStep0;
 
 class CompaniesController extends FrontController
@@ -98,7 +95,7 @@ class CompaniesController extends FrontController
         }
         
         $language = Language::firstWhere('title', $lang);
-
+// dd(self::$page);
         $data = array_merge(self::getDefaultData($language, 
                                                 self::$page,
                                                 $activeBlock),
