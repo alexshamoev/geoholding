@@ -62,7 +62,7 @@ use App\Models\CompanyStep0;
 							Route::post('/{moduleId}/{stepId}/add', 'AModuleBlockController@insert')->name('moduleBlockInsert');
 							Route::get('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@edit')->name('moduleBlockEdit');
 							Route::post('/{moduleId}/{stepId}/{id}', 'AModuleBlockController@update')->name('moduleBlockUpdate');
-							Route::get('/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete')->name('moduleBlockDelete');
+							Route::delete('/{moduleId}/{stepId}/{id}/delete', 'AModuleBlockController@delete')->name('moduleBlockDelete');
 						});
 
 
