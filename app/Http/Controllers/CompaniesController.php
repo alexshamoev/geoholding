@@ -45,7 +45,9 @@ class CompaniesController extends FrontController
     public static function getStep1($lang, $step0Alias)
     {
         // return self::getStep2($lang, $step0Alias, 'მთავარი');
-    
+        // return redirect()->route('routeStep2', [$lang, $step0Alias, 'მთავარი']);
+        // return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/მთავარი'));
+
         $language = Language::firstWhere('title', $lang);
         $activeCompany = CompaniesStep0::firstWhere('alias_'.$language->title, $step0Alias);
         
