@@ -44,6 +44,8 @@ class CompaniesController extends FrontController
 
     public static function getStep1($lang, $step0Alias)
     {
+        // return self::getStep2($lang, $step0Alias, 'მთავარი');
+    
         $language = Language::firstWhere('title', $lang);
         $activeCompany = CompaniesStep0::firstWhere('alias_'.$language->title, $step0Alias);
         
@@ -56,7 +58,7 @@ class CompaniesController extends FrontController
                                                     [
                                                         'activeCompany' => $activeCompany
                                                     ]);
-
+                                                    
         return view('modules.companies.step0', $data);
     }
 
@@ -66,7 +68,7 @@ class CompaniesController extends FrontController
         $activePageSlug = Page::where('alias_'.$lang, $step1Alias)->value('slug');
         $activeCompany = CompaniesStep0::firstWhere('alias_'.$lang, $step0Alias);
         
-        # for FrontController -> MunuButtons
+        # for FrontController -> getDefaultData
         config(['activeCompany' => $activeCompany]);
         
         switch ($activePageSlug) {
@@ -95,7 +97,7 @@ class CompaniesController extends FrontController
         }
         
         $language = Language::firstWhere('title', $lang);
-// dd(self::$page);
+        
         $data = array_merge(self::getDefaultData($language, 
                                                 self::$page,
                                                 $activeBlock),

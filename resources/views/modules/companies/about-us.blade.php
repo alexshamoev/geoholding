@@ -1,8 +1,8 @@
 @extends('master')
 
-@section('pageMetaTitle'){{ $page -> metaTitle }}@endsection
-@section('pageMetaDescription'){{ $page -> metaDescription }}@endsection
-@section('pageMetaUrl'){{ $page -> metaUrl }}@endsection
+@section('pageMetaTitle'){{ $activeCompany->title .' - '. $activeAbout -> metaTitle }}@endsection
+@section('pageMetaDescription'){{ $activeAbout -> metaDescription }}@endsection
+@section('pageMetaUrl'){{ $activeAbout -> metaUrl }}@endsection
 
 @section('content')
 	<div class="d-flex flex-column align-items-center">
