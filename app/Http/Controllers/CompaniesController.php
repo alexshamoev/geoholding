@@ -46,7 +46,6 @@ class CompaniesController extends FrontController
     {
         // return self::getStep2($lang, $step0Alias, 'მთავარი');
         // return redirect()->route('routeStep2', [$lang, $step0Alias, 'მთავარი']);
-        // return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/მთავარი'));
 
         $language = Language::firstWhere('title', $lang);
         $activeCompany = CompaniesStep0::firstWhere('alias_'.$language->title, $step0Alias);
@@ -54,14 +53,17 @@ class CompaniesController extends FrontController
         # temporary save active company
         config(['activeCompany' => $activeCompany]);
 
-        $data = array_merge(self::getDefaultData($language,
-                                                    self::$page,
-                                                    $activeCompany),
-                                                    [
-                                                        'activeCompany' => $activeCompany
-                                                    ]);
+        // $data = array_merge(self::getDefaultData($language,
+        //                                             self::$page,
+        //                                             $activeCompany),
+        //                                             [
+        //                                                 'activeCompany' => $activeCompany
+        //                                             ]);
                                                     
-        return view('modules.companies.step0', $data);
+        // return view('modules.companies.step0', $data);
+
+        return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/მთავარი'));
+
     }
 
 
@@ -91,10 +93,12 @@ class CompaniesController extends FrontController
                 $bladeFile = 'about-us';
                 break;
             
-            default:
-                $activeBlock = $activeCompany;
-                $data = array('activeCompany' => $activeCompany);
-                $bladeFile = 'step0';
+            default:             
+                $activeHome = HomeStep0::firstWhere('top_level', $activeCompany->id);
+
+                $activeBlock = $activeHome;
+                $data = array('activeHome' => $activeHome);
+                $bladeFile = 'home';
                 break;
         }
         

@@ -81,4 +81,10 @@ class HomeStep0 extends Model
         
         return '/'.$lang.'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
+
+
+    public function services()
+    {
+        return $this->hasMany(HomeStep1::class, 'top_level', 'id');
+    }
 }
