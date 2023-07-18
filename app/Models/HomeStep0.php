@@ -27,9 +27,39 @@ class HomeStep0 extends Model
     }
 
 
-	public function getTextAttribute() 
+    public function getSection1TitleAttribute() 
     {
-        return $this->{ 'text_'.App::getLocale() };
+        return $this->{ 'section1_title_'.App::getLocale() };
+    }
+
+
+	public function getSection1TextAttribute() 
+    {
+        return $this->{ 'section1_text_'.App::getLocale() };
+    }
+    
+    
+    public function getSection2TitleAttribute() 
+    {
+        return $this->{ 'section2_title_'.App::getLocale() };
+    }
+
+
+	public function getSection2TextAttribute() 
+    {
+        return $this->{ 'section2_text_'.App::getLocale() };
+    }
+    
+    
+    public function getSection3TitleAttribute() 
+    {
+        return $this->{ 'section3_title_'.App::getLocale() };
+    }
+
+
+	public function getSection3TextAttribute() 
+    {
+        return $this->{ 'section3_text_'.App::getLocale() };
     }
 
 
@@ -86,5 +116,17 @@ class HomeStep0 extends Model
     public function services()
     {
         return $this->hasMany(HomeStep1::class, 'top_level', 'id');
+    }
+
+
+    public function products()
+    {
+        return $this->hasOne(HomeStep2::class, 'top_level', 'id');
+    }
+
+
+    public function reason()
+    {
+        return $this->hasOne(HomeStep4::class, 'top_level', 'id');
     }
 }
