@@ -1,6 +1,6 @@
 @if($widgetGetVisibility['footer'])
     <footer class="footer">
-        <div class="container py-5 px-3">
+        <div class="container py-sm-5 pt-3 pb-5 px-sm-3">
             <div class="row">
                 <div class="col-lg-3
                             col-sm-6
@@ -10,11 +10,11 @@
                             d-flex
                             flex-column
                             align-items-center">
-                    <div class="mb-4 mb-md-5" >
+                    <div class="mb-sm-4 mb-md-5" >
                         <img src="{{ asset('storage\images\modules\companies\83\1.png') }}" class="w-auto"/>
                     </div>
 
-                    <div class="d-flex gap-2">
+                    <div class="d-sm-flex d-none gap-2">
                         <div>
                             <a href="{{ config('bsc.facebook_link') }}"
                                 target="_blank"
@@ -57,18 +57,18 @@
                     </div>
                 </div>
 
+                <div class="footer__horizontal_line d-sm-none my-3"></div>
+
                 <div class="col-lg-3
                             col-sm-6
                             col-12
-                            py-4
-                            d-sm-block
-                            d-flex
-                            flex-column
-                            align-items-center">
-                    <h3 class="mb-4">კომპანიები</h3>
+                            py-4">
+                    <h3 class="mb-4 d-none d-sm-block">კომპანიები</h3>
 
                     <div class="d-flex
-                                flex-column
+                                flex-wrap
+                                flex-sm-column
+                                justify-content-center
                                 gap-3">
                         <div>
                             <a href="" class="text-secondary py-2">Ice Land Georgia</a>
@@ -87,14 +87,12 @@
                 <div class="col-lg-3 
                             col-sm-6 
                             col-12
-                            py-4
-                            d-sm-block
-                            d-flex
-                            flex-column
-                            align-items-center">
-                    <h3 class="mb-4">მენიუ</h3>
+                            py-4">
+                    <h3 class="mb-4 d-none d-sm-block">მენიუ</h3>
                     <div class="d-flex
-                                flex-column
+                                flex-sm-column
+                                flex-wrap
+                                justify-content-center
                                 gap-3">
                         @foreach($menuButtons as $data)
                             <div class="nav-item
@@ -199,10 +197,12 @@
                             d-flex
                             flex-column
                             align-items-center">
-                    <h3 class="mb-4">კონტაქტები</h3>
+                    <h3 class="mb-4  d-sm-block d-none">კონტაქტები</h3>
 
                     <div class="d-flex
-                                flex-column
+                                flex-sm-column
+                                flex-wrap
+                                justify-content-center
                                 gap-3
                                 text-secondary" >
                         <div>
@@ -219,11 +219,57 @@
                     </div>
                 </div>
             </div>
+
+            <div class="d-sm-none pt-4" >
+                    <div class="d-flex
+                                justify-content-center
+                                gap-2">
+                        <div>
+                            <a href="{{ config('bsc.facebook_link') }}"
+                                target="_blank"
+                                class="ba_fb
+                                        footer__media_icon
+                                        footer__media_icon--fb
+                                        border
+                                        rounded"></a>
+                        </div>
+                        
+                        <div>
+                            <a href="{{ config('bsc.instagram_link') }}"
+                                target="_blank"
+                                class="ba_inst
+                                        footer__media_icon
+                                        footer__media_icon--instagram
+                                        border
+                                        rounded"></a>
+                        </div>
+                        
+                        <div>
+                            <a href="{{ config('bsc.twitter_link') }}"
+                                target="_blank"
+                                class="ba_tw
+                                        footer__media_icon
+                                        footer__media_icon--twitter
+                                        border
+                                        rounded"></a>
+                        </div>
+
+                        <div>
+                            <a href="#"
+                                target="_blank"
+                                class="ba_in
+                                        footer__media_icon
+                                        footer__media_icon--linkedin
+                                        border
+                                        rounded"></a>
+                        </div>
+                    </div>
+            </div>
         </div>
 
-        <div class="footer__horizontal_line"></div>
+        <div class="footer__horizontal_line d-sm-block d-none"></div>
 
-        <div class="container p-2">
+        <div class="container p-2 d-sm-block d-none">
             <div class="row">
                 <div class="col-lg-8
                             col-12
