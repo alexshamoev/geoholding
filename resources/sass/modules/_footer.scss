@@ -32,26 +32,14 @@
     background-color: rgb(186, 236, 173);
     position: relative;
     z-index: 20;
+    background-color: rgba(94, 197, 241, 0.20);
 
     &__media_icon {
-        font-size: 30px;
+        font-size: 18px;
         transition: color 0.2s ease-in-out;
-        
-        &--fb {
-            color: #3b5998 !important;
-        }
-        
-        &--instagram {
-            color: #8a3ab9 !important;
-        }
-        
-        &--twitter {
-            color: #1DA1F2 !important;
-        }
-
-        &--linkedin {
-            color: #0077b5 !important;
-        }
+        padding: 4px;
+        color: $color_0 !important;
+        border-color: $color_0 !important;
     }
 
     &__horizontal_line {
