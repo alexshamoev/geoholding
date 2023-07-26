@@ -91,6 +91,18 @@
 			</div>
 		</div>
 
+		<div>
+			@if ($activeHome->partners->isNotEmpty())
+				@foreach ($activeHome->partners as $item)
+					@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
+						<a href="{{ $item->link }}" target="_blank">
+							<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
+						</a>
+					@endif
+				@endforeach
+			@endif
+		</div>
+
 		<div class="home__banner_section my-md-5 py-md-auto py-4">
 			<div class="container p-2">
 				<div class="row px-xl-5">

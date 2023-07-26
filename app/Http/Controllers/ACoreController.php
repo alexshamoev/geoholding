@@ -809,20 +809,17 @@ class ACoreController extends AController {
 
 		$nextModuleStepData = collect([]);
 
-		foreach($nextModuleStep as $data) {
-			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy($data->order_by_column, $data->order_by_sequence)->get());
-			
-			
-			// $moduleBlockForImage = ModuleBlock::where('top_level', $nextModuleStep->id)->where('type', 'image')->first();
-
-			// if($moduleBlockForImage) {
-			// 	$imageFormat = $moduleBlockForImage->file_format;
-			// }
-		}
-
-
 		$imageFormat = 'jpg'; // Temp solution.
+
+		foreach($nextModuleStep as $data) {
+			$nextModuleStepData->add(DB::table($data->db_table)->where('top_level', $pageData->id)->orderBy($data->order_by_column, $data->order_by_sequence)->get());;
 			
+			$moduleBlockForImage = ModuleBlock::where('top_level', $data->id)->where('type', 'image')->first();
+
+			if($moduleBlockForImage) {
+				$imageFormat = $moduleBlockForImage->file_format;
+			}
+		}
 
 		// Tags.
 			$tagsData = [];
