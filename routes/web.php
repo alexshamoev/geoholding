@@ -104,8 +104,8 @@ use App\Models\CompanyStep0;
 							Route::get('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@edit')->name('coreEdit');
 							Route::post('/{moduleAlias}/{moduleStepId}/{id}/addImage', 'ACoreController@addMultImages')->name('coreAddMultImage');
 							Route::post('/{moduleAlias}/{moduleStepId}/{id}', 'ACoreController@update')->name('coreUpdate');
-							Route::get('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete')->name('coreDelete');
-							Route::post('/{moduleAlias}/{moduleStepId}/{id}/{parentModuleStepId}/multi-delete', 'ACoreController@multiDelete')->name('coreMultiDelete');
+							Route::delete('/{moduleAlias}/{moduleStepId}/{id}/delete', 'ACoreController@delete')->name('coreDelete');
+							Route::delete('/{moduleAlias}/{moduleStepId}/{id}/{parentModuleStepId}/multi-delete', 'ACoreController@multiDelete')->name('coreMultiDelete');
 						// 
 
 
