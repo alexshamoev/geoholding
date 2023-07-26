@@ -16,6 +16,18 @@
                 </div>
             </div>
 
+            <div class="main__wrapper">
+                @if ($companies->isNotEmpty())    
+                    @foreach ($companies as $item)
+                        <div class="main__box">
+                            <a href="{{ $item->fullUrl }}">
+                                {{ $item->title }}
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
+
             <div class="col-xl-2
                         col-6
                         ms-auto
