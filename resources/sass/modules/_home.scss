@@ -1,30 +1,532 @@
 @media only screen and (max-width: $xs_size) {
+    .home{
+        &__statistic{
+            width: 150px;
+            height: 150px;
+            border: 1px solid $color_1;
     
+            &:nth-child(2){
+                left: 215px;
+                top: -0px;
+            }
+    
+            &:nth-child(3){
+                bottom: 12px;
+                left: 110px;
+            }
+        }
+
+        &__partner_box{
+            height: 370px;
+        }
+
+        &__about_us_img{
+            width: 250px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 50px 0;
+        }
+
+        &__about_us_mini_circle::before {
+            bottom: 15px !important;
+        }
+
+        &__about_us_mini_circle::after {
+            bottom: -30px !important;
+        }
+
+        &__products_dif_img{
+            position: static;
+        }
+
+        &__product_text{
+            line-height: 25px;
+        }
+
+        &__about_us_box_text{
+            line-height: 25px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_0;
+        }
+
+        &__about_us_text{
+            line-height: 25px;
+        }
+
+        &__head_text{
+            line-height: 25px;
+        }
+
+        &__text_partner{
+            line-height: 25px;
+        }
+    }
 }
 
 
 @media only screen and (min-width: $sm_size) {
+    .home{
+        &__statistic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid $color_1;
     
+            &:nth-child(2){
+                left: 270px;
+                top: -20px;
+            }
+    
+            &:nth-child(3){
+                bottom: 0px;
+                left: 154px;
+            }
+        }
+
+        &__partner_box{
+            height: 400px;
+        }
+
+        &__about_us_img{
+            width: 370px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 50px 0;
+        }
+
+        &__products_dif_img{
+            position: static;
+        }
+
+        &__product_text{
+            line-height: 25px;
+        }
+
+        &__about_us_box_text{
+            line-height: 25px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_0;
+        }
+
+        &__about_us_text{
+            line-height: 25px;
+        }
+
+        &__head_text{
+            line-height: 25px;
+        }
+
+        &__text_partner{
+            line-height: 25px;
+        }
+    }
 }
 
 
 @media only screen and (min-width: $md_size) {
+    .home{
+        &__statistic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid $color_1;
     
+            &:nth-child(2){
+                left: 270px;
+                top: -20px;
+            }
+    
+            &:nth-child(3){
+                bottom: 0px;
+                left: 154px;
+            }
+        }
+
+        &__partner_box{
+            height: 400px;
+        }
+
+        &__about_us_img{
+            width: 370px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 100px 0;
+        }
+
+        &__products_dif_img{
+            position: static;
+        }
+
+        &__product_text{
+            line-height: 25px;
+        }
+
+        &__about_us_box_text{
+            line-height: 25px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_0;
+        }
+
+        &__about_us_text{
+            line-height: 25px;
+        }
+
+        &__head_text{
+            line-height: 25px;
+        }
+
+        &__text_partner{
+            line-height: 25px;
+        }
+    }
 }
 
 
 @media only screen and (min-width: $lg_size) {
+    .home{
+        &__statistic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid $color_1;
     
+            &:nth-child(2){
+                left: 270px;
+                top: -20px;
+            }
+    
+            &:nth-child(3){
+                bottom: 0px;
+                left: 154px;
+            }
+        }
+
+        &__partner_box{
+            height: 400px;
+        }
+
+        &__about_us_img{
+            width: 370px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 100px 0;
+        }
+
+        &__products_dif_img{
+            position: absolute;
+        }
+
+        &__product_text{
+            line-height: 40px;
+        }
+
+        &__about_us_box_text{
+            line-height: 40px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid transparent;
+        }
+
+        &__about_us_text{
+            line-height: 40px;
+        }
+
+        &__head_text{
+            line-height: 30px;
+        }
+
+        &__text_partner{
+            line-height: 35px;
+        }
+    }
 }
 
 
 @media only screen and (min-width: $xl_size) {
+    .home{
+        &__statistic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid $color_1;
+    
+            &:nth-child(2){
+                left: 270px;
+                top: -20px;
+            }
+    
+            &:nth-child(3){
+                bottom: -70px;
+                left: 165px;
+            }
+        }
 
+        &__partner_box{
+            height: 370px;
+        }
+
+        &__about_us_img{
+            width: 370px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 100px 0;
+        }
+
+        &__products_dif_img{
+            position: absolute;
+        }
+
+        &__product_text{
+            line-height: 40px;
+        }
+
+        &__about_us_box_text{
+            line-height: 40px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid transparent;
+        }
+
+        &__about_us_text{
+            line-height: 40px;
+        }
+
+        &__head_text{
+            line-height: 30px;
+        }
+
+        &__text_partner{
+            line-height: 35px;
+        }
+    }
 }
 
 
 @media only screen and (min-width: $xxl_size) {
+    .home{
+        &__statistic{
+            width: 200px;
+            height: 200px;
+            border: 1px solid $color_1;
+    
+            &:nth-child(2){
+                left: 270px;
+                top: -20px;
+            }
+    
+            &:nth-child(3){
+                bottom: -70px;
+                left: 165px;
+            }
+        }
 
+        &__partner_box{
+            height: 370px;
+        }
+
+        &__about_us_img{
+            width: 370px;
+            position: relative;
+            border-radius: 50%;
+    
+            &::before{
+                content: "";
+                width: 114%;
+                height: 114%;
+                border: 1px solid #CCEDFB;
+                border-radius: 50%;
+                position: absolute;
+                top: -7%;
+                left: -7%;
+                
+            }
+    
+            &::after{
+                content: "";
+                width: 132%;
+                height: 132%;
+                border: 1px solid #E6F6FD;
+                border-radius: 50%;
+                position: absolute;
+                top: -16%;
+                left: -16%;
+                
+            }
+        }
+
+        &__banner_section{
+            padding: 100px 0;
+        }
+
+        &__products_dif_img{
+           position: absolute;
+        }
+
+        &__product_text{
+            line-height: 40px;
+        }
+
+        &__about_us_box_text{
+            line-height: 40px;
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid transparent;
+        }
+
+        &__about_us_text{
+            line-height: 40px;
+        }
+
+        &__head_text{
+            line-height: 30px;
+        }
+
+        &__text_partner{
+            line-height: 35px;
+        }
+    }
+    
+    
 }
 
 .home{
@@ -71,10 +573,6 @@
         background-color: $color_0;
     }
 
-    &__head_text{
-        line-height: 30px;
-    }
-
     &__gradinet_div{
         box-shadow: #ddf3fc -270px 143px 210px 31px;
         background-color: #DDF3FC;
@@ -93,36 +591,6 @@
 
     &__about_us_box{
         padding-left: 60px;
-    }
-
-    &__about_us_img{
-        width: 370px;
-        position: relative;
-        border-radius: 50%;
-
-        &::before{
-            content: "";
-            width: 114%;
-            height: 114%;
-            border: 1px solid #CCEDFB;
-            border-radius: 50%;
-            position: absolute;
-            top: -7%;
-            left: -7%;
-            
-        }
-
-        &::after{
-            content: "";
-            width: 132%;
-            height: 132%;
-            border: 1px solid #E6F6FD;
-            border-radius: 50%;
-            position: absolute;
-            top: -16%;
-            left: -16%;
-            
-        }
     }
 
     &__about_us_mini_circle{
@@ -152,17 +620,41 @@
         }
     }
 
-    &__about_us_text{
-        line-height: 40px;
-    }
-
     &__banner_icon{
         width: 72px;
     }
 
     &__banner_section{
         background-color: #E1F4FC;
-        padding: 100px 0;
+    }
+
+    &__why_us:first-child{
+        border-bottom: 1px solid $color_0;
+    }
+
+    &__why_us:nth-child(2){
+        border-bottom: 1px solid $color_0;
+    }
+
+    &__about_us_number{
+        width: 54px;
+        height: 54px;
+        background-color: $color_0;
+        color: $color_4;
+    }
+
+    &__plus{
+        color: $color_0;
+    }
+
+    &__our_project{
+        & img{
+            width: 500px;
+        }
+    }
+
+    &__products_dif_img{
+        top: -210px;
     }
 }
 

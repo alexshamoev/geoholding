@@ -31,8 +31,43 @@
 .languages {
 	&__block {
         &--active {
-			opacity: 0.5;
 			pointer-events: none;
+		}
+
+		& img{
+			width: 50px;
+			border-radius: 50%;
 		}
 	}
 }
+
+/* Style the custom select container */
+.custom-select {
+	display: inline-block;
+	position: relative;
+  }
+  
+  .selected-option {
+	border: 1px solid #ccc;
+	padding: 8px;
+	cursor: pointer;
+  }
+  
+  .options-list {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	border: 1px solid #ccc;
+  }
+  
+  .option {
+	padding: 8px;
+	cursor: pointer;
+  }
+  
+  .option:hover {
+	background-color: #f0f0f0;
+  }
+  
