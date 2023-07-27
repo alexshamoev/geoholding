@@ -62,8 +62,8 @@ class CompaniesController extends FrontController
                                                     
         // return view('modules.companies.step0', $data);
 
-        return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/მთავარი'));
-
+        $homePage = Page::firstWhere('slug', 'home');
+        return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/' . $homePage->{'alias_'.$lang}));
     }
 
 
@@ -93,12 +93,10 @@ class CompaniesController extends FrontController
                 $bladeFile = 'about-us';
                 break;
             
-            default:             
-                $activeHome = HomeStep0::firstWhere('top_level', $activeCompany->id);
-
-                $activeBlock = $activeHome;
-                $data = array('activeHome' => $activeHome);
-                $bladeFile = 'home';
+            default:   
+                $homePage = Page::firstWhere('slug', 'home');
+                
+                return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/' . $homePage->{'alias_'.$lang}));
                 break;
         }
         
