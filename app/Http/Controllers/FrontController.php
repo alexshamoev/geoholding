@@ -7,7 +7,6 @@ use App\Models\Bsc;
 use App\Models\Bsw;
 use App\Models\Page;
 use App\Models\Module;
-use App\Models\Partner;
 use App\Models\Language;
 use Illuminate\Http\Request;
 use App\Models\CompaniesStep0;
@@ -71,10 +70,6 @@ class FrontController extends Controller {
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::where('top_level', $activeCompanyId)->with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
-				// 'registrationPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'registration')->alias,
-				// 'loginPageUrl' => '/'.$lang->title.'/'.Page::firstWhere('slug', 'login')->alias,
-				// 'basketPage' => Page::firstWhere('slug', 'basket'),
-				// 'partners' => Partner::orderByDesc('rang')->get(),
 				'widgetGetVisibility' => $widgetGetVisibility];
 		
 		return $data;

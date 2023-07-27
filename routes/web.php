@@ -125,29 +125,29 @@ use App\Models\CompanyStep0;
 
 			// Auth routes
 				// Login-Logout!
-					Route::get('/{lang}/login', 'AuthController@getLogin')->name('getLogin');
-					Route::post('/{lang}/login', 'AuthController@login')->name('login');
-					Route::get('/{lang}/logout', 'AuthController@logout')->name('logout');
+					// Route::get('/{lang}/login', 'AuthController@getLogin')->name('getLogin');
+					// Route::post('/{lang}/login', 'AuthController@login')->name('login');
+					// Route::get('/{lang}/logout', 'AuthController@logout')->name('logout');
 				//
 
 				// Register
-					Route::get('/{lang}/register', 'AuthController@getRegistration')->name('getRegister');
-					Route::post('/{lang}/register', 'AuthController@registration')->name('register');
+					// Route::get('/{lang}/register', 'AuthController@getRegistration')->name('getRegister');
+					// Route::post('/{lang}/register', 'AuthController@registration')->name('register');
 				//
 
 				// Email Verification
-					Route::get('/{lang}/verify/{id}', 'AuthController@emailVerification')->name('verifyEmail');
+					// Route::get('/{lang}/verify/{id}', 'AuthController@emailVerification')->name('verifyEmail');
 				//
 
 				// Recover
-					Route::get('/{lang}/recover', 'AuthController@getRecover')->name('getRecover');
-					Route::post('/{lang}/recover', 'AuthController@recover')->name('recover');
-					Route::get('/{lang}/reset/{email}', 'AuthController@getReset')->name('getReset');
-					Route::post('/{lang}/reset/{email}', 'AuthController@reset')->name('reset');
+					// Route::get('/{lang}/recover', 'AuthController@getRecover')->name('getRecover');
+					// Route::post('/{lang}/recover', 'AuthController@recover')->name('recover');
+					// Route::get('/{lang}/reset/{email}', 'AuthController@getReset')->name('getReset');
+					// Route::post('/{lang}/reset/{email}', 'AuthController@reset')->name('reset');
 				//
 
 				//getVerify
-					Route::get('/{lang}/get-verify/{id}', 'AuthController@getVerify')->name('getVerify');
+					// Route::get('/{lang}/get-verify/{id}', 'AuthController@getVerify')->name('getVerify');
 				//
 
 				// // Resend
@@ -238,7 +238,7 @@ use App\Models\CompanyStep0;
 				Route::get('/{lang}/{pageAlias}', 'FrontController@getPage')->where(['lang' => '[a-z]+', 'pageAlias' => '[a-zა-ჰа-яё0-9-]+']);
 			//
 
-			Route::post('/basket/get-data', 'BasketController@getProducts');
+			// Route::post('/basket/get-data', 'BasketController@getProducts');
 
 
 			Route::post('/{lang}/make-order', 'OrdersController@order')->name('makeOrder');
