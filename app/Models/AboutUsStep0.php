@@ -26,9 +26,33 @@ class AboutUsStep0 extends Model
     }
 
 
-	public function getTextAttribute() 
+	public function getSection1TextAttribute() 
     {
-        return $this->{ 'text_'.App::getLocale() };
+        return $this->{ 'section1_text_'.App::getLocale() };
+    }
+
+    
+    public function getSection2TitleAttribute() 
+    {
+        return $this->{ 'section2_title_'.App::getLocale() };
+    }
+
+
+	public function getSection2TextAttribute() 
+    {
+        return $this->{ 'section2_text_'.App::getLocale() };
+    }
+    
+    
+    public function getSection3TitleAttribute() 
+    {
+        return $this->{ 'section3_title_'.App::getLocale() };
+    }
+
+
+	public function getSection3TextAttribute() 
+    {
+        return $this->{ 'section3_text_'.App::getLocale() };
     }
 
 

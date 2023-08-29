@@ -18,8 +18,16 @@ class CreateAboutUsStep0Table extends Migration
             $table->integer('top_level')->default(0);
             $table->string('title_ge')->default('');
             $table->string('title_en')->default('');
-            $table->text('text_ge')->nullable();
-            $table->text('text_en')->nullable();
+            $table->text('section1_text_ge')->nullable();
+            $table->text('section1_text_en')->nullable();
+            $table->string('section2_title_ge')->default('');
+            $table->string('section2_title_en')->default('');
+            $table->text('section2_text_ge')->nullable();
+            $table->text('section2_text_en')->nullable();
+            $table->string('section3_title_ge')->default('');
+            $table->string('section3_title_en')->default('');
+            $table->text('section3_text_ge')->nullable();
+            $table->text('section3_text_en')->nullable();
 			$table->string('meta_title_ge')->default('');
 			$table->string('meta_title_en')->default('');
 			$table->string('meta_description_ge')->default('');
