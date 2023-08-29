@@ -540,6 +540,8 @@
 
 		@if(!$nextModuleStep->isEmpty())
 			@foreach($nextModuleStep as $moduleStepData)
+				<legend class="p-2 blockquote text-muted  "><u>{{ $moduleStepData->title }}</u></legend>
+
 				@if($nextModuleStep->values()->get($i)->blocks_max_number == 0 || $nextModuleStep->values()->get($i)->blocks_max_number > count($nextModuleStepData[0]))
 					<!-- Add button -->
 						@if(!$nextModuleStep->values()->get($i)->images && $nextModuleStep->values()->get($i)->possibility_to_add !== 0)
