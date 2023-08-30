@@ -17,13 +17,13 @@ use App\Http\Controllers\FrontController;
 use App\Models\CompanyStep0;
 
 // Google Login URL
-	Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
-	Route::get('callback/google', [GoogleController::class, 'handleCallback']);
+	// Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+	// Route::get('callback/google', [GoogleController::class, 'handleCallback']);
 //
 
 // Facebook Login URL
-	Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
-	Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
+	// Route::get('auth/facebook', [FacebookController::class, 'redirectToFB']);
+	// Route::get('callback/facebook', [FacebookController::class, 'handleCallback']);
 //
 
 // Makes sure that migrations run without error [error is when running migration and table doesn't exists]
@@ -201,9 +201,9 @@ use App\Models\CompanyStep0;
 						$moduleTitleForController .= ucfirst($data);
 					}
 
-					$loginAlias = Page::firstWhere('slug', 'login');
-					$registrationAlias = Page::firstWhere('slug', 'registration');
-					$recoverAlias = Page::firstWhere('slug', 'passRecover');
+					// $loginAlias = Page::firstWhere('slug', 'login');
+					// $registrationAlias = Page::firstWhere('slug', 'registration');
+					// $recoverAlias = Page::firstWhere('slug', 'passRecover');
 					
 					foreach(Language::where('disable', '0')->get() as $language) {
 						// if($module->page->{ 'alias_'.$language->title } !== $loginAlias->alias
@@ -241,7 +241,7 @@ use App\Models\CompanyStep0;
 			// Route::post('/basket/get-data', 'BasketController@getProducts');
 
 
-			Route::post('/{lang}/make-order', 'OrdersController@order')->name('makeOrder');
+			// Route::post('/{lang}/make-order', 'OrdersController@order')->name('makeOrder');
 		}
 	}
 // 
