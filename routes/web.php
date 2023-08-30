@@ -206,9 +206,9 @@ use App\Models\CompanyStep0;
 					$recoverAlias = Page::firstWhere('slug', 'passRecover');
 					
 					foreach(Language::where('disable', '0')->get() as $language) {
-						if($module->page->{ 'alias_'.$language->title } !== $loginAlias->alias
-							&& $module->page->{ 'alias_'.$language->title } !== $registrationAlias->alias
-							&& $module->page->{ 'alias_'.$language->title } !== $recoverAlias->alias) {
+						// if($module->page->{ 'alias_'.$language->title } !== $loginAlias->alias
+						// 	&& $module->page->{ 'alias_'.$language->title } !== $registrationAlias->alias
+						// 	&& $module->page->{ 'alias_'.$language->title } !== $recoverAlias->alias) {
 
 							$controllerName = 'App\Http\Controllers\\'.$moduleTitleForController.'Controller';
 
@@ -231,7 +231,7 @@ use App\Models\CompanyStep0;
 							if(method_exists($controllerName, 'getStep4')){
 								Route::get('/{lang}/'.$module->page->{ 'alias_'.$language->title }.'/{step0Alias}/{step1Alias}/{step2Alias}/{step3Alias}', $moduleTitleForController.'Controller@getStep4')->where(['lang' => '[a-z]+', 'step0Alias' => '[a-zა-ჰа-яё0-9-]+', 'step1Alias' => '[a-zა-ჰа-яё0-9-]+', 'step2Alias' => '[a-zა-ჰа-яё0-9-]+', 'step3Alias' => '[a-zა-ჰа-яё0-9-]+']);
 							}
-						}
+						// }
 					}
 				}
 			// Else show static page.
