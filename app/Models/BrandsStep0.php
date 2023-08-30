@@ -4,55 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App;
+use Illuminate\Support\Facades\App;
 
-class AboutUsStep0 extends Model
+class BrandsStep0 extends Model
 {
     use HasFactory;
 
-    protected $table = 'about_us_step_0';
+    protected $table = 'brands_step_0';
     
     private static $page;
     
+
     public static function setPage($page) 
     {
         self::$page = $page;
     }
-    
-    
+
+
     public function getTitleAttribute() 
     {
         return $this->{ 'title_'.App::getLocale() };
-    }
-
-
-	public function getSection1TextAttribute() 
-    {
-        return $this->{ 'section1_text_'.App::getLocale() };
-    }
-
-    
-    public function getSection2TitleAttribute() 
-    {
-        return $this->{ 'section2_title_'.App::getLocale() };
-    }
-
-
-	public function getSection2TextAttribute() 
-    {
-        return $this->{ 'section2_text_'.App::getLocale() };
-    }
-    
-    
-    public function getSection3TitleAttribute() 
-    {
-        return $this->{ 'section3_title_'.App::getLocale() };
-    }
-
-
-	public function getSection3TextAttribute() 
-    {
-        return $this->{ 'section3_text_'.App::getLocale() };
     }
 
 
@@ -82,16 +53,16 @@ class AboutUsStep0 extends Model
 
     public function getMetaUrlAttribute() 
     {
-        if(file_exists(public_path('/storage/images/modules/companies/80/meta_'.$this->{ 'id' }.'.jpg'))) {
-            return '/storage/images/modules/companies/80/meta_'.$this->{ 'id' }.'.jpg';
-        } else if(file_exists(public_path('/storage/images/modules/companies/80/'.$this->{ 'id' }.'.jpg'))) {
-            return '/storage/images/modules/companies/80/'.$this->{ 'id' }.'.jpg';
+        if(file_exists(public_path('/storage/images/modules/companies/88/meta_'.$this->{ 'id' }.'.jpg'))) {
+            return '/storage/images/modules/companies/88/meta_'.$this->{ 'id' }.'.jpg';
+        } else if(file_exists(public_path('/storage/images/modules/companies/88/'.$this->{ 'id' }.'.jpg'))) {
+            return '/storage/images/modules/companies/88/'.$this->{ 'id' }.'.jpg';
         } else {
             return '/storage/images/meta_default.jpg';
         }
     }
 
-    
+
 	public function getFullUrlAttribute() 
     {
         return self::$page->fullUrl.'/'.$this->alias;
@@ -104,10 +75,4 @@ class AboutUsStep0 extends Model
         
         // return '/'.$lang.'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
-
-
-    // public function company()
-    // {
-    //     return $this->belongsTo(CompaniesStep0::class, 'top_level', 'id');
-    // }
 }

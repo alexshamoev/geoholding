@@ -7,6 +7,8 @@ use App\Models\Page;
 use App\Models\Language;
 use App\Http\Controllers\FrontController;
 use App\Models\AboutUsStep0;
+use App\Models\BrandsStep0;
+use App\Models\BrandsStep1;
 use App\Models\CompaniesStep0;
 use App\Models\HomeStep0;
 
@@ -91,6 +93,15 @@ class CompaniesController extends FrontController
                 $activeBlock = $activeAbout;
                 $data = array('activeAbout' => $activeAbout);
                 $bladeFile = 'about-us';
+                break;
+            
+            case 'brands':
+                $activeBrand = BrandsStep0::firstWhere('top_level', $activeCompany->id);
+                $brandsList = BrandsStep1::where('top_level', $activeBrand->id)->get();
+
+                $activeBlock = $activeBrand;
+                $data = array('activeBrand' => $activeBrand, 'brandsList' => $brandsList);
+                $bladeFile = 'brands';
                 break;
             
             default:   
