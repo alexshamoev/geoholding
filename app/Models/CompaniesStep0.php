@@ -41,6 +41,6 @@ class CompaniesStep0 extends Model
     
     public function getFullUrl($lang) 
     {
-        return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
+        // return '/'.$lang.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
 }
