@@ -96,11 +96,10 @@ class CompaniesController extends FrontController
                 break;
             
             case 'brands':
-                $activeBrand = BrandsStep0::firstWhere('top_level', $activeCompany->id);
-                $brandsList = BrandsStep1::where('top_level', $activeBrand->id)->get();
+                $activeBrand = BrandsStep0::with('brands')->firstWhere('top_level', $activeCompany->id);
 
                 $activeBlock = $activeBrand;
-                $data = array('activeBrand' => $activeBrand, 'brandsList' => $brandsList);
+                $data = array('activeBrand' => $activeBrand);
                 $bladeFile = 'brands';
                 break;
             

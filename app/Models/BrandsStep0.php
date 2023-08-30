@@ -75,4 +75,10 @@ class BrandsStep0 extends Model
         
         // return '/'.$lang.'/'.$mainAlias.'/'.config('activeCompany')->alias.'/'.self::$page->{ 'alias_'.$lang }.'/'.$this->{ 'alias_'.$lang };
     }
+
+
+    public function brands()
+    {
+        return $this->hasMany(BrandsStep1::class, 'top_level', 'id');
+    }
 }

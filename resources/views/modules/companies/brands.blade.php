@@ -10,8 +10,8 @@
 		<h1>{{ $activeBrand->title }}</h1>
 		
 		<div class="">
-			@if ($brandsList->isNotEmpty())
-				@foreach ($brandsList as $brand)
+			@if ($activeBrand->brands->isNotEmpty())
+				@foreach ($activeBrand->brands as $brand)
 					@if (file_exists(public_path('storage/images/modules/companies/89/' . $brand->id . '.png')))
 						<div class="home__gradient">
 							<img class="mb-2" src="{{ asset('storage/images/modules/companies/89/' . $brand->id . '.png') }}" alt="{{ $brand->title }}">
