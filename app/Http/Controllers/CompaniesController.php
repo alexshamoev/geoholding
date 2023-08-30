@@ -96,7 +96,9 @@ class CompaniesController extends FrontController
                 break;
             
             case 'brands':
-                $activeBrand = BrandsStep0::with('brands')->firstWhere('top_level', $activeCompany->id);
+                $activeBrand = BrandsStep0::with(['brands' => function ($query) {
+                                        $query->orderBy('rang', 'desc');
+                                    }])->firstWhere('top_level', $activeCompany->id);
 
                 $activeBlock = $activeBrand;
                 $data = array('activeBrand' => $activeBrand);
