@@ -11,6 +11,8 @@ use App\Models\BrandsStep0;
 use App\Models\BrandsStep1;
 use App\Models\CompaniesStep0;
 use App\Models\HomeStep0;
+use App\Models\VacanciesStep0;
+use App\Models\VacanciesStep1;
 
 class CompaniesController extends FrontController
 {
@@ -29,6 +31,8 @@ class CompaniesController extends FrontController
         CompaniesStep0::setPage(self::$page);
         AboutUsStep0::setPage(Page::firstWhere('slug', 'about-us'));
         HomeStep0::setPage(Page::firstWhere('slug', 'home'));
+        BrandsStep0::setPage(Page::firstWhere('slug', 'brands'));
+        VacanciesStep0::setPage(Page::firstWhere('slug', 'vacancies'));
     }
 
     // public static function getStep0() 
@@ -54,15 +58,6 @@ class CompaniesController extends FrontController
         
         # temporary save active company
         config(['activeCompany' => $activeCompany]);
-
-        // $data = array_merge(self::getDefaultData($language,
-        //                                             self::$page,
-        //                                             $activeCompany),
-        //                                             [
-        //                                                 'activeCompany' => $activeCompany
-        //                                             ]);
-                                                    
-        // return view('modules.companies.step0', $data);
 
         $homePage = Page::firstWhere('slug', 'home');
         return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/' . $homePage->{'alias_'.$lang}));
@@ -105,6 +100,16 @@ class CompaniesController extends FrontController
                 $bladeFile = 'brands';
                 break;
             
+            case 'vacancies':
+                $activeVacancy = VacanciesStep0::with(['vacancies' => function ($query) {
+                                        $query->orderBy('id', 'desc');
+                                    }])->firstWhere('top_level', $activeCompany->id);
+                
+                $activeBlock = $activeVacancy;
+                $data = array('activeVacancy' => $activeVacancy);
+                $bladeFile = 'vacancies';
+                break;
+            
             default:   
                 $homePage = Page::firstWhere('slug', 'home');
                 
@@ -114,11 +119,48 @@ class CompaniesController extends FrontController
         
         $language = Language::firstWhere('title', $lang);
         
-        $data = array_merge(self::getDefaultData($language, 
+        $fullData = array_merge(self::getDefaultData($language, 
                                                 self::$page,
                                                 $activeBlock),
                                             $data);
 
-        return view("modules.companies.$bladeFile", $data);
+        return view("modules.companies.$bladeFile", $fullData);
+    }
+
+
+    public function getStep3($lang, $step0Alias, $step1Alias, $step2Alias)
+    {
+        $activePageSlug = Page::where('alias_'.$lang, $step1Alias)->value('slug');
+        $activeCompany = CompaniesStep0::firstWhere('alias_'.$lang, $step0Alias);
+        
+        # for FrontController -> getDefaultData
+        config(['activeCompany' => $activeCompany]);
+
+        switch ($activePageSlug) {
+
+            case 'vacancies':
+                $language = Language::firstWhere('title', $lang);
+                $activeVacancy = VacanciesStep1::firstWhere('alias_'.$language->title, $step2Alias);
+
+                $activeBlock = $activeVacancy;
+                $data = array('active' => $activeVacancy);
+                $bladeFile = 'vacanciesStep1';
+                break;
+            
+            default:
+                $homePage = Page::firstWhere('slug', 'home');
+                    
+                return redirect(url('/'.$lang.'/'.self::$page->alias.'/'.$step0Alias.'/' . $homePage->{'alias_'.$lang}));
+                break;
+        }
+
+        $language = Language::firstWhere('title', $lang);
+        
+        $fullData = array_merge(self::getDefaultData($language, 
+                                                self::$page,
+                                                $activeBlock),
+                                            $data);
+
+        return view("modules.companies.$bladeFile", $fullData);
     }
 }
