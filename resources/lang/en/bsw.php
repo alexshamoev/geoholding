@@ -84,4 +84,13 @@ return [
     'delete' => 'Delete',
     'cancel' => 'Cancel',
     'orderSuccessStatus' => 'Order is accepted! Our administrator will contact you soon.',
+
+    'position_name' => 'Position name',
+    'last_date' => 'Deadline',
+    'published' => 'Published',
+    'location' => 'Location',
+    'send_resume' => 'Send us resume',
+    'Ice_Land_Georgia' => 'Ice Land Georgia',
+    'bd_company' => 'BD Company',
+    'bd_plus' => 'Bd Plus',
 ];

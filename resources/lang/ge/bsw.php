@@ -85,5 +85,14 @@ return [
     'delete' => 'წაშლა',
     'cancel' => 'გაუქმება',
     'orderSuccessStatus' => 'შეკვეთა მიღებულია! ჩვენი ადმინისტრატორი მალე დაგიკავშირდებათ.',
+
+    'position_name' => 'პოზიციის დასახელება',
+    'last_date' => 'ბოლო ვადა',
+    'published' => 'გამოქვეყნდა',
+    'location' => 'ლოკაცია',
+    'send_resume' => 'გამოგვიგზავნეთ რეზიუმე',
+    'Ice_Land_Georgia' => 'Ice Land Georgia',
+    'bd_company' => 'BD Company',
+    'bd_plus' => 'BD Plus',
 ];
 
