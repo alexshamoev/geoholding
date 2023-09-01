@@ -8,7 +8,7 @@
 	<div class="container d-flex flex-column">
 		<div>
 			@isset($active)
-			<div class="col-11 border rounded-5 vacancies_step1__header_wrapper p-0">
+			<div class="col-11 border rounded-5 vacancies_step1__header_wrapper p-0 vacancies_step1__box_shadow">
 				<div class="row border-bottom border-info p-2">
 					<span class="col-lg-3 col-sm-6">{{ __('bsw.position_name') }}:</span>
 					<span class="col-lg-7 col-sm-6">{{ $active->title }}</span>
