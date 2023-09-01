@@ -5,10 +5,10 @@
                     justify-content-between
                     row">
             <div class="col-xl-1
-                            col-md-2
-                            col-3
-                            position-relative__logo
-                            order-0">
+                        col-md-2
+                        col-3
+                        position-relative__logo
+                        order-0">
                 <div class="pe-2">
                     <a href="{{ url('/') }}">
                         <img src="{{ asset('/storage/images/logo.svg') }}">
@@ -16,24 +16,37 @@
                 </div>
             </div>
 
-            <div class="main__wrapper">
-                @if ($companies->isNotEmpty())    
-                    @foreach ($companies as $item)
-                        <div class="main__box">
-                            <a href="{{ $item->fullUrl }}">
-                                {{ $item->title }}
-                            </a>
+            <div class="col-10">
+                <div class="row">
+                    <div class="col-xxl-6 col-xl-7 m-auto">
+                        <div class="d-flex
+                                    justify-content-between
+                                    header__company_station">
+                            @if ($companies->isNotEmpty())    
+                                @foreach ($companies as $item)
+                                    <a href="{{ $item->fullUrl }}">
+                                        <button class="px-4 py-2 header__company_btn">
+                                            {{ $item->title }}
+                                        </button>
+                                    </a>
+                                @endforeach
+                            @endif
                         </div>
-                    @endforeach
-                @endif
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alias_info d-none" data-alias="{{config('activeCompany')->alias}}">
+                {{config('activeCompany')->alias}}
             </div>
 
-            <div class="col-xl-2
+            <div class="col-xl-1
                         col-6
                         ms-auto
                         d-block
                         order-lg-2
-                        order-1">
+                        order-1
+                        p-0">
                 @include('modules.languages.basic')
             </div>
         </div>

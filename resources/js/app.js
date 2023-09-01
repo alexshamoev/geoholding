@@ -15,6 +15,7 @@ require("./modules/products");
 require("./modules/orders");
 require("./modules/home");
 require("./modules/language");
+require("./modules/header");
 
 // Vue.
 import { createApp } from "vue";

@@ -83,4 +83,7 @@ return [
     'delete' => 'Удалить',
     'cancel' => 'Отменить',
     'orderSuccessStatus' => 'Заказ принят! Наш администратор свяжется с вами в ближайшее время.',
+    'Ice_Land_Georgia' => 'Ice Land Georgia',
+    'bd_company' => 'BD Company',
+    'bd_plus' => 'BD Plus',
 ];

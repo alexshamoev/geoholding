@@ -71,15 +71,15 @@
                                 justify-content-center
                                 gap-3">
                         <div>
-                            <a href="" class="text-secondary py-2">Ice Land Georgia</a>
+                            <a href="" class="text-secondary py-2">{{ config('bsw.ice_land_georgia') }}</a>
                         </div>
 
                         <div>
-                            <a href="" class="text-secondary py-2">BD Company</a>
+                            <a href="" class="text-secondary py-2">{{ config('bsw.bd_company') }}</a>
                         </div>
 
                         <div>
-                            <a href="" class="text-secondary py-2">BD Plus</a>
+                            <a href="" class="text-secondary py-2">{{ config('bsw.bd_plus') }}</a>
                         </div>
                     </div>
                 </div>

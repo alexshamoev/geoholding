@@ -57,6 +57,26 @@
             }
         }  
     }
+
+	&__company_btn{
+			border-radius: 8px;
+			border: 1px solid #5EC5F180;
+			background-color: transparent;
+			color: #5EC5F180;
+			transition: 0.3s ease;
+			width: 170px;
+			&:hover{
+				background-color: #5EC5F1;
+				color: $color_4;
+			}
+
+		&-active{
+			background-color: #5EC5F1 !important; 
+			color: $color_4 !important;
+		}
+	}
+
+	
 }
 
 

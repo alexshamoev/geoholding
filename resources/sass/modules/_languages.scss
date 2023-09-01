@@ -30,44 +30,34 @@
 
 .languages {
 	&__block {
+		width: 108px;
+		background-color: $color_4;
         &--active {
 			pointer-events: none;
 		}
-
-		& img{
-			width: 50px;
-			border-radius: 50%;
-		}
 	}
+
+	&__flag{
+		width: 25px;
+		height: 25px;
+		border-radius: 50%;
+	}
+
+	&__dropdown{
+		border: 1px solid #5EC5F1;
+		border-radius: 8px;
+		color: $color_0;
+	}
+
+
 }
 
-/* Style the custom select container */
-.custom-select {
-	display: inline-block;
-	position: relative;
-  }
-  
-  .selected-option {
-	border: 1px solid #ccc;
-	padding: 8px;
-	cursor: pointer;
-  }
-  
-  .options-list {
-	display: none;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: 100%;
-	border: 1px solid #ccc;
-  }
-  
-  .option {
-	padding: 8px;
-	cursor: pointer;
-  }
-  
-  .option:hover {
-	background-color: #f0f0f0;
-  }
-  
+.dropdown-toggle{
+	&::after{
+		display: none;
+	}
+
+	span{
+		font-size: 11px;
+	}
+}

@@ -55,9 +55,23 @@
 				</div>
 			</div>
 		</div>
-		
 
-		
+		<div class="py-5 mb-5">
+			<div class="row">
+				@if ($activeHome->partners->isNotEmpty())
+					@foreach ($activeHome->partners as $item)
+						<div class="col-lg-2 col-sm-3">
+							@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
+								<a href="{{ $item->link }}" target="_blank">
+									<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
+								</a>
+							@endif
+						</div>
+					@endforeach
+				@endif
+			</div>
+		</div>
+
 		<div class="container">
 			<div class="p-2">
 				<h2 class="p-2 d-md-none d-block">{{ $activeHome->section2title }}</h2>
@@ -71,6 +85,7 @@
 										home__about_us_img 
 										d-block position-relative">
 								<img class="rounded-circle" src="{{ asset('storage/images/modules/companies/81/s2_' . $activeHome->id . '.jpg') }}" alt="{{ $activeHome->section2title }}">
+								
 								<div class="home__about_us_mini_circle 
 											position-absolute 
 											w-100 
@@ -89,18 +104,6 @@
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<div>
-			@if ($activeHome->partners->isNotEmpty())
-				@foreach ($activeHome->partners as $item)
-					@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
-						<a href="{{ $item->link }}" target="_blank">
-							<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
-						</a>
-					@endif
-				@endforeach
-			@endif
 		</div>
 
 		<div class="home__banner_section my-md-5 py-md-auto py-4">
@@ -267,7 +270,7 @@
 
 				<div class="row p-lg-0 p-2">
 					@foreach ($activeHome->reason->reasons as $item)
-						<div class="col-md-6 p-0 py-lg-5 py-4 home__why_us">
+						<div class="col-md-6 p-0 py-lg-5 py-4 home__why_us p-2">
 							<div class="home__about_us_number 
 										d-flex 
 										align-items-center 
