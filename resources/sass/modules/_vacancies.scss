@@ -17,10 +17,12 @@
 
 
 .vacancies{
-    &__head_list{
+    &__head_list {
         background-color: $color_0;
         border-radius: 16px;
-         
+    }
 
+    &__box_shadow {
+        box-shadow: 4px 4px 4px 1px rgba(94, 197, 241, 0.17);
     }
 }
