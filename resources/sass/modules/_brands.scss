@@ -1,0 +1,31 @@
+@media only screen and (max-width: $xs_size) {}
+
+
+@media only screen and (min-width: $sm_size) {}
+
+
+@media only screen and (min-width: $md_size) {}
+
+
+@media only screen and (min-width: $lg_size) {}
+
+
+@media only screen and (min-width: $xl_size) {}
+
+
+@media only screen and (min-width: $xxl_size) {}
+
+
+.brands{
+    &__box{
+        box-shadow: 3px 4px 7px 0px #5EC5F12B;
+        border: 1px solid #00000014;
+        border-radius: 24px;
+    }
+
+    &__small_title{
+        font-family: FiraGO;
+        font-weight: 800;
+        color: $color_0;
+    }
+}
