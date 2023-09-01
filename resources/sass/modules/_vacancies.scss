@@ -25,4 +25,14 @@
     &__box_shadow {
         box-shadow: 4px 4px 4px 1px rgba(94, 197, 241, 0.17);
     }
+    
+    &__rounded_border{
+        border-radius: 35px;
+    }
+}
+
+.vacancies_step1{
+    &__header_wrapper{
+        border-radius: 20px;
+    }
 }

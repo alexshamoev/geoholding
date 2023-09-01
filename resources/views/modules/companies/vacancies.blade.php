@@ -28,7 +28,7 @@
 				@foreach ($activeVacancy->vacancies as $vacancy)
 					<a href="{{ $vacancy->fullUrl }}">
 						@if (file_exists(public_path('storage/images/modules/companies/91/' . $vacancy->id . '.png')))
-						<div class="vacancies__box_shadow row border rounded-3 mt-3 mb-3 align-items-center pt-2 pb-2">
+						<div class="vacancies__box_shadow row border vacancies__rounded_border mt-3 mb-3 align-items-center pt-2 pb-2">
 							<div class="col-md-1 col-sm-0"></div>
 							<div class="col-md-5 col-sm-6  d-flex align-items-center justify-content-start ps-5 gap-5">
 								<img class="w-25" src="{{ asset('storage/images/modules/companies/91/' . $vacancy->id . '.png') }}" alt="{{ $vacancy->title }}">
