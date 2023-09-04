@@ -167,3 +167,22 @@ $(window).on('resize', function () {
 	device_width_wrapper.html(device_width + "px");
 
 });
+
+
+$(document).ready(function() {
+	$(".navbar-toggler").on("click", function () {
+		$(this).css("border", "0");
+		if ($(".navbar-collapse").is(":visible")) {
+			$(".navbar-collapse").slideUp();
+			$("#nav-icon3").removeClass("open")
+			$(".position-relative__logo").show()
+			$(".header__company_station_mobile, .languages_mobile").addClass('d-none')
+		} else {
+			$(".navbar-collapse").slideDown();
+			$("#nav-icon3").addClass("open")
+			$(".position-relative__logo").hide()
+			$(".header__company_station_mobile, .languages_mobile").removeClass('d-none')
+			$(".languages__dropdown").addClass('mobile_background')
+		}
+	});
+});

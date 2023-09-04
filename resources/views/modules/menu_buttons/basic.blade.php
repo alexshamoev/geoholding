@@ -10,7 +10,8 @@
 			@foreach($menuButtons as $data)
 				<div class="nav-item
 							ps-lg-0
-							ps-4
+							ps-lg-4
+							ps-0
 							pt-lg-0
 							pt-1
 							menu_buttons__item

@@ -37,10 +37,15 @@
         cursor: pointer;
     }
 
+	.navbar-toggler:focus {
+		box-shadow: none !important;
+		border: none !important;
+	}
+
 	&__mobNav {
         .navbar-toggler {
             outline: none;
-            border: none;
+            border: none !important;
 
             &:focus {
                 box-shadow: 0 0 0 0 !important;
@@ -76,7 +81,35 @@
 		}
 	}
 
-	
+	&__company_btn_mobile {
+		border-radius: 8px;
+		border: 1px solid $color_4;
+		background-color: transparent;
+		color: $color_4;
+		transition: 0.3s ease;
+		width: 170px;
+		&:hover{
+			background-color: $color_4;
+			color: #5EC5F1;
+		}
+
+		&-active{
+			background-color: $color_4 !important; 
+			color: #5EC5F1 !important;
+		}
+	}
+
+	.mobile_background {
+		border-bottom: 1px solid $color_4;
+		border-radius: 0%;
+		color: $color_4;
+
+		&:hover {
+			border: 1px solid $color_4;
+			border-radius: 8px;
+			color: $color_4;
+		}
+	}
 }
 
 
@@ -100,7 +133,7 @@
 	position: absolute;
 	height: 4px;
 	width: 100%;
-	background: #000;
+	background: $color_4;
 	border-radius: 9px;
 	opacity: 1;
 	left: 0;
