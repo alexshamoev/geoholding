@@ -70,17 +70,13 @@
                                 flex-sm-column
                                 justify-content-center
                                 gap-3">
-                        <div>
-                            <a href="" class="text-secondary py-2">{{ config('bsw.ice_land_georgia') }}</a>
-                        </div>
-
-                        <div>
-                            <a href="" class="text-secondary py-2">{{ config('bsw.bd_company') }}</a>
-                        </div>
-
-                        <div>
-                            <a href="" class="text-secondary py-2">{{ config('bsw.bd_plus') }}</a>
-                        </div>
+                        @if ($companies->isNotEmpty())
+                            @foreach ($companies as $company)
+                                <div>
+                                    <a href="{{ $company->fullUrl }}" class="text-secondary py-2">{{ $company->title }}</a>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
 
