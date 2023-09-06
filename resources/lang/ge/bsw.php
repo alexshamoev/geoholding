@@ -28,7 +28,6 @@ return [
     'phone' => 'ტელეფონი',
     'tel' => 'ტელ.:',
     'mob' => 'მობ.:',
-    'name' => 'სახელი',
     'comment' => 'შეტყობინება',
     'commentSend' => 'შეტყობინების გაგზავნა',
     'premium_product' => 'პრემიუმ პროდუქტი',
@@ -44,7 +43,6 @@ return [
     'lari' => 'ლ',
     'name' => 'სახელი',
     'lastName' => 'გვარი',
-    'companyName' => 'კომპანიის სახელი',
     'notRequired' => '(არასავალდებულო ველი)',
     'region' => 'რეგიონი',
     'city' => 'ქალაქი',
@@ -94,5 +92,14 @@ return [
     'Ice_Land_Georgia' => 'Ice Land Georgia',
     'bd_company' => 'BD Company',
     'bd_plus' => 'BD Plus',
+
+    'send_us_msg' => 'გამოგვიგზავნეთ შეტყობინება',
+    'your_name' => 'თქვენი სახელი',
+    'company_name' => 'კომპანიის სახელი',
+    'your_email' => 'თქვენი ელ-ფოსტა',
+    'your_phone' => 'თქვენი ტელეფონი',
+    'write_your_text' => 'აქ ჩაწერეთ თქვენი შეტყობინება',
+    'send' => 'გაგზავნა',
+    'contact_info' => 'საკონტაქტო ინფორმაცია',
 ];
 

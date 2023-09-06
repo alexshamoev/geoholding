@@ -80,7 +80,7 @@ class HomeStep0 extends Model
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         } else {
-            $textAsDesc = strip_tags($this->{ 'text_'.App::getLocale() });
+            $textAsDesc = strip_tags($this->{ 'section1_text_'.App::getLocale() });
             
             return mb_substr($textAsDesc, 0, 255, 'UTF-8');
         }

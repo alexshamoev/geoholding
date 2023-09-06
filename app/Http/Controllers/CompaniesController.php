@@ -10,6 +10,7 @@ use App\Models\AboutUsStep0;
 use App\Models\BrandsStep0;
 use App\Models\BrandsStep1;
 use App\Models\CompaniesStep0;
+use App\Models\ContactsStep0;
 use App\Models\HomeStep0;
 use App\Models\VacanciesStep0;
 use App\Models\VacanciesStep1;
@@ -108,6 +109,14 @@ class CompaniesController extends FrontController
                 $activeBlock = $activeVacancy;
                 $data = array('activeVacancy' => $activeVacancy);
                 $bladeFile = 'vacancies';
+                break;
+            
+            case 'contact':
+                $activeContact = ContactsStep0::firstWhere('top_level', $activeCompany->id);;
+                
+                $activeBlock = $activeContact;
+                $data = array('activeContact' => $activeContact);
+                $bladeFile = 'contact';
                 break;
             
             default:   

@@ -42,7 +42,6 @@ return [
     'cm' => 'CM',
     'kg' => 'KG',
     'lari' => 'GEL',
-    'name' => 'Name',
     'lastName' => 'Last Name',
     'companyName' => 'Company Name',
     'notRequired' => '(Not Required)',
@@ -93,4 +92,14 @@ return [
     'Ice_Land_Georgia' => 'Ice Land Georgia',
     'bd_company' => 'BD Company',
     'bd_plus' => 'Bd Plus',
+
+    'send_us_msg' => 'Send us a message',
+    'your_name' => 'Your name',
+    'company_name' => 'Company name',
+    'your_email' => 'Your email',
+    'your_phone' => 'Your phone number',
+    'write_your_text' => 'Write your message here',
+    'send' => 'Send',
+    'contact_info' => 'Contact information',
+
 ];
