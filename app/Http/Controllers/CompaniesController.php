@@ -112,7 +112,7 @@ class CompaniesController extends FrontController
                 break;
             
             case 'contact':
-                $activeContact = ContactsStep0::firstWhere('top_level', $activeCompany->id);;
+                $activeContact = ContactsStep0::firstWhere('top_level', $activeCompany->id);
                 
                 $activeBlock = $activeContact;
                 $data = array('activeContact' => $activeContact);

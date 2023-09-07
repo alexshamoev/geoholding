@@ -201,17 +201,15 @@
                                 justify-content-center
                                 gap-3
                                 text-secondary" >
-                        <div>
-                            {{ config('bsw.address') }}
-                        </div>
                         
                         <div>
-                            {{ __('bsw.phone_number') }}: <a href="tel:{{ config('bsc.phone_number') }}">{{ config('bsc.phone_number') }}</a>
+                            <a href="mailto:{{ $contacts->email }}">{{ $contacts->email }}</a>
+                        </div>
+
+                        <div>
+                            <a href="tel:{{ $contacts->phone_number }}">{{ $contacts->phone_number }}</a>
                         </div>
                         
-                        <div>
-                            <a href="mailto:{{ config('bsc.admin_email') }}">{{ config('bsc.admin_email') }}</a>
-                        </div>
                     </div>
                 </div>
             </div>
