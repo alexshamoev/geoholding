@@ -1,0 +1,74 @@
+@media only screen and (max-width: $xs_size) {
+    
+}
+
+
+@media only screen and (min-width: $sm_size) {
+    
+}
+
+
+@media only screen and (min-width: $md_size) {
+    
+}
+
+
+@media only screen and (min-width: $lg_size) {
+    
+}
+
+
+@media only screen and (min-width: $xl_size) {
+    
+}
+
+
+@media only screen and (min-width: $xxl_size) {
+   
+}
+
+
+.contact_page {
+    color: white;
+    margin-top: -30px;
+
+    &__bg_image {
+        z-index: -1;
+        object-fit: cover;
+    }
+
+    &__info_wrapper {
+        background-color: $color_0;
+        position: relative;
+    }
+
+    &__send_message_wrapper {
+        background-color: white;
+    }
+
+
+    &__form_wrapper {
+        box-shadow:-1px -1px 22px -4px $color_1;
+    }
+
+    &__input_wrapper {
+        cursor: text!important;
+
+        & input:focus {
+            outline: none!important;
+        }
+    }
+
+    &__required {
+        position: relative;
+        
+        &::after {
+            position: absolute;
+            top: 25%;
+            right: 8%;
+            content: ' *';
+            color: $color_0;
+        }
+    }
+
+}

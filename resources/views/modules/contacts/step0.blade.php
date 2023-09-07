@@ -19,7 +19,6 @@
 		</div>
 
 		<div class="p-2">
-
 			<a href="mailto:{{ config('bsc.admin_email') }}">{{ config('bsc.admin_email') }}</a>
 		</div>
 	</div>

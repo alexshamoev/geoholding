@@ -6,48 +6,122 @@
 
 @section('content')
 
-	<div class="d-flex flex-column align-items-center">
-		<div class="row text-center py-5">
-			<h1>{{ $activeContact->title }}</h1>
+<div class="d-flex flex-column align-items-center contact_page">
+	<img class="position-absolute contact_page__bg_image h-75"
+		src="{{ asset('storage/images/contact-bg.svg') }}" alt="contact-bg">
 
-			<p>{!! $activeContact->text !!}</p>
+	<div class="row col-11 py-5">
+		<div class="col-9 mx-auto">
+			<h1 class="mb-4">{{ $activeContact->title }}</h1>
+
+			<div class="lh-lg col-12 col-lg-8">{!! $activeContact->text !!}</div>
+		</div>
+	</div>
+
+	<div class="row col-10 col-xl-8 p-0 rounded contact_page__form_wrapper">
+		<div class="col-12 col-lg-7 p-5 contact_page__send_message_wrapper rounded-start">
+			{{ Form::open(array('method' => 'POST', 'id' => 'send_form', 'class' => 'row')) }}
+
+			<h3 class="text-dark offset-md-1 p-2 mb-3">{{ __('bsw.send_us_msg') }}</h3>
+
+			<div class="row gap-3 p-2">
+				<label class="contact_page__input_wrapper contact_page__required overflow-hidden
+					my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					{{ Form::text('fullname', old('fullname'), array('required' => 'required', 'placeholder' =>
+					__('bsw.your_name'),'class' => 'border border-0 p-0 w-100'))
+					}}
+				</label>
+
+				<label
+					class="contact_page__input_wrapper overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					{{ Form::text('company_name', old('company_name'), array('placeholder' => __('bsw.company_name'),
+					'class' => 'border border-0 p-0 w-100')) }}
+				</label>
+
+			</div>
+
+			<div class="row gap-3 p-2 ">
+				<label
+					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					{{ Form::email('email_address', old('email_address'), array('required' => 'required', 'placeholder'
+					=>
+					__('bsw.your_email'),'class' => 'border border-0 p-0 w-100')) }}
+				</label>
+
+				<label
+					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					{{ Form::tel('phone_number', old('phone_number'), array('required' => 'required', 'placeholder' =>
+					__('bsw.your_phone'), 'maxlength' => '15', 'class' => 'border border-0 p-0 w-100')) }}
+				</label>
+
+			</div>
+
+			<div class="row col-12 ">
+				{{ Form::textarea('message', old('message'), array('placeholder' => __('bsw.write_your_text'), 'class'
+				=>
+				'border border-info p-2 rounded-3 col-12')) }}
+			</div>
+
+			<div class="col-12 d-flex justify-content-end">
+				{{ Form::submit(__('bsw.send'), ['class' => 'border border-0 text-white bg-info px-3 py-2
+				rounded-3']) }}
+			</div>
+
+			{{ Form::close() }}
 		</div>
 
+		<div
+			class="col-12 col-lg-5 p-5 contact_page__info_wrapper rounded-end d-flex flex-column justify-content-around">
+			<h3 class="p-2">{{ __('bsw.contact_info') }}</h3>
 
-		{{ Form::open(array('method' => 'POST', 'id' => 'send_form')) }}
-						
-			<h3>{{ __('bsw.send_us_msg') }}</h3>
+			<div class="d-flex flex-column py-2 gap-4">
+				<div class="row align-items-center">
+					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
+						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+							src="{{ asset('storage/images/phone.svg') }}" alt="phone">
+					</div>
 
-			
-			{{ Form::text('fullname', old('fullname'), array('required' => 'required', 'placeholder' => __('bsw.your_name'))) }}
-			
-			{{ Form::text('company_name', old('company_name'), array('placeholder' => __('bsw.company_name'))) }}
-									
-			{{ Form::email('email_address', old('email_address'), array('required' => 'required', 'placeholder' => __('bsw.your_email'))) }}
-						
-			{{ Form::tel('phone_number', old('phone_number'), array('required' => 'required', 'placeholder' => __('bsw.your_phone'), 'maxlength' => '15')) }}
+					<a class="col ps-xl-3 text-white" href="tel:{{ $activeContact->phone_number }}">{{
+						$activeContact->phone_number }}</a>
+				</div>
 
-			{{ Form::textarea('message', old('message'), array('placeholder' => __('bsw.write_your_text'))) }}
+				<div class="row align-items-center">
+					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
+						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+							src="{{ asset('storage/images/mail.svg') }}" alt="mail">
+					</div>
 
-			{{ Form::submit(__('bsw.send')) }}
-		
-		{{ Form::close() }}
+					<a class="col ps-xl-3 text-white" href="mailto:{{ $activeContact->email }}">{{ $activeContact->email
+						}}</a>
+				</div>
 
-		<h3>{{ __('bsw.contact_info') }}</h3>
-		
-		<img src="{{ asset('storage/images/phone.svg') }}" alt="phone" style="background-color: black" class="w-25">
-		<a href="tel:{{ $activeContact->phone_number }}">{{ $activeContact->phone_number }}</a>
+				<div class="row align-items-center">
+					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
+						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+							src="{{ asset('storage/images/point.svg') }}" alt="point">
+					</div>
 
-		<img src="{{ asset('storage/images/mail.svg') }}" alt="mail" style="background-color: black" class="w-25">
-		<a href="mailto:{{ $activeContact->email }}">{{ $activeContact->email }}</a>
-		
-		<img src="{{ asset('storage/images/point.svg') }}" alt="point" style="background-color: black" class="w-25">
-		<a href="{{ $activeContact->address_link }}" target="_blank">{{ $activeContact->address }}</a>
+					<a class="col ps-xl-3 text-white" href="{{ $activeContact->address_link }}" target="_blank">{{
+						$activeContact->address
+						}}</a>
+				</div>
+			</div>
 
-		<br>
-		<a href="{{ $activeContact->facebook_link }}" target="_blank">{{ $activeContact->facebook_link }}</a>
-		<a href="{{ $activeContact->instagram_link }}" target="_blank">{{ $activeContact->instagram_link }}</a>
-		<a href="{{ $activeContact->linkedin_link }}" target="_blank">{{ $activeContact->linkedin_link }}</a>
+			<div class="d-flex gap-2 p-2 align-items-center">
+				<a href="{{ $activeContact->facebook_link }}" target="_blank">
+					<img src="{{ asset('storage/images/facebook.svg') }}" alt="facebook">
+				</a>
+
+				<a href="{{ $activeContact->instagram_link }}" target="_blank">
+					<img src="{{ asset('storage/images/instagram.svg') }}" alt="instagram">
+				</a>
+
+				<a href="{{ $activeContact->linkedin_link }}" target="_blank">
+					<img src="{{ asset('storage/images/linkedin.svg') }}" alt="linkedin">
+				</a>
+			</div>
+		</div>
 	</div>
-	
+</div>
+
 @endsection
