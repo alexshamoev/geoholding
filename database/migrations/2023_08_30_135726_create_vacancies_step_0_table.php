@@ -18,6 +18,7 @@ class CreateVacanciesStep0Table extends Migration
             $table->integer('top_level')->default(0);
             $table->string('title_ge')->default('');
             $table->string('title_en')->default('');
+            $table->string('hr_email')->default('');
 			$table->integer('rang')->default(0);
 			$table->string('meta_title_ge')->default('');
 			$table->string('meta_title_en')->default('');
