@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Widget;
 use App\Models\Bsc;
 use App\Models\Bsw;
@@ -9,10 +10,9 @@ use App\Models\Page;
 use App\Models\Module;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use App\Models\ContactsStep0;
 use App\Models\CompaniesStep0;
-
 use App\Models\MenuButtonStep0;
-use App;
 
 
 class FrontController extends Controller {
@@ -23,12 +23,12 @@ class FrontController extends Controller {
 
 	public function __construct() {
 		$requesPath = urldecode(\Request::path());
-
 		$activePageArray = explode('/', $requesPath);
 
-		$activePage = $activePageArray[1];
-
-		config(['activePageAlias' => $activePage]);
+		if(isset($activePageArray[1])){
+			$activePage = $activePageArray[1];
+			config(['activePageAlias' => $activePage]);
+		}
 
 		Bsc::initConfigs();
 		Bsw::initConfigs();
@@ -70,7 +70,9 @@ class FrontController extends Controller {
 				'language' => $lang,
 				'languages' => Language::where('disable', '0')->orderByDesc('rang')->get(),
 				'menuButtons' => MenuButtonStep0::where('top_level', $activeCompanyId)->with(['page', 'menuButtonStep1', 'menuButtonStep1.page'])->orderByDesc('rang')->get(),
-				'widgetGetVisibility' => $widgetGetVisibility];
+				'widgetGetVisibility' => $widgetGetVisibility,
+				'contacts' => ContactsStep0::firstWhere('top_level', $activeCompanyId),
+			];
 		
 		return $data;
 	}

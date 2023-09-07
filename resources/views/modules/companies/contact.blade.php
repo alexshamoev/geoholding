@@ -7,8 +7,8 @@
 @section('content')
 
 <div class="d-flex flex-column align-items-center contact_page">
-	<img class="position-absolute contact_page__bg_image h-75"
-		src="{{ asset('storage/images/contact-bg.svg') }}" alt="contact-bg">
+	<img class="position-absolute contact_page__bg_image h-75" src="{{ asset('storage/images/contact-bg.svg') }}"
+		alt="contact-bg">
 
 	<div class="row col-11 py-5">
 		<div class="col-9 mx-auto">
@@ -77,17 +77,39 @@
 			<div class="d-flex flex-column py-2 gap-4">
 				<div class="row align-items-center">
 					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
-						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+						<img class="col-8 col-sm-11 col-md-8 col-lg-8 col-xl-9 p-0"
 							src="{{ asset('storage/images/phone.svg') }}" alt="phone">
 					</div>
 
-					<a class="col ps-xl-3 text-white" href="tel:{{ $activeContact->phone_number }}">{{
-						$activeContact->phone_number }}</a>
+					@if(Session::has('contact-success'))
+						<div class="p-2">
+							<div class="alert alert-success m-0" role="alert">
+								{{ Session::get('contact-success') }}
+							</div>
+						</div>
+					@endif
+
+					@if(Session::has('contact-error'))
+						<div class="p-2">
+							<div class="alert alert-error m-0" role="alert">
+								{{ Session::get('contact-error') }}
+							</div>
+						</div>
+					@endif
+
+					<div class="col">
+						{{ Form::open(array('route' => 'sendContact', 'method' => 'POST', 'id' => 'send_form')) }}
+
+						<a class="col p-0 text-white" href="tel:{{ $activeContact->phone_number }}">
+							{{__('bsw.send_us_msg') }}
+							{{$activeContact->phone_number }}
+						</a>
+					</div>
 				</div>
 
 				<div class="row align-items-center">
 					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
-						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+						<img class="col-8 col-sm-11 col-md-8 col-lg-8 col-xl-9 p-0"
 							src="{{ asset('storage/images/mail.svg') }}" alt="mail">
 					</div>
 
@@ -97,7 +119,7 @@
 
 				<div class="row align-items-center">
 					<div class="col-2 col-sm-1 col-lg-2 col-xl-2">
-						<img class="col-8 col-sm-11 col-md-8 col-lg-6 col-xl-9 p-0"
+						<img class="col-8 col-sm-11 col-md-8 col-lg-8 col-xl-9 p-0"
 							src="{{ asset('storage/images/point.svg') }}" alt="point">
 					</div>
 

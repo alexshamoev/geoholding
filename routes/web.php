@@ -155,6 +155,7 @@ use App\Models\CompanyStep0;
 				// //
 			// 
 
+			Route::post('/send-contact', 'ContactsController@sendMail')->name('sendContact');
 
 			// Cabinet
 				// $cabinetPage = Page::firstWhere('slug', 'cabinet');
