@@ -101,5 +101,7 @@ return [
     'write_your_text' => 'Write your message here',
     'send' => 'Send',
     'contact_info' => 'Contact information',
+    'contact-success' => 'The form has been submitted successfully',
+    'contact-error' => 'An error occurred, please try again',
 
 ];

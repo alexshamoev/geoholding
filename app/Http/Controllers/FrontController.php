@@ -23,12 +23,12 @@ class FrontController extends Controller {
 
 	public function __construct() {
 		$requesPath = urldecode(\Request::path());
-
 		$activePageArray = explode('/', $requesPath);
 
-		$activePage = $activePageArray[1];
-
-		config(['activePageAlias' => $activePage]);
+		if(isset($activePageArray[1])){
+			$activePage = $activePageArray[1];
+			config(['activePageAlias' => $activePage]);
+		}
 
 		Bsc::initConfigs();
 		Bsw::initConfigs();

@@ -13,8 +13,23 @@
 			<p>{!! $activeContact->text !!}</p>
 		</div>
 
+		@if(Session::has('contact-success'))
+			<div class="p-2">
+				<div class="alert alert-success m-0" role="alert">
+					{{ Session::get('contact-success') }}
+				</div>
+			</div>
+		@endif
+		
+		@if(Session::has('contact-error'))
+			<div class="p-2">
+				<div class="alert alert-error m-0" role="alert">
+					{{ Session::get('contact-error') }}
+				</div>
+			</div>
+		@endif
 
-		{{ Form::open(array('method' => 'POST', 'id' => 'send_form')) }}
+		{{ Form::open(array('route' => 'sendContact', 'method' => 'POST', 'id' => 'send_form')) }}
 						
 			<h3>{{ __('bsw.send_us_msg') }}</h3>
 
