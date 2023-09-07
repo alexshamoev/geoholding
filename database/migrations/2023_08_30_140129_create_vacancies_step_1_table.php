@@ -22,7 +22,6 @@ class CreateVacanciesStep1Table extends Migration
             $table->string('title_en')->default('');
             $table->string('location_ge')->default('');
             $table->string('location_en')->default('');
-            $table->string('email')->default('');
             $table->longText('text_ge')->nullable();
             $table->longText('text_en')->nullable();
             $table->string('last_date')->nullable();

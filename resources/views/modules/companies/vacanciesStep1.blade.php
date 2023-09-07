@@ -15,8 +15,7 @@
 			</div>
 			<div class="row border-bottom border-info p-2">
 				<span class="col-lg-3 col-sm-6">{{ __('bsw.last_date') }} / {{ __('bsw.published') }}:</span>
-				<span class="col-lg-7 col-sm-6">{{ $active->last_date }} / {{ date_format($active->created_at,"d.m.Y")
-					}}</span>
+				<span class="col-lg-7 col-sm-6">{{ date("d.m.Y", strtotime($active->last_date)) }} / {{ date_format($active->created_at,"d.m.Y") }}</span>
 			</div>
 			<div class="row border-bottom border-info p-2">
 				<span class="col-lg-3 col-sm-6">{{ __('bsw.location') }}:</span>
@@ -24,7 +23,7 @@
 			</div>
 			<div class="row p-2">
 				<span class="col-lg-3 col-sm-6">{{ __('bsw.send_resume') }}:</span>
-				<span class="col-lg-7 col-sm-6">{{ $active->email }}</span>
+				<span class="col-lg-7 col-sm-6">{{ $hr_email->hr_email }}</span>
 			</div>
 		</div>
 		<div class="mt-5 col-11">

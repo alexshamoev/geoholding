@@ -103,7 +103,7 @@ class CompaniesController extends FrontController
             
             case 'vacancies':
                 $activeVacancy = VacanciesStep0::with(['vacancies' => function ($query) {
-                                        $query->orderBy('id', 'desc');
+                                        $query->where('last_date', '>', date('Y-m-d'))->orderBy('id', 'desc');
                                     }])->firstWhere('top_level', $activeCompany->id);
                 
                 $activeBlock = $activeVacancy;
@@ -152,7 +152,7 @@ class CompaniesController extends FrontController
                 $activeVacancy = VacanciesStep1::firstWhere('alias_'.$language->title, $step2Alias);
 
                 $activeBlock = $activeVacancy;
-                $data = array('active' => $activeVacancy);
+                $data = array('active' => $activeVacancy, 'hr_email' => VacanciesStep0::select('hr_email')->firstWhere('top_level', $activeVacancy->top_level));
                 $bladeFile = 'vacanciesStep1';
                 break;
             
