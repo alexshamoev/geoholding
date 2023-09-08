@@ -24,8 +24,8 @@
 			</div>
 		</div>
 
-		@if ($activeVacancy->vacancies->isNotEmpty())
-			@foreach ($activeVacancy->vacancies as $vacancy)
+		@if ($vacancies->isNotEmpty())
+			@foreach ($vacancies as $vacancy)
 				<a href="{{ $vacancy->fullUrl }}">
 					@if (file_exists(public_path('storage/images/modules/companies/90/' . $activeVacancy->id . '.png')))
 						<div
@@ -43,6 +43,9 @@
 				</a>
 			@endforeach
 		@endif
+
+		{{ $vacancies->links() }}
+	
 	</div>
 
 </div>

@@ -102,12 +102,19 @@ class CompaniesController extends FrontController
                 break;
             
             case 'vacancies':
-                $activeVacancy = VacanciesStep0::with(['vacancies' => function ($query) {
-                                        $query->where('last_date', '>', date('Y-m-d'))->orderBy('id', 'desc');
-                                    }])->firstWhere('top_level', $activeCompany->id);
+                $activeVacancy = VacanciesStep0::where('top_level', $activeCompany->id)->first();
+
+                if (isset($activeVacancy)) {
+                    $vacancies = $activeVacancy->vacancies()
+                                        ->where('last_date', '>', date('Y-m-d'))
+                                        ->orderBy('id', 'desc')
+                                        ->paginate(10);
+                }
+
+                $data = VacanciesStep1::paginate();
                 
                 $activeBlock = $activeVacancy;
-                $data = array('activeVacancy' => $activeVacancy);
+                $data = array('activeVacancy' => $activeVacancy, 'vacancies' => $vacancies);
                 $bladeFile = 'vacancies';
                 break;
             
