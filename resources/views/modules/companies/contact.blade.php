@@ -11,15 +11,15 @@
 		alt="contact-bg">
 
 	<div class="row col-11 py-5">
-		<div class="col-9 mx-auto">
+		<div class="col-sm-9 mx-auto">
 			<h1 class="mb-4">{{ $activeContact->title }}</h1>
 
 			<div class="lh-lg col-12 col-lg-8">{!! $activeContact->text !!}</div>
 		</div>
 	</div>
 
-	<div class="row col-10 col-xl-8 p-0 rounded contact_page__form_wrapper">
-		<div class="col-12 col-lg-7 p-5 contact_page__send_message_wrapper rounded-start">
+	<div class="row col-10 col-xl-8 p-0 rounded contact_page__form_wrapper rounded overflow-hidden">
+		<div class="col-12 col-lg-7 p-sm-5 contact_page__send_message_wrapper">
 			{{ Form::open(array('method' => 'POST', 'id' => 'send_form', 'class' => 'row')) }}
 
 			<h3 class="text-dark offset-md-1 p-2 mb-3">{{ __('bsw.send_us_msg') }}</h3>
@@ -70,8 +70,7 @@
 			{{ Form::close() }}
 		</div>
 
-		<div
-			class="col-12 col-lg-5 p-5 contact_page__info_wrapper rounded-end d-flex flex-column justify-content-around">
+		<div class="col-12 col-lg-5 p-sm-5 p-2 contact_page__info_wrapper d-flex flex-column justify-content-around">
 			<h3 class="p-2">{{ __('bsw.contact_info') }}</h3>
 
 			<div class="d-flex flex-column py-2 gap-4">

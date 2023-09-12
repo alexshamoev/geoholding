@@ -62,9 +62,13 @@
 					@foreach ($activeHome->partners as $item)
 						<div class="col-lg-2 col-sm-3">
 							@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
-								<a href="{{ $item->link }}" target="_blank">
+								@if (!empty($item->link))
+									<a href="{{ $item->link }}" target="_blank">
+								@endif
 									<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
-								</a>
+								@if (!empty($item->link))
+									</a>
+								@endif
 							@endif
 						</div>
 					@endforeach

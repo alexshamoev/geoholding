@@ -6,9 +6,15 @@
 
 @section('content')
 <div class="container d-flex flex-column">
-	<div>
+	<div class="row">
 		@isset($active)
-		<div class="col-11 border rounded-5 vacancies_step1__header_wrapper p-0 vacancies_step1__box_shadow">
+		<div class="col-11 
+					border 
+					rounded-5 
+					vacancies_step1__header_wrapper 
+					p-0 
+					vacancies_step1__box_shadow
+					m-auto">
 			<div class="row border-bottom border-info p-2">
 				<span class="col-lg-3 col-sm-6">{{ __('bsw.position_name') }}:</span>
 				<span class="col-lg-7 col-sm-6">{{ $active->title }}</span>
@@ -26,7 +32,8 @@
 				<span class="col-lg-7 col-sm-6">{{ $hr_email->hr_email }}</span>
 			</div>
 		</div>
-		<div class="mt-5 col-11">
+
+		<div class="mt-4 col-11 m-auto">
 			{!! $active->text !!}
 		</div>
 		@endisset

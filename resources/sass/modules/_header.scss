@@ -28,90 +28,179 @@
 }
 
 
-.header {
-	background-color: $color_0;
-    z-index: 20;
-
-    &__close-search,
-    &__open-search {
-        cursor: pointer;
-    }
-
-	.navbar-toggler:focus {
-		box-shadow: none !important;
-		border: none !important;
-	}
-
-	&__mobNav {
-        .navbar-toggler {
-            outline: none;
-            border: none !important;
-
-            &:focus {
-                box-shadow: 0 0 0 0 !important;
-            }
-        }
-    }
-
-	&__authorization {
-        a {
-            color: #4A494A;
-
-            &:hover {
-                color: #FF484F;
-            }
-        }  
-    }
-
-	&__company_btn{
+.ice-land{
+	.header {
+		background-color: $color_0;
+		z-index: 20;
+	
+		&__close-search,
+		&__open-search {
+			cursor: pointer;
+		}
+	
+		.navbar-toggler:focus {
+			box-shadow: none !important;
+			border: none !important;
+		}
+	
+		&__mobNav {
+			.navbar-toggler {
+				outline: none;
+				border: none !important;
+	
+				&:focus {
+					box-shadow: 0 0 0 0 !important;
+				}
+			}
+		}
+	
+		&__authorization {
+			a {
+				color: #4A494A;
+	
+				&:hover {
+					color: #FF484F;
+				}
+			}  
+		}
+	
+		&__company_btn{
+				border-radius: 8px;
+				border: 1px solid #5EC5F180;
+				background-color: transparent;
+				color: #5EC5F180;
+				transition: 0.3s ease;
+				width: 170px;
+				&:hover{
+					background-color: #5EC5F1;
+					color: $color_4;
+				}
+	
+			&-active{
+				background-color: #5EC5F1 !important; 
+				color: $color_4 !important;
+			}
+		}
+	
+		&__company_btn_mobile {
 			border-radius: 8px;
-			border: 1px solid #5EC5F180;
+			border: 1px solid $color_4;
 			background-color: transparent;
-			color: #5EC5F180;
+			color: $color_4;
 			transition: 0.3s ease;
 			width: 170px;
 			&:hover{
-				background-color: #5EC5F1;
+				background-color: $color_4;
+				color: #5EC5F1;
+			}
+	
+			&-active{
+				background-color: $color_4 !important; 
+				color: #5EC5F1 !important;
+			}
+		}
+	
+		.mobile_background {
+			border-bottom: 1px solid $color_4;
+			border-radius: 0%;
+			color: $color_4;
+	
+			&:hover {
+				border: 1px solid $color_4;
+				border-radius: 8px;
 				color: $color_4;
 			}
-
-		&-active{
-			background-color: #5EC5F1 !important; 
-			color: $color_4 !important;
 		}
 	}
-
-	&__company_btn_mobile {
-		border-radius: 8px;
-		border: 1px solid $color_4;
-		background-color: transparent;
-		color: $color_4;
-		transition: 0.3s ease;
-		width: 170px;
-		&:hover{
-			background-color: $color_4;
-			color: #5EC5F1;
-		}
-
-		&-active{
-			background-color: $color_4 !important; 
-			color: #5EC5F1 !important;
-		}
-	}
-
-	.mobile_background {
-		border-bottom: 1px solid $color_4;
-		border-radius: 0%;
-		color: $color_4;
-
-		&:hover {
-			border: 1px solid $color_4;
-			border-radius: 8px;
-			color: $color_4;
-		}
-	}
+	
 }
 
+.bd-comp{
+	.header {
+		background-color: $color_10;
+		z-index: 20;
+	
+		&__close-search,
+		&__open-search {
+			cursor: pointer;
+		}
+	
+		.navbar-toggler:focus {
+			box-shadow: none !important;
+			border: none !important;
+		}
+	
+		&__mobNav {
+			.navbar-toggler {
+				outline: none;
+				border: none !important;
+	
+				&:focus {
+					box-shadow: 0 0 0 0 !important;
+				}
+			}
+		}
+	
+		&__authorization {
+			a {
+				color: #4A494A;
+	
+				&:hover {
+					color: #FF484F;
+				}
+			}  
+		}
+	
+		&__company_btn{
+				border-radius: 8px;
+				border: 1px solid #A6252580;
+				background-color: transparent;
+				color: #A6252580;
+				transition: 0.3s ease;
+				width: 170px;
+				&:hover{
+					background-color: $color_10;
+					color: $color_4;
+				}
+	
+			&-active{
+				background-color: $color_10 !important; 
+				color: $color_4 !important;
+			}
+		}
+	
+		&__company_btn_mobile {
+			border-radius: 8px;
+			border: 1px solid $color_4;
+			background-color: transparent;
+			color: $color_4;
+			transition: 0.3s ease;
+			width: 170px;
+			&:hover{
+				background-color: $color_4;
+				color: $color_10;
+			}
+	
+			&-active{
+				background-color: $color_4 !important; 
+				color: $color_10 !important;
+			}
+		}
+	
+		.mobile_background {
+			border-bottom: 1px solid $color_4;
+			border-radius: 0%;
+			color: $color_4;
+	
+			&:hover {
+				border: 1px solid $color_4;
+				border-radius: 8px;
+				color: $color_4;
+			}
+		}
+	}
+	
+}
 
 #nav-icon3 {
 	width: 30px;

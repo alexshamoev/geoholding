@@ -1,0 +1,33 @@
+@media only screen and (max-width: $xs_size) {}
+
+
+@media only screen and (min-width: $sm_size) {}
+
+
+@media only screen and (min-width: $md_size) {}
+
+
+@media only screen and (min-width: $lg_size) {}
+
+
+@media only screen and (min-width: $xl_size) {}
+
+
+@media only screen and (min-width: $xxl_size) {}
+
+
+.about_us{
+    &__contact{
+        background-color: $color_1;
+        border-radius: 6px;
+        color: $color_4;
+    }
+
+    &__our_goal{
+        background-color: #5EC5F133;
+    }
+
+    &__text{
+        line-height: 30px;
+    }
+}

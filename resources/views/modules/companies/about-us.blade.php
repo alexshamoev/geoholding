@@ -6,28 +6,30 @@
 
 @section('content')
 	<div>
-		<div class="row text-center py-5">
+		<div class="row text-center py-md-5">
 			<h1>{{ $activeAbout->title }}</h1>
 		</div>
 
 		<div class="container">
 			<div class="row py-5">
-				<div class="col-6 d-flex align-items-center">
+				<div class="col-md-6 d-flex align-items-center order-md-1 order-2">
 					<div class="row">
-						<div class="col-11">
-							<div class="pe-5 home__head_text pb-4">{!! $activeAbout->section1text !!}</div>
+						<div class="col-md-11">
+							<div class="pe-md-5 home__head_text pb-4">{!! $activeAbout->section1text !!}</div>
 							<button class="about_us__contact border-0 py-2 p-4">{{ __('bsw.contact_us') }}</button>
 						</div>
 					</div>
 				</div>
 
-				<div class="col-6 
+				<div class="col-md-6 
 							py-5 
 							d-flex 
 							align-items-center 
 							justify-content-xxl-end 
 							justify-content-center 
-							pe-xxl-5">
+							pe-xxl-5
+							order-md-2
+							order-1">
 					@if (file_exists(public_path('storage/images/modules/companies/80/' . $activeAbout->id . '.jpg')))	
 						<div class="rounded-circle 
 									home__about_us_img 
@@ -46,16 +48,16 @@
 			</div>
 		</div>
 
-		<div class="about_us__our_goal py-5 p-2">
+		<div class="about_us__our_goal py-md-5 p-2">
 			<div class="container text-center py-5">
 				<h2 class="py-2">{{ $activeAbout->section2title }}</h2>
 				<div class="p-2 about_us__text">{!! $activeAbout->section2text !!}</div>
 			</div>
 		</div>
 		
-		<div class="container py-5">
-			<div class="row py-5">
-				<div class="col-lg-6 
+		<div class="container py-md-5">
+			<div class="row py-md-5">
+				<div class="col-md-6 
 							d-flex 
 							justify-content-start
 							home__partner_box
@@ -112,7 +114,7 @@
 					</div>
 				</div>
 
-				<div class="col-6">
+				<div class="col-md-6">
 					<h2 class="p-2">{{ $activeAbout->section3title }}</h2>
 					<div class="home__text_partner p-2">{!! $activeAbout->section3text !!}</div>
 				</div>

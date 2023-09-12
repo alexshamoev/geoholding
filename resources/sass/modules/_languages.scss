@@ -28,28 +28,52 @@
 }
 
 
-.languages {
-	&__block {
-		width: 108px;
-		background-color: $color_4;
-        &--active {
-			pointer-events: none;
+.ice-land{
+	.languages {
+		&__block {
+			width: 108px;
+			background-color: $color_4;
+			&--active {
+				pointer-events: none;
+			}
+		}
+	
+		&__flag{
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+		}
+	
+		&__dropdown{
+			border: 1px solid #5EC5F1;
+			border-radius: 8px;
+			color: $color_0;
 		}
 	}
+}
 
-	&__flag{
-		width: 25px;
-		height: 25px;
-		border-radius: 50%;
+.bd-comp{
+	.languages {
+		&__block {
+			width: 108px;
+			background-color: $color_4;
+			&--active {
+				pointer-events: none;
+			}
+		}
+	
+		&__flag{
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+		}
+	
+		&__dropdown{
+			border: 1px solid #A62525;
+			border-radius: 8px;
+			color: $color_10;
+		}
 	}
-
-	&__dropdown{
-		border: 1px solid #5EC5F1;
-		border-radius: 8px;
-		color: $color_0;
-	}
-
-
 }
 
 .dropdown-toggle{

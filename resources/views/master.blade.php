@@ -40,19 +40,22 @@
     </head>
 
     <body>
-		@include('includes.photoswipe')
+		<div class="@switch(config('activeCompany')->const) 
+					@case('ice-land')ice-land @break @case('bd-comp')bd-comp @break @case('bd-plus')bd-plus @break @default @endswitch">
+			@include('includes.photoswipe')
 
-		@include('includes.bootstrap_size_getter')
+			@include('includes.bootstrap_size_getter')
 
-		@include('modules.header.basic')
+			@include('modules.header.basic')
 
-		<section>
-			@yield('content')
-		</section>
+			<section>
+				@yield('content')
+			</section>
 
-		@include('modules.footer.basic')
+			@include('modules.footer.basic')
 
 
-		<input type="hidden" value="{{ App :: getLocale() }}" class="js_lang">
+			<input type="hidden" value="{{ App :: getLocale() }}" class="js_lang">
+		</div>
     </body>
 </html>

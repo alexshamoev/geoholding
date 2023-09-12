@@ -5,9 +5,9 @@
 @section('pageMetaUrl'){{ $activeVacancy -> metaUrl }}@endsection
 
 @section('content')
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center p-2 pt-0">
 
-	<h2 class="my-5">{{ $activeVacancy->title }}</h2>
+	<h2 class="my-sm-5 my-3 mt-0">{{ $activeVacancy->title }}</h2>
 
 	<div class="container p-2">
 		<div class="row p-2 vacancies__head_list">
