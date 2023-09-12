@@ -63,7 +63,7 @@
                             col-sm-6
                             col-12
                             py-4">
-                    <h3 class="mb-4 d-none d-sm-block">კომპანიები</h3>
+                    <h3 class="mb-4 d-none d-sm-block">{{ __('bsw.companies') }}</h3>
 
                     <div class="d-flex
                                 flex-wrap
@@ -84,7 +84,7 @@
                             col-sm-6 
                             col-12
                             py-4">
-                    <h3 class="mb-4 d-none d-sm-block">მენიუ</h3>
+                    <h3 class="mb-4 d-none d-sm-block">{{ __('bsw.menu') }}</h3>
                     <div class="d-flex
                                 flex-sm-column
                                 flex-wrap
@@ -193,7 +193,7 @@
                             d-flex
                             flex-column
                             align-items-center">
-                    <h3 class="mb-4  d-sm-block d-none">კონტაქტები</h3>
+                    <h3 class="mb-4  d-sm-block d-none">{{ __('bsw.contacts') }}</h3>
 
                     <div class="d-flex
                                 flex-sm-column

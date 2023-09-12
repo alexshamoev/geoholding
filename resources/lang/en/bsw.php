@@ -103,5 +103,8 @@ return [
     'contact_info' => 'Contact information',
     'contact-success' => 'The form has been submitted successfully',
     'contact-error' => 'An error occurred, please try again',
+    'companies' => 'Companies',
+    'menu' => 'Menu',
+    'contacts' => 'Contacts',
 
 ];

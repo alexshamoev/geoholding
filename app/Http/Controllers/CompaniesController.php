@@ -34,6 +34,7 @@ class CompaniesController extends FrontController
         HomeStep0::setPage(Page::firstWhere('slug', 'home'));
         BrandsStep0::setPage(Page::firstWhere('slug', 'brands'));
         VacanciesStep0::setPage(Page::firstWhere('slug', 'vacancies'));
+        ContactsStep0::setPage(Page::firstWhere('slug', 'contact'));
     }
 
     // public static function getStep0() 
