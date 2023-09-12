@@ -19,6 +19,7 @@ class CreateCompaniesStep0Table extends Migration
 			$table->string('alias_en')->default('');
 			$table->string('title_ge')->default('');
 			$table->string('title_en')->default('');
+			$table->string('const')->default('');
 			$table->integer('rang')->default(0);
             $table->timestamps();
         });
