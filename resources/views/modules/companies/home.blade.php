@@ -57,13 +57,18 @@
 		</div>
 
 		<div class="py-5 mb-5">
-			<div class="row">
+			<div class="row d-flex align-items-center">
 				@if ($activeHome->partners->isNotEmpty())
 					@foreach ($activeHome->partners as $item)
-						<div class="col-lg-2 col-sm-3">
+						<div class="col-lg-2 
+									col-sm-3 
+									col-6 
+									px-sm-5 
+									px-3 
+									py-3">
 							@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
 								@if (!empty($item->link))
-									<a href="{{ $item->link }}" target="_blank">
+									<a href="{{ $item->link }}" target="a\">
 								@endif
 									<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
 								@if (!empty($item->link))
@@ -110,13 +115,13 @@
 			</div>
 		</div>
 
-		<div class="home__banner_section my-md-5 py-md-auto py-4">
-			<div class="container p-2">
+		<div class="home__banner_section my-md-5 py-md-5 py-0">
+			<div class="container p-2 py-5">
 				<div class="row px-xl-5">
 					@if (!empty($activeHome->services))
 						@foreach ($activeHome->services as $item)
-							<div class="col-lg-3 col-md-4 col-sm-6 p-2">
-								<div class="bg-white rounded-3 p-2 h-100">
+							<div class="col-lg-3 col-sm-6 p-2">
+								<div class="bg-white rounded-3 p-2 h-100 p-4">
 									@if (file_exists(public_path('storage/images/modules/companies/82/' . $item->id . '.svg')))
 										<img class="home__banner_icon p-2" src="{{ asset('storage/images/modules/companies/82/' . $item->id . '.svg') }}" alt="{{ $item->title }}">
 									@endif
@@ -168,6 +173,8 @@
 									rounded-circle
 									home__statistic
 									position-absolute">
+							<div class="home__statistic-circle home__statistic-circlef"></div>
+							
 							<div>
 								<div>
 									<h2 class="fw-bolder fs-1">243<span class="home__plus">+</span></h2>
@@ -184,6 +191,8 @@
 									rounded-circle
 									home__statistic
 									position-absolute">
+							<div class="home__statistic-circle home__statistic-circles"></div>
+
 							<div>
 								<div>
 									<h2 class="fw-bolder fs-1">14<span class="home__plus">+</span></h2>
@@ -200,6 +209,8 @@
 									rounded-circle
 									home__statistic
 									position-absolute">
+							<div class="home__statistic-circle home__statistic-circlet"></div>
+
 							<div>
 								<div>
 									<h2 class="fw-bolder fs-1">128<span class="home__plus">+</span></h2>

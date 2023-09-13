@@ -202,6 +202,93 @@
 	
 }
 
+.bd-plus{
+	.header {
+		background-color: $color_20;
+		z-index: 20;
+	
+		&__close-search,
+		&__open-search {
+			cursor: pointer;
+		}
+	
+		.navbar-toggler:focus {
+			box-shadow: none !important;
+			border: none !important;
+		}
+	
+		&__mobNav {
+			.navbar-toggler {
+				outline: none;
+				border: none !important;
+	
+				&:focus {
+					box-shadow: 0 0 0 0 !important;
+				}
+			}
+		}
+	
+		&__authorization {
+			a {
+				color: #4A494A;
+	
+				&:hover {
+					color: #FF484F;
+				}
+			}  
+		}
+	
+		&__company_btn{
+				border-radius: 8px;
+				border: 1px solid #3669B380;
+				background-color: transparent;
+				color: #3669B380;
+				transition: 0.3s ease;
+				width: 170px;
+				&:hover{
+					background-color: $color_20;
+					color: $color_4;
+				}
+	
+			&-active{
+				background-color: $color_20 !important; 
+				color: $color_4 !important;
+			}
+		}
+	
+		&__company_btn_mobile {
+			border-radius: 8px;
+			border: 1px solid $color_4;
+			background-color: transparent;
+			color: $color_4;
+			transition: 0.3s ease;
+			width: 170px;
+			&:hover{
+				background-color: $color_4;
+				color: $color_20;
+			}
+	
+			&-active{
+				background-color: $color_4 !important; 
+				color: $color_20 !important;
+			}
+		}
+	
+		.mobile_background {
+			border-bottom: 1px solid $color_4;
+			border-radius: 0%;
+			color: $color_4;
+	
+			&:hover {
+				border: 1px solid $color_4;
+				border-radius: 8px;
+				color: $color_4;
+			}
+		}
+	}
+	
+}
+
 #nav-icon3 {
 	width: 30px;
 	height: 30px;

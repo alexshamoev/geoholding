@@ -3,6 +3,7 @@
         &__statistic{
             width: 150px;
             height: 150px;
+            position: relative;
     
             &:nth-child(2){
                 left: 215px;
@@ -12,6 +13,29 @@
             &:nth-child(3){
                 bottom: 12px;
                 left: 110px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 124px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 95px;
+            }
+
+            &-circlet {
+                top: 134px;
+                left: 86px;
             }
         }
 
@@ -83,29 +107,7 @@
             line-height: 25px;
         }
     }
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-
-            &__why_us:nth-child(3){
-                border-bottom: 1px solid $color_0;
-            }
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-
-            &__why_us:nth-child(3){
-                border-bottom: 1px solid $color_10;
-            }
-        }
-    }
+    
 }
 
 
@@ -114,6 +116,7 @@
         &__statistic{
             width: 200px;
             height: 200px;
+            position: relative;
     
             &:nth-child(2){
                 left: 270px;
@@ -123,6 +126,29 @@
             &:nth-child(3){
                 bottom: 0px;
                 left: 154px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 160px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 179px;
+            }
+
+            &-circlet {
+                top: 179px;
+                left: 130px;
             }
         }
 
@@ -186,32 +212,6 @@
             line-height: 25px;
         }
     }
-
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-
-            &__why_us:nth-child(3){
-                border-bottom: 1px solid $color_0;
-            }
-
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-
-            &__why_us:nth-child(3){
-                border-bottom: 1px solid $color_10;
-            }
-
-        }
-    }
 }
 
 @media only screen and (min-width: $md_size) {
@@ -219,6 +219,7 @@
         &__statistic{
             width: 200px;
             height: 200px;
+            position: relative;
     
             &:nth-child(2){
                 left: 270px;
@@ -228,6 +229,29 @@
             &:nth-child(3){
                 bottom: 0px;
                 left: 154px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 160px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 179px;
+            }
+
+            &-circlet {
+                top: 179px;
+                left: 130px;
             }
         }
 
@@ -295,22 +319,6 @@
             line-height: 25px;
         }
     }
-
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-        }
-    }
 }
 
 
@@ -319,6 +327,7 @@
         &__statistic{
             width: 200px;
             height: 200px;
+            position: relative;
     
             &:nth-child(2){
                 left: 270px;
@@ -328,6 +337,29 @@
             &:nth-child(3){
                 bottom: 0px;
                 left: 154px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 160px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 179px;
+            }
+
+            &-circlet {
+                top: 179px;
+                left: 130px;
             }
         }
 
@@ -395,22 +427,6 @@
             line-height: 35px;
         }
     }
-
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-        }
-    }
 }
 
 
@@ -419,6 +435,7 @@
         &__statistic{
             width: 200px;
             height: 200px;
+            position: relative;
     
             &:nth-child(2){
                 left: 270px;
@@ -428,6 +445,29 @@
             &:nth-child(3){
                 bottom: -70px;
                 left: 165px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 160px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 179px;
+            }
+
+            &-circlet {
+                top: 179px;
+                left: 130px;
             }
         }
 
@@ -495,22 +535,6 @@
             line-height: 35px;
         }
     }
-
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-        }
-    }
 }
 
 
@@ -519,6 +543,7 @@
         &__statistic{
             width: 200px;
             height: 200px;
+            position: relative;
     
             &:nth-child(2){
                 left: 270px;
@@ -528,6 +553,29 @@
             &:nth-child(3){
                 bottom: -70px;
                 left: 165px;
+            }
+
+            &-circle{
+                width: 20px;
+                height: 20px;
+                background-color: $color_10;
+                position: absolute;
+                border-radius: 50%;
+            }
+
+            &-circlef {
+                top: 160px;
+                left: 21px;
+            }
+
+            &-circles {
+                top: 130px;
+                left: 179px;
+            }
+
+            &-circlet {
+                top: 179px;
+                left: 130px;
             }
         }
 
@@ -595,22 +643,6 @@
             line-height: 35px;
         }
     }
-
-    .ice-land{
-        .home{
-            &__statistic{
-                border: 1px solid $color_1;
-            }
-        }
-    }
-
-    .bd-comp{
-        .home{
-            &__statistic{
-                border: 1px solid $color_11;
-            }
-        }
-    }
 }
 
 
@@ -622,6 +654,17 @@
     .home{
         &__title{
             line-height: 65px;
+        }
+
+        &__statistic{
+            border: 1px solid $color_1;
+            &-circle{
+                background-color: $color_0;
+            }
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_0;
         }
 
         &__about_us_img{
@@ -776,6 +819,17 @@
                 
             }
         }
+
+        &__statistic{
+            border: 1px solid $color_11;
+            &-circle{
+                background-color: $color_10;
+            }
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_10;
+        }
         
         &__title_different_part{
             color: $color_4;
@@ -887,6 +941,157 @@
     
         &__plus{
             color: $color_10;
+        }
+    
+        &__our_project{
+            & img{
+                width: 500px;
+            }
+        }
+    
+        &__products_dif_img{
+            top: -210px;
+        }
+    }
+}
+
+.bd-plus{
+    .home{
+        &__title{
+            line-height: 65px;
+        }
+
+        &__about_us_img{
+            &::before{
+                border: 1px solid #3669B34D;
+            }
+    
+            &::after{
+                border: 1px solid #3669B34D;
+                
+            }
+        }
+
+        &__statistic{
+            border: 1px solid $color_21;
+            &-circle{
+                background-color: $color_20;
+            }
+        }
+
+        &__why_us:nth-child(3){
+            border-bottom: 1px solid $color_20;
+        }
+        
+        &__title_different_part{
+            color: $color_4;
+            background-color: $color_20;
+            position: relative;
+    
+            &::before{
+                content: "";
+                position: absolute;
+                left: -12px;
+                bottom: -12px;
+                width: 12px;
+                height: 12px;
+                background: linear-gradient(180deg, #599DFF 0%, #3669B3 100%);
+                border-top-left-radius: 50%;
+                border-bottom-right-radius: 50%;
+                border-bottom-left-radius: 50%;
+            }
+    
+            &::after{
+                content: "";
+                position: absolute;
+                top: -12px;
+                right: -12px;
+                width: 12px;
+                height: 12px;
+                background: linear-gradient(180deg, #599DFF 0%, #3669B3 100%);
+                border-top-left-radius: 50%;
+                border-top-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+            }
+            
+        }
+    
+        &__button{
+            background-color: $color_20;
+        }
+    
+        &__gradinet_div{
+            box-shadow: #3669B333 -270px 143px 210px 31px;
+            background-color: #3669B333;
+            border-radius: 30px;
+        }
+    
+        &__gradient{
+            box-shadow: #3669B333 170px 50px 210px 31px;
+            background-color: #3669B333;
+            border-radius: 30px;
+        }
+    
+        &__text_head{
+            z-index: 10;
+        }
+    
+        &__about_us_box{
+            padding-left: 60px;
+        }
+    
+        &__about_us_mini_circle{
+            box-shadow:#3669B333 173px -170px 50px -139px, #3669B333 -100px 122px 60px -100px;
+            &::before{
+                content: "";
+                width: 30px;
+                height: 30px;
+                background-color: #BCCBE2;
+                position: absolute;
+                border-radius: 50%;
+                bottom: 45px;
+                right: 3px;
+               
+            }
+    
+            &::after{
+                content: "";
+                width: 20px;
+                height: 20px;
+                background-color: #D8E0EB;
+                position: absolute;
+                border-radius: 50%;
+                bottom: -25px;
+                right: 37px;
+                z-index: 10;
+            }
+        }
+    
+        &__banner_icon{
+            width: 72px;
+        }
+    
+        &__banner_section{
+            background-color: #3669B333;
+        }
+    
+        &__why_us:first-child{
+            border-bottom: 1px solid $color_20;
+        }
+    
+        &__why_us:nth-child(2){
+            border-bottom: 1px solid $color_20;
+        }
+    
+        &__about_us_number{
+            width: 54px;
+            height: 54px;
+            background-color: $color_20;
+            color: $color_4;
+        }
+    
+        &__plus{
+            color: $color_20;
         }
     
         &__our_project{

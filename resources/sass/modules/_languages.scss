@@ -76,6 +76,30 @@
 	}
 }
 
+.bd-plus{
+	.languages {
+		&__block {
+			width: 108px;
+			background-color: $color_4;
+			&--active {
+				pointer-events: none;
+			}
+		}
+	
+		&__flag{
+			width: 25px;
+			height: 25px;
+			border-radius: 50%;
+		}
+	
+		&__dropdown{
+			border: 1px solid #3669B380;
+			border-radius: 8px;
+			color: $color_20;
+		}
+	}
+}
+
 .dropdown-toggle{
 	&::after{
 		display: none;

@@ -29,21 +29,33 @@
 
 
 .footer {
-    background-color: rgb(186, 236, 173);
     position: relative;
     z-index: 20;
-    background-color: rgba(94, 197, 241, 0.20);
+
+    &__companies a{
+        color: $color_8;
+    }
+
+    &__contact_info a{
+        color: $color_8;
+    }
+    
+    .menu_buttons__item a {
+        color: $color_8;
+        text-decoration: none;
+        position: relative;
+        z-index: 1;
+    }
+
+    .menu_buttons__item span {
+        color: $color_8;
+    }
+    
 
     &__media_icon {
         font-size: 18px;
         transition: color 0.2s ease-in-out;
         padding: 4px;
-        color: $color_0 !important;
-        border-color: $color_0 !important;
-    }
-
-    &__horizontal_line {
-        border-top: 2px solid $color_0;
     }
 
     &__admin_button {
@@ -53,5 +65,47 @@
         bottom: 0;
         width: 20px;
         z-index: 400;
+    }
+}
+
+.footer-ice{
+    background-color: rgba(94, 197, 241, 0.20);
+    .footer{
+        &__horizontal_line{
+            border-top: 2px solid $color_0;
+        }
+
+        &__media_icon{
+            color: $color_0;
+            border: 1px solid $color_0;
+        }
+    } 
+}
+
+.footer-comp{
+    background-color: #A6252533;
+    .footer{
+        &__horizontal_line{
+            border-top: 2px solid $color_10;
+        }
+
+        &__media_icon{
+            color: $color_10;
+            border: 1px solid $color_10
+        }
+    }
+}
+
+.footer-plus{
+    background-color: #3669B333;
+    .footer{
+        &__horizontal_line{
+            border-top: 2px solid $color_20;
+        }
+
+        &__media_icon{
+            color: $color_20;
+            border: 1px solid $color_20
+        }
     }
 }

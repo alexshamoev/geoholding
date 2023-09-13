@@ -1,17 +1,31 @@
 @if($widgetGetVisibility['footer'])
-    <footer class="footer">
+    <footer class="footer @switch(config('activeCompany')->const) 
+        @case('ice-land')footer-ice @break @case('bd-comp')footer-comp @break @case('bd-plus')footer-plus @break @default @endswitch">
         <div class="container py-sm-5 pt-3 pb-5 px-sm-3">
             <div class="row">
                 <div class="col-lg-3
                             col-sm-6
                             col-12
-                            py-4
+                            py-sm-4
                             d-sm-block
                             d-flex
                             flex-column
                             align-items-center">
                     <div class="mb-sm-4 mb-md-5" >
-                        <img src="{{ asset('storage\images\modules\companies\83\1.png') }}" class="w-auto"/>
+                        @switch(config('activeCompany')->const)
+                                @case('ice-land')
+                                    <img  class="w-auto" src="{{ asset('/storage/images/logo.svg') }}">
+                                @break
+
+                                @case('bd-comp')
+                                    <img  class="w-auto" src="{{ asset('/storage/images/logo_comp.svg') }}">
+                                @break
+
+                                @case('bd-plus')
+                                    <img  class="w-auto" src="{{ asset('/storage/images/logo_plus.svg') }}">
+                                @break
+                            @default
+                        @endswitch
                     </div>
 
                     <div class="d-sm-flex d-none gap-2">
@@ -21,7 +35,7 @@
                                 class="ba_fb
                                         footer__media_icon
                                         footer__media_icon--fb
-                                        border
+
                                         rounded"></a>
                         </div>
                         
@@ -31,7 +45,7 @@
                                 class="ba_inst
                                         footer__media_icon
                                         footer__media_icon--instagram
-                                        border
+
                                         rounded"></a>
                         </div>
                         
@@ -41,7 +55,7 @@
                                 class="ba_tw
                                         footer__media_icon
                                         footer__media_icon--twitter
-                                        border
+
                                         rounded"></a>
                         </div>
 
@@ -51,7 +65,7 @@
                                 class="ba_in
                                         footer__media_icon
                                         footer__media_icon--linkedin
-                                        border
+
                                         rounded"></a>
                         </div>
                     </div>
@@ -69,11 +83,12 @@
                                 flex-wrap
                                 flex-sm-column
                                 justify-content-center
-                                gap-3">
+                                gap-3
+                                footer__companies">
                         @if ($companies->isNotEmpty())
                             @foreach ($companies as $company)
                                 <div>
-                                    <a href="{{ $company->fullUrl }}" class="text-secondary py-2">{{ $company->title }}</a>
+                                    <a href="{{ $company->fullUrl }}" class=" py-2">{{ $company->title }}</a>
                                 </div>
                             @endforeach
                         @endif
@@ -200,7 +215,7 @@
                                 flex-wrap
                                 justify-content-center
                                 gap-3
-                                text-secondary" >
+                                footer__contact_info">
                         
                         <div>
                             <a href="mailto:{{ $contacts->email }}">{{ $contacts->email }}</a>
@@ -214,50 +229,46 @@
                 </div>
             </div>
 
-            <div class="d-sm-none pt-4" >
-                    <div class="d-flex
-                                justify-content-center
-                                gap-2">
-                        <div>
-                            <a href="{{ config('bsc.facebook_link') }}"
-                                target="_blank"
-                                class="ba_fb
-                                        footer__media_icon
-                                        footer__media_icon--fb
-                                        border
-                                        rounded"></a>
-                        </div>
-                        
-                        <div>
-                            <a href="{{ config('bsc.instagram_link') }}"
-                                target="_blank"
-                                class="ba_inst
-                                        footer__media_icon
-                                        footer__media_icon--instagram
-                                        border
-                                        rounded"></a>
-                        </div>
-                        
-                        <div>
-                            <a href="{{ config('bsc.twitter_link') }}"
-                                target="_blank"
-                                class="ba_tw
-                                        footer__media_icon
-                                        footer__media_icon--twitter
-                                        border
-                                        rounded"></a>
-                        </div>
-
-                        <div>
-                            <a href="#"
-                                target="_blank"
-                                class="ba_in
-                                        footer__media_icon
-                                        footer__media_icon--linkedin
-                                        border
-                                        rounded"></a>
-                        </div>
+            <div class="d-sm-none pt-4">
+                <div class="d-flex
+                            justify-content-center
+                            gap-2">
+                    <div>
+                        <a href="{{ config('bsc.facebook_link') }}"
+                            target="_blank"
+                            class="ba_fb
+                                    footer__media_icon
+                                    footer__media_icon--fb
+                                    rounded"></a>
                     </div>
+                    
+                    <div>
+                        <a href="{{ config('bsc.instagram_link') }}"
+                            target="_blank"
+                            class="ba_inst
+                                    footer__media_icon
+                                    footer__media_icon--instagram
+                                    rounded"></a>
+                    </div>
+                    
+                    <div>
+                        <a href="{{ config('bsc.twitter_link') }}"
+                            target="_blank"
+                            class="ba_tw
+                                    footer__media_icon
+                                    footer__media_icon--twitter
+                                    rounded"></a>
+                    </div>
+
+                    <div>
+                        <a href="#"
+                            target="_blank"
+                            class="ba_in
+                                    footer__media_icon
+                                    footer__media_icon--linkedin
+                                    rounded"></a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -278,7 +289,7 @@
                             p-2
                             text-lg-end
                             text-center">
-                    Created by <a href="http://hobbystudio.ge/" target="_blank">HobbyStudio</a>
+                    Created by <a href="http://hobbystudio.ge/" target="_blank" class="text-secondary">HobbyStudio</a>
                 </div>
             </div>
         </div>
