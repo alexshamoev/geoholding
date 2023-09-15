@@ -1,11 +1,13 @@
 @if($widgetGetVisibility['header'])
     <div>
         <div class="container-fluid p-0">
-            <div class="container p-2 d-none d-lg-block">
+            <div class="container p-2 d-none d-lg-block px-xxl-0 px-xl-5">
                 <div class="d-flex
                             align-items-center
                             justify-content-between
-                            row">
+                            row
+                            px-xxl-0
+                            px-xl-2">
                     <div class="col-xl-1
                                 col-lg-2
                                 position-relative__logo
@@ -14,15 +16,15 @@
                             <a href="{{ url('/') }}">
                                 @switch(config('activeCompany')->const)
                                         @case('ice-land')
-                                            <img src="{{ asset('/storage/images/logo.svg') }}">
+                                            <img class="header__logo" src="{{ asset('/storage/images/logo.svg') }}">
                                         @break
 
                                         @case('bd-comp')
-                                            <img src="{{ asset('/storage/images/logo_comp.svg') }}">
+                                            <img class="header__logo" src="{{ asset('/storage/images/logo_comp.svg') }}">
                                         @break
 
                                         @case('bd-plus')
-                                            <img src="{{ asset('/storage/images/logo_plus.svg') }}">
+                                            <img class="header__logo" src="{{ asset('/storage/images/logo_plus.svg') }}">
                                         @break
                                     @default
                                 @endswitch

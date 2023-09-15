@@ -43,6 +43,11 @@
             height: 370px;
         }
 
+        &__partner_shadow{
+            right: 0;
+            bottom: 0;
+        }
+
         &__about_us_img{
             width: 250px;
             position: relative;
@@ -156,6 +161,11 @@
             height: 400px;
         }
 
+        &__partner_shadow{
+            right: 0;
+            bottom: 0;
+        }
+
         &__about_us_img{
             width: 370px;
             position: relative;
@@ -257,6 +267,11 @@
 
         &__partner_box{
             height: 400px;
+        }
+
+        &__partner_shadow{
+            right: 0;
+            bottom: 0;
         }
 
         &__about_us_img{
@@ -367,6 +382,11 @@
             height: 400px;
         }
 
+        &__partner_shadow{
+            left: 80px;
+            bottom: -35%;
+        }
+
         &__about_us_img{
             width: 370px;
             position: relative;
@@ -475,6 +495,11 @@
             height: 370px;
         }
 
+        &__partner_shadow{
+            left: 80px;
+            bottom: -25%;
+        }
+
         &__about_us_img{
             width: 370px;
             position: relative;
@@ -521,6 +546,14 @@
 
         &__why_us:nth-child(3){
             border-bottom: 1px solid transparent !important;
+        }
+
+        &__why_us_shadow{
+            box-shadow: #ddf3fc -270px 143px 210px 31px;
+        }
+
+        &__why_us_shadow_small{
+            box-shadow: #ddf3fc -270px 143px 210px 31px;
         }
 
         &__about_us_text{
@@ -583,6 +616,11 @@
             height: 370px;
         }
 
+        &__partner_shadow{
+            left: 80px;
+            bottom: -10%;
+        }
+
         &__about_us_img{
             width: 370px;
             position: relative;
@@ -631,6 +669,16 @@
             border-bottom: 1px solid transparent !important;
         }
 
+        &__why_us_shadow{
+            box-shadow: #ddf3fc -270px 143px 210px 31px;
+            width: 50px;
+        }
+
+        &__why_us_shadow_small{
+            box-shadow: #ddf3fc -270px 143px 210px 31px;
+            width: 30px;
+        }
+
         &__about_us_text{
             line-height: 40px;
         }
@@ -645,16 +693,20 @@
     }
 }
 
-
-
-
-
+.home{
+    &__partners{
+        img{
+            width: auto !important;
+        }
+    }
+}
 
 .ice-land{
     .home{
         &__title{
             line-height: 65px;
         }
+        
 
         &__statistic{
             border: 1px solid $color_1;
@@ -735,6 +787,11 @@
     
         &__about_us_box{
             padding-left: 60px;
+        }
+
+        &__partner_shadow{
+            box-shadow: #ddf3fc 170px 50px 210px 200px;
+            z-index: -1;
         }
     
         &__about_us_mini_circle{
@@ -915,6 +972,11 @@
                 z-index: 10;
             }
         }
+
+        &__partner_shadow{
+            box-shadow: #BF212633 170px 50px 210px 31px;
+            z-index: -1;
+        }
     
         &__banner_icon{
             width: 72px;
@@ -1014,6 +1076,11 @@
                 border-bottom-right-radius: 50%;
             }
             
+        }
+
+        &__partner_shadow{
+            box-shadow: #3669B333 -270px 143px 210px 31px;
+            z-index: -1;
         }
     
         &__button{

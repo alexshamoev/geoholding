@@ -5,10 +5,10 @@
 @section('pageMetaUrl'){{ $activeBrand -> metaUrl }}@endsection
 
 @section('content')
-	<div class="container p-2">
+	<div class="container p-2 px-xxl-0 px-xl-5">
 		<h2 class="p-2 text-center pt-3 pb-5">{{ $activeBrand->title }}</h2 class="p-2">
 		
-		<div class="row">
+		<div class="row px-xxl-0 px-xl-2">
 			@if ($activeBrand->brands->isNotEmpty())
 				@foreach ($activeBrand->brands as $brand)
 					@if (file_exists(public_path('storage/images/modules/companies/89/' . $brand->id . '.png')))

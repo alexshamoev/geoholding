@@ -56,15 +56,13 @@
 			</div>
 		</div>
 
-		<div class="py-5 mb-5">
-			<div class="row d-flex align-items-center">
+		<div class="py-5 mb-5 container px-xxl-0 px-xl-5">
+			<div class="row d-flex align-items-center home__partners px-xxl-0 px-xl-2">
 				@if ($activeHome->partners->isNotEmpty())
 					@foreach ($activeHome->partners as $item)
 						<div class="col-lg-2 
 									col-sm-3 
 									col-6 
-									px-sm-5 
-									px-3 
 									py-3">
 							@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
 								@if (!empty($item->link))
@@ -81,13 +79,13 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container pb-5 px-xxl-0 px-xl-5">
 			<div class="p-2">
 				<h2 class="p-2 d-md-none d-block">{{ $activeHome->section2title }}</h2>
 			</div>
 
-			<div class="row py-md-5 pt-5">
-				<div class="col-lg-6 mb-lg-0 mb-5">
+			<div class="row py-md-5 pt-5 px-xxl-0 px-xl-2">
+				<div class="col-lg-6 mb-lg-0 mb-5 pb-md-5">
 					<div class="home__about_us_box">
 						@if (file_exists(public_path('storage/images/modules/companies/81/s2_' . $activeHome->id . '.jpg')))
 							<div class="rounded-circle 
@@ -135,7 +133,7 @@
 			</div>
 		</div>
 
-		<div class="container py-sm-5 pb-sm-0	">
+		<div class="container py-5 px-xxl-0 px-xl-5">
 			<div class="p-2 pb-sm-5">
 				<h2 class="p-2">{{ $activeHome->section3title }}</h2>
 			</div>
@@ -164,7 +162,10 @@
 							pt-sm-0
 							pt-4
 							order-lg-2
-							order-1">
+							order-1
+							position-relative">
+					<div class="home__partner_shadow position-absolute"></div>
+
 					<div class="position-relative h-100 w-75 p-2">
 						<div class="text-center 
 									d-flex 
@@ -271,21 +272,23 @@
 			@endif
 		</div>
 
-		<div class="container p-2 py-lg-5">
+		<div class="container p-2 py-lg-5 px-xxl-0 px-xl-5">
 			@if (!empty($activeHome->reason))
-				<div class="py-4">
-					<h2 class="home__why_us_title p-2">{{ $activeHome->reason->title }}</h2>
+				<div class="py-4 p-sm-0 p-2">
+					<h2 class="home__why_us_title p-2 pb-4 px-3">{{ $activeHome->reason->title }}</h2>
 				</div>
 
-				<div class="row">
+				<div class="row p-sm-2">
 					<div class="px-2">{!! $activeHome->reason->text !!}</div>
 				</div>
 
 				@php $id = 0; @endphp
 
-				<div class="row p-lg-0 p-2">
+				<div class="row p-sm-3 p-0 position-relative">
+					{{-- <div class=" home__why_us_shadow position-absolute"></div>
+					<div class=" home__why_us_shadow_small position-absolute"></div> --}}
 					@foreach ($activeHome->reason->reasons as $item)
-						<div class="col-md-6 p-0 py-lg-5 py-4 home__why_us p-2">
+						<div class="col-md-6 p-0 py-lg-5 py-4 home__why_us p-0 pe-sm-5">
 							<div class="home__about_us_number 
 										d-flex 
 										align-items-center 

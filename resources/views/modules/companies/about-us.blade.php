@@ -10,7 +10,7 @@
 			<h1>{{ $activeAbout->title }}</h1>
 		</div>
 
-		<div class="container">
+		<div class="container pb-5 px-xxl-0 px-xl-5">
 			<div class="row py-5">
 				<div class="col-md-6 d-flex align-items-center order-md-1 order-2">
 					<div class="row">
@@ -49,13 +49,13 @@
 		</div>
 
 		<div class="about_us__our_goal py-md-5 p-2">
-			<div class="container text-center py-5">
+			<div class="container text-center py-5 px-xxl-0 px-xl-5">
 				<h2 class="py-2">{{ $activeAbout->section2title }}</h2>
 				<div class="p-2 about_us__text">{!! $activeAbout->section2text !!}</div>
 			</div>
 		</div>
 		
-		<div class="container py-md-5">
+		<div class="container py-md-5 px-xxl-0 px-xl-5">
 			<div class="row py-md-5">
 				<div class="col-md-6 
 							d-flex 

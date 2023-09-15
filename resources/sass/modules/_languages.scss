@@ -49,6 +49,13 @@
 			border-radius: 8px;
 			color: $color_0;
 		}
+
+		&__block{
+			border: 1px solid #5EC5F1;
+			border-radius: 8px;
+			color: $color_0;
+			width: 111px;
+		}
 	}
 }
 
@@ -73,6 +80,23 @@
 			border-radius: 8px;
 			color: $color_10;
 		}
+
+		&__block{
+			border: 1px solid #A62525;
+			border-radius: 8px;
+			color: $color_10;
+			width: 111px;
+			a{
+				color: $color_10;
+				transition: 0.3s ease;
+			}
+
+			&:hover{
+				a{
+					color: red;
+				}
+			}
+		}
 	}
 }
 
@@ -96,6 +120,13 @@
 			border: 1px solid #3669B380;
 			border-radius: 8px;
 			color: $color_20;
+		}
+
+		&__block{
+			border: 1px solid #3669B380;
+			border-radius: 8px;
+			color: $color_20;
+			width: 111px;
 		}
 	}
 }

@@ -1,8 +1,14 @@
 @if($widgetGetVisibility['footer'])
     <footer class="footer @switch(config('activeCompany')->const) 
         @case('ice-land')footer-ice @break @case('bd-comp')footer-comp @break @case('bd-plus')footer-plus @break @default @endswitch">
-        <div class="container py-sm-5 pt-3 pb-5 px-sm-3">
-            <div class="row">
+        <div class="container 
+                    py-sm-5 
+                    pt-3 
+                    pb-5 
+                    px-xxl-0 
+                    px-xl-5 
+                    px-sm-3">
+            <div class="row px-xxl-0 px-xl-2">
                 <div class="col-lg-3
                             col-sm-6
                             col-12
@@ -274,7 +280,12 @@
 
         <div class="footer__horizontal_line d-sm-block d-none"></div>
 
-        <div class="container p-2 d-sm-block d-none">
+        <div class="container 
+                    p-2 
+                    d-sm-block 
+                    d-none 
+                    px-xxl-0 
+                    px-xl-5">
             <div class="row">
                 <div class="col-lg-8
                             col-12
