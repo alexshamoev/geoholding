@@ -36,7 +36,7 @@
 
                     <div class="d-sm-flex d-none gap-2">
                         <div>
-                            <a href="{{ config('bsc.facebook_link') }}"
+                            <a href="{{ $contacts->facebook_link }}"
                                 target="_blank"
                                 class="ba_fb
                                         footer__media_icon
@@ -46,7 +46,7 @@
                         </div>
                         
                         <div>
-                            <a href="{{ config('bsc.instagram_link') }}"
+                            <a href="{{ $contacts->instagram_link }}"
                                 target="_blank"
                                 class="ba_inst
                                         footer__media_icon
@@ -54,19 +54,9 @@
 
                                         rounded"></a>
                         </div>
-                        
-                        <div>
-                            <a href="{{ config('bsc.twitter_link') }}"
-                                target="_blank"
-                                class="ba_tw
-                                        footer__media_icon
-                                        footer__media_icon--twitter
-
-                                        rounded"></a>
-                        </div>
 
                         <div>
-                            <a href="#"
+                            <a href="{{ $contacts->linkedin_link }}"
                                 target="_blank"
                                 class="ba_in
                                         footer__media_icon
