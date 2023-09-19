@@ -61,7 +61,7 @@ class MenuButtonStep0 extends Model {
 	
 	public function getActiveAttribute() {
 		if($this -> page) {
-			if($this -> page -> alias === config('activePageAlias')) {
+			if($this -> page -> alias === config('currentActiveTab')) {
 				return 1;
 			} else {
 				return 0;

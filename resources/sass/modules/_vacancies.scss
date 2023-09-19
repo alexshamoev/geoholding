@@ -35,8 +35,39 @@
     &__header_wrapper{
         border-radius: 20px;
     }
+
     &__box_shadow {
         box-shadow: 4px 4px 4px 1px rgba(94, 197, 241, 0.17);
     }
-      
+}
+
+.page-item:first-child .page-link {
+    border: 1px solid #5EC5F1 !important;
+    border-radius: 8px !important;
+    background-color: transparent !important;
+}
+
+.page-item:last-child .page-link {
+    border: 1px solid #5EC5F1 !important;
+    border-radius: 8px !important;
+    background-color: transparent !important;
+}
+
+.pagination li{
+    margin: 5px;
+}
+
+.pagination .page-link{
+    border: 1px solid transparent !important;
+    background-color: #5EC5F133;
+    border-radius: 8px !important;
+}
+
+.page-item .page-link{
+    color: #5EC5F1;
+}
+
+.page-item.active .page-link{
+    background-color: #5EC5F1 !important;
+    color: #fff !important;
 }

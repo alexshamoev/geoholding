@@ -31,15 +31,15 @@
 					<a href="{{ $vacancy->fullUrl }}">
 						@if (file_exists(public_path('storage/images/modules/companies/90/' . $activeVacancy->id . '.png')))
 							<div class="vacancies__box_shadow 
-							text-dark 
-							row 
-							border 
-							vacancies__rounded_border 
-							mt-3 
-							mb-3 
-							align-items-center
-							pt-2 
-							pb-2">
+										text-dark 
+										row 
+										border 
+										vacancies__rounded_border 
+										mt-3 
+										mb-3 
+										align-items-center
+										pt-2 
+										pb-2">
 								<div class="col-md-1 col-sm-0"></div>
 								<div class="col-md-5 col-sm-6  d-flex align-items-center justify-content-start ps-5 gap-5">
 									<img class="w-25" src="{{ asset('storage/images/modules/companies/90/' . $activeVacancy->id . '.png') }}"
@@ -54,7 +54,9 @@
 				@endforeach
 			@endif
 
-			{{ $vacancies->links() }}
+			<div class="d-flex justify-content-end">
+				{{ $vacancies->links() }}
+			</div>
 		</div>
 	</div>
 </div>
