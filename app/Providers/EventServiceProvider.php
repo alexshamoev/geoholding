@@ -2,11 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\BrandsStep1;
 use App\Models\Page;
 use App\Models\Module;
 use App\Models\Language;
 use App\Models\HomeStep6;
 use App\Models\ModuleStep;
+use App\Observers\BrandsStep1Observer;
 use App\Observers\PageObserver;
 use App\Observers\ModuleObserver;
 use App\Observers\PartnerObserver;
@@ -45,5 +47,6 @@ class EventServiceProvider extends ServiceProvider
         Language::observe(LanguageObserver::class);
         Page::observe(PageObserver::class);
         HomeStep6::observe(HomeStem6Observer::class);
+        BrandsStep1::observe(BrandsStep1Observer::class);
     }
 }
