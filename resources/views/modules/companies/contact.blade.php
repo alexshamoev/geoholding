@@ -26,14 +26,14 @@
 
 			<div class="row gap-3 p-2">
 				<label class="contact_page__input_wrapper contact_page__required overflow-hidden
-					my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					my-2 my-xl-0 border rounded-3 flex-grow-1 col-md-5 col-12">
 					{{ Form::text('fullname', old('fullname'), array('required' => 'required', 'placeholder' =>
 					__('bsw.your_name'),'class' => 'border border-0 p-0 w-100'))
 					}}
 				</label>
 
 				<label
-					class="contact_page__input_wrapper overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					class="contact_page__input_wrapper overflow-hidden my-2 my-xl-0 border rounded-3 flex-grow-1 col-md-5 col-12">
 					{{ Form::text('company_name', old('company_name'), array('placeholder' => __('bsw.company_name'),
 					'class' => 'border border-0 p-0 w-100')) }}
 				</label>
@@ -42,14 +42,14 @@
 
 			<div class="row gap-3 p-2 ">
 				<label
-					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 flex-grow-1 col-md-5 col-12">
 					{{ Form::email('email_address', old('email_address'), array('required' => 'required', 'placeholder'
 					=>
 					__('bsw.your_email'),'class' => 'border border-0 p-0 w-100')) }}
 				</label>
 
 				<label
-					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 border-info flex-grow-1 col-md-5 col-12">
+					class="contact_page__input_wrapper contact_page__required overflow-hidden my-2 my-xl-0 border rounded-3 flex-grow-1 col-md-5 col-12">
 					{{ Form::tel('phone_number', old('phone_number'), array('required' => 'required', 'placeholder' =>
 					__('bsw.your_phone'), 'maxlength' => '15', 'class' => 'border border-0 p-0 w-100')) }}
 				</label>
@@ -59,11 +59,11 @@
 			<div class="row col-12 ">
 				{{ Form::textarea('message', old('message'), array('placeholder' => __('bsw.write_your_text'), 'class'
 				=>
-				'border border-info p-2 rounded-3 col-12')) }}
+				'border p-2 rounded-3 col-12')) }}
 			</div>
 
 			<div class="col-12 d-flex justify-content-end">
-				{{ Form::submit(__('bsw.send'), ['class' => 'border border-0 text-white bg-info px-3 py-2
+				{{ Form::submit(__('bsw.send'), ['class' => 'contact_page__button border-0 text-white px-3 py-2
 				rounded-3']) }}
 			</div>
 
