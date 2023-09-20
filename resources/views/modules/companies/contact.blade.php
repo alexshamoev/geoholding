@@ -75,13 +75,13 @@
 				@endif
 
 				@if(Session::has('contact-error'))
-					<div class="alert alert-error m-0" role="alert">
+					<div class="alert bg-danger m-0" role="alert">
 						{{ Session::get('contact-error') }}
 					</div>
 				@endif
 			</div>
 
-			{{ Form::hidden('activeCompanyId', config('activeCompany')->id) }}
+			{{ Form::hidden('active', config('activeCompany')->id) }}
 
 			{{ Form::close() }}
 		</div>
