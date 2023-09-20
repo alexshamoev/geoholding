@@ -44,7 +44,7 @@
 					@case('ice-land')ice-land @break @case('bd-comp')bd-comp @break @case('bd-plus')bd-plus @break @default @endswitch">
 			@include('includes.photoswipe')
 
-			@include('includes.bootstrap_size_getter')
+			{{-- @include('includes.bootstrap_size_getter') --}}
 
 			@include('modules.header.basic')
 

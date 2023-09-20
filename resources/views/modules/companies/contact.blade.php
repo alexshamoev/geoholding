@@ -62,9 +62,23 @@
 				'border p-2 rounded-3 col-12')) }}
 			</div>
 
-			<div class="col-12 d-flex justify-content-end">
-				{{ Form::submit(__('bsw.send'), ['class' => 'contact_page__button border-0 text-white px-3 py-2
-				rounded-3']) }}
+			<div class="col-12 
+						d-flex 
+						justify-content-between
+						align-items-center">
+				{{ Form::submit(__('bsw.send'), ['class' => 'contact_page__button border-0 text-white px-3 py-2 rounded-3']) }}
+
+				@if(Session::has('contact-success'))
+					<div class="alert alert-success m-0" role="alert">
+						{{ Session::get('contact-success') }}
+					</div>
+				@endif
+
+				@if(Session::has('contact-error'))
+					<div class="alert alert-error m-0" role="alert">
+						{{ Session::get('contact-error') }}
+					</div>
+				@endif
 			</div>
 
 			{{ Form::hidden('activeCompanyId', config('activeCompany')->id) }}
@@ -81,22 +95,6 @@
 						<img class="col-8 col-sm-11 col-md-8 col-lg-8 col-xl-9 p-0"
 							src="{{ asset('storage/images/phone.svg') }}" alt="phone">
 					</div>
-
-					@if(Session::has('contact-success'))
-						<div class="p-2">
-							<div class="alert alert-success m-0" role="alert">
-								{{ Session::get('contact-success') }}
-							</div>
-						</div>
-					@endif
-
-					@if(Session::has('contact-error'))
-						<div class="p-2">
-							<div class="alert alert-error m-0" role="alert">
-								{{ Session::get('contact-error') }}
-							</div>
-						</div>
-					@endif
 
 					<div class="col">
 						<a class="col ps-xl-3 text-white" href="tel:{{ $activeContact->phone_number }}">
