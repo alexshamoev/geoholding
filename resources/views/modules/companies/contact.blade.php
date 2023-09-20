@@ -20,7 +20,7 @@
 
 	<div class="row col-10 col-xl-8 p-0 rounded contact_page__form_wrapper rounded overflow-hidden">
 		<div class="col-12 col-lg-7 p-sm-5 contact_page__send_message_wrapper">
-			{{ Form::open(array('method' => 'POST', 'id' => 'send_form', 'class' => 'row')) }}
+			{{ Form::open(array('route' => 'sendContact', 'method' => 'POST', 'id' => 'send_form', 'class' => 'row')) }}
 
 			<h3 class="text-dark offset-md-1 p-2 mb-3">{{ __('bsw.send_us_msg') }}</h3>
 
@@ -67,6 +67,8 @@
 				rounded-3']) }}
 			</div>
 
+			{{ Form::hidden('activeCompanyId', config('activeCompany')->id) }}
+
 			{{ Form::close() }}
 		</div>
 
@@ -97,8 +99,6 @@
 					@endif
 
 					<div class="col">
-						{{ Form::open(array('route' => 'sendContact', 'method' => 'POST', 'id' => 'send_form')) }}
-
 						<a class="col ps-xl-3 text-white" href="tel:{{ $activeContact->phone_number }}">
 							{{$activeContact->phone_number }}
 						</a>
