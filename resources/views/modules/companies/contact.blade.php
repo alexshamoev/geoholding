@@ -99,8 +99,7 @@
 					<div class="col">
 						{{ Form::open(array('route' => 'sendContact', 'method' => 'POST', 'id' => 'send_form')) }}
 
-						<a class="col p-0 text-white" href="tel:{{ $activeContact->phone_number }}">
-							{{__('bsw.send_us_msg') }}
+						<a class="col ps-xl-3 text-white" href="tel:{{ $activeContact->phone_number }}">
 							{{$activeContact->phone_number }}
 						</a>
 					</div>
@@ -112,8 +111,7 @@
 							src="{{ asset('storage/images/mail.svg') }}" alt="mail">
 					</div>
 
-					<a class="col ps-xl-3 text-white" href="mailto:{{ $activeContact->email }}">{{ $activeContact->email
-						}}</a>
+					<a class="col ps-xl-3 text-white" href="mailto:{{ $activeContact->email }}">{{ $activeContact->email }}</a>
 				</div>
 
 				<div class="row align-items-center">
