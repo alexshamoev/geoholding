@@ -13,7 +13,7 @@
 						<div class="p-xxl-5 text-sm-start text-center">
 							<h1  class="home__title pb-4 ">{{ $activeHome->section1title }}</h1>
 							<div class="home__head_text d-sm-block d-none">{!! $activeHome->section1text !!}</div>
-							<button class="home__button 
+							{{-- <button class="home__button 
 											mt-4 
 											border-0 
 											p-2 
@@ -22,7 +22,7 @@
 											rounded
 											d-sm-block 
 											d-none">ღილაკი
-							</button>
+							</button> --}}
 						</div>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 												px-3
 												text-white 
 												rounded
-												mt-2">ღილაკი
+												mt-2">ღილაკიss
 								</button>
 							</div>
 						</div>
@@ -144,12 +144,15 @@
 							order-2">
 					<div class="p-2 home__text_partner">{!! $activeHome->section3text !!}</div>
 					<div class="p-2">
-					<button class="home__button
+					<a href="{{ $brandsPage->fullUrl }}">
+						<button class="home__button
 									border-0 
 									p-2 
 									px-3
 									text-white 
-									rounded">ღილაკი</button>
+									rounded">{{ __('bsw.see_brands') }}
+						</button>
+					</a>
 					</div>
 				</div>
 
