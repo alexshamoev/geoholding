@@ -66,7 +66,7 @@
 									py-3">
 							@if (file_exists(public_path('storage/images/modules/companies/87/'.$item->id.'.png')))	
 								@if (!empty($item->link))
-									<a href="{{ $item->link }}" target="a\">
+									<a href="{{ $item->link }}" target="_blank">
 								@endif
 									<img src="{{ asset('storage/images/modules/companies/87/'.$item->id.'.png') }}" alt="{{ $item->title }}">
 								@if (!empty($item->link))
@@ -184,7 +184,7 @@
 									<h2 class="fw-bolder fs-1">243<span class="home__plus">+</span></h2>
 								</div>
 
-								<div>ბრენდის პროდუქტი</div>
+								<div>{{ __('bsw.brand_product') }}</div>
 							</div>
 						</div>
 						
@@ -202,7 +202,7 @@
 									<h2 class="fw-bolder fs-1">14<span class="home__plus">+</span></h2>
 								</div>
 
-								<div>პარტნიორი</div>
+								<div>{{ __('bsw.partner') }}</div>
 							</div>
 						</div>
 
@@ -220,7 +220,7 @@
 									<h2 class="fw-bolder fs-1">128<span class="home__plus">+</span></h2>
 								</div>
 
-								<div>მიწოდების ლოკაცია</div>
+								<div>{{ __('bsw.delivery_location') }}</div>
 							</div>
 						</div>
 					</div>

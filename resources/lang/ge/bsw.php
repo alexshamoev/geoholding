@@ -107,5 +107,9 @@ return [
     'menu' => 'მენიუ',
     'contacts' => 'კონტაქტები',
     'see_brands' => 'იხილეთ ბრენდები',
+    'brand_product' => 'ბრენდის პროდუქტი',
+    'partner' => 'პარტნიორი',
+    'delivery_location' => 'მიწოდების ლოკაცია',
+
 ];
 
